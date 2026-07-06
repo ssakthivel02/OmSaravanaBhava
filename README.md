@@ -1,3 +1,3 @@
-# Om Saravana Bhava v2 Divine Production
+# Om Saravana Bhava v3 Root Only Divine Fixed
 
-Upload all inside files and folders to the repository root. This build includes /pages folders so inner pages work. Hard refresh after upload.
+Upload all files and folders to GitHub repo root. Root links are used to avoid /pages folder issues.
