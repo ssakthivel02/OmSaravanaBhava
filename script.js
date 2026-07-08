@@ -643,5 +643,3 @@
   document.addEventListener('DOMContentLoaded',()=>{ensureDock();normalizePage();});
   window.OmAppCore={$, $$, escapeHTML, loadJSON, toast};
 })();
-
-(function(){document.addEventListener('DOMContentLoaded',()=>{const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.08});document.querySelectorAll('.card,.library-card,.om-card,.reader-panel,.page-hero').forEach(x=>{x.classList.add('reveal');io.observe(x)});});})();

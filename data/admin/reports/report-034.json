@@ -1,0 +1,11 @@
+{
+  "id": "report-034",
+  "area": "content-audit",
+  "status": "template",
+  "checks": [
+    "source",
+    "translation",
+    "link",
+    "seo"
+  ]
+}
