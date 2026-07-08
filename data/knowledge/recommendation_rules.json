@@ -1,0 +1,8 @@
+{
+  "rules": [
+    {"whenType":"temple","recommendTypes":["festival","sloka","literature","symbol"],"title":"Related devotional path"},
+    {"whenType":"festival","recommendTypes":["temple","sloka","symbol"],"title":"Festival preparation"},
+    {"whenType":"sloka","recommendTypes":["temple","festival","literature"],"title":"Read next"},
+    {"whenType":"symbol","recommendTypes":["festival","sloka","temple"],"title":"Symbolic connections"}
+  ]
+}
