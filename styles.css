@@ -21,3 +21,59 @@ body.font-large{font-size:18px}body.font-large .container,body.font-large .page-
 
 /* Batch 07 Murugan Encyclopedia */
 .encyclopedia-card,.name-card,.legend-card{position:relative;overflow:hidden}.encyclopedia-card::after,.legend-card::after{content:"ॐ";position:absolute;right:1rem;bottom:-.6rem;font-size:4rem;color:rgba(245,158,11,.12);font-weight:900}.name-card .num{margin-bottom:.5rem}.legend-card .practice-box{margin-top:1rem}.quick-topic-row{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;margin:1rem 0 2rem}.quick-topic-row .btn{margin-top:0}@media(max-width:760px){.quick-topic-row{justify-content:flex-start}}
+
+
+/* Batch 10A Hotfix: premium utility controls and temple detail stability */
+.osb-utility-bar{
+  top:auto!important;
+  right:1rem!important;
+  bottom:5.2rem!important;
+  display:flex!important;
+  flex-direction:column!important;
+  gap:.55rem!important;
+  padding:.45rem!important;
+  border:1px solid rgba(245,158,11,.25)!important;
+  border-radius:999px!important;
+  background:rgba(255,248,235,.72)!important;
+  -webkit-backdrop-filter:blur(18px)!important;
+  backdrop-filter:blur(18px)!important;
+  box-shadow:0 20px 50px rgba(80,40,0,.16)!important;
+  z-index:900!important;
+}
+.utility-btn{
+  min-width:46px!important;
+  min-height:42px!important;
+  border:0!important;
+  background:rgba(255,255,255,.86)!important;
+  color:#8b1a12!important;
+  border-radius:999px!important;
+  box-shadow:0 8px 20px rgba(80,40,0,.10)!important;
+  transition:transform .18s ease, background .18s ease, color .18s ease!important;
+}
+.utility-btn:hover,.utility-btn:focus-visible{
+  transform:translateY(-2px) scale(1.03)!important;
+  background:linear-gradient(135deg,#f59e0b,#b45309)!important;
+  color:#fff!important;
+  outline:2px solid rgba(245,158,11,.35)!important;
+  outline-offset:2px!important;
+}
+.utility-btn[data-osb-tool="share"]{
+  font-size:.72rem!important;
+  padding:.5rem .65rem!important;
+}
+.back-to-top{right:1rem!important;bottom:1rem!important;z-index:901!important;}
+.detail-hero{overflow:hidden;}
+.detail-section p,.detail-section li{line-height:1.75;}
+.site-header{z-index:850;}
+@media(max-width:760px){
+  .osb-utility-bar{
+    left:.75rem!important;
+    right:.75rem!important;
+    bottom:.75rem!important;
+    flex-direction:row!important;
+    justify-content:center!important;
+    border-radius:24px!important;
+  }
+  .back-to-top{display:none!important;}
+  .utility-btn{min-width:42px!important;}
+}

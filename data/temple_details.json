@@ -1,39 +1,51 @@
 [
   {
-    "id": "palani",
-    "order": 1,
-    "nameTa": "பழனி முருகன் கோவில்",
-    "nameEn": "Palani Murugan Temple",
-    "subtitle": "Dhandayuthapani Swamy",
-    "location": "Palani, Dindigul, Tamil Nadu",
+    "id": "thirupparamkundram",
+    "aliases": [
+      "thiruparankundram",
+      "thirupparamkundram",
+      "thirupparamkundram-murugan"
+    ],
+    "order": 4,
+    "nameTa": "திருப்பரங்குன்றம் முருகன் கோவில்",
+    "nameEn": "Thiruparankundram Murugan Temple",
+    "subtitle": "Subramanya Swamy",
+    "location": "Madurai, Tamil Nadu",
     "category": "Arupadai Veedu",
-    "deity": "Dhandayuthapani Swamy",
-    "summary": "Palani is one of the six sacred abodes of Lord Murugan and is deeply associated with renunciation, wisdom and the famous teaching that divine knowledge is greater than worldly possession.",
-    "history": "Palani is traditionally connected with the episode where Lord Murugan, after the divine fruit episode, stands as Dhandayuthapani on the hill. Devotees approach the hill shrine as a path of humility, discipline and inner maturity.",
-    "spiritualMeaning": "Palani teaches that true wealth is wisdom, restraint and surrender. The temple experience encourages devotees to reduce ego and walk steadily toward clarity.",
+    "deity": "Subramanya Swamy",
+    "summary": "Thiruparankundram is traditionally associated with the divine wedding of Lord Murugan and Deivanai.",
+    "history": "This ancient rock-cut shrine near Madurai is celebrated as a sacred place of divine union, duty and auspicious beginnings.",
+    "spiritualMeaning": "The temple reminds devotees that devotion must mature into responsibility, harmony and service.",
     "festivals": [
-      "Thai Poosam",
       "Panguni Uthiram",
-      "Skanda Sashti"
+      "Skanda Sashti",
+      "Karthigai"
     ],
     "practices": [
-      "Chant Om Saravana Bhava",
-      "Offer simple prayer before beginning important work",
-      "Reflect on humility and self-discipline"
+      "Pray for family harmony",
+      "Begin new commitments with devotion",
+      "Reflect on duty and grace"
     ],
     "quickFacts": [
-      "Hill temple",
-      "One of the Arupadai Veedu",
-      "Associated with renunciation and wisdom"
+      "Rock-cut temple",
+      "Associated with divine wedding",
+      "Near Madurai"
     ],
     "relatedSlokas": [
-      "om-saravana-bhava",
-      "subramanya-gayatri"
+      "om-saravana-bhava"
     ],
-    "map": "https://www.google.com/maps/search/Palani+Murugan+Temple"
+    "map": "https://www.google.com/maps/search/Thiruparankundram+Murugan+Temple",
+    "openingHours": "05:00 AM - 01:00 PM, 04:00 PM - 09:00 PM",
+    "district": "Madurai",
+    "state": "Tamil Nadu"
   },
   {
-    "id": "tiruchendur",
+    "id": "thiruchendur",
+    "aliases": [
+      "thiruchendur",
+      "thiruchendur-murugan",
+      "tiruchendur"
+    ],
     "order": 2,
     "nameTa": "திருச்செந்தூர் முருகன் கோவில்",
     "nameEn": "Tiruchendur Murugan Temple",
@@ -63,10 +75,57 @@
       "kanda-sashti-kavacham",
       "om-saravana-bhava"
     ],
-    "map": "https://www.google.com/maps/search/Tiruchendur+Murugan+Temple"
+    "map": "https://www.google.com/maps/search/Tiruchendur+Murugan+Temple",
+    "openingHours": "05:00 AM - 12:00 PM, 05:00 PM - 09:00 PM",
+    "district": "Thoothukudi",
+    "state": "Tamil Nadu"
+  },
+  {
+    "id": "palani",
+    "aliases": [
+      "palani",
+      "palani-dandayuthapani-swamy"
+    ],
+    "order": 1,
+    "nameTa": "பழனி முருகன் கோவில்",
+    "nameEn": "Palani Murugan Temple",
+    "subtitle": "Dhandayuthapani Swamy",
+    "location": "Palani, Dindigul, Tamil Nadu",
+    "category": "Arupadai Veedu",
+    "deity": "Dhandayuthapani Swamy",
+    "summary": "Palani is one of the six sacred abodes of Lord Murugan and is deeply associated with renunciation, wisdom and the famous teaching that divine knowledge is greater than worldly possession.",
+    "history": "Palani is traditionally connected with the episode where Lord Murugan, after the divine fruit episode, stands as Dhandayuthapani on the hill. Devotees approach the hill shrine as a path of humility, discipline and inner maturity.",
+    "spiritualMeaning": "Palani teaches that true wealth is wisdom, restraint and surrender. The temple experience encourages devotees to reduce ego and walk steadily toward clarity.",
+    "festivals": [
+      "Thai Poosam",
+      "Panguni Uthiram",
+      "Skanda Sashti"
+    ],
+    "practices": [
+      "Chant Om Saravana Bhava",
+      "Offer simple prayer before beginning important work",
+      "Reflect on humility and self-discipline"
+    ],
+    "quickFacts": [
+      "Hill temple",
+      "One of the Arupadai Veedu",
+      "Associated with renunciation and wisdom"
+    ],
+    "relatedSlokas": [
+      "om-saravana-bhava",
+      "subramanya-gayatri"
+    ],
+    "map": "https://www.google.com/maps/search/Palani+Murugan+Temple",
+    "openingHours": "06:00 AM - 08:00 PM",
+    "district": "Dindigul",
+    "state": "Tamil Nadu"
   },
   {
     "id": "swamimalai",
+    "aliases": [
+      "swamimalai",
+      "swamimalai-swaminathaswamy"
+    ],
     "order": 3,
     "nameTa": "சுவாமிமலை முருகன் கோவில்",
     "nameEn": "Swamimalai Murugan Temple",
@@ -96,42 +155,17 @@
       "subramanya-gayatri",
       "om-saravana-bhava"
     ],
-    "map": "https://www.google.com/maps/search/Swamimalai+Murugan+Temple"
-  },
-  {
-    "id": "thiruparankundram",
-    "order": 4,
-    "nameTa": "திருப்பரங்குன்றம் முருகன் கோவில்",
-    "nameEn": "Thiruparankundram Murugan Temple",
-    "subtitle": "Subramanya Swamy",
-    "location": "Madurai, Tamil Nadu",
-    "category": "Arupadai Veedu",
-    "deity": "Subramanya Swamy",
-    "summary": "Thiruparankundram is traditionally associated with the divine wedding of Lord Murugan and Deivanai.",
-    "history": "This ancient rock-cut shrine near Madurai is celebrated as a sacred place of divine union, duty and auspicious beginnings.",
-    "spiritualMeaning": "The temple reminds devotees that devotion must mature into responsibility, harmony and service.",
-    "festivals": [
-      "Panguni Uthiram",
-      "Skanda Sashti",
-      "Karthigai"
-    ],
-    "practices": [
-      "Pray for family harmony",
-      "Begin new commitments with devotion",
-      "Reflect on duty and grace"
-    ],
-    "quickFacts": [
-      "Rock-cut temple",
-      "Associated with divine wedding",
-      "Near Madurai"
-    ],
-    "relatedSlokas": [
-      "om-saravana-bhava"
-    ],
-    "map": "https://www.google.com/maps/search/Thiruparankundram+Murugan+Temple"
+    "map": "https://www.google.com/maps/search/Swamimalai+Murugan+Temple",
+    "openingHours": "06:00 AM - 12:00 PM, 04:00 PM - 09:00 PM",
+    "district": "Thanjavur",
+    "state": "Tamil Nadu"
   },
   {
     "id": "thiruthani",
+    "aliases": [
+      "thiruthani",
+      "thiruthani-murugan"
+    ],
     "order": 5,
     "nameTa": "திருத்தணி முருகன் கோவில்",
     "nameEn": "Thiruthani Murugan Temple",
@@ -160,10 +194,17 @@
     "relatedSlokas": [
       "subramanya-gayatri"
     ],
-    "map": "https://www.google.com/maps/search/Thiruthani+Murugan+Temple"
+    "map": "https://www.google.com/maps/search/Thiruthani+Murugan+Temple",
+    "openingHours": "05:45 AM - 09:00 PM",
+    "district": "Tiruvallur",
+    "state": "Tamil Nadu"
   },
   {
     "id": "pazhamudircholai",
+    "aliases": [
+      "pazhamudircholai",
+      "pazhamudircholai-murugan"
+    ],
     "order": 6,
     "nameTa": "பழமுதிர்சோலை முருகன் கோவில்",
     "nameEn": "Pazhamudircholai Murugan Temple",
@@ -192,6 +233,237 @@
     "relatedSlokas": [
       "om-saravana-bhava"
     ],
-    "map": "https://www.google.com/maps/search/Pazhamudircholai+Murugan+Temple"
+    "map": "https://www.google.com/maps/search/Pazhamudircholai+Murugan+Temple",
+    "openingHours": "05:30 AM - 01:00 PM, 04:00 PM - 09:00 PM",
+    "district": "Madurai",
+    "state": "Tamil Nadu"
+  },
+  {
+    "id": "marudhamalai",
+    "aliases": [
+      "marudhamalai",
+      "marudhamalai-murugan"
+    ],
+    "order": 7,
+    "nameTa": "மருதமலை சுப்பிரமணிய சுவாமி திருக்கோவில்",
+    "nameEn": "Marudhamalai Murugan Temple",
+    "subtitle": "Lord Subramanyaswamy",
+    "location": "Marudhamalai, Coimbatore, Tamil Nadu",
+    "category": "Murugan Temple",
+    "deity": "Lord Subramanyaswamy",
+    "summary": "Major western Tamil Nadu Murugan temple with hill pilgrimage tradition.",
+    "history": "Hill temple near Coimbatore, traditionally associated with Siddhar worship and Murugan devotion.",
+    "spiritualMeaning": "Major western Tamil Nadu Murugan temple with hill pilgrimage tradition.",
+    "festivals": [
+      "Thaipusam",
+      "Karthigai Deepam"
+    ],
+    "practices": [
+      "Chant Om Saravana Bhava with attention",
+      "Offer a simple prayer before beginning important work",
+      "Reflect on courage, humility and right action"
+    ],
+    "quickFacts": [
+      "Lord Subramanyaswamy",
+      "Coimbatore",
+      "06:00 AM - 08:30 PM"
+    ],
+    "relatedSlokas": [
+      "om-saravana-bhava"
+    ],
+    "map": "https://maps.google.com/?q=Marudhamalai+Murugan+Temple",
+    "openingHours": "06:00 AM - 08:30 PM",
+    "district": "Coimbatore",
+    "state": "Tamil Nadu"
+  },
+  {
+    "id": "vayalur",
+    "aliases": [
+      "vayalur",
+      "vayalur-murugan"
+    ],
+    "order": 8,
+    "nameTa": "வயலூர் முருகன் திருக்கோவில்",
+    "nameEn": "Vayalur Murugan Temple",
+    "subtitle": "Lord Murugan with Valli and Deivanai",
+    "location": "Kumaravayalur, Tiruchirappalli, Tamil Nadu",
+    "category": "Murugan Temple",
+    "deity": "Lord Murugan with Valli and Deivanai",
+    "summary": "Important literary and devotional Murugan site.",
+    "history": "Temple connected with Arunagirinathar and Thiruppugazh tradition.",
+    "spiritualMeaning": "Important literary and devotional Murugan site.",
+    "festivals": [
+      "Skanda Sashti",
+      "Panguni Uthiram"
+    ],
+    "practices": [
+      "Chant Om Saravana Bhava with attention",
+      "Offer a simple prayer before beginning important work",
+      "Reflect on courage, humility and right action"
+    ],
+    "quickFacts": [
+      "Lord Murugan with Valli and Deivanai",
+      "Tiruchirappalli",
+      "06:00 AM - 12:00 PM, 04:00 PM - 08:30 PM"
+    ],
+    "relatedSlokas": [
+      "om-saravana-bhava"
+    ],
+    "map": "https://maps.google.com/?q=Vayalur+Murugan+Temple",
+    "openingHours": "06:00 AM - 12:00 PM, 04:00 PM - 08:30 PM",
+    "district": "Tiruchirappalli",
+    "state": "Tamil Nadu"
+  },
+  {
+    "id": "sikkal",
+    "aliases": [
+      "sikkal",
+      "sikkal-singaravelavar"
+    ],
+    "order": 9,
+    "nameTa": "சிக்கல் சிங்காரவேலவர் திருக்கோவில்",
+    "nameEn": "Sikkal Singaravelavar Temple",
+    "subtitle": "Lord Singaravelavar",
+    "location": "Sikkal, Nagapattinam, Tamil Nadu",
+    "category": "Murugan Temple",
+    "deity": "Lord Singaravelavar",
+    "summary": "Known for Skanda Sashti observances and Singaravelavar worship.",
+    "history": "Associated with Murugan receiving the Vel before defeating Surapadman.",
+    "spiritualMeaning": "Known for Skanda Sashti observances and Singaravelavar worship.",
+    "festivals": [
+      "Skanda Sashti",
+      "Soorasamharam"
+    ],
+    "practices": [
+      "Chant Om Saravana Bhava with attention",
+      "Offer a simple prayer before beginning important work",
+      "Reflect on courage, humility and right action"
+    ],
+    "quickFacts": [
+      "Lord Singaravelavar",
+      "Nagapattinam",
+      "06:00 AM - 12:30 PM, 04:30 PM - 08:30 PM"
+    ],
+    "relatedSlokas": [
+      "om-saravana-bhava"
+    ],
+    "map": "https://maps.google.com/?q=Sikkal+Singaravelavar+Temple",
+    "openingHours": "06:00 AM - 12:30 PM, 04:30 PM - 08:30 PM",
+    "district": "Nagapattinam",
+    "state": "Tamil Nadu"
+  },
+  {
+    "id": "kundrathur",
+    "aliases": [
+      "kundrathur",
+      "kundrathur-murugan"
+    ],
+    "order": 10,
+    "nameTa": "குன்றத்தூர் முருகன் திருக்கோவில்",
+    "nameEn": "Kundrathur Murugan Temple",
+    "subtitle": "Lord Subramanya",
+    "location": "Kundrathur, Chennai, Tamil Nadu",
+    "category": "Murugan Temple",
+    "deity": "Lord Subramanya",
+    "summary": "Accessible urban hill shrine for Chennai devotees.",
+    "history": "Hill temple near Chennai associated with Murugan worship and regional pilgrimage.",
+    "spiritualMeaning": "Accessible urban hill shrine for Chennai devotees.",
+    "festivals": [
+      "Karthigai",
+      "Skanda Sashti"
+    ],
+    "practices": [
+      "Chant Om Saravana Bhava with attention",
+      "Offer a simple prayer before beginning important work",
+      "Reflect on courage, humility and right action"
+    ],
+    "quickFacts": [
+      "Lord Subramanya",
+      "Chennai",
+      "06:00 AM - 12:00 PM, 04:00 PM - 08:30 PM"
+    ],
+    "relatedSlokas": [
+      "om-saravana-bhava"
+    ],
+    "map": "https://maps.google.com/?q=Kundrathur+Murugan+Temple",
+    "openingHours": "06:00 AM - 12:00 PM, 04:00 PM - 08:30 PM",
+    "district": "Chennai",
+    "state": "Tamil Nadu"
+  },
+  {
+    "id": "vadapalani",
+    "aliases": [
+      "vadapalani",
+      "vadapalani-andavar"
+    ],
+    "order": 11,
+    "nameTa": "வடபழனி ஆண்டவர் திருக்கோவில்",
+    "nameEn": "Vadapalani Andavar Temple",
+    "subtitle": "Vadapalani Andavar",
+    "location": "Vadapalani, Chennai, Tamil Nadu",
+    "category": "Murugan Temple",
+    "deity": "Vadapalani Andavar",
+    "summary": "Prominent urban Murugan temple with strong devotee following.",
+    "history": "A major Chennai Murugan temple known for daily worship, vows, and marriage prayers.",
+    "spiritualMeaning": "Prominent urban Murugan temple with strong devotee following.",
+    "festivals": [
+      "Thaipusam",
+      "Skanda Sashti"
+    ],
+    "practices": [
+      "Chant Om Saravana Bhava with attention",
+      "Offer a simple prayer before beginning important work",
+      "Reflect on courage, humility and right action"
+    ],
+    "quickFacts": [
+      "Vadapalani Andavar",
+      "Chennai",
+      "05:30 AM - 12:00 PM, 04:00 PM - 09:00 PM"
+    ],
+    "relatedSlokas": [
+      "om-saravana-bhava"
+    ],
+    "map": "https://maps.google.com/?q=Vadapalani+Murugan+Temple",
+    "openingHours": "05:30 AM - 12:00 PM, 04:00 PM - 09:00 PM",
+    "district": "Chennai",
+    "state": "Tamil Nadu"
+  },
+  {
+    "id": "tirupporur",
+    "aliases": [
+      "tirupporur",
+      "tirupporur-kandaswamy"
+    ],
+    "order": 12,
+    "nameTa": "திருப்போரூர் கந்தசுவாமி திருக்கோவில்",
+    "nameEn": "Tirupporur Kandaswamy Temple",
+    "subtitle": "Lord Kandaswamy",
+    "location": "Tirupporur, Chengalpattu, Tamil Nadu",
+    "category": "Murugan Temple",
+    "deity": "Lord Kandaswamy",
+    "summary": "Important Murugan shrine on the Chennai-Mahabalipuram route.",
+    "history": "Traditional Murugan temple associated with the destruction of inner enemies and spiritual victory.",
+    "spiritualMeaning": "Important Murugan shrine on the Chennai-Mahabalipuram route.",
+    "festivals": [
+      "Skanda Sashti",
+      "Panguni Uthiram"
+    ],
+    "practices": [
+      "Chant Om Saravana Bhava with attention",
+      "Offer a simple prayer before beginning important work",
+      "Reflect on courage, humility and right action"
+    ],
+    "quickFacts": [
+      "Lord Kandaswamy",
+      "Chengalpattu",
+      "06:00 AM - 12:30 PM, 03:30 PM - 08:30 PM"
+    ],
+    "relatedSlokas": [
+      "om-saravana-bhava"
+    ],
+    "map": "https://maps.google.com/?q=Tirupporur+Kandaswamy+Temple",
+    "openingHours": "06:00 AM - 12:30 PM, 03:30 PM - 08:30 PM",
+    "district": "Chengalpattu",
+    "state": "Tamil Nadu"
   }
 ]

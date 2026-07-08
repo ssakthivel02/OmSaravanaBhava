@@ -220,23 +220,48 @@
     return (items || []).length ? `<ul class="detail-list">${items.map(x => `<li>${escapeHTML(x)}</li>`).join('')}</ul>` : '';
   }
 
+  function sameTempleId(item, requestedId) {
+    if (!item || !requestedId) return false;
+    const wanted = slug(requestedId);
+    const candidates = [item.id, item.nameEn, item.nameTa, ...(item.aliases || [])]
+      .filter(Boolean)
+      .map(value => slug(value));
+    const legacyAliases = {
+      'thiruparankundram': 'thirupparamkundram',
+      'tiruchendur': 'thiruchendur'
+    };
+    return candidates.includes(wanted) || candidates.includes(legacyAliases[wanted]);
+  }
+
   async function initTempleDetail() {
     const container = $('#detail-container');
     if (!container || document.body.dataset.page !== 'temple-detail') return;
     const id = getParam('id') || 'palani';
-    const details = await loadJSON(DATA_FILES.templeDetails);
-    const item = (Array.isArray(details) ? details : []).find(x => x.id === id) || details[0];
-    if (!item) return renderEmpty(container, 'Temple detail is not available.');
-    document.title = `${item.nameEn} | Om Saravana Bhava`;
+    const [details, temples] = await Promise.all([
+      loadJSON(DATA_FILES.templeDetails),
+      loadJSON(DATA_FILES.temples)
+    ]);
+    const detailList = Array.isArray(details) ? details : [];
+    const templeList = Array.isArray(temples) ? temples : [];
+    const item = detailList.find(x => sameTempleId(x, id)) || templeList.find(x => sameTempleId(x, id));
+    if (!item) {
+      return renderEmpty(container, `Temple detail is not available for: ${id}. Please return to the temple list and choose a verified temple.`);
+    }
+    const festivals = item.festivals || item.festivalHighlights || [];
+    const practices = item.practices || ['Chant Om Saravana Bhava with attention', 'Offer a simple prayer before beginning important work', 'Reflect on courage, humility and right action'];
+    const quickFacts = item.quickFacts || [item.mainDeity, item.district, item.openingHours].filter(Boolean);
+    const location = item.location || [item.district, item.state].filter(Boolean).join(', ');
+    const map = item.map || item.mapLink;
+    document.title = `${item.nameEn || item.nameTa || 'Murugan Temple'} | Om Saravana Bhava`;
     container.innerHTML = `
-      ${detailHero(item.nameTa || item.nameEn, `${item.nameEn} · ${item.location}`, item.category)}
+      ${detailHero(item.nameTa || item.nameEn, `${item.nameEn || ''} · ${location}`, item.category || 'Murugan Temple')}
       <div class="detail-grid">
-        ${detailSection('History', `<p>${escapeHTML(item.history || item.summary)}</p>`)}
-        ${detailSection('Spiritual Meaning', `<p>${escapeHTML(item.spiritualMeaning)}</p>`)}
-        ${detailSection('Festivals', listHTML(item.festivals))}
-        ${detailSection('Daily Practice', listHTML(item.practices))}
-        ${detailSection('Quick Facts', listHTML(item.quickFacts))}
-        ${detailSection('Visit', `<p>${escapeHTML(item.location)}</p>${mapLink(item.map)}`)}
+        ${detailSection('History / வரலாறு', `<p>${escapeHTML(item.history || item.summary || item.significance)}</p>`)}
+        ${detailSection('Spiritual Meaning / ஆன்மீகப் பொருள்', `<p>${escapeHTML(item.spiritualMeaning || item.significance || item.summary)}</p>`)}
+        ${detailSection('Festivals / விழாக்கள்', listHTML(festivals))}
+        ${detailSection('Daily Practice / தினசரி பயிற்சி', listHTML(practices))}
+        ${detailSection('Quick Facts / முக்கிய விவரங்கள்', listHTML(quickFacts))}
+        ${detailSection('Visit / பயணம்', `<p>${escapeHTML(location)}</p>${item.openingHours ? `<p><strong>Opening:</strong> ${escapeHTML(item.openingHours)}</p>` : ''}${mapLink(map)}`)}
       </div>
       <p class="breadcrumb-line"><a href="temples.html">← Back to Temples</a></p>`;
   }
