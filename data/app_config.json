@@ -1,14 +1,1 @@
-{
-  "siteName": "Om Saravana Bhava",
-  "version": "6C",
-  "language": "ta-en",
-  "status": "verified-static-github-pages",
-  "features": {
-    "readingMode": true,
-    "nightMode": true,
-    "favourites": true,
-    "share": true,
-    "offlineCache": true
-  },
-  "uiFramework": "enabled"
-}
+{"version":"12.0","siteName":"Om Saravana Bhava","tagline":"Verified Murugan devotional knowledge platform","features":{"premiumUI":true,"pwa":true,"offline":true,"readingTools":true,"shareTools":true},"updated":"2026-07-08"}
