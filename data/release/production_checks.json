@@ -1,0 +1,17 @@
+[
+  {
+    "area": "routing",
+    "status": "review",
+    "note": "Test core URLs"
+  },
+  {
+    "area": "content",
+    "status": "review",
+    "note": "Canonical sloka text source verification"
+  },
+  {
+    "area": "pwa",
+    "status": "review",
+    "note": "Run Lighthouse"
+  }
+]
