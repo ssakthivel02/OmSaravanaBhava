@@ -1,12 +1,12 @@
 {
-  "batch": 27,
+  "batch": 28,
   "purpose": "safe continuation package",
   "pages": [
-    "ui-polish-board.html",
-    "homepage-redesign-plan.html",
-    "animation-guidelines.html",
-    "mobile-polish.html",
-    "dark-mode-audit.html",
-    "premium-ui-handoff.html"
+    "final-website-handoff.html",
+    "other-apps-transition.html",
+    "github-upload-guide.html",
+    "release-freeze.html",
+    "priority-fix-list.html",
+    "tomorrow-work-plan.html"
   ]
 }
