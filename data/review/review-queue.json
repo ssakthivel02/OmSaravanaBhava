@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Kanda Sashti Kavasam",
+    "status": "Needs Review",
+    "note": "Summary available. Add full canonical text only after source verification.",
+    "url": "sloka-reader.html?id=kanda-sashti-kavasam"
+  },
+  {
+    "title": "Vadapalani Temple",
+    "status": "Verified summary",
+    "note": "Add deeper Tamil detail and travel metadata.",
+    "url": "temple-details.html?id=vadapalani"
+  },
+  {
+    "title": "Knowledge entities",
+    "status": "Needs Review",
+    "note": "Data/knowledge should be expanded with verified relationships.",
+    "url": "knowledge-graph.html"
+  }
+]
