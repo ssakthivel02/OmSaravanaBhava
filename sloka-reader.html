@@ -1,53 +1,35 @@
 <!doctype html>
-<html lang="en">
+<html lang="ta">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sloka Reader | Om Saravana Bhava</title>
-  <meta name="description" content="Focused reader with Tamil, English, meaning, benefits and progress tools.">
-  <link rel="canonical" href="https://omsaravanabhava.org/sloka-reader.html">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="css/sloka-media.css">
+  <meta name="description" content="Tamil and English devotional sloka reader for Om Saravana Bhava." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="css/final-hotfix.css" />
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header premium-glass">
-    <div class="header-container">
-      <a class="logo-text" href="index.html">ஓம் சரவணபவ</a>
-      <button id="mobile-menu-toggle" aria-expanded="false" aria-controls="primary-navigation"><span class="hamburger-icon"></span></button>
-      <nav id="primary-navigation" aria-label="Primary navigation">
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="temples.html">Temples</a></li>
-          <li><a href="festival-calendar.html">Festivals</a></li>
-          <li><a href="sloka-library.html">Slokas</a></li>
-          <li><a href="audio-library.html">Audio</a></li>
-          <li><a href="media-library.html">Media</a></li>
-        </ul>
-      </nav>
-    </div>
+  <div class="top-strip">🛕 ஓம் சரவணபவ · Verified Murugan devotional knowledge platform</div>
+  <header class="site-header clean-header">
+    <a class="brand" href="index.html">ஓம் சரவணபவ</a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a><a href="temples.html">Temples</a><a href="festivals.html">Festivals</a><a href="slokas.html">Slokas</a><a href="audio-library.html">Audio</a><a href="media-library.html">Media</a>
+    </nav>
   </header>
-  <main id="main" class="page-shell">
-    <section class="page-hero mini-hero">
-      <div class="hero-content">
-        <p class="eyebrow">Batch-10 Library</p>
-        <h1>Sloka Reader</h1>
-        <p>Focused reader with Tamil, English, meaning, benefits and progress tools.</p>
-      </div>
+  <main class="page-shell">
+    <section class="hero-card reader-hero">
+      <p class="eyebrow">Batch-16 Reader</p>
+      <h1>Sloka Reader</h1>
+      <p>Focused Tamil + English reader with meaning, benefits, practice notes and source-review status.</p>
     </section>
-    <section class="section-container">
-      <div id="sloka-reader-app" class="library-app" data-app="sloka-reader">
-        <div class="loading-state">Loading divine library...</div>
-      </div>
-      
-    </section>
+    <section id="reader" class="reader-card">Loading...</section>
   </main>
-  <footer class="premium-footer"><div class="footer-bottom">© Om Saravana Bhava · Devotional learning platform</div></footer>
-  <script src="script.js" defer></script>
-  <script src="js/library-core.js" defer></script>
-  <script src="js/sloka-library.js" defer></script>
-  <script src="js/audio-library.js" defer></script>
-  <script src="js/media-library.js" defer></script>
-  <script src="js/reader-engine.js" defer></script>
+  <div class="floating-tools" aria-label="Reading tools">
+    <button type="button" onclick="document.body.classList.toggle('large-text')">A+ Text</button>
+    <button type="button" onclick="document.body.classList.toggle('night-mode')">☾ Night</button>
+    <button type="button" onclick="localStorage.setItem('savedPage', location.href); alert('Saved')">♡ Save</button>
+    <button type="button" onclick="navigator.clipboard?.writeText(location.href); alert('Link copied')">↗ Share</button>
+  </div>
+  <script src="js/sloka-reader-fix.js"></script>
 </body>
 </html>
