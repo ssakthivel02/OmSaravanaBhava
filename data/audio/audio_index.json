@@ -1,0 +1,218 @@
+[
+  {
+    "id": "om-saravana-bhava-chant",
+    "title": "Om Saravana Bhava Chant",
+    "category": "Mantra",
+    "duration": "03:00",
+    "license": "User/approved audio required",
+    "audioUrl": "",
+    "sourceNote": "Upload your own permitted MP3 later."
+  },
+  {
+    "id": "vel-vel-chant",
+    "title": "Vel Vel Muruga Chant",
+    "category": "Chant",
+    "duration": "05:00",
+    "license": "User/approved audio required",
+    "audioUrl": "",
+    "sourceNote": "Metadata only; no copyrighted audio included."
+  },
+  {
+    "id": "kanda-sashti-guide",
+    "title": "Kanda Sashti Kavacham Learning Guide",
+    "category": "Kavacham",
+    "duration": "12:00",
+    "license": "Narration framework",
+    "audioUrl": "",
+    "sourceNote": "Add licensed narration later."
+  },
+  {
+    "id": "murugan-names-108",
+    "title": "108 Murugan Names Recitation",
+    "category": "Namavali",
+    "duration": "18:00",
+    "license": "User/approved audio required",
+    "audioUrl": "",
+    "sourceNote": "Safe placeholder metadata."
+  },
+  {
+    "id": "devotional-track-05",
+    "title": "Devotional Track 05",
+    "category": "Bhajan",
+    "duration": "02:00",
+    "license": "Add permitted audio",
+    "audioUrl": "",
+    "sourceNote": "Metadata placeholder for future licensed media."
+  },
+  {
+    "id": "devotional-track-06",
+    "title": "Devotional Track 06",
+    "category": "Learning",
+    "duration": "03:00",
+    "license": "Add permitted audio",
+    "audioUrl": "",
+    "sourceNote": "Metadata placeholder for future licensed media."
+  },
+  {
+    "id": "devotional-track-07",
+    "title": "Devotional Track 07",
+    "category": "Festival",
+    "duration": "04:00",
+    "license": "Add permitted audio",
+    "audioUrl": "",
+    "sourceNote": "Metadata placeholder for future licensed media."
+  },
+  {
+    "id": "devotional-track-08",
+    "title": "Devotional Track 08",
+    "category": "Mantra",
+    "duration": "05:00",
+    "license": "Add permitted audio",
+    "audioUrl": "",
+    "sourceNote": "Metadata placeholder for future licensed media."
+  },
+  {
+    "id": "devotional-track-09",
+    "title": "Devotional Track 09",
+    "category": "Bhajan",
+    "duration": "06:00",
+    "license": "Add permitted audio",
+    "audioUrl": "",
+    "sourceNote": "Metadata placeholder for future licensed media."
+  },
+  {
+    "id": "devotional-track-10",
+    "title": "Devotional Track 10",
+    "category": "Learning",
+    "duration": "02:00",
+    "license": "Add permitted audio",
+    "audioUrl": "",
+    "sourceNote": "Metadata placeholder for future licensed media."
+  },
+  {
+    "id": "devotional-track-11",
+    "title": "Devotional Track 11",
+    "category": "Festival",
+    "duration": "03:00",
+    "license": "Add permitted audio",
+    "audioUrl": "",
+    "sourceNote": "Metadata placeholder for future licensed media."
+  },
+  {
+    "id": "devotional-track-12",
+    "title": "Devotional Track 12",
+    "category": "Mantra",
+    "duration": "04:00",
+    "license": "Add permitted audio",
+    "audioUrl": "",
+    "sourceNote": "Metadata placeholder for future licensed media."
+  },
+  {
+    "id": "devotional-track-13",
+    "title": "Devotional Track 13",
+    "category": "Bhajan",
+    "duration": "05:00",
+    "license": "Add permitted audio",
+    "audioUrl": "",
+    "sourceNote": "Metadata placeholder for future licensed media."
+  },
+  {
+    "id": "devotional-track-14",
+    "title": "Devotional Track 14",
+    "category": "Learning",
+    "duration": "06:00",
+    "license": "Add permitted audio",
+    "audioUrl": "",
+    "sourceNote": "Metadata placeholder for future licensed media."
+  },
+  {
+    "id": "devotional-track-15",
+    "title": "Devotional Track 15",
+    "category": "Festival",
+    "duration": "02:00",
+    "license": "Add permitted audio",
+    "audioUrl": "",
+    "sourceNote": "Metadata placeholder for future licensed media."
+  },
+  {
+    "id": "devotional-track-16",
+    "title": "Devotional Track 16",
+    "category": "Mantra",
+    "duration": "03:00",
+    "license": "Add permitted audio",
+    "audioUrl": "",
+    "sourceNote": "Metadata placeholder for future licensed media."
+  },
+  {
+    "id": "devotional-track-17",
+    "title": "Devotional Track 17",
+    "category": "Bhajan",
+    "duration": "04:00",
+    "license": "Add permitted audio",
+    "audioUrl": "",
+    "sourceNote": "Metadata placeholder for future licensed media."
+  },
+  {
+    "id": "devotional-track-18",
+    "title": "Devotional Track 18",
+    "category": "Learning",
+    "duration": "05:00",
+    "license": "Add permitted audio",
+    "audioUrl": "",
+    "sourceNote": "Metadata placeholder for future licensed media."
+  },
+  {
+    "id": "devotional-track-19",
+    "title": "Devotional Track 19",
+    "category": "Festival",
+    "duration": "06:00",
+    "license": "Add permitted audio",
+    "audioUrl": "",
+    "sourceNote": "Metadata placeholder for future licensed media."
+  },
+  {
+    "id": "devotional-track-20",
+    "title": "Devotional Track 20",
+    "category": "Mantra",
+    "duration": "02:00",
+    "license": "Add permitted audio",
+    "audioUrl": "",
+    "sourceNote": "Metadata placeholder for future licensed media."
+  },
+  {
+    "id": "devotional-track-21",
+    "title": "Devotional Track 21",
+    "category": "Bhajan",
+    "duration": "03:00",
+    "license": "Add permitted audio",
+    "audioUrl": "",
+    "sourceNote": "Metadata placeholder for future licensed media."
+  },
+  {
+    "id": "devotional-track-22",
+    "title": "Devotional Track 22",
+    "category": "Learning",
+    "duration": "04:00",
+    "license": "Add permitted audio",
+    "audioUrl": "",
+    "sourceNote": "Metadata placeholder for future licensed media."
+  },
+  {
+    "id": "devotional-track-23",
+    "title": "Devotional Track 23",
+    "category": "Festival",
+    "duration": "05:00",
+    "license": "Add permitted audio",
+    "audioUrl": "",
+    "sourceNote": "Metadata placeholder for future licensed media."
+  },
+  {
+    "id": "devotional-track-24",
+    "title": "Devotional Track 24",
+    "category": "Mantra",
+    "duration": "06:00",
+    "license": "Add permitted audio",
+    "audioUrl": "",
+    "sourceNote": "Metadata placeholder for future licensed media."
+  }
+]

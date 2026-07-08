@@ -1,0 +1,12 @@
+[
+  {
+    "id": "traditional",
+    "name": "Traditional / Source Review Pending",
+    "note": "Use this profile until licensed artist metadata is available."
+  },
+  {
+    "id": "community",
+    "name": "Community Devotional Recordings",
+    "note": "Reserved for user-approved recordings."
+  }
+]

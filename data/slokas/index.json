@@ -1,0 +1,332 @@
+[
+  {
+    "id": "om-saravana-bhava",
+    "titleTa": "ஓம் சரவணபவ",
+    "titleEn": "Om Saravana Bhava",
+    "category": "Mantra",
+    "deity": "Murugan",
+    "author": "Lord Murugan",
+    "summary": "A six-syllable mantra invoking Murugan as the divine guide.",
+    "meaningEn": "The mantra is traditionally used for protection, clarity and devotional focus.",
+    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
+    "benefits": [
+      "Devotional focus",
+      "Daily discipline",
+      "Spiritual reflection"
+    ],
+    "status": "Verified summary",
+    "tags": [
+      "mantra",
+      "murugan",
+      "devotion"
+    ]
+  },
+  {
+    "id": "vel-vel",
+    "titleTa": "வேல் வேல் முருகா",
+    "titleEn": "Vel Vel Muruga",
+    "category": "Chant",
+    "deity": "Murugan",
+    "author": "Lord Murugan",
+    "summary": "A simple chant praising the divine Vel of Murugan.",
+    "meaningEn": "Use this chant as a short daily remembrance before study, work or prayer.",
+    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
+    "benefits": [
+      "Devotional focus",
+      "Daily discipline",
+      "Spiritual reflection"
+    ],
+    "status": "Verified summary",
+    "tags": [
+      "chant",
+      "murugan",
+      "devotion"
+    ]
+  },
+  {
+    "id": "subramanya-bhujangam",
+    "titleTa": "சுப்பிரமணிய புஜங்கம்",
+    "titleEn": "Subramanya Bhujangam",
+    "category": "Stotra",
+    "deity": "Devotional",
+    "author": "Adi Shankara tradition",
+    "summary": "A devotional hymn praising Lord Subramanya.",
+    "meaningEn": "This page provides a learning summary; full text review will be expanded gradually.",
+    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
+    "benefits": [
+      "Devotional focus",
+      "Daily discipline",
+      "Spiritual reflection"
+    ],
+    "status": "Verified summary",
+    "tags": [
+      "stotra",
+      "murugan",
+      "devotion"
+    ]
+  },
+  {
+    "id": "kanda-sashti-kavacham",
+    "titleTa": "கந்த சஷ்டி கவசம்",
+    "titleEn": "Kanda Sashti Kavacham",
+    "category": "Kavacham",
+    "deity": "Devotional",
+    "author": "Devaraya Swamigal",
+    "summary": "A powerful Tamil devotional kavacham seeking Lord Murugan protection.",
+    "meaningEn": "Full text should be reviewed carefully before publication; this entry is a structured guide.",
+    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
+    "benefits": [
+      "Devotional focus",
+      "Daily discipline",
+      "Spiritual reflection"
+    ],
+    "status": "Needs Review",
+    "tags": [
+      "kavacham",
+      "murugan",
+      "devotion"
+    ]
+  },
+  {
+    "id": "skanda-guru-kavacham",
+    "titleTa": "ஸ்கந்த குரு கவசம்",
+    "titleEn": "Skanda Guru Kavacham",
+    "category": "Kavacham",
+    "deity": "Devotional",
+    "author": "Traditional",
+    "summary": "A devotional protective hymn centered on Skanda as Guru.",
+    "meaningEn": "Used for spiritual strength, discipline and guidance.",
+    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
+    "benefits": [
+      "Devotional focus",
+      "Daily discipline",
+      "Spiritual reflection"
+    ],
+    "status": "Needs Review",
+    "tags": [
+      "kavacham",
+      "murugan",
+      "devotion"
+    ]
+  },
+  {
+    "id": "shanmuga-kavacham",
+    "titleTa": "சண்முக கவசம்",
+    "titleEn": "Shanmuga Kavacham",
+    "category": "Kavacham",
+    "deity": "Devotional",
+    "author": "Traditional",
+    "summary": "A kavacham praising the six-faced Lord Shanmuga.",
+    "meaningEn": "Associated with protection, courage and devotion.",
+    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
+    "benefits": [
+      "Devotional focus",
+      "Daily discipline",
+      "Spiritual reflection"
+    ],
+    "status": "Needs Review",
+    "tags": [
+      "kavacham",
+      "murugan",
+      "devotion"
+    ]
+  },
+  {
+    "id": "kandar-anuboothi",
+    "titleTa": "கந்தர் அனுபூதி",
+    "titleEn": "Kandar Anuboothi",
+    "category": "Tamil Hymn",
+    "deity": "Devotional",
+    "author": "Arunagirinathar",
+    "summary": "A profound Tamil spiritual work attributed to Arunagirinathar.",
+    "meaningEn": "Explores experience of divine grace and inner realization.",
+    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
+    "benefits": [
+      "Devotional focus",
+      "Daily discipline",
+      "Spiritual reflection"
+    ],
+    "status": "Needs Review",
+    "tags": [
+      "tamil hymn",
+      "murugan",
+      "devotion"
+    ]
+  },
+  {
+    "id": "kandar-alankaram",
+    "titleTa": "கந்தர் அலங்காரம்",
+    "titleEn": "Kandar Alankaram",
+    "category": "Tamil Hymn",
+    "deity": "Devotional",
+    "author": "Arunagirinathar",
+    "summary": "A poetic work praising Murugan with devotional beauty.",
+    "meaningEn": "Useful for advanced Tamil devotional study.",
+    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
+    "benefits": [
+      "Devotional focus",
+      "Daily discipline",
+      "Spiritual reflection"
+    ],
+    "status": "Needs Review",
+    "tags": [
+      "tamil hymn",
+      "murugan",
+      "devotion"
+    ]
+  },
+  {
+    "id": "thiruppugazh-intro",
+    "titleTa": "திருப்புகழ்",
+    "titleEn": "Thiruppugazh Introduction",
+    "category": "Tamil Hymn",
+    "deity": "Devotional",
+    "author": "Arunagirinathar",
+    "summary": "A gateway entry into the Thiruppugazh tradition.",
+    "meaningEn": "Focuses on rhythm, devotion and poetic praise of Murugan.",
+    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
+    "benefits": [
+      "Devotional focus",
+      "Daily discipline",
+      "Spiritual reflection"
+    ],
+    "status": "Needs Review",
+    "tags": [
+      "tamil hymn",
+      "murugan",
+      "devotion"
+    ]
+  },
+  {
+    "id": "thirumurugatrupadai",
+    "titleTa": "திருமுருகாற்றுப்படை",
+    "titleEn": "Thirumurugatrupadai",
+    "category": "Classical Tamil",
+    "deity": "Devotional",
+    "author": "Nakkirar tradition",
+    "summary": "A classical Tamil work guiding devotees toward Murugan.",
+    "meaningEn": "Important for temple, landscape and devotional literature study.",
+    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
+    "benefits": [
+      "Devotional focus",
+      "Daily discipline",
+      "Spiritual reflection"
+    ],
+    "status": "Needs Review",
+    "tags": [
+      "classical tamil",
+      "murugan",
+      "devotion"
+    ]
+  },
+  {
+    "id": "murugan-ashtothram",
+    "titleTa": "முருகன் அஷ்டோத்திரம்",
+    "titleEn": "Murugan Ashtothram",
+    "category": "Namavali",
+    "deity": "Murugan",
+    "author": "Traditional",
+    "summary": "108 names of Lord Murugan for archana and meditation.",
+    "meaningEn": "Each name highlights a quality or sacred form of Murugan.",
+    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
+    "benefits": [
+      "Devotional focus",
+      "Daily discipline",
+      "Spiritual reflection"
+    ],
+    "status": "Needs Review",
+    "tags": [
+      "namavali",
+      "murugan",
+      "devotion"
+    ]
+  },
+  {
+    "id": "murugan-potri",
+    "titleTa": "முருகன் போற்றி",
+    "titleEn": "Murugan Potri",
+    "category": "Potri",
+    "deity": "Murugan",
+    "author": "Traditional",
+    "summary": "Praise verses for Lord Murugan.",
+    "meaningEn": "Short invocations suitable for daily chanting.",
+    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
+    "benefits": [
+      "Devotional focus",
+      "Daily discipline",
+      "Spiritual reflection"
+    ],
+    "status": "Needs Review",
+    "tags": [
+      "potri",
+      "murugan",
+      "devotion"
+    ]
+  },
+  {
+    "id": "siva-puranam",
+    "titleTa": "சிவபுராணம்",
+    "titleEn": "Siva Puranam",
+    "category": "Tamil Hymn",
+    "deity": "Devotional",
+    "author": "Manikkavasagar tradition",
+    "summary": "A beloved Tamil Shaiva hymn.",
+    "meaningEn": "Included for broader devotional learning with Murugan context.",
+    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
+    "benefits": [
+      "Devotional focus",
+      "Daily discipline",
+      "Spiritual reflection"
+    ],
+    "status": "Needs Review",
+    "tags": [
+      "tamil hymn",
+      "murugan",
+      "devotion"
+    ]
+  },
+  {
+    "id": "vinayagar-agaval",
+    "titleTa": "விநாயகர் அகவல்",
+    "titleEn": "Vinayagar Agaval",
+    "category": "Tamil Hymn",
+    "deity": "Devotional",
+    "author": "Avvaiyar tradition",
+    "summary": "A famous Tamil hymn to Lord Ganesha.",
+    "meaningEn": "Often recited before beginning spiritual study.",
+    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
+    "benefits": [
+      "Devotional focus",
+      "Daily discipline",
+      "Spiritual reflection"
+    ],
+    "status": "Needs Review",
+    "tags": [
+      "tamil hymn",
+      "murugan",
+      "devotion"
+    ]
+  },
+  {
+    "id": "abhirami-anthathi",
+    "titleTa": "அபிராமி அந்தாதி",
+    "titleEn": "Abhirami Anthathi",
+    "category": "Tamil Hymn",
+    "deity": "Devotional",
+    "author": "Abhirami Bhattar tradition",
+    "summary": "A devotional Tamil hymn to Goddess Abhirami.",
+    "meaningEn": "Included as part of wider Tamil bhakti learning.",
+    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
+    "benefits": [
+      "Devotional focus",
+      "Daily discipline",
+      "Spiritual reflection"
+    ],
+    "status": "Needs Review",
+    "tags": [
+      "tamil hymn",
+      "murugan",
+      "devotion"
+    ]
+  }
+]

@@ -1,0 +1,66 @@
+[
+  {
+    "id": "book-01",
+    "title": "Murugan Devotion Starter Guide",
+    "category": "Study",
+    "format": "HTML/PDF future",
+    "summary": "Structured learning reference prepared for Om Saravana Bhava.",
+    "status": "Framework ready"
+  },
+  {
+    "id": "book-02",
+    "title": "Arupadai Veedu Study Notes",
+    "category": "Study",
+    "format": "HTML/PDF future",
+    "summary": "Structured learning reference prepared for Om Saravana Bhava.",
+    "status": "Framework ready"
+  },
+  {
+    "id": "book-03",
+    "title": "Tamil Bhakti Reader",
+    "category": "Study",
+    "format": "HTML/PDF future",
+    "summary": "Structured learning reference prepared for Om Saravana Bhava.",
+    "status": "Framework ready"
+  },
+  {
+    "id": "book-04",
+    "title": "Kanda Sashti Learning Companion",
+    "category": "Study",
+    "format": "HTML/PDF future",
+    "summary": "Structured learning reference prepared for Om Saravana Bhava.",
+    "status": "Framework ready"
+  },
+  {
+    "id": "book-05",
+    "title": "Temple Architecture Notes",
+    "category": "Study",
+    "format": "HTML/PDF future",
+    "summary": "Structured learning reference prepared for Om Saravana Bhava.",
+    "status": "Framework ready"
+  },
+  {
+    "id": "book-06",
+    "title": "Thiruppugazh Introduction",
+    "category": "Study",
+    "format": "HTML/PDF future",
+    "summary": "Structured learning reference prepared for Om Saravana Bhava.",
+    "status": "Framework ready"
+  },
+  {
+    "id": "book-07",
+    "title": "Murugan Names Workbook",
+    "category": "Study",
+    "format": "HTML/PDF future",
+    "summary": "Structured learning reference prepared for Om Saravana Bhava.",
+    "status": "Framework ready"
+  },
+  {
+    "id": "book-08",
+    "title": "Kids Murugan Stories",
+    "category": "Study",
+    "format": "HTML/PDF future",
+    "summary": "Structured learning reference prepared for Om Saravana Bhava.",
+    "status": "Framework ready"
+  }
+]
