@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1100" viewBox="0 0 1400 1100">
+<defs>
+<linearGradient id="g" x1="0" x2="1"><stop stop-color="#78140d"/><stop offset=".56" stop-color="#d15b00"/><stop offset="1" stop-color="#f6b23b"/></linearGradient>
+<radialGradient id="a" cx=".5" cy=".25" r=".45"><stop stop-color="#fff4b8"/><stop offset="1" stop-color="#fff4b8" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="1400" height="1100" fill="url(#g)"/>
+<rect width="1400" height="1100" fill="url(#a)"/>
+<circle cx="700" cy="280" r="125" fill="#ffd166" opacity=".98"/>
+<path d="M700 80 L750 270 L955 300 L765 375 L700 610 L635 375 L445 300 L650 270 Z" fill="#fff7cf" opacity=".97"/>
+<path d="M505 815 L895 815 L830 675 L770 675 L735 550 L665 550 L630 675 L570 675 Z" fill="#5d130d" opacity=".68"/>
+<path d="M530 815 C570 710 625 655 700 655 C775 655 830 710 870 815 Z" fill="#fff0c8" opacity=".28"/>
+<text x="700" y="930" text-anchor="middle" font-family="Noto Sans Tamil,Arial" font-size="86" fill="#fff8e6" font-weight="900">ஓம் சரவணபவ</text>
+<text x="700" y="995" text-anchor="middle" font-family="Arial" font-size="34" fill="#fff8e6">Wisdom • Courage • Protection</text>
+</svg>
