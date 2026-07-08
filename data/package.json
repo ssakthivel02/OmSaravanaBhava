@@ -1,12 +1,12 @@
 {
-  "batch": 24,
+  "batch": 25,
   "type": "qa-governance-testing",
   "files": [
-    "content-roadmap.html",
-    "temple-expansion-plan.html",
-    "sloka-expansion-plan.html",
-    "festival-expansion-plan.html",
-    "media-rights.html",
-    "tamil-quality.html"
+    "external-ai-test.html",
+    "lighthouse-checklist.html",
+    "final-fix-board.html",
+    "go-live-checklist.html",
+    "handover-notes.html",
+    "version-history.html"
   ]
 }
