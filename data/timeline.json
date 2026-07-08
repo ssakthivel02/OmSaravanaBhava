@@ -3,24 +3,60 @@
     "period": "Ancient Tamil Devotion",
     "title": "Murugan Worship in Tamil Tradition",
     "description": "Lord Murugan has been worshipped across Tamil lands as the divine youth, warrior, teacher, and protector.",
-    "tags": ["Murugan", "Tamil", "Devotion"]
+    "tags": [
+      "Murugan",
+      "Tamil",
+      "Devotion"
+    ]
   },
   {
-    "period": "Classical Era",
+    "period": "Sangam Cultural Memory",
+    "title": "Murugan as Seyon",
+    "description": "Tamil literary memory preserves Murugan as Seyon, connected with hills, courage, beauty, and devotion.",
+    "tags": [
+      "Sangam",
+      "Seyon",
+      "Tamil"
+    ]
+  },
+  {
+    "period": "Classical Temple Growth",
     "title": "Six Sacred Abodes",
     "description": "The Arupadai Veedu tradition preserves six major sacred sites connected with Lord Murugan's grace and divine acts.",
-    "tags": ["Arupadai Veedu", "Temple", "Pilgrimage"]
+    "tags": [
+      "Arupadai Veedu",
+      "Temple",
+      "Pilgrimage"
+    ]
   },
   {
     "period": "Bhakti Era",
     "title": "Songs, Slokas and Kavachams",
     "description": "Devotional works such as Kanda Sashti Kavacham and Thiruppugazh shaped Murugan worship for generations.",
-    "tags": ["Slokas", "Kavacham", "Thiruppugazh"]
+    "tags": [
+      "Slokas",
+      "Kavacham",
+      "Thiruppugazh"
+    ]
+  },
+  {
+    "period": "Pilgrimage Tradition",
+    "title": "Hill Temples and Devotional Journeys",
+    "description": "Murugan worship has long connected devotees through hill climbs, vows, fasting, and festival journeys.",
+    "tags": [
+      "Pilgrimage",
+      "Hills",
+      "Vows"
+    ]
   },
   {
     "period": "Modern Era",
     "title": "Digital Devotional Learning",
     "description": "Om Saravana Bhava brings temples, festivals, slokas, learning paths, and verified spiritual guidance into a digital format.",
-    "tags": ["Learning", "Digital", "Heritage"]
+    "tags": [
+      "Learning",
+      "Digital",
+      "Heritage"
+    ]
   }
 ]

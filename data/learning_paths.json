@@ -2,19 +2,56 @@
   {
     "level": "Beginner",
     "title": "Start with Murugan Devotion",
-    "steps": ["Learn Om Saravana Bhava", "Read about Arupadai Veedu", "Explore key festivals", "Start daily chanting"],
+    "steps": [
+      "Learn Om Saravana Bhava",
+      "Read about Arupadai Veedu",
+      "Explore key festivals",
+      "Start daily chanting"
+    ],
     "outcome": "Build a simple daily devotional foundation."
   },
   {
     "level": "Intermediate",
     "title": "Temple and Festival Understanding",
-    "steps": ["Study Palani and Thiruchendur", "Understand Skanda Sashti", "Read short sloka meanings", "Maintain a weekly reflection"],
+    "steps": [
+      "Study Palani and Thiruchendur",
+      "Understand Skanda Sashti",
+      "Read short sloka meanings",
+      "Maintain a weekly reflection"
+    ],
     "outcome": "Connect temple history, worship practice, and festival meaning."
   },
   {
     "level": "Advanced",
     "title": "Research and Heritage Path",
-    "steps": ["Compare temple traditions", "Study devotional literature", "Map architecture and history", "Prepare verified notes"],
+    "steps": [
+      "Compare temple traditions",
+      "Study devotional literature",
+      "Map architecture and history",
+      "Prepare verified notes"
+    ],
     "outcome": "Move from reading to structured spiritual research."
+  },
+  {
+    "level": "Family",
+    "title": "Daily Family Devotion",
+    "steps": [
+      "Read one quote",
+      "Chant together",
+      "Learn one temple story",
+      "Visit one temple page weekly"
+    ],
+    "outcome": "Create a simple family spiritual learning rhythm."
+  },
+  {
+    "level": "Scholar",
+    "title": "Structured Murugan Research",
+    "steps": [
+      "Collect source notes",
+      "Compare regional traditions",
+      "Map festival meanings",
+      "Prepare review-ready summaries"
+    ],
+    "outcome": "Build disciplined, source-aware spiritual research habits."
   }
 ]

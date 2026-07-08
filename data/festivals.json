@@ -34,5 +34,65 @@
       "Procession",
       "Annadanam"
     ]
+  },
+  {
+    "id": "panguni-uthiram",
+    "nameTa": "பங்குனி உத்திரம்",
+    "nameEn": "Panguni Uthiram",
+    "month": "Panguni",
+    "description": "Festival associated with divine marriages and Murugan's grace with Valli and Deivanai.",
+    "rituals": [
+      "Temple procession",
+      "Special archana",
+      "Family prayers"
+    ]
+  },
+  {
+    "id": "aadi-krithigai",
+    "nameTa": "ஆடி கிருத்திகை",
+    "nameEn": "Aadi Krithigai",
+    "month": "Aadi",
+    "description": "Auspicious Krithigai observance dedicated to Lord Murugan.",
+    "rituals": [
+      "Lamp worship",
+      "Milk abhishekam",
+      "Vel chanting"
+    ]
+  },
+  {
+    "id": "karthigai-deepam",
+    "nameTa": "கார்த்திகை தீபம்",
+    "nameEn": "Karthigai Deepam",
+    "month": "Karthigai",
+    "description": "Festival of lamps associated with divine light and Murugan devotion.",
+    "rituals": [
+      "Lighting lamps",
+      "Temple worship",
+      "Family prayer"
+    ]
+  },
+  {
+    "id": "thai-krithigai",
+    "nameTa": "தை கிருத்திகை",
+    "nameEn": "Thai Krithigai",
+    "month": "Thai",
+    "description": "Monthly Krithigai observance during Thai, often connected with Murugan temples and hill worship.",
+    "rituals": [
+      "Chanting",
+      "Abhishekam",
+      "Temple visit"
+    ]
+  },
+  {
+    "id": "chitra-pournami",
+    "nameTa": "சித்திரா பௌர்ணமி",
+    "nameEn": "Chitra Pournami",
+    "month": "Chithirai",
+    "description": "Full moon observance with devotional reflection and temple visits.",
+    "rituals": [
+      "Full moon prayer",
+      "Charity",
+      "Meditation"
+    ]
   }
 ]

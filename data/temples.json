@@ -6,8 +6,8 @@
     "location": "Thirupparamkundram",
     "district": "Madurai",
     "state": "Tamil Nadu",
-    "history": "First of the Arupadai Veedu, associated with Lord Murugan's marriage to Deivanai.",
-    "significance": "One of the six sacred abodes of Murugan.",
+    "history": "First of the Arupadai Veedu, associated with Lord Murugan's marriage to Deivanai after the victory over Surapadman.",
+    "significance": "One of the six sacred abodes of Murugan and a major rock-cut temple tradition.",
     "mainDeity": "Lord Subramanya with Deivanai",
     "festivalHighlights": [
       "Panguni Uthiram",
@@ -23,8 +23,8 @@
     "location": "Thiruchendur",
     "district": "Thoothukudi",
     "state": "Tamil Nadu",
-    "history": "Seashore Murugan temple associated with Soorasamharam.",
-    "significance": "Second of the Arupadai Veedu.",
+    "history": "Seashore Murugan temple associated with Soorasamharam and the victory over Surapadman.",
+    "significance": "Second of the Arupadai Veedu and one of the most important coastal Murugan temples.",
     "mainDeity": "Lord Senthilandavar",
     "festivalHighlights": [
       "Skanda Sashti",
@@ -40,8 +40,8 @@
     "location": "Palani",
     "district": "Dindigul",
     "state": "Tamil Nadu",
-    "history": "Associated with the Gnana Pazham legend and the Navapashanam idol tradition.",
-    "significance": "Third of the Arupadai Veedu.",
+    "history": "Associated with the Gnana Pazham legend and the renunciate form of Lord Murugan as Dandayuthapani.",
+    "significance": "Third of the Arupadai Veedu and a major pilgrimage centre for Thaipusam.",
     "mainDeity": "Lord Dandayuthapani",
     "festivalHighlights": [
       "Thaipusam",
@@ -58,7 +58,7 @@
     "district": "Thanjavur",
     "state": "Tamil Nadu",
     "history": "Sacred place where Murugan taught the meaning of Pranava Om to Lord Shiva.",
-    "significance": "Fourth of the Arupadai Veedu.",
+    "significance": "Fourth of the Arupadai Veedu, emphasizing Murugan as divine teacher.",
     "mainDeity": "Lord Swaminathaswamy",
     "festivalHighlights": [
       "Karthigai Deepam",
@@ -75,7 +75,7 @@
     "district": "Tiruvallur",
     "state": "Tamil Nadu",
     "history": "Place where Murugan's anger cooled after the battle with Surapadman.",
-    "significance": "Fifth of the Arupadai Veedu.",
+    "significance": "Fifth of the Arupadai Veedu, associated with peace, grace, and marriage tradition.",
     "mainDeity": "Lord Subramanyaswamy",
     "festivalHighlights": [
       "Aadi Krithigai",
@@ -91,8 +91,8 @@
     "location": "Alagar Koyil",
     "district": "Madurai",
     "state": "Tamil Nadu",
-    "history": "Associated with Avvaiyar and the Sutta Pazham episode.",
-    "significance": "Sixth of the Arupadai Veedu.",
+    "history": "Associated with Avvaiyar and the Sutta Pazham episode in Murugan devotion.",
+    "significance": "Sixth of the Arupadai Veedu and a forest-hill shrine of Murugan with Valli and Deivanai.",
     "mainDeity": "Lord Murugan with Valli and Deivanai",
     "festivalHighlights": [
       "Panguni Uthiram",
@@ -100,5 +100,107 @@
     ],
     "openingHours": "05:30 AM - 01:00 PM, 04:00 PM - 09:00 PM",
     "mapLink": "https://maps.google.com/?q=Pazhamudircholai+Murugan+Temple"
+  },
+  {
+    "id": "marudhamalai",
+    "nameTa": "மருதமலை சுப்பிரமணிய சுவாமி திருக்கோவில்",
+    "nameEn": "Marudhamalai Murugan Temple",
+    "location": "Marudhamalai",
+    "district": "Coimbatore",
+    "state": "Tamil Nadu",
+    "history": "Hill temple near Coimbatore, traditionally associated with Siddhar worship and Murugan devotion.",
+    "significance": "Major western Tamil Nadu Murugan temple with hill pilgrimage tradition.",
+    "mainDeity": "Lord Subramanyaswamy",
+    "festivalHighlights": [
+      "Thaipusam",
+      "Karthigai Deepam"
+    ],
+    "openingHours": "06:00 AM - 08:30 PM",
+    "mapLink": "https://maps.google.com/?q=Marudhamalai+Murugan+Temple"
+  },
+  {
+    "id": "vayalur",
+    "nameTa": "வயலூர் முருகன் திருக்கோவில்",
+    "nameEn": "Vayalur Murugan Temple",
+    "location": "Kumaravayalur",
+    "district": "Tiruchirappalli",
+    "state": "Tamil Nadu",
+    "history": "Temple connected with Arunagirinathar and Thiruppugazh tradition.",
+    "significance": "Important literary and devotional Murugan site.",
+    "mainDeity": "Lord Murugan with Valli and Deivanai",
+    "festivalHighlights": [
+      "Skanda Sashti",
+      "Panguni Uthiram"
+    ],
+    "openingHours": "06:00 AM - 12:00 PM, 04:00 PM - 08:30 PM",
+    "mapLink": "https://maps.google.com/?q=Vayalur+Murugan+Temple"
+  },
+  {
+    "id": "sikkal",
+    "nameTa": "சிக்கல் சிங்காரவேலவர் திருக்கோவில்",
+    "nameEn": "Sikkal Singaravelavar Temple",
+    "location": "Sikkal",
+    "district": "Nagapattinam",
+    "state": "Tamil Nadu",
+    "history": "Associated with Murugan receiving the Vel before defeating Surapadman.",
+    "significance": "Known for Skanda Sashti observances and Singaravelavar worship.",
+    "mainDeity": "Lord Singaravelavar",
+    "festivalHighlights": [
+      "Skanda Sashti",
+      "Soorasamharam"
+    ],
+    "openingHours": "06:00 AM - 12:30 PM, 04:30 PM - 08:30 PM",
+    "mapLink": "https://maps.google.com/?q=Sikkal+Singaravelavar+Temple"
+  },
+  {
+    "id": "kundrathur",
+    "nameTa": "குன்றத்தூர் முருகன் திருக்கோவில்",
+    "nameEn": "Kundrathur Murugan Temple",
+    "location": "Kundrathur",
+    "district": "Chennai",
+    "state": "Tamil Nadu",
+    "history": "Hill temple near Chennai associated with Murugan worship and regional pilgrimage.",
+    "significance": "Accessible urban hill shrine for Chennai devotees.",
+    "mainDeity": "Lord Subramanya",
+    "festivalHighlights": [
+      "Karthigai",
+      "Skanda Sashti"
+    ],
+    "openingHours": "06:00 AM - 12:00 PM, 04:00 PM - 08:30 PM",
+    "mapLink": "https://maps.google.com/?q=Kundrathur+Murugan+Temple"
+  },
+  {
+    "id": "vadapalani",
+    "nameTa": "வடபழனி ஆண்டவர் திருக்கோவில்",
+    "nameEn": "Vadapalani Andavar Temple",
+    "location": "Vadapalani",
+    "district": "Chennai",
+    "state": "Tamil Nadu",
+    "history": "A major Chennai Murugan temple known for daily worship, vows, and marriage prayers.",
+    "significance": "Prominent urban Murugan temple with strong devotee following.",
+    "mainDeity": "Vadapalani Andavar",
+    "festivalHighlights": [
+      "Thaipusam",
+      "Skanda Sashti"
+    ],
+    "openingHours": "05:30 AM - 12:00 PM, 04:00 PM - 09:00 PM",
+    "mapLink": "https://maps.google.com/?q=Vadapalani+Murugan+Temple"
+  },
+  {
+    "id": "tirupporur",
+    "nameTa": "திருப்போரூர் கந்தசுவாமி திருக்கோவில்",
+    "nameEn": "Tirupporur Kandaswamy Temple",
+    "location": "Tirupporur",
+    "district": "Chengalpattu",
+    "state": "Tamil Nadu",
+    "history": "Traditional Murugan temple associated with the destruction of inner enemies and spiritual victory.",
+    "significance": "Important Murugan shrine on the Chennai-Mahabalipuram route.",
+    "mainDeity": "Lord Kandaswamy",
+    "festivalHighlights": [
+      "Skanda Sashti",
+      "Panguni Uthiram"
+    ],
+    "openingHours": "06:00 AM - 12:30 PM, 03:30 PM - 08:30 PM",
+    "mapLink": "https://maps.google.com/?q=Tirupporur+Kandaswamy+Temple"
   }
 ]

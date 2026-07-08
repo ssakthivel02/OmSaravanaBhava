@@ -10,5 +10,65 @@
     "quoteTa": "அரோகரா வேல் முருகனுக்கு அரோகரா.",
     "quoteEn": "Arogara to Lord Murugan of the Vel.",
     "theme": "Devotion"
+  },
+  {
+    "id": "q3",
+    "quoteTa": "முருகன் அருள் துணை.",
+    "quoteEn": "Murugan's grace is our support.",
+    "theme": "Grace"
+  },
+  {
+    "id": "q4",
+    "quoteTa": "அறிவும் அருளும் சேரும் இடம் பக்தி.",
+    "quoteEn": "Devotion is where wisdom and grace meet.",
+    "theme": "Wisdom"
+  },
+  {
+    "id": "q5",
+    "quoteTa": "நல்ல எண்ணம் நல்ல வழியைத் தரும்.",
+    "quoteEn": "A pure thought opens a good path.",
+    "theme": "Discipline"
+  },
+  {
+    "id": "q6",
+    "quoteTa": "துணிவு தரும் தெய்வம் முருகன்.",
+    "quoteEn": "Murugan is the deity who gives courage.",
+    "theme": "Courage"
+  },
+  {
+    "id": "q7",
+    "quoteTa": "குன்றின் மேல் குமரன், உள்ளத்தில் ஒளி.",
+    "quoteEn": "Kumaran on the hill is light within the heart.",
+    "theme": "Reflection"
+  },
+  {
+    "id": "q8",
+    "quoteTa": "ஓம் சரவண பவ என்பது மன அமைதி.",
+    "quoteEn": "Om Saravana Bhava is inner calm.",
+    "theme": "Peace"
+  },
+  {
+    "id": "q9",
+    "quoteTa": "அன்பே வழிபாடு.",
+    "quoteEn": "Love itself is worship.",
+    "theme": "Compassion"
+  },
+  {
+    "id": "q10",
+    "quoteTa": "பக்தி பயமின்றி வாழ கற்றுக்கொடுக்கும்.",
+    "quoteEn": "Devotion teaches us to live without fear.",
+    "theme": "Fearlessness"
+  },
+  {
+    "id": "q11",
+    "quoteTa": "நன்றியுணர்வே தினசரி பூஜை.",
+    "quoteEn": "Gratitude is a daily prayer.",
+    "theme": "Gratitude"
+  },
+  {
+    "id": "q12",
+    "quoteTa": "அறிவுடன் செயல், அருளுடன் சொல்.",
+    "quoteEn": "Act with wisdom; speak with grace.",
+    "theme": "Conduct"
   }
 ]

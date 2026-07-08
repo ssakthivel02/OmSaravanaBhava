@@ -12,5 +12,47 @@
     "category": "symbol",
     "image": "murugan-hero.png",
     "location": "Murugan tradition"
+  },
+  {
+    "id": "thiruchendur",
+    "title": "Thiruchendur Seashore Shrine",
+    "category": "temple",
+    "image": "murugan-hero.png",
+    "location": "Thiruchendur"
+  },
+  {
+    "id": "swamimalai",
+    "title": "Swamimalai Teaching Tradition",
+    "category": "temple",
+    "image": "murugan-hero.png",
+    "location": "Swamimalai"
+  },
+  {
+    "id": "kavadi",
+    "title": "Kavadi Devotion",
+    "category": "festival",
+    "image": "murugan-hero.png",
+    "location": "Thaipusam"
+  },
+  {
+    "id": "deepam",
+    "title": "Karthigai Deepam Lamps",
+    "category": "festival",
+    "image": "murugan-hero.png",
+    "location": "Tamil tradition"
+  },
+  {
+    "id": "thiruppugazh",
+    "title": "Thiruppugazh Heritage",
+    "category": "literature",
+    "image": "murugan-hero.png",
+    "location": "Tamil devotional literature"
+  },
+  {
+    "id": "arupadai-veedu",
+    "title": "Six Sacred Abodes",
+    "category": "pilgrimage",
+    "image": "murugan-hero.png",
+    "location": "Tamil Nadu"
   }
 ]

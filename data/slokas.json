@@ -5,7 +5,7 @@
     "titleEn": "Kandha Sashti Kavasam",
     "category": "Kavacham",
     "author": "Devaraya Swamigal",
-    "meaning": "Prayer seeking Murugan's protection.",
+    "meaning": "Prayer seeking Murugan's protection and courage.",
     "benefits": [
       "Protection",
       "Peace",
@@ -18,11 +18,89 @@
     "titleEn": "Om Saravana Bhava",
     "category": "Mantra",
     "author": "Traditional",
-    "meaning": "Six-syllable Murugan mantra.",
+    "meaning": "Six-syllable Murugan mantra invoking grace, wisdom, and protection.",
     "benefits": [
       "Focus",
       "Protection",
       "Devotion"
+    ]
+  },
+  {
+    "id": "vel-mantra",
+    "titleTa": "வேல் வேல் முருகா",
+    "titleEn": "Vel Vel Muruga",
+    "category": "Mantra",
+    "author": "Traditional",
+    "meaning": "A simple devotional chant invoking Murugan's sacred Vel.",
+    "benefits": [
+      "Courage",
+      "Clarity",
+      "Inner strength"
+    ]
+  },
+  {
+    "id": "subramanya-gayatri",
+    "titleTa": "சுப்பிரமணிய காயத்ரி",
+    "titleEn": "Subramanya Gayatri",
+    "category": "Gayatri",
+    "author": "Traditional",
+    "meaning": "Gayatri-style prayer meditating on Lord Subramanya's wisdom.",
+    "benefits": [
+      "Wisdom",
+      "Learning",
+      "Concentration"
+    ]
+  },
+  {
+    "id": "thiruppugazh",
+    "titleTa": "திருப்புகழ்",
+    "titleEn": "Thiruppugazh",
+    "category": "Hymn",
+    "author": "Arunagirinathar",
+    "meaning": "Classical Tamil devotional songs praising Lord Murugan.",
+    "benefits": [
+      "Devotion",
+      "Tamil learning",
+      "Bhakti"
+    ]
+  },
+  {
+    "id": "shanmuga-kavacham",
+    "titleTa": "சண்முக கவசம்",
+    "titleEn": "Shanmuga Kavacham",
+    "category": "Kavacham",
+    "author": "Traditional",
+    "meaning": "Protective hymn to the six-faced Lord Shanmuga.",
+    "benefits": [
+      "Protection",
+      "Discipline",
+      "Faith"
+    ]
+  },
+  {
+    "id": "murugan-108-names",
+    "titleTa": "முருகன் 108 நாமங்கள்",
+    "titleEn": "108 Names of Murugan",
+    "category": "Namavali",
+    "author": "Traditional",
+    "meaning": "A devotional list of sacred names used in worship.",
+    "benefits": [
+      "Daily worship",
+      "Memory",
+      "Devotional focus"
+    ]
+  },
+  {
+    "id": "kandar-anubhuti",
+    "titleTa": "கந்தர் அனுபூதி",
+    "titleEn": "Kandar Anubhuti",
+    "category": "Hymn",
+    "author": "Arunagirinathar",
+    "meaning": "A deep spiritual composition expressing experience of Murugan's grace.",
+    "benefits": [
+      "Spiritual reflection",
+      "Wisdom",
+      "Inner peace"
     ]
   }
 ]

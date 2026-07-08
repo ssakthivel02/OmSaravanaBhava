@@ -1,13 +1,16 @@
 {
-  "appName": "Om Saravana Bhava",
-  "version": "1.0",
-  "defaultLanguage": "en",
-  "supportedLanguages": [
-    "ta",
-    "en"
-  ],
-  "features": {
-    "offlineMode": true,
-    "searchEngine": true
-  }
+  "siteName": "Om Saravana Bhava",
+  "version": "Batch05-Static-DataExpansion",
+  "language": "ta-en",
+  "status": "verified-static-github-pages",
+  "features": [
+    "temples",
+    "festivals",
+    "slokas",
+    "gallery",
+    "daily quotes",
+    "timeline",
+    "learning",
+    "search"
+  ]
 }
