@@ -1,0 +1,23 @@
+[
+  {
+    "type": "Karana",
+    "titleEn": "Bava",
+    "titleTa": "பவ",
+    "meaning": "One karana category.",
+    "note": "Used in full panchangam."
+  },
+  {
+    "type": "Karana",
+    "titleEn": "Balava",
+    "titleTa": "பாலவ",
+    "meaning": "One karana category.",
+    "note": "Live calculator required."
+  },
+  {
+    "type": "Karana",
+    "titleEn": "Kaulava",
+    "titleTa": "கௌலவ",
+    "meaning": "One karana category.",
+    "note": "Changes within a day."
+  }
+]

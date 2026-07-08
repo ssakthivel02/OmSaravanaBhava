@@ -1,0 +1,23 @@
+[
+  {
+    "type": "Time window",
+    "titleEn": "Rahu Kalam",
+    "titleTa": "ராகு காலம்",
+    "meaning": "Traditionally avoided for starting auspicious work.",
+    "note": "Divide sunrise-to-sunset into eight parts; exact timing depends on location."
+  },
+  {
+    "type": "Time window",
+    "titleEn": "Yamagandam",
+    "titleTa": "எமகண்டம்",
+    "meaning": "Traditionally avoided window.",
+    "note": "Use live calculator for exact local timing."
+  },
+  {
+    "type": "Time window",
+    "titleEn": "Gulikai",
+    "titleTa": "குளிகை",
+    "meaning": "Traditional daily time window.",
+    "note": "Practice varies by family and region."
+  }
+]
