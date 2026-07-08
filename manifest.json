@@ -1,9 +1,11 @@
 {
   "name": "Om Saravana Bhava",
-  "short_name": "Saravana",
-  "start_url": "index.html",
+  "short_name": "Om Murugan",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#fff8ef",
   "theme_color": "#8a1c13",
-  "icons": []
+  "icons": [],
+  "description": "Verified Murugan devotional knowledge platform with temples, slokas, festivals, learning and spiritual guidance.",
+  "scope": "./"
 }

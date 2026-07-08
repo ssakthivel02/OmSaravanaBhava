@@ -1,16 +1,14 @@
 {
   "siteName": "Om Saravana Bhava",
-  "version": "Batch05-Static-DataExpansion",
+  "version": "6C",
   "language": "ta-en",
   "status": "verified-static-github-pages",
-  "features": [
-    "temples",
-    "festivals",
-    "slokas",
-    "gallery",
-    "daily quotes",
-    "timeline",
-    "learning",
-    "search"
-  ]
+  "features": {
+    "readingMode": true,
+    "nightMode": true,
+    "favourites": true,
+    "share": true,
+    "offlineCache": true
+  },
+  "uiFramework": "enabled"
 }

@@ -414,6 +414,115 @@
     }
   }
 
+
+
+  function safeStoreGet(key, fallback) {
+    try { const raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : fallback; } catch (_) { return fallback; }
+  }
+
+  function safeStoreSet(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch (_) {}
+  }
+
+  function pageId() {
+    return `${location.pathname.replace(/^\//, '') || 'index.html'}${location.search || ''}`;
+  }
+
+  function createUtilityBar() {
+    if (document.querySelector('.osb-utility-bar')) return;
+    const bar = document.createElement('div');
+    bar.className = 'osb-utility-bar';
+    bar.setAttribute('aria-label', 'Reading and page tools');
+    bar.innerHTML = `
+      <button type="button" class="utility-btn" data-osb-tool="font" aria-label="Increase reading font size">A+</button>
+      <button type="button" class="utility-btn" data-osb-tool="theme" aria-label="Toggle temple night mode">☾</button>
+      <button type="button" class="utility-btn" data-osb-tool="fav" aria-label="Save this page">♡</button>
+      <button type="button" class="utility-btn" data-osb-tool="share" aria-label="Share this page">Share</button>
+    `;
+    document.body.appendChild(bar);
+
+    const savedTheme = safeStoreGet('osb_theme', 'light');
+    if (savedTheme === 'dark') document.body.classList.add('theme-dark');
+    const savedFont = safeStoreGet('osb_font_large', false);
+    if (savedFont) document.body.classList.add('font-large');
+    updateFavButton(bar.querySelector('[data-osb-tool="fav"]'));
+
+    bar.addEventListener('click', async (event) => {
+      const btn = event.target.closest('button[data-osb-tool]');
+      if (!btn) return;
+      const tool = btn.getAttribute('data-osb-tool');
+      if (tool === 'font') {
+        document.body.classList.toggle('font-large');
+        safeStoreSet('osb_font_large', document.body.classList.contains('font-large'));
+        showToast(document.body.classList.contains('font-large') ? 'Large text enabled' : 'Large text disabled');
+      }
+      if (tool === 'theme') {
+        document.body.classList.toggle('theme-dark');
+        safeStoreSet('osb_theme', document.body.classList.contains('theme-dark') ? 'dark' : 'light');
+        showToast(document.body.classList.contains('theme-dark') ? 'Night mode enabled' : 'Day mode enabled');
+      }
+      if (tool === 'fav') {
+        const favs = safeStoreGet('osb_favourites', []);
+        const id = pageId();
+        const exists = favs.includes(id);
+        const next = exists ? favs.filter(x => x !== id) : [...favs, id];
+        safeStoreSet('osb_favourites', next);
+        updateFavButton(btn);
+        showToast(exists ? 'Removed from favourites' : 'Saved to favourites');
+      }
+      if (tool === 'share') {
+        const payload = { title: document.title, text: 'Om Saravana Bhava', url: location.href };
+        if (navigator.share) {
+          try { await navigator.share(payload); } catch (_) {}
+        } else {
+          try { await navigator.clipboard.writeText(location.href); showToast('Page link copied'); } catch (_) { showToast('Copy this page link from the address bar'); }
+        }
+      }
+    });
+  }
+
+  function updateFavButton(btn) {
+    if (!btn) return;
+    const favs = safeStoreGet('osb_favourites', []);
+    btn.textContent = favs.includes(pageId()) ? '♥' : '♡';
+  }
+
+  function createScrollProgress() {
+    if (document.querySelector('.scroll-progress')) return;
+    const progress = document.createElement('div');
+    progress.className = 'scroll-progress';
+    document.body.appendChild(progress);
+    const update = () => {
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = total > 0 ? `${Math.min(100, Math.max(0, (window.scrollY / total) * 100))}%` : '0%';
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+  }
+
+  function showToast(message) {
+    let wrap = document.querySelector('.toast-wrap');
+    if (!wrap) {
+      wrap = document.createElement('div');
+      wrap.className = 'toast-wrap';
+      document.body.appendChild(wrap);
+    }
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    wrap.appendChild(toast);
+    setTimeout(() => toast.classList.add('hide'), 2200);
+    setTimeout(() => toast.remove(), 2700);
+  }
+
+  function enhanceCardsForUX() {
+    $$('.card').forEach((card, index) => {
+      card.classList.add('fade-in-card');
+      card.style.setProperty('--delay', `${Math.min(index, 8) * 45}ms`);
+    });
+  }
+
   async function enhanceGlobal() {
     const menu = $('.menu-toggle');
     const nav = $('.main-nav') || $('.nav');
@@ -428,6 +537,9 @@
       const quote = Array.isArray(quotes) && quotes.length ? quotes[new Date().getDate() % quotes.length] : null;
       if (quote) quoteTarget.textContent = quote.quoteTa && quote.quoteEn ? `${quote.quoteTa} — ${quote.quoteEn}` : (quote.quote || quote.text || quote.content || 'Om Saravana Bhava');
     }
+
+    createScrollProgress();
+    createUtilityBar();
 
     if (!document.querySelector('.back-to-top')) {
       const button = document.createElement('button');
@@ -448,6 +560,7 @@
     await Promise.all([
       initMainLists(), initSearchPage(), initTempleDetail(), initFestivalDetail(), initSlokaDetail(), initBatch04Pages(), initBatch06BPages()
     ]);
+    enhanceCardsForUX();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
