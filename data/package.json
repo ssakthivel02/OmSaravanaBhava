@@ -1,12 +1,12 @@
 {
-  "batch": 26,
+  "batch": 27,
   "purpose": "safe continuation package",
   "pages": [
-    "content-completion-board.html",
-    "temple-108-plan.html",
-    "sloka-source-board.html",
-    "festival-source-board.html",
-    "knowledge-entity-board.html",
-    "content-import-template.html"
+    "ui-polish-board.html",
+    "homepage-redesign-plan.html",
+    "animation-guidelines.html",
+    "mobile-polish.html",
+    "dark-mode-audit.html",
+    "premium-ui-handoff.html"
   ]
 }
