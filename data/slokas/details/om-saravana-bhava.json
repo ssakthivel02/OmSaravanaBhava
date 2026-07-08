@@ -3,37 +3,17 @@
   "titleTa": "ஓம் சரவணபவ",
   "titleEn": "Om Saravana Bhava",
   "category": "Mantra",
-  "deity": "Murugan",
-  "author": "Lord Murugan",
-  "summary": "A six-syllable mantra invoking Murugan as the divine guide.",
-  "meaningEn": "The mantra is traditionally used for protection, clarity and devotional focus.",
-  "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
-  "benefits": [
-    "Devotional focus",
-    "Daily discipline",
-    "Spiritual reflection"
-  ],
+  "summary": "A simple and powerful six-syllable Murugan mantra for daily remembrance.",
+  "meaningEn": "A devotional salutation to Lord Murugan, the divine one associated with wisdom, courage and protection.",
   "status": "Verified summary",
-  "tags": [
-    "mantra",
-    "murugan",
-    "devotion"
+  "author": "Traditional",
+  "meaningTa": "இது முருகப்பெருமானை பக்தியுடன் நினைத்து வணங்கும் எளிய மந்திரம். ஞானம், தைரியம், பாதுகாப்பு ஆகியவற்றை மனதில் நிலைநிறுத்த உதவும்.",
+  "textTa": "ஓம் சரவணபவ",
+  "transliteration": "Om Saravana Bhava",
+  "benefits": [
+    "Daily focus",
+    "Inner courage",
+    "Devotional connection"
   ],
-  "sections": [
-    {
-      "heading": "How to use",
-      "body": "Read with humility. Use the meaning as a learning guide, not as a substitute for a traditional teacher or verified source edition."
-    },
-    {
-      "heading": "Parallel meaning",
-      "body": "Tamil and English meanings are intentionally concise and will be expanded after source review."
-    }
-  ],
-  "audioRefs": [
-    "om-saravana-bhava-chant"
-  ],
-  "related": [
-    "murugan-ashtothram",
-    "vel-vel"
-  ]
+  "practice": "Chant slowly with attention, especially before beginning important work or study."
 }

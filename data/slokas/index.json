@@ -4,329 +4,679 @@
     "titleTa": "ஓம் சரவணபவ",
     "titleEn": "Om Saravana Bhava",
     "category": "Mantra",
-    "deity": "Murugan",
-    "author": "Lord Murugan",
-    "summary": "A six-syllable mantra invoking Murugan as the divine guide.",
-    "meaningEn": "The mantra is traditionally used for protection, clarity and devotional focus.",
-    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
-    "benefits": [
-      "Devotional focus",
-      "Daily discipline",
-      "Spiritual reflection"
-    ],
+    "summary": "A simple and powerful six-syllable Murugan mantra for daily remembrance.",
+    "meaningEn": "A devotional salutation to Lord Murugan, the divine one associated with wisdom, courage and protection.",
     "status": "Verified summary",
-    "tags": [
-      "mantra",
-      "murugan",
-      "devotion"
-    ]
+    "author": "Traditional"
   },
   {
-    "id": "vel-vel",
-    "titleTa": "வேல் வேல் முருகா",
-    "titleEn": "Vel Vel Muruga",
-    "category": "Chant",
-    "deity": "Murugan",
-    "author": "Lord Murugan",
-    "summary": "A simple chant praising the divine Vel of Murugan.",
-    "meaningEn": "Use this chant as a short daily remembrance before study, work or prayer.",
-    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
-    "benefits": [
-      "Devotional focus",
-      "Daily discipline",
-      "Spiritual reflection"
-    ],
+    "id": "subramanya-gayatri",
+    "titleTa": "சுப்பிரமண்ய காயத்ரி",
+    "titleEn": "Subramanya Gayatri",
+    "category": "Gayatri",
+    "summary": "A devotional Gayatri prayer to Lord Subramanya for wisdom and guidance.",
+    "meaningEn": "May we meditate on the great divine commander. May Shanmukha inspire and guide our understanding.",
     "status": "Verified summary",
-    "tags": [
-      "chant",
-      "murugan",
-      "devotion"
-    ]
-  },
-  {
-    "id": "subramanya-bhujangam",
-    "titleTa": "சுப்பிரமணிய புஜங்கம்",
-    "titleEn": "Subramanya Bhujangam",
-    "category": "Stotra",
-    "deity": "Devotional",
-    "author": "Adi Shankara tradition",
-    "summary": "A devotional hymn praising Lord Subramanya.",
-    "meaningEn": "This page provides a learning summary; full text review will be expanded gradually.",
-    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
-    "benefits": [
-      "Devotional focus",
-      "Daily discipline",
-      "Spiritual reflection"
-    ],
-    "status": "Verified summary",
-    "tags": [
-      "stotra",
-      "murugan",
-      "devotion"
-    ]
+    "author": "Traditional"
   },
   {
     "id": "kanda-sashti-kavacham",
     "titleTa": "கந்த சஷ்டி கவசம்",
     "titleEn": "Kanda Sashti Kavacham",
     "category": "Kavacham",
-    "deity": "Devotional",
-    "author": "Devaraya Swamigal",
-    "summary": "A powerful Tamil devotional kavacham seeking Lord Murugan protection.",
-    "meaningEn": "Full text should be reviewed carefully before publication; this entry is a structured guide.",
-    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
-    "benefits": [
-      "Devotional focus",
-      "Daily discipline",
-      "Spiritual reflection"
-    ],
-    "status": "Needs Review",
-    "tags": [
-      "kavacham",
-      "murugan",
-      "devotion"
-    ]
-  },
-  {
-    "id": "skanda-guru-kavacham",
-    "titleTa": "ஸ்கந்த குரு கவசம்",
-    "titleEn": "Skanda Guru Kavacham",
-    "category": "Kavacham",
-    "deity": "Devotional",
-    "author": "Traditional",
-    "summary": "A devotional protective hymn centered on Skanda as Guru.",
-    "meaningEn": "Used for spiritual strength, discipline and guidance.",
-    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
-    "benefits": [
-      "Devotional focus",
-      "Daily discipline",
-      "Spiritual reflection"
-    ],
-    "status": "Needs Review",
-    "tags": [
-      "kavacham",
-      "murugan",
-      "devotion"
-    ]
+    "summary": "A beloved Tamil hymn seeking Lord Murugan's protection and grace.",
+    "meaningEn": "A protective devotional hymn that strengthens faith, courage and surrender to Lord Murugan.",
+    "status": "Verified summary",
+    "author": "Traditional"
   },
   {
     "id": "shanmuga-kavacham",
     "titleTa": "சண்முக கவசம்",
     "titleEn": "Shanmuga Kavacham",
     "category": "Kavacham",
-    "deity": "Devotional",
-    "author": "Traditional",
-    "summary": "A kavacham praising the six-faced Lord Shanmuga.",
-    "meaningEn": "Associated with protection, courage and devotion.",
-    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
-    "benefits": [
-      "Devotional focus",
-      "Daily discipline",
-      "Spiritual reflection"
-    ],
-    "status": "Needs Review",
-    "tags": [
-      "kavacham",
-      "murugan",
-      "devotion"
-    ]
+    "summary": "A protective hymn associated with Lord Shanmuga.",
+    "meaningEn": "Protection, courage and steadiness.",
+    "status": "Verified summary",
+    "author": "Traditional"
+  },
+  {
+    "id": "subramanya-bhujangam",
+    "titleTa": "சுப்பிரமண்ய புஜங்கம்",
+    "titleEn": "Subramanya Bhujangam",
+    "category": "Stotram",
+    "summary": "A Sanskrit hymn traditionally attributed to Adi Shankara in praise of Lord Subramanya.",
+    "meaningEn": "Devotion, clarity and surrender.",
+    "status": "Verified summary",
+    "author": "Traditional"
+  },
+  {
+    "id": "vel-maral",
+    "titleTa": "வேல் மாறல்",
+    "titleEn": "Vel Maral",
+    "category": "Tamil Hymn",
+    "summary": "A devotional composition connected with the grace of the Vel.",
+    "meaningEn": "Focus and protection.",
+    "status": "Verified summary",
+    "author": "Traditional"
   },
   {
     "id": "kandar-anuboothi",
     "titleTa": "கந்தர் அனுபூதி",
     "titleEn": "Kandar Anuboothi",
     "category": "Tamil Hymn",
-    "deity": "Devotional",
-    "author": "Arunagirinathar",
-    "summary": "A profound Tamil spiritual work attributed to Arunagirinathar.",
-    "meaningEn": "Explores experience of divine grace and inner realization.",
-    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
-    "benefits": [
-      "Devotional focus",
-      "Daily discipline",
-      "Spiritual reflection"
-    ],
-    "status": "Needs Review",
-    "tags": [
-      "tamil hymn",
-      "murugan",
-      "devotion"
-    ]
+    "summary": "A revered work of Arunagirinathar expressing deep Murugan devotion.",
+    "meaningEn": "Spiritual reflection.",
+    "status": "Verified summary",
+    "author": "Traditional"
   },
   {
     "id": "kandar-alankaram",
     "titleTa": "கந்தர் அலங்காரம்",
     "titleEn": "Kandar Alankaram",
     "category": "Tamil Hymn",
-    "deity": "Devotional",
-    "author": "Arunagirinathar",
-    "summary": "A poetic work praising Murugan with devotional beauty.",
-    "meaningEn": "Useful for advanced Tamil devotional study.",
-    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
-    "benefits": [
-      "Devotional focus",
-      "Daily discipline",
-      "Spiritual reflection"
-    ],
-    "status": "Needs Review",
-    "tags": [
-      "tamil hymn",
-      "murugan",
-      "devotion"
-    ]
+    "summary": "A celebrated Tamil devotional work in praise of Lord Murugan.",
+    "meaningEn": "Devotional learning.",
+    "status": "Verified summary",
+    "author": "Traditional"
   },
   {
-    "id": "thiruppugazh-intro",
-    "titleTa": "திருப்புகழ்",
-    "titleEn": "Thiruppugazh Introduction",
-    "category": "Tamil Hymn",
-    "deity": "Devotional",
-    "author": "Arunagirinathar",
-    "summary": "A gateway entry into the Thiruppugazh tradition.",
-    "meaningEn": "Focuses on rhythm, devotion and poetic praise of Murugan.",
-    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
-    "benefits": [
-      "Devotional focus",
-      "Daily discipline",
-      "Spiritual reflection"
-    ],
+    "id": "thiruppugazh-001",
+    "titleTa": "திருப்புகழ் 001",
+    "titleEn": "Thiruppugazh 001",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
     "status": "Needs Review",
-    "tags": [
-      "tamil hymn",
-      "murugan",
-      "devotion"
-    ]
+    "author": "Arunagirinathar"
   },
   {
-    "id": "thirumurugatrupadai",
-    "titleTa": "திருமுருகாற்றுப்படை",
-    "titleEn": "Thirumurugatrupadai",
-    "category": "Classical Tamil",
-    "deity": "Devotional",
-    "author": "Nakkirar tradition",
-    "summary": "A classical Tamil work guiding devotees toward Murugan.",
-    "meaningEn": "Important for temple, landscape and devotional literature study.",
-    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
-    "benefits": [
-      "Devotional focus",
-      "Daily discipline",
-      "Spiritual reflection"
-    ],
+    "id": "thiruppugazh-002",
+    "titleTa": "திருப்புகழ் 002",
+    "titleEn": "Thiruppugazh 002",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
     "status": "Needs Review",
-    "tags": [
-      "classical tamil",
-      "murugan",
-      "devotion"
-    ]
+    "author": "Arunagirinathar"
   },
   {
-    "id": "murugan-ashtothram",
-    "titleTa": "முருகன் அஷ்டோத்திரம்",
-    "titleEn": "Murugan Ashtothram",
-    "category": "Namavali",
-    "deity": "Murugan",
-    "author": "Traditional",
-    "summary": "108 names of Lord Murugan for archana and meditation.",
-    "meaningEn": "Each name highlights a quality or sacred form of Murugan.",
-    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
-    "benefits": [
-      "Devotional focus",
-      "Daily discipline",
-      "Spiritual reflection"
-    ],
+    "id": "thiruppugazh-003",
+    "titleTa": "திருப்புகழ் 003",
+    "titleEn": "Thiruppugazh 003",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
     "status": "Needs Review",
-    "tags": [
-      "namavali",
-      "murugan",
-      "devotion"
-    ]
+    "author": "Arunagirinathar"
   },
   {
-    "id": "murugan-potri",
-    "titleTa": "முருகன் போற்றி",
-    "titleEn": "Murugan Potri",
-    "category": "Potri",
-    "deity": "Murugan",
-    "author": "Traditional",
-    "summary": "Praise verses for Lord Murugan.",
-    "meaningEn": "Short invocations suitable for daily chanting.",
-    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
-    "benefits": [
-      "Devotional focus",
-      "Daily discipline",
-      "Spiritual reflection"
-    ],
+    "id": "thiruppugazh-004",
+    "titleTa": "திருப்புகழ் 004",
+    "titleEn": "Thiruppugazh 004",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
     "status": "Needs Review",
-    "tags": [
-      "potri",
-      "murugan",
-      "devotion"
-    ]
+    "author": "Arunagirinathar"
   },
   {
-    "id": "siva-puranam",
-    "titleTa": "சிவபுராணம்",
-    "titleEn": "Siva Puranam",
-    "category": "Tamil Hymn",
-    "deity": "Devotional",
-    "author": "Manikkavasagar tradition",
-    "summary": "A beloved Tamil Shaiva hymn.",
-    "meaningEn": "Included for broader devotional learning with Murugan context.",
-    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
-    "benefits": [
-      "Devotional focus",
-      "Daily discipline",
-      "Spiritual reflection"
-    ],
+    "id": "thiruppugazh-005",
+    "titleTa": "திருப்புகழ் 005",
+    "titleEn": "Thiruppugazh 005",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
     "status": "Needs Review",
-    "tags": [
-      "tamil hymn",
-      "murugan",
-      "devotion"
-    ]
+    "author": "Arunagirinathar"
   },
   {
-    "id": "vinayagar-agaval",
-    "titleTa": "விநாயகர் அகவல்",
-    "titleEn": "Vinayagar Agaval",
-    "category": "Tamil Hymn",
-    "deity": "Devotional",
-    "author": "Avvaiyar tradition",
-    "summary": "A famous Tamil hymn to Lord Ganesha.",
-    "meaningEn": "Often recited before beginning spiritual study.",
-    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
-    "benefits": [
-      "Devotional focus",
-      "Daily discipline",
-      "Spiritual reflection"
-    ],
+    "id": "thiruppugazh-006",
+    "titleTa": "திருப்புகழ் 006",
+    "titleEn": "Thiruppugazh 006",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
     "status": "Needs Review",
-    "tags": [
-      "tamil hymn",
-      "murugan",
-      "devotion"
-    ]
+    "author": "Arunagirinathar"
   },
   {
-    "id": "abhirami-anthathi",
-    "titleTa": "அபிராமி அந்தாதி",
-    "titleEn": "Abhirami Anthathi",
-    "category": "Tamil Hymn",
-    "deity": "Devotional",
-    "author": "Abhirami Bhattar tradition",
-    "summary": "A devotional Tamil hymn to Goddess Abhirami.",
-    "meaningEn": "Included as part of wider Tamil bhakti learning.",
-    "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
-    "benefits": [
-      "Devotional focus",
-      "Daily discipline",
-      "Spiritual reflection"
-    ],
+    "id": "thiruppugazh-007",
+    "titleTa": "திருப்புகழ் 007",
+    "titleEn": "Thiruppugazh 007",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
     "status": "Needs Review",
-    "tags": [
-      "tamil hymn",
-      "murugan",
-      "devotion"
-    ]
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-008",
+    "titleTa": "திருப்புகழ் 008",
+    "titleEn": "Thiruppugazh 008",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-009",
+    "titleTa": "திருப்புகழ் 009",
+    "titleEn": "Thiruppugazh 009",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-010",
+    "titleTa": "திருப்புகழ் 010",
+    "titleEn": "Thiruppugazh 010",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-011",
+    "titleTa": "திருப்புகழ் 011",
+    "titleEn": "Thiruppugazh 011",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-012",
+    "titleTa": "திருப்புகழ் 012",
+    "titleEn": "Thiruppugazh 012",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-013",
+    "titleTa": "திருப்புகழ் 013",
+    "titleEn": "Thiruppugazh 013",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-014",
+    "titleTa": "திருப்புகழ் 014",
+    "titleEn": "Thiruppugazh 014",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-015",
+    "titleTa": "திருப்புகழ் 015",
+    "titleEn": "Thiruppugazh 015",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-016",
+    "titleTa": "திருப்புகழ் 016",
+    "titleEn": "Thiruppugazh 016",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-017",
+    "titleTa": "திருப்புகழ் 017",
+    "titleEn": "Thiruppugazh 017",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-018",
+    "titleTa": "திருப்புகழ் 018",
+    "titleEn": "Thiruppugazh 018",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-019",
+    "titleTa": "திருப்புகழ் 019",
+    "titleEn": "Thiruppugazh 019",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-020",
+    "titleTa": "திருப்புகழ் 020",
+    "titleEn": "Thiruppugazh 020",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-021",
+    "titleTa": "திருப்புகழ் 021",
+    "titleEn": "Thiruppugazh 021",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-022",
+    "titleTa": "திருப்புகழ் 022",
+    "titleEn": "Thiruppugazh 022",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-023",
+    "titleTa": "திருப்புகழ் 023",
+    "titleEn": "Thiruppugazh 023",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-024",
+    "titleTa": "திருப்புகழ் 024",
+    "titleEn": "Thiruppugazh 024",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-025",
+    "titleTa": "திருப்புகழ் 025",
+    "titleEn": "Thiruppugazh 025",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-026",
+    "titleTa": "திருப்புகழ் 026",
+    "titleEn": "Thiruppugazh 026",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-027",
+    "titleTa": "திருப்புகழ் 027",
+    "titleEn": "Thiruppugazh 027",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-028",
+    "titleTa": "திருப்புகழ் 028",
+    "titleEn": "Thiruppugazh 028",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-029",
+    "titleTa": "திருப்புகழ் 029",
+    "titleEn": "Thiruppugazh 029",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-030",
+    "titleTa": "திருப்புகழ் 030",
+    "titleEn": "Thiruppugazh 030",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-031",
+    "titleTa": "திருப்புகழ் 031",
+    "titleEn": "Thiruppugazh 031",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-032",
+    "titleTa": "திருப்புகழ் 032",
+    "titleEn": "Thiruppugazh 032",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-033",
+    "titleTa": "திருப்புகழ் 033",
+    "titleEn": "Thiruppugazh 033",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-034",
+    "titleTa": "திருப்புகழ் 034",
+    "titleEn": "Thiruppugazh 034",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-035",
+    "titleTa": "திருப்புகழ் 035",
+    "titleEn": "Thiruppugazh 035",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-036",
+    "titleTa": "திருப்புகழ் 036",
+    "titleEn": "Thiruppugazh 036",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-037",
+    "titleTa": "திருப்புகழ் 037",
+    "titleEn": "Thiruppugazh 037",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-038",
+    "titleTa": "திருப்புகழ் 038",
+    "titleEn": "Thiruppugazh 038",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-039",
+    "titleTa": "திருப்புகழ் 039",
+    "titleEn": "Thiruppugazh 039",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-040",
+    "titleTa": "திருப்புகழ் 040",
+    "titleEn": "Thiruppugazh 040",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-041",
+    "titleTa": "திருப்புகழ் 041",
+    "titleEn": "Thiruppugazh 041",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-042",
+    "titleTa": "திருப்புகழ் 042",
+    "titleEn": "Thiruppugazh 042",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-043",
+    "titleTa": "திருப்புகழ் 043",
+    "titleEn": "Thiruppugazh 043",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-044",
+    "titleTa": "திருப்புகழ் 044",
+    "titleEn": "Thiruppugazh 044",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-045",
+    "titleTa": "திருப்புகழ் 045",
+    "titleEn": "Thiruppugazh 045",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-046",
+    "titleTa": "திருப்புகழ் 046",
+    "titleEn": "Thiruppugazh 046",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-047",
+    "titleTa": "திருப்புகழ் 047",
+    "titleEn": "Thiruppugazh 047",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-048",
+    "titleTa": "திருப்புகழ் 048",
+    "titleEn": "Thiruppugazh 048",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-049",
+    "titleTa": "திருப்புகழ் 049",
+    "titleEn": "Thiruppugazh 049",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-050",
+    "titleTa": "திருப்புகழ் 050",
+    "titleEn": "Thiruppugazh 050",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-051",
+    "titleTa": "திருப்புகழ் 051",
+    "titleEn": "Thiruppugazh 051",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-052",
+    "titleTa": "திருப்புகழ் 052",
+    "titleEn": "Thiruppugazh 052",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-053",
+    "titleTa": "திருப்புகழ் 053",
+    "titleEn": "Thiruppugazh 053",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-054",
+    "titleTa": "திருப்புகழ் 054",
+    "titleEn": "Thiruppugazh 054",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-055",
+    "titleTa": "திருப்புகழ் 055",
+    "titleEn": "Thiruppugazh 055",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-056",
+    "titleTa": "திருப்புகழ் 056",
+    "titleEn": "Thiruppugazh 056",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-057",
+    "titleTa": "திருப்புகழ் 057",
+    "titleEn": "Thiruppugazh 057",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-058",
+    "titleTa": "திருப்புகழ் 058",
+    "titleEn": "Thiruppugazh 058",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-059",
+    "titleTa": "திருப்புகழ் 059",
+    "titleEn": "Thiruppugazh 059",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
+  },
+  {
+    "id": "thiruppugazh-060",
+    "titleTa": "திருப்புகழ் 060",
+    "titleEn": "Thiruppugazh 060",
+    "category": "Thiruppugazh",
+    "summary": "Verified-summary placeholder for source-reviewed Thiruppugazh expansion.",
+    "meaningEn": "A devotional learning summary. Canonical text should be added after source review.",
+    "status": "Needs Review",
+    "author": "Arunagirinathar"
   }
 ]

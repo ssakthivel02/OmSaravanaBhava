@@ -15,7 +15,10 @@
     ],
     "practice": "Chant slowly with attention, especially before beginning important work or study.",
     "meaningTa": "இது முருகப்பெருமானை பக்தியுடன் நினைத்து வணங்கும் எளிய மந்திரம். ஞானம், தைரியம், பாதுகாப்பு ஆகியவற்றை மனதில் நிலைநிறுத்த உதவும்.",
-    "practiceTa": "முக்கியமான வேலை, படிப்பு அல்லது பயணம் தொடங்கும் முன் கவனத்துடன் மெதுவாக ஜபிக்கலாம்."
+    "practiceTa": "முக்கியமான வேலை, படிப்பு அல்லது பயணம் தொடங்கும் முன் கவனத்துடன் மெதுவாக ஜபிக்கலாம்.",
+    "meaningEn": "A devotional salutation to Lord Murugan, the divine one associated with wisdom, courage and protection.",
+    "status": "Verified summary",
+    "author": "Traditional"
   },
   {
     "id": "subramanya-gayatri",
@@ -33,7 +36,10 @@
     ],
     "practice": "Useful before study, prayer or decision-making.",
     "meaningTa": "மகாசேனனாக விளங்கும் சண்முகனை தியானித்து, நமது அறிவும் எண்ணமும் நல்ல பாதையில் செல்ல அருள் வேண்டுகிறோம்.",
-    "practiceTa": "படிப்பு, பிரார்த்தனை, முடிவு எடுக்கும் நேரங்களில் மரியாதையுடன் ஜபிக்கலாம்."
+    "practiceTa": "படிப்பு, பிரார்த்தனை, முடிவு எடுக்கும் நேரங்களில் மரியாதையுடன் ஜபிக்கலாம்.",
+    "meaningEn": "May we meditate on the great divine commander. May Shanmukha inspire and guide our understanding.",
+    "status": "Verified summary",
+    "author": "Traditional"
   },
   {
     "id": "kanda-sashti-kavacham",
@@ -51,58 +57,109 @@
     ],
     "practice": "Recite with respect, patience and correct pronunciation where possible.",
     "meaningTa": "முருகப்பெருமானின் அருள், பாதுகாப்பு, தைரியம் ஆகியவற்றை வேண்டி பாடப்படும் பக்திப் பாடல்.",
-    "practiceTa": "சரியான உச்சரிப்புடன், பொறுமையாகவும் பக்தியுடனும் பாராயணம் செய்யலாம்."
+    "practiceTa": "சரியான உச்சரிப்புடன், பொறுமையாகவும் பக்தியுடனும் பாராயணம் செய்யலாம்.",
+    "meaningEn": "A protective devotional hymn that strengthens faith, courage and surrender to Lord Murugan.",
+    "status": "Verified summary",
+    "author": "Traditional"
   },
   {
-    "id": "kanda-sashti-kavasam",
-    "titleTa": "கந்த சஷ்டி கவசம்",
-    "titleEn": "Kanda Sashti Kavasam",
+    "id": "shanmuga-kavacham",
+    "titleTa": "சண்முக கவசம்",
+    "titleEn": "Shanmuga Kavacham",
     "category": "Kavacham",
-    "summary": "A protective devotional hymn to Lord Murugan.",
-    "textTa": "கந்த சஷ்டி கவசம் — முழு உரை மூல சரிபார்ப்புக்குப் பிறகு சேர்க்கப்படும்.",
-    "transliteration": "Kanda Sashti Kavasam",
-    "meaning": "A celebrated hymn seeking Murugan’s protection, courage and grace.",
-    "meaningTa": "முருகப்பெருமானின் அருள், பாதுகாப்பு, தைரியம் வேண்டி பாடப்படும் பக்திப் பாடல்.",
+    "summary": "A protective hymn associated with Lord Shanmuga.",
+    "textTa": "சண்முக கவசம்",
+    "transliteration": "Shanmuga Kavacham",
+    "meaning": "Protection, courage and steadiness.",
+    "meaningEn": "Protection, courage and steadiness.",
+    "meaningTa": "சண்முகப் பெருமானின் அருளையும் பாதுகாப்பையும் வேண்டி படிக்கப்படும் பக்திப் பாடல்.",
     "benefits": [
-      "Protection",
-      "Courage",
-      "Devotional discipline"
+      "Devotional focus",
+      "Daily discipline",
+      "Spiritual reflection"
     ],
-    "practice": "Recite with devotion, especially during Skanda Sashti.",
-    "practiceTa": "சஷ்டி நாட்களில் பக்தியுடன் பாராயணம் செய்யலாம்."
+    "practice": "Read with attention. Full canonical text to be added after source review.",
+    "status": "Verified summary",
+    "author": "Traditional"
   },
   {
     "id": "subramanya-bhujangam",
     "titleTa": "சுப்பிரமண்ய புஜங்கம்",
     "titleEn": "Subramanya Bhujangam",
-    "category": "Stotra",
-    "summary": "A classical hymn praising Lord Subramanya.",
-    "textTa": "சுப்பிரமண்ய புஜங்கம் — மூல உரை சரிபார்ப்புக்குப் பிறகு சேர்க்கப்படும்.",
+    "category": "Stotram",
+    "summary": "A Sanskrit hymn traditionally attributed to Adi Shankara in praise of Lord Subramanya.",
+    "textTa": "சுப்பிரமண்ய புஜங்கம்",
     "transliteration": "Subramanya Bhujangam",
-    "meaning": "A devotional praise of Lord Subramanya, traditionally associated with surrender and grace.",
-    "meaningTa": "சுப்பிரமண்யரை புகழ்ந்து சரணாகதி உணர்வை வளர்க்கும் ஸ்தோத்திரம்.",
+    "meaning": "Devotion, clarity and surrender.",
+    "meaningEn": "Devotion, clarity and surrender.",
+    "meaningTa": "சுப்பிரமண்யரைப் புகழும் பாரம்பரிய ஸ்தோத்திரமாக அறியப்படுகிறது.",
     "benefits": [
-      "Surrender",
-      "Grace",
-      "Focus"
+      "Devotional focus",
+      "Daily discipline",
+      "Spiritual reflection"
     ],
-    "practice": "Use as a study reference until full source-reviewed text is added."
+    "practice": "Read with attention. Full canonical text to be added after source review.",
+    "status": "Verified summary",
+    "author": "Traditional"
   },
   {
-    "id": "thiruppugazh",
-    "titleTa": "திருப்புகழ்",
-    "titleEn": "Thiruppugazh",
+    "id": "vel-maral",
+    "titleTa": "வேல் மாறல்",
+    "titleEn": "Vel Maral",
     "category": "Tamil Hymn",
-    "summary": "Tamil devotional poetry tradition of Arunagirinathar praising Murugan.",
-    "textTa": "திருப்புகழ் பாடல்கள் — தேர்ந்தெடுக்கப்பட்ட பாடல்கள் மூல சரிபார்ப்புக்குப் பிறகு சேர்க்கப்படும்.",
-    "transliteration": "Thiruppugazh",
-    "meaning": "A revered Tamil devotional tradition praising Lord Murugan with rhythm, poetry and spiritual depth.",
-    "meaningTa": "அருணகிரிநாதர் அருளிய முருக பக்திப் பாடல்களின் மரபு.",
+    "summary": "A devotional composition connected with the grace of the Vel.",
+    "textTa": "வேல் மாறல்",
+    "transliteration": "Vel Maral",
+    "meaning": "Focus and protection.",
+    "meaningEn": "Focus and protection.",
+    "meaningTa": "வேலின் அருளையும் பாதுகாப்பையும் நினைவூட்டும் பக்திப் பாடல்.",
     "benefits": [
-      "Tamil devotion",
-      "Poetry",
-      "Musical worship"
+      "Devotional focus",
+      "Daily discipline",
+      "Spiritual reflection"
     ],
-    "practice": "Learn slowly with meaning and pronunciation."
+    "practice": "Read with attention. Full canonical text to be added after source review.",
+    "status": "Verified summary",
+    "author": "Traditional"
+  },
+  {
+    "id": "kandar-anuboothi",
+    "titleTa": "கந்தர் அனுபூதி",
+    "titleEn": "Kandar Anuboothi",
+    "category": "Tamil Hymn",
+    "summary": "A revered work of Arunagirinathar expressing deep Murugan devotion.",
+    "textTa": "கந்தர் அனுபூதி",
+    "transliteration": "Kandar Anuboothi",
+    "meaning": "Spiritual reflection.",
+    "meaningEn": "Spiritual reflection.",
+    "meaningTa": "அருணகிரிநாதரின் ஆழ்ந்த முருக பக்தி அனுபவங்களைச் சொல்கிறது.",
+    "benefits": [
+      "Devotional focus",
+      "Daily discipline",
+      "Spiritual reflection"
+    ],
+    "practice": "Read with attention. Full canonical text to be added after source review.",
+    "status": "Verified summary",
+    "author": "Traditional"
+  },
+  {
+    "id": "kandar-alankaram",
+    "titleTa": "கந்தர் அலங்காரம்",
+    "titleEn": "Kandar Alankaram",
+    "category": "Tamil Hymn",
+    "summary": "A celebrated Tamil devotional work in praise of Lord Murugan.",
+    "textTa": "கந்தர் அலங்காரம்",
+    "transliteration": "Kandar Alankaram",
+    "meaning": "Devotional learning.",
+    "meaningEn": "Devotional learning.",
+    "meaningTa": "முருகனைப் புகழும் தமிழ்ப் பக்தி இலக்கியப் படைப்பு.",
+    "benefits": [
+      "Devotional focus",
+      "Daily discipline",
+      "Spiritual reflection"
+    ],
+    "practice": "Read with attention. Full canonical text to be added after source review.",
+    "status": "Verified summary",
+    "author": "Traditional"
   }
 ]

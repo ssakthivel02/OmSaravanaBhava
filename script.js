@@ -434,10 +434,10 @@
     bar.className = 'osb-utility-bar';
     bar.setAttribute('aria-label', 'Reading and page tools');
     bar.innerHTML = `
-      <button type="button" class="utility-btn" data-osb-tool="font" aria-label="Increase reading font size"><span>A+</span><small>Text</small></button>
-      <button type="button" class="utility-btn" data-osb-tool="theme" aria-label="Toggle temple night mode"><span>☾</span><small>Night</small></button>
-      <button type="button" class="utility-btn" data-osb-tool="fav" aria-label="Save this page"><span>♡</span><small>Save</small></button>
-      <button type="button" class="utility-btn" data-osb-tool="share" aria-label="Share this page"><span>↗</span><small>Share</small></button>
+      <button type="button" class="utility-btn" data-osb-tool="font" aria-label="Increase reading font size">A+</button>
+      <button type="button" class="utility-btn" data-osb-tool="theme" aria-label="Toggle temple night mode">☾</button>
+      <button type="button" class="utility-btn" data-osb-tool="fav" aria-label="Save this page">♡</button>
+      <button type="button" class="utility-btn" data-osb-tool="share" aria-label="Share this page">Share</button>
     `;
     document.body.appendChild(bar);
 
@@ -484,11 +484,7 @@
   function updateFavButton(btn) {
     if (!btn) return;
     const favs = safeStoreGet('osb_favourites', []);
-    const icon = btn.querySelector('span');
-    const label = btn.querySelector('small');
-    const saved = favs.includes(pageId());
-    if (icon) icon.textContent = saved ? '♥' : '♡';
-    if (label) label.textContent = saved ? 'Saved' : 'Save';
+    btn.textContent = favs.includes(pageId()) ? '♥' : '♡';
   }
 
   function createScrollProgress() {
@@ -637,78 +633,13 @@
 })();
 
 
-/* Batch 13 Final Hotfix: routing, bilingual reader, CMS, utility polish */
 (function(){
-  'use strict';
-  const $=(s,r=document)=>r.querySelector(s);
-  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
-  const norm=v=>String(v??'').toLowerCase().trim().replace(/[_\s]+/g,'-').replace(/[^a-z0-9-]/g,'');
-  const alias={tiruchendur:'thiruchendur',thiruchendu:'thiruchendur',thirupparankundram:'thirupparamkundram',thiruparankundram:'thirupparamkundram',vadapalani:'vadapalani'};
-  async function json(path){try{const r=await fetch(path,{cache:'no-store'});if(!r.ok)throw new Error(r.status);return await r.json();}catch(e){console.warn('[Batch13]',path,e);return null;}}
-  function param(name){return new URLSearchParams(location.search).get(name)||'';}
-  function list(items){return `<ul class="detail-list">${(items||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`;}
-  function card(title, body){return `<section class="card detail-section"><h2>${esc(title)}</h2>${body||''}</section>`;}
-  function hero(title, subtitle, meta){return `<section class="card detail-hero"><p class="eyebrow">${esc(meta||'Verified')}</p><h1>${esc(title)}</h1>${subtitle?`<p class="lead">${esc(subtitle)}</p>`:''}</section>`;}
-  function mapLink(q){return `<a class="btn" target="_blank" rel="noopener" href="https://maps.google.com/?q=${encodeURIComponent(q||'Murugan Temple Tamil Nadu')}">Open Map</a>`;}
-  function tamilSummary(item){
-    const name=item.nameTa||item.titleTa||'முருகன் கோவில்';
-    const loc=item.location||[item.district,item.state].filter(Boolean).join(', ');
-    if(item.id==='palani') return 'பழனி முருகன் கோவில் ஞானம், துறவு, பணிவு ஆகியவற்றை நினைவூட்டும் அறுபடை வீடு. பக்தர்கள் தண்டாயுதபாணி சுவாமியை தரிசித்து மனத் தெளிவு மற்றும் ஒழுக்கம் பெறுகின்றனர்.';
-    if(item.id==='thiruchendur'||item.id==='tiruchendur') return 'திருச்செந்தூர் கடற்கரை முருகன் திருத்தலம். சூரபத்மனை வென்ற தெய்வ வெற்றியையும், தைரியம் மற்றும் தர்மத்தின் நிலைத்தன்மையையும் நினைவூட்டுகிறது.';
-    if(item.id==='thirupparamkundram'||item.id==='thirupparankundram') return 'திருப்பரங்குன்றம் முருகன் திருத்தலம் அறுபடை வீடுகளில் முதன்மையானது. தேவயானை திருமண வரலாறு மற்றும் குகைத் திருக்கோவில் மரபுடன் தொடர்புடையது.';
-    if(item.id==='vadapalani') return 'வடபழனி ஆண்டவர் கோவில் சென்னை பக்தர்களின் முக்கிய முருகன் திருத்தலம். குடும்பப் பிரார்த்தனை, விரதம், திருமண வேண்டுதல், தினசரி தரிசனம் ஆகியவற்றிற்குப் புகழ்பெற்றது.';
-    return `${name} பக்தி, ஒழுக்கம், தெய்வ நம்பிக்கை ஆகியவற்றை வளர்க்கும் முருகன் திருத்தலம். ${loc} பக்தர்களுக்கான வழிகாட்டி விவரங்கள் இங்கு சுருக்கமாக வழங்கப்படுகின்றன.`;
-  }
-  async function findTemple(id){
-    let q=alias[norm(id)]||norm(id)||'palani';
-    const root=await json('data/temple_details.json')||[];
-    let item=root.find(x=>norm(x.id)===q || alias[norm(x.id)]===q);
-    if(!item){
-      const detail=await json(`data/temples/details/${q}.json`) || (q==='thirupparamkundram'? await json('data/temples/details/thirupparankundram.json'):null) || (q==='thiruchendur'? await json('data/temples/details/tiruchendur.json'):null);
-      if(detail) item={...detail,nameTa:detail.titleTa,nameEn:detail.titleEn,history:detail.shortHistory||detail.overview,spiritualMeaning:detail.summary,quickFacts:detail.features,practices:detail.pilgrimGuide,map:`https://maps.google.com/?q=${encodeURIComponent(detail.titleEn||q)}`};
-    }
-    if(item){item.id=q; return item;}
-    return root.find(x=>x.id==='palani')||root[0];
-  }
-  async function renderTempleOverride(){
-    if(!/temple-details\.html$/.test(location.pathname))return;
-    const container=$('#detail-container'); if(!container)return;
-    const item=await findTemple(param('id'));
-    if(!item)return;
-    document.title=`${item.nameEn||item.titleEn||'Temple'} | Om Saravana Bhava`;
-    const loc=item.location || [item.district,item.state].filter(Boolean).join(', ');
-    container.innerHTML=hero(item.nameTa||item.titleTa||item.nameEn,`${item.nameEn||item.titleEn||''} · ${loc}`,item.category||'Murugan Temple')+`<div class="detail-grid">
-      ${card('தமிழ் சுருக்கம்',`<p lang="ta" class="ta-text">${esc(tamilSummary(item))}</p>`)}
-      ${card('History',`<p>${esc(item.history||item.shortHistory||item.summary||'Verified temple details will be expanded after source review.')}</p>`)}
-      ${card('Spiritual Meaning / ஆன்மீகப் பொருள்',`<div class="bilingual-block"><p>${esc(item.spiritualMeaning||item.significance||item.summary||'Devotional learning reference.')}</p><p lang="ta" class="ta-text">இந்த திருத்தலம் பக்தி, மன அமைதி, தைரியம், ஞானம் ஆகியவற்றை நினைவூட்டும் வழிபாட்டு மையமாக கருதப்படுகிறது.</p></div>`)}
-      ${card('Festivals / திருவிழாக்கள்',list(item.festivals||item.festivalHighlights))}
-      ${card('Daily Practice / தினசரி வழிபாடு',list(item.practices||item.pilgrimGuide||['ஓம் சரவணபவ ஜபம்','அமைதியான பிரார்த்தனை','நன்றி உணர்வுடன் தரிசனம்']))}
-      ${card('Quick Facts',list(item.quickFacts||item.features||[item.deity,item.category,loc].filter(Boolean)))}
-      ${card('Visit',`<p>${esc(loc)}</p>${mapLink(item.map||item.mapLink||loc)}`)}
-    </div><p class="breadcrumb-line"><a href="temples.html">← Back to Temples</a></p>`;
-  }
-  async function renderSlokaReaderOverride(){
-    if(!/sloka-reader\.html$/.test(location.pathname))return;
-    const app=$('#sloka-reader-app'); if(!app)return;
-    const id=norm(param('id')||'om-saravana-bhava');
-    const details=await json('data/sloka_details.json')||[];
-    let item=details.find(x=>norm(x.id)===id)||details[0];
-    if(!item)return;
-    document.title=`${item.titleEn||'Sloka Reader'} | Om Saravana Bhava`;
-    app.innerHTML=`<article class="reader-card">
-      <p class="eyebrow">${esc(item.category||'Sloka')}</p>
-      <h2 lang="ta">${esc(item.titleTa||item.titleEn)}</h2>
-      <h3>${esc(item.titleEn||'')}</h3>
-      <p class="reader-meta">Status: Verified learning summary · Source: devotional study reference</p>
-      <div class="reader-tools"><button class="btn" data-reader="ta">Tamil</button><button class="btn" data-reader="en">English</button><button class="btn" data-reader="both">Tamil + English</button><button class="btn" data-reader="copy">Copy</button></div>
-      <div class="reader-panel" id="reader-panel"><div><h3>Tamil / தமிழ்</h3><p class="reader-text-ta" lang="ta">${esc(item.textTa||item.titleTa||'')}</p><p class="ta-text" lang="ta">${esc(item.meaningTa||'தமிழ் விளக்கம் விரைவில் விரிவுபடுத்தப்படும்.')}</p></div><div><h3>English meaning</h3><p class="reader-text-en">${esc(item.meaning||item.summary||'Meaning will be expanded after source review.')}</p><p><strong>Practice:</strong> ${esc(item.practice||'Chant with attention and devotion.')}</p></div></div>
-      <h3>Benefits</h3>${list(item.benefits||['Devotional focus','Daily discipline','Spiritual reflection'])}
-      <p class="small-note">Every text in this library is prepared as a learning reference. Full canonical text should be added only after source review.</p>
-    </article>`;
-    app.addEventListener('click',async e=>{const b=e.target.closest('[data-reader]'); if(!b)return; const mode=b.dataset.reader; const panel=$('#reader-panel'); if(mode==='ta')panel.style.gridTemplateColumns='1fr',panel.children[1].style.display='none',panel.children[0].style.display='block'; if(mode==='en')panel.style.gridTemplateColumns='1fr',panel.children[0].style.display='none',panel.children[1].style.display='block'; if(mode==='both')panel.style.gridTemplateColumns='',panel.children[0].style.display='block',panel.children[1].style.display='block'; if(mode==='copy'){try{await navigator.clipboard.writeText(`${item.titleTa}\n${item.textTa||''}\n${item.meaning||''}`);alert('Copied');}catch(_){}}});
-  }
-  function enhanceMobileMenu(){const btn=$('#mobile-menu-toggle'); const nav=$('#primary-navigation'); if(btn&&nav){btn.addEventListener('click',()=>{nav.classList.toggle('open');btn.setAttribute('aria-expanded',nav.classList.contains('open')?'true':'false');});}}
-  function fixUtilityLabels(){document.querySelectorAll('.utility-btn').forEach(btn=>{const t=btn.dataset.osbTool;if(t==='font')btn.textContent='A+';if(t==='theme')btn.textContent='☾';if(t==='fav' && (btn.textContent==='♡'||btn.textContent==='♥'))btn.textContent=btn.textContent;if(t==='share')btn.textContent='↗';});}
-  function initCMS(){const inv=$('#cms-inventory');if(inv){json('data/cms/content_inventory.json').then(data=>{inv.innerHTML=(data||[]).map(r=>`<tr><td>${esc(r.area)}</td><td>${esc(r.count)}</td><td class="${r.status==='Ready'?'status-ok':'status-review'}">${esc(r.status)}</td><td>${esc(r.next)}</td></tr>`).join('');});} const cards=$('#analytics-cards');if(cards){json('data/cms/analytics_summary.json').then(d=>{d=d||{};cards.innerHTML=Object.entries(d).map(([k,v])=>`<div class="cms-stat"><strong>${esc(v)}</strong><span>${esc(k.replace(/_/g,' '))}</span></div>`).join('');});}}
-  document.addEventListener('DOMContentLoaded',()=>{setTimeout(()=>{renderTempleOverride();renderSlokaReaderOverride();enhanceMobileMenu();fixUtilityLabels();initCMS();},80);});
+  const $=(s,r=document)=>r.querySelector(s); const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
+  const escapeHTML=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+  async function loadJSON(path){try{const r=await fetch(path,{cache:'no-store'}); if(!r.ok) throw new Error(r.status); return await r.json()}catch(e){console.warn('[OmApp] JSON failed',path,e); return []}}
+  function toast(msg){let t=document.createElement('div');t.className='toast';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2200)}
+  function ensureDock(){if($('.utility-dock'))return;const d=document.createElement('div');d.className='utility-dock';d.innerHTML='<button data-tool="text">A+ Text</button><button data-tool="night">☾ Night</button><button data-tool="save">♡ Save</button><button data-tool="share">↗ Share</button>';document.body.appendChild(d);d.addEventListener('click',async e=>{const b=e.target.closest('button');if(!b)return;const k=b.dataset.tool;if(k==='night'){document.body.classList.toggle('night-mode');toast('Night mode updated')}if(k==='text'){document.body.classList.toggle('font-large');document.body.style.fontSize=document.body.classList.contains('font-large')?'1.08rem':'';toast('Text size updated')}if(k==='save'){let a=JSON.parse(localStorage.getItem('om_saved')||'[]');let u=location.pathname+location.search;if(!a.includes(u))a.unshift(u);localStorage.setItem('om_saved',JSON.stringify(a.slice(0,30)));toast('Saved for this browser')}if(k==='share'){try{await navigator.clipboard.writeText(location.href);toast('Link copied')}catch(_){toast('Copy failed')}}});}
+  function normalizePage(){document.querySelectorAll('nav ul').forEach(ul=>ul.classList.add('nav-links'));}
+  document.addEventListener('DOMContentLoaded',()=>{ensureDock();normalizePage();});
+  window.OmAppCore={$, $$, escapeHTML, loadJSON, toast};
 })();
