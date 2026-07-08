@@ -1,0 +1,28 @@
+[
+  {
+    "id": "kandha-sashti-kavasam",
+    "titleTa": "கந்த சஷ்டி கவசம்",
+    "titleEn": "Kandha Sashti Kavasam",
+    "category": "Kavacham",
+    "author": "Devaraya Swamigal",
+    "meaning": "Prayer seeking Murugan's protection.",
+    "benefits": [
+      "Protection",
+      "Peace",
+      "Courage"
+    ]
+  },
+  {
+    "id": "saravana-bhava-mantra",
+    "titleTa": "ஓம் சரவண பவ",
+    "titleEn": "Om Saravana Bhava",
+    "category": "Mantra",
+    "author": "Traditional",
+    "meaning": "Six-syllable Murugan mantra.",
+    "benefits": [
+      "Focus",
+      "Protection",
+      "Devotion"
+    ]
+  }
+]

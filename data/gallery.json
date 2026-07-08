@@ -1,0 +1,16 @@
+[
+  {
+    "id": "palani",
+    "title": "Palani Temple",
+    "category": "temple",
+    "image": "murugan-hero.png",
+    "location": "Palani"
+  },
+  {
+    "id": "vel",
+    "title": "Sacred Vel",
+    "category": "symbol",
+    "image": "murugan-hero.png",
+    "location": "Murugan tradition"
+  }
+]

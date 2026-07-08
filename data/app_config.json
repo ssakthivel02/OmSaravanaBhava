@@ -1,0 +1,13 @@
+{
+  "appName": "Om Saravana Bhava",
+  "version": "1.0",
+  "defaultLanguage": "en",
+  "supportedLanguages": [
+    "ta",
+    "en"
+  ],
+  "features": {
+    "offlineMode": true,
+    "searchEngine": true
+  }
+}

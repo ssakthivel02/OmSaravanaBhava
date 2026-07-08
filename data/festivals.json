@@ -1,0 +1,38 @@
+[
+  {
+    "id": "thaipusam",
+    "nameTa": "தைப்பூசம்",
+    "nameEn": "Thaipusam",
+    "month": "Thai",
+    "description": "Festival associated with Goddess Parvati giving the Vel to Murugan.",
+    "rituals": [
+      "Kavadi",
+      "Milk pot",
+      "Fasting"
+    ]
+  },
+  {
+    "id": "skanda-sashti",
+    "nameTa": "கந்த சஷ்டி",
+    "nameEn": "Skanda Sashti",
+    "month": "Aippasi",
+    "description": "Six-day festival remembering Murugan's victory over Surapadman.",
+    "rituals": [
+      "Fasting",
+      "Kanda Sashti Kavasam",
+      "Soorasamharam"
+    ]
+  },
+  {
+    "id": "vaikasi-visakam",
+    "nameTa": "வைகாசி விசாகம்",
+    "nameEn": "Vaikasi Visakam",
+    "month": "Vaikasi",
+    "description": "Celebrated as Murugan's birth star festival.",
+    "rituals": [
+      "Abhishekam",
+      "Procession",
+      "Annadanam"
+    ]
+  }
+]

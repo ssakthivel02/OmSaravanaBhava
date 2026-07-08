@@ -1,0 +1,104 @@
+[
+  {
+    "id": "thirupparamkundram",
+    "nameTa": "திருப்பரங்குன்றம் சுப்பிரமணிய சுவாமி திருக்கோவில்",
+    "nameEn": "Thirupparamkundram Murugan Temple",
+    "location": "Thirupparamkundram",
+    "district": "Madurai",
+    "state": "Tamil Nadu",
+    "history": "First of the Arupadai Veedu, associated with Lord Murugan's marriage to Deivanai.",
+    "significance": "One of the six sacred abodes of Murugan.",
+    "mainDeity": "Lord Subramanya with Deivanai",
+    "festivalHighlights": [
+      "Panguni Uthiram",
+      "Skanda Sashti"
+    ],
+    "openingHours": "05:00 AM - 01:00 PM, 04:00 PM - 09:00 PM",
+    "mapLink": "https://maps.google.com/?q=Thirupparamkundram+Murugan+Temple"
+  },
+  {
+    "id": "thiruchendur",
+    "nameTa": "திருச்செந்தூர் சுப்பிரமணிய சுவாமி திருக்கோவில்",
+    "nameEn": "Thiruchendur Murugan Temple",
+    "location": "Thiruchendur",
+    "district": "Thoothukudi",
+    "state": "Tamil Nadu",
+    "history": "Seashore Murugan temple associated with Soorasamharam.",
+    "significance": "Second of the Arupadai Veedu.",
+    "mainDeity": "Lord Senthilandavar",
+    "festivalHighlights": [
+      "Skanda Sashti",
+      "Vaikasi Visakam"
+    ],
+    "openingHours": "05:00 AM - 12:00 PM, 05:00 PM - 09:00 PM",
+    "mapLink": "https://maps.google.com/?q=Thiruchendur+Murugan+Temple"
+  },
+  {
+    "id": "palani",
+    "nameTa": "பழனி தண்டாயுதபாணி சுவாமி திருக்கோவில்",
+    "nameEn": "Palani Dandayuthapani Swamy Temple",
+    "location": "Palani",
+    "district": "Dindigul",
+    "state": "Tamil Nadu",
+    "history": "Associated with the Gnana Pazham legend and the Navapashanam idol tradition.",
+    "significance": "Third of the Arupadai Veedu.",
+    "mainDeity": "Lord Dandayuthapani",
+    "festivalHighlights": [
+      "Thaipusam",
+      "Panguni Uthiram"
+    ],
+    "openingHours": "06:00 AM - 08:00 PM",
+    "mapLink": "https://maps.google.com/?q=Palani+Murugan+Temple"
+  },
+  {
+    "id": "swamimalai",
+    "nameTa": "சுவாமிமலை சுவாமிநாதசுவாமி திருக்கோவில்",
+    "nameEn": "Swamimalai Swaminathaswamy Temple",
+    "location": "Swamimalai",
+    "district": "Thanjavur",
+    "state": "Tamil Nadu",
+    "history": "Sacred place where Murugan taught the meaning of Pranava Om to Lord Shiva.",
+    "significance": "Fourth of the Arupadai Veedu.",
+    "mainDeity": "Lord Swaminathaswamy",
+    "festivalHighlights": [
+      "Karthigai Deepam",
+      "Skanda Sashti"
+    ],
+    "openingHours": "06:00 AM - 12:00 PM, 04:00 PM - 09:00 PM",
+    "mapLink": "https://maps.google.com/?q=Swamimalai+Murugan+Temple"
+  },
+  {
+    "id": "thiruthani",
+    "nameTa": "திருத்தணி சுப்பிரமணிய சுவாமி திருக்கோவில்",
+    "nameEn": "Thiruthani Murugan Temple",
+    "location": "Thiruthani",
+    "district": "Tiruvallur",
+    "state": "Tamil Nadu",
+    "history": "Place where Murugan's anger cooled after the battle with Surapadman.",
+    "significance": "Fifth of the Arupadai Veedu.",
+    "mainDeity": "Lord Subramanyaswamy",
+    "festivalHighlights": [
+      "Aadi Krithigai",
+      "Skanda Sashti"
+    ],
+    "openingHours": "05:45 AM - 09:00 PM",
+    "mapLink": "https://maps.google.com/?q=Thiruthani+Murugan+Temple"
+  },
+  {
+    "id": "pazhamudircholai",
+    "nameTa": "பழமுதிர்ச்சோலை சுப்பிரமணிய சுவாமி திருக்கோவில்",
+    "nameEn": "Pazhamudircholai Murugan Temple",
+    "location": "Alagar Koyil",
+    "district": "Madurai",
+    "state": "Tamil Nadu",
+    "history": "Associated with Avvaiyar and the Sutta Pazham episode.",
+    "significance": "Sixth of the Arupadai Veedu.",
+    "mainDeity": "Lord Murugan with Valli and Deivanai",
+    "festivalHighlights": [
+      "Panguni Uthiram",
+      "Vaikasi Visakam"
+    ],
+    "openingHours": "05:30 AM - 01:00 PM, 04:00 PM - 09:00 PM",
+    "mapLink": "https://maps.google.com/?q=Pazhamudircholai+Murugan+Temple"
+  }
+]
