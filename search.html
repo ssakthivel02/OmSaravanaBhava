@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Search | Om Saravana Bhava</title>
+  <meta name="description" content="Search temples, festivals, slokas and devotional content in Om Saravana Bhava.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="search">
+  <header class="site-header">
+    <a class="brand" href="index.html">ஓம் சரவணபவ</a>
+    <nav class="nav"><a href="index.html">Home</a><a href="temples.html">Temples</a><a href="festivals.html">Festivals</a><a href="slokas.html">Slokas</a><a href="panchangam.html">Daily</a><a href="search.html">Search</a></nav>
+  </header>
+  <main class="page-shell">
+    <section class="page-hero small-hero">
+      <p class="eyebrow">Search</p>
+      <h1>Find Murugan temples, festivals and slokas</h1>
+      <p>Search verified local JSON content already available in this GitHub Pages site.</p>
+    </section>
+    <section class="content-section">
+      <label class="search-label" for="global-search-input">Search keyword</label>
+      <input id="global-search-input" class="search-input" type="search" placeholder="Try Palani, Murugan, Kavacham, Sashti...">
+      <p id="search-status" class="muted">Type at least two letters.</p>
+      <div id="global-search-results" class="card-grid"></div>
+    </section>
+  </main>
+  <footer class="site-footer"><p>Om Saravana Bhava · Verified static devotional platform</p></footer>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,24 +1,211 @@
-
-(function(){
+/* Om Saravana Bhava - Static Verified Batch 04 */
+(function () {
   'use strict';
-  const $=(s,root=document)=>root.querySelector(s);
-  const $$=(s,root=document)=>Array.from(root.querySelectorAll(s));
-  const esc=(v)=>String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
-  async function getJSON(path){try{const r=await fetch(path,{cache:'no-store'});if(!r.ok)throw new Error(r.status);return await r.json();}catch(e){console.warn('Data load failed:',path,e);return []}}
-  function tags(arr){return (arr||[]).map(x=>`<span class="tag">${esc(x)}</span>`).join('')}
-  function templeCard(t){return `<article class="card"><span class="num">${String(t.order).padStart(2,'0')}</span><h3>${esc(t.nameTa)}</h3><h4>${esc(t.nameEn)} · ${esc(t.subtitle)}</h4><p><strong>📍 ${esc(t.location)}</strong></p><p>${esc(t.summary)}</p><div class="tags">${tags(t.highlights)}</div><a class="btn" href="${esc(t.map)}" target="_blank" rel="noopener">Open Map</a></article>`}
-  function simpleCard(item,titleKey='nameEn'){return `<article class="card"><h3>${esc(item.nameTa||item.titleTa||item.title||item.nameEn)}</h3><h4>${esc(item[titleKey]||item.titleEn||item.category||'')}</h4><p>${esc(item.summary)}</p>${item.month?`<p><strong>🗓 ${esc(item.month)}</strong></p>`:''}</article>`}
-  async function init(){
-    const m=$('.menu-toggle'), nav=$('.main-nav'); if(m&&nav){m.addEventListener('click',()=>nav.classList.toggle('open'))}
-    const date=$('#today-date'); if(date){date.textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});}
-    const quote=$('#daily-quote'); if(quote){const qs=await getJSON('data/daily_quotes.json'); const q=qs[new Date().getDate()%Math.max(qs.length,1)]; if(q) quote.textContent=`${q.quoteTa} — ${q.quoteEn}`;}
-    const home=$('#home-temples'); if(home){const data=await getJSON('data/temples.json'); home.innerHTML=data.slice(0,3).map(templeCard).join('');}
-    const tl=$('#temples-list'); if(tl){const data=await getJSON('data/temples.json'); const render=(list)=>tl.innerHTML=list.map(templeCard).join(''); render(data); const input=$('#temple-search'); if(input){input.addEventListener('input',()=>{const q=input.value.trim().toLowerCase(); render(!q?data:data.filter(t=>[t.nameEn,t.nameTa,t.location,t.subtitle,t.summary].join(' ').toLowerCase().includes(q)));});}}
-    const fl=$('#festivals-list'); if(fl){const data=await getJSON('data/festivals.json'); fl.innerHTML=data.map(x=>simpleCard(x,'nameEn')).join('');}
-    const sl=$('#slokas-list'); if(sl){const data=await getJSON('data/slokas.json'); sl.innerHTML=data.map(x=>simpleCard(x,'titleEn')).join('');}
-    const gl=$('#gallery-list'); if(gl){const data=await getJSON('data/gallery.json'); gl.innerHTML=data.map(x=>simpleCard(x,'title')).join('');}
-    const aiBtn=$('#aiBtn'), input=$('#aiInput'), out=$('#aiOut'); if(aiBtn&&input&&out){aiBtn.addEventListener('click',()=>{const q=input.value.trim(); out.textContent=q?`Demo guide: Start with verified temple pages, slokas and festival notes. Your question: ${q}`:'Please enter a question.';});}
-    if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
+
+  const DATA_FILES = {
+    temples: 'data/temples.json',
+    festivals: 'data/festivals.json',
+    slokas: 'data/slokas.json',
+    gallery: 'data/gallery.json',
+    daily: 'data/daily_quotes.json',
+    panchangam: 'data/panchangam.json',
+    timeline: 'data/timeline.json',
+    learning: 'data/learning_paths.json'
+  };
+
+  const cache = new Map();
+
+  function escapeHTML(value) {
+    if (value === null || value === undefined) return '';
+    return String(value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
   }
-  document.readyState==='loading'?document.addEventListener('DOMContentLoaded',init):init();
+
+  async function loadJSON(path) {
+    if (cache.has(path)) return cache.get(path);
+    try {
+      const response = await fetch(path, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data = await response.json();
+      cache.set(path, data);
+      return data;
+    } catch (error) {
+      console.warn('[OmSaravanaBhava] Failed to load', path, error);
+      return Array.isArray(path) ? [] : null;
+    }
+  }
+
+  function getText(item, keys) {
+    for (const key of keys) {
+      if (item && item[key]) return item[key];
+    }
+    return '';
+  }
+
+  function card(title, subtitle, body, meta) {
+    return `
+      <article class="osb-card">
+        <div class="osb-card-body">
+          ${meta ? `<p class="eyebrow">${escapeHTML(meta)}</p>` : ''}
+          <h3>${escapeHTML(title)}</h3>
+          ${subtitle ? `<p class="card-subtitle">${escapeHTML(subtitle)}</p>` : ''}
+          ${body ? `<p>${escapeHTML(body)}</p>` : ''}
+        </div>
+      </article>
+    `;
+  }
+
+  function renderList(container, items, mapper) {
+    const el = typeof container === 'string' ? document.getElementById(container) : container;
+    if (!el) return;
+    if (!items || !items.length) {
+      el.innerHTML = '<div class="empty-state">Content is loading or not available yet.</div>';
+      return;
+    }
+    el.innerHTML = items.map(mapper).join('');
+  }
+
+  function searchableText(item) {
+    return Object.values(item || {})
+      .flatMap(value => Array.isArray(value) ? value : [value])
+      .filter(value => typeof value === 'string' || typeof value === 'number')
+      .join(' ')
+      .toLowerCase();
+  }
+
+  async function initSearchPage() {
+    const input = document.getElementById('global-search-input');
+    const results = document.getElementById('global-search-results');
+    const status = document.getElementById('search-status');
+    if (!input || !results) return;
+
+    const [temples, festivals, slokas, gallery] = await Promise.all([
+      loadJSON(DATA_FILES.temples),
+      loadJSON(DATA_FILES.festivals),
+      loadJSON(DATA_FILES.slokas),
+      loadJSON(DATA_FILES.gallery)
+    ]);
+
+    const index = [];
+    (Array.isArray(temples) ? temples : []).forEach(item => index.push({ type: 'Temple', item }));
+    (Array.isArray(festivals) ? festivals : []).forEach(item => index.push({ type: 'Festival', item }));
+    (Array.isArray(slokas) ? slokas : []).forEach(item => index.push({ type: 'Sloka', item }));
+    (Array.isArray(gallery) ? gallery : []).forEach(item => index.push({ type: 'Gallery', item }));
+
+    function performSearch() {
+      const query = input.value.trim().toLowerCase();
+      if (query.length < 2) {
+        results.innerHTML = '';
+        if (status) status.textContent = 'Type at least two letters.';
+        return;
+      }
+      const matches = index.filter(row => searchableText(row.item).includes(query)).slice(0, 24);
+      if (status) status.textContent = `${matches.length} result${matches.length === 1 ? '' : 's'} found.`;
+      renderList(results, matches, row => {
+        const item = row.item;
+        const title = getText(item, ['name', 'nameEn', 'title', 'titleEn', 'festival', 'temple']) || row.type;
+        const subtitle = getText(item, ['nameTa', 'titleTa', 'location', 'category', 'month']);
+        const body = getText(item, ['description', 'summary', 'meaning', 'history', 'reflection']);
+        return card(title, subtitle, body, row.type);
+      });
+    }
+
+    input.addEventListener('input', performSearch);
+  }
+
+  async function initPanchangamPage() {
+    const el = document.getElementById('panchangam-container');
+    if (!el) return;
+    const data = await loadJSON(DATA_FILES.panchangam);
+    if (!data) {
+      el.innerHTML = '<div class="empty-state">Daily reflection is not available yet.</div>';
+      return;
+    }
+    el.innerHTML = `
+      <article class="daily-panel">
+        <p class="eyebrow">${escapeHTML(data.dateLabel || 'Today')}</p>
+        <h2 lang="ta">${escapeHTML(data.mantra || 'ஓம் சரவண பவ')}</h2>
+        <h3>${escapeHTML(data.mantraEn || 'Om Saravana Bhava')}</h3>
+        <p>${escapeHTML(data.reflection || '')}</p>
+        <div class="practice-box"><strong>Practice:</strong> ${escapeHTML(data.practice || '')}</div>
+        <p class="small-note">${escapeHTML(data.note || '')}</p>
+      </article>
+    `;
+  }
+
+  async function initTimelinePage() {
+    const data = await loadJSON(DATA_FILES.timeline);
+    renderList('timeline-container', Array.isArray(data) ? data : [], item => `
+      <article class="timeline-item">
+        <span class="timeline-dot"></span>
+        <div>
+          <p class="eyebrow">${escapeHTML(item.period)}</p>
+          <h3>${escapeHTML(item.title)}</h3>
+          <p>${escapeHTML(item.description)}</p>
+          <div class="tag-row">${(item.tags || []).map(tag => `<span>${escapeHTML(tag)}</span>`).join('')}</div>
+        </div>
+      </article>
+    `);
+  }
+
+  async function initLearningPage() {
+    const data = await loadJSON(DATA_FILES.learning);
+    renderList('learning-container', Array.isArray(data) ? data : [], item => `
+      <article class="osb-card learning-card">
+        <div class="osb-card-body">
+          <p class="eyebrow">${escapeHTML(item.level)}</p>
+          <h3>${escapeHTML(item.title)}</h3>
+          <ol>${(item.steps || []).map(step => `<li>${escapeHTML(step)}</li>`).join('')}</ol>
+          <p><strong>Outcome:</strong> ${escapeHTML(item.outcome)}</p>
+        </div>
+      </article>
+    `);
+  }
+
+  async function enhanceExistingPages() {
+    const dailyQuoteTarget = document.getElementById('daily-quote') || document.querySelector('[data-daily-quote]');
+    if (dailyQuoteTarget) {
+      const quotes = await loadJSON(DATA_FILES.daily);
+      if (Array.isArray(quotes) && quotes.length) {
+        const quote = quotes[new Date().getDate() % quotes.length];
+        dailyQuoteTarget.textContent = getText(quote, ['quote', 'text', 'content', 'title']) || 'Om Saravana Bhava';
+      }
+    }
+  }
+
+  function addUtilityControls() {
+    if (!document.querySelector('.back-to-top')) {
+      const button = document.createElement('button');
+      button.className = 'back-to-top';
+      button.type = 'button';
+      button.setAttribute('aria-label', 'Back to top');
+      button.textContent = '↑';
+      button.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+      document.body.appendChild(button);
+      window.addEventListener('scroll', () => button.classList.toggle('visible', window.scrollY > 500), { passive: true });
+    }
+  }
+
+  async function init() {
+    addUtilityControls();
+    await enhanceExistingPages();
+    await Promise.all([
+      initSearchPage(),
+      initPanchangamPage(),
+      initTimelinePage(),
+      initLearningPage()
+    ]);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  window.OmSaravanaBhava = { loadJSON, escapeHTML };
 })();
