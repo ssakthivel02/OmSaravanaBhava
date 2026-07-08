@@ -1,0 +1,203 @@
+[
+  {
+    "type": "Temple",
+    "id": "palani",
+    "title": "Palani Murugan Temple",
+    "titleTa": "பழனி முருகன் கோவில்",
+    "summary": "Palani is one of the six sacred abodes of Lord Murugan and is deeply associated with renunciation, wisdom and the famous teaching that divine knowledge is greater than worldly possession.",
+    "url": "temple-details.html?id=palani",
+    "keywords": [
+      "Palani, Dindigul, Tamil Nadu",
+      "Arupadai Veedu",
+      "Dhandayuthapani Swamy",
+      "Thai Poosam",
+      "Panguni Uthiram",
+      "Skanda Sashti"
+    ]
+  },
+  {
+    "type": "Temple",
+    "id": "tiruchendur",
+    "title": "Tiruchendur Murugan Temple",
+    "titleTa": "திருச்செந்தூர் முருகன் கோவில்",
+    "summary": "Tiruchendur is the sacred seashore abode of Lord Murugan, associated with victory over Surapadman and the triumph of dharma.",
+    "url": "temple-details.html?id=tiruchendur",
+    "keywords": [
+      "Tiruchendur, Thoothukudi, Tamil Nadu",
+      "Arupadai Veedu",
+      "Senthil Andavar",
+      "Skanda Sashti",
+      "Avani Festival",
+      "Masi Festival"
+    ]
+  },
+  {
+    "type": "Temple",
+    "id": "swamimalai",
+    "title": "Swamimalai Murugan Temple",
+    "titleTa": "சுவாமிமலை முருகன் கோவில்",
+    "summary": "Swamimalai celebrates Lord Murugan as the divine teacher who explains the meaning of Pranava to Lord Shiva.",
+    "url": "temple-details.html?id=swamimalai",
+    "keywords": [
+      "Swamimalai, Thanjavur, Tamil Nadu",
+      "Arupadai Veedu",
+      "Swaminatha Swamy",
+      "Vaikasi Visakam",
+      "Thai Poosam",
+      "Skanda Sashti"
+    ]
+  },
+  {
+    "type": "Temple",
+    "id": "thiruparankundram",
+    "title": "Thiruparankundram Murugan Temple",
+    "titleTa": "திருப்பரங்குன்றம் முருகன் கோவில்",
+    "summary": "Thiruparankundram is traditionally associated with the divine wedding of Lord Murugan and Deivanai.",
+    "url": "temple-details.html?id=thiruparankundram",
+    "keywords": [
+      "Madurai, Tamil Nadu",
+      "Arupadai Veedu",
+      "Subramanya Swamy",
+      "Panguni Uthiram",
+      "Skanda Sashti",
+      "Karthigai"
+    ]
+  },
+  {
+    "type": "Temple",
+    "id": "thiruthani",
+    "title": "Thiruthani Murugan Temple",
+    "titleTa": "திருத்தணி முருகன் கோவில்",
+    "summary": "Thiruthani represents peace after victory and the cooling of anger after battle.",
+    "url": "temple-details.html?id=thiruthani",
+    "keywords": [
+      "Thiruthani, Tiruvallur, Tamil Nadu",
+      "Arupadai Veedu",
+      "Thanigai Murugan",
+      "Aadi Krithigai",
+      "New Year Padi Pooja",
+      "Skanda Sashti"
+    ]
+  },
+  {
+    "type": "Temple",
+    "id": "pazhamudircholai",
+    "title": "Pazhamudircholai Murugan Temple",
+    "titleTa": "பழமுதிர்சோலை முருகன் கோவில்",
+    "summary": "Pazhamudircholai is a green hill shrine celebrating Murugan with Valli and Deivanai.",
+    "url": "temple-details.html?id=pazhamudircholai",
+    "keywords": [
+      "Alagar Hills, Madurai, Tamil Nadu",
+      "Arupadai Veedu",
+      "Solai Malai Murugan",
+      "Skanda Sashti",
+      "Vaikasi Visakam",
+      "Karthigai"
+    ]
+  },
+  {
+    "type": "Festival",
+    "id": "thai-poosam",
+    "title": "Thai Poosam",
+    "titleTa": "தைப்பூசம்",
+    "summary": "Thai Poosam is a major Murugan festival associated with devotion, vow fulfillment and the Vel.",
+    "url": "festival-details.html?id=thai-poosam",
+    "keywords": [
+      "Thai / Jan-Feb",
+      "Kavadi offering",
+      "Milk pot procession",
+      "Vel worship",
+      "Murugan mantra chanting"
+    ]
+  },
+  {
+    "type": "Festival",
+    "id": "skanda-sashti",
+    "title": "Skanda Sashti",
+    "titleTa": "கந்த சஷ்டி",
+    "summary": "Skanda Sashti honours Lord Murugan's victory over Surapadman and the triumph of dharma.",
+    "url": "festival-details.html?id=skanda-sashti",
+    "keywords": [
+      "Aippasi / Oct-Nov",
+      "Fasting",
+      "Kanda Sashti Kavacham recitation",
+      "Surasamharam observance",
+      "Temple worship"
+    ]
+  },
+  {
+    "type": "Festival",
+    "id": "vaikasi-visakam",
+    "title": "Vaikasi Visakam",
+    "titleTa": "வைகாசி விசாகம்",
+    "summary": "Vaikasi Visakam celebrates the divine birth star of Lord Murugan.",
+    "url": "festival-details.html?id=vaikasi-visakam",
+    "keywords": [
+      "Vaikasi / May-Jun",
+      "Special abhishekam",
+      "Alankaram",
+      "Murugan nama japa",
+      "Family prayer"
+    ]
+  },
+  {
+    "type": "Festival",
+    "id": "panguni-uthiram",
+    "title": "Panguni Uthiram",
+    "titleTa": "பங்குனி உத்திரம்",
+    "summary": "Panguni Uthiram is associated with divine weddings and auspicious union.",
+    "url": "festival-details.html?id=panguni-uthiram",
+    "keywords": [
+      "Panguni / Mar-Apr",
+      "Wedding festival observance",
+      "Special puja",
+      "Family prayer",
+      "Annadanam where available"
+    ]
+  },
+  {
+    "type": "Sloka",
+    "id": "om-saravana-bhava",
+    "title": "Om Saravana Bhava",
+    "titleTa": "ஓம் சரவணபவ",
+    "summary": "A simple and powerful six-syllable Murugan mantra for daily remembrance.",
+    "url": "sloka-details.html?id=om-saravana-bhava",
+    "keywords": [
+      "Mantra",
+      "Om Saravana Bhava",
+      "Daily focus",
+      "Inner courage",
+      "Devotional connection"
+    ]
+  },
+  {
+    "type": "Sloka",
+    "id": "subramanya-gayatri",
+    "title": "Subramanya Gayatri",
+    "titleTa": "சுப்பிரமண்ய காயத்ரி",
+    "summary": "A devotional Gayatri prayer to Lord Subramanya for wisdom and guidance.",
+    "url": "sloka-details.html?id=subramanya-gayatri",
+    "keywords": [
+      "Gayatri",
+      "Om Tatpurushaya Vidmahe Mahasenaya Dhimahi Tanno Shanmukhah Prachodayat",
+      "Clarity",
+      "Learning",
+      "Spiritual discipline"
+    ]
+  },
+  {
+    "type": "Sloka",
+    "id": "kanda-sashti-kavacham",
+    "title": "Kanda Sashti Kavacham",
+    "titleTa": "கந்த சஷ்டி கவசம்",
+    "summary": "A beloved Tamil hymn seeking Lord Murugan's protection and grace.",
+    "url": "sloka-details.html?id=kanda-sashti-kavacham",
+    "keywords": [
+      "Kavacham",
+      "Kanda Sashti Kavacham",
+      "Protection",
+      "Courage",
+      "Devotional confidence"
+    ]
+  }
+]

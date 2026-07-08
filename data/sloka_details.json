@@ -1,0 +1,50 @@
+[
+  {
+    "id": "om-saravana-bhava",
+    "titleTa": "ஓம் சரவணபவ",
+    "titleEn": "Om Saravana Bhava",
+    "category": "Mantra",
+    "summary": "A simple and powerful six-syllable Murugan mantra for daily remembrance.",
+    "textTa": "ஓம் சரவணபவ",
+    "transliteration": "Om Saravana Bhava",
+    "meaning": "A devotional salutation to Lord Murugan, the divine one associated with wisdom, courage and protection.",
+    "benefits": [
+      "Daily focus",
+      "Inner courage",
+      "Devotional connection"
+    ],
+    "practice": "Chant slowly with attention, especially before beginning important work or study."
+  },
+  {
+    "id": "subramanya-gayatri",
+    "titleTa": "சுப்பிரமண்ய காயத்ரி",
+    "titleEn": "Subramanya Gayatri",
+    "category": "Gayatri",
+    "summary": "A devotional Gayatri prayer to Lord Subramanya for wisdom and guidance.",
+    "textTa": "ஓம் தத் புருஷாய வித்மஹே மஹாசேனாய தீமஹி தந்நோ சண்முகஃ ப்ரசோதயாத்",
+    "transliteration": "Om Tatpurushaya Vidmahe Mahasenaya Dhimahi Tanno Shanmukhah Prachodayat",
+    "meaning": "May we meditate on the great divine commander. May Shanmukha inspire and guide our understanding.",
+    "benefits": [
+      "Clarity",
+      "Learning",
+      "Spiritual discipline"
+    ],
+    "practice": "Useful before study, prayer or decision-making."
+  },
+  {
+    "id": "kanda-sashti-kavacham",
+    "titleTa": "கந்த சஷ்டி கவசம்",
+    "titleEn": "Kanda Sashti Kavacham",
+    "category": "Kavacham",
+    "summary": "A beloved Tamil hymn seeking Lord Murugan's protection and grace.",
+    "textTa": "கந்த சஷ்டி கவசம் முழு பாடல் பாரம்பரிய நூல்களில் படிக்கலாம்.",
+    "transliteration": "Kanda Sashti Kavacham",
+    "meaning": "A protective devotional hymn that strengthens faith, courage and surrender to Lord Murugan.",
+    "benefits": [
+      "Protection",
+      "Courage",
+      "Devotional confidence"
+    ],
+    "practice": "Recite with respect, patience and correct pronunciation where possible."
+  }
+]
