@@ -1,34 +1,9 @@
 {
   "name": "Om Saravana Bhava",
-  "short_name": "Panchangam",
-  "description": "Daily Panchangam, Temple guides, and spiritual resources in Tamil.",
-  "start_url": "/",
-  "scope": "/",
+  "short_name": "Saravana",
+  "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ff9900",
-  "orientation": "portrait",
-  "icons": [
-    {
-      "src": "favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
-    },
-    {
-      "src": "apple-touch-icon.png",
-      "sizes": "180x180",
-      "type": "image/png"
-    }
-  ],
-  "lang": "en",
-  "dir": "ltr",
-  "categories": ["lifestyle", "education", "books"],
-  "shortcuts": [
-    {
-      "name": "Today's Panchangam",
-      "short_name": "Today",
-      "description": "View today's daily Panchangam",
-      "url": "/?shortcut=today"
-    }
-  ]
+  "background_color": "#fff8ef",
+  "theme_color": "#8a1c13",
+  "icons": []
 }

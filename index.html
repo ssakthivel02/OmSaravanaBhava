@@ -1,186 +1,23 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Om Saravana Bhava | Daily Panchangam & Temples</title>
-    <meta name="description" content="Explore daily Panchangam, ancient temples, slokas, and spiritual festivals in Tamil. Your ultimate spiritual guide.">
-    <meta name="theme-color" content="#ff9900">
-    <link rel="canonical" href="https://omsaravanabhava.org/">
-    
-    <!-- PWA & Icons -->
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-    <!-- Open Graph / Social -->
-    <meta property="og:title" content="Om Saravana Bhava | Daily Panchangam">
-    <meta property="og:description" content="Explore daily Panchangam, ancient temples, slokas, and spiritual festivals in Tamil.">
-    <meta property="og:url" content="https://omsaravanabhava.org/">
-    <meta property="og:type" content="website">
-
-    <!-- Preload critical assets (to be added in Batch 03 & 04) -->
-    <link rel="preload" href="/css/styles.css" as="style">
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="/css/styles.css">
-
-    <!-- Schema.org JSON-LD -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Om Saravana Bhava",
-      "url": "https://omsaravanabhava.org/",
-      "description": "Daily Panchangam, Temple guides, and spiritual resources in Tamil.",
-      "inLanguage": ["en", "ta"]
-    }
-    </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ஓம் சரவணபவ | Om Saravana Bhava</title>
+  <meta name="description" content="Om Saravana Bhava - Murugan devotion, Arupadai Veedu, festivals, slokas and spiritual learning.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-
-    <header class="site-header" role="banner">
-        <div class="header-container">
-            <div class="logo">
-                <a href="/" aria-label="Om Saravana Bhava Home">
-                    <!-- Placeholder text until Batch 03 styles image -->
-                    <span class="logo-text" lang="ta">ஓம் சரவணபவ</span>
-                </a>
-            </div>
-            
-            <button id="mobile-menu-toggle" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open menu">
-                <span class="hamburger-icon"></span>
-            </button>
-
-            <nav id="primary-navigation" aria-label="Primary Navigation">
-                <ul class="nav-links">
-                    <li><a href="/" aria-current="page">Home</a></li>
-                    <li><a href="/temples.html">Temples</a></li>
-                    <li><a href="/slokas.html">Slokas</a></li>
-                    <li><a href="/festivals.html">Festivals</a></li>
-                    <li><a href="/gallery.html">Gallery</a></li>
-                    <li><a href="/about.html">About</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <main id="main-content" role="main">
-        
-        <!-- Hero Section -->
-        <section class="hero" aria-labelledby="hero-title">
-            <div class="hero-content">
-                <h1 id="hero-title" lang="ta">ஓம் சரவணபவ</h1>
-                <p class="hero-subtitle" lang="ta">ஆன்மீக வழிகாட்டி, தினசரி பஞ்சாங்கம் மற்றும் ஆலய தரிசனம்</p>
-                <p class="hero-description">Your guide to spiritual wisdom, daily Panchangam, and divine temple tours.</p>
-                <a href="#daily-panchangam" class="btn btn-primary">Today's Panchangam</a>
-            </div>
-        </section>
-
-        <!-- Daily Panchangam Section -->
-        <section id="daily-panchangam" class="panchangam-section" aria-labelledby="panchangam-title">
-            <div class="section-container">
-                <h2 id="panchangam-title" lang="ta">இன்றைய பஞ்சாங்கம் (Today's Panchangam)</h2>
-                
-                <div class="panchangam-grid" id="panchangam-data-container" aria-live="polite">
-                    <!-- JavaScript will inject today's data here (Batch 04) -->
-                    <div class="loading-state">
-                        <span class="spinner" aria-hidden="true"></span>
-                        <p>Loading today's auspicious timings...</p>
-                    </div>
-                </div>
-                
-                <div class="panchangam-actions">
-                    <button id="retry-panchangam" class="btn btn-secondary hidden" aria-label="Retry loading Panchangam">Retry Loading</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Featured Temples Section -->
-        <section class="temples-section" aria-labelledby="temples-title">
-            <div class="section-container">
-                <h2 id="temples-title" lang="ta">பிரசித்தி பெற்ற திருத்தலங்கள் (Featured Temples)</h2>
-                <p class="section-desc">Explore the rich history and spiritual significance of our ancient temples.</p>
-                
-                <div class="temple-cards">
-                    <!-- Card 1 -->
-                    <article class="card temple-card">
-                        <div class="card-image-placeholder" aria-hidden="true"></div>
-                        <div class="card-content">
-                            <h3 lang="ta">பழனி முருகன் கோவில்</h3>
-                            <p lang="ta">அறுபடை வீடுகளில் மூன்றாம் படை வீடு. சித்தர்களால் உருவாக்கப்பட்ட நவபாஷாண சிலை அமைந்துள்ள புண்ணிய தலம்.</p>
-                            <a href="/temples.html#palani" class="btn-link" aria-label="Read more about Palani Murugan Temple">மேலும் படிக்க (Read More)</a>
-                        </div>
-                    </article>
-
-                    <!-- Card 2 -->
-                    <article class="card temple-card">
-                        <div class="card-image-placeholder" aria-hidden="true"></div>
-                        <div class="card-content">
-                            <h3 lang="ta">திருச்செந்தூர் முருகன் கோவில்</h3>
-                            <p lang="ta">அறுபடை வீடுகளில் இரண்டாம் படை வீடு. கடலோரத்தில் அமைந்துள்ள சிறப்பு வாய்ந்த திருத்தலம்.</p>
-                            <a href="/temples.html#thiruchendur" class="btn-link" aria-label="Read more about Thiruchendur Murugan Temple">மேலும் படிக்க (Read More)</a>
-                        </div>
-                    </article>
-
-                    <!-- Card 3 -->
-                    <article class="card temple-card">
-                        <div class="card-image-placeholder" aria-hidden="true"></div>
-                        <div class="card-content">
-                            <h3 lang="ta">சுவாமிமலை முருகன் கோவில்</h3>
-                            <p lang="ta">அறுபடை வீடுகளில் நான்காம் படை வீடு. தந்தைக்கு உபதேசம் செய்த தலம்.</p>
-                            <a href="/temples.html#swamimalai" class="btn-link" aria-label="Read more about Swamimalai Murugan Temple">மேலும் படிக்க (Read More)</a>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="view-all-container">
-                    <a href="/temples.html" class="btn btn-outline">View All Temples</a>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="site-footer" role="contentinfo">
-        <div class="footer-container">
-            <div class="footer-grid">
-                <div class="footer-col brand-col">
-                    <h2 lang="ta">ஓம் சரவணபவ</h2>
-                    <p>Dedicated to providing accurate daily Panchangam and spiritual guides.</p>
-                </div>
-                
-                <div class="footer-col links-col">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="/temples.html">Temples</a></li>
-                        <li><a href="/slokas.html">Slokas</a></li>
-                        <li><a href="/festivals.html">Festivals</a></li>
-                        <li><a href="/gallery.html">Gallery</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col legal-col">
-                    <h3>Support & Legal</h3>
-                    <ul class="footer-links">
-                        <li><a href="/contact.html">Contact Us</a></li>
-                        <li><a href="/support.html">Support</a></li>
-                        <li><a href="/privacy.html">Privacy Policy</a></li>
-                        <li><a href="/terms.html">Terms of Service</a></li>
-                        <li><a href="/accessibility.html">Accessibility</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2026 Om Saravana Bhava. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Core Scripts (to be created in Batch 04) -->
-    <script src="/js/script.js" defer></script>
-</body>
-</html>
+<body class="home">
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="topbar">🛕 ஓம் சரவணபவ · May Lord Murugan bless you with wisdom, courage and divine protection.</div>
+  <div class="nav-wrap"><a class="brand" href="index.html">ஓம் சரவணபவ</a><button class="menu-toggle" aria-label="Toggle navigation">☰</button><nav class="main-nav"><a href="index.html">Home</a><a href="temples.html">Temples</a><a href="slokas.html">Slokas</a><a href="festivals.html">Festivals</a><a href="gallery.html">Gallery</a><a href="ai.html">AI Guide</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav></div>
+</header>
+<main id="main">
+<section class="hero small-hero"><div class="container"><h1>ஓம் சரவணபவ</h1><p>Your guide to Murugan devotion, temples, slokas and festivals.</p></div></section>
+<section class="section"><div class="container"><div class="panchangam-card" id="panchangam-card"><span class="eyebrow">Today</span><h2>இன்றைய அருள் வழிகாட்டி</h2><p id="today-date">Loading date...</p><p id="daily-quote">Loading divine quote...</p></div></div></section><section class="section"><div class="container section-head"><h2>Featured Arupadai Veedu</h2><p>Explore the six sacred abodes of Lord Murugan.</p></div><div class="container grid" id="home-temples"></div><div class="container center"><a class="btn" href="temples.html">View All Temples</a></div></section><section class="section soft"><div class="container grid three"><article class="info-card"><h3>Slokas</h3><p>Daily prayers, mantras and devotional meanings.</p><a href="slokas.html">Open Slokas →</a></article><article class="info-card"><h3>Festivals</h3><p>Major Murugan festivals with simple explanations.</p><a href="festivals.html">Open Festivals →</a></article><article class="info-card"><h3>AI Guide</h3><p>Static demo guide with safe devotional prompts.</p><a href="ai.html">Open AI Guide →</a></article></div></section>
+</main>
+<footer class="site-footer"><div class="container footer-grid"><div><h2>ஓம் சரவணபவ</h2><p>A devotional platform dedicated to Lord Murugan, Arupadai Veedu, slokas, festivals and spiritual learning.</p></div><div><h3>Quick Links</h3><a href="temples.html">Temples</a><a href="slokas.html">Slokas</a><a href="festivals.html">Festivals</a><a href="gallery.html">Gallery</a></div><div><h3>Support</h3><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="accessibility.html">Accessibility</a><a href="support.html">Support</a></div></div><p class="copyright">© 2026 Om Saravana Bhava. All rights reserved.</p></footer>
+<script src="script.js"></script>
+</body></html>

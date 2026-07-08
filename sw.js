@@ -1,0 +1,1 @@
+const CACHE='om-saravana-static-v3';self.addEventListener('install',e=>self.skipWaiting());self.addEventListener('activate',e=>e.waitUntil(clients.claim()));self.addEventListener('fetch',e=>{});
