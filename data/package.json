@@ -1,12 +1,12 @@
 {
-  "batch": 23,
+  "batch": 24,
   "type": "qa-governance-testing",
   "files": [
-    "site-health.html",
-    "visual-issues.html",
-    "test-results.html",
-    "page-inventory.html",
-    "issue-triage.html",
-    "browser-test-matrix.html"
+    "content-roadmap.html",
+    "temple-expansion-plan.html",
+    "sloka-expansion-plan.html",
+    "festival-expansion-plan.html",
+    "media-rights.html",
+    "tamil-quality.html"
   ]
 }
