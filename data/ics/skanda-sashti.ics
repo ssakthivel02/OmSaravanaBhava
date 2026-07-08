@@ -1,0 +1,10 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//OmSaravanaBhava//Festival//EN
+BEGIN:VEVENT
+UID:skanda-sashti@omsaravanabhava.org
+SUMMARY:Skanda Sashti
+DESCRIPTION:Six-day remembrance of Murugan’s victory over Surapadman.
+DTSTART;VALUE=DATE:20260101
+END:VEVENT
+END:VCALENDAR

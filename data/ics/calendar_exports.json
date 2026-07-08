@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Thai Poosam",
+    "summary": "Murugan receives the divine Vel; major pilgrimage and kavadi devotion.",
+    "icsFile": "data/ics/thai-poosam.ics"
+  },
+  {
+    "title": "Skanda Sashti",
+    "summary": "Six-day remembrance of Murugan’s victory over Surapadman.",
+    "icsFile": "data/ics/skanda-sashti.ics"
+  },
+  {
+    "title": "Vaikasi Visakam",
+    "summary": "Celebrates the divine manifestation of Lord Murugan.",
+    "icsFile": "data/ics/vaikasi-visakam.ics"
+  },
+  {
+    "title": "Panguni Uthiram",
+    "summary": "Sacred day associated with divine marriages and grace.",
+    "icsFile": "data/ics/panguni-uthiram.ics"
+  },
+  {
+    "title": "Karthigai Deepam",
+    "summary": "Festival of lamps and spiritual light.",
+    "icsFile": "data/ics/karthigai-deepam.ics"
+  },
+  {
+    "title": "Masi Magam",
+    "summary": "Holy bath, processions and purification observances.",
+    "icsFile": "data/ics/masi-magam.ics"
+  }
+]

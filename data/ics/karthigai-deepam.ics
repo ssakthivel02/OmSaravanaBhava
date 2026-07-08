@@ -1,0 +1,10 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//OmSaravanaBhava//Festival//EN
+BEGIN:VEVENT
+UID:karthigai-deepam@omsaravanabhava.org
+SUMMARY:Karthigai Deepam
+DESCRIPTION:Festival of lamps and spiritual light.
+DTSTART;VALUE=DATE:20260101
+END:VEVENT
+END:VCALENDAR

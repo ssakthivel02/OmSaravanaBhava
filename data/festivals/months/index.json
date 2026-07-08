@@ -1,0 +1,122 @@
+[
+  {
+    "id": "chithirai",
+    "nameEn": "Chithirai",
+    "nameTa": "சித்திரை",
+    "highlights": [
+      "Chitra Pournami",
+      "Monthly Sashti",
+      "Monthly Karthigai"
+    ]
+  },
+  {
+    "id": "vaikasi",
+    "nameEn": "Vaikasi",
+    "nameTa": "வைகாசி",
+    "highlights": [
+      "Vaikasi Visakam",
+      "Monthly Sashti",
+      "Monthly Karthigai"
+    ]
+  },
+  {
+    "id": "aani",
+    "nameEn": "Aani",
+    "nameTa": "ஆனி",
+    "highlights": [
+      "Monthly Sashti",
+      "Monthly Karthigai",
+      "Aani Devotional Day 1"
+    ]
+  },
+  {
+    "id": "aadi",
+    "nameEn": "Aadi",
+    "nameTa": "ஆடி",
+    "highlights": [
+      "Aadi Kiruthigai",
+      "Monthly Sashti",
+      "Monthly Karthigai"
+    ]
+  },
+  {
+    "id": "aavani",
+    "nameEn": "Aavani",
+    "nameTa": "ஆவணி",
+    "highlights": [
+      "Monthly Sashti",
+      "Monthly Karthigai",
+      "Aavani Devotional Day 1"
+    ]
+  },
+  {
+    "id": "purattasi",
+    "nameEn": "Purattasi",
+    "nameTa": "புரட்டாசி",
+    "highlights": [
+      "Monthly Sashti",
+      "Monthly Karthigai",
+      "Purattasi Devotional Day 1"
+    ]
+  },
+  {
+    "id": "aippasi",
+    "nameEn": "Aippasi",
+    "nameTa": "ஐப்பசி",
+    "highlights": [
+      "Skanda Sashti",
+      "Monthly Sashti",
+      "Monthly Karthigai"
+    ]
+  },
+  {
+    "id": "karthigai",
+    "nameEn": "Karthigai",
+    "nameTa": "கார்த்திகை",
+    "highlights": [
+      "Karthigai Deepam",
+      "Monthly Sashti",
+      "Monthly Karthigai"
+    ]
+  },
+  {
+    "id": "margazhi",
+    "nameEn": "Margazhi",
+    "nameTa": "மார்கழி",
+    "highlights": [
+      "Monthly Sashti",
+      "Monthly Karthigai",
+      "Margazhi Devotional Day 1"
+    ]
+  },
+  {
+    "id": "thai",
+    "nameEn": "Thai",
+    "nameTa": "தை",
+    "highlights": [
+      "Thai Poosam",
+      "Monthly Sashti",
+      "Monthly Karthigai"
+    ]
+  },
+  {
+    "id": "maasi",
+    "nameEn": "Maasi",
+    "nameTa": "மாசி",
+    "highlights": [
+      "Masi Magam",
+      "Monthly Sashti",
+      "Monthly Karthigai"
+    ]
+  },
+  {
+    "id": "panguni",
+    "nameEn": "Panguni",
+    "nameTa": "பங்குனி",
+    "highlights": [
+      "Panguni Uthiram",
+      "Monthly Sashti",
+      "Monthly Karthigai"
+    ]
+  }
+]

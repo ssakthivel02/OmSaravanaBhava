@@ -1,0 +1,21 @@
+{
+  "id": "purattasi-festival-2",
+  "titleEn": "Purattasi Devotional Day 2",
+  "titleTa": "புரட்டாசி பக்தி நாள் 2",
+  "tamilMonth": "Purattasi",
+  "type": "Monthly",
+  "summary": "A devotional planning entry for Purattasi month with temple visit, reading and family prayer guidance.",
+  "season": "Monthly reflection",
+  "tags": [
+    "Purattasi",
+    "Tamil month",
+    "Devotion"
+  ],
+  "rituals": [
+    "Temple visit",
+    "Light a lamp",
+    "Read one Murugan name",
+    "Family prayer"
+  ],
+  "disclaimer": "Dates should be confirmed using a live location-based panchangam before travel or formal rituals."
+}

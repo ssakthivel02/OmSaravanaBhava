@@ -1,0 +1,21 @@
+{
+  "id": "aippasi-festival-1",
+  "titleEn": "Aippasi Devotional Day 1",
+  "titleTa": "ஐப்பசி பக்தி நாள் 1",
+  "tamilMonth": "Aippasi",
+  "type": "Monthly",
+  "summary": "A devotional planning entry for Aippasi month with temple visit, reading and family prayer guidance.",
+  "season": "Monthly reflection",
+  "tags": [
+    "Aippasi",
+    "Tamil month",
+    "Devotion"
+  ],
+  "rituals": [
+    "Temple visit",
+    "Light a lamp",
+    "Read one Murugan name",
+    "Family prayer"
+  ],
+  "disclaimer": "Dates should be confirmed using a live location-based panchangam before travel or formal rituals."
+}

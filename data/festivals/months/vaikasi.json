@@ -1,0 +1,82 @@
+[
+  {
+    "id": "vaikasi-visakam",
+    "titleEn": "Vaikasi Visakam",
+    "titleTa": "வைகாசி விசாகம்",
+    "tamilMonth": "Vaikasi",
+    "type": "Murugan",
+    "summary": "Celebrates the divine manifestation of Lord Murugan.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Visakam",
+      "Birth star"
+    ]
+  },
+  {
+    "id": "monthly-sashti",
+    "titleEn": "Monthly Sashti",
+    "titleTa": "மாத சஷ்டி",
+    "tamilMonth": "All",
+    "type": "Vratham",
+    "summary": "Monthly Sashti observance for Murugan devotees.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Vratham"
+    ]
+  },
+  {
+    "id": "monthly-karthigai",
+    "titleEn": "Monthly Karthigai",
+    "titleTa": "மாத கார்த்திகை",
+    "tamilMonth": "All",
+    "type": "Vratham",
+    "summary": "Monthly Karthigai star observance.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Deepam",
+      "Murugan"
+    ]
+  },
+  {
+    "id": "vaikasi-festival-1",
+    "titleEn": "Vaikasi Devotional Day 1",
+    "titleTa": "வைகாசி பக்தி நாள் 1",
+    "tamilMonth": "Vaikasi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Vaikasi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Vaikasi",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "vaikasi-festival-2",
+    "titleEn": "Vaikasi Devotional Day 2",
+    "titleTa": "வைகாசி பக்தி நாள் 2",
+    "tamilMonth": "Vaikasi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Vaikasi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Vaikasi",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "vaikasi-festival-3",
+    "titleEn": "Vaikasi Devotional Day 3",
+    "titleTa": "வைகாசி பக்தி நாள் 3",
+    "tamilMonth": "Vaikasi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Vaikasi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Vaikasi",
+      "Tamil month",
+      "Devotion"
+    ]
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "id": "aadi-festival-1",
+  "titleEn": "Aadi Devotional Day 1",
+  "titleTa": "ஆடி பக்தி நாள் 1",
+  "tamilMonth": "Aadi",
+  "type": "Monthly",
+  "summary": "A devotional planning entry for Aadi month with temple visit, reading and family prayer guidance.",
+  "season": "Monthly reflection",
+  "tags": [
+    "Aadi",
+    "Tamil month",
+    "Devotion"
+  ],
+  "rituals": [
+    "Temple visit",
+    "Light a lamp",
+    "Read one Murugan name",
+    "Family prayer"
+  ],
+  "disclaimer": "Dates should be confirmed using a live location-based panchangam before travel or formal rituals."
+}

@@ -1,0 +1,634 @@
+[
+  {
+    "id": "thai-poosam",
+    "titleEn": "Thai Poosam",
+    "titleTa": "தைப்பூசம்",
+    "tamilMonth": "Thai",
+    "type": "Murugan",
+    "summary": "Murugan receives the divine Vel; major pilgrimage and kavadi devotion.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Murugan",
+      "Vel",
+      "Kavadi"
+    ]
+  },
+  {
+    "id": "skanda-sashti",
+    "titleEn": "Skanda Sashti",
+    "titleTa": "ஸ்கந்த சஷ்டி",
+    "tamilMonth": "Aippasi",
+    "type": "Murugan",
+    "summary": "Six-day remembrance of Murugan’s victory over Surapadman.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Sashti",
+      "Soorasamharam"
+    ]
+  },
+  {
+    "id": "vaikasi-visakam",
+    "titleEn": "Vaikasi Visakam",
+    "titleTa": "வைகாசி விசாகம்",
+    "tamilMonth": "Vaikasi",
+    "type": "Murugan",
+    "summary": "Celebrates the divine manifestation of Lord Murugan.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Visakam",
+      "Birth star"
+    ]
+  },
+  {
+    "id": "panguni-uthiram",
+    "titleEn": "Panguni Uthiram",
+    "titleTa": "பங்குனி உத்திரம்",
+    "tamilMonth": "Panguni",
+    "type": "Murugan",
+    "summary": "Sacred day associated with divine marriages and grace.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Uthiram",
+      "Marriage"
+    ]
+  },
+  {
+    "id": "karthigai-deepam",
+    "titleEn": "Karthigai Deepam",
+    "titleTa": "கார்த்திகை தீபம்",
+    "tamilMonth": "Karthigai",
+    "type": "Festival",
+    "summary": "Festival of lamps and spiritual light.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Deepam",
+      "Light"
+    ]
+  },
+  {
+    "id": "masi-magam",
+    "titleEn": "Masi Magam",
+    "titleTa": "மாசி மகம்",
+    "tamilMonth": "Maasi",
+    "type": "Festival",
+    "summary": "Holy bath, processions and purification observances.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Magam",
+      "Theertham"
+    ]
+  },
+  {
+    "id": "chitra-pournami",
+    "titleEn": "Chitra Pournami",
+    "titleTa": "சித்ரா பௌர்ணமி",
+    "tamilMonth": "Chithirai",
+    "type": "Festival",
+    "summary": "Full moon reflection, charity and temple worship.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Pournami"
+    ]
+  },
+  {
+    "id": "aadi-kiruthigai",
+    "titleEn": "Aadi Kiruthigai",
+    "titleTa": "ஆடி கிருத்திகை",
+    "tamilMonth": "Aadi",
+    "type": "Murugan",
+    "summary": "Important Karthigai star day for Murugan worship.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Karthigai"
+    ]
+  },
+  {
+    "id": "monthly-sashti",
+    "titleEn": "Monthly Sashti",
+    "titleTa": "மாத சஷ்டி",
+    "tamilMonth": "All",
+    "type": "Vratham",
+    "summary": "Monthly Sashti observance for Murugan devotees.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Vratham"
+    ]
+  },
+  {
+    "id": "monthly-karthigai",
+    "titleEn": "Monthly Karthigai",
+    "titleTa": "மாத கார்த்திகை",
+    "tamilMonth": "All",
+    "type": "Vratham",
+    "summary": "Monthly Karthigai star observance.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Deepam",
+      "Murugan"
+    ]
+  },
+  {
+    "id": "chithirai-festival-1",
+    "titleEn": "Chithirai Devotional Day 1",
+    "titleTa": "சித்திரை பக்தி நாள் 1",
+    "tamilMonth": "Chithirai",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Chithirai month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Chithirai",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "chithirai-festival-2",
+    "titleEn": "Chithirai Devotional Day 2",
+    "titleTa": "சித்திரை பக்தி நாள் 2",
+    "tamilMonth": "Chithirai",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Chithirai month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Chithirai",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "chithirai-festival-3",
+    "titleEn": "Chithirai Devotional Day 3",
+    "titleTa": "சித்திரை பக்தி நாள் 3",
+    "tamilMonth": "Chithirai",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Chithirai month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Chithirai",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "vaikasi-festival-1",
+    "titleEn": "Vaikasi Devotional Day 1",
+    "titleTa": "வைகாசி பக்தி நாள் 1",
+    "tamilMonth": "Vaikasi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Vaikasi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Vaikasi",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "vaikasi-festival-2",
+    "titleEn": "Vaikasi Devotional Day 2",
+    "titleTa": "வைகாசி பக்தி நாள் 2",
+    "tamilMonth": "Vaikasi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Vaikasi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Vaikasi",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "vaikasi-festival-3",
+    "titleEn": "Vaikasi Devotional Day 3",
+    "titleTa": "வைகாசி பக்தி நாள் 3",
+    "tamilMonth": "Vaikasi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Vaikasi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Vaikasi",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "aani-festival-1",
+    "titleEn": "Aani Devotional Day 1",
+    "titleTa": "ஆனி பக்தி நாள் 1",
+    "tamilMonth": "Aani",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Aani month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Aani",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "aani-festival-2",
+    "titleEn": "Aani Devotional Day 2",
+    "titleTa": "ஆனி பக்தி நாள் 2",
+    "tamilMonth": "Aani",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Aani month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Aani",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "aani-festival-3",
+    "titleEn": "Aani Devotional Day 3",
+    "titleTa": "ஆனி பக்தி நாள் 3",
+    "tamilMonth": "Aani",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Aani month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Aani",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "aadi-festival-1",
+    "titleEn": "Aadi Devotional Day 1",
+    "titleTa": "ஆடி பக்தி நாள் 1",
+    "tamilMonth": "Aadi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Aadi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Aadi",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "aadi-festival-2",
+    "titleEn": "Aadi Devotional Day 2",
+    "titleTa": "ஆடி பக்தி நாள் 2",
+    "tamilMonth": "Aadi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Aadi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Aadi",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "aadi-festival-3",
+    "titleEn": "Aadi Devotional Day 3",
+    "titleTa": "ஆடி பக்தி நாள் 3",
+    "tamilMonth": "Aadi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Aadi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Aadi",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "aavani-festival-1",
+    "titleEn": "Aavani Devotional Day 1",
+    "titleTa": "ஆவணி பக்தி நாள் 1",
+    "tamilMonth": "Aavani",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Aavani month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Aavani",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "aavani-festival-2",
+    "titleEn": "Aavani Devotional Day 2",
+    "titleTa": "ஆவணி பக்தி நாள் 2",
+    "tamilMonth": "Aavani",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Aavani month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Aavani",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "aavani-festival-3",
+    "titleEn": "Aavani Devotional Day 3",
+    "titleTa": "ஆவணி பக்தி நாள் 3",
+    "tamilMonth": "Aavani",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Aavani month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Aavani",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "purattasi-festival-1",
+    "titleEn": "Purattasi Devotional Day 1",
+    "titleTa": "புரட்டாசி பக்தி நாள் 1",
+    "tamilMonth": "Purattasi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Purattasi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Purattasi",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "purattasi-festival-2",
+    "titleEn": "Purattasi Devotional Day 2",
+    "titleTa": "புரட்டாசி பக்தி நாள் 2",
+    "tamilMonth": "Purattasi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Purattasi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Purattasi",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "purattasi-festival-3",
+    "titleEn": "Purattasi Devotional Day 3",
+    "titleTa": "புரட்டாசி பக்தி நாள் 3",
+    "tamilMonth": "Purattasi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Purattasi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Purattasi",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "aippasi-festival-1",
+    "titleEn": "Aippasi Devotional Day 1",
+    "titleTa": "ஐப்பசி பக்தி நாள் 1",
+    "tamilMonth": "Aippasi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Aippasi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Aippasi",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "aippasi-festival-2",
+    "titleEn": "Aippasi Devotional Day 2",
+    "titleTa": "ஐப்பசி பக்தி நாள் 2",
+    "tamilMonth": "Aippasi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Aippasi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Aippasi",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "aippasi-festival-3",
+    "titleEn": "Aippasi Devotional Day 3",
+    "titleTa": "ஐப்பசி பக்தி நாள் 3",
+    "tamilMonth": "Aippasi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Aippasi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Aippasi",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "karthigai-festival-1",
+    "titleEn": "Karthigai Devotional Day 1",
+    "titleTa": "கார்த்திகை பக்தி நாள் 1",
+    "tamilMonth": "Karthigai",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Karthigai month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Karthigai",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "karthigai-festival-2",
+    "titleEn": "Karthigai Devotional Day 2",
+    "titleTa": "கார்த்திகை பக்தி நாள் 2",
+    "tamilMonth": "Karthigai",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Karthigai month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Karthigai",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "karthigai-festival-3",
+    "titleEn": "Karthigai Devotional Day 3",
+    "titleTa": "கார்த்திகை பக்தி நாள் 3",
+    "tamilMonth": "Karthigai",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Karthigai month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Karthigai",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "margazhi-festival-1",
+    "titleEn": "Margazhi Devotional Day 1",
+    "titleTa": "மார்கழி பக்தி நாள் 1",
+    "tamilMonth": "Margazhi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Margazhi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Margazhi",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "margazhi-festival-2",
+    "titleEn": "Margazhi Devotional Day 2",
+    "titleTa": "மார்கழி பக்தி நாள் 2",
+    "tamilMonth": "Margazhi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Margazhi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Margazhi",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "margazhi-festival-3",
+    "titleEn": "Margazhi Devotional Day 3",
+    "titleTa": "மார்கழி பக்தி நாள் 3",
+    "tamilMonth": "Margazhi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Margazhi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Margazhi",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "thai-festival-1",
+    "titleEn": "Thai Devotional Day 1",
+    "titleTa": "தை பக்தி நாள் 1",
+    "tamilMonth": "Thai",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Thai month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Thai",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "thai-festival-2",
+    "titleEn": "Thai Devotional Day 2",
+    "titleTa": "தை பக்தி நாள் 2",
+    "tamilMonth": "Thai",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Thai month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Thai",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "thai-festival-3",
+    "titleEn": "Thai Devotional Day 3",
+    "titleTa": "தை பக்தி நாள் 3",
+    "tamilMonth": "Thai",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Thai month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Thai",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "maasi-festival-1",
+    "titleEn": "Maasi Devotional Day 1",
+    "titleTa": "மாசி பக்தி நாள் 1",
+    "tamilMonth": "Maasi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Maasi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Maasi",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "maasi-festival-2",
+    "titleEn": "Maasi Devotional Day 2",
+    "titleTa": "மாசி பக்தி நாள் 2",
+    "tamilMonth": "Maasi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Maasi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Maasi",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "maasi-festival-3",
+    "titleEn": "Maasi Devotional Day 3",
+    "titleTa": "மாசி பக்தி நாள் 3",
+    "tamilMonth": "Maasi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Maasi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Maasi",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "panguni-festival-1",
+    "titleEn": "Panguni Devotional Day 1",
+    "titleTa": "பங்குனி பக்தி நாள் 1",
+    "tamilMonth": "Panguni",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Panguni month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Panguni",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "panguni-festival-2",
+    "titleEn": "Panguni Devotional Day 2",
+    "titleTa": "பங்குனி பக்தி நாள் 2",
+    "tamilMonth": "Panguni",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Panguni month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Panguni",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "panguni-festival-3",
+    "titleEn": "Panguni Devotional Day 3",
+    "titleTa": "பங்குனி பக்தி நாள் 3",
+    "tamilMonth": "Panguni",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Panguni month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Panguni",
+      "Tamil month",
+      "Devotion"
+    ]
+  }
+]
