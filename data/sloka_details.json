@@ -13,7 +13,9 @@
       "Inner courage",
       "Devotional connection"
     ],
-    "practice": "Chant slowly with attention, especially before beginning important work or study."
+    "practice": "Chant slowly with attention, especially before beginning important work or study.",
+    "meaningTa": "இது முருகப்பெருமானை பக்தியுடன் நினைத்து வணங்கும் எளிய மந்திரம். ஞானம், தைரியம், பாதுகாப்பு ஆகியவற்றை மனதில் நிலைநிறுத்த உதவும்.",
+    "practiceTa": "முக்கியமான வேலை, படிப்பு அல்லது பயணம் தொடங்கும் முன் கவனத்துடன் மெதுவாக ஜபிக்கலாம்."
   },
   {
     "id": "subramanya-gayatri",
@@ -29,7 +31,9 @@
       "Learning",
       "Spiritual discipline"
     ],
-    "practice": "Useful before study, prayer or decision-making."
+    "practice": "Useful before study, prayer or decision-making.",
+    "meaningTa": "மகாசேனனாக விளங்கும் சண்முகனை தியானித்து, நமது அறிவும் எண்ணமும் நல்ல பாதையில் செல்ல அருள் வேண்டுகிறோம்.",
+    "practiceTa": "படிப்பு, பிரார்த்தனை, முடிவு எடுக்கும் நேரங்களில் மரியாதையுடன் ஜபிக்கலாம்."
   },
   {
     "id": "kanda-sashti-kavacham",
@@ -45,6 +49,8 @@
       "Courage",
       "Devotional confidence"
     ],
-    "practice": "Recite with respect, patience and correct pronunciation where possible."
+    "practice": "Recite with respect, patience and correct pronunciation where possible.",
+    "meaningTa": "முருகப்பெருமானின் அருள், பாதுகாப்பு, தைரியம் ஆகியவற்றை வேண்டி பாடப்படும் பக்திப் பாடல்.",
+    "practiceTa": "சரியான உச்சரிப்புடன், பொறுமையாகவும் பக்தியுடனும் பாராயணம் செய்யலாம்."
   }
 ]

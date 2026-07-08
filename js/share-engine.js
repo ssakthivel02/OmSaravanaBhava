@@ -1,0 +1,1 @@
+window.OmShareEngine={share:async function(title,url){if(navigator.share){return navigator.share({title:title||document.title,url:url||location.href});}await navigator.clipboard?.writeText(url||location.href);return true;}};

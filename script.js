@@ -14,7 +14,13 @@
     templeDetails: 'data/temple_details.json',
     festivalDetails: 'data/festival_details.json',
     slokaDetails: 'data/sloka_details.json',
-    searchIndex: 'data/search_index.json'
+    searchIndex: 'data/search_index.json',
+    dailyFull: 'data/daily.json',
+    quiz: 'data/quiz.json',
+    kids: 'data/kids_stories.json',
+    books: 'data/books.json',
+    audio: 'data/audio.json',
+    videos: 'data/videos.json'
   };
 
   const cache = new Map();
@@ -247,7 +253,7 @@
       ${detailHero(item.nameTa || item.nameEn, `${item.nameEn} · ${item.month}`, 'Festival')}
       <div class="detail-grid">
         ${detailSection('Overview', `<p>${escapeHTML(item.summary)}</p>`)}
-        ${detailSection('Meaning', `<p>${escapeHTML(item.meaning)}</p>`)}
+        ${detailSection('Meaning / பொருள்', `<p>${escapeHTML(item.meaning)}</p>${item.meaningTa ? `<p lang="ta" class="ta-text">${escapeHTML(item.meaningTa)}</p>` : ''}`)}
         ${detailSection('Common Devotional Practices', listHTML(item.rituals))}
         ${detailSection('Associated Temples', listHTML(item.temples))}
         ${detailSection('Note', `<p>${escapeHTML(item.notes)}</p>`)}
@@ -268,9 +274,9 @@
       <div class="detail-grid">
         ${detailSection('Text', `<p class="sloka-text" lang="ta">${escapeHTML(item.textTa)}</p>`)}
         ${detailSection('Transliteration', `<p>${escapeHTML(item.transliteration)}</p>`)}
-        ${detailSection('Meaning', `<p>${escapeHTML(item.meaning)}</p>`)}
+        ${detailSection('Meaning / பொருள்', `<p>${escapeHTML(item.meaning)}</p>${item.meaningTa ? `<p lang="ta" class="ta-text">${escapeHTML(item.meaningTa)}</p>` : ''}`)}
         ${detailSection('Benefits', listHTML(item.benefits))}
-        ${detailSection('Practice', `<p>${escapeHTML(item.practice)}</p>`)}
+        ${detailSection('Practice / பயிற்சி', `<p>${escapeHTML(item.practice)}</p>${item.practiceTa ? `<p lang="ta" class="ta-text">${escapeHTML(item.practiceTa)}</p>` : ''}`)}
       </div>
       <p class="breadcrumb-line"><a href="slokas.html">← Back to Slokas</a></p>`;
   }
@@ -344,6 +350,70 @@
     }
   }
 
+
+  async function initBatch06BPages() {
+    const daily = $('#daily-container');
+    if (daily) {
+      const data = await loadJSON(DATA_FILES.dailyFull);
+      const items = Array.isArray(data) ? data : [];
+      const item = items.length ? items[new Date().getDate() % items.length] : null;
+      if (!item) return renderEmpty(daily, 'Daily reflection is not available.');
+      daily.className = 'detail-grid';
+      daily.innerHTML = `
+        ${detailSection(item.titleEn || 'Daily Reflection', `<p class="sloka-text" lang="ta">${escapeHTML(item.quoteTa || '')}</p><p><strong>${escapeHTML(item.quoteEn || '')}</strong></p>`)}
+        ${detailSection('Reflection / சிந்தனை', `<p>${escapeHTML(item.reflectionEn || '')}</p><p lang="ta" class="ta-text">${escapeHTML(item.reflectionTa || '')}</p>`)}
+        ${detailSection('Practice / பயிற்சி', `<p>${escapeHTML(item.practiceEn || '')}</p><p lang="ta" class="ta-text">${escapeHTML(item.practiceTa || '')}</p>`)}
+      `;
+    }
+
+    const quiz = $('#quiz-container');
+    if (quiz) {
+      const data = await loadJSON(DATA_FILES.quiz);
+      const items = Array.isArray(data) ? data : [];
+      quiz.className = 'quiz-stack';
+      quiz.innerHTML = items.map((q, idx) => `<article class="card quiz-card" data-answer="${escapeHTML(q.answer)}">
+        <p class="eyebrow">Question ${idx + 1}</p>
+        <h3>${escapeHTML(q.question)}</h3>
+        ${q.questionTa ? `<p lang="ta" class="ta-text">${escapeHTML(q.questionTa)}</p>` : ''}
+        <div class="quiz-options">${(q.options || []).map(opt => `<button type="button" class="quiz-option">${escapeHTML(opt)}</button>`).join('')}</div>
+        <p class="quiz-feedback" aria-live="polite"></p>
+        <p class="small-note">${escapeHTML(q.explanation || '')}</p>
+      </article>`).join('');
+      $$('.quiz-option', quiz).forEach(button => button.addEventListener('click', () => {
+        const card = button.closest('.quiz-card');
+        const answer = card.getAttribute('data-answer');
+        const feedback = $('.quiz-feedback', card);
+        const correct = button.textContent.trim() === answer;
+        feedback.textContent = correct ? 'Correct. Well done.' : `Not correct. Answer: ${answer}`;
+        feedback.className = `quiz-feedback ${correct ? 'ok' : 'bad'}`;
+      }));
+    }
+
+    const kids = $('#kids-container');
+    if (kids) {
+      const data = await loadJSON(DATA_FILES.kids);
+      renderList(kids, data, item => makeCard({ title: item.titleTa || item.title, subtitle: item.title, body: item.summaryTa || item.summary, meta: 'Kids Story', tags: [item.moral].filter(Boolean) }));
+    }
+
+    const books = $('#books-container');
+    if (books) {
+      const data = await loadJSON(DATA_FILES.books);
+      renderList(books, data, item => makeCard({ title: item.title, subtitle: `${item.type} · ${item.level}`, body: item.summary, meta: item.status || 'Book', tags: [item.level, item.type].filter(Boolean) }));
+    }
+
+    const audio = $('#audio-container');
+    if (audio) {
+      const data = await loadJSON(DATA_FILES.audio);
+      renderList(audio, data, item => `<article class="card media-card"><p class="eyebrow">${escapeHTML(item.type)}</p><h3>${escapeHTML(item.titleTa || item.title)}</h3><h4>${escapeHTML(item.title)}</h4><p>${escapeHTML(item.description)}</p><p><strong>Duration:</strong> ${escapeHTML(item.duration)}</p>${item.audioUrl ? `<audio controls src="${escapeHTML(item.audioUrl)}"></audio>` : '<p class="small-note">Audio file will be added after verification.</p>'}</article>`);
+    }
+
+    const videos = $('#videos-container');
+    if (videos) {
+      const data = await loadJSON(DATA_FILES.videos);
+      renderList(videos, data, item => makeCard({ title: item.title, subtitle: item.category, body: item.summary, meta: 'Video', tags: [item.category].filter(Boolean) }));
+    }
+  }
+
   async function enhanceGlobal() {
     const menu = $('.menu-toggle');
     const nav = $('.main-nav') || $('.nav');
@@ -376,7 +446,7 @@
   async function init() {
     await enhanceGlobal();
     await Promise.all([
-      initMainLists(), initSearchPage(), initTempleDetail(), initFestivalDetail(), initSlokaDetail(), initBatch04Pages()
+      initMainLists(), initSearchPage(), initTempleDetail(), initFestivalDetail(), initSlokaDetail(), initBatch04Pages(), initBatch06BPages()
     ]);
   }
 
