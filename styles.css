@@ -18,3 +18,6 @@ body.font-large{font-size:18px}body.font-large .container,body.font-large .page-
 @media(max-width:760px){.osb-utility-bar{top:auto;right:.75rem;bottom:4.2rem;flex-direction:row}.utility-btn{padding:.55rem .65rem;font-size:.86rem}.toast-wrap{left:.75rem;right:.75rem;bottom:7.4rem}.toast{text-align:center}.back-to-top{bottom:.75rem}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.001ms!important}.fade-in-card{animation:none!important}}
 @media print{.site-header,.site-footer,.osb-utility-bar,.back-to-top,.scroll-progress,.toast-wrap{display:none!important}body{background:#fff;color:#000}.card{box-shadow:none;border:1px solid #ccc}}
+
+/* Batch 07 Murugan Encyclopedia */
+.encyclopedia-card,.name-card,.legend-card{position:relative;overflow:hidden}.encyclopedia-card::after,.legend-card::after{content:"ॐ";position:absolute;right:1rem;bottom:-.6rem;font-size:4rem;color:rgba(245,158,11,.12);font-weight:900}.name-card .num{margin-bottom:.5rem}.legend-card .practice-box{margin-top:1rem}.quick-topic-row{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;margin:1rem 0 2rem}.quick-topic-row .btn{margin-top:0}@media(max-width:760px){.quick-topic-row{justify-content:flex-start}}

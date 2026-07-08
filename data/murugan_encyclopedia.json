@@ -1,0 +1,73 @@
+[
+  {
+    "id": "murugan-overview",
+    "type": "Overview",
+    "titleTa": "முருகன்",
+    "titleEn": "Lord Murugan",
+    "summaryTa": "ஞானம், துணிவு, அருள், ஒழுக்கம் ஆகியவற்றின் தெய்வீக வடிவமாக முருகப் பெருமான் போற்றப்படுகிறார்.",
+    "summaryEn": "Lord Murugan is revered as the divine form of wisdom, courage, grace and disciplined spiritual action.",
+    "detailsEn": "In Tamil devotional tradition, Murugan is celebrated as the youthful lord of the Vel, the guide who removes confusion and grants clarity. This page presents simple educational notes and should be expanded with source review over time.",
+    "tags": [
+      "Murugan",
+      "Wisdom",
+      "Vel",
+      "Tamil Devotion"
+    ]
+  },
+  {
+    "id": "vel",
+    "type": "Symbol",
+    "titleTa": "வேல்",
+    "titleEn": "Vel",
+    "summaryTa": "வேல் என்பது அறியாமையை அகற்றும் ஞானத்தின் அடையாளம்.",
+    "summaryEn": "The Vel represents wisdom, protection and the destruction of ignorance.",
+    "detailsEn": "The Vel is one of the most important symbols of Murugan worship. It is understood as a spiritual weapon of clarity, courage and divine protection.",
+    "tags": [
+      "Vel",
+      "Symbol",
+      "Protection"
+    ]
+  },
+  {
+    "id": "mayil",
+    "type": "Symbol",
+    "titleTa": "மயில்",
+    "titleEn": "Peacock",
+    "summaryTa": "மயில் அழகு, விழிப்பு, வெற்றி ஆகியவற்றின் அடையாளமாகப் பார்க்கப்படுகிறது.",
+    "summaryEn": "The peacock is associated with beauty, alertness and victory over lower tendencies.",
+    "detailsEn": "Murugan's peacock mount is commonly interpreted as the disciplined transformation of pride and restlessness into devotion and service.",
+    "tags": [
+      "Peacock",
+      "Vahana",
+      "Symbol"
+    ]
+  },
+  {
+    "id": "seval",
+    "type": "Symbol",
+    "titleTa": "சேவல் கொடி",
+    "titleEn": "Rooster Flag",
+    "summaryTa": "சேவல் கொடி விழிப்புணர்வு மற்றும் உள்ளார்ந்த இருளை அகற்றும் ஒளியின் அடையாளம்.",
+    "summaryEn": "The rooster flag represents awakening and the call to rise above inner darkness.",
+    "detailsEn": "The rooster emblem is traditionally connected with alertness, victory and the dawn of spiritual awareness.",
+    "tags": [
+      "Rooster",
+      "Flag",
+      "Awakening"
+    ]
+  },
+  {
+    "id": "six-abodes",
+    "type": "Sacred Geography",
+    "titleTa": "ஆறுபடை வீடு",
+    "titleEn": "Arupadai Veedu",
+    "summaryTa": "முருகப் பெருமானின் ஆறு முக்கிய திருத்தலங்கள் பக்தர்களுக்கு ஆன்மீகப் பயணமாக கருதப்படுகின்றன.",
+    "summaryEn": "The six sacred abodes of Murugan form a devotional pilgrimage path in Tamil tradition.",
+    "detailsEn": "The Arupadai Veedu tradition connects sacred geography with devotion, mythology, festivals and personal transformation.",
+    "tags": [
+      "Arupadai Veedu",
+      "Pilgrimage",
+      "Temples"
+    ]
+  }
+]

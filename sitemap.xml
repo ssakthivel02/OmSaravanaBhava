@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://omsaravanabhava.org/</loc></url>
   <url><loc>https://omsaravanabhava.org/index.html</loc></url>
   <url><loc>https://omsaravanabhava.org/temples.html</loc></url>
   <url><loc>https://omsaravanabhava.org/festivals.html</loc></url>
   <url><loc>https://omsaravanabhava.org/slokas.html</loc></url>
   <url><loc>https://omsaravanabhava.org/gallery.html</loc></url>
   <url><loc>https://omsaravanabhava.org/search.html</loc></url>
-  <url><loc>https://omsaravanabhava.org/panchangam.html</loc></url>
-  <url><loc>https://omsaravanabhava.org/timeline.html</loc></url>
   <url><loc>https://omsaravanabhava.org/learning.html</loc></url>
-  <url><loc>https://omsaravanabhava.org/temple-details.html</loc></url>
-  <url><loc>https://omsaravanabhava.org/festival-details.html</loc></url>
-  <url><loc>https://omsaravanabhava.org/sloka-details.html</loc></url>
+  <url><loc>https://omsaravanabhava.org/murugan.html</loc></url>
+  <url><loc>https://omsaravanabhava.org/names.html</loc></url>
+  <url><loc>https://omsaravanabhava.org/symbols.html</loc></url>
+  <url><loc>https://omsaravanabhava.org/legends.html</loc></url>
   <url><loc>https://omsaravanabhava.org/daily.html</loc></url>
   <url><loc>https://omsaravanabhava.org/quiz.html</loc></url>
-  <url><loc>https://omsaravanabhava.org/kids.html</loc></url>
-  <url><loc>https://omsaravanabhava.org/books.html</loc></url>
-  <url><loc>https://omsaravanabhava.org/audio.html</loc></url>
-  <url><loc>https://omsaravanabhava.org/videos.html</loc></url>
 </urlset>

@@ -568,3 +568,66 @@
 
   window.OmSaravanaBhava = { loadJSON, escapeHTML, slug };
 })();
+
+
+/* Batch 07 Murugan Encyclopedia Enhancements */
+(function(){
+  'use strict';
+  if (!window.OmSaravanaBhava) return;
+  const { loadJSON, escapeHTML } = window.OmSaravanaBhava;
+
+  function card(title, subtitle, body, tags){
+    const tagHTML = (tags || []).map(t => `<span class="tag">${escapeHTML(t)}</span>`).join('');
+    return `<article class="card encyclopedia-card">
+      <p class="eyebrow">Murugan Knowledge</p>
+      <h3>${escapeHTML(title)}</h3>
+      ${subtitle ? `<h4>${escapeHTML(subtitle)}</h4>` : ''}
+      ${body ? `<p>${escapeHTML(body)}</p>` : ''}
+      ${tagHTML ? `<div class="tags">${tagHTML}</div>` : ''}
+    </article>`;
+  }
+
+  async function renderMurugan(){
+    const target = document.getElementById('murugan-encyclopedia');
+    if (!target) return;
+    const data = await loadJSON('data/murugan_encyclopedia.json');
+    target.innerHTML = data.map(item => card(item.titleTa || item.titleEn, `${item.titleEn || ''} · ${item.type || ''}`, item.summaryEn || item.detailsEn, item.tags)).join('');
+  }
+
+  async function renderSymbols(){
+    const target = document.getElementById('murugan-symbols');
+    if (!target) return;
+    const data = await loadJSON('data/murugan_encyclopedia.json');
+    const filtered = data.filter(x => (x.type || '').toLowerCase() === 'symbol');
+    target.innerHTML = filtered.map(item => card(item.titleTa || item.titleEn, item.titleEn, `${item.summaryEn || ''} ${item.detailsEn || ''}`.trim(), item.tags)).join('');
+  }
+
+  async function renderNames(){
+    const target = document.getElementById('murugan-names');
+    if (!target) return;
+    const data = await loadJSON('data/murugan_108_names.json');
+    target.innerHTML = data.map(item => `<article class="card name-card">
+      <span class="num">${escapeHTML(item.number)}</span>
+      <h3>${escapeHTML(item.nameTa)}</h3>
+      <h4>${escapeHTML(item.nameEn)}</h4>
+      <p>${escapeHTML(item.meaningEn)}</p>
+    </article>`).join('');
+  }
+
+  async function renderLegends(){
+    const target = document.getElementById('murugan-legends');
+    if (!target) return;
+    const data = await loadJSON('data/murugan_legends.json');
+    target.innerHTML = data.map(item => `<article class="card legend-card">
+      <p class="eyebrow">Story</p>
+      <h3>${escapeHTML(item.titleTa)}</h3>
+      <h4>${escapeHTML(item.titleEn)}</h4>
+      <p>${escapeHTML(item.summaryEn)}</p>
+      <div class="practice-box"><strong>Reflection:</strong> ${escapeHTML(item.lessonEn)}</div>
+    </article>`).join('');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    renderMurugan(); renderSymbols(); renderNames(); renderLegends();
+  });
+})();
