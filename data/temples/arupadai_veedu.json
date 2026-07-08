@@ -1,0 +1,182 @@
+[
+  {
+    "id": "palani",
+    "titleTa": "பழனி முருகன் கோவில்",
+    "titleEn": "Palani Murugan Temple",
+    "district": "Dindigul",
+    "state": "Tamil Nadu",
+    "category": "Arupadai Veedu",
+    "summary": "Hill temple dedicated to Dhandayuthapani Swamy; one of the six sacred abodes.",
+    "shortHistory": "Pazhamudircholai? no, Palani is the third abode of Murugan associated with renunciation and wisdom.",
+    "openingHours": "6:00 AM - 8:00 PM",
+    "festivals": [
+      "Thai Poosam",
+      "Panguni Uthiram"
+    ],
+    "features": [
+      "Hill climb",
+      "Winch/Rope car",
+      "Panchamirtham prasadam"
+    ],
+    "location": {
+      "lat": 10.45,
+      "lng": 77.52
+    },
+    "tags": [
+      "Arupadai Veedu",
+      "Dindigul",
+      "Murugan",
+      "Temple"
+    ]
+  },
+  {
+    "id": "tiruchendur",
+    "titleTa": "திருச்செந்தூர் சுப்பிரமணிய சுவாமி",
+    "titleEn": "Tiruchendur Subramaniya Swamy Temple",
+    "district": "Thoothukudi",
+    "state": "Tamil Nadu",
+    "category": "Arupadai Veedu",
+    "summary": "One of the six abodes, uniquely located beside the sea.",
+    "shortHistory": "Seashore temple where Murugan is worshipped after victory over Surapadman.",
+    "openingHours": "5:00 AM - 9:00 PM",
+    "festivals": [
+      "Kanda Sashti",
+      "Masi Festival"
+    ],
+    "features": [
+      "Sea-side darshan",
+      "Nazhi Kinaru",
+      "Kanda Sashti festival"
+    ],
+    "location": {
+      "lat": 8.497,
+      "lng": 78.121
+    },
+    "tags": [
+      "Arupadai Veedu",
+      "Thoothukudi",
+      "Murugan",
+      "Temple"
+    ]
+  },
+  {
+    "id": "swamimalai",
+    "titleTa": "சுவாமிமலை சுவாமிநாத சுவாமி",
+    "titleEn": "Swamimalai Swaminatha Swamy Temple",
+    "district": "Thanjavur",
+    "state": "Tamil Nadu",
+    "category": "Arupadai Veedu",
+    "summary": "Known for the Guru aspect of Murugan as Swaminatha.",
+    "shortHistory": "Sacred site where Murugan taught the meaning of Pranava to Lord Shiva.",
+    "openingHours": "6:00 AM - 8:30 PM",
+    "festivals": [
+      "Thai Poosam",
+      "Panguni Uthiram"
+    ],
+    "features": [
+      "60 steps symbolism",
+      "Guru worship",
+      "Kaveri delta heritage"
+    ],
+    "location": {
+      "lat": 10.957,
+      "lng": 79.329
+    },
+    "tags": [
+      "Arupadai Veedu",
+      "Thanjavur",
+      "Murugan",
+      "Temple"
+    ]
+  },
+  {
+    "id": "thirupparankundram",
+    "titleTa": "திருப்பரங்குன்றம் முருகன் கோவில்",
+    "titleEn": "Thirupparankundram Murugan Temple",
+    "district": "Madurai",
+    "state": "Tamil Nadu",
+    "category": "Arupadai Veedu",
+    "summary": "One of the earliest abodes, known for cave architecture.",
+    "shortHistory": "Ancient rock-cut temple associated with Murugan and Deivanai marriage.",
+    "openingHours": "5:30 AM - 8:30 PM",
+    "festivals": [
+      "Panguni Uthiram",
+      "Skanda Sashti"
+    ],
+    "features": [
+      "Rock-cut architecture",
+      "Marriage legend",
+      "Madurai heritage"
+    ],
+    "location": {
+      "lat": 9.8817,
+      "lng": 78.0736
+    },
+    "tags": [
+      "Arupadai Veedu",
+      "Madurai",
+      "Murugan",
+      "Temple"
+    ]
+  },
+  {
+    "id": "thiruthani",
+    "titleTa": "திருத்தணி முருகன் கோவில்",
+    "titleEn": "Thiruthani Murugan Temple",
+    "district": "Tiruvallur",
+    "state": "Tamil Nadu",
+    "category": "Arupadai Veedu",
+    "summary": "Hill temple with 365 steps symbolising daily devotion.",
+    "shortHistory": "Temple of peace after divine victory; associated with inner calm.",
+    "openingHours": "6:00 AM - 8:30 PM",
+    "festivals": [
+      "Aadi Krittikai",
+      "New Year festival"
+    ],
+    "features": [
+      "365 steps",
+      "Peace worship",
+      "Hill darshan"
+    ],
+    "location": {
+      "lat": 13.175,
+      "lng": 79.616
+    },
+    "tags": [
+      "Arupadai Veedu",
+      "Tiruvallur",
+      "Murugan",
+      "Temple"
+    ]
+  },
+  {
+    "id": "pazhamudircholai",
+    "titleTa": "பழமுதிர்சோலை முருகன் கோவில்",
+    "titleEn": "Pazhamudircholai Murugan Temple",
+    "district": "Madurai",
+    "state": "Tamil Nadu",
+    "category": "Arupadai Veedu",
+    "summary": "Sacred hill shrine near Azhagar Malai, surrounded by nature.",
+    "shortHistory": "Forest abode of Murugan associated with Valli and Deivanai.",
+    "openingHours": "6:00 AM - 6:00 PM",
+    "festivals": [
+      "Kanda Sashti",
+      "Aadi festival"
+    ],
+    "features": [
+      "Forest shrine",
+      "Valli Deivanai worship",
+      "Nature pilgrimage"
+    ],
+    "location": {
+      "lat": 10.0615,
+      "lng": 78.2128
+    },
+    "tags": [
+      "Arupadai Veedu",
+      "Madurai",
+      "Murugan",
+      "Temple"
+    ]
+  }
+]
