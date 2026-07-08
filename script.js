@@ -1,10 +1,21 @@
-/* Om Saravana Bhava - Safe Static GitHub Pages Engine v1.1 */
 (function () {
   'use strict';
 
-  const OmApp = (window.OmApp = window.OmApp || {});
+  var DATA_CACHE = {};
+  var PAGE = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
 
-  OmApp.escapeHTML = function (value) {
+  function $(selector, root) {
+    return (root || document).querySelector(selector);
+  }
+
+  function el(tag, className, html) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (html !== undefined) node.innerHTML = html;
+    return node;
+  }
+
+  function escapeHTML(value) {
     if (value === null || value === undefined) return '';
     return String(value)
       .replace(/&/g, '&amp;')
@@ -12,150 +23,243 @@
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#039;');
-  };
+  }
 
-  OmApp.loadJSON = async function (path) {
-    try {
-      const response = await fetch(path, { cache: 'no-store' });
-      if (!response.ok) throw new Error('HTTP ' + response.status);
-      return await response.json();
-    } catch (error) {
-      console.warn('[OmApp] JSON unavailable:', path, error.message);
-      return [];
-    }
-  };
+  function getMain() {
+    return $('main') || document.body;
+  }
 
-  function setTodayDate() {
-    const todayTargets = document.querySelectorAll('#today, [data-date="today"]');
-    const todayText = new Date().toLocaleDateString('en-GB', {
-      weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+  function dataUrl(name) {
+    return 'data/' + name + '.json';
+  }
+
+  function loadJSON(name) {
+    if (DATA_CACHE[name]) return Promise.resolve(DATA_CACHE[name]);
+    return fetch(dataUrl(name), { cache: 'no-cache' })
+      .then(function (res) {
+        if (!res.ok) throw new Error('Unable to load ' + name);
+        return res.json();
+      })
+      .then(function (data) {
+        DATA_CACHE[name] = data;
+        return data;
+      })
+      .catch(function (error) {
+        console.warn('[OSB] JSON load skipped:', error.message);
+        return [];
+      });
+  }
+
+  function section(titleTa, titleEn, intro) {
+    var wrap = el('section', 'osb-dynamic section');
+    wrap.innerHTML = '<div class="osb-section-head">' +
+      '<p class="kicker tamil">' + escapeHTML(titleTa) + '</p>' +
+      '<h2>' + escapeHTML(titleEn) + '</h2>' +
+      (intro ? '<p class="muted">' + escapeHTML(intro) + '</p>' : '') +
+      '</div>';
+    return wrap;
+  }
+
+  function renderTemples(data, target, limit) {
+    var list = limit ? data.slice(0, limit) : data;
+    var grid = el('div', 'osb-card-grid');
+    list.forEach(function (t) {
+      var card = el('article', 'osb-data-card');
+      card.innerHTML = '<div class="osb-card-top">' +
+        '<span class="num">' + escapeHTML(String(t.order).padStart(2, '0')) + '</span>' +
+        '<button class="osb-fav" data-fav="temple:' + escapeHTML(t.id) + '" aria-label="Save favourite">♡</button>' +
+        '</div>' +
+        '<h3 class="tamil">' + escapeHTML(t.nameTa) + '</h3>' +
+        '<h4>' + escapeHTML(t.nameEn) + '</h4>' +
+        '<p>' + escapeHTML(t.short) + '</p>' +
+        '<p class="muted small">📍 ' + escapeHTML(t.location) + ', ' + escapeHTML(t.district) + '</p>' +
+        '<p class="muted small">🕒 ' + escapeHTML(t.openingHours) + '</p>' +
+        '<div class="osb-tags">' + (t.festivals || []).map(function (f) { return '<span>' + escapeHTML(f) + '</span>'; }).join('') + '</div>' +
+        '<a class="btn secondary osb-mini-btn" target="_blank" rel="noopener" href="' + escapeHTML(t.mapLink) + '">View Map</a>';
+      grid.appendChild(card);
     });
-    todayTargets.forEach((el) => { el.textContent = todayText; });
+    target.appendChild(grid);
+    hydrateFavourites(target);
   }
 
-  function enhanceMobileNav() {
-    const nav = document.querySelector('.nav-inner');
-    const links = document.querySelector('.nav-links');
-    if (!nav || !links || document.getElementById('menuToggle')) return;
-
-    const btn = document.createElement('button');
-    btn.id = 'menuToggle';
-    btn.className = 'menu-toggle';
-    btn.type = 'button';
-    btn.setAttribute('aria-expanded', 'false');
-    btn.setAttribute('aria-label', 'Open menu');
-    btn.textContent = '☰';
-    nav.appendChild(btn);
-
-    btn.addEventListener('click', function () {
-      const open = links.classList.toggle('open');
-      btn.setAttribute('aria-expanded', String(open));
-      btn.textContent = open ? '×' : '☰';
+  function renderFestivals(data, target) {
+    var grid = el('div', 'osb-card-grid');
+    data.forEach(function (f) {
+      var card = el('article', 'osb-data-card');
+      card.innerHTML = '<h3 class="tamil">' + escapeHTML(f.nameTa) + '</h3>' +
+        '<h4>' + escapeHTML(f.nameEn) + '</h4>' +
+        '<p class="muted small">🗓 ' + escapeHTML(f.month) + '</p>' +
+        '<p>' + escapeHTML(f.description) + '</p>' +
+        '<div class="osb-tags">' + (f.rituals || []).map(function (r) { return '<span>' + escapeHTML(r) + '</span>'; }).join('') + '</div>';
+      grid.appendChild(card);
     });
+    target.appendChild(grid);
   }
 
-  function createCard(item, type) {
-    const titleTa = item.nameTa || item.titleTa || '';
-    const titleEn = item.nameEn || item.titleEn || '';
-    const summary = item.summary || item.description || item.shortDescription || '';
-    const location = item.location ? `<p class="muted small">📍 ${OmApp.escapeHTML(item.location)}${item.district ? ', ' + OmApp.escapeHTML(item.district) : ''}</p>` : '';
-    const tags = Array.isArray(item.highlights)
-      ? `<div class="mini-tags">${item.highlights.map((tag) => `<span>${OmApp.escapeHTML(tag)}</span>`).join('')}</div>`
-      : '';
-    const map = item.mapLink ? `<a class="btn small-btn" target="_blank" rel="noopener noreferrer" href="${OmApp.escapeHTML(item.mapLink)}">View Map</a>` : '';
-    return `
-      <article class="card dynamic-card" data-type="${OmApp.escapeHTML(type)}" data-search="${OmApp.escapeHTML((titleTa + ' ' + titleEn + ' ' + summary + ' ' + (item.location || '')).toLowerCase())}">
-        ${titleTa ? `<h3 class="tamil">${OmApp.escapeHTML(titleTa)}</h3>` : ''}
-        ${titleEn ? `<h2>${OmApp.escapeHTML(titleEn)}</h2>` : ''}
-        ${location}
-        <p>${OmApp.escapeHTML(summary)}</p>
-        ${tags}
-        ${map}
-      </article>`;
+  function renderSlokas(data, target) {
+    var grid = el('div', 'osb-card-grid');
+    data.forEach(function (s) {
+      var card = el('article', 'osb-data-card');
+      card.innerHTML = '<div class="osb-card-top"><span class="osb-chip">' + escapeHTML(s.category) + '</span>' +
+        '<button class="osb-fav" data-fav="sloka:' + escapeHTML(s.id) + '" aria-label="Save favourite">♡</button></div>' +
+        '<h3 class="tamil">' + escapeHTML(s.titleTa) + '</h3>' +
+        '<h4>' + escapeHTML(s.titleEn) + '</h4>' +
+        '<p class="muted small">Author: ' + escapeHTML(s.author) + '</p>' +
+        '<p>' + escapeHTML(s.meaning) + '</p>' +
+        '<div class="osb-tags">' + (s.benefits || []).map(function (b) { return '<span>' + escapeHTML(b) + '</span>'; }).join('') + '</div>';
+      grid.appendChild(card);
+    });
+    target.appendChild(grid);
+    hydrateFavourites(target);
   }
 
-  function renderList(container, data, type) {
-    if (!container || !Array.isArray(data) || data.length === 0) return;
-    container.innerHTML = data.map((item) => createCard(item, type)).join('');
+  function renderGallery(data, target) {
+    var grid = el('div', 'osb-gallery-grid');
+    data.forEach(function (g, i) {
+      var card = el('article', 'osb-gallery-card');
+      card.innerHTML = '<span class="osb-chip">' + escapeHTML(g.category) + '</span>' +
+        '<h3>' + escapeHTML(g.title) + '</h3>' +
+        '<p>' + escapeHTML(g.description) + '</p>';
+      card.style.setProperty('--osb-accent-index', i + 1);
+      grid.appendChild(card);
+    });
+    target.appendChild(grid);
   }
 
-  function addSearch(container) {
-    if (!container || container.dataset.searchReady === 'true') return;
-    container.dataset.searchReady = 'true';
-    const input = document.createElement('input');
-    input.className = 'searchbox page-search';
+  function addSearch(sectionEl, placeholder, callback) {
+    var input = el('input', 'searchbox osb-search');
     input.type = 'search';
-    input.placeholder = 'Search this page...';
-    input.setAttribute('aria-label', 'Search this page');
-    container.parentNode.insertBefore(input, container);
+    input.placeholder = placeholder;
+    input.setAttribute('aria-label', placeholder);
+    sectionEl.appendChild(input);
+    var timer;
     input.addEventListener('input', function () {
-      const q = input.value.trim().toLowerCase();
-      container.querySelectorAll('.dynamic-card').forEach((card) => {
-        card.hidden = q && !card.dataset.search.includes(q);
+      clearTimeout(timer);
+      timer = setTimeout(function () { callback(input.value.trim().toLowerCase()); }, 180);
+    });
+  }
+
+  function getFavourites() {
+    try { return JSON.parse(localStorage.getItem('osb_favourites') || '[]'); }
+    catch (e) { return []; }
+  }
+
+  function setFavourites(list) {
+    try { localStorage.setItem('osb_favourites', JSON.stringify(list)); } catch (e) {}
+  }
+
+  function hydrateFavourites(root) {
+    var favourites = getFavourites();
+    root.querySelectorAll('[data-fav]').forEach(function (btn) {
+      var id = btn.getAttribute('data-fav');
+      btn.textContent = favourites.indexOf(id) >= 0 ? '❤️' : '♡';
+      btn.addEventListener('click', function () {
+        var current = getFavourites();
+        var index = current.indexOf(id);
+        if (index >= 0) current.splice(index, 1);
+        else current.push(id);
+        setFavourites(current);
+        btn.textContent = current.indexOf(id) >= 0 ? '❤️' : '♡';
       });
     });
   }
 
-  async function hydratePage() {
-    const path = window.location.pathname.toLowerCase();
-
-    const templesContainers = document.querySelectorAll('#temples-full-container, #temples-data-container, [data-omapp="temples"]');
-    const festivalsContainers = document.querySelectorAll('#festivals-full-container, [data-omapp="festivals"]');
-    const slokasContainers = document.querySelectorAll('#slokas-full-container, [data-omapp="slokas"]');
-
-    if (path.includes('temples') && templesContainers.length) {
-      const data = await OmApp.loadJSON('data/temples.json');
-      templesContainers.forEach((c) => { renderList(c, data, 'temple'); addSearch(c); });
+  function initIndex() {
+    var main = getMain();
+    var today = $('#today');
+    if (today) {
+      today.textContent = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
     }
-
-    if (path.includes('festivals') && festivalsContainers.length) {
-      const data = await OmApp.loadJSON('data/festivals.json');
-      festivalsContainers.forEach((c) => { renderList(c, data, 'festival'); addSearch(c); });
-    }
-
-    if (path.includes('slokas') && slokasContainers.length) {
-      const data = await OmApp.loadJSON('data/slokas.json');
-      slokasContainers.forEach((c) => { renderList(c, data, 'sloka'); addSearch(c); });
-    }
-
-    if ((path === '/' || path.includes('index')) && templesContainers.length) {
-      const data = await OmApp.loadJSON('data/temples.json');
-      templesContainers.forEach((c) => renderList(c, data.slice(0, 3), 'temple'));
-    }
-
-    const panchangam = document.getElementById('panchangam-data') || document.querySelector('[data-omapp="panchangam"]');
-    if (panchangam) {
-      const data = await OmApp.loadJSON('data/panchangam.json');
-      if (data[0]) {
-        const p = data[0];
-        panchangam.innerHTML = `
-          <div class="card dynamic-card">
-            <h3>${OmApp.escapeHTML(p.location)}</h3>
-            <p><strong>Sunrise:</strong> ${OmApp.escapeHTML(p.sunrise)} | <strong>Sunset:</strong> ${OmApp.escapeHTML(p.sunset)}</p>
-            <p><strong>Tithi:</strong> ${OmApp.escapeHTML(p.tithi)} | <strong>Nakshatra:</strong> ${OmApp.escapeHTML(p.nakshatra)}</p>
-            <p><strong>Rahu Kalam:</strong> ${OmApp.escapeHTML(p.rahuKalam)}</p>
-            <p><strong>Festival:</strong> ${OmApp.escapeHTML(p.festival)}</p>
-          </div>`;
-      }
-    }
+    Promise.all([loadJSON('temples'), loadJSON('daily_quotes'), loadJSON('panchangam')]).then(function (all) {
+      var temples = all[0], quotes = all[1], panchangam = all[2];
+      var quote = quotes[new Date().getDate() % Math.max(quotes.length, 1)] || {};
+      var s = section('தினசரி தரிசனம்', 'Daily Divine Content', 'A safe static data layer loaded from JSON files.');
+      var p = panchangam[0] || {};
+      s.innerHTML += '<div class="osb-card-grid osb-card-grid-2">' +
+        '<article class="osb-data-card"><h3>Today\'s Panchangam</h3><p class="muted small">' + escapeHTML(p.location || 'Chennai') + '</p><p>Sunrise: ' + escapeHTML(p.sunrise || '-') + ' · Sunset: ' + escapeHTML(p.sunset || '-') + '</p><p class="muted">' + escapeHTML(p.note || '') + '</p></article>' +
+        '<article class="osb-data-card"><h3 class="tamil">' + escapeHTML(quote.quoteTa || 'ஓம் சரவண பவ') + '</h3><p>' + escapeHTML(quote.quoteEn || 'Om Saravana Bhava') + '</p><p class="muted small">Theme: ' + escapeHTML(quote.theme || 'Devotion') + '</p></article>' +
+        '</div>';
+      renderTemples(temples, s, 3);
+      main.appendChild(s);
+    });
   }
 
-  function safeAIBox() {
-    const input = document.getElementById('aiInput');
-    const out = document.getElementById('aiOut');
-    const btn = document.getElementById('aiBtn');
+  function initTemples() {
+    loadJSON('temples').then(function (data) {
+      var s = section('ஆறு படைவீடுகள்', 'Dynamic Arupadai Veedu Directory', 'Search and explore the six sacred abodes.');
+      addSearch(s, 'Search temples by name, district or festival...', function (q) {
+        var existing = s.querySelector('.osb-card-grid');
+        if (existing) existing.remove();
+        renderTemples(data.filter(function (t) {
+          return !q || JSON.stringify(t).toLowerCase().indexOf(q) >= 0;
+        }), s);
+      });
+      renderTemples(data, s);
+      getMain().appendChild(s);
+    });
+  }
+
+  function initFestivals() {
+    loadJSON('festivals').then(function (data) {
+      var s = section('திருவிழாக்கள்', 'Dynamic Festival Guide', 'Murugan festivals, meanings and rituals.');
+      renderFestivals(data, s);
+      getMain().appendChild(s);
+    });
+  }
+
+  function initSlokas() {
+    loadJSON('slokas').then(function (data) {
+      var s = section('பக்திப் பாடல்கள்', 'Dynamic Slokas & Mantras', 'Search devotional texts, meanings and benefits.');
+      addSearch(s, 'Search slokas, mantras or benefits...', function (q) {
+        var existing = s.querySelector('.osb-card-grid');
+        if (existing) existing.remove();
+        renderSlokas(data.filter(function (item) {
+          return !q || JSON.stringify(item).toLowerCase().indexOf(q) >= 0;
+        }), s);
+      });
+      renderSlokas(data, s);
+      getMain().appendChild(s);
+    });
+  }
+
+  function initGallery() {
+    loadJSON('gallery').then(function (data) {
+      var s = section('தரிசன காட்சிகள்', 'Dynamic Spiritual Gallery', 'A lightweight gallery layer that does not require heavy images yet.');
+      renderGallery(data, s);
+      getMain().appendChild(s);
+    });
+  }
+
+  function initAIGuide() {
+    var input = document.getElementById('aiInput');
+    var out = document.getElementById('aiOut');
+    var btn = document.getElementById('aiBtn');
     if (input && out && btn) {
       btn.addEventListener('click', function () {
-        out.textContent = 'Demo guide: This static page is ready. Future AI backend can answer: ' + input.value;
+        var q = escapeHTML(input.value || '');
+        out.innerHTML = '<strong>Om Saravana Bhava Guide:</strong> This static guide can help with temples, slokas and festivals. You asked: ' + q;
       });
     }
+  }
+
+  function initBackToTop() {
+    var btn = el('button', 'osb-backtop', '↑');
+    btn.setAttribute('aria-label', 'Back to top');
+    document.body.appendChild(btn);
+    btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    window.addEventListener('scroll', function () {
+      btn.classList.toggle('visible', window.scrollY > 450);
+    }, { passive: true });
   }
 
   function init() {
-    setTodayDate();
-    enhanceMobileNav();
-    safeAIBox();
-    hydratePage();
+    initAIGuide();
+    initBackToTop();
+    if (PAGE === '' || PAGE === 'index.html') initIndex();
+    else if (PAGE === 'temples.html') initTemples();
+    else if (PAGE === 'festivals.html') initFestivals();
+    else if (PAGE === 'slokas.html') initSlokas();
+    else if (PAGE === 'gallery.html') initGallery();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
