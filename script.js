@@ -220,48 +220,23 @@
     return (items || []).length ? `<ul class="detail-list">${items.map(x => `<li>${escapeHTML(x)}</li>`).join('')}</ul>` : '';
   }
 
-  function sameTempleId(item, requestedId) {
-    if (!item || !requestedId) return false;
-    const wanted = slug(requestedId);
-    const candidates = [item.id, item.nameEn, item.nameTa, ...(item.aliases || [])]
-      .filter(Boolean)
-      .map(value => slug(value));
-    const legacyAliases = {
-      'thiruparankundram': 'thirupparamkundram',
-      'tiruchendur': 'thiruchendur'
-    };
-    return candidates.includes(wanted) || candidates.includes(legacyAliases[wanted]);
-  }
-
   async function initTempleDetail() {
     const container = $('#detail-container');
     if (!container || document.body.dataset.page !== 'temple-detail') return;
     const id = getParam('id') || 'palani';
-    const [details, temples] = await Promise.all([
-      loadJSON(DATA_FILES.templeDetails),
-      loadJSON(DATA_FILES.temples)
-    ]);
-    const detailList = Array.isArray(details) ? details : [];
-    const templeList = Array.isArray(temples) ? temples : [];
-    const item = detailList.find(x => sameTempleId(x, id)) || templeList.find(x => sameTempleId(x, id));
-    if (!item) {
-      return renderEmpty(container, `Temple detail is not available for: ${id}. Please return to the temple list and choose a verified temple.`);
-    }
-    const festivals = item.festivals || item.festivalHighlights || [];
-    const practices = item.practices || ['Chant Om Saravana Bhava with attention', 'Offer a simple prayer before beginning important work', 'Reflect on courage, humility and right action'];
-    const quickFacts = item.quickFacts || [item.mainDeity, item.district, item.openingHours].filter(Boolean);
-    const location = item.location || [item.district, item.state].filter(Boolean).join(', ');
-    const map = item.map || item.mapLink;
-    document.title = `${item.nameEn || item.nameTa || 'Murugan Temple'} | Om Saravana Bhava`;
+    const details = await loadJSON(DATA_FILES.templeDetails);
+    const item = (Array.isArray(details) ? details : []).find(x => x.id === id) || details[0];
+    if (!item) return renderEmpty(container, 'Temple detail is not available.');
+    document.title = `${item.nameEn} | Om Saravana Bhava`;
     container.innerHTML = `
-      ${detailHero(item.nameTa || item.nameEn, `${item.nameEn || ''} · ${location}`, item.category || 'Murugan Temple')}
+      ${detailHero(item.nameTa || item.nameEn, `${item.nameEn} · ${item.location}`, item.category)}
       <div class="detail-grid">
-        ${detailSection('History / வரலாறு', `<p>${escapeHTML(item.history || item.summary || item.significance)}</p>`)}
-        ${detailSection('Spiritual Meaning / ஆன்மீகப் பொருள்', `<p>${escapeHTML(item.spiritualMeaning || item.significance || item.summary)}</p>`)}
-        ${detailSection('Festivals / விழாக்கள்', listHTML(festivals))}
-        ${detailSection('Daily Practice / தினசரி பயிற்சி', listHTML(practices))}
-        ${detailSection('Quick Facts / முக்கிய விவரங்கள்', listHTML(quickFacts))}
-        ${detailSection('Visit / பயணம்', `<p>${escapeHTML(location)}</p>${item.openingHours ? `<p><strong>Opening:</strong> ${escapeHTML(item.openingHours)}</p>` : ''}${mapLink(map)}`)}
+        ${detailSection('History', `<p>${escapeHTML(item.history || item.summary)}</p>`)}
+        ${detailSection('Spiritual Meaning', `<p>${escapeHTML(item.spiritualMeaning)}</p>`)}
+        ${detailSection('Festivals', listHTML(item.festivals))}
+        ${detailSection('Daily Practice', listHTML(item.practices))}
+        ${detailSection('Quick Facts', listHTML(item.quickFacts))}
+        ${detailSection('Visit', `<p>${escapeHTML(item.location)}</p>${mapLink(item.map)}`)}
       </div>
       <p class="breadcrumb-line"><a href="temples.html">← Back to Temples</a></p>`;
   }
@@ -459,10 +434,10 @@
     bar.className = 'osb-utility-bar';
     bar.setAttribute('aria-label', 'Reading and page tools');
     bar.innerHTML = `
-      <button type="button" class="utility-btn" data-osb-tool="font" aria-label="Increase reading font size">A+</button>
-      <button type="button" class="utility-btn" data-osb-tool="theme" aria-label="Toggle temple night mode">☾</button>
-      <button type="button" class="utility-btn" data-osb-tool="fav" aria-label="Save this page">♡</button>
-      <button type="button" class="utility-btn" data-osb-tool="share" aria-label="Share this page">Share</button>
+      <button type="button" class="utility-btn" data-osb-tool="font" aria-label="Increase reading font size"><span>A+</span><small>Text</small></button>
+      <button type="button" class="utility-btn" data-osb-tool="theme" aria-label="Toggle temple night mode"><span>☾</span><small>Night</small></button>
+      <button type="button" class="utility-btn" data-osb-tool="fav" aria-label="Save this page"><span>♡</span><small>Save</small></button>
+      <button type="button" class="utility-btn" data-osb-tool="share" aria-label="Share this page"><span>↗</span><small>Share</small></button>
     `;
     document.body.appendChild(bar);
 
@@ -509,7 +484,11 @@
   function updateFavButton(btn) {
     if (!btn) return;
     const favs = safeStoreGet('osb_favourites', []);
-    btn.textContent = favs.includes(pageId()) ? '♥' : '♡';
+    const icon = btn.querySelector('span');
+    const label = btn.querySelector('small');
+    const saved = favs.includes(pageId());
+    if (icon) icon.textContent = saved ? '♥' : '♡';
+    if (label) label.textContent = saved ? 'Saved' : 'Save';
   }
 
   function createScrollProgress() {

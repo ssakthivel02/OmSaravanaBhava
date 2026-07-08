@@ -6,6 +6,23 @@
   const norm = v => String(v ?? '').toLowerCase().trim().replace(/[-_]+/g,' ');
   async function json(path){ try{ const r=await fetch(path,{cache:'no-store'}); if(!r.ok) throw new Error(r.status); return await r.json(); } catch(e){ console.warn('[KG] load failed',path,e); return null; } }
   function node(id){ return (KG.graph?.nodes||[]).find(n=>n.id===id); }
+  const ALIASES = {
+    thiruchendu:'thiruchendur', tiruchendur:'thiruchendur', thiruchendur:'thiruchendur',
+    thiruparankundram:'thirupparamkundram', thirupparankundram:'thirupparamkundram',
+    sashti:'skanda-sashti', kavasam:'kanda-sashti-kavasam', kavacham:'kanda-sashti-kavasam',
+    thai:'thai-poosam', poosam:'thai-poosam', vel:'vel', valli:'valli'
+  };
+  function resolveId(id){
+    const raw=norm(id||'');
+    if(!raw) return 'murugan';
+    if(node(raw)) return raw;
+    const compact=raw.replace(/\s+/g,'-');
+    if(node(compact)) return compact;
+    if(ALIASES[raw]) return ALIASES[raw];
+    const candidates=(KG.graph?.nodes||[]);
+    const found=candidates.find(n=>norm(n.id).startsWith(raw)||norm(n.title).startsWith(raw)||norm(n.titleTa).includes(String(id||'')));
+    return found?.id || raw;
+  }
   function edgesFor(id){ return (KG.graph?.edges||[]).filter(e=>e.source===id||e.target===id); }
   function related(id){ return edgesFor(id).map(e=>({edge:e,item:node(e.source===id?e.target:e.source)})).filter(x=>x.item); }
   function textOf(item){ return [item.id,item.title,item.titleTa,item.summary,(item.tags||[]).join(' ')].join(' '); }
@@ -32,7 +49,20 @@
     const count=$('#kg-count'); if(count) count.textContent = ranked.length + ' verified result(s)';
   }
   function initAISearch(){
-    const input=$('#kg-query'); const params=new URLSearchParams(location.search); if(input && params.get('q')) input.value=params.get('q');
+    const input=$('#kg-query');
+    const params=new URLSearchParams(location.search);
+    const urlQuery=params.get('q');
+    if(input) input.value = urlQuery ? urlQuery : (input.value || 'murugan');
+    const hero=document.querySelector('.kg-searchbar');
+    if(hero && !document.querySelector('.kg-suggestion-row')){
+      const row=document.createElement('div');
+      row.className='kg-suggestion-row';
+      ['Palani','Thiruchendur','Vel','Valli','Skanda Sashti','Kanda Sashti Kavasam','Thiruppugazh'].forEach(q=>{
+        const b=document.createElement('button'); b.type='button'; b.textContent=q; b.dataset.q=q; row.appendChild(b);
+      });
+      hero.insertAdjacentElement('afterend',row);
+      row.addEventListener('click',e=>{const b=e.target.closest('[data-q]'); if(!b) return; input.value=b.dataset.q; run();});
+    }
     const run=()=>{ const q=input?.value||'murugan'; renderSearch(q); const url=new URL(location.href); url.searchParams.set('q',q); history.replaceState(null,'',url); };
     $('#kg-search-btn')?.addEventListener('click',run); input?.addEventListener('input',run); input?.addEventListener('keydown',e=>{ if(e.key==='Enter') run(); }); run();
   }
@@ -43,7 +73,7 @@
     const k=$('#kg-kpi'); if(k) k.innerHTML=`<div><strong>${KG.graph.nodes.length}</strong><span>Knowledge nodes</span></div><div><strong>${KG.graph.edges.length}</strong><span>Verified links</span></div><div><strong>6</strong><span>Arupadai Veedu temples</span></div><div><strong>100%</strong><span>Local static framework</span></div>`;
   }
   function initRecommendations(){
-    const id=new URLSearchParams(location.search).get('id')||'murugan'; const base=node(id)||node('murugan');
+    const id=resolveId(new URLSearchParams(location.search).get('id')||'murugan'); const base=node(id)||node('murugan');
     const hero=$('#rec-hero'); if(hero) hero.innerHTML=`<p class="eyebrow">Recommendation engine</p><h1>${esc(base.titleTa||base.title)}</h1><p>${esc(base.summary)}</p><div class="kg-toolbar"><a class="kg-btn secondary" href="${esc(base.url||'ai-search.html?q='+base.id)}">Open source page</a><a class="kg-btn" href="ai-search.html?q=${encodeURIComponent(base.title)}">Search similar</a></div>`;
     const rel=related(base.id); const list=$('#rec-list'); if(list) list.innerHTML=rel.length?rel.map(x=>card(x.item,`<p class="kg-reason">Reason: ${esc(x.edge.relation)}</p>`)).join(''):'<div class="kg-warning">No related items yet.</div>';
   }
@@ -69,7 +99,7 @@
       festivals:['thai-poosam','skanda-sashti','panguni-uthiram','vaikasi-visakam','karthigai-deepam']
     };
     const tabs=$('#kg-path-tabs'); if(tabs){ tabs.innerHTML=Object.keys(paths).map((p,i)=>`<button class="kg-tab ${i===0?'active':''}" type="button" data-path="${p}">${p[0].toUpperCase()+p.slice(1)}</button>`).join(''); }
-    const render=name=>{ el.innerHTML=(paths[name]||paths.beginner).map(id=>{const n=node(id); return `<li><strong>${esc(n?.title||id)}</strong><br><span class="kg-muted">${esc(n?.summary||'')}</span><div class="kg-toolbar"><a class="kg-btn secondary" href="${esc(n?.url||'ai-search.html?q='+id)}">Open</a><a class="kg-btn" href="recommendations.html?id=${encodeURIComponent(id)}">Related</a></div></li>`}).join(''); };
+    const render=name=>{ el.innerHTML=(paths[name]||paths.beginner).map(id=>{const n=node(id); return `<li><strong>${esc(n?.title||id)}</strong><br><span class="kg-muted">${esc(n?.summary||'')}</span><div class="kg-toolbar"><a class="kg-btn secondary" href="${esc(n?.url||'ai-search.html?q='+id)}">Open lesson</a><a class="kg-btn" href="recommendations.html?id=${encodeURIComponent(id)}">Next related</a></div></li>`}).join(''); };
     tabs?.addEventListener('click',e=>{const b=e.target.closest('[data-path]'); if(!b) return; tabs.querySelectorAll('.kg-tab').forEach(x=>x.classList.remove('active')); b.classList.add('active'); render(b.dataset.path);}); render('beginner');
   }
   async function init(){ document.body.classList.add('kg-layout-fix'); KG.graph=await json('data/knowledge/knowledge_graph.json'); KG.prompts=await json('data/knowledge/ai_guide_prompts.json')||{}; if(!KG.graph) return; initAISearch(); initGraph(); initRecommendations(); initGuide(); initPaths(); }
