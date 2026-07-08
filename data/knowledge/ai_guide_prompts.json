@@ -1,13 +1,12 @@
 {
   "safeMode": true,
   "intro": "I can guide you through verified Murugan content in this website. I do not replace a guru, temple authority, panchangam expert, or scripture scholar.",
-  "fallback": "I could not find a verified source in this website yet. Try Palani, Thiruchendur, Vel, Thai Poosam, Skanda Sashti, Thiruppugazh, Kavacham, Valli, Deivanai or Arupadai Veedu.",
+  "fallback": "I could not find a verified source in this website yet. Please check the temple page, sources page, or a trusted traditional reference.",
   "suggestions": [
-    "Show me the six Arupadai Veedu temples",
-    "Why is Palani associated with wisdom?",
-    "What is the connection between Thai Poosam and Vel?",
-    "What should I read for Skanda Sashti?",
-    "Explain Valli and Deivanai",
-    "Guide me from beginner to Murugan temple study"
+    "Start with Lord Murugan and the Vel",
+    "Explore the six Arupadai Veedu temples",
+    "Learn the meaning of Om Saravana Bhava",
+    "Prepare for Thai Poosam",
+    "Read about Skanda Sashti and Kanda Sashti Kavasam"
   ]
 }

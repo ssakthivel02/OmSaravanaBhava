@@ -1,49 +1,385 @@
 {
-  "version":"11.1",
-  "updated":"2026-07-08",
-  "disclaimer":"Educational and devotional local knowledge graph. Formal ritual, astrological and historical decisions should be verified with trusted traditional authorities.",
-  "nodes":[
-    {"id":"murugan","type":"deity","title":"Lord Murugan","titleTa":"முருகன்","summary":"Central deity of the platform, associated with wisdom, courage, youth, victory, compassion and spiritual discipline.","url":"murugan.html","tags":["murugan","skanda","subramanya","karthikeya","vel","wisdom","deity"]},
-    {"id":"vel","type":"symbol","title":"Vel","titleTa":"வேல்","summary":"The divine spear symbolising wisdom that cuts ignorance and protects devotees.","url":"symbols.html#vel","tags":["vel","spear","symbol","wisdom","protection"]},
-    {"id":"mayil","type":"symbol","title":"Peacock","titleTa":"மயில்","summary":"Murugan's vahana, representing beauty, alertness, grace and victory over ego.","url":"symbols.html#mayil","tags":["mayil","peacock","vahana","symbol","grace"]},
-    {"id":"seval","type":"symbol","title":"Rooster Flag","titleTa":"சேவல் கொடி","summary":"The rooster banner represents awakening, courage and victory in Murugan tradition.","url":"symbols.html#seval","tags":["rooster","flag","symbol","victory"]},
-    {"id":"valli","type":"consort","title":"Valli","titleTa":"வள்ளி","summary":"Valli represents loving devotion, simplicity and the intimate path of grace.","url":"legends.html","tags":["valli","consort","devotion","grace"]},
-    {"id":"deivanai","type":"consort","title":"Deivanai","titleTa":"தெய்வானை","summary":"Deivanai represents divine order, discipline and celestial dharma in Murugan tradition.","url":"legends.html","tags":["deivanai","devasena","consort","dharma"]},
-    {"id":"arupadai-veedu","type":"category","title":"Arupadai Veedu","titleTa":"ஆறுபடை வீடு","summary":"The six sacred abodes of Lord Murugan, forming a major pilgrimage and study path.","url":"arupadai-veedu.html","tags":["six abodes","arupadai","temples","pilgrimage"]},
-    {"id":"palani","type":"temple","title":"Palani Murugan Temple","titleTa":"பழனி முருகன் கோவில்","summary":"Arupadai Veedu associated with wisdom, renunciation and Dhandayuthapani.","url":"temple-details.html?id=palani","tags":["palani","dindigul","arupadai veedu","wisdom","hill temple"]},
-    {"id":"thiruchendur","type":"temple","title":"Thiruchendur Murugan Temple","titleTa":"திருச்செந்தூர் முருகன் கோவில்","summary":"Seashore Arupadai Veedu associated with victory over Surapadman and Skanda Sashti.","url":"temple-details.html?id=thiruchendur","tags":["thiruchendur","sea temple","arupadai veedu","skanda sashti"]},
-    {"id":"thirupparamkundram","type":"temple","title":"Thirupparamkundram Murugan Temple","titleTa":"திருப்பரங்குன்றம் முருகன் கோவில்","summary":"Arupadai Veedu connected with divine marriage tradition and early Murugan worship.","url":"temple-details.html?id=thirupparamkundram","tags":["thirupparamkundram","madurai","deivanai","marriage","arupadai veedu"]},
-    {"id":"swamimalai","type":"temple","title":"Swamimalai Murugan Temple","titleTa":"சுவாமிமலை முருகன் கோவில்","summary":"Arupadai Veedu where Murugan is revered as the guru who explains pranava wisdom.","url":"temple-details.html?id=swamimalai","tags":["swamimalai","guru","pranava","arupadai veedu"]},
-    {"id":"tiruttani","type":"temple","title":"Tiruttani Murugan Temple","titleTa":"திருத்தணி முருகன் கோவில்","summary":"Arupadai Veedu associated with peace, balance and the quieting of anger after victory.","url":"temple-details.html?id=tiruttani","tags":["tiruttani","peace","hill temple","arupadai veedu"]},
-    {"id":"pazhamudircholai","type":"temple","title":"Pazhamudircholai Murugan Temple","titleTa":"பழமுதிர்சோலை முருகன் கோவில்","summary":"Arupadai Veedu near Madurai associated with nature, grace and complete blessing.","url":"temple-details.html?id=pazhamudircholai","tags":["pazhamudircholai","nature","madurai","arupadai veedu"]},
-    {"id":"vayalur","type":"temple","title":"Vayalur Murugan Temple","titleTa":"வயலூர் முருகன் கோவில்","summary":"A revered Murugan temple connected with Arunagirinathar and Thiruppugazh tradition.","url":"temple-details.html?id=vayalur","tags":["vayalur","thiruppugazh","arunagirinathar","trichy"]},
-    {"id":"marudhamalai","type":"temple","title":"Marudhamalai Murugan Temple","titleTa":"மருதமலை முருகன் கோவில்","summary":"Hill temple near Coimbatore associated with Murugan devotion and Siddhar tradition.","url":"temple-details.html?id=marudhamalai","tags":["marudhamalai","coimbatore","hill temple","siddhar"]},
-    {"id":"om-saravana-bhava","type":"sloka","title":"Om Saravana Bhava","titleTa":"ஓம் சரவணபவ","summary":"Six-syllable mantra used for focus, protection and devotional connection.","url":"sloka-details.html?id=om-saravana-bhava","tags":["mantra","saravana bhava","daily practice","sloka"]},
-    {"id":"kanda-sashti-kavasam","type":"sloka","title":"Kanda Sashti Kavasam","titleTa":"கந்த சஷ்டி கவசம்","summary":"A celebrated devotional hymn seeking Murugan's protection and grace.","url":"sloka-reader.html?id=kanda-sashti-kavasam","tags":["kavacham","protection","sashti","sloka"]},
-    {"id":"shanmuga-kavacham","type":"sloka","title":"Shanmuga Kavacham","titleTa":"சண்முக கவசம்","summary":"A Murugan protection hymn traditionally recited for courage and spiritual shelter.","url":"kavacham.html","tags":["kavacham","protection","shanmuga"]},
-    {"id":"subramanya-bhujangam","type":"sloka","title":"Subramanya Bhujangam","titleTa":"சுப்ரமண்ய புஜங்கம்","summary":"A Sanskrit hymn to Lord Subramanya often associated with deep devotion and surrender.","url":"sloka-library.html","tags":["subramanya","bhujangam","sanskrit","hymn"]},
-    {"id":"thiruppugazh","type":"literature","title":"Thiruppugazh","titleTa":"திருப்புகழ்","summary":"Sacred Murugan hymns composed by Arunagirinathar, known for rhythm and devotion.","url":"thiruppugazh.html","tags":["thiruppugazh","arunagirinathar","hymn","literature"]},
-    {"id":"kandar-anuboothi","type":"literature","title":"Kandar Anuboothi","titleTa":"கந்தர் அனுபூதி","summary":"A revered Murugan work of Arunagirinathar focused on spiritual realization.","url":"sloka-library.html","tags":["kandar anuboothi","arunagirinathar","wisdom"]},
-    {"id":"thai-poosam","type":"festival","title":"Thai Poosam","titleTa":"தைப்பூசம்","summary":"Major Murugan festival associated with devotion, kavadi, vows and the Vel.","url":"festival-details.html?id=thai-poosam","tags":["thai","poosam","vel","kavadi","festival"]},
-    {"id":"skanda-sashti","type":"festival","title":"Skanda Sashti","titleTa":"ஸ்கந்த சஷ்டி","summary":"Six-day observance remembering Murugan's victory over Surapadman.","url":"festival-details.html?id=skanda-sashti","tags":["sashti","surapadman","victory","festival"]},
-    {"id":"panguni-uthiram","type":"festival","title":"Panguni Uthiram","titleTa":"பங்குனி உத்திரம்","summary":"Festival connected with divine marriages, vows and Murugan's consorts.","url":"festival-details.html?id=panguni-uthiram","tags":["panguni","uthiram","marriage","valli","deivanai"]},
-    {"id":"vaikasi-visakam","type":"festival","title":"Vaikasi Visakam","titleTa":"வைகாசி விசாகம்","summary":"Festival celebrating Murugan's birth star Visakam in the Tamil month of Vaikasi.","url":"murugan-festivals.html","tags":["vaikasi","visakam","birth star","festival"]},
-    {"id":"karthigai-deepam","type":"festival","title":"Karthigai Deepam","titleTa":"கார்த்திகை தீபம்","summary":"Festival of lamps connected with divine light, devotion and Murugan worship traditions.","url":"murugan-festivals.html","tags":["karthigai","deepam","lamps","festival"]}
+  "version": "11.0",
+  "updated": "2026-07-08",
+  "disclaimer": "Educational and devotional knowledge graph. Historical and Panchangam details should be verified with trusted sources before formal use.",
+  "nodes": [
+    {
+      "id": "murugan",
+      "type": "deity",
+      "title": "Lord Murugan",
+      "titleTa": "முருகன்",
+      "summary": "Central deity of the platform, associated with wisdom, courage, youth, victory and spiritual discipline.",
+      "tags": [
+        "murugan",
+        "skanda",
+        "subramanya",
+        "vel",
+        "wisdom"
+      ]
+    },
+    {
+      "id": "vel",
+      "type": "symbol",
+      "title": "Vel",
+      "titleTa": "வேல்",
+      "summary": "The divine spear symbolising wisdom that cuts ignorance and protects devotees.",
+      "tags": [
+        "symbol",
+        "wisdom",
+        "protection"
+      ]
+    },
+    {
+      "id": "mayil",
+      "type": "symbol",
+      "title": "Peacock",
+      "titleTa": "மயில்",
+      "summary": "Murugan's vahana, representing beauty, alertness, victory over ego and grace.",
+      "tags": [
+        "symbol",
+        "vahana",
+        "grace"
+      ]
+    },
+    {
+      "id": "palani",
+      "type": "temple",
+      "title": "Palani Murugan Temple",
+      "titleTa": "பழனி முருகன் கோவில்",
+      "summary": "One of the Arupadai Veedu, traditionally connected with renunciation, wisdom and Dhandayuthapani.",
+      "url": "temple-details.html?id=palani",
+      "tags": [
+        "arupadai veedu",
+        "palani",
+        "dindigul",
+        "wisdom"
+      ]
+    },
+    {
+      "id": "thiruchendur",
+      "type": "temple",
+      "title": "Thiruchendur Murugan Temple",
+      "titleTa": "திருச்செந்தூர் முருகன் கோவில்",
+      "summary": "Seashore Arupadai Veedu associated with victory over Surapadman and Skanda Sashti.",
+      "url": "temple-details.html?id=thiruchendur",
+      "tags": [
+        "arupadai veedu",
+        "sea temple",
+        "skanda sashti"
+      ]
+    },
+    {
+      "id": "thirupparamkundram",
+      "type": "temple",
+      "title": "Thirupparamkundram Murugan Temple",
+      "titleTa": "திருப்பரங்குன்றம் முருகன் கோவில்",
+      "summary": "Arupadai Veedu connected with divine marriage and early Murugan worship tradition.",
+      "url": "temple-details.html?id=thirupparamkundram",
+      "tags": [
+        "arupadai veedu",
+        "madurai",
+        "deivanai"
+      ]
+    },
+    {
+      "id": "swamimalai",
+      "type": "temple",
+      "title": "Swamimalai Murugan Temple",
+      "titleTa": "சுவாமிமலை முருகன் கோவில்",
+      "summary": "Arupadai Veedu where Murugan is revered as guru who explains pranava wisdom.",
+      "url": "temple-details.html?id=swamimalai",
+      "tags": [
+        "arupadai veedu",
+        "guru",
+        "pranava"
+      ]
+    },
+    {
+      "id": "tiruttani",
+      "type": "temple",
+      "title": "Tiruttani Murugan Temple",
+      "titleTa": "திருத்தணி முருகன் கோவில்",
+      "summary": "Arupadai Veedu associated with peace after victory and inner balance.",
+      "url": "temple-details.html?id=tiruttani",
+      "tags": [
+        "arupadai veedu",
+        "peace",
+        "hill temple"
+      ]
+    },
+    {
+      "id": "pazhamudircholai",
+      "type": "temple",
+      "title": "Pazhamudircholai Murugan Temple",
+      "titleTa": "பழமுதிர்சோலை முருகன் கோவில்",
+      "summary": "Arupadai Veedu near Madurai associated with nature, grace and complete blessing.",
+      "url": "temple-details.html?id=pazhamudircholai",
+      "tags": [
+        "arupadai veedu",
+        "nature",
+        "madurai"
+      ]
+    },
+    {
+      "id": "om-saravana-bhava",
+      "type": "sloka",
+      "title": "Om Saravana Bhava",
+      "titleTa": "ஓம் சரவணபவ",
+      "summary": "Six-syllable mantra used for focus, protection and devotional connection.",
+      "url": "sloka-details.html?id=om-saravana-bhava",
+      "tags": [
+        "mantra",
+        "saravana bhava",
+        "daily practice"
+      ]
+    },
+    {
+      "id": "kanda-sashti-kavasam",
+      "type": "sloka",
+      "title": "Kanda Sashti Kavasam",
+      "titleTa": "கந்த சஷ்டி கவசம்",
+      "summary": "A celebrated devotional hymn seeking Murugan's protection and grace.",
+      "url": "sloka-reader.html?id=kanda-sashti-kavasam",
+      "tags": [
+        "kavacham",
+        "protection",
+        "sashti"
+      ]
+    },
+    {
+      "id": "thai-poosam",
+      "type": "festival",
+      "title": "Thai Poosam",
+      "titleTa": "தைப்பூசம்",
+      "summary": "Major Murugan festival associated with devotion, kavadi, vows and the Vel.",
+      "url": "festival-details.html?id=thai-poosam",
+      "tags": [
+        "thai",
+        "poosam",
+        "vel",
+        "kavadi"
+      ]
+    },
+    {
+      "id": "skanda-sashti",
+      "type": "festival",
+      "title": "Skanda Sashti",
+      "titleTa": "ஸ்கந்த சஷ்டி",
+      "summary": "Six-day observance remembering Murugan's victory over Surapadman.",
+      "url": "festival-details.html?id=skanda-sashti",
+      "tags": [
+        "sashti",
+        "surapadman",
+        "victory"
+      ]
+    },
+    {
+      "id": "panguni-uthiram",
+      "title": "Panguni Uthiram",
+      "titleTa": "பங்குனி உத்திரம்",
+      "type": "Festival",
+      "summary": "Festival associated with divine marriage traditions and Murugan devotion.",
+      "tags": [
+        "panguni",
+        "uthiram",
+        "festival",
+        "valli",
+        "deivanai"
+      ],
+      "url": "festival-details.html?id=panguni-uthiram"
+    },
+    {
+      "id": "thiruppugazh",
+      "type": "literature",
+      "title": "Thiruppugazh",
+      "titleTa": "திருப்புகழ்",
+      "summary": "Sacred Murugan hymns composed by Arunagirinathar, known for rhythm and devotion.",
+      "url": "thiruppugazh.html",
+      "tags": [
+        "arunagirinathar",
+        "hymn",
+        "literature"
+      ]
+    },
+    {
+      "id": "arupadai-veedu",
+      "type": "category",
+      "title": "Arupadai Veedu",
+      "titleTa": "ஆறுபடை வீடு",
+      "summary": "The six sacred battle-camps or abodes of Lord Murugan.",
+      "url": "arupadai-veedu.html",
+      "tags": [
+        "six abodes",
+        "temples",
+        "pilgrimage"
+      ]
+    },
+    {
+      "id": "vadapalani",
+      "title": "Vadapalani Murugan Temple",
+      "titleTa": "வடபழனி முருகன் கோவில்",
+      "type": "Temple",
+      "summary": "Important Chennai Murugan temple associated with daily worship, family prayer and urban devotion.",
+      "tags": [
+        "vadapalani",
+        "chennai",
+        "murugan",
+        "temple",
+        "regional"
+      ],
+      "url": "temple-details.html?id=vadapalani"
+    },
+    {
+      "id": "deivanai",
+      "title": "Deivanai",
+      "titleTa": "தேவயானை",
+      "type": "Consort",
+      "summary": "Divine consort of Lord Murugan, especially connected with Thirupparamkundram tradition.",
+      "tags": [
+        "deivanai",
+        "consort",
+        "murugan"
+      ],
+      "url": "ai-search.html?q=deivanai"
+    },
+    {
+      "id": "vayalur",
+      "title": "Vayalur Murugan Temple",
+      "titleTa": "வயலூர் முருகன் கோவில்",
+      "type": "Temple",
+      "summary": "Murugan temple associated with Tamil devotional memory and Thiruppugazh tradition.",
+      "tags": [
+        "vayalur",
+        "murugan",
+        "temple",
+        "thiruppugazh"
+      ],
+      "url": "temple-details.html?id=vayalur"
+    }
   ],
-  "edges":[
-    {"source":"murugan","target":"vel","relation":"symbol"},{"source":"murugan","target":"mayil","relation":"vahana"},{"source":"murugan","target":"seval","relation":"banner"},{"source":"murugan","target":"valli","relation":"consort"},{"source":"murugan","target":"deivanai","relation":"consort"},{"source":"murugan","target":"arupadai-veedu","relation":"sacred category"},
-    {"source":"arupadai-veedu","target":"palani","relation":"includes"},{"source":"arupadai-veedu","target":"thiruchendur","relation":"includes"},{"source":"arupadai-veedu","target":"thirupparamkundram","relation":"includes"},{"source":"arupadai-veedu","target":"swamimalai","relation":"includes"},{"source":"arupadai-veedu","target":"tiruttani","relation":"includes"},{"source":"arupadai-veedu","target":"pazhamudircholai","relation":"includes"},
-    {"source":"palani","target":"om-saravana-bhava","relation":"daily practice"},{"source":"palani","target":"thai-poosam","relation":"festival focus"},{"source":"thiruchendur","target":"skanda-sashti","relation":"festival"},{"source":"skanda-sashti","target":"kanda-sashti-kavasam","relation":"devotional reading"},{"source":"thai-poosam","target":"vel","relation":"symbolic focus"},{"source":"panguni-uthiram","target":"thirupparamkundram","relation":"marriage tradition"},
-    {"source":"murugan","target":"thiruppugazh","relation":"literature"},{"source":"thiruppugazh","target":"vayalur","relation":"devotional tradition"},{"source":"thiruppugazh","target":"palani","relation":"devotional tradition"},{"source":"kandar-anuboothi","target":"thiruppugazh","relation":"same author tradition"},{"source":"marudhamalai","target":"om-saravana-bhava","relation":"daily practice"},{"source":"vaikasi-visakam","target":"murugan","relation":"birth celebration"},{"source":"karthigai-deepam","target":"vel","relation":"light symbolism"},{"source":"valli","target":"panguni-uthiram","relation":"marriage tradition"},{"source":"deivanai","target":"thirupparamkundram","relation":"marriage tradition"}
+  "edges": [
+    {
+      "source": "murugan",
+      "target": "vel",
+      "relation": "symbol"
+    },
+    {
+      "source": "murugan",
+      "target": "mayil",
+      "relation": "vahana"
+    },
+    {
+      "source": "murugan",
+      "target": "arupadai-veedu",
+      "relation": "sacred category"
+    },
+    {
+      "source": "arupadai-veedu",
+      "target": "palani",
+      "relation": "includes"
+    },
+    {
+      "source": "arupadai-veedu",
+      "target": "thiruchendur",
+      "relation": "includes"
+    },
+    {
+      "source": "arupadai-veedu",
+      "target": "thirupparamkundram",
+      "relation": "includes"
+    },
+    {
+      "source": "arupadai-veedu",
+      "target": "swamimalai",
+      "relation": "includes"
+    },
+    {
+      "source": "arupadai-veedu",
+      "target": "tiruttani",
+      "relation": "includes"
+    },
+    {
+      "source": "arupadai-veedu",
+      "target": "pazhamudircholai",
+      "relation": "includes"
+    },
+    {
+      "source": "palani",
+      "target": "om-saravana-bhava",
+      "relation": "daily practice"
+    },
+    {
+      "source": "thiruchendur",
+      "target": "skanda-sashti",
+      "relation": "festival"
+    },
+    {
+      "source": "skanda-sashti",
+      "target": "kanda-sashti-kavasam",
+      "relation": "devotional reading"
+    },
+    {
+      "source": "thai-poosam",
+      "target": "vel",
+      "relation": "symbolic focus"
+    },
+    {
+      "source": "murugan",
+      "target": "thiruppugazh",
+      "relation": "literature"
+    },
+    {
+      "source": "thiruppugazh",
+      "target": "palani",
+      "relation": "devotional tradition"
+    },
+    {
+      "source": "panguni-uthiram",
+      "target": "thirupparamkundram",
+      "relation": "marriage tradition"
+    },
+    {
+      "source": "murugan",
+      "target": "vadapalani",
+      "relation": "worshipped at"
+    },
+    {
+      "source": "vadapalani",
+      "target": "kanda-sashti-kavasam",
+      "relation": "devotional practice"
+    },
+    {
+      "source": "thiruchendur",
+      "target": "kanda-sashti-kavasam",
+      "relation": "associated hymn"
+    },
+    {
+      "source": "thiruchendur",
+      "target": "skanda-sashti",
+      "relation": "major festival"
+    },
+    {
+      "source": "murugan",
+      "target": "deivanai",
+      "relation": "consort"
+    },
+    {
+      "source": "murugan",
+      "target": "panguni-uthiram",
+      "relation": "festival"
+    },
+    {
+      "source": "vayalur",
+      "target": "thiruppugazh",
+      "relation": "literary association"
+    }
   ],
-  "guidedQuestions":[
-    "Show me the six Arupadai Veedu temples",
-    "Why is Palani associated with wisdom and renunciation?",
-    "Which slokas are connected with protection?",
-    "What is the relationship between Thai Poosam and the Vel?",
-    "What should I read for Skanda Sashti?",
-    "Explain Valli and Deivanai",
-    "What is Thiruppugazh?",
-    "Suggest a beginner learning path"
+  "guidedQuestions": [
+    "What is the meaning of Om Saravana Bhava?",
+    "Why is Thiruchendur linked with Skanda Sashti?",
+    "Explain Vel symbolism",
+    "Guide me through Arupadai Veedu",
+    "What should I learn after Palani?",
+    "What is Vadapalani temple known for?"
   ]
 }

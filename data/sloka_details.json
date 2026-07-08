@@ -52,5 +52,57 @@
     "practice": "Recite with respect, patience and correct pronunciation where possible.",
     "meaningTa": "முருகப்பெருமானின் அருள், பாதுகாப்பு, தைரியம் ஆகியவற்றை வேண்டி பாடப்படும் பக்திப் பாடல்.",
     "practiceTa": "சரியான உச்சரிப்புடன், பொறுமையாகவும் பக்தியுடனும் பாராயணம் செய்யலாம்."
+  },
+  {
+    "id": "kanda-sashti-kavasam",
+    "titleTa": "கந்த சஷ்டி கவசம்",
+    "titleEn": "Kanda Sashti Kavasam",
+    "category": "Kavacham",
+    "summary": "A protective devotional hymn to Lord Murugan.",
+    "textTa": "கந்த சஷ்டி கவசம் — முழு உரை மூல சரிபார்ப்புக்குப் பிறகு சேர்க்கப்படும்.",
+    "transliteration": "Kanda Sashti Kavasam",
+    "meaning": "A celebrated hymn seeking Murugan’s protection, courage and grace.",
+    "meaningTa": "முருகப்பெருமானின் அருள், பாதுகாப்பு, தைரியம் வேண்டி பாடப்படும் பக்திப் பாடல்.",
+    "benefits": [
+      "Protection",
+      "Courage",
+      "Devotional discipline"
+    ],
+    "practice": "Recite with devotion, especially during Skanda Sashti.",
+    "practiceTa": "சஷ்டி நாட்களில் பக்தியுடன் பாராயணம் செய்யலாம்."
+  },
+  {
+    "id": "subramanya-bhujangam",
+    "titleTa": "சுப்பிரமண்ய புஜங்கம்",
+    "titleEn": "Subramanya Bhujangam",
+    "category": "Stotra",
+    "summary": "A classical hymn praising Lord Subramanya.",
+    "textTa": "சுப்பிரமண்ய புஜங்கம் — மூல உரை சரிபார்ப்புக்குப் பிறகு சேர்க்கப்படும்.",
+    "transliteration": "Subramanya Bhujangam",
+    "meaning": "A devotional praise of Lord Subramanya, traditionally associated with surrender and grace.",
+    "meaningTa": "சுப்பிரமண்யரை புகழ்ந்து சரணாகதி உணர்வை வளர்க்கும் ஸ்தோத்திரம்.",
+    "benefits": [
+      "Surrender",
+      "Grace",
+      "Focus"
+    ],
+    "practice": "Use as a study reference until full source-reviewed text is added."
+  },
+  {
+    "id": "thiruppugazh",
+    "titleTa": "திருப்புகழ்",
+    "titleEn": "Thiruppugazh",
+    "category": "Tamil Hymn",
+    "summary": "Tamil devotional poetry tradition of Arunagirinathar praising Murugan.",
+    "textTa": "திருப்புகழ் பாடல்கள் — தேர்ந்தெடுக்கப்பட்ட பாடல்கள் மூல சரிபார்ப்புக்குப் பிறகு சேர்க்கப்படும்.",
+    "transliteration": "Thiruppugazh",
+    "meaning": "A revered Tamil devotional tradition praising Lord Murugan with rhythm, poetry and spiritual depth.",
+    "meaningTa": "அருணகிரிநாதர் அருளிய முருக பக்திப் பாடல்களின் மரபு.",
+    "benefits": [
+      "Tamil devotion",
+      "Poetry",
+      "Musical worship"
+    ],
+    "practice": "Learn slowly with meaning and pronunciation."
   }
 ]
