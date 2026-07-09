@@ -1,0 +1,40 @@
+{
+  "module": "thiruppugazh-volume-03",
+  "batch": "18",
+  "type": "song-metadata",
+  "generated": "2026-07-09",
+  "items": [
+    {
+      "number": 111,
+      "slug": "song-0111",
+      "title_ta": "திருப்புகழ் பாடல் 111",
+      "title_en": "Thiruppugazh Hymn 111",
+      "url": "../../literature/thiruppugazh/volume-03/song-0111.html",
+      "summary_ta": "அருணகிரிநாதர் அருளிய திருப்புகழ் பாடலுக்கான வாசிப்பு, குறிச்சொல், கோவில் மற்றும் விழா இணைப்பு பக்கம்.",
+      "proofread_status": "Needs Tamil proofread before final devotional-text publication",
+      "keywords": [
+        "திருப்புகழ்",
+        "அருணகிரிநாதர்",
+        "முருகன்",
+        "வேல்",
+        "பக்தி"
+      ]
+    },
+    {
+      "number": 112,
+      "slug": "song-0112",
+      "title_ta": "திருப்புகழ் பாடல் 112",
+      "title_en": "Thiruppugazh Hymn 112",
+      "url": "../../literature/thiruppugazh/volume-03/song-0112.html",
+      "summary_ta": "அருணகிரிநாதர் அருளிய திருப்புகழ் பாடலுக்கான வாசிப்பு, குறிச்சொல், கோவில் மற்றும் விழா இணைப்பு பக்கம்.",
+      "proofread_status": "Needs Tamil proofread before final devotional-text publication",
+      "keywords": [
+        "திருப்புகழ்",
+        "அருணகிரிநாதர்",
+        "முருகன்",
+        "வேல்",
+        "பக்தி"
+      ]
+    }
+  ]
+}

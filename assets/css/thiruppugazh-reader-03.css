@@ -1,0 +1,6 @@
+/* Reader refinements for Batch 18 */
+.osb-reader-panel{margin-top:20px;border-radius:24px;padding:22px;background:#ffffff;border:1px solid rgba(122,63,0,.14)}
+.osb-section-title{font-size:1.25rem;margin:22px 0 8px;color:#7a3f00}
+.osb-proofread-status{border-left:5px solid #b36b00;background:#fff8e8;padding:14px;border-radius:14px;margin-top:16px}
+.osb-crosslinks{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.osb-crosslinks a{display:block;border-radius:16px;padding:12px;background:#fff6df;border:1px solid rgba(122,63,0,.12);text-decoration:none}

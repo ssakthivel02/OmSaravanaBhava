@@ -1,0 +1,71 @@
+{
+  "module": "thiruppugazh-volume-03",
+  "batch": "18",
+  "type": "festival-map",
+  "items": [
+    {
+      "song": 89,
+      "slug": "song-0089",
+      "related_festivals": [
+        "கந்த சஷ்டி"
+      ],
+      "confidence": "devotional_theme_mapping"
+    },
+    {
+      "song": 90,
+      "slug": "song-0090",
+      "related_festivals": [
+        "தைப்பூசம்"
+      ],
+      "confidence": "devotional_theme_mapping"
+    },
+    {
+      "song": 91,
+      "slug": "song-0091",
+      "related_festivals": [
+        "பங்குனி உத்திரம்"
+      ],
+      "confidence": "devotional_theme_mapping"
+    },
+    {
+      "song": 92,
+      "slug": "song-0092",
+      "related_festivals": [
+        "கார்த்திகை தீபம்"
+      ],
+      "confidence": "devotional_theme_mapping"
+    },
+    {
+      "song": 93,
+      "slug": "song-0093",
+      "related_festivals": [
+        "வைகாசி விசாகம்"
+      ],
+      "confidence": "devotional_theme_mapping"
+    },
+    {
+      "song": 94,
+      "slug": "song-0094",
+      "related_festivals": [
+        "ஆடி கிருத்திகை"
+      ],
+      "confidence": "devotional_theme_mapping"
+    },
+    {
+      "song": 95,
+      "slug": "song-0095",
+      "related_festivals": [
+        "கந்த சஷ்டி"
+      ],
+      "confidence": "devotional_theme_mapping"
+    },
+    {
+      "song": 96,
+      "slug": "song-0096",
+      "related_festivals": [
+        "தைப்பூசம்"
+      ],
+      "confidence": "devotional_theme_mapping"
+    }
+  ]
+}

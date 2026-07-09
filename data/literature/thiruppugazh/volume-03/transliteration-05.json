@@ -1,0 +1,32 @@
+{
+  "module": "thiruppugazh-volume-03",
+  "batch": "18",
+  "type": "transliteration",
+  "note": "Intentionally blank until Tamil source text is proofread.",
+  "items": [
+    {
+      "number": 97,
+      "slug": "song-0097",
+      "status": "pending_verified_tamil_source",
+      "transliteration": ""
+    },
+    {
+      "number": 98,
+      "slug": "song-0098",
+      "status": "pending_verified_tamil_source",
+      "transliteration": ""
+    },
+    {
+      "number": 99,
+      "slug": "song-0099",
+      "status": "pending_verified_tamil_source",
+      "transliteration": ""
+    },
+    {
+      "number": 100,
+      "slug": "song-0100",
+      "status": "pending_verified_tamil_source",
+      "transliteration": ""
+    }
+  ]
+}

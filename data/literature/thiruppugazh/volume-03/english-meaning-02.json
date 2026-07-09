@@ -1,0 +1,31 @@
+{
+  "module": "thiruppugazh-volume-03",
+  "batch": "18",
+  "type": "english-meaning",
+  "items": [
+    {
+      "number": 85,
+      "slug": "song-0085",
+      "status": "pending_translation_after_proofread",
+      "english_meaning": ""
+    },
+    {
+      "number": 86,
+      "slug": "song-0086",
+      "status": "pending_translation_after_proofread",
+      "english_meaning": ""
+    },
+    {
+      "number": 87,
+      "slug": "song-0087",
+      "status": "pending_translation_after_proofread",
+      "english_meaning": ""
+    },
+    {
+      "number": 88,
+      "slug": "song-0088",
+      "status": "pending_translation_after_proofread",
+      "english_meaning": ""
+    }
+  ]
+}
