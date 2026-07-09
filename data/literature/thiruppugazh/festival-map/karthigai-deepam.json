@@ -1,0 +1,16 @@
+{
+  "festival_id": "karthigai-deepam",
+  "festival_name_ta": "கார்த்திகை தீபம்",
+  "literature_links": [
+    "திருப்புகழ்"
+  ],
+  "recommended_use": "festival reader and daily chanting curation",
+  "review_status": "curation_pending",
+  "candidate_song_ids": [
+    "thiruppugazh-005",
+    "thiruppugazh-013",
+    "thiruppugazh-021",
+    "thiruppugazh-029",
+    "thiruppugazh-037"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "temple_id": "tiruvannamalai",
+  "temple_name_ta": "திருவண்ணாமலை",
+  "literature": "திருப்புகழ்",
+  "mapped_song_range": "Batch 16 foundation mapping",
+  "review_status": "needs_source_cross_reference",
+  "related_song_ids": [
+    "thiruppugazh-007",
+    "thiruppugazh-017",
+    "thiruppugazh-027",
+    "thiruppugazh-037"
+  ]
+}

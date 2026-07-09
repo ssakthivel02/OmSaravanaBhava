@@ -1,0 +1,16 @@
+{
+  "festival_id": "adi-kiruthigai",
+  "festival_name_ta": "ஆடி கிருத்திகை",
+  "literature_links": [
+    "திருப்புகழ்"
+  ],
+  "recommended_use": "festival reader and daily chanting curation",
+  "review_status": "curation_pending",
+  "candidate_song_ids": [
+    "thiruppugazh-007",
+    "thiruppugazh-015",
+    "thiruppugazh-023",
+    "thiruppugazh-031",
+    "thiruppugazh-039"
+  ]
+}

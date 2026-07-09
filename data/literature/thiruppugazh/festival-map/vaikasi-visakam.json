@@ -1,0 +1,16 @@
+{
+  "festival_id": "vaikasi-visakam",
+  "festival_name_ta": "வைகாசி விசாகம்",
+  "literature_links": [
+    "திருப்புகழ்"
+  ],
+  "recommended_use": "festival reader and daily chanting curation",
+  "review_status": "curation_pending",
+  "candidate_song_ids": [
+    "thiruppugazh-004",
+    "thiruppugazh-012",
+    "thiruppugazh-020",
+    "thiruppugazh-028",
+    "thiruppugazh-036"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "festival_id": "new-year-worship",
+  "festival_name_ta": "புத்தாண்டு வழிபாடு",
+  "literature_links": [
+    "திருப்புகழ்"
+  ],
+  "recommended_use": "festival reader and daily chanting curation",
+  "review_status": "curation_pending",
+  "candidate_song_ids": [
+    "thiruppugazh-008",
+    "thiruppugazh-016",
+    "thiruppugazh-024",
+    "thiruppugazh-032"
+  ]
+}

@@ -1,0 +1,512 @@
+{
+  "batch": "16",
+  "name": "Thiruppugazh Knowledge Hub Foundation",
+  "file_count": 99,
+  "source_files": [
+    "697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf"
+  ],
+  "rules": [
+    "GitHub Pages compatible",
+    "HTML CSS JS JSON only",
+    "No server-side code",
+    "Unverified OCR is flagged for proofreading"
+  ],
+  "generated_utc": "2026-07-09T14:40:24.697093Z",
+  "files": [
+    {
+      "path": "assets/css/literature/thiruppugazh-print.css",
+      "sha256": "c7c7ad1504819fc4f9445774a429154de6e33ca051af83c6171514600655ef7a",
+      "bytes": 143
+    },
+    {
+      "path": "assets/css/literature/thiruppugazh-reader.css",
+      "sha256": "0cff9b3d595e6ba5aaf19f7a16d1018841df7abe0af1d78ec976fe2408a34ef8",
+      "bytes": 1366
+    },
+    {
+      "path": "assets/js/literature/thiruppugazh-reader.js",
+      "sha256": "3eb2b18ab770f36663295cf22386426b2e5b31fb80b9134d9f13681310cc9b1d",
+      "bytes": 376
+    },
+    {
+      "path": "assets/js/literature/thiruppugazh-search.js",
+      "sha256": "27ec8fb6995be91d5f607f621273be814a422380bdcfb5fcec9ea007c03f9600",
+      "bytes": 115
+    },
+    {
+      "path": "data/audio/thiruppugazh/chanting.json",
+      "sha256": "3348f7de55fecc2466097f836371fba2809dc33b3c9dc22bfcd144121b0249f7",
+      "bytes": 1210
+    },
+    {
+      "path": "data/audio/thiruppugazh/daily-playlist.json",
+      "sha256": "a37c1e336c8cee1cf5981a1c6760b9ddb70b00fff76409723dd365f1eb1c66ec",
+      "bytes": 1216
+    },
+    {
+      "path": "data/audio/thiruppugazh/raga-tala.json",
+      "sha256": "c8bda344c7c8f6e3d71c2a4346f13b8eb0500df62b82e30214ae70d4be1493e4",
+      "bytes": 1211
+    },
+    {
+      "path": "data/crossrefs/thiruppugazh/kandar-alangaram.json",
+      "sha256": "db662404c2c001cc6173eb8d685089f4e12b00fdd524b039c4aa1a3971bca49b",
+      "bytes": 271
+    },
+    {
+      "path": "data/crossrefs/thiruppugazh/kandar-andhadhi.json",
+      "sha256": "8e65ebe02c6b8b0041c29860f443b369b1589065160a872d35d8e54a6d360ddd",
+      "bytes": 271
+    },
+    {
+      "path": "data/crossrefs/thiruppugazh/kandar-anuboothi.json",
+      "sha256": "f0234f69838cca27764f13227898158c9c594fd94bd26ad55ba67d94ea1099f2",
+      "bytes": 272
+    },
+    {
+      "path": "data/crossrefs/thiruppugazh/kandar-sashti-kavacham.json",
+      "sha256": "72cda85cf24fdbc80e1f3f6267c53fc3394dca7b50ca6749b687a796ef0a6932",
+      "bytes": 288
+    },
+    {
+      "path": "data/crossrefs/thiruppugazh/thirumurugatrupadai.json",
+      "sha256": "7a754d41f2d3b02a410d6ca0c28d08b1698f15bcd8823b42f8cb4a1cc2d4baaa",
+      "bytes": 292
+    },
+    {
+      "path": "data/literature/thiruppugazh/festival-map/adi-kiruthigai.json",
+      "sha256": "0a194174bb4b6e622b150d4482c01270c8f0ce0977b286e8f71e07cb08ce21c3",
+      "bytes": 429
+    },
+    {
+      "path": "data/literature/thiruppugazh/festival-map/karthigai-deepam.json",
+      "sha256": "90370a1161d2242459fa719065f91b7ebc25d9e1c3ffc476c3467045a9c66631",
+      "bytes": 437
+    },
+    {
+      "path": "data/literature/thiruppugazh/festival-map/monthly-karthigai.json",
+      "sha256": "3f278d4554727fc50d08c2593cf9a9e049e1bf6538072302c66796ccdcb58f58",
+      "bytes": 432
+    },
+    {
+      "path": "data/literature/thiruppugazh/festival-map/new-year-worship.json",
+      "sha256": "c994f4a8bbeebfde566b49b03ed9678071798680a8df8046a25992b5828a8d07",
+      "bytes": 419
+    },
+    {
+      "path": "data/literature/thiruppugazh/festival-map/panguni-uthiram.json",
+      "sha256": "d5e2f397467531f1ead1e0d2dcacba684488369f0eb22060258a180f6aa2380c",
+      "bytes": 436
+    },
+    {
+      "path": "data/literature/thiruppugazh/festival-map/skanda-sashti.json",
+      "sha256": "6292f8ac63ab2e6e840043cecb96fed35c460e6af566bbf8b59be5eb9e954bc1",
+      "bytes": 416
+    },
+    {
+      "path": "data/literature/thiruppugazh/festival-map/thaipusam.json",
+      "sha256": "92a87a7066d6144a6fe718a0a45caa49c17a0dff47b7d3415fe8cec926284e36",
+      "bytes": 411
+    },
+    {
+      "path": "data/literature/thiruppugazh/festival-map/vaikasi-visakam.json",
+      "sha256": "dd12b1990a51f12414f6f78df3cadbc348301a28e7f67b649611d6ba37e6301b",
+      "bytes": 430
+    },
+    {
+      "path": "data/literature/thiruppugazh/songs/song-001.json",
+      "sha256": "ec76442e9958b1dea320bb059825aed5d3e0604196d5bcdd28518b72ad9a1319",
+      "bytes": 2224
+    },
+    {
+      "path": "data/literature/thiruppugazh/songs/song-002.json",
+      "sha256": "56584582cce61e4496a2c3d68a07d58349c57659bbf279c4ffe79cc2808169b1",
+      "bytes": 2532
+    },
+    {
+      "path": "data/literature/thiruppugazh/songs/song-003.json",
+      "sha256": "f684127b9ad3427d2de552efab0e75d22d0422d9b94659e823d23c4cfabd46ef",
+      "bytes": 1561
+    },
+    {
+      "path": "data/literature/thiruppugazh/songs/song-004.json",
+      "sha256": "5958f305e81ecfcd8ba81a5688cc38167a0702595ee6a005da4db09f69f333fc",
+      "bytes": 3346
+    },
+    {
+      "path": "data/literature/thiruppugazh/songs/song-005.json",
+      "sha256": "56c6d34103e77206c45288ee19f298b4ea2335c0f19ae6e112d98e87b0cbdf52",
+      "bytes": 2061
+    },
+    {
+      "path": "data/literature/thiruppugazh/songs/song-006.json",
+      "sha256": "796b71564df1a1c1d5a1e83f0b49f52988406cf5bdc0d404d6564bc4a682879e",
+      "bytes": 3182
+    },
+    {
+      "path": "data/literature/thiruppugazh/songs/song-007.json",
+      "sha256": "6c3d786ca4be0d7570b5129670fa2d9cda5cf3a6703b5465150b00d6a5137676",
+      "bytes": 3429
+    },
+    {
+      "path": "data/literature/thiruppugazh/songs/song-008.json",
+      "sha256": "dabe7990dfe8c401e7e3bdfed534a96c255b894f7b5d1d6a2714880e9485f4cc",
+      "bytes": 3493
+    },
+    {
+      "path": "data/literature/thiruppugazh/songs/song-009.json",
+      "sha256": "f6089d5819519a5a156e010166bfc9437ab959f8c4bc44bbf2d5d43a52be6b39",
+      "bytes": 3406
+    },
+    {
+      "path": "data/literature/thiruppugazh/songs/song-010.json",
+      "sha256": "297ad5e8f759826de67b4e475dc54ba21b1fe3f70fcfa0b40c0c198d17dadfd5",
+      "bytes": 3417
+    },
+    {
+      "path": "data/literature/thiruppugazh/songs/song-011.json",
+      "sha256": "577dbafaaf48e290e87facf6b1ab1d9893f9befb9107327bedd06697779712fa",
+      "bytes": 3264
+    },
+    {
+      "path": "data/literature/thiruppugazh/songs/song-012.json",
+      "sha256": "637c08e7743decc8ceb0ea64c371e6ed2773e73f20617d1e52149d98fb2313a3",
+      "bytes": 3510
+    },
+    {
+      "path": "data/literature/thiruppugazh/songs/song-013.json",
+      "sha256": "2477d7bf5f1c635f6949baa2986381b08d876a361e671e39df404095aea6f1c4",
+      "bytes": 1532
+    },
+    {
+      "path": "data/literature/thiruppugazh/songs/song-014.json",
+      "sha256": "72279035fdd6a51a21070e0ad13acc7576990b7a0f058d10a756fff8514a811f",
+      "bytes": 2923
+    },
+    {
+      "path": "data/literature/thiruppugazh/songs/song-015.json",
+      "sha256": "00b8287a9627b1ea117258fafc383ad523ccb21df97fd0375a68830ddd833316",
+      "bytes": 2674
+    },
+    {
+      "path": "data/literature/thiruppugazh/songs/song-016.json",
+      "sha256": "f7f92736a19e9701906d17b6c4b1ad24e735a27022fb6c7a910ba1ebebda137f",
+      "bytes": 3815
+    },
+    {
+      "path": "data/literature/thiruppugazh/songs/song-017.json",
+      "sha256": "a967c39cf789ac02125ccad424c31093802e405220a6509d49935a67a7933356",
+      "bytes": 2589
+    },
+    {
+      "path": "data/literature/thiruppugazh/songs/song-018.json",
+      "sha256": "f26d8bb0d6d64ecb99750af9190b1d69fc1533dc9e777f4f77b3c63a840cda96",
+      "bytes": 2527
+    },
+    {
+      "path": "data/literature/thiruppugazh/songs/song-019.json",
+      "sha256": "b300856c71fd288bc31fbf57e25595d19bc9c5385e556e7499f4c50a27f4efb0",
+      "bytes": 3458
+    },
+    {
+      "path": "data/literature/thiruppugazh/songs/song-020.json",
+      "sha256": "30ba6798c5ed9e8b9cd622cb7ca8a6585e7ee1d39ed429f8ef433ec5491b1934",
+      "bytes": 2785
+    },
+    {
+      "path": "data/literature/thiruppugazh/temple-map/marudamalai.json",
+      "sha256": "b3a4059cfdc21dcabd76672879d97157be6a99e0b7d3957f37095e22d0df6074",
+      "bytes": 335
+    },
+    {
+      "path": "data/literature/thiruppugazh/temple-map/palani.json",
+      "sha256": "394e290fea3b54ec4ffe70ec62da8639849014a0f80ddfa2b88b5759ce5c8b47",
+      "bytes": 345
+    },
+    {
+      "path": "data/literature/thiruppugazh/temple-map/pazhamudircholai.json",
+      "sha256": "b6208dd88d8b7ca703dea97119dd31851d52c16008a73c3015f624f6ab1f9761",
+      "bytes": 379
+    },
+    {
+      "path": "data/literature/thiruppugazh/temple-map/swamimalai.json",
+      "sha256": "b5633a91e0fd43467a6152a8280c3adc772764d018fcf63629f0189cdbddd64e",
+      "bytes": 364
+    },
+    {
+      "path": "data/literature/thiruppugazh/temple-map/thiruparankundram.json",
+      "sha256": "2e47695d33e81f91f3e152674da1dd7b0801a4c1241baed170868fbe7ae1b553",
+      "bytes": 395
+    },
+    {
+      "path": "data/literature/thiruppugazh/temple-map/tiruchendur.json",
+      "sha256": "9711827de322226e5c7363dbf2f25a73a8d7276a4595ee4b71b119bb25536ca7",
+      "bytes": 380
+    },
+    {
+      "path": "data/literature/thiruppugazh/temple-map/tiruttani.json",
+      "sha256": "187b6fc7d00944e0c8c015cb5b4fe20932d3b934c31a734ef06a8e0fa3cfe0ab",
+      "bytes": 363
+    },
+    {
+      "path": "data/literature/thiruppugazh/temple-map/tiruvannamalai.json",
+      "sha256": "209ed37f3f98d78c1483c24d047f516ef6a24f422fc273678148e436baeba185",
+      "bytes": 377
+    },
+    {
+      "path": "data/literature/thiruppugazh/temple-map/vayalur.json",
+      "sha256": "67848d6182ae6bc9a590e039dbb4777d220197db09a18094c7a9a28acc6b187e",
+      "bytes": 352
+    },
+    {
+      "path": "data/literature/thiruppugazh/temple-map/viralimalai.json",
+      "sha256": "4bd8d1afe27414ccdc0a58f835ced2b1b7470355df23806f9bfdbdcbae644eb8",
+      "bytes": 365
+    },
+    {
+      "path": "data/search/thiruppugazh/index-01.json",
+      "sha256": "19086fe0be7dae0ae5e3751c62c5b4134b3c1ddb0a8019d9838f9a8a06095b80",
+      "bytes": 9295
+    },
+    {
+      "path": "data/search/thiruppugazh/index-02.json",
+      "sha256": "b1b5b074c2f017d62efd8d8a792c4dc228898f1b9f9859fecddbcebdcf981008",
+      "bytes": 10676
+    },
+    {
+      "path": "data/search/thiruppugazh/index-03.json",
+      "sha256": "d44479eeb857f551fc55b71e7cd4921fe97242e982089883f6280185e798a2b0",
+      "bytes": 10296
+    },
+    {
+      "path": "data/search/thiruppugazh/index-04.json",
+      "sha256": "88dbb91bf4630655e892ca06880a946a05c8db6d5ab80bf1b8a42bf266bb232e",
+      "bytes": 10138
+    },
+    {
+      "path": "data/search/thiruppugazh/index-05.json",
+      "sha256": "c473b209b3f735e48d68b1f57c6d159c5cd479adbd7279bbfdab1b88d841cd24",
+      "bytes": 10188
+    },
+    {
+      "path": "data/search/thiruppugazh/index-06.json",
+      "sha256": "a58c0d87ed5e81ceba20c9a67cc2ffa529deca7af8e6fc1da6933d83876544b5",
+      "bytes": 8503
+    },
+    {
+      "path": "manifest-batch-16.json",
+      "sha256": "de49ddf9891c59cd8d7048b982156a75a1b8e52b8077c0c772e4ad2d998de488",
+      "bytes": 452
+    },
+    {
+      "path": "seo/thiruppugazh/sitemap-thiruppugazh-batch16.xml",
+      "sha256": "007f268787ad13a41434d947f3d5dfca8dd66040e50ad4e7f3f47a598f8732d3",
+      "bytes": 3501
+    },
+    {
+      "path": "thiruppugazh/index.html",
+      "sha256": "3ded3115a5499722d8a1cf3190351f0d0c7cae304f04f97ad3c4f60e54dce650",
+      "bytes": 15150
+    },
+    {
+      "path": "thiruppugazh/songs/song-001.html",
+      "sha256": "7888a16c496a063e1601b5d069e67809bf54693d554088a97b9db25e379b68ff",
+      "bytes": 3072
+    },
+    {
+      "path": "thiruppugazh/songs/song-002.html",
+      "sha256": "ff34c394f079a68e4ae304efd697e97002687e70fe074b9b74a1f4f9a1c00389",
+      "bytes": 3380
+    },
+    {
+      "path": "thiruppugazh/songs/song-003.html",
+      "sha256": "4db2516ff601e1d0b3bc94e0224a250719c2ff0da77743d0545949704a2ffd2f",
+      "bytes": 2514
+    },
+    {
+      "path": "thiruppugazh/songs/song-004.html",
+      "sha256": "f801657a447ddb2422a8090ce5e3a2eb60298f2149aaf1b2d8f5d51449d89bbe",
+      "bytes": 4173
+    },
+    {
+      "path": "thiruppugazh/songs/song-005.html",
+      "sha256": "44127d72224738544c3f1c8728434a45620c39e76abaa21ce196c05e574604ee",
+      "bytes": 2958
+    },
+    {
+      "path": "thiruppugazh/songs/song-006.html",
+      "sha256": "bd6cce205a854c3d4b086f533e3a23e53e7946309a7f9b5118d71e4a5f0f9a4c",
+      "bytes": 4016
+    },
+    {
+      "path": "thiruppugazh/songs/song-007.html",
+      "sha256": "a1d60d781294c35da72ebe2e12bf86ab007d07dbb5164a3f0471c1a98eae6371",
+      "bytes": 4270
+    },
+    {
+      "path": "thiruppugazh/songs/song-008.html",
+      "sha256": "ef534b8a88ab57ae54005ff6d2ab827a0b108cda0284ddff8fbce397f9e43fcb",
+      "bytes": 4334
+    },
+    {
+      "path": "thiruppugazh/songs/song-009.html",
+      "sha256": "dbd2811c3f9f0e2bbaaaa2f16051ed6f55dcbcf4b3a31faa296076b2821f422c",
+      "bytes": 3855
+    },
+    {
+      "path": "thiruppugazh/songs/song-010.html",
+      "sha256": "7d3fae9fc6a8b06d0b9e197082302836139a218f1539a54cdfea57a6d8c56902",
+      "bytes": 4259
+    },
+    {
+      "path": "thiruppugazh/songs/song-011.html",
+      "sha256": "05e8d978f80f87fb2c4a0afbfdb6ca87210ef09a15e192c86a82f0722997595b",
+      "bytes": 4099
+    },
+    {
+      "path": "thiruppugazh/songs/song-012.html",
+      "sha256": "1d6bff143e5d3b87c490da735b4d6efc2fb1ea3a29a3a3e42471e9851cb0bd22",
+      "bytes": 4352
+    },
+    {
+      "path": "thiruppugazh/songs/song-013.html",
+      "sha256": "017ae2f5a741be277f700cc3aec21702606216865aae6c9d9f819dff6bbe0c83",
+      "bytes": 2493
+    },
+    {
+      "path": "thiruppugazh/songs/song-014.html",
+      "sha256": "f19323d6764c2f8bdfb79228f648cf6055c9d79f7e2baf38f4a454279a3399cb",
+      "bytes": 3793
+    },
+    {
+      "path": "thiruppugazh/songs/song-015.html",
+      "sha256": "0ee924430a39e109f7ef0011245a59f32d7f3c3263340ab7e64e798254a51cbb",
+      "bytes": 3565
+    },
+    {
+      "path": "thiruppugazh/songs/song-016.html",
+      "sha256": "30e33af78e69add78d0b595c53d2d414dc38865af0d13dda6c6061194230ac59",
+      "bytes": 4650
+    },
+    {
+      "path": "thiruppugazh/songs/song-017.html",
+      "sha256": "961e50acaf5a7b0a1e34cb4649d83ffacd982f5ed90b8614199d462d5583f399",
+      "bytes": 3473
+    },
+    {
+      "path": "thiruppugazh/songs/song-018.html",
+      "sha256": "3fdb7fd2de2baebccd49a917e3380f29769f4ee6f4f763d7cfc4349a65f4dc6a",
+      "bytes": 3404
+    },
+    {
+      "path": "thiruppugazh/songs/song-019.html",
+      "sha256": "bfa8c0748c23d71df2c8fae0f98b6361c8b567037492baaba134fa3b46920bef",
+      "bytes": 4293
+    },
+    {
+      "path": "thiruppugazh/songs/song-020.html",
+      "sha256": "54c2a380486494bcfa9b20d07441f6625a064720c4d1e0f8065edf90eb254350",
+      "bytes": 3634
+    },
+    {
+      "path": "thiruppugazh/songs/song-021.html",
+      "sha256": "8b83209ba4881c6c8b095026bcaba8aab1bc5b30f993b89e6d1b9f7bd34c7dca",
+      "bytes": 3904
+    },
+    {
+      "path": "thiruppugazh/songs/song-022.html",
+      "sha256": "50d516298de48388cb2f6df29a2bbf8ddf949bf7bea2dea250da14152eba17b3",
+      "bytes": 4211
+    },
+    {
+      "path": "thiruppugazh/songs/song-023.html",
+      "sha256": "23519bac80a958a8c6ddb29737f22b7627ef8c5174bf10b2aa9094f5a2947f35",
+      "bytes": 3488
+    },
+    {
+      "path": "thiruppugazh/songs/song-024.html",
+      "sha256": "8184698c1e4453603562382da96c93cb43c9fd324bae71787ff446fe5adb8a1f",
+      "bytes": 3095
+    },
+    {
+      "path": "thiruppugazh/songs/song-025.html",
+      "sha256": "a6901925e907f33ad058e5b02f8215061d93d6059eaab592557c137f81d67fdc",
+      "bytes": 4103
+    },
+    {
+      "path": "thiruppugazh/songs/song-026.html",
+      "sha256": "fac1910a892c8235531e51e3a139ca128fc5b68b2b28d7cf71a847131f16ce40",
+      "bytes": 3769
+    },
+    {
+      "path": "thiruppugazh/songs/song-027.html",
+      "sha256": "5c10957b8e790fa4a98b54c983b3c0caae71a9e27065fde1fd42a053adf686e3",
+      "bytes": 3944
+    },
+    {
+      "path": "thiruppugazh/songs/song-028.html",
+      "sha256": "be1d483161bbdaeee24032b4b034ea903b3f3e1258617005f59dd3779d344ade",
+      "bytes": 3226
+    },
+    {
+      "path": "thiruppugazh/songs/song-029.html",
+      "sha256": "49df14d0e9e481553b9fb09e761d749179678defa62874fcc2b9a4ddbddaae99",
+      "bytes": 4206
+    },
+    {
+      "path": "thiruppugazh/songs/song-030.html",
+      "sha256": "b056298cc944f01eaf22f4ad4b0d49fec2accd066af4c0e69e6950e3ba93674a",
+      "bytes": 3603
+    },
+    {
+      "path": "thiruppugazh/songs/song-031.html",
+      "sha256": "df1fb02d10cbfb76b4283beb3597699086ce33d1a767baf87c64fd54bdf97fd3",
+      "bytes": 2571
+    },
+    {
+      "path": "thiruppugazh/songs/song-032.html",
+      "sha256": "3d85f6bcfd1bff159f1d2c4c232c3c150728083f0c0da0ff6dd409408c743d9a",
+      "bytes": 3628
+    },
+    {
+      "path": "thiruppugazh/songs/song-033.html",
+      "sha256": "9aa170fe81c4cac2fb2dfb1e20e23e4b91c80b9afedd8706c9e73b96f1dabfbb",
+      "bytes": 4432
+    },
+    {
+      "path": "thiruppugazh/songs/song-034.html",
+      "sha256": "51f494b3d93e01dd3c46b70bc60702b3d8d16223717f1e2030069c7ea2c7174d",
+      "bytes": 3924
+    },
+    {
+      "path": "thiruppugazh/songs/song-035.html",
+      "sha256": "507b9a101fdbcd380c0f63106b0163443735af75aa304d40e923a3469d8846df",
+      "bytes": 4119
+    },
+    {
+      "path": "thiruppugazh/songs/song-036.html",
+      "sha256": "593709ec5e7c95da93dbdf9f1c5a048e8d3f76f02da2677f92d61696fe31bfa2",
+      "bytes": 2932
+    },
+    {
+      "path": "thiruppugazh/songs/song-037.html",
+      "sha256": "bbcc6196bae9eadd65cdd7975e6513ba9fb8fa62517fa52a04d52a35d68b0937",
+      "bytes": 3014
+    },
+    {
+      "path": "thiruppugazh/songs/song-038.html",
+      "sha256": "f263f49927522e7b636150354ece2a0326db59851e042715fefcde52c12c325e",
+      "bytes": 3586
+    },
+    {
+      "path": "thiruppugazh/songs/song-039.html",
+      "sha256": "1bb1ceaae833453d1d8e26c6c478bd69957802e4f18e79b44b1d0c87e60c28cc",
+      "bytes": 3744
+    },
+    {
+      "path": "checksums.sha256",
+      "sha256": "computed-after-manifest",
+      "bytes": 0
+    }
+  ]
+}

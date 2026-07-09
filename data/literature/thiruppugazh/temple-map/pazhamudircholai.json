@@ -1,0 +1,13 @@
+{
+  "temple_id": "pazhamudircholai",
+  "temple_name_ta": "பழமுதிர்சோலை",
+  "literature": "திருப்புகழ்",
+  "mapped_song_range": "Batch 16 foundation mapping",
+  "review_status": "needs_source_cross_reference",
+  "related_song_ids": [
+    "thiruppugazh-006",
+    "thiruppugazh-016",
+    "thiruppugazh-026",
+    "thiruppugazh-036"
+  ]
+}

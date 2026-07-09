@@ -1,0 +1,59 @@
+{
+  "audio_pack": "raga-tala",
+  "literature": "திருப்புகழ்",
+  "status": "metadata_ready_audio_pending",
+  "items": [
+    {
+      "song_id": "thiruppugazh-002",
+      "audio_status": "pending"
+    },
+    {
+      "song_id": "thiruppugazh-005",
+      "audio_status": "pending"
+    },
+    {
+      "song_id": "thiruppugazh-008",
+      "audio_status": "pending"
+    },
+    {
+      "song_id": "thiruppugazh-011",
+      "audio_status": "pending"
+    },
+    {
+      "song_id": "thiruppugazh-014",
+      "audio_status": "pending"
+    },
+    {
+      "song_id": "thiruppugazh-017",
+      "audio_status": "pending"
+    },
+    {
+      "song_id": "thiruppugazh-020",
+      "audio_status": "pending"
+    },
+    {
+      "song_id": "thiruppugazh-023",
+      "audio_status": "pending"
+    },
+    {
+      "song_id": "thiruppugazh-026",
+      "audio_status": "pending"
+    },
+    {
+      "song_id": "thiruppugazh-029",
+      "audio_status": "pending"
+    },
+    {
+      "song_id": "thiruppugazh-032",
+      "audio_status": "pending"
+    },
+    {
+      "song_id": "thiruppugazh-035",
+      "audio_status": "pending"
+    },
+    {
+      "song_id": "thiruppugazh-038",
+      "audio_status": "pending"
+    }
+  ]
+}
