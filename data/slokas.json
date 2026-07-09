@@ -29,20 +29,6 @@
     ]
   },
   {
-    "id": "vel-vel",
-    "titleTa": "வேல் வேல் முருகா",
-    "titleEn": "Vel Vel Muruga",
-    "category": "Chant",
-    "textTa": "வேல் வேல் முருகா, வெற்றி வேல் முருகா",
-    "meaningTa": "அறியாமையை அகற்றி ஞானத்தை வழங்கும் வேலின் அருளை வேண்டுதல்.",
-    "meaningEn": "A chant invoking the Vel as wisdom, protection and victory.",
-    "benefits": [
-      "Confidence",
-      "Clarity",
-      "Protection"
-    ]
-  },
-  {
     "id": "subramanya-gayatri",
     "titleTa": "சுப்பிரமண்ய காயத்ரி",
     "titleEn": "Subramanya Gayatri",
@@ -54,6 +40,20 @@
       "Wisdom",
       "Focus",
       "Blessings"
+    ]
+  },
+  {
+    "id": "vel-vel",
+    "titleTa": "வேல் வேல் முருகா",
+    "titleEn": "Vel Vel Muruga",
+    "category": "Chant",
+    "textTa": "வேல் வேல் முருகா, வெற்றி வேல் முருகா",
+    "meaningTa": "அறியாமையை அகற்றி ஞானத்தை வழங்கும் வேலின் அருளை வேண்டுதல்.",
+    "meaningEn": "A chant invoking the Vel as wisdom, protection and victory.",
+    "benefits": [
+      "Confidence",
+      "Clarity",
+      "Protection"
     ]
   }
 ]

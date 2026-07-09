@@ -5,7 +5,8 @@
     "nameEn": "Palani Murugan Temple",
     "place": "Palani, Dindigul",
     "type": "Arupadai Veedu",
-    "summary": "Palani is one of the six sacred abodes of Lord Murugan. The shrine is connected with wisdom, renunciation and Dhandayuthapani worship.",
+    "summary": "Wisdom, renunciation and Dhandayuthapani worship.",
+    "history": "Palani Murugan Temple is presented here as a source-reviewed summary placeholder. Expand with verified temple sthala puranam, inscriptions, and travel details after review.",
     "festivals": [
       "Thai Poosam",
       "Panguni Uthiram",
@@ -13,9 +14,9 @@
     ],
     "tags": [
       "palani",
-      "dhandayuthapani",
-      "hill temple",
-      "arupadai veedu"
+      "palani",
+      "murugan",
+      "arupadai-veedu"
     ],
     "map": "https://www.google.com/maps/search/?api=1&query=Palani+Murugan+Temple"
   },
@@ -25,16 +26,17 @@
     "nameEn": "Thiruchendur Murugan Temple",
     "place": "Thiruchendur, Thoothukudi",
     "type": "Arupadai Veedu",
-    "summary": "Thiruchendur is the sea-side Murugan temple associated with victory, devotion and the Skanda Sashti tradition.",
+    "summary": "Sea-side shrine connected with victory and Skanda Sashti.",
+    "history": "Thiruchendur Murugan Temple is presented here as a source-reviewed summary placeholder. Expand with verified temple sthala puranam, inscriptions, and travel details after review.",
     "festivals": [
       "Skanda Sashti",
       "Masi Festival"
     ],
     "tags": [
       "thiruchendur",
-      "sea temple",
-      "sashti",
-      "victory"
+      "thiruchendur",
+      "murugan",
+      "arupadai-veedu"
     ],
     "map": "https://www.google.com/maps/search/?api=1&query=Thiruchendur+Murugan+Temple"
   },
@@ -44,15 +46,17 @@
     "nameEn": "Thirupparamkundram Murugan Temple",
     "place": "Madurai",
     "type": "Arupadai Veedu",
-    "summary": "Thirupparamkundram is an ancient cave shrine connected with Murugan worship and divine marriage tradition.",
+    "summary": "Ancient cave shrine connected with Murugan worship and divine marriage.",
+    "history": "Thirupparamkundram Murugan Temple is presented here as a source-reviewed summary placeholder. Expand with verified temple sthala puranam, inscriptions, and travel details after review.",
     "festivals": [
       "Panguni Uthiram",
       "Skanda Sashti"
     ],
     "tags": [
       "thirupparamkundram",
-      "cave temple",
-      "madurai"
+      "thirupparamkundram",
+      "murugan",
+      "arupadai-veedu"
     ],
     "map": "https://www.google.com/maps/search/?api=1&query=Thirupparamkundram+Murugan+Temple"
   },
@@ -62,15 +66,17 @@
     "nameEn": "Swamimalai Murugan Temple",
     "place": "Kumbakonam",
     "type": "Arupadai Veedu",
-    "summary": "Swamimalai is the wisdom shrine where Murugan is worshipped as the teacher of the Pranava meaning.",
+    "summary": "Wisdom shrine where Murugan is revered as teacher of Pranava.",
+    "history": "Swamimalai Murugan Temple is presented here as a source-reviewed summary placeholder. Expand with verified temple sthala puranam, inscriptions, and travel details after review.",
     "festivals": [
       "Thai Poosam",
       "Kanda Sashti"
     ],
     "tags": [
       "swamimalai",
-      "wisdom",
-      "pranava"
+      "swamimalai",
+      "murugan",
+      "arupadai-veedu"
     ],
     "map": "https://www.google.com/maps/search/?api=1&query=Swamimalai+Murugan+Temple"
   },
@@ -80,15 +86,17 @@
     "nameEn": "Thiruthani Murugan Temple",
     "place": "Tiruttani",
     "type": "Arupadai Veedu",
-    "summary": "Thiruthani is a hill shrine associated with peace, courage and inner calm.",
+    "summary": "Hill shrine associated with peace, courage and inner calm.",
+    "history": "Thiruthani Murugan Temple is presented here as a source-reviewed summary placeholder. Expand with verified temple sthala puranam, inscriptions, and travel details after review.",
     "festivals": [
       "Aadi Krittikai",
       "Skanda Sashti"
     ],
     "tags": [
       "thiruthani",
-      "hill temple",
-      "peace"
+      "thiruthani",
+      "murugan",
+      "arupadai-veedu"
     ],
     "map": "https://www.google.com/maps/search/?api=1&query=Thiruthani+Murugan+Temple"
   },
@@ -98,15 +106,17 @@
     "nameEn": "Pazhamudircholai Murugan Temple",
     "place": "Madurai",
     "type": "Arupadai Veedu",
-    "summary": "Pazhamudircholai is the forest shrine linked with grace, learning and devotion.",
+    "summary": "Forest shrine linked with grace, learning and devotion.",
+    "history": "Pazhamudircholai Murugan Temple is presented here as a source-reviewed summary placeholder. Expand with verified temple sthala puranam, inscriptions, and travel details after review.",
     "festivals": [
       "Skanda Sashti",
       "Karthigai"
     ],
     "tags": [
       "pazhamudircholai",
-      "forest shrine",
-      "madurai"
+      "pazhamudircholai",
+      "murugan",
+      "arupadai-veedu"
     ],
     "map": "https://www.google.com/maps/search/?api=1&query=Pazhamudircholai+Murugan+Temple"
   },
@@ -116,15 +126,17 @@
     "nameEn": "Vadapalani Murugan Temple",
     "place": "Chennai",
     "type": "Popular Temple",
-    "summary": "Vadapalani is a major Chennai Murugan temple for daily devotion, vows and family prayers.",
+    "summary": "Major Chennai Murugan temple for daily devotion, vows and family prayers.",
+    "history": "Vadapalani Murugan Temple is presented here as a source-reviewed summary placeholder. Expand with verified temple sthala puranam, inscriptions, and travel details after review.",
     "festivals": [
       "Thai Poosam",
       "Skanda Sashti"
     ],
     "tags": [
       "vadapalani",
-      "chennai",
-      "murugan"
+      "vadapalani",
+      "murugan",
+      "popular-temple"
     ],
     "map": "https://www.google.com/maps/search/?api=1&query=Vadapalani+Murugan+Temple"
   },
@@ -134,15 +146,17 @@
     "nameEn": "Marudhamalai Murugan Temple",
     "place": "Coimbatore",
     "type": "Hill Temple",
-    "summary": "Marudhamalai is a Coimbatore hill shrine known for peaceful worship and Siddhar tradition.",
+    "summary": "Coimbatore hill shrine known for peaceful worship and Siddhar tradition.",
+    "history": "Marudhamalai Murugan Temple is presented here as a source-reviewed summary placeholder. Expand with verified temple sthala puranam, inscriptions, and travel details after review.",
     "festivals": [
       "Thai Poosam",
       "Karthigai"
     ],
     "tags": [
       "marudhamalai",
-      "coimbatore",
-      "hill temple"
+      "marudhamalai",
+      "murugan",
+      "hill-temple"
     ],
     "map": "https://www.google.com/maps/search/?api=1&query=Marudhamalai+Murugan+Temple"
   },
@@ -152,15 +166,17 @@
     "nameEn": "Vayalur Murugan Temple",
     "place": "Kumaravayalur",
     "type": "Popular Temple",
-    "summary": "Vayalur is associated with devotion, poetry and Murugan worship.",
+    "summary": "Temple associated with devotion, poetry and Murugan worship.",
+    "history": "Vayalur Murugan Temple is presented here as a source-reviewed summary placeholder. Expand with verified temple sthala puranam, inscriptions, and travel details after review.",
     "festivals": [
       "Karthigai",
       "Sashti"
     ],
     "tags": [
       "vayalur",
+      "vayalur",
       "murugan",
-      "poetry"
+      "popular-temple"
     ],
     "map": "https://www.google.com/maps/search/?api=1&query=Vayalur+Murugan+Temple"
   },
@@ -170,14 +186,16 @@
     "nameEn": "Sikkal Singaravelavar Temple",
     "place": "Nagapattinam",
     "type": "Popular Temple",
-    "summary": "Sikkal is a sacred shrine connected with Vel worship and Skanda tradition.",
+    "summary": "Sacred shrine connected with Vel worship and Skanda tradition.",
+    "history": "Sikkal Singaravelavar Temple is presented here as a source-reviewed summary placeholder. Expand with verified temple sthala puranam, inscriptions, and travel details after review.",
     "festivals": [
       "Skanda Sashti"
     ],
     "tags": [
       "sikkal",
-      "vel",
-      "singaravelavar"
+      "sikkal",
+      "murugan",
+      "popular-temple"
     ],
     "map": "https://www.google.com/maps/search/?api=1&query=Sikkal+Singaravelavar+Temple"
   }

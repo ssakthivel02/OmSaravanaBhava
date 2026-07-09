@@ -1,7 +1,7 @@
 {
   "name": "Om Saravana Bhava",
   "short_name": "OSB",
-  "start_url": "/index-production-v4.html",
+  "start_url": "/index.html",
   "display": "standalone",
   "theme_color": "#a51d17",
   "background_color": "#fff7ec",

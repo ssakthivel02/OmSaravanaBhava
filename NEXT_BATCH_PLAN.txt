@@ -1,0 +1,1 @@
+Next milestone: replace gradient placeholders with owned/licensed WebP images, expand temple details, add Panchangam/festival date data.

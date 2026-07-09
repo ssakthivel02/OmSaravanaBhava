@@ -1,20 +1,8 @@
 [
   {
-    "id": "audio-om",
+    "id": "om-chant",
     "title": "Om Saravana Bhava Chant",
-    "titleTa": "ஓம் சரவணபவ ஜபம்",
-    "type": "Mantra",
-    "duration": "2 min",
-    "description": "A placeholder devotional audio item. Real verified audio can be attached later.",
-    "audioUrl": ""
-  },
-  {
-    "id": "audio-gayatri",
-    "title": "Subramanya Gayatri Practice",
-    "titleTa": "சுப்பிரமண்ய காயத்ரி பயிற்சி",
-    "type": "Guided Chant",
-    "duration": "3 min",
-    "description": "Guided pronunciation and meaning practice placeholder.",
-    "audioUrl": ""
+    "status": "metadata-only",
+    "note": "Add owned/licensed audio only."
   }
 ]
