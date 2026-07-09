@@ -1,0 +1,9 @@
+{
+  "cacheGroup": "literature-thirumurugatrupadai",
+  "files": [
+    "index.html",
+    "reader.html",
+    "assets/css/osb-literature.css",
+    "assets/js/reader.js"
+  ]
+}

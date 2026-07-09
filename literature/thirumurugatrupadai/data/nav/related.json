@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "title": "Temple Explorer",
+      "href": "../../temples.html"
+    },
+    {
+      "title": "Sloka Reader",
+      "href": "../../slokas.html"
+    },
+    {
+      "title": "AI Search",
+      "href": "../../search.html"
+    }
+  ]
+}

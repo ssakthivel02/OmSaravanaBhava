@@ -1,0 +1,509 @@
+{
+  "batch": "09",
+  "project": "OmSaravanaBhava GitHub Pages",
+  "module": "Thirumurugatrupadai Literature Reader",
+  "file_count": 99,
+  "rules": [
+    "additive",
+    "GitHub Pages compatible",
+    "HTML CSS JS JSON only",
+    "no server side code"
+  ],
+  "files": [
+    {
+      "path": "literature/thirumurugatrupadai/assets/css/accessibility.css",
+      "bytes": 170,
+      "sha256": "f016cf8463f592bf808dbe3f422ef0a4cfc1792c4fcbd90da7cd27882d35b61f"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/assets/css/mobile.css",
+      "bytes": 117,
+      "sha256": "216c32bb01e650c953ad91184aa2afa41f4e682e0a3c628058f023e604088a8c"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/assets/css/osb-literature.css",
+      "bytes": 1398,
+      "sha256": "0c1011b69eab24791e0e70d1fb5e728cd2a74fa67c01b62fb1026011bfb4a7a6"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/assets/css/print.css",
+      "bytes": 107,
+      "sha256": "6db0e74e787b5469100e70697c9cd4e45f07c67d310a132637e4845bf627ceeb"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/assets/css/reader.css",
+      "bytes": 222,
+      "sha256": "2ddf5737992a86904519ba2bdbd03327faa5a3328a42de0fd9d9ba852d539cba"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/assets/js/crosslinks.js",
+      "bytes": 297,
+      "sha256": "aaf35462462bfb1563c5bedcc0e6fb1d1f7448630e04e0d20a3d10f06ff1a4a9"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/assets/js/index-loader.js",
+      "bytes": 231,
+      "sha256": "a65a427a725ef84a78199d7135b4968f4e54c6b6f8b11bfbdaef478f40dffbb1"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/assets/js/nav.js",
+      "bytes": 174,
+      "sha256": "6679205799e649bb053c746bd45c9e99149ead895d311abdcb1ef7b42b52dc30"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/assets/js/progress.js",
+      "bytes": 193,
+      "sha256": "d438fa4aa9b000fdbdfca8a78c2ae92d50d2e87c26d13e277c79e720989be0ca"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/assets/js/reader.js",
+      "bytes": 296,
+      "sha256": "4cece85ed71f3f2abe041bb127db5a3d35a0f10911fcf1a971bd7e207715039e"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/assets/js/search.js",
+      "bytes": 576,
+      "sha256": "f108c2e769e42226594fe402fc8f32f1b37748248a9313e240a83669884783ef"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-001.json",
+      "bytes": 9990,
+      "sha256": "cd09827552242c0908104372a31f83ca0850db1d1d4cf793c81483280a89b4d0"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-002.json",
+      "bytes": 10100,
+      "sha256": "93b6f35e109ba2574931487987445a70f110d839f5dab5d4877cbc79e53a1260"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-003.json",
+      "bytes": 10204,
+      "sha256": "d97af5ec11987fb22e0f9dc6b93599ec496a20babdec059f3f17c7c679399375"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-004.json",
+      "bytes": 10216,
+      "sha256": "a1d1d504260ee0d66c73dd7d1f7e0c81dc5c1d6c60b10b673033258a4bd645aa"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-005.json",
+      "bytes": 10108,
+      "sha256": "4c5e3681fc7c16aa36d451ca6274597ebb5b1dcf537c039a5ab88701e5663aee"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-006.json",
+      "bytes": 10286,
+      "sha256": "a20e46951efc8fd3fa9ba635d88c474dd2e3cff7a21dcaf0126c54fe9a573146"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-007.json",
+      "bytes": 10186,
+      "sha256": "4d2f5236280f41ff944136d0bc67930080f045a5742f43de09c921cb079eb096"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-008.json",
+      "bytes": 8092,
+      "sha256": "61f402b5d1f0796ecdec30b0491dbdbefb1e167375f97807c6fc99e27ab7b8f0"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-009.json",
+      "bytes": 4244,
+      "sha256": "1d737672fe337d4819ef7a8cb535d94735e1bd24e33d3a444e07db7a7851eac8"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-010.json",
+      "bytes": 4244,
+      "sha256": "9cf04304017079e32479c1209e8f55519c5b284926424993003562cd770c2a82"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-011.json",
+      "bytes": 4230,
+      "sha256": "3dd6c71161b55cfb38e423f4d186a0d3783f81161093a54f178f9998df653aaf"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-012.json",
+      "bytes": 4252,
+      "sha256": "ded5d5ed2aaad5b0aa1fa1b26060dcfc45018e3381b2a38398bd86640c6161fa"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-013.json",
+      "bytes": 4240,
+      "sha256": "a0216d49dabbe7fac33fcabdaf17a43750d7399c3b6f412f55bbfbed95bbb71d"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-014.json",
+      "bytes": 4242,
+      "sha256": "dc6aa47028f7a9053a36dbd657e3ccac53a6afcdcaa8c0eafd36108d4ccedb3c"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-015.json",
+      "bytes": 4234,
+      "sha256": "69b77d46090f868d5eed2dd4c75be8cf00cf55f6092a2ab4254e6ed458c71db9"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-016.json",
+      "bytes": 4246,
+      "sha256": "0df46829697297ab9c82eccc86c4a6df956bc800c69d8a68c3ab0a0f9d846ed9"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-017.json",
+      "bytes": 1400,
+      "sha256": "5d6882f71928658020791514a642010921f0c362684f29a4363f7cd51943328a"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-018.json",
+      "bytes": 128,
+      "sha256": "f6cffcfaa364e15784915a997739989e6613023bf73118c84455010fc6c4d972"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-019.json",
+      "bytes": 128,
+      "sha256": "340dfaeda685a94b0be11db522dc0fbee07a261f17323fa8e3b39c9a72c588e0"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-020.json",
+      "bytes": 128,
+      "sha256": "b940b87beed911b9c7968ebdb8b2318fa6fceefebdc352896d753c89fc92e07e"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-021.json",
+      "bytes": 128,
+      "sha256": "26426f14a3bd66c654a6f7ac4ed9ca0ca14d9d9eb7a5ae6fe3d2e2893fb6c0ca"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-022.json",
+      "bytes": 128,
+      "sha256": "91c50bbda628a4bcf0e24978f359ae78710d58afb8119a0e3990f90f1be2d4b3"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-023.json",
+      "bytes": 128,
+      "sha256": "6f2b5dedb81550ea25bc4a0511d68c674f963ee8b69aa2dac29968630f1201c3"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-024.json",
+      "bytes": 128,
+      "sha256": "de3cd4ea064956fb365c5cddba4087fb2618786918e0c8015ee527783ed9453b"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-025.json",
+      "bytes": 128,
+      "sha256": "95e1fb9b3436a1fd106ff43e853a0a7eb4331b6120adcf6ae1b6a20fd073629b"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-026.json",
+      "bytes": 128,
+      "sha256": "8326d79a8bcb2390320460459f25ba2b01a241cf15ccfc3afd49072101259463"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-027.json",
+      "bytes": 128,
+      "sha256": "1426a1a0cdc4b6f26ba0b695fc224b22556efd20d0f0089a338d2c98bd26ead8"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-028.json",
+      "bytes": 128,
+      "sha256": "0d15d3f26efdb39843c5ed3ef7f1b90d00b45cd81f9986f06110a7b2eb590481"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-029.json",
+      "bytes": 128,
+      "sha256": "5a818d55df4613ae29af0ba5a483defb1cf74e1edaaf74a77c855f4b7a6c55f5"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/fulltext/chunk-030.json",
+      "bytes": 128,
+      "sha256": "6a185c093aaead7a2c8fd21a56a1f83e40780751eb68e7785950d9b84d28ca3c"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/metadata.json",
+      "bytes": 717,
+      "sha256": "6cf4fd992016e19c200a985571ee4a78cc4695dfe17ed9b0973ef2bff9d46f33"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/nav/breadcrumbs.json",
+      "bytes": 273,
+      "sha256": "62c01e549690457983e0f33e89a3282496ab6d9e6a7ae12710b008bde3ce0ba3"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/nav/cache_manifest.json",
+      "bytes": 170,
+      "sha256": "c76b57c332198df10e9e628164e394c282fdb98651274126024e0bf399cf1e55"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/nav/citation_map.json",
+      "bytes": 177,
+      "sha256": "33739fecafa88a9527b01fabc048b6ad560ff2da003a57ef495b275752a5a59a"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/nav/glossary_terms.json",
+      "bytes": 270,
+      "sha256": "714619dee18a580d2749fc90cd631b381c3e2d73f87a4dc4c17f1b2da91c07c1"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/nav/reader_config.json",
+      "bytes": 141,
+      "sha256": "35df3fb4bfdc87b8d68d3717a6b1fe1a87f5842326c5b1ca3f5d3d710e0e5d14"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/nav/related.json",
+      "bytes": 254,
+      "sha256": "1a820981fda2f022ebe1e54af3dc1c9a4ddac7efefd9ce062eb82860f867fde4"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/parts/part-01.json",
+      "bytes": 8642,
+      "sha256": "06f85154c5eb617b8956a6d3e0bb1b6e6e3494160f8ef15119d9367bb211e1fb"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/parts/part-02.json",
+      "bytes": 5359,
+      "sha256": "833f8dc5f195a611c13ddf361cddff18210ef2e7669cc4a92c62e9a2d18f1c90"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/parts/part-03.json",
+      "bytes": 5619,
+      "sha256": "b2148bb1666b0f7cd36ad6deb4a7c242aadb5c234f1cd112bf0988d232494f2f"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/parts/part-04.json",
+      "bytes": 1656,
+      "sha256": "f699a859bd570d0b7a7607a1a92adbc1e4237dcb8d2b18b69bcad24bbf54f653"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/parts/part-05.json",
+      "bytes": 3275,
+      "sha256": "b7a03bf4153aec2a4718f957f94f16fad2d2507118e59a59a33f27ac9cb6cb61"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/parts/part-06.json",
+      "bytes": 27449,
+      "sha256": "91d688397b6127b3cf13f7521fb2343d2199b36f2229273c6ead05d9efb6f0ae"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/search/search-001.json",
+      "bytes": 1411,
+      "sha256": "79cf2a4a0af4cb7298b5d28cba8ddd5fd532be4cb74a63cb7695ba9997163d68"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/search/search-002.json",
+      "bytes": 1456,
+      "sha256": "04f63b62763eb19fcbb082b767e409598dd1a43d1d375281dd8f6cf433f82687"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/search/search-003.json",
+      "bytes": 1404,
+      "sha256": "b391f40519260b3537e37cb4c45b2d55f430f5ac735f3f6ddf69810931a1f7e0"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/search/search-004.json",
+      "bytes": 1358,
+      "sha256": "2c70d2a952f308341e1a030cc7e3dc5229e0035d3092a296fd924329412c0004"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/search/search-005.json",
+      "bytes": 1473,
+      "sha256": "829ab0397c17d5528a65d9319b5366f7ee5d9d066168fa60b6747ef327c233f6"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/search/search-006.json",
+      "bytes": 1440,
+      "sha256": "da0ec2d0d5fd9db737d77f683a4a46c28fe00a97de1bd88350a4b02782a74269"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/search/search-007.json",
+      "bytes": 678,
+      "sha256": "8450833ed539891012bb6ce04f38ba87123b7c938c98c46cbc825ba1ae4fd849"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/search/search-008.json",
+      "bytes": 745,
+      "sha256": "65d5486c68b22007f604ec0e62950d1fd48341f059661355a8fead3acc331d3a"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/search/search-009.json",
+      "bytes": 677,
+      "sha256": "4742e8dc976d1cfcde31af2acabc564f3eebded7e394bf2c1b7581c3323d3419"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/search/search-010.json",
+      "bytes": 702,
+      "sha256": "6a2a1f666df7de7f919b61857c35be012f9117428c412f2f5a394e30b108ee8d"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/seo/jsonld-01.json",
+      "bytes": 252,
+      "sha256": "57c97aefe539867da6ad92b5ae666fd59a8289ef833565bd4b4f410290c69984"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/seo/jsonld-02.json",
+      "bytes": 246,
+      "sha256": "3e6f2c2939bd9a24ca5b4f7beb373778faa85bbe8a65d4a8aabd1996f1bd42f9"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/seo/jsonld-03.json",
+      "bytes": 244,
+      "sha256": "82667f9535ec25d9dd9a232f8cec24f115bac4579c626f6794b687e342cd7150"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/seo/jsonld-04.json",
+      "bytes": 229,
+      "sha256": "d9297f92b6265e371d9083d5097b336db1bbe610988878f14a4b3ab37ab71db7"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/seo/jsonld-05.json",
+      "bytes": 240,
+      "sha256": "be37cbfd600cd79088d03f01f842e5ddb4566e1cf77e2a03f41bfd4c3991b04a"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/seo/jsonld-06.json",
+      "bytes": 237,
+      "sha256": "c6161aeb36e7a1c86726fe6dbf9e8f5f7b1f1339628d9e085147a48a99cfe432"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/venpa/venpa-01.json",
+      "bytes": 561,
+      "sha256": "25e2c10ec2676870f60e30e9ec8bf6c86a50be4c38e94870bc6c1cf93b2799bb"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/venpa/venpa-02.json",
+      "bytes": 628,
+      "sha256": "d7c68d93c28327fd0af2c1031ae1babc6449dfdbdf6fdd75f99e8004afa81107"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/venpa/venpa-03.json",
+      "bytes": 560,
+      "sha256": "d50e246c1ae950985e5c8a127bb3003a634a0c928e68859dd4109b2037254569"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/venpa/venpa-04.json",
+      "bytes": 585,
+      "sha256": "50040f8597f402e2dd950106a62d22db8ed0d5e5a852eb81731411848ec8e0b7"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/venpa/venpa-05.json",
+      "bytes": 568,
+      "sha256": "12d77466edf78b4f3a9b986ebeefe1e12acaf9c548eb70ceef18dbf8c2c220aa"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/venpa/venpa-06.json",
+      "bytes": 583,
+      "sha256": "41a15939894af52b28d513e76beff8b498ba66bdc011cffca99434488332823a"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/venpa/venpa-07.json",
+      "bytes": 531,
+      "sha256": "35fa5ef0e6ac56bee295cfb2e053ed9519e923eab97db340cd8f2c08d2366873"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/venpa/venpa-08.json",
+      "bytes": 510,
+      "sha256": "dbe76a2a11de99ce6df313184c11ef728abe37947573c3bc3d66dee34a3e27fb"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/venpa/venpa-09.json",
+      "bytes": 575,
+      "sha256": "899642e3e950b2d5b26f8f5edfd19fa933b03792b88611998297a63b98487516"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/data/venpa/venpa-10.json",
+      "bytes": 579,
+      "sha256": "5f94cd1f34f51b3b8c6a44c1e89420aa0cc062d53f2ff7938070baa48a3dc273"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/index.html",
+      "bytes": 2886,
+      "sha256": "878dc1f082493676a0ca2da01fc30ff9ce7ca40f89d92bb4b62450b451cca824"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/manifest.json",
+      "bytes": 2,
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/part-01.html",
+      "bytes": 1483,
+      "sha256": "d8485099d19363f780184c9102a1127b667965c4ed373dff60f47689d7807479"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/part-02.html",
+      "bytes": 1465,
+      "sha256": "9f07ed6ee3aa375adef26dace7dc3ea6fb57b33b36919b0579878e4186b228f9"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/part-03.html",
+      "bytes": 1475,
+      "sha256": "c7caa2922593e45b81029a76c92ac7583815f102b0b731e37b59d0c2640d59d3"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/part-04.html",
+      "bytes": 1444,
+      "sha256": "21deb72943f5331a8ec74b7cd8cfe751e26d1139d2c9281621b72cea103602bd"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/part-05.html",
+      "bytes": 1455,
+      "sha256": "74f371970bfafd766ecbba9f035212ec77248eff1d859c1e78ea7d062554fe52"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/part-06.html",
+      "bytes": 1451,
+      "sha256": "8c9a6711742b83098f1781578f98d27474f7780d14484f1f482ad1b45c56d81f"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/reader.html",
+      "bytes": 1480,
+      "sha256": "889c2b1b054b64fe4a24cdfc69d0e12f77342da36af0a9ae41339f53fabc5f45"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/venpa-01.html",
+      "bytes": 1697,
+      "sha256": "a1711561751e3cd1471b415befbb491cea618d7dfae38b60d79e7021a22d3f32"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/venpa-02.html",
+      "bytes": 1764,
+      "sha256": "ff950726fb101fd89f66d16c5ca31bf1577200d268e5eefc04e0781492f9b9c8"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/venpa-03.html",
+      "bytes": 1696,
+      "sha256": "08f9779d633d41337e074e65877e6411d9f826a49688eb536343e872afdb18bf"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/venpa-04.html",
+      "bytes": 1721,
+      "sha256": "d54c89b889f4972e3e80ae7d982f64614fb2992a6491e1959144e4cb30a85c0d"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/venpa-05.html",
+      "bytes": 1704,
+      "sha256": "da9aa10efb1a16338b6509f69998df5f0b36821e1b12d87c0397096dcf395d78"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/venpa-06.html",
+      "bytes": 1739,
+      "sha256": "61471308037d9c5bb904cbf0ff17fb8fa4f65b3cc03f40e743820146ecbecb62"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/venpa-07.html",
+      "bytes": 1667,
+      "sha256": "9ecb805d41c6fc7403b2a224b77776d390a69826742a741df1ec504b55f8c2be"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/venpa-08.html",
+      "bytes": 1646,
+      "sha256": "97635774a55be76b79a14325ecd04f944ff9a22c5f7edb49786931565b90104b"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/venpa-09.html",
+      "bytes": 1711,
+      "sha256": "0aff459f2b706d3cf80ab65cb4d4c177a723a7f0f65ed2b38aca65872cdf3a2a"
+    },
+    {
+      "path": "literature/thirumurugatrupadai/venpa-10.html",
+      "bytes": 1715,
+      "sha256": "69462529ef60c0b98a6b231dc7bce3ec162b1f57df5215e5be38159e785ea647"
+    }
+  ]
+}

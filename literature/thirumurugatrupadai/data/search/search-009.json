@@ -1,0 +1,15 @@
+{
+  "items": [
+    {
+      "type": "venpa",
+      "title": "நேரிசை வெண்பா 3",
+      "href": "venpa-03.html",
+      "snippet": "வீரவேல் தாரைவேல் விண்ணோர் சிறைமீட்ட\n      தீரவேல் செவ்வேள் திருக்கைவேல் - வாரி\n         குளித்தவேல் கொற்றவேல் சூர்மார்பும் குன்றும்\n            துளைத்தவேல் உண்டே துணை."
+    }
+  ],
+  "index_language": [
+    "ta",
+    "en-transliteration"
+  ],
+  "module": "thirumurugatrupadai"
+}
