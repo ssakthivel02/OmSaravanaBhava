@@ -1,0 +1,18 @@
+{
+  "id": "work-002",
+  "title_ta": "திருப்புகழ்",
+  "title_en": "Thiruppugazh",
+  "status": "source-review-required",
+  "site_section": "literature",
+  "github_pages_compatible": true,
+  "fields": [
+    "original_tamil",
+    "easy_tamil",
+    "transliteration",
+    "english_meaning",
+    "commentary",
+    "temple_links",
+    "festival_links",
+    "audio_metadata"
+  ]
+}

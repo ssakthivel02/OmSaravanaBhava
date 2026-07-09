@@ -1,0 +1,16 @@
+{
+  "required": [
+    "id",
+    "title_ta",
+    "original_tamil",
+    "source",
+    "review_status"
+  ],
+  "optional": [
+    "easy_tamil",
+    "transliteration",
+    "english_meaning",
+    "commentary",
+    "audio"
+  ]
+}

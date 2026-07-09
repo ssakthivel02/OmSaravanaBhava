@@ -1,0 +1,18 @@
+{
+  "id": "work-003",
+  "title_ta": "கந்தர் அனுபூதி",
+  "title_en": "Kandar Anubhuti",
+  "status": "source-review-required",
+  "site_section": "literature",
+  "github_pages_compatible": true,
+  "fields": [
+    "original_tamil",
+    "easy_tamil",
+    "transliteration",
+    "english_meaning",
+    "commentary",
+    "temple_links",
+    "festival_links",
+    "audio_metadata"
+  ]
+}

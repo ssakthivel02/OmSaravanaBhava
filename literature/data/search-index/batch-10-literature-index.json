@@ -1,0 +1,45 @@
+{
+  "batch": "10",
+  "records": [
+    {
+      "title_ta": "திருமுருகாற்றுப்படை",
+      "url": "/literature/data/works/work-001.json"
+    },
+    {
+      "title_ta": "திருப்புகழ்",
+      "url": "/literature/data/works/work-002.json"
+    },
+    {
+      "title_ta": "கந்தர் அனுபூதி",
+      "url": "/literature/data/works/work-003.json"
+    },
+    {
+      "title_ta": "கந்தர் அலங்காரம்",
+      "url": "/literature/data/works/work-004.json"
+    },
+    {
+      "title_ta": "கந்தர் சஷ்டி கவசம்",
+      "url": "/literature/data/works/work-005.json"
+    },
+    {
+      "title_ta": "சுப்பிரமணிய புஜங்கம்",
+      "url": "/literature/data/works/work-006.json"
+    },
+    {
+      "title_ta": "வேல் விருத்தம்",
+      "url": "/literature/data/works/work-007.json"
+    },
+    {
+      "title_ta": "மயில் விருத்தம்",
+      "url": "/literature/data/works/work-008.json"
+    },
+    {
+      "title_ta": "சங்க இலக்கிய முருகன்",
+      "url": "/literature/data/works/work-009.json"
+    },
+    {
+      "title_ta": "ஆறுபடை வீடு பாடல்கள்",
+      "url": "/literature/data/works/work-010.json"
+    }
+  ]
+}

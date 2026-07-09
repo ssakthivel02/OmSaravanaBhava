@@ -1,11 +1,401 @@
 {
-  "name": "Om Saravana Bhava",
-  "short_name": "Om Murugan",
-  "start_url": "./index.html",
-  "display": "standalone",
-  "background_color": "#fff8ef",
-  "theme_color": "#8a1c13",
-  "icons": [],
-  "description": "Verified Murugan devotional knowledge platform with temples, slokas, festivals, learning and spiritual guidance.",
-  "scope": "./"
+  "batch": "10",
+  "name": "OmSaravanaBhava Batch 10 Murugan Literature Reader Foundation",
+  "file_count": 99,
+  "rules": [
+    "additive",
+    "GitHub Pages compatible",
+    "HTML CSS JS JSON only",
+    "no server-side code"
+  ],
+  "files": [
+    {
+      "path": "BATCH_10_CHANGELOG.md",
+      "sha256": "e9e88241244a2e28df62453193da760e180f19389eafbdddb62380e8b516289e"
+    },
+    {
+      "path": "BATCH_10_INSTALL.md",
+      "sha256": "f0512361ae49831eb8782ae11f886237926aac761f6530a8c3bc8882f4774a65"
+    },
+    {
+      "path": "BATCH_10_QA.md",
+      "sha256": "5ccc351913c2f146765f140c34de9d6ce3cb2c1abd4859e24240be2971de1bd9"
+    },
+    {
+      "path": "literature/css/literature-reader.css",
+      "sha256": "9719e7ab9c5e3e3c46f9c212ff4de9d7c861ce6fd1404989995464a32ccce30a"
+    },
+    {
+      "path": "literature/css/sangam-library.css",
+      "sha256": "2256c76ef8f79feae36ebbd2c666e344ad72122d004a00d81b5e568d71ab5f0b"
+    },
+    {
+      "path": "literature/data/audio/audio-meta-001.json",
+      "sha256": "dc9d324ed8d3956aa3d6a6eea83c7df62764d237c71f775596a2a640bff1c6b5"
+    },
+    {
+      "path": "literature/data/audio/audio-meta-002.json",
+      "sha256": "2a62b9a87cb6789195ef7d5e8121618c2c83bb5670bc305158e7d97b2288caf8"
+    },
+    {
+      "path": "literature/data/audio/audio-meta-003.json",
+      "sha256": "94db151d48df1479f5a26628440f6baa2d062ec2e435b106657cf5bd33e0100b"
+    },
+    {
+      "path": "literature/data/audio/audio-meta-004.json",
+      "sha256": "89e9bc9c85d6758d9e5d16b63a87b9f1f4d3384edb951c7c891350600516ca76"
+    },
+    {
+      "path": "literature/data/audio/audio-meta-005.json",
+      "sha256": "9388c75139e3b69e0201335a95c11c07567a9a89c2955c89c99f2232d7774baa"
+    },
+    {
+      "path": "literature/data/crossrefs/crossref-001.json",
+      "sha256": "76dcb6d534869d78a37e14e1c02c9d363e7f5454b4f2f480daa88b6a8169852c"
+    },
+    {
+      "path": "literature/data/crossrefs/crossref-002.json",
+      "sha256": "e8e539054b8b8a90b0da301bc5cf3b1cef8c9ac46f3687dcd923696b1633895a"
+    },
+    {
+      "path": "literature/data/crossrefs/crossref-003.json",
+      "sha256": "c9ad1da4a787d06b6c2fbecec81f3590c3fbb5568c7a913719756df6d1a32cf6"
+    },
+    {
+      "path": "literature/data/crossrefs/crossref-004.json",
+      "sha256": "d8b0ebbbab29df0a1268351da3b92328ac645fbbc99e9586b118f821276b8a72"
+    },
+    {
+      "path": "literature/data/crossrefs/crossref-005.json",
+      "sha256": "b42711dcac05d3360a2cdfe5489a00c0cc1b75e0837389443fba6fb793f72cd1"
+    },
+    {
+      "path": "literature/data/glossary/glossary-001.json",
+      "sha256": "ca5f964b70b59cc419f48af283dac2a75f3c5075607aad462b12cbca0931bcb2"
+    },
+    {
+      "path": "literature/data/glossary/glossary-002.json",
+      "sha256": "92e7053decbf36ee1fa01deec8c6c07de54acad7cb452db2458d7cbd64ab4094"
+    },
+    {
+      "path": "literature/data/glossary/glossary-003.json",
+      "sha256": "4e7e2ad3143bb9d4f96038b3639e9ca224bad35617598a4c89308d41dec8082e"
+    },
+    {
+      "path": "literature/data/glossary/glossary-004.json",
+      "sha256": "a5a4b82b72d3361dd498e9fd6b76e63d34a8ca3ba70b3a5f42e79345d9e61dd0"
+    },
+    {
+      "path": "literature/data/glossary/glossary-005.json",
+      "sha256": "41c6371f2be6af654bc1416e83d81b2c113cc2cf53f914f78c336652b8e9b81a"
+    },
+    {
+      "path": "literature/data/glossary/glossary-006.json",
+      "sha256": "93734815544eb3e6c033b9d8731eabfb2fd43b6d04ffa72d6749a0ab294a550e"
+    },
+    {
+      "path": "literature/data/glossary/glossary-007.json",
+      "sha256": "ddbf0002d8f70089b7c40dadc33ef06e2ce5cd82c7eaca843b574ff6e68fb0f0"
+    },
+    {
+      "path": "literature/data/glossary/glossary-008.json",
+      "sha256": "9b72ab9c2b5a3b82da80a78e4aeef0a81640f38322ba3e8aac2c8cade6438246"
+    },
+    {
+      "path": "literature/data/glossary/glossary-009.json",
+      "sha256": "861c826605b40a006b4eb9a3609ece0d60be200e49948b1b1de034ddc1b8aa99"
+    },
+    {
+      "path": "literature/data/glossary/glossary-010.json",
+      "sha256": "2afc0d0c5b2855fb199f7bbb7fc856d40137f97e70d58ff5bf23dcd8f08b1200"
+    },
+    {
+      "path": "literature/data/import-schema/literature-import-schema.json",
+      "sha256": "a07d6b6e4053a0c99af0f30aac5b3acd50f0779f0eeb9c19cf9221e522cbd13f"
+    },
+    {
+      "path": "literature/data/navigation/breadcrumbs.json",
+      "sha256": "432614ed92eb1fd9c96f726120a4be717001240e5da8184b9557f475fa4ede4b"
+    },
+    {
+      "path": "literature/data/navigation/literature-nav.json",
+      "sha256": "758d4d9372a32f9c47027d6f3e9f77e33c33bc2faa47014365dfa942234255a0"
+    },
+    {
+      "path": "literature/data/placeholders-extra/extra-001.json",
+      "sha256": "b0da317536a194c3b81317ce25e1b60d19aa280b113e29a6dcc06153b5e09c89"
+    },
+    {
+      "path": "literature/data/placeholders-extra/extra-002.json",
+      "sha256": "a154cf3341ca7621311205211a7f41b38d62cebf2ca893ecafad8dfdaae7c9c6"
+    },
+    {
+      "path": "literature/data/placeholders-extra/extra-003.json",
+      "sha256": "ae3f14c9b2886060ab5832aa682ae6e834f2ee6385d7ac1d8ac9a1991174f097"
+    },
+    {
+      "path": "literature/data/placeholders-extra/extra-004.json",
+      "sha256": "e0ec3836e0d44a80bbe85d8c377fd18e4b5a2ce31069d2daac7fae247ff01dd1"
+    },
+    {
+      "path": "literature/data/placeholders-extra/extra-005.json",
+      "sha256": "395c6e3f22343e39eed6dd6184b52f03644afbbaecdfeb57bc5df63d55a258f0"
+    },
+    {
+      "path": "literature/data/placeholders-extra/extra-006.json",
+      "sha256": "ee792b04767061cebf3fc55cfd03407b92257884955933cd87709f361520414a"
+    },
+    {
+      "path": "literature/data/placeholders-extra/extra-007.json",
+      "sha256": "b306aff3265f67b17376a230dcef51e5cb909580666b9782098221f18f7f2a6a"
+    },
+    {
+      "path": "literature/data/placeholders-extra/extra-008.json",
+      "sha256": "2bb35191a04e75ad395c5282420a4f69da46480ae085bd46bcf5308ef16bb989"
+    },
+    {
+      "path": "literature/data/pwa/batch-10-cache.json",
+      "sha256": "5cbedee2608278c8792d7856541bd99c3da20c6c0534f53c766af61d52c20055"
+    },
+    {
+      "path": "literature/data/release/batch-10-release.json",
+      "sha256": "532f3113571bb38b28bf575bfe22915984871ada4490381db03657f64fd52695"
+    },
+    {
+      "path": "literature/data/review/source-review-queue.json",
+      "sha256": "20046c56397adc57c0c3e24700611b11c4798ee5b722dca15d686eb0a6a44b9a"
+    },
+    {
+      "path": "literature/data/search-index/batch-10-literature-index.json",
+      "sha256": "67fe8efddb43a01ce5b0e0d2ee220fc5c9e1834c25885677f3fa95e03ca3b1dd"
+    },
+    {
+      "path": "literature/data/seo/structured-data-001.json",
+      "sha256": "2fb4e96f75c9accffcf3d298c91156ecfeb49efe78822f3ff20a7489c6395834"
+    },
+    {
+      "path": "literature/data/seo/structured-data-002.json",
+      "sha256": "0172ecf2fb77413785baa5c119e41a2399fdd2b51b167cbb0e4048fb46f8e42e"
+    },
+    {
+      "path": "literature/data/seo/structured-data-003.json",
+      "sha256": "fcadae899fe921400b74a0a050bba64c843f0270477955ea9649c0c1a870cfe2"
+    },
+    {
+      "path": "literature/data/seo/structured-data-004.json",
+      "sha256": "5dae4ad2e3191ee236a02e169e038967d8fb2dd61f2b3af84a7173669388d91e"
+    },
+    {
+      "path": "literature/data/seo/structured-data-005.json",
+      "sha256": "62d03bcdc790da2753bfcd557ae1e5c1a71ad6c5444e49c05c93b711486ab4df"
+    },
+    {
+      "path": "literature/data/works/work-001.json",
+      "sha256": "6f60ec8dbc128f9bf9c1accfcce16c1ca893b92ad884dd9b823211724d18d09e"
+    },
+    {
+      "path": "literature/data/works/work-002.json",
+      "sha256": "a37e2c5743fb072df505d5fea6a9b9a1a52d17679b6a8ca5a5543d3c433875ca"
+    },
+    {
+      "path": "literature/data/works/work-003.json",
+      "sha256": "84d77013e64de1857aebcb91f1bf7ab511035438445a441983f19f609fa7ed1b"
+    },
+    {
+      "path": "literature/data/works/work-004.json",
+      "sha256": "ce9441ac8e18074ac24029816a7021cbbde7ed70d28a85770f17521232f00e5c"
+    },
+    {
+      "path": "literature/data/works/work-005.json",
+      "sha256": "7a07bb290e13b4f67147b2abddd53cdb28511bd398226141b7bf0806fe0af8c3"
+    },
+    {
+      "path": "literature/data/works/work-006.json",
+      "sha256": "02971cd45909c0cc438537b2e5f8f66c448ac15be906169f6b6195ed1c6eff91"
+    },
+    {
+      "path": "literature/data/works/work-007.json",
+      "sha256": "87012079ed5662adda7a123a348aae1e116c53b13b4c11311811510be00bda9b"
+    },
+    {
+      "path": "literature/data/works/work-008.json",
+      "sha256": "8888551a6316f5013605b9367dfc24e0295bd4ef3d0ff2f23ee916b4f4c562b8"
+    },
+    {
+      "path": "literature/data/works/work-009.json",
+      "sha256": "7adf114b50fbccc947059bd023431bbc727d9926a305a8a67cfe6a52477b2673"
+    },
+    {
+      "path": "literature/data/works/work-010.json",
+      "sha256": "bc4f98a658510426a873de5ad55ad517b4ff05ba8881be58c3fc61a6f4c6a65d"
+    },
+    {
+      "path": "literature/glossary.html",
+      "sha256": "37e4ad23ac61325634d7f6445cc4c93113290117dc58e7166f4ecbe267260c2b"
+    },
+    {
+      "path": "literature/index.html",
+      "sha256": "3d47ad270ef3b5672fbc6ef392098acd245c8d169374173b1be38ce11239fa97"
+    },
+    {
+      "path": "literature/js/literature-reader.js",
+      "sha256": "ed68dc3fa1106b2082ef29bb7d719e0381d4e44dd177d3e5dd96ff8c63a3ea0e"
+    },
+    {
+      "path": "literature/js/local-literature-search.js",
+      "sha256": "acdce22801f03147dada8ceeb77ab501f97222411930fef51b8c7a07430c08ca"
+    },
+    {
+      "path": "literature/kandar-alankaram.html",
+      "sha256": "ff904ed69b15dafe9351d499da163ba05e96b1c3d25a9df6e325a9e13cb1fb91"
+    },
+    {
+      "path": "literature/kandar-anubhuti.html",
+      "sha256": "6cb414dc4252d1505438744259b346ee887c5ba5d0a969b06a997cebbd6166c7"
+    },
+    {
+      "path": "literature/kandar-sashti-kavasam.html",
+      "sha256": "bc0cde29cca63917fdd173d3260cb63da399aacbbe55c36795bb43bce9d75dcf"
+    },
+    {
+      "path": "literature/reader-guide.html",
+      "sha256": "98602f864e63cbf1822c301770b15eec466db74840c104d4a8ef93b35be2c0db"
+    },
+    {
+      "path": "literature/sangam-murugan.html",
+      "sha256": "d9db08e2b683818c15d5eac83b5a511fdf078d4d7d0c66f8a781a9ba0792ce38"
+    },
+    {
+      "path": "literature/sources-review.html",
+      "sha256": "2962938e77c7df31b338b8e4e27c4fa46bd2be9e5e654b4250e3f31dfa724596"
+    },
+    {
+      "path": "literature/subramanya-bhujangam.html",
+      "sha256": "cc1c680e4397c2abd5c475eefbeb19c91b3e7a750b929d93c82623209f26209c"
+    },
+    {
+      "path": "literature/thiruppugazh.html",
+      "sha256": "93a76d2693aa1a6e43daf35e1611af0ec68829120c07e0eb3a274cd66a674282"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-001.html",
+      "sha256": "93ab438233fdb07e99ebe6f30814d5ee3822ed312653882adb49d79bbab873e2"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-002.html",
+      "sha256": "af45f2986d341b47c4ddce1ea387c377b866a54a70b3cd4c17a72a7628a958f9"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-003.html",
+      "sha256": "7f5ed98faaf32542a269e64e2828d54fd12e9b29ab45c7456d85a0d96ff8a063"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-004.html",
+      "sha256": "75f6ee564385f6187c9712ba9b9f9910744fa445d952bf80854708b87e907af2"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-005.html",
+      "sha256": "dd42a8c95d09f7453b2efce5125703dcfea23a9dbe59f24d91134f24037736fa"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-006.html",
+      "sha256": "44926a7b10710d2d4e7b6b0903cf8200605836d1653a409e5a2290233cfdcdb3"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-007.html",
+      "sha256": "f6f14537e74adf8c981fa1c2f2f2efad2e2a72bbfc26f48ea17479e2807f7aec"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-008.html",
+      "sha256": "7951f351c5cabf372e1d0200c951007b11b65632b7bf044357a1b722e66b5e96"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-009.html",
+      "sha256": "5a2e291ad36eaf5178fd0a6b29116349923cdacbde4034556a6bf1e069f44a3b"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-010.html",
+      "sha256": "d473408f0c1df8eae59bb359d99a7007a81d2050fdc0bd0b5e64cecf415b4845"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-011.html",
+      "sha256": "3d31b61a8be40fbe3cb0a1ff0763f7569f7f3a1894ae7f88f881c27adc04b9e1"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-012.html",
+      "sha256": "30791ea10af2b066a17457647d4dd9bc72257dd05a39f59ac929dcfae35c0e9c"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-013.html",
+      "sha256": "63599a0f286e5ba30ae76943165f4ab9cb865a13b307fc95b3449d169b0a22c2"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-014.html",
+      "sha256": "869add7185bfb1b9f9a7fb10741c0825b78852a3c7862918603463f868722ac1"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-015.html",
+      "sha256": "8f8f8de3f8dc6a705b92e81382b591c2adff2ed32e07928c3addd528882d40c7"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-016.html",
+      "sha256": "28a453c44b1c9c67114ed4af7813caf25c4d74afce539e790e14008888f5c51e"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-017.html",
+      "sha256": "8496135e48b32724617d126738ba960b8b30926c2d2566d1c958154f8b95850e"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-018.html",
+      "sha256": "3bd9ce16fdf1fb8ac33e2638713969184470c27a74ff68b49c961f82fe69a9e3"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-019.html",
+      "sha256": "a3f777411ab81c8dd00efc2132c1f87b04a5c26602b2b567a4a1fa2380ba9984"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-020.html",
+      "sha256": "9ed6268bee4444d6233f92d135c4419272c1e7440351daa28e010520191c419a"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-021.html",
+      "sha256": "72fdd0ed5f880fc7bb2bed1e70115c6b37afa4b9ebd9cf1a46b0ba479fcf8793"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-022.html",
+      "sha256": "29f59591d7f190f6acba5181dea3ae14edd2413680012ee85df2e786f69239d3"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-023.html",
+      "sha256": "dfba35722de91cbb7b92098ea989bdb5e3dabfc72ef62118c436af98f35bbdf4"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-024.html",
+      "sha256": "993fc86b3eeaaadfd845296e580cbc63f1d2440fa04e69ef2f8364a025a2d172"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-025.html",
+      "sha256": "438b3077b6978869828944e9b0f5dd2596d91ad50ed4de3a24e15351c5ae5218"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-026.html",
+      "sha256": "237278020d547d891153c5cdcc180ace8345c8d55e5abf776f35424750c2d73c"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-027.html",
+      "sha256": "88dd08f2203472eae9d40970a46b9300535122a13ca4c7ed11f8926d56ff4748"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-028.html",
+      "sha256": "bae10c0ae3adaff73bbbc54838b6bbfa89328f6a6ea5605ad1ba61e6f92f1c42"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-029.html",
+      "sha256": "332e5c892fe1d03b881ce29f97f538d3f15e282e8e13e5b1f5dcbe6a50c8dfdb"
+    },
+    {
+      "path": "literature/thiruppugazh/thiruppugazh-030.html",
+      "sha256": "dc8bdd7b0557c74342606608d75751475aa9f216ac8008be5ecf61cd0af21c16"
+    }
+  ]
 }

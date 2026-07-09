@@ -1,0 +1,13 @@
+{
+  "id": "audio-meta-003",
+  "work": "Murugan Literature",
+  "audio_status": "not-attached",
+  "fields": [
+    "speaker",
+    "duration",
+    "language",
+    "source",
+    "license",
+    "file_path"
+  ]
+}

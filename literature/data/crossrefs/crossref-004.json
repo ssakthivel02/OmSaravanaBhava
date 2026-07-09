@@ -1,0 +1,13 @@
+{
+  "id": "crossref-004",
+  "type": "literature-cross-reference",
+  "connects": [
+    "literature",
+    "temples",
+    "festivals",
+    "slokas",
+    "ai-search"
+  ],
+  "status": "active-schema-ready",
+  "review_note": "Populate with verified source references."
+}
