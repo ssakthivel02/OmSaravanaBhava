@@ -1,0 +1,33 @@
+{
+  "batch": 25,
+  "type": "ai-relationship-graph",
+  "nodes": [
+    {
+      "id": "work-0",
+      "label": "திருமுருகாற்றுப்படை",
+      "kind": "literature"
+    },
+    {
+      "id": "temple-0",
+      "label": "திருப்பரங்குன்றம்",
+      "kind": "temple"
+    },
+    {
+      "id": "festival-0",
+      "label": "கந்த சஷ்டி",
+      "kind": "festival"
+    }
+  ],
+  "edges": [
+    {
+      "from": "work-0",
+      "to": "temple-0",
+      "relationship": "linked_to"
+    },
+    {
+      "from": "work-0",
+      "to": "festival-0",
+      "relationship": "associated_with"
+    }
+  ]
+}

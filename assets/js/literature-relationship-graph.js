@@ -1,0 +1,1 @@
+document.querySelectorAll('[data-relationship-count]').forEach(el=>{el.textContent=el.dataset.relationshipCount||'0';});

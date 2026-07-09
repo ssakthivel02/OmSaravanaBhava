@@ -1,0 +1,33 @@
+{
+  "batch": 25,
+  "type": "ai-relationship-graph",
+  "nodes": [
+    {
+      "id": "work-3",
+      "label": "கந்தர் அலங்காரம்",
+      "kind": "literature"
+    },
+    {
+      "id": "temple-3",
+      "label": "சுவாமிமலை",
+      "kind": "temple"
+    },
+    {
+      "id": "festival-3",
+      "label": "பங்குனி உத்திரம்",
+      "kind": "festival"
+    }
+  ],
+  "edges": [
+    {
+      "from": "work-3",
+      "to": "temple-3",
+      "relationship": "linked_to"
+    },
+    {
+      "from": "work-3",
+      "to": "festival-3",
+      "relationship": "associated_with"
+    }
+  ]
+}

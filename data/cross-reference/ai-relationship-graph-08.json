@@ -1,0 +1,33 @@
+{
+  "batch": 25,
+  "type": "ai-relationship-graph",
+  "nodes": [
+    {
+      "id": "work-7",
+      "label": "திருப்புகழ்",
+      "kind": "literature"
+    },
+    {
+      "id": "temple-7",
+      "label": "திருவண்ணாமலை",
+      "kind": "temple"
+    },
+    {
+      "id": "festival-7",
+      "label": "தைப்பூசம்",
+      "kind": "festival"
+    }
+  ],
+  "edges": [
+    {
+      "from": "work-7",
+      "to": "temple-7",
+      "relationship": "linked_to"
+    },
+    {
+      "from": "work-7",
+      "to": "festival-7",
+      "relationship": "associated_with"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "batch": 25,
+  "type": "temple-literature-map",
+  "items": [
+    {
+      "temple": "திருப்பரங்குன்றம்",
+      "work": "கந்தர் அனுபூதி",
+      "relationship": "thematic_or_devotional",
+      "status": "review_required"
+    }
+  ]
+}

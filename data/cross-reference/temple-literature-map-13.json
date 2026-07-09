@@ -1,0 +1,12 @@
+{
+  "batch": 25,
+  "type": "temple-literature-map",
+  "items": [
+    {
+      "temple": "பழனி",
+      "work": "திருமுருகாற்றுப்படை",
+      "relationship": "thematic_or_devotional",
+      "status": "review_required"
+    }
+  ]
+}

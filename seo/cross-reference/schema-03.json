@@ -1,0 +1,11 @@
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "Murugan Literature Cross-Reference Engine",
+  "about": [
+    "Murugan literature",
+    "Tamil devotional works",
+    "Murugan temples",
+    "Murugan festivals"
+  ]
+}

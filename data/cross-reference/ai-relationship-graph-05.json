@@ -1,0 +1,33 @@
+{
+  "batch": 25,
+  "type": "ai-relationship-graph",
+  "nodes": [
+    {
+      "id": "work-4",
+      "label": "கந்தர் அந்தாதி",
+      "kind": "literature"
+    },
+    {
+      "id": "temple-4",
+      "label": "திருத்தணி",
+      "kind": "temple"
+    },
+    {
+      "id": "festival-4",
+      "label": "ஆடி கிருத்திகை",
+      "kind": "festival"
+    }
+  ],
+  "edges": [
+    {
+      "from": "work-4",
+      "to": "temple-4",
+      "relationship": "linked_to"
+    },
+    {
+      "from": "work-4",
+      "to": "festival-4",
+      "relationship": "associated_with"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "batch": 25,
+  "type": "temple-literature-map",
+  "items": [
+    {
+      "temple": "வயலூர்",
+      "work": "கந்தர் அந்தாதி",
+      "relationship": "thematic_or_devotional",
+      "status": "review_required"
+    }
+  ]
+}

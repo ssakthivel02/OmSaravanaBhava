@@ -1,0 +1,12 @@
+{
+  "batch": 25,
+  "type": "festival-literature-map",
+  "items": [
+    {
+      "festival": "கந்த சஷ்டி",
+      "work": "திருமுருகாற்றுப்படை",
+      "relationship": "festival_parayanam_or_devotional_theme",
+      "status": "review_required"
+    }
+  ]
+}

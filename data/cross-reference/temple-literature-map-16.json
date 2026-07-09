@@ -1,0 +1,12 @@
+{
+  "batch": 25,
+  "type": "temple-literature-map",
+  "items": [
+    {
+      "temple": "பழமுதிர்சோலை",
+      "work": "கந்தர் அலங்காரம்",
+      "relationship": "thematic_or_devotional",
+      "status": "review_required"
+    }
+  ]
+}
