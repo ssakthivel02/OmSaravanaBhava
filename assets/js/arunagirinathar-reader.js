@@ -1,0 +1,1 @@
+document.addEventListener('DOMContentLoaded',()=>{const q=document.querySelector('#osbFilter');if(!q)return;const cards=[...document.querySelectorAll('[data-title]')];q.addEventListener('input',()=>{const v=q.value.toLowerCase();cards.forEach(c=>{c.style.display=c.dataset.title.toLowerCase().includes(v)?'':'none'})})});

@@ -1,400 +1,109 @@
 {
-  "batch": "14",
-  "module": "kandar-andhadhi",
-  "file_count_including_manifest_and_checksums": 99,
-  "policy": "proofread-first; no unverified OCR scripture text",
+  "batch": 15,
+  "name": "OmSaravanaBhava Batch 15 Arunagirinathar Saritham",
+  "file_count": 99,
+  "generated": "2026-07-09",
+  "compatibility": "GitHub Pages static HTML CSS JS JSON",
+  "policy": "Additive; no existing completed pages intentionally overwritten.",
   "files": [
-    {
-      "path": "assets/css/kandar-andhadhi-print.css",
-      "sha256": "d9d707069dff06a3bf13f3772286cb1767757ea63ed737a09f46b8be8182af2f"
-    },
-    {
-      "path": "assets/css/kandar-andhadhi-review.css",
-      "sha256": "a8330d989be58d8043fb82e9a993ef004790e51e0dd7f2831c2b32dc3cafde32"
-    },
-    {
-      "path": "assets/css/kandar-andhadhi.css",
-      "sha256": "ff02976b58a77edbf99a66f8328c52e59a4014290ccae550abea5c921fb3b958"
-    },
-    {
-      "path": "assets/js/kandar-andhadhi-reader.js",
-      "sha256": "16d5272c27cce503e40a252ddcba5c34c33bd4469e415d49058271265a745679"
-    },
-    {
-      "path": "assets/js/kandar-andhadhi-review.js",
-      "sha256": "bb337315b3592b7e0734f4502194f901f00b8e1e1eb00450226e1ff627e16ca0"
-    },
-    {
-      "path": "assets/js/kandar-andhadhi-search.js",
-      "sha256": "cc16aad1fc62c5c9bd8ba1ed60dac516a73570b1259b63d46575dde1c1494020"
-    },
-    {
-      "path": "data/kandar-andhadhi/audio-metadata.json",
-      "sha256": "c7d88a3943ac1a3fdd2a67f3cf1698c0cf7685b3d16104b325170a03cdd22b3e"
-    },
-    {
-      "path": "data/kandar-andhadhi/audit/audit-note-01.json",
-      "sha256": "a8730ada6519970b430b4e00f3bc2b5f82b062e9ceb2946997c47f0abce9c544"
-    },
-    {
-      "path": "data/kandar-andhadhi/cross-references-festivals.json",
-      "sha256": "5cf3cfdaeca46a4b71306f9801d13c048bb4c2fc3568dd4e3ecfbd4bc506789f"
-    },
-    {
-      "path": "data/kandar-andhadhi/cross-references-temples.json",
-      "sha256": "8a9db9cd7a0257136565c78e77557b08fb82dfd45f3cb0bed80b31582eceafe9"
-    },
-    {
-      "path": "data/kandar-andhadhi/glossary.json",
-      "sha256": "f733043ba9a258a4289a3eff9b8ece72223ce45495f30c7994001a2835af69d3"
-    },
-    {
-      "path": "data/kandar-andhadhi/review-queue.json",
-      "sha256": "3ba8a52743b1b2ae7c2d5187e52ca02e08c44dbfd2d85169ee72503df3350d60"
-    },
-    {
-      "path": "data/kandar-andhadhi/search-index.json",
-      "sha256": "77289f963290523a09fcc4b72e08d6d304624d730574cb6eab698a642bbed845"
-    },
-    {
-      "path": "data/kandar-andhadhi/sections.json",
-      "sha256": "872dabcec8431046fefab0d7d2d7f49b517230024903302696bd9b205fd170a7"
-    },
-    {
-      "path": "data/kandar-andhadhi/seo.json",
-      "sha256": "c40b4a86b0fe427cd96006ef292cfed21d61cc127d74295c60043cd94e824114"
-    },
-    {
-      "path": "data/kandar-andhadhi/verses/verse-001.json",
-      "sha256": "b120fa79b4911ac425b3531e00a7c6ba9a888583f73ae1d6b3b6e84921c781c6"
-    },
-    {
-      "path": "data/kandar-andhadhi/verses/verse-002.json",
-      "sha256": "09b21bc346c62b43198c523ee2c355eda0fec689a64ee43eeb2e7290c65ebdaf"
-    },
-    {
-      "path": "data/kandar-andhadhi/verses/verse-003.json",
-      "sha256": "1a0afb30126997cfe16c4a157db136b39cf104ba71d3fb7e6b2545256cf678e1"
-    },
-    {
-      "path": "data/kandar-andhadhi/verses/verse-004.json",
-      "sha256": "fa6068e9ffbfcf7226ae14d81fad830efe8e801caca6e0da2cc6c1a246b1a807"
-    },
-    {
-      "path": "data/kandar-andhadhi/verses/verse-005.json",
-      "sha256": "a5170c607b72cfed17bf980c7cd096ff841d6e59db8dc76223a220e3c4bf10ac"
-    },
-    {
-      "path": "data/kandar-andhadhi/verses/verse-006.json",
-      "sha256": "26751a776d597875e70ec212f69724d2634eb488ad374866a8934751cfff2d7b"
-    },
-    {
-      "path": "data/kandar-andhadhi/verses/verse-007.json",
-      "sha256": "0bfc98052dc5e8c8aa42b0e0abe7a72a3ce8abf4ad461f83e3b49d2075646fce"
-    },
-    {
-      "path": "data/kandar-andhadhi/verses/verse-008.json",
-      "sha256": "d69d49f7d62545c7dcc35e83aaaa66a156940adf389666261da8bdfe6874340a"
-    },
-    {
-      "path": "data/kandar-andhadhi/verses/verse-009.json",
-      "sha256": "eb1dc08c511dd0065ccb1ae444768a3c177b406f4cd9f0d7f305f4e9296b21b8"
-    },
-    {
-      "path": "data/kandar-andhadhi/verses/verse-010.json",
-      "sha256": "a0a33dd28806a1a4099a4aac43a5fd794669ea787901e2d4294c4d762ff87c5a"
-    },
-    {
-      "path": "data/kandar-andhadhi/verses/verse-011.json",
-      "sha256": "bbc09aa3e1aeff873960310dbd977323187fffa1df5eebe3e104007f70047846"
-    },
-    {
-      "path": "data/kandar-andhadhi/verses/verse-012.json",
-      "sha256": "e4a9311ab903accc1b4ec95b7ced367f1a82f4e8c4652e3c5f61e8373e53d2a7"
-    },
-    {
-      "path": "data/kandar-andhadhi/verses/verse-013.json",
-      "sha256": "9f9375fdc44f4624b9038eb994f979345c7851ff35993eff3de9f88194e41a52"
-    },
-    {
-      "path": "data/kandar-andhadhi/verses/verse-014.json",
-      "sha256": "58cff5bd96cf5f77839a5d7763c4e79535a6e0a453de8f5601a8e18e4bd57132"
-    },
-    {
-      "path": "data/kandar-andhadhi/verses/verse-015.json",
-      "sha256": "6fb1b445eac22a137b79ae5c5c322ebf59c64d2b44b99ff6e4dc53b5a380fa19"
-    },
-    {
-      "path": "data/kandar-andhadhi/verses/verse-016.json",
-      "sha256": "79b069b664aa3de268282e5d511fe9b136b9ac247ea266ffe16bcc5a5b32bd80"
-    },
-    {
-      "path": "data/kandar-andhadhi/verses/verse-017.json",
-      "sha256": "7e9761cd78364e6b7f57cb2f0261cd3d4782e619e6fc4b4773112572a57a552e"
-    },
-    {
-      "path": "data/kandar-andhadhi/verses/verse-018.json",
-      "sha256": "d197aff6480fee7e15271100aefdde1c05914d34296e705b2c27d65d2e840c60"
-    },
-    {
-      "path": "data/kandar-andhadhi/verses/verse-019.json",
-      "sha256": "2000df9d4b004c342518efe3ce3c6fe18c2e9a88f778c82e00f3181fa8202379"
-    },
-    {
-      "path": "data/kandar-andhadhi/verses/verse-020.json",
-      "sha256": "d10119998e1b75b14691fa5777a73b0f82674ac5e922186c09104f96217f9230"
-    },
-    {
-      "path": "data/kandar-andhadhi/verses/verse-021.json",
-      "sha256": "6f36364b391696622dd34c877c67c078661a633a4eb12fe3ea31cc938da1f19c"
-    },
-    {
-      "path": "data/kandar-andhadhi/verses/verse-022.json",
-      "sha256": "63bce5acf76250c9eea340a3305cc6ec50424d870bf1aeaeaef511883e047f78"
-    },
-    {
-      "path": "data/kandar-andhadhi/verses-index.json",
-      "sha256": "8e7511c3cba2091a9d6d46bc084aab594943b733fb1020cf04246514080e9967"
-    },
-    {
-      "path": "data/kandar-andhadhi/work.json",
-      "sha256": "b0a851147ed4a8c4259f5418b3d5615b57c037856abb3334d05af8d3acb48760"
-    },
-    {
-      "path": "docs/batches/batch-14-kandar-andhadhi.md",
-      "sha256": "a24ac5f6da7b043087aa06d166ead48f4b73a2395f866f24ff0a44919b4fa4d0"
-    },
-    {
-      "path": "docs/batches/batch-14-upload-guide.md",
-      "sha256": "d1512df1d2bd5e5dd8ed4108826a4dc876b641e37e4e826f508535c81a947a84"
-    },
-    {
-      "path": "literature/kandar-andhadhi/audit.html",
-      "sha256": "647c477d45de265545d54433135eaaac8ebb8183712ee473469e0ef644609470"
-    },
-    {
-      "path": "literature/kandar-andhadhi/copyright-notes.html",
-      "sha256": "d7e90c5ca017d700016cde4479c8f23d1f630a837a497de2ab628a44f6a14a3d"
-    },
-    {
-      "path": "literature/kandar-andhadhi/index.html",
-      "sha256": "2397dc2f76626dd239cb18cce5df56515737dde5789ff280d7a2c0c0e2477d37"
-    },
-    {
-      "path": "literature/kandar-andhadhi/integration.html",
-      "sha256": "1526ae918366baf378294e134f65a9c58fd8ac76b1bbd076104d90b03433136c"
-    },
-    {
-      "path": "literature/kandar-andhadhi/release-notes.html",
-      "sha256": "2ab57d5c67a2b62a70c0532656cfe3049188253349b74fcafc6989cf45371479"
-    },
-    {
-      "path": "literature/kandar-andhadhi/review-queue.html",
-      "sha256": "e815b4855d06145acbdd218e1130579ac2d8a6d208c1e7a2ac48a2ea10bad295"
-    },
-    {
-      "path": "literature/kandar-andhadhi/section-01.html",
-      "sha256": "73ec0170d61d17693e6376b8aab425645a14b551f618936fb27413a6e6f87ffb"
-    },
-    {
-      "path": "literature/kandar-andhadhi/section-02.html",
-      "sha256": "e7c6006587e9fda44241b5ffa05381c3a3a99adc157f03224c2a098f1ff467a8"
-    },
-    {
-      "path": "literature/kandar-andhadhi/section-03.html",
-      "sha256": "ec09f579bf58e9b7abe62b0d069eb0db328864cdd12a9946b3335f2172f4f59d"
-    },
-    {
-      "path": "literature/kandar-andhadhi/section-04.html",
-      "sha256": "31e88b7d2b2c0f84959ed38469c1dbaff4a08955fdac3a4fcde1d349ce5276c0"
-    },
-    {
-      "path": "literature/kandar-andhadhi/section-05.html",
-      "sha256": "599a0d477431aa46676f76ae3c42637ce4f5f90b9c0972836c50183923aefb19"
-    },
-    {
-      "path": "literature/kandar-andhadhi/section-06.html",
-      "sha256": "4f3a4cb057343cb6a6eafc75c9abcc8ee48a1a83abf8c5a960bfd3f53626af93"
-    },
-    {
-      "path": "literature/kandar-andhadhi/section-07.html",
-      "sha256": "19193fa495c74591d3a542748ebae9ac0db17448a087ec5dee6d539d77a04d22"
-    },
-    {
-      "path": "literature/kandar-andhadhi/section-08.html",
-      "sha256": "ec1006643bfd8cba3d113ce2f853523ee12c7feea43af4241f199e6862290251"
-    },
-    {
-      "path": "literature/kandar-andhadhi/section-09.html",
-      "sha256": "39f12191d8d11e93ad953a00a9f88ac18605bd65b9e64436747fffc3bf03770f"
-    },
-    {
-      "path": "literature/kandar-andhadhi/section-10.html",
-      "sha256": "4cd8970516ee61da4499b3522e5eb7f2fd1b25da51e4fdf95558326901a94c72"
-    },
-    {
-      "path": "literature/kandar-andhadhi/section-11.html",
-      "sha256": "c7be7e7c221101227c5e7e653da897e05d402b1ad0047bab541b633f3d7fda64"
-    },
-    {
-      "path": "literature/kandar-andhadhi/section-12.html",
-      "sha256": "a5e4d1b399b59157f0ca2230b3cc618885c0751e243eb82c10272efeceff2388"
-    },
-    {
-      "path": "literature/kandar-andhadhi/section-13.html",
-      "sha256": "a0d7aca42c7f9344a4ca7d4cf6ac2c7bf3ad6eee24d26a7bceec9a03343596d5"
-    },
-    {
-      "path": "literature/kandar-andhadhi/section-14.html",
-      "sha256": "0ce99f38299d5f0b2dbe3ce4da267c32b6f18296dbe7042fece9990e60c3bb51"
-    },
-    {
-      "path": "literature/kandar-andhadhi/section-15.html",
-      "sha256": "8ef3202fc724f56dbf64517d008eee04e1234aa914048f0205b30cb2c23df2c8"
-    },
-    {
-      "path": "literature/kandar-andhadhi/section-16.html",
-      "sha256": "1e5e0211b5b6befac29af0002cb0ae427b87bd99908db59ddc624eee6bdd457f"
-    },
-    {
-      "path": "literature/kandar-andhadhi/section-17.html",
-      "sha256": "f4b1ff59e6cd26f44b0edb0cba350bb00c4df00c75e289898ad39520e63c90ba"
-    },
-    {
-      "path": "literature/kandar-andhadhi/section-18.html",
-      "sha256": "c45995d8a66c081f1faf76cd95c16d09278252dd0c96e4dece78e82a0d90c327"
-    },
-    {
-      "path": "literature/kandar-andhadhi/section-19.html",
-      "sha256": "05bd12581f085148f2c4e422adf9610542c7eef66dc4b8b22f87174e44401b78"
-    },
-    {
-      "path": "literature/kandar-andhadhi/section-20.html",
-      "sha256": "bfc292bb8831b2fca63bb051ecbb682391a466787c53ea79481b8ac8fe3fbd9c"
-    },
-    {
-      "path": "literature/kandar-andhadhi/verses/index.html",
-      "sha256": "634e5c403cf0c0294231cfcc5effece402644a9e30975a62c79a9f4ecb6c9e7c"
-    },
-    {
-      "path": "literature/kandar-andhadhi/verses/verse-001.html",
-      "sha256": "32d2a516959bfa07bb5da24ad3b0465bbe485ad1bc288c5f714e8c3c4a84b9c9"
-    },
-    {
-      "path": "literature/kandar-andhadhi/verses/verse-002.html",
-      "sha256": "5494a318d58366d19aeaa8711565a628b9eac368db9891101d4ab807494161a1"
-    },
-    {
-      "path": "literature/kandar-andhadhi/verses/verse-003.html",
-      "sha256": "7eb759bc3c94e2c3e5b651c6a1c38f807f975006f1cf91b74824488394a1a47b"
-    },
-    {
-      "path": "literature/kandar-andhadhi/verses/verse-004.html",
-      "sha256": "61d0ff4f7040347079d4039f0402734cf1e929369c4a1e27baeb0667ee3b23be"
-    },
-    {
-      "path": "literature/kandar-andhadhi/verses/verse-005.html",
-      "sha256": "be0b587b00337b65e5a1d1d415eab99b2d0db2f8f53ce198a894a6e5c21adf58"
-    },
-    {
-      "path": "literature/kandar-andhadhi/verses/verse-006.html",
-      "sha256": "76b056530851c845d5f6b2f21332ee6ada60cbe90f3c292051eff55da2dc3260"
-    },
-    {
-      "path": "literature/kandar-andhadhi/verses/verse-007.html",
-      "sha256": "00281d78847fb653d2c28cda8a28faa3fa768806ef2fcaf6a8760c86c27d7a8e"
-    },
-    {
-      "path": "literature/kandar-andhadhi/verses/verse-008.html",
-      "sha256": "e79ad6ab68d7470a19a5082330b10ea0969e8a10e7023e037cf610c6df8697ff"
-    },
-    {
-      "path": "literature/kandar-andhadhi/verses/verse-009.html",
-      "sha256": "c320e0296e2e0bf8f9264dadfd6f54a8501703e9d9b78d8060145e344aaa7424"
-    },
-    {
-      "path": "literature/kandar-andhadhi/verses/verse-010.html",
-      "sha256": "e57dfefcc098aa4421e2c62ce9a418ef74fb11c6e511ef392f0447119140d19c"
-    },
-    {
-      "path": "literature/kandar-andhadhi/verses/verse-011.html",
-      "sha256": "e54834121d1fec922f055bf7a5556853e05284d332681902425fafdd3296dbbc"
-    },
-    {
-      "path": "literature/kandar-andhadhi/verses/verse-012.html",
-      "sha256": "6c1f1447040eb260c30b30c2f5b20863ba435480c8428debf09065ff0173cff7"
-    },
-    {
-      "path": "literature/kandar-andhadhi/verses/verse-013.html",
-      "sha256": "06cea55ea02b45bb2bb1a10ffe85d5b46da088c3da3d82e61ebf50b35f74725f"
-    },
-    {
-      "path": "literature/kandar-andhadhi/verses/verse-014.html",
-      "sha256": "75097d3216f1922f2ddc3724442c211d0781b978decdf92cca6b342ee52a7233"
-    },
-    {
-      "path": "literature/kandar-andhadhi/verses/verse-015.html",
-      "sha256": "7722cbc0565029b0da3c4ae319162e21fad60d1771a1803e4c1930150d669306"
-    },
-    {
-      "path": "literature/kandar-andhadhi/verses/verse-016.html",
-      "sha256": "073ba344f9822cca223f695108a5d27e26bab19022b532af4a5b6582fdddf811"
-    },
-    {
-      "path": "literature/kandar-andhadhi/verses/verse-017.html",
-      "sha256": "f7f6bf09eae8b3ed0c0fbd376e43cd9db1a29b84acf7f349975346950d1dc8d4"
-    },
-    {
-      "path": "literature/kandar-andhadhi/verses/verse-018.html",
-      "sha256": "ead369af7281aa1c8e805c286292a9e3e3f7e202b29befe4d6ede47ac9948b70"
-    },
-    {
-      "path": "literature/kandar-andhadhi/verses/verse-019.html",
-      "sha256": "ec4761a15d8cf1536b9fb756c7625e579a5e7f5538d4d6dd99ba54e2e566005b"
-    },
-    {
-      "path": "literature/kandar-andhadhi/verses/verse-020.html",
-      "sha256": "434d587dde7649c6e1383a8accf3b9fddc46a587d340b69566496c28021abcff"
-    },
-    {
-      "path": "literature/kandar-andhadhi/verses/verse-021.html",
-      "sha256": "03485da0636be546c5daf2c8e9b3e3e85557fcc41b8d4c6a9c66de3416d52127"
-    },
-    {
-      "path": "literature/kandar-andhadhi/verses/verse-022.html",
-      "sha256": "0ef52de5bd6df4eae0e14b3c1f37a15b68f8b214b4f3847c13d56eb64a9ca7f5"
-    },
-    {
-      "path": "pwa/cache/kandar-andhadhi-files.json",
-      "sha256": "cd73abbb405f1def4df700f6f7ed7f820d986e25190f75720b5d507137dde1f7"
-    },
-    {
-      "path": "pwa/cache/kandar-andhadhi-routes.json",
-      "sha256": "c93fc4e5c473266bcfe923db293381c6baf5ee3d2528c58332f3994750144010"
-    },
-    {
-      "path": "seo/kandar-andhadhi/jsonld-01.json",
-      "sha256": "5f8c65b3f8394214e99c6c30f659522b71d6174f05692a97c96f5759457089ab"
-    },
-    {
-      "path": "seo/kandar-andhadhi/jsonld-02.json",
-      "sha256": "113589f939755b35d0bc29d4573c63a0b416e5e100d157eb411987c4843991a6"
-    },
-    {
-      "path": "seo/kandar-andhadhi/jsonld-03.json",
-      "sha256": "c698555c4d3455c0ba5582f51f6f8afe55e3d953cd3750d43c9ee644c0b24d80"
-    },
-    {
-      "path": "seo/kandar-andhadhi/jsonld-04.json",
-      "sha256": "46f409abae983c95e4ade3863cd4391ab44d5b42f50e65d1eff0ec6f6e7d9750"
-    },
-    {
-      "path": "seo/kandar-andhadhi/jsonld-05.json",
-      "sha256": "e29f8b010ccb64a11dd423b9a1e40a1e3e36f2b6a01ee9cd77e022802921a820"
-    },
-    {
-      "path": "checksums.sha256",
-      "sha256": "83e6a628214a019f35360bdf1a4cb46695278a9179b06870cda15c4d11915339"
-    }
+    "arunagirinathar-saritham/chapters/birth-context.html",
+    "arunagirinathar-saritham/chapters/devotional-themes.html",
+    "arunagirinathar-saritham/chapters/murugan-grace.html",
+    "arunagirinathar-saritham/chapters/poetic-style.html",
+    "arunagirinathar-saritham/chapters/six-abodes.html",
+    "arunagirinathar-saritham/chapters/source-safety.html",
+    "arunagirinathar-saritham/chapters/thiruppugazh-path.html",
+    "arunagirinathar-saritham/chapters/tiruvannamalai.html",
+    "arunagirinathar-saritham/chapters/turning-point.html",
+    "arunagirinathar-saritham/chapters/works-overview.html",
+    "arunagirinathar-saritham/index.html",
+    "arunagirinathar-saritham/themes/theme-01.html",
+    "arunagirinathar-saritham/themes/theme-02.html",
+    "arunagirinathar-saritham/themes/theme-03.html",
+    "arunagirinathar-saritham/themes/theme-04.html",
+    "arunagirinathar-saritham/themes/theme-05.html",
+    "arunagirinathar-saritham/themes/theme-06.html",
+    "arunagirinathar-saritham/themes/theme-07.html",
+    "arunagirinathar-saritham/themes/theme-08.html",
+    "arunagirinathar-saritham/themes/theme-09.html",
+    "arunagirinathar-saritham/themes/theme-10.html",
+    "arunagirinathar-saritham/themes/theme-11.html",
+    "arunagirinathar-saritham/themes/theme-12.html",
+    "arunagirinathar-saritham/themes/theme-13.html",
+    "arunagirinathar-saritham/themes/theme-14.html",
+    "arunagirinathar-saritham/themes/theme-15.html",
+    "arunagirinathar-saritham/themes/theme-16.html",
+    "arunagirinathar-saritham/timeline/event-01.html",
+    "arunagirinathar-saritham/timeline/event-02.html",
+    "arunagirinathar-saritham/timeline/event-03.html",
+    "arunagirinathar-saritham/timeline/event-04.html",
+    "arunagirinathar-saritham/timeline/event-05.html",
+    "arunagirinathar-saritham/timeline/event-06.html",
+    "arunagirinathar-saritham/timeline/event-07.html",
+    "arunagirinathar-saritham/timeline/event-08.html",
+    "arunagirinathar-saritham/timeline/event-09.html",
+    "arunagirinathar-saritham/timeline/event-10.html",
+    "arunagirinathar-saritham/timeline/event-11.html",
+    "arunagirinathar-saritham/timeline/event-12.html",
+    "arunagirinathar-saritham/timeline/event-13.html",
+    "arunagirinathar-saritham/timeline/event-14.html",
+    "arunagirinathar-saritham/timeline/event-15.html",
+    "arunagirinathar-saritham/timeline/event-16.html",
+    "arunagirinathar-saritham/timeline/event-17.html",
+    "arunagirinathar-saritham/timeline/event-18.html",
+    "arunagirinathar-saritham/timeline/event-19.html",
+    "arunagirinathar-saritham/timeline/event-20.html",
+    "assets/css/arunagirinathar-print.css",
+    "assets/css/arunagirinathar-saritham.css",
+    "assets/js/arunagirinathar-crosslinks.js",
+    "assets/js/arunagirinathar-index.js",
+    "assets/js/arunagirinathar-reader.js",
+    "checksums.sha256",
+    "data/ai/arunagirinathar/knowledge-01.json",
+    "data/ai/arunagirinathar/knowledge-02.json",
+    "data/ai/arunagirinathar/knowledge-03.json",
+    "data/ai/arunagirinathar/knowledge-04.json",
+    "data/ai/arunagirinathar/knowledge-05.json",
+    "data/ai/arunagirinathar/knowledge-06.json",
+    "data/ai/arunagirinathar/knowledge-07.json",
+    "data/ai/arunagirinathar/knowledge-08.json",
+    "data/ai/arunagirinathar/knowledge-09.json",
+    "data/ai/arunagirinathar/knowledge-10.json",
+    "data/ai/arunagirinathar/knowledge-11.json",
+    "data/ai/arunagirinathar/knowledge-12.json",
+    "data/ai/arunagirinathar/knowledge-13.json",
+    "data/arunagirinathar/crosslinks.json",
+    "data/arunagirinathar/index.json",
+    "data/arunagirinathar/notes/note-01.json",
+    "data/arunagirinathar/notes/note-02.json",
+    "data/arunagirinathar/notes/note-03.json",
+    "data/arunagirinathar/notes/note-04.json",
+    "data/arunagirinathar/notes/note-05.json",
+    "data/arunagirinathar/notes/note-06.json",
+    "data/arunagirinathar/notes/note-07.json",
+    "data/arunagirinathar/notes/note-08.json",
+    "data/arunagirinathar/notes/note-09.json",
+    "data/arunagirinathar/notes/note-10.json",
+    "data/arunagirinathar/notes/note-11.json",
+    "data/arunagirinathar/notes/note-12.json",
+    "data/arunagirinathar/notes/note-13.json",
+    "data/arunagirinathar/notes/note-14.json",
+    "data/arunagirinathar/notes/note-15.json",
+    "data/arunagirinathar/notes/note-16.json",
+    "data/arunagirinathar/notes/note-17.json",
+    "data/arunagirinathar/notes/note-18.json",
+    "data/arunagirinathar/notes/note-19.json",
+    "data/arunagirinathar/notes/note-20.json",
+    "data/arunagirinathar/proofread-queue.json",
+    "data/arunagirinathar/search-index.json",
+    "data/search/batch-15-arunagirinathar.json",
+    "docs/BATCH_15_CHANGELOG.md",
+    "docs/BATCH_15_INSTALL.md",
+    "docs/BATCH_15_QA_CHECKLIST.md",
+    "docs/BATCH_15_SOURCE_POLICY.md",
+    "manifest.json",
+    "pwa/cache-batch-15.json",
+    "seo/arunagirinathar/breadcrumbs.json",
+    "seo/arunagirinathar/schema.json"
   ]
 }
