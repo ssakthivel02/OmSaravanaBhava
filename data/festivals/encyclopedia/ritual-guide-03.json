@@ -1,0 +1,16 @@
+{
+  "batch": 24,
+  "type": "ritual-guide",
+  "items": [
+    {
+      "festival": "வைகாசி விசாகம்",
+      "sections": [
+        "vrata",
+        "pooja",
+        "chanting",
+        "family_worship"
+      ],
+      "status": "needs_scholar_review"
+    }
+  ]
+}

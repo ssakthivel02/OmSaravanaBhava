@@ -1,0 +1,96 @@
+{
+  "batch": 24,
+  "type": "search-index",
+  "items": [
+    {
+      "title_ta": "கந்த சஷ்டி",
+      "slug": "kanda-sashti",
+      "keywords": [
+        "முருகன்",
+        "விழா",
+        "கந்த சஷ்டி"
+      ]
+    },
+    {
+      "title_ta": "தைப்பூசம்",
+      "slug": "thaipusam",
+      "keywords": [
+        "முருகன்",
+        "விழா",
+        "தைப்பூசம்"
+      ]
+    },
+    {
+      "title_ta": "வைகாசி விசாகம்",
+      "slug": "vaikasi-visakam",
+      "keywords": [
+        "முருகன்",
+        "விழா",
+        "வைகாசி விசாகம்"
+      ]
+    },
+    {
+      "title_ta": "பங்குனி உத்திரம்",
+      "slug": "panguni-uthiram",
+      "keywords": [
+        "முருகன்",
+        "விழா",
+        "பங்குனி உத்திரம்"
+      ]
+    },
+    {
+      "title_ta": "ஆடி கிருத்திகை",
+      "slug": "aadi-kiruthigai",
+      "keywords": [
+        "முருகன்",
+        "விழா",
+        "ஆடி கிருத்திகை"
+      ]
+    },
+    {
+      "title_ta": "கார்த்திகை தீபம்",
+      "slug": "karthigai-deepam",
+      "keywords": [
+        "முருகன்",
+        "விழா",
+        "கார்த்திகை தீபம்"
+      ]
+    },
+    {
+      "title_ta": "ஸ்கந்த ஜயந்தி",
+      "slug": "skanda-jayanthi",
+      "keywords": [
+        "முருகன்",
+        "விழா",
+        "ஸ்கந்த ஜயந்தி"
+      ]
+    },
+    {
+      "title_ta": "சுப்பிரமணிய சஷ்டி",
+      "slug": "subrahmanya-shashti",
+      "keywords": [
+        "முருகன்",
+        "விழா",
+        "சுப்பிரமணிய சஷ்டி"
+      ]
+    },
+    {
+      "title_ta": "மாத கிருத்திகை",
+      "slug": "kiruthigai-monthly",
+      "keywords": [
+        "முருகன்",
+        "விழா",
+        "மாத கிருத்திகை"
+      ]
+    },
+    {
+      "title_ta": "சித்ரா பௌர்ணமி",
+      "slug": "chitra-pournami",
+      "keywords": [
+        "முருகன்",
+        "விழா",
+        "சித்ரா பௌர்ணமி"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "batch": 24,
+  "type": "ritual-guide",
+  "items": [
+    {
+      "festival": "கந்த சஷ்டி",
+      "sections": [
+        "vrata",
+        "pooja",
+        "chanting",
+        "family_worship"
+      ],
+      "status": "needs_scholar_review"
+    }
+  ]
+}

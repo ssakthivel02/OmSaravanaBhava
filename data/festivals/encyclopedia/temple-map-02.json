@@ -1,0 +1,15 @@
+{
+  "batch": 24,
+  "type": "temple-map",
+  "items": [
+    {
+      "festival": "தைப்பூசம்",
+      "related_temples": [
+        "திருச்செந்தூர்",
+        "பழனி",
+        "திருப்பரங்குன்றம்"
+      ],
+      "confidence": "review_required"
+    }
+  ]
+}
