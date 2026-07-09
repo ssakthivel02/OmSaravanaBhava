@@ -1,0 +1,14 @@
+{
+  "maps": [
+    {
+      "temple": "திருச்செந்தூர்",
+      "relation": "Murugan temple reference",
+      "status": "metadata_ready"
+    },
+    {
+      "temple": "பழநி",
+      "relation": "Murugan temple reference",
+      "status": "metadata_ready"
+    }
+  ]
+}

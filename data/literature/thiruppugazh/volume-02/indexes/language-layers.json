@@ -1,0 +1,10 @@
+{
+  "layers": [
+    "original_tamil",
+    "easy_tamil",
+    "transliteration",
+    "english_meaning",
+    "word_by_word",
+    "commentary"
+  ]
+}

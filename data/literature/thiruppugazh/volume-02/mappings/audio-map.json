@@ -1,0 +1,10 @@
+{
+  "fields": [
+    "audio_url",
+    "duration",
+    "reciter",
+    "license",
+    "review_status"
+  ],
+  "status": "schema_ready"
+}

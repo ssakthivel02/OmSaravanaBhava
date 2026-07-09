@@ -1,0 +1,9 @@
+{
+  "fields": [
+    "raga",
+    "tala",
+    "meter",
+    "chanting_notes"
+  ],
+  "status": "schema_ready"
+}

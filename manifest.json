@@ -1,109 +1,494 @@
 {
-  "batch": 15,
-  "name": "OmSaravanaBhava Batch 15 Arunagirinathar Saritham",
-  "file_count": 99,
+  "project": "OmSaravanaBhava",
+  "batch": 17,
+  "name": "Thiruppugazh Volume 2 Foundation",
   "generated": "2026-07-09",
-  "compatibility": "GitHub Pages static HTML CSS JS JSON",
-  "policy": "Additive; no existing completed pages intentionally overwritten.",
+  "file_count_including_manifest_and_checksums": 99,
   "files": [
-    "arunagirinathar-saritham/chapters/birth-context.html",
-    "arunagirinathar-saritham/chapters/devotional-themes.html",
-    "arunagirinathar-saritham/chapters/murugan-grace.html",
-    "arunagirinathar-saritham/chapters/poetic-style.html",
-    "arunagirinathar-saritham/chapters/six-abodes.html",
-    "arunagirinathar-saritham/chapters/source-safety.html",
-    "arunagirinathar-saritham/chapters/thiruppugazh-path.html",
-    "arunagirinathar-saritham/chapters/tiruvannamalai.html",
-    "arunagirinathar-saritham/chapters/turning-point.html",
-    "arunagirinathar-saritham/chapters/works-overview.html",
-    "arunagirinathar-saritham/index.html",
-    "arunagirinathar-saritham/themes/theme-01.html",
-    "arunagirinathar-saritham/themes/theme-02.html",
-    "arunagirinathar-saritham/themes/theme-03.html",
-    "arunagirinathar-saritham/themes/theme-04.html",
-    "arunagirinathar-saritham/themes/theme-05.html",
-    "arunagirinathar-saritham/themes/theme-06.html",
-    "arunagirinathar-saritham/themes/theme-07.html",
-    "arunagirinathar-saritham/themes/theme-08.html",
-    "arunagirinathar-saritham/themes/theme-09.html",
-    "arunagirinathar-saritham/themes/theme-10.html",
-    "arunagirinathar-saritham/themes/theme-11.html",
-    "arunagirinathar-saritham/themes/theme-12.html",
-    "arunagirinathar-saritham/themes/theme-13.html",
-    "arunagirinathar-saritham/themes/theme-14.html",
-    "arunagirinathar-saritham/themes/theme-15.html",
-    "arunagirinathar-saritham/themes/theme-16.html",
-    "arunagirinathar-saritham/timeline/event-01.html",
-    "arunagirinathar-saritham/timeline/event-02.html",
-    "arunagirinathar-saritham/timeline/event-03.html",
-    "arunagirinathar-saritham/timeline/event-04.html",
-    "arunagirinathar-saritham/timeline/event-05.html",
-    "arunagirinathar-saritham/timeline/event-06.html",
-    "arunagirinathar-saritham/timeline/event-07.html",
-    "arunagirinathar-saritham/timeline/event-08.html",
-    "arunagirinathar-saritham/timeline/event-09.html",
-    "arunagirinathar-saritham/timeline/event-10.html",
-    "arunagirinathar-saritham/timeline/event-11.html",
-    "arunagirinathar-saritham/timeline/event-12.html",
-    "arunagirinathar-saritham/timeline/event-13.html",
-    "arunagirinathar-saritham/timeline/event-14.html",
-    "arunagirinathar-saritham/timeline/event-15.html",
-    "arunagirinathar-saritham/timeline/event-16.html",
-    "arunagirinathar-saritham/timeline/event-17.html",
-    "arunagirinathar-saritham/timeline/event-18.html",
-    "arunagirinathar-saritham/timeline/event-19.html",
-    "arunagirinathar-saritham/timeline/event-20.html",
-    "assets/css/arunagirinathar-print.css",
-    "assets/css/arunagirinathar-saritham.css",
-    "assets/js/arunagirinathar-crosslinks.js",
-    "assets/js/arunagirinathar-index.js",
-    "assets/js/arunagirinathar-reader.js",
-    "checksums.sha256",
-    "data/ai/arunagirinathar/knowledge-01.json",
-    "data/ai/arunagirinathar/knowledge-02.json",
-    "data/ai/arunagirinathar/knowledge-03.json",
-    "data/ai/arunagirinathar/knowledge-04.json",
-    "data/ai/arunagirinathar/knowledge-05.json",
-    "data/ai/arunagirinathar/knowledge-06.json",
-    "data/ai/arunagirinathar/knowledge-07.json",
-    "data/ai/arunagirinathar/knowledge-08.json",
-    "data/ai/arunagirinathar/knowledge-09.json",
-    "data/ai/arunagirinathar/knowledge-10.json",
-    "data/ai/arunagirinathar/knowledge-11.json",
-    "data/ai/arunagirinathar/knowledge-12.json",
-    "data/ai/arunagirinathar/knowledge-13.json",
-    "data/arunagirinathar/crosslinks.json",
-    "data/arunagirinathar/index.json",
-    "data/arunagirinathar/notes/note-01.json",
-    "data/arunagirinathar/notes/note-02.json",
-    "data/arunagirinathar/notes/note-03.json",
-    "data/arunagirinathar/notes/note-04.json",
-    "data/arunagirinathar/notes/note-05.json",
-    "data/arunagirinathar/notes/note-06.json",
-    "data/arunagirinathar/notes/note-07.json",
-    "data/arunagirinathar/notes/note-08.json",
-    "data/arunagirinathar/notes/note-09.json",
-    "data/arunagirinathar/notes/note-10.json",
-    "data/arunagirinathar/notes/note-11.json",
-    "data/arunagirinathar/notes/note-12.json",
-    "data/arunagirinathar/notes/note-13.json",
-    "data/arunagirinathar/notes/note-14.json",
-    "data/arunagirinathar/notes/note-15.json",
-    "data/arunagirinathar/notes/note-16.json",
-    "data/arunagirinathar/notes/note-17.json",
-    "data/arunagirinathar/notes/note-18.json",
-    "data/arunagirinathar/notes/note-19.json",
-    "data/arunagirinathar/notes/note-20.json",
-    "data/arunagirinathar/proofread-queue.json",
-    "data/arunagirinathar/search-index.json",
-    "data/search/batch-15-arunagirinathar.json",
-    "docs/BATCH_15_CHANGELOG.md",
-    "docs/BATCH_15_INSTALL.md",
-    "docs/BATCH_15_QA_CHECKLIST.md",
-    "docs/BATCH_15_SOURCE_POLICY.md",
-    "manifest.json",
-    "pwa/cache-batch-15.json",
-    "seo/arunagirinathar/breadcrumbs.json",
-    "seo/arunagirinathar/schema.json"
+    {
+      "path": "assets/css/literature/thiruppugazh-proofread.css",
+      "bytes": 495,
+      "sha256": "cb36152761d07612a8996eaeb474894eaabfb0a299fd5ca865aa9e107812c9ec"
+    },
+    {
+      "path": "assets/css/literature/thiruppugazh-volume-02.css",
+      "bytes": 1669,
+      "sha256": "e8245e3b2a6555c6b6e62567793a83c42a12480c73286308a916e308598d7292"
+    },
+    {
+      "path": "assets/js/literature/reader-utils.js",
+      "bytes": 382,
+      "sha256": "465c399fb09f6a0f5ae0e619328a3a0d8f227bf5c1577118a57e96e5d484115e"
+    },
+    {
+      "path": "assets/js/literature/thiruppugazh-search.js",
+      "bytes": 1087,
+      "sha256": "d92a1f32172d31e101d184a360197e5cb358940ff45b052c801e7a5a4099c6c7"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/audio/audio-pack-01.json",
+      "bytes": 232,
+      "sha256": "861d3d56fe81f1f665afac2a2f4d4b5e84eb7e01d63e843b4e9ee2c24a52bc39"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/audio/audio-pack-02.json",
+      "bytes": 232,
+      "sha256": "3ee9bd075f8358627fb62e78b31ef3edd189305ed797f2d8aa7089a2aa99cc1e"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/audio/audio-pack-03.json",
+      "bytes": 232,
+      "sha256": "1ca2cda5e90aca509b0785a8107ea23842c249bbd48746fa73c9fc2f7e5bec31"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/audio/audio-pack-04.json",
+      "bytes": 232,
+      "sha256": "c275bb3d364eab031c7411c4c4c68229fe00413e9370afe8ba4d782224f0aa36"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/audio/audio-pack-05.json",
+      "bytes": 232,
+      "sha256": "56718713db4c2afc53cb6bb67f83f6404b4ee72a3341fb5d1ed201a8f9b9153a"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/hymns/hymn-0041.json",
+      "bytes": 805,
+      "sha256": "7cabe4781bf037d79f751d6092a8aa6ab30c1743e72e0af41f8128572ddc4e4d"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/hymns/hymn-0042.json",
+      "bytes": 805,
+      "sha256": "4baa15fa8eeec9d1d778c49638a102ddd8dba553f60246aed92648463dad46c3"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/hymns/hymn-0043.json",
+      "bytes": 805,
+      "sha256": "d741e934f139759f2c942c00bb12ba9a0650f42e5a80b8c99d6d63da2113eda4"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/hymns/hymn-0044.json",
+      "bytes": 805,
+      "sha256": "f495e43fe001191734c77b95d0bc4a04a23109ad4323452b5649c46f061624d4"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/hymns/hymn-0045.json",
+      "bytes": 805,
+      "sha256": "a41c87bec23a945708f52efd4b40e1a66e9f608903bd497d3c484616d0163767"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/hymns/hymn-0046.json",
+      "bytes": 805,
+      "sha256": "5f8b091031cce017b5be220c8f6da78fbfad6f4cadd1eeae3c0ac4e78ea80c0a"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/hymns/hymn-0047.json",
+      "bytes": 805,
+      "sha256": "b1c6c6a0da9f2e0ad3c088937334d922fe5c59c22a37b4ed8fa57168ea3dcb5e"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/hymns/hymn-0048.json",
+      "bytes": 805,
+      "sha256": "e5979014b1fea3f3f92b76fbcc32ad958228da71b9e68a6f12634d2002bddb79"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/hymns/hymn-0049.json",
+      "bytes": 805,
+      "sha256": "fb19f83edd3bf2f793e8ec7d473ee751bf54031b64d97c3fe9b148eca1d8a6c8"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/hymns/hymn-0050.json",
+      "bytes": 805,
+      "sha256": "680979844acd0f345de759587c2d66d8987864e436c3830b24d0ba61e7d9ccd1"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/hymns/hymn-0051.json",
+      "bytes": 805,
+      "sha256": "eefc16dabf97c52e1e1a1370c73e9a93c16ee1bb69c94a003b288f6c148babb9"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/hymns/hymn-0052.json",
+      "bytes": 805,
+      "sha256": "115917db80d1e0f8082d76b6778825c0a00a0aaf007cba3c61e094320ef0a6eb"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/hymns/hymn-0053.json",
+      "bytes": 805,
+      "sha256": "bf8da1c89fd690ecf5370d36bb10128532798c4455843f464cbf031404e905a7"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/hymns/hymn-0054.json",
+      "bytes": 805,
+      "sha256": "52c09d615fb853e43602d51940904086ff744c30fd4ed9997fab37fba8a38c1c"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/hymns/hymn-0055.json",
+      "bytes": 805,
+      "sha256": "d4bc2b602aac5e704b584eee51d84857d0e425ac7b1d63f62d90e3f0f3f0c45f"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "bytes": 36363,
+      "sha256": "cbb99a74607251485c77251dd085d992f98e49f1adee12e204da5f03688fce0d"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/indexes/language-layers.json",
+      "bytes": 144,
+      "sha256": "f7af6e8fcee5252327091ab7723c0090cc11d59ccbd27acf1f116fdce26ebecf"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "bytes": 34282,
+      "sha256": "54e48ee8c76d25f27ec85519cb91f0764efdc9e2cc049266e9fc2e75e80b5cf8"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "bytes": 2642,
+      "sha256": "a4c99a1c019c2df03823460729e0156cc5d37e01645ce51aeefc53e0516dde96"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/indexes/review-status.json",
+      "bytes": 2882,
+      "sha256": "168fcebf70cf0ad5f9d90f7ff42c671510358778d46f044a5a3afec9918eb0cf"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/indexes/search-index.json",
+      "bytes": 34282,
+      "sha256": "54e48ee8c76d25f27ec85519cb91f0764efdc9e2cc049266e9fc2e75e80b5cf8"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/indexes/tags.json",
+      "bytes": 138,
+      "sha256": "3b3ca27c4545ef77f2b3ad6c684919c0cfe3e6042830991861037e69153fa8a9"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/indexes/volume-summary.json",
+      "bytes": 137,
+      "sha256": "f8148f56e3e3eb083bd9c2d22065f7e9807a804c2377c408a6c9e96b2a22078c"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/mappings/audio-map.json",
+      "bytes": 132,
+      "sha256": "d66ea6481a89de27c29931a7eff35bca03ee8de579f177c206ab59ddad5dd1df"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/mappings/breadcrumb-map.json",
+      "bytes": 91,
+      "sha256": "36cfff302c68ec6c83b215a527f0d958b5c537aa36be4d6257f164e622215600"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/mappings/concept-map.json",
+      "bytes": 134,
+      "sha256": "fb622b28fb89c4c5b9b2d4245756024b61b13b8aed6152d30fc4e2f992d47d52"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/mappings/crosslinks.json",
+      "bytes": 75,
+      "sha256": "485036127eb7db4dbe2940b0c33273ce937cea4ee56a360466659d3e9abcd0be"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/mappings/deity-map.json",
+      "bytes": 194,
+      "sha256": "4b98420e6d024a2bab4702f07e772235c6e4c59f9e84c5d49445389ee6f0862e"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/mappings/festival-map.json",
+      "bytes": 219,
+      "sha256": "bb86758d7e8e013c6844d0db3ad0b8fe1c6162c5e8916f85ca1ff4dc8be151be"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/mappings/literature-map.json",
+      "bytes": 229,
+      "sha256": "91cc60a875d418aa2ab354f644401373455b6a3e729f3a35c0c5903718410394"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/mappings/raga-tala-map.json",
+      "bytes": 107,
+      "sha256": "770848b2913311a3abd97112f07569e401c17a8278567ccb7666cbf8a75ad326"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/mappings/seo-map.json",
+      "bytes": 104,
+      "sha256": "938a9d3427d0f90a634533932f8bb69a7e6663e9d12cb0298c395425b18dee1b"
+    },
+    {
+      "path": "data/literature/thiruppugazh/volume-02/mappings/temple-map.json",
+      "bytes": 296,
+      "sha256": "091181f30dcc42a3304f849ffd39306df6303ce0a4a1e43f32c125fb67867e2d"
+    },
+    {
+      "path": "docs/batch-17/CHANGELOG.md",
+      "bytes": 114,
+      "sha256": "ca5ee5bc5059ae1e0480c670df3bbb9b06e2e4e639d7f59deb0d4f7bb961dbb7"
+    },
+    {
+      "path": "docs/batch-17/INSTALL.md",
+      "bytes": 98,
+      "sha256": "c0c0e03fd38a1a97402751549b99de889881f49e6ec7c1bf7de035af97c89f4f"
+    },
+    {
+      "path": "docs/batch-17/QA-CHECKLIST.md",
+      "bytes": 155,
+      "sha256": "f84292edbb92e4c5e07d009eb67e7e4035021cee356b5ea100468800cd29c463"
+    },
+    {
+      "path": "docs/batch-17/SOURCE-NOTES.md",
+      "bytes": 132,
+      "sha256": "04563fcb6c4b44c1d171a7b93d276bd320f483bd0288bf42d08ce1ac6d9c5e72"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/admin-notes.html",
+      "bytes": 1682,
+      "sha256": "17f573aea5fc3d7b9d614e952327e86485edade86208a46dfe8c80acbf9cbeae"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/audio-readiness.html",
+      "bytes": 1706,
+      "sha256": "e5ab949d14563e8e3ad6728a3ce63cd54bdb36d3064735e1e7c9820c37ec359e"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/cross-reference.html",
+      "bytes": 1784,
+      "sha256": "0b7a23bfc78a9a30a57e8b8001b822208217175d34659cdbaf6c06422abb4fd3"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/daily-thiruppugazh.html",
+      "bytes": 1694,
+      "sha256": "76383218f638c6fe7a4900410c54b890bd1604810a3a9afa51012ab691bc9a4a"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/data-model.html",
+      "bytes": 1676,
+      "sha256": "950e8a832a3810214a88d34e4ce8b0bc8149cf6cea2bb23e5bf4eec3c7f7f59d"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/festival-links.html",
+      "bytes": 1733,
+      "sha256": "fcfa477ee6b521f3b5d3ce3bac6574d218939a754f8184cfae88a03c56905803"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/hymn-0041.html",
+      "bytes": 1765,
+      "sha256": "0b0a0499630318467fe59c67966d51b39a5a0a190ffbf0b93c83dc4ffc53f7fe"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/hymn-0042.html",
+      "bytes": 1765,
+      "sha256": "f226ca869efdd30fea1ea78865cb81f25923ccbf23b11c5afb172f67d335c1db"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/hymn-0043.html",
+      "bytes": 1765,
+      "sha256": "b5f86e4beded9e98c874d11685ea1603a21327e8e4b0c3b342f287e70e59ed0c"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/hymn-0044.html",
+      "bytes": 1765,
+      "sha256": "a687bbafd96bb02c96e1f535929420e4cb7a2065532b89eb2a12aa5ba25daeec"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/hymn-0045.html",
+      "bytes": 1765,
+      "sha256": "b029db6671b07dca9d43b5c0a6e1d2ad856c143a9fc7d196379c36ba47283c9c"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/hymn-0046.html",
+      "bytes": 1765,
+      "sha256": "228088aaa5b29276f3d23cab01bb92687e43e1a0a0ef7597576087ee70b4ca32"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/hymn-0047.html",
+      "bytes": 1765,
+      "sha256": "2b323510bff8eb818d0ec71cc3220d993c2b2cd3cc1e20c3b245efcb5806c650"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/hymn-0048.html",
+      "bytes": 1765,
+      "sha256": "967f45028569636df056fe0e3a6e01a310bdfbf0b60315bd46160b190af1f6cd"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/hymn-0049.html",
+      "bytes": 1765,
+      "sha256": "d908245a3098c681ce5161afe8d04f11a28fb7aac8a783bd2778dd2cce92ba50"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/hymn-0050.html",
+      "bytes": 1765,
+      "sha256": "17962bd7bd41770d71586cbc77261ed1b7a24345bd0c7a9ba6befde2a90d6879"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/hymn-0051.html",
+      "bytes": 1765,
+      "sha256": "a33e35139014634eab3c522e6dc36eddaf55a3915ade3256cb0aa6a0236d2586"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/hymn-0052.html",
+      "bytes": 1765,
+      "sha256": "9ddbc061a7fd015d0983454da9096a47a9ab5f8c386d94c9284f2977d88905db"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/hymn-0053.html",
+      "bytes": 1765,
+      "sha256": "40e0c2feea5b5a5f22425231a9bf9046e766d3151d0e491c0a67322c07511917"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/hymn-0054.html",
+      "bytes": 1765,
+      "sha256": "18b52683f83332a714ae7c78677160293f55e03350cff72fe17960ddbb0454aa"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/hymn-0055.html",
+      "bytes": 1765,
+      "sha256": "a9263ce5361dfa69d04542412d9cec134567522e661209330b4f608fdf149d0c"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/hymn-0056.html",
+      "bytes": 1765,
+      "sha256": "dc884f4adcd68e5258236c61b2669de971cce3ec054b56643aa296d8368966ed"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/hymn-0057.html",
+      "bytes": 1765,
+      "sha256": "d010ea1a2a8f99cc3919727b1e8c2d66b293093189472705453df29e6a9162ac"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/hymn-0058.html",
+      "bytes": 1765,
+      "sha256": "3c4aedfda05fcca4e376d60d7df4f5e1045b6e03a79164a56e89a81ff688aa1c"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/hymn-0059.html",
+      "bytes": 1765,
+      "sha256": "2b20228b016e57de7d4f524f6e8f5452e8e7d54f8b3482599467ffdb6efad596"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/hymn-0060.html",
+      "bytes": 1765,
+      "sha256": "be1280d402d283820db06e384a3ed7096bb0484a0186a5afaa117d648e3dce96"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/hymn-catalog.html",
+      "bytes": 1724,
+      "sha256": "25c19782e31f2cbad45f2195da7138882853b3b4e4be5b38c1e34c774995218e"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/index.html",
+      "bytes": 2027,
+      "sha256": "dbb22e71e90ac8c5cf25f6524f14106e10ab6340fd1d17c7780b1846f292ce20"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/language-layers.html",
+      "bytes": 1727,
+      "sha256": "67175b9f1ccde6c38d984aef5d80666bceeccec26ccaf9224f8ebb92079fcd73"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/next-volume-plan.html",
+      "bytes": 1742,
+      "sha256": "f59a474f2ade8d64e2a9c24194e3203b3eee3f483c499ca9ddb976bff2e337fe"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/offline-pwa.html",
+      "bytes": 1568,
+      "sha256": "8b12067d07397b5067f9e8006ae176713a6be0497e28cee0a45adb97a0ae767d"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/proofread-queue.html",
+      "bytes": 1742,
+      "sha256": "a45b1e8b95817e4d70860d8d68e692023d7fb374561a93a36ea33726cabd7ee4"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/quality-checklist.html",
+      "bytes": 1658,
+      "sha256": "b8186c9824c9abfa157c70fbf96aa5772d0d8e63432da24434dc1c65357e6cc1"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/raga-tala.html",
+      "bytes": 1682,
+      "sha256": "3a1985b34545a7d4a7e586123161208cd4ea8bd31173b4459ba568b28017d62d"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/reader-template.html",
+      "bytes": 1628,
+      "sha256": "3856fd7d19cb22ba849c03d39a2ae16eddeda3fb6a96bb212679d746b2a4b548"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/review-policy.html",
+      "bytes": 1760,
+      "sha256": "226e7ec2997d816eecc732ce842407b8160945af7ab70b34cefc405b2a6eb992"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/search-guide.html",
+      "bytes": 1682,
+      "sha256": "f5c8989d968de59f4ba925cf630903066344a372c8b921cba7040d2dccd21d28"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/seo-guide.html",
+      "bytes": 1613,
+      "sha256": "eb6d142a761ede2bb492a1e26a37dbb857492bbb36eb42c11a1d0435a5db9134"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/source-audit.html",
+      "bytes": 1661,
+      "sha256": "18e5304ae6b49544ce2764ad2b4c17f1eb4f65c3f6d707cff36c52d326838e8b"
+    },
+    {
+      "path": "literature/thiruppugazh/volume-02/temple-links.html",
+      "bytes": 1772,
+      "sha256": "c214f9002ef460c43e8846dad07eb557fbc5b90fc39f2d3693c8589d5a5280fa"
+    },
+    {
+      "path": "pwa/cache/batch-17-cache-list.json",
+      "bytes": 142,
+      "sha256": "a1c67d51bf057f328177f68f1522b9d4a333d2437ba54163bed560c04ac1b302"
+    },
+    {
+      "path": "pwa/cache/batch-17-offline-routes.json",
+      "bytes": 73,
+      "sha256": "2f79dbd8c12ac740804d415e3e699122a5b6c86dbb827b140ffe5188d0f04d10"
+    },
+    {
+      "path": "pwa/cache/batch-17-version.json",
+      "bytes": 63,
+      "sha256": "fee3b92b3f25fa9380f7c5600ab1078425dbc79fc469f8b58b98fb226f943479"
+    },
+    {
+      "path": "seo/literature/thiruppugazh/volume-02/breadcrumb-list.json",
+      "bytes": 92,
+      "sha256": "127ec48ab1ba57f8a0ae94e40b46f95a8d85500884c94e8fcd94f50ad644c8a4"
+    },
+    {
+      "path": "seo/literature/thiruppugazh/volume-02/canonical-routes.json",
+      "bytes": 63,
+      "sha256": "265fe7ad84c028b71292c08d67a32c97f0bb259875fb6ec545943c838a8f2d99"
+    },
+    {
+      "path": "seo/literature/thiruppugazh/volume-02/open-graph.json",
+      "bytes": 80,
+      "sha256": "1cc7d9cebddb292b13aa56b52534a0eb88ad2d413b8695fe4b31ce464c8ef10b"
+    },
+    {
+      "path": "seo/literature/thiruppugazh/volume-02/robots-notes.txt",
+      "bytes": 95,
+      "sha256": "35828cc5cc8610a75c4339f1ee1c31814b1b887f30550ebad854f1b4c7252bc5"
+    },
+    {
+      "path": "seo/literature/thiruppugazh/volume-02/seo-review.json",
+      "bytes": 104,
+      "sha256": "0f6d00ef0cd22ebd3b3738174712c4784f1dd2faf697d9654ce9ddd8b3a5779b"
+    },
+    {
+      "path": "seo/literature/thiruppugazh/volume-02/sitemap-fragment.xml",
+      "bytes": 164,
+      "sha256": "9c777a4b60a8edb21f3dae4694c0c2879c0a148c7d0783c3115a59472c0a97de"
+    },
+    {
+      "path": "seo/literature/thiruppugazh/volume-02/structured-data-index.json",
+      "bytes": 102,
+      "sha256": "ba0d10a94bd7ff39e87939429e9aa16a22150b7a47d908a028e10058e7f8aa87"
+    },
+    {
+      "path": "seo/literature/thiruppugazh/volume-02/twitter-card.json",
+      "bytes": 80,
+      "sha256": "92000b4323e7de1d0de8eca9bf2942f6e429c6888e338f890d0b0b9671c048fb"
+    }
   ]
 }

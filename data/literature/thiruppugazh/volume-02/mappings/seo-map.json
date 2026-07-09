@@ -1,0 +1,8 @@
+{
+  "schema_types": [
+    "Article",
+    "CreativeWork",
+    "BreadcrumbList"
+  ],
+  "status": "ready"
+}
