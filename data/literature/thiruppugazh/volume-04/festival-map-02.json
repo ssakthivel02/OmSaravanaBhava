@@ -1,0 +1,71 @@
+{
+  "module": "thiruppugazh-volume-04",
+  "batch": 19,
+  "type": "festival-map",
+  "items": [
+    {
+      "song": 128,
+      "slug": "song-0128",
+      "related_festivals": [
+        "கார்த்திகை தீபம்"
+      ],
+      "confidence": "devotional_theme_mapping"
+    },
+    {
+      "song": 129,
+      "slug": "song-0129",
+      "related_festivals": [
+        "வைகாசி விசாகம்"
+      ],
+      "confidence": "devotional_theme_mapping"
+    },
+    {
+      "song": 130,
+      "slug": "song-0130",
+      "related_festivals": [
+        "ஆடி கிருத்திகை"
+      ],
+      "confidence": "devotional_theme_mapping"
+    },
+    {
+      "song": 131,
+      "slug": "song-0131",
+      "related_festivals": [
+        "கந்த சஷ்டி"
+      ],
+      "confidence": "devotional_theme_mapping"
+    },
+    {
+      "song": 132,
+      "slug": "song-0132",
+      "related_festivals": [
+        "தைப்பூசம்"
+      ],
+      "confidence": "devotional_theme_mapping"
+    },
+    {
+      "song": 133,
+      "slug": "song-0133",
+      "related_festivals": [
+        "பங்குனி உத்திரம்"
+      ],
+      "confidence": "devotional_theme_mapping"
+    },
+    {
+      "song": 134,
+      "slug": "song-0134",
+      "related_festivals": [
+        "கார்த்திகை தீபம்"
+      ],
+      "confidence": "devotional_theme_mapping"
+    },
+    {
+      "song": 135,
+      "slug": "song-0135",
+      "related_festivals": [
+        "வைகாசி விசாகம்"
+      ],
+      "confidence": "devotional_theme_mapping"
+    }
+  ]
+}

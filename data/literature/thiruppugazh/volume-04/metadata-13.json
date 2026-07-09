@@ -1,0 +1,40 @@
+{
+  "module": "thiruppugazh-volume-04",
+  "batch": 19,
+  "type": "song-metadata",
+  "generated": "2026-07-09",
+  "items": [
+    {
+      "number": 144,
+      "slug": "song-0144",
+      "title_ta": "திருப்புகழ் பாடல் 144",
+      "title_en": "Thiruppugazh Hymn 144",
+      "url": "../../literature/thiruppugazh/volume-04/song-0144.html",
+      "summary_ta": "திருப்புகழ் பாடலுக்கான வாசிப்பு, குறிச்சொல், தல/விழா தொடர்பு மற்றும் AI தேடல் இணைப்பு.",
+      "proofread_status": "Needs Tamil proofread before final devotional-text publication",
+      "keywords": [
+        "திருப்புகழ்",
+        "அருணகிரிநாதர்",
+        "முருகன்",
+        "வேல்",
+        "பக்தி"
+      ]
+    },
+    {
+      "number": 145,
+      "slug": "song-0145",
+      "title_ta": "திருப்புகழ் பாடல் 145",
+      "title_en": "Thiruppugazh Hymn 145",
+      "url": "../../literature/thiruppugazh/volume-04/song-0145.html",
+      "summary_ta": "திருப்புகழ் பாடலுக்கான வாசிப்பு, குறிச்சொல், தல/விழா தொடர்பு மற்றும் AI தேடல் இணைப்பு.",
+      "proofread_status": "Needs Tamil proofread before final devotional-text publication",
+      "keywords": [
+        "திருப்புகழ்",
+        "அருணகிரிநாதர்",
+        "முருகன்",
+        "வேல்",
+        "பக்தி"
+      ]
+    }
+  ]
+}

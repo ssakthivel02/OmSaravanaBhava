@@ -1,0 +1,71 @@
+{
+  "module": "thiruppugazh-volume-04",
+  "batch": 19,
+  "type": "temple-map",
+  "items": [
+    {
+      "song": 128,
+      "slug": "song-0128",
+      "related_temples": [
+        "மதுரை"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 129,
+      "slug": "song-0129",
+      "related_temples": [
+        "திருப்பரங்குன்றம்"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 130,
+      "slug": "song-0130",
+      "related_temples": [
+        "திருச்செந்தூர்"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 131,
+      "slug": "song-0131",
+      "related_temples": [
+        "பழனி"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 132,
+      "slug": "song-0132",
+      "related_temples": [
+        "சுவாமிமலை"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 133,
+      "slug": "song-0133",
+      "related_temples": [
+        "திருத்தணி"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 134,
+      "slug": "song-0134",
+      "related_temples": [
+        "பழமுதிர்சோலை"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 135,
+      "slug": "song-0135",
+      "related_temples": [
+        "வயலூர்"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    }
+  ]
+}

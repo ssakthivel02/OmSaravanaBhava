@@ -1,0 +1,63 @@
+{
+  "module": "thiruppugazh-volume-04",
+  "batch": 19,
+  "type": "temple-map",
+  "items": [
+    {
+      "song": 152,
+      "slug": "song-0152",
+      "related_temples": [
+        "வயலூர்"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 153,
+      "slug": "song-0153",
+      "related_temples": [
+        "திருவண்ணாமலை"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 154,
+      "slug": "song-0154",
+      "related_temples": [
+        "சிதம்பரம்"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 155,
+      "slug": "song-0155",
+      "related_temples": [
+        "மதுரை"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 156,
+      "slug": "song-0156",
+      "related_temples": [
+        "திருப்பரங்குன்றம்"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 157,
+      "slug": "song-0157",
+      "related_temples": [
+        "திருச்செந்தூர்"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 158,
+      "slug": "song-0158",
+      "related_temples": [
+        "பழனி"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    }
+  ]
+}

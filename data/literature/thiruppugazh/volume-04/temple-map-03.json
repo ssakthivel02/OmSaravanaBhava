@@ -1,0 +1,71 @@
+{
+  "module": "thiruppugazh-volume-04",
+  "batch": 19,
+  "type": "temple-map",
+  "items": [
+    {
+      "song": 136,
+      "slug": "song-0136",
+      "related_temples": [
+        "சிதம்பரம்"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 137,
+      "slug": "song-0137",
+      "related_temples": [
+        "மதுரை"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 138,
+      "slug": "song-0138",
+      "related_temples": [
+        "திருப்பரங்குன்றம்"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 139,
+      "slug": "song-0139",
+      "related_temples": [
+        "திருச்செந்தூர்"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 140,
+      "slug": "song-0140",
+      "related_temples": [
+        "பழனி"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 141,
+      "slug": "song-0141",
+      "related_temples": [
+        "சுவாமிமலை"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 142,
+      "slug": "song-0142",
+      "related_temples": [
+        "திருத்தணி"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 143,
+      "slug": "song-0143",
+      "related_temples": [
+        "பழமுதிர்சோலை"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    }
+  ]
+}
