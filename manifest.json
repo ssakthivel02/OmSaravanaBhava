@@ -1,401 +1,493 @@
 {
-  "batch": "10",
-  "name": "OmSaravanaBhava Batch 10 Murugan Literature Reader Foundation",
+  "batch": "11",
+  "name": "Kandar Sashti Kavacham Reader",
+  "generated": "2026-07-09",
   "file_count": 99,
-  "rules": [
-    "additive",
-    "GitHub Pages compatible",
-    "HTML CSS JS JSON only",
-    "no server-side code"
-  ],
   "files": [
     {
-      "path": "BATCH_10_CHANGELOG.md",
-      "sha256": "e9e88241244a2e28df62453193da760e180f19389eafbdddb62380e8b516289e"
+      "path": "assets/css/literature/kavacham-print.css",
+      "bytes": 161,
+      "sha256": "2fd38428b9356faaf8e19c1892dcab4e03eaf6c4079d82eed4a2ba236e3ed3ba"
     },
     {
-      "path": "BATCH_10_INSTALL.md",
-      "sha256": "f0512361ae49831eb8782ae11f886237926aac761f6530a8c3bc8882f4774a65"
+      "path": "assets/css/literature/kavacham-reader.css",
+      "bytes": 608,
+      "sha256": "5b565c52647dc675763ac583f226b0ea4d0b481ec503fff07f36b40bb4aa75a8"
     },
     {
-      "path": "BATCH_10_QA.md",
-      "sha256": "5ccc351913c2f146765f140c34de9d6ce3cb2c1abd4859e24240be2971de1bd9"
+      "path": "assets/js/literature/kavacham-reader.js",
+      "bytes": 250,
+      "sha256": "648792bc19bf81895a3dc23321bd135bbd64c4b6e6268ef4db83c70eb5f891fd"
     },
     {
-      "path": "literature/css/literature-reader.css",
-      "sha256": "9719e7ab9c5e3e3c46f9c212ff4de9d7c861ce6fd1404989995464a32ccce30a"
+      "path": "assets/js/literature/kavacham-search.js",
+      "bytes": 277,
+      "sha256": "565d92f0a7e67a90c11264552a7bc3fe5dcac54ef4beb1a169e9d6e5b47b8110"
     },
     {
-      "path": "literature/css/sangam-library.css",
-      "sha256": "2256c76ef8f79feae36ebbd2c666e344ad72122d004a00d81b5e568d71ab5f0b"
+      "path": "data/crossrefs/kandar-sashti-temple-links.json",
+      "bytes": 254,
+      "sha256": "41b9422c87348fa655126013be49cac0fe3032dbc5b92246ca92f76146f61f74"
     },
     {
-      "path": "literature/data/audio/audio-meta-001.json",
-      "sha256": "dc9d324ed8d3956aa3d6a6eea83c7df62764d237c71f775596a2a640bff1c6b5"
+      "path": "data/literature/kandar-sashti-kavacham/ai-keywords.json",
+      "bytes": 198,
+      "sha256": "5a4bcfbc3ea9d3c21ea32fb1b7a66eac60be925852e282a8ecf79a5a9a3b0931"
     },
     {
-      "path": "literature/data/audio/audio-meta-002.json",
-      "sha256": "2a62b9a87cb6789195ef7d5e8121618c2c83bb5670bc305158e7d97b2288caf8"
+      "path": "data/literature/kandar-sashti-kavacham/cache-manifest.json",
+      "bytes": 2088,
+      "sha256": "1afadf7a08f0721e7d78761f1624aa48d81f48f2a43e24e1f8fc98acf02a3fe9"
     },
     {
-      "path": "literature/data/audio/audio-meta-003.json",
-      "sha256": "94db151d48df1479f5a26628440f6baa2d062ec2e435b106657cf5bd33e0100b"
+      "path": "data/literature/kandar-sashti-kavacham/english-meaning.json",
+      "bytes": 42308,
+      "sha256": "5482ea9345b5bcb633410373013e09b2ade52379b6e3ec28b8d88c78d93137ba"
     },
     {
-      "path": "literature/data/audio/audio-meta-004.json",
-      "sha256": "89e9bc9c85d6758d9e5d16b63a87b9f1f4d3384edb951c7c891350600516ca76"
+      "path": "data/literature/kandar-sashti-kavacham/glossary.json",
+      "bytes": 323,
+      "sha256": "2ed1d7acfd8592b9af92e822d39029f9063831f249e0a69d67c8c94aafe8e8ff"
     },
     {
-      "path": "literature/data/audio/audio-meta-005.json",
-      "sha256": "9388c75139e3b69e0201335a95c11c07567a9a89c2955c89c99f2232d7774baa"
+      "path": "data/literature/kandar-sashti-kavacham/metadata.json",
+      "bytes": 221,
+      "sha256": "076b7412d19f3c359aff7574b842e55b82d88ba5874618016cbcc45877549b44"
     },
     {
-      "path": "literature/data/crossrefs/crossref-001.json",
-      "sha256": "76dcb6d534869d78a37e14e1c02c9d363e7f5454b4f2f480daa88b6a8169852c"
+      "path": "data/literature/kandar-sashti-kavacham/transliteration.json",
+      "bytes": 42308,
+      "sha256": "5482ea9345b5bcb633410373013e09b2ade52379b6e3ec28b8d88c78d93137ba"
     },
     {
-      "path": "literature/data/crossrefs/crossref-002.json",
-      "sha256": "e8e539054b8b8a90b0da301bc5cf3b1cef8c9ac46f3687dcd923696b1633895a"
+      "path": "data/literature/kandar-sashti-kavacham/validation-notes.json",
+      "bytes": 113,
+      "sha256": "7baab8d97facbb88fded9986983fc47196ed47a10fda08f53c95245f3be17808"
     },
     {
-      "path": "literature/data/crossrefs/crossref-003.json",
-      "sha256": "c9ad1da4a787d06b6c2fbecec81f3590c3fbb5568c7a913719756df6d1a32cf6"
+      "path": "data/literature/kandar-sashti-kavacham/verse-01.json",
+      "bytes": 374,
+      "sha256": "428a4087f8906b04a06f1efc5403292adab2198ab0bb0a0ca9264c103a7a4d28"
     },
     {
-      "path": "literature/data/crossrefs/crossref-004.json",
-      "sha256": "d8b0ebbbab29df0a1268351da3b92328ac645fbbc99e9586b118f821276b8a72"
+      "path": "data/literature/kandar-sashti-kavacham/verse-02.json",
+      "bytes": 814,
+      "sha256": "aedd1c904046fd6f6036ce0f73abbb6aaeaf9dfda874eb0750dbdc6cf6e6fea1"
     },
     {
-      "path": "literature/data/crossrefs/crossref-005.json",
-      "sha256": "b42711dcac05d3360a2cdfe5489a00c0cc1b75e0837389443fba6fb793f72cd1"
+      "path": "data/literature/kandar-sashti-kavacham/verse-03.json",
+      "bytes": 450,
+      "sha256": "a9d7aa6cf6ead7be5b701b6ab331573571752638c9d7746bf78ba2185d3f8b4a"
     },
     {
-      "path": "literature/data/glossary/glossary-001.json",
-      "sha256": "ca5f964b70b59cc419f48af283dac2a75f3c5075607aad462b12cbca0931bcb2"
+      "path": "data/literature/kandar-sashti-kavacham/verse-04.json",
+      "bytes": 1080,
+      "sha256": "18a36574e3ad2b1bec8df5202f8c55a2bc5b28a00b1060b93c72070dd953ade0"
     },
     {
-      "path": "literature/data/glossary/glossary-002.json",
-      "sha256": "92e7053decbf36ee1fa01deec8c6c07de54acad7cb452db2458d7cbd64ab4094"
+      "path": "data/literature/kandar-sashti-kavacham/verse-05.json",
+      "bytes": 658,
+      "sha256": "85467e2f56a580a43e70a1a7fb44c9d3ae495f393e150777e15d07f31c0abb32"
     },
     {
-      "path": "literature/data/glossary/glossary-003.json",
-      "sha256": "4e7e2ad3143bb9d4f96038b3639e9ca224bad35617598a4c89308d41dec8082e"
+      "path": "data/literature/kandar-sashti-kavacham/verse-06.json",
+      "bytes": 958,
+      "sha256": "203a322bad07d3a39f16067bb1e23b7b1963e8e88c3c65a9a59d7e952f64c418"
     },
     {
-      "path": "literature/data/glossary/glossary-004.json",
-      "sha256": "a5a4b82b72d3361dd498e9fd6b76e63d34a8ca3ba70b3a5f42e79345d9e61dd0"
+      "path": "data/literature/kandar-sashti-kavacham/verse-07.json",
+      "bytes": 745,
+      "sha256": "897e0f2012cbb0e39ec124f9ad981f79be95dd1a8eafd6e1f129b849c1d756c8"
     },
     {
-      "path": "literature/data/glossary/glossary-005.json",
-      "sha256": "41c6371f2be6af654bc1416e83d81b2c113cc2cf53f914f78c336652b8e9b81a"
+      "path": "data/literature/kandar-sashti-kavacham/verse-08.json",
+      "bytes": 1166,
+      "sha256": "7f732927af214af87bb7c4935b35287fb8f5b1521ca94b25ffb8f61a9a43bbf3"
     },
     {
-      "path": "literature/data/glossary/glossary-006.json",
-      "sha256": "93734815544eb3e6c033b9d8731eabfb2fd43b6d04ffa72d6749a0ab294a550e"
+      "path": "data/literature/kandar-sashti-kavacham/verse-09.json",
+      "bytes": 739,
+      "sha256": "37c2f0b5763fcd0c542ff9466f3a6222b4032909a951897cceabe7a6755f7501"
     },
     {
-      "path": "literature/data/glossary/glossary-007.json",
-      "sha256": "ddbf0002d8f70089b7c40dadc33ef06e2ce5cd82c7eaca843b574ff6e68fb0f0"
+      "path": "data/literature/kandar-sashti-kavacham/verse-10.json",
+      "bytes": 1053,
+      "sha256": "c801eea748f28f44f078744c80fae0f21d5225f11fd4f1afdb380c649bc40aeb"
     },
     {
-      "path": "literature/data/glossary/glossary-008.json",
-      "sha256": "9b72ab9c2b5a3b82da80a78e4aeef0a81640f38322ba3e8aac2c8cade6438246"
+      "path": "data/literature/kandar-sashti-kavacham/verse-11.json",
+      "bytes": 680,
+      "sha256": "b432eb95e9439840676ba49b9c1408028ab01e3333546b0f36e2521aa1a1987e"
     },
     {
-      "path": "literature/data/glossary/glossary-009.json",
-      "sha256": "861c826605b40a006b4eb9a3609ece0d60be200e49948b1b1de034ddc1b8aa99"
+      "path": "data/literature/kandar-sashti-kavacham/verse-12.json",
+      "bytes": 1170,
+      "sha256": "0c8ab98e432937949ac148641fd39e2e3719196f69004e6c7c7aaa426598dc70"
     },
     {
-      "path": "literature/data/glossary/glossary-010.json",
-      "sha256": "2afc0d0c5b2855fb199f7bbb7fc856d40137f97e70d58ff5bf23dcd8f08b1200"
+      "path": "data/literature/kandar-sashti-kavacham/verse-13.json",
+      "bytes": 706,
+      "sha256": "93952257ed9bfe188a5567b9d3e18a1ff6b47185d12b49079cc3168424e309f8"
     },
     {
-      "path": "literature/data/import-schema/literature-import-schema.json",
-      "sha256": "a07d6b6e4053a0c99af0f30aac5b3acd50f0779f0eeb9c19cf9221e522cbd13f"
+      "path": "data/literature/kandar-sashti-kavacham/verse-14.json",
+      "bytes": 1146,
+      "sha256": "1602076a259002ca833e940b486aa420c7e5a8505d62bd6ea76e38af8549becc"
     },
     {
-      "path": "literature/data/navigation/breadcrumbs.json",
-      "sha256": "432614ed92eb1fd9c96f726120a4be717001240e5da8184b9557f475fa4ede4b"
+      "path": "data/literature/kandar-sashti-kavacham/verse-15.json",
+      "bytes": 734,
+      "sha256": "d5a65772842d58ae0910474fc3419b2bfe2dd8c86422af00c8d48d46eb035cda"
     },
     {
-      "path": "literature/data/navigation/literature-nav.json",
-      "sha256": "758d4d9372a32f9c47027d6f3e9f77e33c33bc2faa47014365dfa942234255a0"
+      "path": "data/literature/kandar-sashti-kavacham/verse-16.json",
+      "bytes": 1126,
+      "sha256": "45256b7b7f01ee8732b99b23b6c47e6707ac8402f1e23a0af34a012513b814e2"
     },
     {
-      "path": "literature/data/placeholders-extra/extra-001.json",
-      "sha256": "b0da317536a194c3b81317ce25e1b60d19aa280b113e29a6dcc06153b5e09c89"
+      "path": "data/literature/kandar-sashti-kavacham/verse-17.json",
+      "bytes": 705,
+      "sha256": "281ec0a55832acc0897dabed1bcf58ef79d38917e12ee6bbf1e69c31d3c24444"
     },
     {
-      "path": "literature/data/placeholders-extra/extra-002.json",
-      "sha256": "a154cf3341ca7621311205211a7f41b38d62cebf2ca893ecafad8dfdaae7c9c6"
+      "path": "data/literature/kandar-sashti-kavacham/verse-18.json",
+      "bytes": 1251,
+      "sha256": "15991d8e5baccd772b7c39f36c72182b1d4f366bf466060dd7e5f1e8d31530ec"
     },
     {
-      "path": "literature/data/placeholders-extra/extra-003.json",
-      "sha256": "ae3f14c9b2886060ab5832aa682ae6e834f2ee6385d7ac1d8ac9a1991174f097"
+      "path": "data/literature/kandar-sashti-kavacham/verse-19.json",
+      "bytes": 741,
+      "sha256": "b5c49a077af51c3ce7e5e0d79b3466dae79f0cbb071ff51638a1755a83c49c70"
     },
     {
-      "path": "literature/data/placeholders-extra/extra-004.json",
-      "sha256": "e0ec3836e0d44a80bbe85d8c377fd18e4b5a2ce31069d2daac7fae247ff01dd1"
+      "path": "data/literature/kandar-sashti-kavacham/verse-20.json",
+      "bytes": 1176,
+      "sha256": "cbbeb8b1a950f9ff3af1a024e77f44c889e83ae340194e687b13e2439e2f7f92"
     },
     {
-      "path": "literature/data/placeholders-extra/extra-005.json",
-      "sha256": "395c6e3f22343e39eed6dd6184b52f03644afbbaecdfeb57bc5df63d55a258f0"
+      "path": "data/literature/kandar-sashti-kavacham/verse-21.json",
+      "bytes": 691,
+      "sha256": "dcedeb61d13405e931048c30b95ba25f8191dc318c3d3c1e151ab88973762cd8"
     },
     {
-      "path": "literature/data/placeholders-extra/extra-006.json",
-      "sha256": "ee792b04767061cebf3fc55cfd03407b92257884955933cd87709f361520414a"
+      "path": "data/literature/kandar-sashti-kavacham/verse-22.json",
+      "bytes": 1101,
+      "sha256": "d7bbaf6ab3790956c13318973dd31cc6d85e67c955f9b3c7ae9694e463ddab11"
     },
     {
-      "path": "literature/data/placeholders-extra/extra-007.json",
-      "sha256": "b306aff3265f67b17376a230dcef51e5cb909580666b9782098221f18f7f2a6a"
+      "path": "data/literature/kandar-sashti-kavacham/verse-23.json",
+      "bytes": 747,
+      "sha256": "5f8a2b264ea18163476e3b07d3fba3a1275902dc4e128322b86a15da222c256c"
     },
     {
-      "path": "literature/data/placeholders-extra/extra-008.json",
-      "sha256": "2bb35191a04e75ad395c5282420a4f69da46480ae085bd46bcf5308ef16bb989"
+      "path": "data/literature/kandar-sashti-kavacham/verse-24.json",
+      "bytes": 1150,
+      "sha256": "48e7b089abdbbac05d16d87a0db4896f4f5ba793cd5fc1a89c07ca1dd8a76932"
     },
     {
-      "path": "literature/data/pwa/batch-10-cache.json",
-      "sha256": "5cbedee2608278c8792d7856541bd99c3da20c6c0534f53c766af61d52c20055"
+      "path": "data/literature/kandar-sashti-kavacham/verse-25.json",
+      "bytes": 645,
+      "sha256": "22815fa6c6f982eb7aefe061bb45d3d243b5bc7ce2cc58ebfc4fc44d1358a7b9"
     },
     {
-      "path": "literature/data/release/batch-10-release.json",
-      "sha256": "532f3113571bb38b28bf575bfe22915984871ada4490381db03657f64fd52695"
+      "path": "data/literature/kandar-sashti-kavacham/verse-26.json",
+      "bytes": 1122,
+      "sha256": "2daab14ca333012800d62f86a271e357a939224fbb15188db5f729d650ed4c6f"
     },
     {
-      "path": "literature/data/review/source-review-queue.json",
-      "sha256": "20046c56397adc57c0c3e24700611b11c4798ee5b722dca15d686eb0a6a44b9a"
+      "path": "data/literature/kandar-sashti-kavacham/verse-27.json",
+      "bytes": 720,
+      "sha256": "81a3ed923a40a73fa2ce1cfe00c9a48059740d9a69c53528191bc7e7f9468861"
     },
     {
-      "path": "literature/data/search-index/batch-10-literature-index.json",
-      "sha256": "67fe8efddb43a01ce5b0e0d2ee220fc5c9e1834c25885677f3fa95e03ca3b1dd"
+      "path": "data/literature/kandar-sashti-kavacham/verse-28.json",
+      "bytes": 1085,
+      "sha256": "264eb4cb5f0170f505cc9b4c1513af31a5f7744c2d6ed9303e57ac1fbcf6cdf1"
     },
     {
-      "path": "literature/data/seo/structured-data-001.json",
-      "sha256": "2fb4e96f75c9accffcf3d298c91156ecfeb49efe78822f3ff20a7489c6395834"
+      "path": "data/literature/kandar-sashti-kavacham/verse-29.json",
+      "bytes": 710,
+      "sha256": "34bfca8cfc6f9fc6da702a98e26fc41898584c4ece725fffccf1edf41a1f2c72"
     },
     {
-      "path": "literature/data/seo/structured-data-002.json",
-      "sha256": "0172ecf2fb77413785baa5c119e41a2399fdd2b51b167cbb0e4048fb46f8e42e"
+      "path": "data/literature/kandar-sashti-kavacham/verse-30.json",
+      "bytes": 1142,
+      "sha256": "e44fc8e5311da14477225d2de62cc486c741c80b92bf9c35ecc982b9c5c918ff"
     },
     {
-      "path": "literature/data/seo/structured-data-003.json",
-      "sha256": "fcadae899fe921400b74a0a050bba64c843f0270477955ea9649c0c1a870cfe2"
+      "path": "data/literature/kandar-sashti-kavacham/verse-31.json",
+      "bytes": 746,
+      "sha256": "56376867e9946c6609b28d89676a2b6a466209e5af60bc27cec4ffc57eec7286"
     },
     {
-      "path": "literature/data/seo/structured-data-004.json",
-      "sha256": "5dae4ad2e3191ee236a02e169e038967d8fb2dd61f2b3af84a7173669388d91e"
+      "path": "data/literature/kandar-sashti-kavacham/verse-32.json",
+      "bytes": 1146,
+      "sha256": "dff8828e63f3c5c9aa13c47761428b487cf33b3bd2e88c0ccf1d5cb1ae4375b0"
     },
     {
-      "path": "literature/data/seo/structured-data-005.json",
-      "sha256": "62d03bcdc790da2753bfcd557ae1e5c1a71ad6c5444e49c05c93b711486ab4df"
+      "path": "data/literature/kandar-sashti-kavacham/verse-33.json",
+      "bytes": 758,
+      "sha256": "4abd254371b888bd85a6c84973c964e52f8ae3865a587aa748739d41214841d3"
     },
     {
-      "path": "literature/data/works/work-001.json",
-      "sha256": "6f60ec8dbc128f9bf9c1accfcce16c1ca893b92ad884dd9b823211724d18d09e"
+      "path": "data/literature/kandar-sashti-kavacham/verse-34.json",
+      "bytes": 1067,
+      "sha256": "ff3bb66496a0813f89ca90fa499eeaaf59516addcb10168ed1029b11f0b3598d"
     },
     {
-      "path": "literature/data/works/work-002.json",
-      "sha256": "a37e2c5743fb072df505d5fea6a9b9a1a52d17679b6a8ca5a5543d3c433875ca"
+      "path": "data/literature/kandar-sashti-kavacham/verse-35.json",
+      "bytes": 516,
+      "sha256": "9c08586748a912a74b344ee9105e521aa9afeb8ec6ef45f09f79583c0aede749"
     },
     {
-      "path": "literature/data/works/work-003.json",
-      "sha256": "84d77013e64de1857aebcb91f1bf7ab511035438445a441983f19f609fa7ed1b"
+      "path": "data/literature/kandar-sashti-kavacham/verse-36.json",
+      "bytes": 506,
+      "sha256": "a1971a09d9aaf46ceb515cb9f9b3d32a438696a8eec66ecafbf32157dd073583"
     },
     {
-      "path": "literature/data/works/work-004.json",
-      "sha256": "ce9441ac8e18074ac24029816a7021cbbde7ed70d28a85770f17521232f00e5c"
+      "path": "data/search/kandar-sashti-kavacham-index.json",
+      "bytes": 31172,
+      "sha256": "791d62b8b1582e650b6b5a6df490aa752f918ddb09cbca72a0714bf327916b3e"
     },
     {
-      "path": "literature/data/works/work-005.json",
-      "sha256": "7a07bb290e13b4f67147b2abddd53cdb28511bd398226141b7bf0806fe0af8c3"
+      "path": "data/seo/kandar-sashti-breadcrumbs.json",
+      "bytes": 85,
+      "sha256": "e1049fe0730b63579b3ea3ad96440b516a262d1c285149c3d209438554a7e23b"
     },
     {
-      "path": "literature/data/works/work-006.json",
-      "sha256": "02971cd45909c0cc438537b2e5f8f66c448ac15be906169f6b6195ed1c6eff91"
+      "path": "data/seo/kandar-sashti-faq.json",
+      "bytes": 185,
+      "sha256": "6db78d600daa8682b4e7eead6d7a53d8e0448ad7a00c002105810e8dde0d8ffe"
     },
     {
-      "path": "literature/data/works/work-007.json",
-      "sha256": "87012079ed5662adda7a123a348aae1e116c53b13b4c11311811510be00bda9b"
+      "path": "data/seo/kandar-sashti-kavacham.json",
+      "bytes": 143,
+      "sha256": "7bd3b480ce57bb403b576e5bc1a430d568904c416aaca8332797c49279687651"
     },
     {
-      "path": "literature/data/works/work-008.json",
-      "sha256": "8888551a6316f5013605b9367dfc24e0295bd4ef3d0ff2f23ee916b4f4c562b8"
+      "path": "data/seo/kandar-sashti-reader-pages.json",
+      "bytes": 2035,
+      "sha256": "5a20e2269b688f95577f73e932f477d4e4e30bc95a396c303e968e5a04339275"
     },
     {
-      "path": "literature/data/works/work-009.json",
-      "sha256": "7adf114b50fbccc947059bd023431bbc727d9926a305a8a67cfe6a52477b2673"
+      "path": "docs/batch-11/CHANGELOG.md",
+      "bytes": 119,
+      "sha256": "654b2738971baea9729dae349f4bb11d2061142cdbce63a70ac0c17bc87d0cb1"
     },
     {
-      "path": "literature/data/works/work-010.json",
-      "sha256": "bc4f98a658510426a873de5ad55ad517b4ff05ba8881be58c3fc61a6f4c6a65d"
+      "path": "docs/batch-11/CONTENT_QA.md",
+      "bytes": 129,
+      "sha256": "83738ac7c2e9ad40ebcfe9339b3534f1af0f5ab75335a00bcddf23ed43ce8c26"
     },
     {
-      "path": "literature/glossary.html",
-      "sha256": "37e4ad23ac61325634d7f6445cc4c93113290117dc58e7166f4ecbe267260c2b"
+      "path": "docs/batch-11/INSTALL.md",
+      "bytes": 135,
+      "sha256": "a6781957a30f9a5a8661c3614778dbc4b8009fa35d2d055c06a3f5da866d19a5"
     },
     {
-      "path": "literature/index.html",
-      "sha256": "3d47ad270ef3b5672fbc6ef392098acd245c8d169374173b1be38ce11239fa97"
+      "path": "docs/batch-11/SOURCE.md",
+      "bytes": 174,
+      "sha256": "70fc972e836d464a2485d52054917e88c178b37426f9288f3fb023ef629173bb"
     },
     {
-      "path": "literature/js/literature-reader.js",
-      "sha256": "ed68dc3fa1106b2082ef29bb7d719e0381d4e44dd177d3e5dd96ff8c63a3ea0e"
+      "path": "literature/kandar-sashti-kavacham/index.html",
+      "bytes": 3450,
+      "sha256": "aed19e4ba1221740699e0bc1f1e9947addb453ee030f7b1355c2986c4f392bb7"
     },
     {
-      "path": "literature/js/local-literature-search.js",
-      "sha256": "acdce22801f03147dada8ceeb77ab501f97222411930fef51b8c7a07430c08ca"
+      "path": "literature/kandar-sashti-kavacham/introduction.html",
+      "bytes": 1205,
+      "sha256": "209bc2ba75fc9cf9a627bd334bce36a6eccf521a90ea451b1ed826c105730a61"
     },
     {
-      "path": "literature/kandar-alankaram.html",
-      "sha256": "ff904ed69b15dafe9351d499da163ba05e96b1c3d25a9df6e325a9e13cb1fb91"
+      "path": "literature/kandar-sashti-kavacham/six-kavacham-overview.html",
+      "bytes": 19841,
+      "sha256": "f5d24038af61a86d2a6c8e8b9f5a2501b6d0ddf71c278c94d90262bf71810613"
     },
     {
-      "path": "literature/kandar-anubhuti.html",
-      "sha256": "6cb414dc4252d1505438744259b346ee887c5ba5d0a969b06a997cebbd6166c7"
+      "path": "literature/kandar-sashti-kavacham/transliteration.html",
+      "bytes": 8883,
+      "sha256": "a2ac283ce71706f884c491c9a6082baa242148b426b2aac0a84f7fbcf7cf95eb"
     },
     {
-      "path": "literature/kandar-sashti-kavasam.html",
-      "sha256": "bc0cde29cca63917fdd173d3260cb63da399aacbbe55c36795bb43bce9d75dcf"
+      "path": "literature/kandar-sashti-kavacham/verse-01.html",
+      "bytes": 1250,
+      "sha256": "ebe589d19e8be34f6ad97581027618b0ee247cb244bca4c420ae5d9305e79b17"
     },
     {
-      "path": "literature/reader-guide.html",
-      "sha256": "98602f864e63cbf1822c301770b15eec466db74840c104d4a8ef93b35be2c0db"
+      "path": "literature/kandar-sashti-kavacham/verse-02.html",
+      "bytes": 1705,
+      "sha256": "658f1eef46364a8ab6cc123ca3354e68a67982b507277185e7fcd263af5f9785"
     },
     {
-      "path": "literature/sangam-murugan.html",
-      "sha256": "d9db08e2b683818c15d5eac83b5a511fdf078d4d7d0c66f8a781a9ba0792ce38"
+      "path": "literature/kandar-sashti-kavacham/verse-03.html",
+      "bytes": 1332,
+      "sha256": "8aac422cc377d2675680bf95c9825a7c149102b83dbc3a4c3d8b59597c4e04e9"
     },
     {
-      "path": "literature/sources-review.html",
-      "sha256": "2962938e77c7df31b338b8e4e27c4fa46bd2be9e5e654b4250e3f31dfa724596"
+      "path": "literature/kandar-sashti-kavacham/verse-04.html",
+      "bytes": 1961,
+      "sha256": "9e87a73f99905adef2817cc0b6375c3a1bf3504ba8908a68b6e96d587c26f03a"
     },
     {
-      "path": "literature/subramanya-bhujangam.html",
-      "sha256": "cc1c680e4397c2abd5c475eefbeb19c91b3e7a750b929d93c82623209f26209c"
+      "path": "literature/kandar-sashti-kavacham/verse-05.html",
+      "bytes": 1540,
+      "sha256": "37692cb9748db07bf38f641d01a93a4c1c7989179252c392511e1dc40cf8e38a"
     },
     {
-      "path": "literature/thiruppugazh.html",
-      "sha256": "93a76d2693aa1a6e43daf35e1611af0ec68829120c07e0eb3a274cd66a674282"
+      "path": "literature/kandar-sashti-kavacham/verse-06.html",
+      "bytes": 1839,
+      "sha256": "c4767247d23513469207412e7b697fee087a89bf4f103f52989e6c7df7bd4b95"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-001.html",
-      "sha256": "93ab438233fdb07e99ebe6f30814d5ee3822ed312653882adb49d79bbab873e2"
+      "path": "literature/kandar-sashti-kavacham/verse-07.html",
+      "bytes": 1627,
+      "sha256": "dbddbb1abecceb9e74e7729d85b446fd1c410e4af90000a2da0078259f4fe201"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-002.html",
-      "sha256": "af45f2986d341b47c4ddce1ea387c377b866a54a70b3cd4c17a72a7628a958f9"
+      "path": "literature/kandar-sashti-kavacham/verse-08.html",
+      "bytes": 2047,
+      "sha256": "04bc82f03ee9ce830c9308074480157fdfd2cbe8eaad395f549258d72e3ab587"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-003.html",
-      "sha256": "7f5ed98faaf32542a269e64e2828d54fd12e9b29ab45c7456d85a0d96ff8a063"
+      "path": "literature/kandar-sashti-kavacham/verse-09.html",
+      "bytes": 1621,
+      "sha256": "415f694643cafae13ffbde2d73a77292d90f5aa66369cd1430737cb96eac3540"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-004.html",
-      "sha256": "75f6ee564385f6187c9712ba9b9f9910744fa445d952bf80854708b87e907af2"
+      "path": "literature/kandar-sashti-kavacham/verse-10.html",
+      "bytes": 1933,
+      "sha256": "179426571eb9a36ce7826bd293bc1ff7d24baef6e59076b6839c52b1c63b044f"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-005.html",
-      "sha256": "dd42a8c95d09f7453b2efce5125703dcfea23a9dbe59f24d91134f24037736fa"
+      "path": "literature/kandar-sashti-kavacham/verse-11.html",
+      "bytes": 1561,
+      "sha256": "608ac5721f1ccc57abcafbf905afd20214fdac13f9965acbe025d132a1fe463a"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-006.html",
-      "sha256": "44926a7b10710d2d4e7b6b0903cf8200605836d1653a409e5a2290233cfdcdb3"
+      "path": "literature/kandar-sashti-kavacham/verse-12.html",
+      "bytes": 2050,
+      "sha256": "a6c68073a656a72df2b0ed089ea22acc74bb8ae0402241a1050b0d5b151a2d55"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-007.html",
-      "sha256": "f6f14537e74adf8c981fa1c2f2f2efad2e2a72bbfc26f48ea17479e2807f7aec"
+      "path": "literature/kandar-sashti-kavacham/verse-13.html",
+      "bytes": 1587,
+      "sha256": "9041a402a49f354de30b765d36f098757be7a0f30689fd0b0834629a10eedf73"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-008.html",
-      "sha256": "7951f351c5cabf372e1d0200c951007b11b65632b7bf044357a1b722e66b5e96"
+      "path": "literature/kandar-sashti-kavacham/verse-14.html",
+      "bytes": 2026,
+      "sha256": "1e38edcdec62da12ebe028e2582e6b501368453aa1734e6e0e6b7c6ca1cb7913"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-009.html",
-      "sha256": "5a2e291ad36eaf5178fd0a6b29116349923cdacbde4034556a6bf1e069f44a3b"
+      "path": "literature/kandar-sashti-kavacham/verse-15.html",
+      "bytes": 1615,
+      "sha256": "6011bb88e4985307d9f06a5cb158b06b0c41e3d44ab44abfa9dace2129a7388d"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-010.html",
-      "sha256": "d473408f0c1df8eae59bb359d99a7007a81d2050fdc0bd0b5e64cecf415b4845"
+      "path": "literature/kandar-sashti-kavacham/verse-16.html",
+      "bytes": 2006,
+      "sha256": "2974bfd50f84a044b863b3e5e1a00dbcc344402814f1e8a9015666eb57a49111"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-011.html",
-      "sha256": "3d31b61a8be40fbe3cb0a1ff0763f7569f7f3a1894ae7f88f881c27adc04b9e1"
+      "path": "literature/kandar-sashti-kavacham/verse-17.html",
+      "bytes": 1586,
+      "sha256": "09e9c3b12e1f5b6e80db3a4258b34c0bb8d866782985bb99892a9d15239257f9"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-012.html",
-      "sha256": "30791ea10af2b066a17457647d4dd9bc72257dd05a39f59ac929dcfae35c0e9c"
+      "path": "literature/kandar-sashti-kavacham/verse-18.html",
+      "bytes": 2131,
+      "sha256": "7072d96fadb56772f89d85a679f8ce3615dbf3646f35409290e4403fdb96b4f0"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-013.html",
-      "sha256": "63599a0f286e5ba30ae76943165f4ab9cb865a13b307fc95b3449d169b0a22c2"
+      "path": "literature/kandar-sashti-kavacham/verse-19.html",
+      "bytes": 1622,
+      "sha256": "b4496eda37c9e72e0a95f5d5e67e7c1aacb77ce6a8224a72856bb5c6cf07d8a8"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-014.html",
-      "sha256": "869add7185bfb1b9f9a7fb10741c0825b78852a3c7862918603463f868722ac1"
+      "path": "literature/kandar-sashti-kavacham/verse-20.html",
+      "bytes": 2056,
+      "sha256": "50f465739b4c778f88b59353308c61d6e0e74b713d1596c4a5a4ae227347d403"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-015.html",
-      "sha256": "8f8f8de3f8dc6a705b92e81382b591c2adff2ed32e07928c3addd528882d40c7"
+      "path": "literature/kandar-sashti-kavacham/verse-21.html",
+      "bytes": 1572,
+      "sha256": "887033e633efc20f7068a78131e3a16b8cfd09ab4a5f367d6cc879a7a8f12ba7"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-016.html",
-      "sha256": "28a453c44b1c9c67114ed4af7813caf25c4d74afce539e790e14008888f5c51e"
+      "path": "literature/kandar-sashti-kavacham/verse-22.html",
+      "bytes": 1981,
+      "sha256": "baace73067d819d40f9b2a3212c83025e8a62d32f2256819a9c5ef593bfd7629"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-017.html",
-      "sha256": "8496135e48b32724617d126738ba960b8b30926c2d2566d1c958154f8b95850e"
+      "path": "literature/kandar-sashti-kavacham/verse-23.html",
+      "bytes": 1628,
+      "sha256": "9ea161072df240ea394809d414594c0f683e4d308856f347af53b1f939d240e4"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-018.html",
-      "sha256": "3bd9ce16fdf1fb8ac33e2638713969184470c27a74ff68b49c961f82fe69a9e3"
+      "path": "literature/kandar-sashti-kavacham/verse-24.html",
+      "bytes": 2030,
+      "sha256": "1221fc7dc3c2237f2d529d026629ab0ef88412a895cf4e3cd5e15fd22da778b4"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-019.html",
-      "sha256": "a3f777411ab81c8dd00efc2132c1f87b04a5c26602b2b567a4a1fa2380ba9984"
+      "path": "literature/kandar-sashti-kavacham/verse-25.html",
+      "bytes": 1526,
+      "sha256": "2ca20a69be009ca8ed87e4f888553c9635f09f520b4ebd2c462fc672a2d4f87e"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-020.html",
-      "sha256": "9ed6268bee4444d6233f92d135c4419272c1e7440351daa28e010520191c419a"
+      "path": "literature/kandar-sashti-kavacham/verse-26.html",
+      "bytes": 2002,
+      "sha256": "cdfc77af36e3da88373edfca61839342d4fc471377fdd63da7ff579e1cfaa07e"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-021.html",
-      "sha256": "72fdd0ed5f880fc7bb2bed1e70115c6b37afa4b9ebd9cf1a46b0ba479fcf8793"
+      "path": "literature/kandar-sashti-kavacham/verse-27.html",
+      "bytes": 1601,
+      "sha256": "9521152d82612e4eb19a5951a37c011b54d68179db71348d36ae860509a4b0f4"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-022.html",
-      "sha256": "29f59591d7f190f6acba5181dea3ae14edd2413680012ee85df2e786f69239d3"
+      "path": "literature/kandar-sashti-kavacham/verse-28.html",
+      "bytes": 1965,
+      "sha256": "7370ddccb5bff302dcf0953c222fc33a2df17b79800088c73e17146d06e5e04a"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-023.html",
-      "sha256": "dfba35722de91cbb7b92098ea989bdb5e3dabfc72ef62118c436af98f35bbdf4"
+      "path": "literature/kandar-sashti-kavacham/verse-29.html",
+      "bytes": 1591,
+      "sha256": "ed309f986d8f0ec3f7e7815cc1803c747c067760e76a468dac5a2f5d27ed0528"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-024.html",
-      "sha256": "993fc86b3eeaaadfd845296e580cbc63f1d2440fa04e69ef2f8364a025a2d172"
+      "path": "literature/kandar-sashti-kavacham/verse-30.html",
+      "bytes": 2022,
+      "sha256": "cfb7bf23b040f0bf60877b672a5241031daa4b6333e200845bf4ff1e5330ba9b"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-025.html",
-      "sha256": "438b3077b6978869828944e9b0f5dd2596d91ad50ed4de3a24e15351c5ae5218"
+      "path": "literature/kandar-sashti-kavacham/verse-31.html",
+      "bytes": 1627,
+      "sha256": "8878fecda4b551b9c49ae5de840115f88d6e3c60eab7d15c897e0d30fb282467"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-026.html",
-      "sha256": "237278020d547d891153c5cdcc180ace8345c8d55e5abf776f35424750c2d73c"
+      "path": "literature/kandar-sashti-kavacham/verse-32.html",
+      "bytes": 2026,
+      "sha256": "e3ab630340e0920dd033b6c8b5420b5134b99d2ea4c1f117f7ddeec021330b6b"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-027.html",
-      "sha256": "88dd08f2203472eae9d40970a46b9300535122a13ca4c7ed11f8926d56ff4748"
+      "path": "literature/kandar-sashti-kavacham/verse-33.html",
+      "bytes": 1639,
+      "sha256": "797c3623e9e9438f4da3c5d84e3326eb41f3a646fb00d0f7192b74a9ccdfd5b3"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-028.html",
-      "sha256": "bae10c0ae3adaff73bbbc54838b6bbfa89328f6a6ea5605ad1ba61e6f92f1c42"
+      "path": "literature/kandar-sashti-kavacham/verse-34.html",
+      "bytes": 1947,
+      "sha256": "a9f4568344680bca0843c65609ac374194a9d924eae64eecf0fe863e201f0004"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-029.html",
-      "sha256": "332e5c892fe1d03b881ce29f97f538d3f15e282e8e13e5b1f5dcbe6a50c8dfdb"
+      "path": "literature/kandar-sashti-kavacham/verse-35.html",
+      "bytes": 1397,
+      "sha256": "4d834d29ee450fa5f2effcfe712861b57e3f26278c71f076e2d422b99c86e4a4"
     },
     {
-      "path": "literature/thiruppugazh/thiruppugazh-030.html",
-      "sha256": "dc8bdd7b0557c74342606608d75751475aa9f216ac8008be5ecf61cd0af21c16"
+      "path": "literature/kandar-sashti-kavacham/verse-36.html",
+      "bytes": 1384,
+      "sha256": "9ca912664c1a3803fca05155c549056d8cf15437df1aee1b1f8440226a05ff04"
     }
   ]
 }
