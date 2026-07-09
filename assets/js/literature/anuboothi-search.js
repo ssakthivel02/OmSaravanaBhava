@@ -1,0 +1,1 @@
+async function loadKandarAnuboothiIndex(){const r=await fetch('/data/search/kandar-anuboothi-index.json');return r.json()}window.loadKandarAnuboothiIndex=loadKandarAnuboothiIndex;

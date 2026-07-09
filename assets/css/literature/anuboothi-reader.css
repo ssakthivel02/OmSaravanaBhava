@@ -1,0 +1,6 @@
+/* Batch 12: Kandar Anuboothi reader. Additive CSS only. */
+:root{--osb-gold:#d8a64b;--osb-deep:#5b1f14;--osb-cream:#fff8ea;}
+.osb-lit-shell{max-width:1080px;margin:auto;padding:24px;font-family:system-ui,-apple-system,"Noto Sans Tamil",Arial,sans-serif;line-height:1.75}
+.osb-lit-card{background:var(--osb-cream);border:1px solid rgba(91,31,20,.18);border-radius:18px;padding:22px;margin:18px 0;box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.osb-lit-title{color:var(--osb-deep);font-size:clamp(1.6rem,3vw,2.5rem);margin:.2rem 0}
+.osb-lit-meta{color:#6c5540;font-size:.95rem}.osb-verse{white-space:pre-line;font-size:1.18rem}.osb-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}.osb-pill{display:inline-block;padding:6px 10px;border-radius:999px;background:#f5e8c9;color:#5b1f14;margin:3px}.osb-nav{display:flex;justify-content:space-between;gap:12px;margin:22px 0}.osb-nav a,.osb-btn{background:#5b1f14;color:#fff;text-decoration:none;padding:10px 14px;border-radius:10px}.osb-note{border-left:4px solid var(--osb-gold);padding-left:14px;color:#4d4035}
