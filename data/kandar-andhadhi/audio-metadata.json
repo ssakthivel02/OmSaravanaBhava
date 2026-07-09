@@ -1,0 +1,9 @@
+{
+  "available": false,
+  "future_fields": [
+    "reciter",
+    "duration",
+    "src",
+    "license"
+  ]
+}

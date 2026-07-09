@@ -1,0 +1,1 @@
+document.addEventListener('DOMContentLoaded',()=>{const t=document.getElementById('ka-sections');if(t){fetch('../../data/kandar-andhadhi/sections.json').then(r=>r.json()).then(items=>{t.innerHTML=items.map(x=>`<a class="card" href="${x.href}"><h2>${x.title_ta}</h2><p>${x.status}</p></a>`).join('')}).catch(()=>{})}});

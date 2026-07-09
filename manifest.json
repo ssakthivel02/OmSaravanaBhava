@@ -1,503 +1,400 @@
 {
-  "batch": "13",
-  "project": "OmSaravanaBhava",
-  "module": "Kandar Alangaram",
+  "batch": "14",
+  "module": "kandar-andhadhi",
   "file_count_including_manifest_and_checksums": 99,
-  "generated_date": "2026-07-09",
-  "policy": "source-safe scanned PDF foundation; no unverified OCR scripture text published",
+  "policy": "proofread-first; no unverified OCR scripture text",
   "files": [
     {
-      "path": "literature/kandar-alangaram/CHANGELOG.md",
-      "sha256": "bbcdf9fab0ecb178ae1ac21078e8784fc547632c0b3d66dd24560ccb344eb7d7",
-      "bytes": 124
+      "path": "assets/css/kandar-andhadhi-print.css",
+      "sha256": "d9d707069dff06a3bf13f3772286cb1767757ea63ed737a09f46b8be8182af2f"
     },
     {
-      "path": "literature/kandar-alangaram/INSTALL.md",
-      "sha256": "0e8fcaf0321970c8baa70ece8df04d31d94deb451e1ec99c33035c437aa275b2",
-      "bytes": 101
+      "path": "assets/css/kandar-andhadhi-review.css",
+      "sha256": "a8330d989be58d8043fb82e9a993ef004790e51e0dd7f2831c2b32dc3cafde32"
     },
     {
-      "path": "literature/kandar-alangaram/README.md",
-      "sha256": "ef21912f900a9399733d0097f8f89efb5e080468aa930f655a65aeffe27237df",
-      "bytes": 153
+      "path": "assets/css/kandar-andhadhi.css",
+      "sha256": "ff02976b58a77edbf99a66f8328c52e59a4014290ccae550abea5c921fb3b958"
     },
     {
-      "path": "literature/kandar-alangaram/assets/kandar-alangaram.css",
-      "sha256": "6e480e6f0b8ed81fcc9f7a033de250e80cb86554444072ec87e3f5332b51bf66",
-      "bytes": 1789
+      "path": "assets/js/kandar-andhadhi-reader.js",
+      "sha256": "16d5272c27cce503e40a252ddcba5c34c33bd4469e415d49058271265a745679"
     },
     {
-      "path": "literature/kandar-alangaram/assets/kandar-alangaram.js",
-      "sha256": "203273efbd09659a98e79c5c1409542442d9d5c9ab938e646591d7f55fd3481c",
-      "bytes": 319
+      "path": "assets/js/kandar-andhadhi-review.js",
+      "sha256": "bb337315b3592b7e0734f4502194f901f00b8e1e1eb00450226e1ff627e16ca0"
     },
     {
-      "path": "literature/kandar-alangaram/assets/reader-state.js",
-      "sha256": "f057ab61c44e0e216f8915ce2ca5e7478c524389805886fafb5120474bfb973b",
-      "bytes": 345
+      "path": "assets/js/kandar-andhadhi-search.js",
+      "sha256": "cc16aad1fc62c5c9bd8ba1ed60dac516a73570b1259b63d46575dde1c1494020"
     },
     {
-      "path": "literature/kandar-alangaram/data/page-index.json",
-      "sha256": "615846ae722238b18b05278ac0a125cf2ca088acb3fcb008106f95c80319eeb8",
-      "bytes": 8800
+      "path": "data/kandar-andhadhi/audio-metadata.json",
+      "sha256": "c7d88a3943ac1a3fdd2a67f3cf1698c0cf7685b3d16104b325170a03cdd22b3e"
     },
     {
-      "path": "literature/kandar-alangaram/data/review-batch-01.json",
-      "sha256": "1ce948544ea03b61e385a3293f45e1d5c6e4766059ad4bf06be1221efbc966ae",
-      "bytes": 182
+      "path": "data/kandar-andhadhi/audit/audit-note-01.json",
+      "sha256": "a8730ada6519970b430b4e00f3bc2b5f82b062e9ceb2946997c47f0abce9c544"
     },
     {
-      "path": "literature/kandar-alangaram/data/review-batch-02.json",
-      "sha256": "028094997236618df0a6b19d02275801c0363446428decd6d7920b972b3bc6dd",
-      "bytes": 191
+      "path": "data/kandar-andhadhi/cross-references-festivals.json",
+      "sha256": "5cf3cfdaeca46a4b71306f9801d13c048bb4c2fc3568dd4e3ecfbd4bc506789f"
     },
     {
-      "path": "literature/kandar-alangaram/data/review-batch-03.json",
-      "sha256": "f17132bbfbabad73ebfb1d9153e4259bffc3c94c76f19bea317a69c27caa6719",
-      "bytes": 191
+      "path": "data/kandar-andhadhi/cross-references-temples.json",
+      "sha256": "8a9db9cd7a0257136565c78e77557b08fb82dfd45f3cb0bed80b31582eceafe9"
     },
     {
-      "path": "literature/kandar-alangaram/data/review-batch-04.json",
-      "sha256": "6f6fe293ce1041af47116d57fe599731d31167c372389d2392e42bb9e41bff92",
-      "bytes": 191
+      "path": "data/kandar-andhadhi/glossary.json",
+      "sha256": "f733043ba9a258a4289a3eff9b8ece72223ce45495f30c7994001a2835af69d3"
     },
     {
-      "path": "literature/kandar-alangaram/data/review-batch-05.json",
-      "sha256": "e7f9484ac0bd6cfc5f65efd32a3d6562fcf219a5bffc33910c137ad7c72454fd",
-      "bytes": 191
+      "path": "data/kandar-andhadhi/review-queue.json",
+      "sha256": "3ba8a52743b1b2ae7c2d5187e52ca02e08c44dbfd2d85169ee72503df3350d60"
     },
     {
-      "path": "literature/kandar-alangaram/data/search-index.json",
-      "sha256": "ae892f62d0cd7b7f2d68025c5b94f14cf2b568beded0ca597d430abf5b3c86a4",
-      "bytes": 607
+      "path": "data/kandar-andhadhi/search-index.json",
+      "sha256": "77289f963290523a09fcc4b72e08d6d304624d730574cb6eab698a642bbed845"
     },
     {
-      "path": "literature/kandar-alangaram/data/source-policy.json",
-      "sha256": "d2b100fee894a9b0094c475bc3cb65d1575e81d04c50f177bd94414715ffa890",
-      "bytes": 297
+      "path": "data/kandar-andhadhi/sections.json",
+      "sha256": "872dabcec8431046fefab0d7d2d7f49b517230024903302696bd9b205fd170a7"
     },
     {
-      "path": "literature/kandar-alangaram/data/work-metadata.json",
-      "sha256": "a6f9ed51b6e8100c05bceb289432d869b4b5430c4763c6feb75c433a57d49187",
-      "bytes": 342
+      "path": "data/kandar-andhadhi/seo.json",
+      "sha256": "c40b4a86b0fe427cd96006ef292cfed21d61cc127d74295c60043cd94e824114"
     },
     {
-      "path": "literature/kandar-alangaram/index.html",
-      "sha256": "cc9ed7866780267551d007e229501edca0609cbec3f7379d56659e75c2f8871b",
-      "bytes": 3030
+      "path": "data/kandar-andhadhi/verses/verse-001.json",
+      "sha256": "b120fa79b4911ac425b3531e00a7c6ba9a888583f73ae1d6b3b6e84921c781c6"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-001.html",
-      "sha256": "90d91bedeb2a8eacdd5180c2d7c8a91d0ad1ed70089e6f788d28871398e5dee4",
-      "bytes": 1577
+      "path": "data/kandar-andhadhi/verses/verse-002.json",
+      "sha256": "09b21bc346c62b43198c523ee2c355eda0fec689a64ee43eeb2e7290c65ebdaf"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-002.html",
-      "sha256": "d54ff27d496517d66cf123d6ebfd49b05c9b6b5a10b29020eaa240f1626a3bca",
-      "bytes": 1577
+      "path": "data/kandar-andhadhi/verses/verse-003.json",
+      "sha256": "1a0afb30126997cfe16c4a157db136b39cf104ba71d3fb7e6b2545256cf678e1"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-003.html",
-      "sha256": "35164da6ed7cb6236c489d35ac96dde73117bb2ac1964cad669d565fc9300f4c",
-      "bytes": 1577
+      "path": "data/kandar-andhadhi/verses/verse-004.json",
+      "sha256": "fa6068e9ffbfcf7226ae14d81fad830efe8e801caca6e0da2cc6c1a246b1a807"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-004.html",
-      "sha256": "97d202ccea805f6e00e862c713c99476cbb674c7744bd2af20a369df34bbda8a",
-      "bytes": 1577
+      "path": "data/kandar-andhadhi/verses/verse-005.json",
+      "sha256": "a5170c607b72cfed17bf980c7cd096ff841d6e59db8dc76223a220e3c4bf10ac"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-005.html",
-      "sha256": "83b12e80f30a1bfa2ebee48e1471169331bb4bb781ea43033279ec9b949030bb",
-      "bytes": 1577
+      "path": "data/kandar-andhadhi/verses/verse-006.json",
+      "sha256": "26751a776d597875e70ec212f69724d2634eb488ad374866a8934751cfff2d7b"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-006.html",
-      "sha256": "06d9b78114538ba78f854b93b262f55d8214aa6e18ff93968574b5e8ce2a4ca7",
-      "bytes": 1577
+      "path": "data/kandar-andhadhi/verses/verse-007.json",
+      "sha256": "0bfc98052dc5e8c8aa42b0e0abe7a72a3ce8abf4ad461f83e3b49d2075646fce"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-007.html",
-      "sha256": "e8bc523193ae00ed042c6007826c7b1c13045dbcee52c25d40b79d109fc85817",
-      "bytes": 1577
+      "path": "data/kandar-andhadhi/verses/verse-008.json",
+      "sha256": "d69d49f7d62545c7dcc35e83aaaa66a156940adf389666261da8bdfe6874340a"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-008.html",
-      "sha256": "48c13a69c893e74c0c536b1d2e2e3c5fbb03d606dc78f81d58e033d5f4114a2f",
-      "bytes": 1577
+      "path": "data/kandar-andhadhi/verses/verse-009.json",
+      "sha256": "eb1dc08c511dd0065ccb1ae444768a3c177b406f4cd9f0d7f305f4e9296b21b8"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-009.html",
-      "sha256": "224f64aa8bfbe0fad9aa78bb80c38855540221d09be9f165bcab93609c55bde2",
-      "bytes": 1577
+      "path": "data/kandar-andhadhi/verses/verse-010.json",
+      "sha256": "a0a33dd28806a1a4099a4aac43a5fd794669ea787901e2d4294c4d762ff87c5a"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-010.html",
-      "sha256": "88952135adef26caa5ca9c97103e573f1eeb4766be783f27bd25660ab854bf96",
-      "bytes": 1580
+      "path": "data/kandar-andhadhi/verses/verse-011.json",
+      "sha256": "bbc09aa3e1aeff873960310dbd977323187fffa1df5eebe3e104007f70047846"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-011.html",
-      "sha256": "8ad8e1f09a9b58e4a61fc0a9df1e82f7df8dee56f442cffbc47ea8f95f942fd9",
-      "bytes": 1580
+      "path": "data/kandar-andhadhi/verses/verse-012.json",
+      "sha256": "e4a9311ab903accc1b4ec95b7ced367f1a82f4e8c4652e3c5f61e8373e53d2a7"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-012.html",
-      "sha256": "411a1442ada14169a91baef14b316bc64c14867efd1304018fb165b76e25c2ec",
-      "bytes": 1580
+      "path": "data/kandar-andhadhi/verses/verse-013.json",
+      "sha256": "9f9375fdc44f4624b9038eb994f979345c7851ff35993eff3de9f88194e41a52"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-013.html",
-      "sha256": "05f7507c8847d14607b56cb0566c6961960b9b723e8198f7f927a03f6dbebcb9",
-      "bytes": 1580
+      "path": "data/kandar-andhadhi/verses/verse-014.json",
+      "sha256": "58cff5bd96cf5f77839a5d7763c4e79535a6e0a453de8f5601a8e18e4bd57132"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-014.html",
-      "sha256": "2c7d781ac83626abeae305b5c1f529399286ad00b160d781e65a0143d669b621",
-      "bytes": 1580
+      "path": "data/kandar-andhadhi/verses/verse-015.json",
+      "sha256": "6fb1b445eac22a137b79ae5c5c322ebf59c64d2b44b99ff6e4dc53b5a380fa19"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-015.html",
-      "sha256": "7d01237245c988669b5d2441f4a0dad14495ab002c785aa6c7d13ee75896ed7f",
-      "bytes": 1580
+      "path": "data/kandar-andhadhi/verses/verse-016.json",
+      "sha256": "79b069b664aa3de268282e5d511fe9b136b9ac247ea266ffe16bcc5a5b32bd80"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-016.html",
-      "sha256": "3a4241d3cd950c0f0710384959e61517ff1e325d63d456164042f99c50393726",
-      "bytes": 1580
+      "path": "data/kandar-andhadhi/verses/verse-017.json",
+      "sha256": "7e9761cd78364e6b7f57cb2f0261cd3d4782e619e6fc4b4773112572a57a552e"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-017.html",
-      "sha256": "1df67795b3bf1489249bc54ae9d40cc6a3026a19e217dc66a22821b62859d440",
-      "bytes": 1580
+      "path": "data/kandar-andhadhi/verses/verse-018.json",
+      "sha256": "d197aff6480fee7e15271100aefdde1c05914d34296e705b2c27d65d2e840c60"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-018.html",
-      "sha256": "2c81a4c2d963a31a0e67c99b9b15150b153338b57562ac57a9bc5c0481bd245c",
-      "bytes": 1580
+      "path": "data/kandar-andhadhi/verses/verse-019.json",
+      "sha256": "2000df9d4b004c342518efe3ce3c6fe18c2e9a88f778c82e00f3181fa8202379"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-019.html",
-      "sha256": "bb132e7d4a0c06a4506bfd2280883ddc9c7c16c71401855ec818c420e7aac41a",
-      "bytes": 1580
+      "path": "data/kandar-andhadhi/verses/verse-020.json",
+      "sha256": "d10119998e1b75b14691fa5777a73b0f82674ac5e922186c09104f96217f9230"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-020.html",
-      "sha256": "518bf7ee0643150e8202e710a1eb4c548bf3a76b88701d53c266929481ee5668",
-      "bytes": 1580
+      "path": "data/kandar-andhadhi/verses/verse-021.json",
+      "sha256": "6f36364b391696622dd34c877c67c078661a633a4eb12fe3ea31cc938da1f19c"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-021.html",
-      "sha256": "2439298553610626a0e2279d055a6acbd4b34fbaf772f5be226311b2c7f0fbbe",
-      "bytes": 1580
+      "path": "data/kandar-andhadhi/verses/verse-022.json",
+      "sha256": "63bce5acf76250c9eea340a3305cc6ec50424d870bf1aeaeaef511883e047f78"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-022.html",
-      "sha256": "9bb9a3dc02107c6a4000d37b49d2751fa179ee3efc1baa4df4bf082fc86b0643",
-      "bytes": 1580
+      "path": "data/kandar-andhadhi/verses-index.json",
+      "sha256": "8e7511c3cba2091a9d6d46bc084aab594943b733fb1020cf04246514080e9967"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-023.html",
-      "sha256": "e7f88c881fe0986fd2add081152d4ffe1efeed41c3dacaf2b5f08778f1973536",
-      "bytes": 1580
+      "path": "data/kandar-andhadhi/work.json",
+      "sha256": "b0a851147ed4a8c4259f5418b3d5615b57c037856abb3334d05af8d3acb48760"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-024.html",
-      "sha256": "a0fcc9ffdf160f2cf62a3c86f831ab02053017535c30e3cd56edfb09437d9b16",
-      "bytes": 1580
+      "path": "docs/batches/batch-14-kandar-andhadhi.md",
+      "sha256": "a24ac5f6da7b043087aa06d166ead48f4b73a2395f866f24ff0a44919b4fa4d0"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-025.html",
-      "sha256": "a1eafc86ba48dc19de8c028c89d0e7b3cdebe0751e7eb7147242bd28470b34a0",
-      "bytes": 1580
+      "path": "docs/batches/batch-14-upload-guide.md",
+      "sha256": "d1512df1d2bd5e5dd8ed4108826a4dc876b641e37e4e826f508535c81a947a84"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-026.html",
-      "sha256": "0c3a8887cb0c37c91e1f511d80af25bac8edd713191098ce7f52e7f76b94737d",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/audit.html",
+      "sha256": "647c477d45de265545d54433135eaaac8ebb8183712ee473469e0ef644609470"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-027.html",
-      "sha256": "10d063e5aa1717d07d1f22e41858f3ac116fee7d9c2a05d7ca0f65caf82b95de",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/copyright-notes.html",
+      "sha256": "d7e90c5ca017d700016cde4479c8f23d1f630a837a497de2ab628a44f6a14a3d"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-028.html",
-      "sha256": "aeb9f995328137a5a89665ae46168aef6b3672f8257c6c2e3dbd5df40af3b81f",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/index.html",
+      "sha256": "2397dc2f76626dd239cb18cce5df56515737dde5789ff280d7a2c0c0e2477d37"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-029.html",
-      "sha256": "6b049ba0d4dfb84e303f5cdfec84204389ce0e27f4772aa08f4a25d70c799aea",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/integration.html",
+      "sha256": "1526ae918366baf378294e134f65a9c58fd8ac76b1bbd076104d90b03433136c"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-030.html",
-      "sha256": "fccf3f35f2ac59670640f12a21d3a7e558c403efd110994348b71eb99932c495",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/release-notes.html",
+      "sha256": "2ab57d5c67a2b62a70c0532656cfe3049188253349b74fcafc6989cf45371479"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-031.html",
-      "sha256": "2130a929cdb6115b0396fdf1a97c7bb237c169a39b64f19b134e8e208539ebbf",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/review-queue.html",
+      "sha256": "e815b4855d06145acbdd218e1130579ac2d8a6d208c1e7a2ac48a2ea10bad295"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-032.html",
-      "sha256": "3bce3ad7644f0bb208c18038918d77c393befa523b7f79f2aa8f82616ffda2c0",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/section-01.html",
+      "sha256": "73ec0170d61d17693e6376b8aab425645a14b551f618936fb27413a6e6f87ffb"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-033.html",
-      "sha256": "1b98399e7c5b7f9fb3d4c9b240ec05e05302ed3f9bb08b1b5fe440589853a781",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/section-02.html",
+      "sha256": "e7c6006587e9fda44241b5ffa05381c3a3a99adc157f03224c2a098f1ff467a8"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-034.html",
-      "sha256": "6ca05cbc14105d56ec7767a81225270dd7d8ebdc4338feb649a8b24b9389d4eb",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/section-03.html",
+      "sha256": "ec09f579bf58e9b7abe62b0d069eb0db328864cdd12a9946b3335f2172f4f59d"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-035.html",
-      "sha256": "e3a701e2475dd9386e29b07182b88dd206ca975aedb2ca2e929f579b5850de40",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/section-04.html",
+      "sha256": "31e88b7d2b2c0f84959ed38469c1dbaff4a08955fdac3a4fcde1d349ce5276c0"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-036.html",
-      "sha256": "1a30fb61d41158a3a960884aaba8ba9b56352f4b88fe24b7da16879ef820285f",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/section-05.html",
+      "sha256": "599a0d477431aa46676f76ae3c42637ce4f5f90b9c0972836c50183923aefb19"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-037.html",
-      "sha256": "45f8ad70f523debb9666a08542d5959c97f962451ec52c4c20c0926f3d85b552",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/section-06.html",
+      "sha256": "4f3a4cb057343cb6a6eafc75c9abcc8ee48a1a83abf8c5a960bfd3f53626af93"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-038.html",
-      "sha256": "ec8510561b455976fedb2fbed19e7446cda0b329ea265a4f2c1575db26bdb7b5",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/section-07.html",
+      "sha256": "19193fa495c74591d3a542748ebae9ac0db17448a087ec5dee6d539d77a04d22"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-039.html",
-      "sha256": "a962ad8708f397ce876d0e7543012069214681e54529b53f4f1de09d19fc821c",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/section-08.html",
+      "sha256": "ec1006643bfd8cba3d113ce2f853523ee12c7feea43af4241f199e6862290251"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-040.html",
-      "sha256": "12036aaf3264ff61e03afc53c37a398990b5d839e1ed2ffd899491cbe9f313bc",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/section-09.html",
+      "sha256": "39f12191d8d11e93ad953a00a9f88ac18605bd65b9e64436747fffc3bf03770f"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-041.html",
-      "sha256": "21f53903216d2b92e39305bf75f4abdea2d691dc6ceb59614e60b51328478dbd",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/section-10.html",
+      "sha256": "4cd8970516ee61da4499b3522e5eb7f2fd1b25da51e4fdf95558326901a94c72"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-042.html",
-      "sha256": "ca27b053c3d58ede674689bc41e12c3af3ba5890b8e535db7cd117d6a57542be",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/section-11.html",
+      "sha256": "c7be7e7c221101227c5e7e653da897e05d402b1ad0047bab541b633f3d7fda64"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-043.html",
-      "sha256": "d02cbbf65c0309ac720e3f1ff16b8c909a15cf3156326f8e0c540259f2e4bbe7",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/section-12.html",
+      "sha256": "a5e4d1b399b59157f0ca2230b3cc618885c0751e243eb82c10272efeceff2388"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-044.html",
-      "sha256": "fcaf04f3d8062e911419b1ec8c9e50171efd9e56c0867c6d23ea1e98a552c9b6",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/section-13.html",
+      "sha256": "a0d7aca42c7f9344a4ca7d4cf6ac2c7bf3ad6eee24d26a7bceec9a03343596d5"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-045.html",
-      "sha256": "16eb53bf853fe2a99cf8a14984f86c0f8919d7d1788e588e695e2e4278f6cf1f",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/section-14.html",
+      "sha256": "0ce99f38299d5f0b2dbe3ce4da267c32b6f18296dbe7042fece9990e60c3bb51"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-046.html",
-      "sha256": "3a1e0f33555099f83bc1ba673baa21f2905f9ebc3d4a4d96f3bdb21708c28090",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/section-15.html",
+      "sha256": "8ef3202fc724f56dbf64517d008eee04e1234aa914048f0205b30cb2c23df2c8"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-047.html",
-      "sha256": "b0912818d5addb2049252512dcbc8c71f22e1e541d7f02caf9072e31d36b1e61",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/section-16.html",
+      "sha256": "1e5e0211b5b6befac29af0002cb0ae427b87bd99908db59ddc624eee6bdd457f"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-048.html",
-      "sha256": "83dee89481159fde4c1a320371ce4c7bd01040f125ec7d8ae96c6eb1b009b815",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/section-17.html",
+      "sha256": "f4b1ff59e6cd26f44b0edb0cba350bb00c4df00c75e289898ad39520e63c90ba"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-049.html",
-      "sha256": "632bb7dc08b5f6d621828d904605afebd943184f336570aac90e52bd52c708fd",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/section-18.html",
+      "sha256": "c45995d8a66c081f1faf76cd95c16d09278252dd0c96e4dece78e82a0d90c327"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-050.html",
-      "sha256": "c6b5d02087bc4ea94c7d865faf553fe11b387726f5ff9470e89b10f9c7e1f1d3",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/section-19.html",
+      "sha256": "05bd12581f085148f2c4e422adf9610542c7eef66dc4b8b22f87174e44401b78"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-051.html",
-      "sha256": "dfe1058c3ba511ee3c0a2a78d2c41f361c567c572421c25fb14c24af742210bc",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/section-20.html",
+      "sha256": "bfc292bb8831b2fca63bb051ecbb682391a466787c53ea79481b8ac8fe3fbd9c"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-052.html",
-      "sha256": "1fff3db712547d92360666820f55ef2a2967c26523411d638499688f76b231a2",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/verses/index.html",
+      "sha256": "634e5c403cf0c0294231cfcc5effece402644a9e30975a62c79a9f4ecb6c9e7c"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-053.html",
-      "sha256": "0f9e650ffd001a2ced6feb5d13c56d09a25ad23d3eae80c13425b3a068e1654d",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/verses/verse-001.html",
+      "sha256": "32d2a516959bfa07bb5da24ad3b0465bbe485ad1bc288c5f714e8c3c4a84b9c9"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-054.html",
-      "sha256": "73432600c202531f545bf2ad5849b859fe9a2608ba65e9605ac97a787f5df7db",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/verses/verse-002.html",
+      "sha256": "5494a318d58366d19aeaa8711565a628b9eac368db9891101d4ab807494161a1"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-055.html",
-      "sha256": "d080e7ea7fa17350a6d4c217f60b41c0bf11b240210ab7363f3d70d74894fbe7",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/verses/verse-003.html",
+      "sha256": "7eb759bc3c94e2c3e5b651c6a1c38f807f975006f1cf91b74824488394a1a47b"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-056.html",
-      "sha256": "eb62153ac1c235694d12d2c60014e515daaa35e0bb38c3d9ba3f58a7433c1338",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/verses/verse-004.html",
+      "sha256": "61d0ff4f7040347079d4039f0402734cf1e929369c4a1e27baeb0667ee3b23be"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-057.html",
-      "sha256": "b0948b771fe59ccabc2d51dd13e975d91e1d30dff26cf03ee5d09be3cfd93856",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/verses/verse-005.html",
+      "sha256": "be0b587b00337b65e5a1d1d415eab99b2d0db2f8f53ce198a894a6e5c21adf58"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-058.html",
-      "sha256": "dbb84e2136f1a0beae2dc8f727f8e0b981d0351299dffb65bab2e48409fb691b",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/verses/verse-006.html",
+      "sha256": "76b056530851c845d5f6b2f21332ee6ada60cbe90f3c292051eff55da2dc3260"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-059.html",
-      "sha256": "b4526c52e071ac30420e0287cefe421da02c6c35021b756452f8156dc0369885",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/verses/verse-007.html",
+      "sha256": "00281d78847fb653d2c28cda8a28faa3fa768806ef2fcaf6a8760c86c27d7a8e"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-060.html",
-      "sha256": "c769f9e6dd8bde96ca3d369a95d4dc1a71d89430f7edb4bfc3f452a45c450f48",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/verses/verse-008.html",
+      "sha256": "e79ad6ab68d7470a19a5082330b10ea0969e8a10e7023e037cf610c6df8697ff"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-061.html",
-      "sha256": "769d393116cd0306895dae0816da2fa7e69a1ae176977993d3440dc47ef74d81",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/verses/verse-009.html",
+      "sha256": "c320e0296e2e0bf8f9264dadfd6f54a8501703e9d9b78d8060145e344aaa7424"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-062.html",
-      "sha256": "d9ee51b07d340164dd38ba5b406d037a4b9bea3e9a70fc7cd704a0a5240a74d9",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/verses/verse-010.html",
+      "sha256": "e57dfefcc098aa4421e2c62ce9a418ef74fb11c6e511ef392f0447119140d19c"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-063.html",
-      "sha256": "33469639db0a7834e8c7e84e0d8678e31aa331c67d08174fb31afcb633db04fe",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/verses/verse-011.html",
+      "sha256": "e54834121d1fec922f055bf7a5556853e05284d332681902425fafdd3296dbbc"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-064.html",
-      "sha256": "1acd6cea4d800ea024358da23be2c18c06352ceb125a28686f9cd9c3257b4ec3",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/verses/verse-012.html",
+      "sha256": "6c1f1447040eb260c30b30c2f5b20863ba435480c8428debf09065ff0173cff7"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-065.html",
-      "sha256": "46f89657306c41453334f6ecc4d2126fd9ba3caaa8ba571a67683aa7b8684c45",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/verses/verse-013.html",
+      "sha256": "06cea55ea02b45bb2bb1a10ffe85d5b46da088c3da3d82e61ebf50b35f74725f"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-066.html",
-      "sha256": "cc5303d92c7bb694375dcbef769ddd0f0f50af53b009e9599aae7df34ed9e697",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/verses/verse-014.html",
+      "sha256": "75097d3216f1922f2ddc3724442c211d0781b978decdf92cca6b342ee52a7233"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-067.html",
-      "sha256": "917897b2701f2e0934adff6ac45de6d9707b38818d86b884591e3ceaf36e8158",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/verses/verse-015.html",
+      "sha256": "7722cbc0565029b0da3c4ae319162e21fad60d1771a1803e4c1930150d669306"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-068.html",
-      "sha256": "41a9f18f742ec1e1ba15dfd84dd96ba8aa9995fac542bca65abff8e0c5fc2abd",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/verses/verse-016.html",
+      "sha256": "073ba344f9822cca223f695108a5d27e26bab19022b532af4a5b6582fdddf811"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-069.html",
-      "sha256": "78e4018836e86739f8b6a3b96fed218129b4658f7fad5bef96e8cc669cb2b9fa",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/verses/verse-017.html",
+      "sha256": "f7f6bf09eae8b3ed0c0fbd376e43cd9db1a29b84acf7f349975346950d1dc8d4"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-070.html",
-      "sha256": "198fc5fb47e053668255c54de0bea49fdcfb90a4c767f41ff1348f6831de944c",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/verses/verse-018.html",
+      "sha256": "ead369af7281aa1c8e805c286292a9e3e3f7e202b29befe4d6ede47ac9948b70"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-071.html",
-      "sha256": "2dee31ab0cba9708135c74d298141f09984ad4c2f166cf7061064b4f5411171c",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/verses/verse-019.html",
+      "sha256": "ec4761a15d8cf1536b9fb756c7625e579a5e7f5538d4d6dd99ba54e2e566005b"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-072.html",
-      "sha256": "5718355683021f2c1def05b3715185d15e799ff6a7fbe08a8104e348010625e1",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/verses/verse-020.html",
+      "sha256": "434d587dde7649c6e1383a8accf3b9fddc46a587d340b69566496c28021abcff"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-073.html",
-      "sha256": "e6fcc262fbde672caa88e715fa0cd2a07c0b99346cdaa4ac4ffa2320b23d28b1",
-      "bytes": 1580
+      "path": "literature/kandar-andhadhi/verses/verse-021.html",
+      "sha256": "03485da0636be546c5daf2c8e9b3e3e85557fcc41b8d4c6a9c66de3416d52127"
     },
     {
-      "path": "literature/kandar-alangaram/reader/page-074.html",
-      "sha256": "be4cf8464795258e9db24d717b59ead180011ddb31939efbe18e78dbd5693437",
-      "bytes": 1587
+      "path": "literature/kandar-andhadhi/verses/verse-022.html",
+      "sha256": "0ef52de5bd6df4eae0e14b3c1f37a15b68f8b214b4f3847c13d56eb64a9ca7f5"
     },
     {
-      "path": "literature/kandar-alangaram/review/verification-queue.html",
-      "sha256": "2d834eed7681ebc7450215d9f797dbdf3a570ee7e7fa568a558ca4c3fefe4e6f",
-      "bytes": 9832
+      "path": "pwa/cache/kandar-andhadhi-files.json",
+      "sha256": "cd73abbb405f1def4df700f6f7ed7f820d986e25190f75720b5d507137dde1f7"
     },
     {
-      "path": "literature/kandar-alangaram/seo/audit.json",
-      "sha256": "28d99ae2e967f36b6582d131728c99630001ed8b6ba6c7d86d37fe066558eaa5",
-      "bytes": 223
+      "path": "pwa/cache/kandar-andhadhi-routes.json",
+      "sha256": "c93fc4e5c473266bcfe923db293381c6baf5ee3d2528c58332f3994750144010"
     },
     {
-      "path": "literature/kandar-alangaram/seo/reader.json",
-      "sha256": "281e63c0675f0ad5aae86968ed99e3f163087ec1e6c8eecf6bbdbf3cfb5dc56f",
-      "bytes": 224
+      "path": "seo/kandar-andhadhi/jsonld-01.json",
+      "sha256": "5f8c65b3f8394214e99c6c30f659522b71d6174f05692a97c96f5759457089ab"
     },
     {
-      "path": "literature/kandar-alangaram/seo/search.json",
-      "sha256": "24ed4b1e9c21edeb1e8b07671d8acb8fa06538b8e1794dd87f03ae47ff1eb3a1",
-      "bytes": 224
+      "path": "seo/kandar-andhadhi/jsonld-02.json",
+      "sha256": "113589f939755b35d0bc29d4573c63a0b416e5e100d157eb411987c4843991a6"
     },
     {
-      "path": "literature/kandar-alangaram/seo/verification.json",
-      "sha256": "483322315d147d98d67ae341013faa1e1be19cea208cbe927ab836afacf4c5b6",
-      "bytes": 230
+      "path": "seo/kandar-andhadhi/jsonld-03.json",
+      "sha256": "c698555c4d3455c0ba5582f51f6f8afe55e3d953cd3750d43c9ee644c0b24d80"
     },
     {
-      "path": "literature/kandar-alangaram/seo/work.json",
-      "sha256": "d16c39e83da29b9b089a5219870ca4e33e30e06f05aff04733939baf4d03a1eb",
-      "bytes": 222
+      "path": "seo/kandar-andhadhi/jsonld-04.json",
+      "sha256": "46f409abae983c95e4ade3863cd4391ab44d5b42f50e65d1eff0ec6f6e7d9750"
     },
     {
-      "path": "literature/kandar-alangaram/source-audit.html",
-      "sha256": "86f4d7320f9ecca7ad98b2aca168536386c75aa92b0d5aafd9895b082ddc0a88",
-      "bytes": 2671
-    },
-    {
-      "path": "manifest.json",
-      "sha256": "computed after write"
+      "path": "seo/kandar-andhadhi/jsonld-05.json",
+      "sha256": "e29f8b010ccb64a11dd423b9a1e40a1e3e36f2b6a01ee9cd77e022802921a820"
     },
     {
       "path": "checksums.sha256",
-      "sha256": "computed after write"
+      "sha256": "83e6a628214a019f35360bdf1a4cb46695278a9179b06870cda15c4d11915339"
     }
   ]
 }

@@ -1,0 +1,1 @@
+window.KandarAndhadhiSearch={work:"kandar-andhadhi",status:"metadata-only"};

@@ -1,0 +1,1 @@
+window.KAReview={queue:"/data/kandar-andhadhi/review-queue.json",policy:"do-not-publish-unverified-ocr"};
