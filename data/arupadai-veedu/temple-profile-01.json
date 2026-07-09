@@ -1,0 +1,12 @@
+{
+  "batch": 21,
+  "type": "temple-profile",
+  "generated": "2026-07-09",
+  "items": [
+    {
+      "temple": "திருப்பரங்குன்றம்",
+      "slug": "thiruparankundram",
+      "status": "production_foundation"
+    }
+  ]
+}

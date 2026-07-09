@@ -1,0 +1,12 @@
+{
+  "batch": 21,
+  "type": "temple-profile",
+  "generated": "2026-07-09",
+  "items": [
+    {
+      "temple": "பழமுதிர்சோலை",
+      "slug": "pazhamudircholai",
+      "status": "production_foundation"
+    }
+  ]
+}
