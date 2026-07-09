@@ -1,98 +1,39 @@
 [
   {
-    "id": "thaipusam",
+    "id": "thai-poosam",
     "nameTa": "தைப்பூசம்",
-    "nameEn": "Thaipusam",
+    "nameEn": "Thai Poosam",
+    "summary": "Major Murugan festival connected with Vel worship, kavadi and devotion.",
     "month": "Thai",
-    "description": "Festival associated with Goddess Parvati giving the Vel to Murugan.",
-    "rituals": [
-      "Kavadi",
-      "Milk pot",
-      "Fasting"
+    "tags": [
+      "thai",
+      "poosam",
+      "vel",
+      "kavadi"
     ]
   },
   {
     "id": "skanda-sashti",
-    "nameTa": "கந்த சஷ்டி",
+    "nameTa": "ஸ்கந்த சஷ்டி",
     "nameEn": "Skanda Sashti",
+    "summary": "Six-day observance remembering Lord Murugan’s victory over Surapadman.",
     "month": "Aippasi",
-    "description": "Six-day festival remembering Murugan's victory over Surapadman.",
-    "rituals": [
-      "Fasting",
-      "Kanda Sashti Kavasam",
-      "Soorasamharam"
-    ]
-  },
-  {
-    "id": "vaikasi-visakam",
-    "nameTa": "வைகாசி விசாகம்",
-    "nameEn": "Vaikasi Visakam",
-    "month": "Vaikasi",
-    "description": "Celebrated as Murugan's birth star festival.",
-    "rituals": [
-      "Abhishekam",
-      "Procession",
-      "Annadanam"
+    "tags": [
+      "sashti",
+      "victory",
+      "thiruchendur"
     ]
   },
   {
     "id": "panguni-uthiram",
     "nameTa": "பங்குனி உத்திரம்",
     "nameEn": "Panguni Uthiram",
+    "summary": "Sacred festival connected with divine marriage and Murugan worship.",
     "month": "Panguni",
-    "description": "Festival associated with divine marriages and Murugan's grace with Valli and Deivanai.",
-    "rituals": [
-      "Temple procession",
-      "Special archana",
-      "Family prayers"
-    ]
-  },
-  {
-    "id": "aadi-krithigai",
-    "nameTa": "ஆடி கிருத்திகை",
-    "nameEn": "Aadi Krithigai",
-    "month": "Aadi",
-    "description": "Auspicious Krithigai observance dedicated to Lord Murugan.",
-    "rituals": [
-      "Lamp worship",
-      "Milk abhishekam",
-      "Vel chanting"
-    ]
-  },
-  {
-    "id": "karthigai-deepam",
-    "nameTa": "கார்த்திகை தீபம்",
-    "nameEn": "Karthigai Deepam",
-    "month": "Karthigai",
-    "description": "Festival of lamps associated with divine light and Murugan devotion.",
-    "rituals": [
-      "Lighting lamps",
-      "Temple worship",
-      "Family prayer"
-    ]
-  },
-  {
-    "id": "thai-krithigai",
-    "nameTa": "தை கிருத்திகை",
-    "nameEn": "Thai Krithigai",
-    "month": "Thai",
-    "description": "Monthly Krithigai observance during Thai, often connected with Murugan temples and hill worship.",
-    "rituals": [
-      "Chanting",
-      "Abhishekam",
-      "Temple visit"
-    ]
-  },
-  {
-    "id": "chitra-pournami",
-    "nameTa": "சித்திரா பௌர்ணமி",
-    "nameEn": "Chitra Pournami",
-    "month": "Chithirai",
-    "description": "Full moon observance with devotional reflection and temple visits.",
-    "rituals": [
-      "Full moon prayer",
-      "Charity",
-      "Meditation"
+    "tags": [
+      "panguni",
+      "uthiram",
+      "marriage"
     ]
   }
 ]
