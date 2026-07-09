@@ -5,7 +5,7 @@
     "titleEn": "Om Saravana Bhava",
     "category": "Mantra",
     "textTa": "ஓம் சரவணபவ",
-    "meaningTa": "பக்தி, தெளிவு, உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் மந்திரம்.",
+    "meaningTa": "பக்தி, தெளிவு, உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் மந்திரம்.",
     "meaningEn": "A devotional mantra for protection, clarity and spiritual focus.",
     "benefits": [
       "Daily focus",
@@ -20,11 +20,12 @@
     "category": "Kavacham",
     "textTa": "முருகப் பெருமானின் அருள், பாதுகாப்பு, வெற்றியும் மனத் தைரியத்தையும் வேண்டிப் பாடப்படும் பக்தி கவசம்.",
     "meaningTa": "முருகனின் அருளால் பாதுகாப்பு, தைரியம், மன உறுதி, பக்தி ஆகியவற்றை வளர்க்கும் பாடல்.",
-    "meaningEn": "A celebrated devotional hymn seeking Lord Murugan’s grace, courage and protection.",
+    "meaningEn": "A devotional hymn seeking Lord Murugan’s grace, courage and protection. Full canonical text must be added only after source review.",
     "benefits": [
       "Protection",
       "Courage",
-      "Devotional strength"
+      "Devotional strength",
+      "Sashti reflection"
     ]
   },
   {
@@ -39,6 +40,20 @@
       "Confidence",
       "Clarity",
       "Protection"
+    ]
+  },
+  {
+    "id": "subramanya-gayatri",
+    "titleTa": "சுப்பிரமண்ய காயத்ரி",
+    "titleEn": "Subramanya Gayatri",
+    "category": "Gayatri",
+    "textTa": "ஓம் தத் புருஷாய வித்மஹே மஹாசேனாய தீமஹி தந்நோ ஷண்முக ப்ரசோதயாத்",
+    "meaningTa": "ஆறு முகனின் ஞான ஒளி நம் மனதை வழிநடத்த வேண்டுதல்.",
+    "meaningEn": "A prayer invoking Lord Shanmukha’s wisdom and guidance.",
+    "benefits": [
+      "Wisdom",
+      "Focus",
+      "Blessings"
     ]
   }
 ]

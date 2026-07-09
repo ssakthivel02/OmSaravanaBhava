@@ -25,7 +25,7 @@
     "nameEn": "Thiruchendur Murugan Temple",
     "place": "Thiruchendur, Thoothukudi",
     "type": "Arupadai Veedu",
-    "summary": "Sea temple associated with victory over Surapadman.",
+    "summary": "Sea temple associated with Murugan’s victory and Skanda Sashti.",
     "festivals": [
       "Skanda Sashti",
       "Masi Festival"
@@ -44,7 +44,7 @@
     "nameEn": "Thirupparamkundram Murugan Temple",
     "place": "Madurai",
     "type": "Arupadai Veedu",
-    "summary": "Sacred cave shrine connected with divine marriage tradition.",
+    "summary": "Ancient cave shrine connected with divine marriage tradition.",
     "festivals": [
       "Panguni Uthiram",
       "Skanda Sashti"
@@ -116,10 +116,10 @@
     "nameEn": "Vadapalani Murugan Temple",
     "place": "Chennai",
     "type": "Popular Temple",
-    "summary": "Major Chennai Murugan temple for marriage prayers and daily devotion.",
+    "summary": "Major Chennai Murugan temple for daily devotion and marriage prayers.",
     "festivals": [
-      "Skanda Sashti",
-      "Thai Poosam"
+      "Thai Poosam",
+      "Skanda Sashti"
     ],
     "tags": [
       "vadapalani",
@@ -145,5 +145,40 @@
       "hill temple"
     ],
     "map": "https://www.google.com/maps/search/?api=1&query=Marudhamalai+Murugan+Temple"
+  },
+  {
+    "id": "vayalur",
+    "nameTa": "வயலூர் முருகன் கோவில்",
+    "nameEn": "Vayalur Murugan Temple",
+    "place": "Kumaravayalur",
+    "type": "Popular Temple",
+    "summary": "Temple associated with devotion, poetry and Murugan worship.",
+    "festivals": [
+      "Karthigai",
+      "Sashti"
+    ],
+    "tags": [
+      "vayalur",
+      "murugan",
+      "poetry"
+    ],
+    "map": "https://www.google.com/maps/search/?api=1&query=Vayalur+Murugan+Temple"
+  },
+  {
+    "id": "sikkal",
+    "nameTa": "சிக்கல் சிங்காரவேலவர் கோவில்",
+    "nameEn": "Sikkal Singaravelavar Temple",
+    "place": "Nagapattinam",
+    "type": "Popular Temple",
+    "summary": "Sacred shrine connected with Vel worship and Skanda tradition.",
+    "festivals": [
+      "Skanda Sashti"
+    ],
+    "tags": [
+      "sikkal",
+      "vel",
+      "singaravelavar"
+    ],
+    "map": "https://www.google.com/maps/search/?api=1&query=Sikkal+Singaravelavar+Temple"
   }
 ]

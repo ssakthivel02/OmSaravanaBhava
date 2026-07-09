@@ -1,22 +1,3 @@
 {
-  "dateLabel": "Daily Panchangam Preview",
-  "note": "Static preview only. Use verified external panchangam source for exact city/date calculations.",
-  "items": [
-    {
-      "label": "Tithi",
-      "value": "Check live panchangam source"
-    },
-    {
-      "label": "Nakshatra",
-      "value": "Location/date dependent"
-    },
-    {
-      "label": "Rahu Kalam",
-      "value": "Verify by weekday and location"
-    },
-    {
-      "label": "Good time",
-      "value": "Use Tamil calendar reference"
-    }
-  ]
+  "note": "Static preview only. Exact panchangam must be verified by location/date."
 }
