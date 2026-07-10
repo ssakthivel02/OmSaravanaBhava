@@ -1,0 +1,8 @@
+{
+  "@context": "https://schema.org",
+  "@type": "HinduTemple",
+  "name": "வயலூர்",
+  "alternateName": "Vayalur",
+  "description": "Temple-specific knowledge centre for Vayalur Murugan tradition and literature links.",
+  "inLanguage": "ta"
+}
