@@ -1,0 +1,15 @@
+{
+  "batch": 26,
+  "type": "daily-parayanam-schedule",
+  "items": [
+    {
+      "time": "morning",
+      "work": "கந்தர் சஷ்டி கவசம்"
+    },
+    {
+      "time": "evening",
+      "work": "திருப்புகழ்"
+    }
+  ],
+  "status": "review_required"
+}

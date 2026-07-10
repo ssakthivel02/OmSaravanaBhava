@@ -1,0 +1,10 @@
+{
+  "batch": 26,
+  "type": "temple-audio-map",
+  "temple": "திருப்பரங்குன்றம்",
+  "tracks": [
+    "திருப்புகழ்",
+    "வேல் வழிபாடு"
+  ],
+  "status": "review_required"
+}

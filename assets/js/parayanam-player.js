@@ -1,0 +1,1 @@
+document.querySelectorAll('[data-audio-status]').forEach(el=>{el.textContent=el.dataset.audioStatus||'metadata-ready';});

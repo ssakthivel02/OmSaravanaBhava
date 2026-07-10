@@ -1,0 +1,10 @@
+{
+  "batch": 26,
+  "type": "temple-audio-map",
+  "temple": "சுவாமிமலை",
+  "tracks": [
+    "திருப்புகழ்",
+    "வேல் வழிபாடு"
+  ],
+  "status": "review_required"
+}

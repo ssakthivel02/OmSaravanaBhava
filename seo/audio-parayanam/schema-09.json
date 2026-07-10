@@ -1,0 +1,7 @@
+{
+  "@context": "https://schema.org",
+  "@type": "AudioObject",
+  "name": "தினசரி பாராயணம்",
+  "description": "Daily chanting schedule and reader-audio metadata.",
+  "encodingFormat": "metadata-only"
+}

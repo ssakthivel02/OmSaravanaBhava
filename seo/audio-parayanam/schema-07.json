@@ -1,0 +1,7 @@
+{
+  "@context": "https://schema.org",
+  "@type": "AudioObject",
+  "name": "விழா பாராயணம்",
+  "description": "Festival-wise chanting sequence foundation.",
+  "encodingFormat": "metadata-only"
+}
