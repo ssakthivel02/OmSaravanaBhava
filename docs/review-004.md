@@ -1,3 +1,3 @@
 # Review 4
 
-Murugan Daily Devotional Companion: verify and enrich with uploaded source documents.
+Murugan Sloka Commentary Centre: verify and enrich with uploaded source documents.

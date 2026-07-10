@@ -2,7 +2,5 @@
   "project": "OmSaravanaBhava",
   "batch": 37,
   "module": "Murugan Sloka Commentary Centre",
-  "id": 1,
-  "status": "production_foundation",
-  "source_review": "required_where_applicable"
+  "file_count": 99
 }
