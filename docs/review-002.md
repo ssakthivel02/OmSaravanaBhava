@@ -1,6 +1,6 @@
 # Review Note 2
 
-Module: 108 Names of Murugan Knowledge Centre
+Module: Daily Worship & Home Pooja Guide
 
 This is an upload-ready static foundation.
 Enrich it later using verified books and deep-research documents.
