@@ -1,3 +1,3 @@
 # Review 2
 
-Murugan Sloka Commentary Centre: verify and enrich with uploaded source documents.
+Murugan Temple Rituals & Traditions: verify and enrich with uploaded source documents.
