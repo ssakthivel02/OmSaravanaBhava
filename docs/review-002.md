@@ -1,3 +1,3 @@
 # Review 2
 
-Murugan Timeline & Historical Knowledge: verify and enrich using uploaded research sources.
+Murugan Temple Architecture Encyclopedia: enrich with verified sources.
