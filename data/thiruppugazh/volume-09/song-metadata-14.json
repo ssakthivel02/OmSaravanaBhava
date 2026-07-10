@@ -1,0 +1,33 @@
+{
+  "batch": 43,
+  "volume": 9,
+  "type": "song-metadata",
+  "items": [
+    {
+      "number": 341,
+      "slug": "song-0341",
+      "title_ta": "திருப்புகழ் பாடல் 341",
+      "title_en": "Thiruppugazh Hymn 341",
+      "original_tamil": "",
+      "word_split": "",
+      "metre": "",
+      "raga": "",
+      "tala": "",
+      "temple": "",
+      "status": "source-verification-required"
+    },
+    {
+      "number": 342,
+      "slug": "song-0342",
+      "title_ta": "திருப்புகழ் பாடல் 342",
+      "title_en": "Thiruppugazh Hymn 342",
+      "original_tamil": "",
+      "word_split": "",
+      "metre": "",
+      "raga": "",
+      "tala": "",
+      "temple": "",
+      "status": "source-verification-required"
+    }
+  ]
+}

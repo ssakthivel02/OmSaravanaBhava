@@ -1,0 +1,33 @@
+{
+  "batch": 43,
+  "volume": 9,
+  "type": "song-metadata",
+  "items": [
+    {
+      "number": 327,
+      "slug": "song-0327",
+      "title_ta": "திருப்புகழ் பாடல் 327",
+      "title_en": "Thiruppugazh Hymn 327",
+      "original_tamil": "",
+      "word_split": "",
+      "metre": "",
+      "raga": "",
+      "tala": "",
+      "temple": "",
+      "status": "source-verification-required"
+    },
+    {
+      "number": 328,
+      "slug": "song-0328",
+      "title_ta": "திருப்புகழ் பாடல் 328",
+      "title_en": "Thiruppugazh Hymn 328",
+      "original_tamil": "",
+      "word_split": "",
+      "metre": "",
+      "raga": "",
+      "tala": "",
+      "temple": "",
+      "status": "source-verification-required"
+    }
+  ]
+}
