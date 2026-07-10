@@ -1,3 +1,3 @@
 # Review 8
 
-Murugan Iconography Knowledge Base: enrich with verified sources.
+Murugan Pilgrimage Knowledge Centre: enrich with verified sources.
