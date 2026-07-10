@@ -1,6 +1,9 @@
 {
-  "batch": 32,
-  "module": "Murugan Pilgrimage Knowledge Centre",
+  "project": "OmSaravanaBhava",
+  "batch": 33,
+  "module": "108 Names of Murugan Knowledge Centre",
+  "category": "Murugan sacred name",
   "id": 16,
-  "status": "production_foundation"
+  "status": "production_foundation",
+  "content_review": "verified_source_enrichment_pending"
 }
