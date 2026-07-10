@@ -1,3 +1,3 @@
 # Review 10
 
-Digitized Thiruppugazh Volume 06: verify and enrich with uploaded source documents.
+Digitized Thiruppugazh Volume 07: verify and enrich with uploaded source documents.
