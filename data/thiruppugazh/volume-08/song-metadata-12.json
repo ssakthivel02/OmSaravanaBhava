@@ -1,0 +1,33 @@
+{
+  "batch": 42,
+  "volume": 8,
+  "type": "song-metadata",
+  "items": [
+    {
+      "number": 298,
+      "slug": "song-0298",
+      "title_ta": "திருப்புகழ் பாடல் 298",
+      "title_en": "Thiruppugazh Hymn 298",
+      "original_tamil": "",
+      "word_split": "",
+      "metre": "",
+      "raga": "",
+      "tala": "",
+      "temple": "",
+      "status": "source-verification-required"
+    },
+    {
+      "number": 299,
+      "slug": "song-0299",
+      "title_ta": "திருப்புகழ் பாடல் 299",
+      "title_en": "Thiruppugazh Hymn 299",
+      "original_tamil": "",
+      "word_split": "",
+      "metre": "",
+      "raga": "",
+      "tala": "",
+      "temple": "",
+      "status": "source-verification-required"
+    }
+  ]
+}

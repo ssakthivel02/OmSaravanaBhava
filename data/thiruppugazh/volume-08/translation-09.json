@@ -1,0 +1,43 @@
+{
+  "batch": 42,
+  "volume": 8,
+  "type": "translation",
+  "items": [
+    {
+      "number": 308,
+      "slug": "song-0308",
+      "transliteration": "",
+      "easy_tamil": "",
+      "english_translation": "",
+      "commentary": "",
+      "status": "pending_after_tamil_proofread"
+    },
+    {
+      "number": 309,
+      "slug": "song-0309",
+      "transliteration": "",
+      "easy_tamil": "",
+      "english_translation": "",
+      "commentary": "",
+      "status": "pending_after_tamil_proofread"
+    },
+    {
+      "number": 310,
+      "slug": "song-0310",
+      "transliteration": "",
+      "easy_tamil": "",
+      "english_translation": "",
+      "commentary": "",
+      "status": "pending_after_tamil_proofread"
+    },
+    {
+      "number": 311,
+      "slug": "song-0311",
+      "transliteration": "",
+      "easy_tamil": "",
+      "english_translation": "",
+      "commentary": "",
+      "status": "pending_after_tamil_proofread"
+    }
+  ]
+}
