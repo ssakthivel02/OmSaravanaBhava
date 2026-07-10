@@ -1,1 +1,1 @@
-(function(){const q=document.querySelector('[data-search]');if(q){q.addEventListener('input',()=>{const t=q.value.toLowerCase();document.querySelectorAll('[data-item]').forEach(x=>x.hidden=!x.textContent.toLowerCase().includes(t));});}})();
+document.querySelector('[data-search]')?.addEventListener('input',e=>{const q=e.target.value.toLowerCase();document.querySelectorAll('[data-item]').forEach(x=>x.hidden=!x.textContent.toLowerCase().includes(q))})
