@@ -1,3 +1,3 @@
 # Review 2
 
-Murugan Temple Architecture Encyclopedia: enrich with verified sources.
+Murugan Iconography Knowledge Base: enrich with verified sources.
