@@ -1,9 +1,8 @@
 {
   "project": "OmSaravanaBhava",
-  "batch": 35,
-  "module": "Murugan Kids Learning & Quiz Centre",
-  "category": "Kids learning activity",
+  "batch": 36,
+  "module": "Murugan Daily Devotional Companion",
   "id": 28,
   "status": "production_foundation",
-  "content_review": "verified_source_enrichment_pending"
+  "source_review": "required_where_applicable"
 }

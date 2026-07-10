@@ -1,6 +1,3 @@
-# Review Note 6
+# Review 6
 
-Module: Murugan Kids Learning & Quiz Centre
-
-This is an upload-ready static foundation.
-Enrich it later using verified books and deep-research documents.
+Murugan Daily Devotional Companion: verify and enrich with uploaded source documents.
