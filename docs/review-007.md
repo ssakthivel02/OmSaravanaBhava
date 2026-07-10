@@ -1,3 +1,3 @@
 # Review 7
 
-Murugan Spiritual Glossary: verify and enrich using uploaded research sources.
+Murugan Timeline & Historical Knowledge: verify and enrich using uploaded research sources.
