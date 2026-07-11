@@ -1,0 +1,22 @@
+OmSaravanaBhava — Release 145 GitHub Desktop Upload
+
+1. Extract this ZIP into a temporary folder.
+2. Open the local OmSaravanaBhava repository folder used by GitHub Desktop.
+3. Copy every file and folder from this package into the repository root.
+4. Choose Replace when Windows asks about existing files.
+5. Do not delete any other repository files.
+6. In GitHub Desktop, review the changed-file list before committing.
+7. Commit message:
+   Release 145: consolidate SEO canonical sitemap structured data
+8. Push origin.
+9. Verify these production URLs after GitHub Pages deploys:
+   https://omsaravanabhava.org/
+   https://omsaravanabhava.org/temples.html
+   https://omsaravanabhava.org/slokas/om-saravana-bhava.html
+   https://omsaravanabhava.org/festivals/thai-poosam.html
+   https://omsaravanabhava.org/sitemap.xml
+
+Important indexation policy:
+- Temple detail pages remain noindex until Release 147 replaces source-review placeholders with cited content.
+- Kanda Sashti Kavasam remains noindex until the complete canonical text and citations are verified.
+- Audio Library remains noindex until owned or licensed audio is actually published.
