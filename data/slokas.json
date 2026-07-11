@@ -11,21 +11,26 @@
       "Daily focus",
       "Inner courage",
       "Devotional connection"
-    ]
+    ],
+    "publicationStatus": "published",
+    "sourceIds": []
   },
   {
     "id": "kanda-sashti-kavasam",
     "titleTa": "கந்த சஷ்டி கவசம்",
     "titleEn": "Kanda Sashti Kavasam",
     "category": "Kavacham",
-    "textTa": "முருகப் பெருமானின் அருள், பாதுகாப்பு, வெற்றி, மனத் தைரியம் ஆகியவற்றை வேண்டிப் பாடப்படும் பக்தி கவசம்.",
-    "meaningTa": "முருகனின் அருளால் பாதுகாப்பு, தைரியம், மன உறுதி, பக்தி ஆகியவற்றை வளர்க்கும் பாடல். முழு மூல உரை source review முடிந்த பின் மட்டும் சேர்க்க வேண்டும்.",
-    "meaningEn": "A devotional hymn seeking Lord Murugan’s grace, courage and protection. Full canonical text must be added only after source review.",
+    "textTa": "துதிப்போர்க்கு வல்வினைபோம், துன்பம் போம்; நெஞ்சில் பதிப்போர்க்குச் செல்வம் பலித்துக் கதித்து ஓங்கும்; நிஷ்டையுங் கைகூடும்; நிமலர் அருள் கந்தர் சஷ்டி கவசந் தனை.",
+    "meaningTa": "இந்த வெளியீடு பதிவேற்றப்பட்ட மூலத் தொகுப்பில் உள்ள தொடக்கப் பகுதியை மட்டும் ஆதாரத்துடன் வெளியிடுகிறது. முழுமையான விமர்சனப் பதிப்பு இதுவரை வெளியிடப்படவில்லை.",
+    "meaningEn": "This release publishes only the source-linked opening extract found in the uploaded compilation. It is not yet a complete critical edition.",
     "benefits": [
-      "Protection",
-      "Courage",
-      "Devotional strength",
+      "Devotional protection theme",
+      "Courage theme",
       "Sashti reflection"
+    ],
+    "publicationStatus": "partial-reviewed",
+    "sourceIds": [
+      "src-kandar-kavasangal-aaru"
     ]
   },
   {
@@ -40,7 +45,9 @@
       "Wisdom",
       "Focus",
       "Blessings"
-    ]
+    ],
+    "publicationStatus": "published",
+    "sourceIds": []
   },
   {
     "id": "vel-vel",
@@ -54,6 +61,8 @@
       "Confidence",
       "Clarity",
       "Protection"
-    ]
+    ],
+    "publicationStatus": "published",
+    "sourceIds": []
   }
 ]

@@ -6,7 +6,6 @@
     "place": "Palani, Dindigul",
     "type": "Arupadai Veedu",
     "summary": "Wisdom, renunciation and Dhandayuthapani worship.",
-    "history": "Palani Murugan Temple is presented here as a source-reviewed summary placeholder. Expand with verified temple sthala puranam, inscriptions, and travel details after review.",
     "festivals": [
       "Thai Poosam",
       "Panguni Uthiram",
@@ -14,11 +13,24 @@
     ],
     "tags": [
       "palani",
-      "palani",
       "murugan",
       "arupadai-veedu"
     ],
-    "map": "https://www.google.com/maps/search/?api=1&query=Palani+Murugan+Temple"
+    "map": "https://www.google.com/maps/search/?api=1&query=Palani+Murugan+Temple",
+    "publicationStatus": "published-source-linked",
+    "indexable": true,
+    "sourceIds": [
+      "src-thirumurugatruppadai"
+    ],
+    "literaryWitness": {
+      "title": "Thirumurugatruppadai",
+      "section": "Part 3 — Thiru Avinankudi [Palani]",
+      "lineRange": "126–176",
+      "classification": "direct-textual-witness",
+      "excerptTa": "தாஇல் கொள்கை மடந்தையொடு சில்நாள் ஆவினன்குடி அசைதலும் உரியன்.",
+      "contextEn": "The third movement explicitly names Avinankudi and describes ascetics, musicians and celestial worshippers.",
+      "url": "literature/thirumurugatruppadai.html#palani"
+    }
   },
   {
     "id": "thiruchendur",
@@ -27,18 +39,30 @@
     "place": "Thiruchendur, Thoothukudi",
     "type": "Arupadai Veedu",
     "summary": "Sea-side shrine connected with victory and Skanda Sashti.",
-    "history": "Thiruchendur Murugan Temple is presented here as a source-reviewed summary placeholder. Expand with verified temple sthala puranam, inscriptions, and travel details after review.",
     "festivals": [
       "Skanda Sashti",
       "Masi Festival"
     ],
     "tags": [
       "thiruchendur",
-      "thiruchendur",
       "murugan",
       "arupadai-veedu"
     ],
-    "map": "https://www.google.com/maps/search/?api=1&query=Thiruchendur+Murugan+Temple"
+    "map": "https://www.google.com/maps/search/?api=1&query=Thiruchendur+Murugan+Temple",
+    "publicationStatus": "published-source-linked",
+    "indexable": true,
+    "sourceIds": [
+      "src-thirumurugatruppadai"
+    ],
+    "literaryWitness": {
+      "title": "Thirumurugatruppadai",
+      "section": "Part 2 — Tiruchiralaivay [Tiruchendur]",
+      "lineRange": "78–125",
+      "classification": "direct-textual-witness",
+      "excerptTa": "உலகம் புகழ்ந்த ஓங்குஉயர் விழுச்சீர் அலைவாய்ச் சேறலும் நிலைஇய பண்பே.",
+      "contextEn": "The second movement names Alaivay and describes Murugan’s radiant faces, twelve hands and divine procession.",
+      "url": "literature/thirumurugatruppadai.html#thiruchendur"
+    }
   },
   {
     "id": "thirupparamkundram",
@@ -47,18 +71,30 @@
     "place": "Madurai",
     "type": "Arupadai Veedu",
     "summary": "Ancient cave shrine connected with Murugan worship and divine marriage.",
-    "history": "Thirupparamkundram Murugan Temple is presented here as a source-reviewed summary placeholder. Expand with verified temple sthala puranam, inscriptions, and travel details after review.",
     "festivals": [
       "Panguni Uthiram",
       "Skanda Sashti"
     ],
     "tags": [
       "thirupparamkundram",
-      "thirupparamkundram",
       "murugan",
       "arupadai-veedu"
     ],
-    "map": "https://www.google.com/maps/search/?api=1&query=Thirupparamkundram+Murugan+Temple"
+    "map": "https://www.google.com/maps/search/?api=1&query=Thirupparamkundram+Murugan+Temple",
+    "publicationStatus": "published-source-linked",
+    "indexable": true,
+    "sourceIds": [
+      "src-thirumurugatruppadai"
+    ],
+    "literaryWitness": {
+      "title": "Thirumurugatruppadai",
+      "section": "Part 1 — Thirupparangundram",
+      "lineRange": "1–77",
+      "classification": "direct-textual-witness",
+      "excerptTa": "சேவடி படரும் செம்மல் உள்ளமொடு … குன்று அமர்ந்து உறைதலும் உரியன்.",
+      "contextEn": "The first movement culminates in Murugan’s dwelling upon the hill near Madurai.",
+      "url": "literature/thirumurugatruppadai.html#thirupparamkundram"
+    }
   },
   {
     "id": "swamimalai",
@@ -67,18 +103,30 @@
     "place": "Kumbakonam",
     "type": "Arupadai Veedu",
     "summary": "Wisdom shrine where Murugan is revered as teacher of Pranava.",
-    "history": "Swamimalai Murugan Temple is presented here as a source-reviewed summary placeholder. Expand with verified temple sthala puranam, inscriptions, and travel details after review.",
     "festivals": [
       "Thai Poosam",
       "Kanda Sashti"
     ],
     "tags": [
       "swamimalai",
-      "swamimalai",
       "murugan",
       "arupadai-veedu"
     ],
-    "map": "https://www.google.com/maps/search/?api=1&query=Swamimalai+Murugan+Temple"
+    "map": "https://www.google.com/maps/search/?api=1&query=Swamimalai+Murugan+Temple",
+    "publicationStatus": "published-source-linked",
+    "indexable": true,
+    "sourceIds": [
+      "src-thirumurugatruppadai"
+    ],
+    "literaryWitness": {
+      "title": "Thirumurugatruppadai",
+      "section": "Part 4 — Thiru Eragam [Swamimalai]",
+      "lineRange": "177–189",
+      "classification": "direct-textual-witness",
+      "excerptTa": "ஆறுஎழுத்து அடக்கிய அருமறைக் கேள்வி … ஏரகத்து உறைதலும் உரியன்.",
+      "contextEn": "The fourth movement names Eragam and presents six-syllabled sacred recitation and flower worship.",
+      "url": "literature/thirumurugatruppadai.html#swamimalai"
+    }
   },
   {
     "id": "thiruthani",
@@ -87,18 +135,30 @@
     "place": "Tiruttani",
     "type": "Arupadai Veedu",
     "summary": "Hill shrine associated with peace, courage and inner calm.",
-    "history": "Thiruthani Murugan Temple is presented here as a source-reviewed summary placeholder. Expand with verified temple sthala puranam, inscriptions, and travel details after review.",
     "festivals": [
       "Aadi Krittikai",
       "Skanda Sashti"
     ],
     "tags": [
       "thiruthani",
-      "thiruthani",
       "murugan",
       "arupadai-veedu"
     ],
-    "map": "https://www.google.com/maps/search/?api=1&query=Thiruthani+Murugan+Temple"
+    "map": "https://www.google.com/maps/search/?api=1&query=Thiruthani+Murugan+Temple",
+    "publicationStatus": "published-source-linked",
+    "indexable": true,
+    "sourceIds": [
+      "src-thirumurugatruppadai"
+    ],
+    "literaryWitness": {
+      "title": "Thirumurugatruppadai",
+      "section": "Part 5 — Kunruthoradal",
+      "lineRange": "190–217",
+      "classification": "traditional-association",
+      "excerptTa": "செய்யன் சிவந்த ஆடையன் … குன்றுதொறு ஆடலும் நின்ற தன்பண்பே.",
+      "contextEn": "The fifth movement describes Murugan’s presence and dance across hill country. Release 147 labels the Tiruttani connection as a traditional association because the poem does not name Tiruttani directly in this section.",
+      "url": "literature/thirumurugatruppadai.html#thiruthani"
+    }
   },
   {
     "id": "pazhamudircholai",
@@ -107,18 +167,30 @@
     "place": "Madurai",
     "type": "Arupadai Veedu",
     "summary": "Forest shrine linked with grace, learning and devotion.",
-    "history": "Pazhamudircholai Murugan Temple is presented here as a source-reviewed summary placeholder. Expand with verified temple sthala puranam, inscriptions, and travel details after review.",
     "festivals": [
       "Skanda Sashti",
       "Karthigai"
     ],
     "tags": [
       "pazhamudircholai",
-      "pazhamudircholai",
       "murugan",
       "arupadai-veedu"
     ],
-    "map": "https://www.google.com/maps/search/?api=1&query=Pazhamudircholai+Murugan+Temple"
+    "map": "https://www.google.com/maps/search/?api=1&query=Pazhamudircholai+Murugan+Temple",
+    "publicationStatus": "published-source-linked",
+    "indexable": true,
+    "sourceIds": [
+      "src-thirumurugatruppadai"
+    ],
+    "literaryWitness": {
+      "title": "Thirumurugatruppadai",
+      "section": "Part 6 — Pazhamudircholai",
+      "lineRange": "218–317",
+      "classification": "direct-textual-witness",
+      "excerptTa": "இழுமென இழிதரும் அருவி பழமுதிர் சோலை மலைகிழவோனே.",
+      "contextEn": "The final movement names Pazhamudircholai and closes with the image of its descending waterfall and the Lord of the hill.",
+      "url": "literature/thirumurugatruppadai.html#pazhamudircholai"
+    }
   },
   {
     "id": "vadapalani",
@@ -127,18 +199,19 @@
     "place": "Chennai",
     "type": "Popular Temple",
     "summary": "Major Chennai Murugan temple for daily devotion, vows and family prayers.",
-    "history": "Vadapalani Murugan Temple is presented here as a source-reviewed summary placeholder. Expand with verified temple sthala puranam, inscriptions, and travel details after review.",
     "festivals": [
       "Thai Poosam",
       "Skanda Sashti"
     ],
     "tags": [
       "vadapalani",
-      "vadapalani",
       "murugan",
       "popular-temple"
     ],
-    "map": "https://www.google.com/maps/search/?api=1&query=Vadapalani+Murugan+Temple"
+    "map": "https://www.google.com/maps/search/?api=1&query=Vadapalani+Murugan+Temple",
+    "publicationStatus": "directory-review",
+    "indexable": false,
+    "sourceIds": []
   },
   {
     "id": "marudhamalai",
@@ -147,18 +220,19 @@
     "place": "Coimbatore",
     "type": "Hill Temple",
     "summary": "Coimbatore hill shrine known for peaceful worship and Siddhar tradition.",
-    "history": "Marudhamalai Murugan Temple is presented here as a source-reviewed summary placeholder. Expand with verified temple sthala puranam, inscriptions, and travel details after review.",
     "festivals": [
       "Thai Poosam",
       "Karthigai"
     ],
     "tags": [
       "marudhamalai",
-      "marudhamalai",
       "murugan",
       "hill-temple"
     ],
-    "map": "https://www.google.com/maps/search/?api=1&query=Marudhamalai+Murugan+Temple"
+    "map": "https://www.google.com/maps/search/?api=1&query=Marudhamalai+Murugan+Temple",
+    "publicationStatus": "directory-review",
+    "indexable": false,
+    "sourceIds": []
   },
   {
     "id": "vayalur",
@@ -167,18 +241,19 @@
     "place": "Kumaravayalur",
     "type": "Popular Temple",
     "summary": "Temple associated with devotion, poetry and Murugan worship.",
-    "history": "Vayalur Murugan Temple is presented here as a source-reviewed summary placeholder. Expand with verified temple sthala puranam, inscriptions, and travel details after review.",
     "festivals": [
       "Karthigai",
       "Sashti"
     ],
     "tags": [
       "vayalur",
-      "vayalur",
       "murugan",
       "popular-temple"
     ],
-    "map": "https://www.google.com/maps/search/?api=1&query=Vayalur+Murugan+Temple"
+    "map": "https://www.google.com/maps/search/?api=1&query=Vayalur+Murugan+Temple",
+    "publicationStatus": "directory-review",
+    "indexable": false,
+    "sourceIds": []
   },
   {
     "id": "sikkal",
@@ -187,16 +262,17 @@
     "place": "Nagapattinam",
     "type": "Popular Temple",
     "summary": "Sacred shrine connected with Vel worship and Skanda tradition.",
-    "history": "Sikkal Singaravelavar Temple is presented here as a source-reviewed summary placeholder. Expand with verified temple sthala puranam, inscriptions, and travel details after review.",
     "festivals": [
       "Skanda Sashti"
     ],
     "tags": [
       "sikkal",
-      "sikkal",
       "murugan",
       "popular-temple"
     ],
-    "map": "https://www.google.com/maps/search/?api=1&query=Sikkal+Singaravelavar+Temple"
+    "map": "https://www.google.com/maps/search/?api=1&query=Sikkal+Singaravelavar+Temple",
+    "publicationStatus": "directory-review",
+    "indexable": false,
+    "sourceIds": []
   }
 ]

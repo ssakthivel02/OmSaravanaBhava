@@ -1,0 +1,43 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 147,
+  "name": "Verified Content Publication and Literature Cross-Linking",
+  "baseline_github_commit": "02574d9ea78bdc6e455a56f4fb7ba5b3d4224c2d",
+  "generated": "2026-07-11",
+  "validation_status": "PASS",
+  "production_file_count": 23,
+  "source_linked_temple_count": 6,
+  "directory_review_temple_count": 4,
+  "sitemap_url_count": 20,
+  "precache_url_count": 38,
+  "modified": [
+    "assets/js/osb44.js",
+    "data/slokas.json",
+    "data/temples.json",
+    "service-worker.js",
+    "sitemap.xml",
+    "sloka-library.html",
+    "slokas/kanda-sashti-kavasam.html",
+    "temples.html",
+    "temples/marudhamalai.html",
+    "temples/palani.html",
+    "temples/pazhamudircholai.html",
+    "temples/sikkal.html",
+    "temples/swamimalai.html",
+    "temples/thiruchendur.html",
+    "temples/thirupparamkundram.html",
+    "temples/thiruthani.html",
+    "temples/vadapalani.html",
+    "temples/vayalur.html"
+  ],
+  "added": [
+    "data/content-publication.json",
+    "data/literature.json",
+    "data/sources.json",
+    "literature/thirumurugatruppadai.html",
+    "sources.html"
+  ],
+  "deleted": [],
+  "primary_uploaded_source": "திருமுருகாற்றுப்படை.docx",
+  "issues": []
+}

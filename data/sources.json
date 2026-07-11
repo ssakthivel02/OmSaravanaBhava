@@ -1,0 +1,26 @@
+[
+  {
+    "id": "src-thirumurugatruppadai",
+    "titleTa": "திருமுருகாற்றுப்படை",
+    "titleEn": "Thirumurugatruppadai",
+    "author": "நக்கீரர் / Nakkirar",
+    "sourceType": "Primary Tamil literary text",
+    "editionType": "User-uploaded transcription and compilation",
+    "fileName": "திருமுருகாற்றுப்படை.docx",
+    "scope": "Tamil text, transliteration and compiled explanatory material.",
+    "useInRelease": "Primary literary witness for the six Murugan landscapes and abodes.",
+    "qualityNote": "This uploaded file is treated as a transcription/compilation, not as a critical scholarly edition. Release 147 cites precise internal headings and verse ranges and avoids unsupported historical claims."
+  },
+  {
+    "id": "src-kandar-kavasangal-aaru",
+    "titleTa": "கந்தர் கவசங்கள் ஆறு",
+    "titleEn": "Six Kandar Kavasams",
+    "author": "ஸ்ரீ தேவராய சுவாமிகள் / Sri Devaraya Swamigal",
+    "sourceType": "Devotional text transcription",
+    "editionType": "Section contained in the user-uploaded compilation",
+    "fileName": "திருமுருகாற்றுப்படை.docx",
+    "scope": "Opening invocation and six temple-linked Kavasam sections.",
+    "useInRelease": "Verified opening extract and source note for Kanda Sashti Kavasam.",
+    "qualityNote": "Only the verified opening extract is published in this release. A complete critical edition remains outside Release 147."
+  }
+]

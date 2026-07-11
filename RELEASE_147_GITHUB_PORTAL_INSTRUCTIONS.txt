@@ -1,0 +1,19 @@
+OmSaravanaBhava — Release 147 GitHub Portal Upload
+
+1. Extract this ZIP into a temporary folder.
+2. Open the extracted folder and select everything inside it.
+3. In GitHub, open ssakthivel02/OmSaravanaBhava on branch main.
+4. Choose Add file → Upload files.
+5. Drag the selected extracted contents into the upload area.
+6. Confirm there is no Release147, package, output or cleanup parent folder.
+7. In the UPPER commit-title field replace “Add files via upload” with:
+   Release 147: publish source-linked content and literature cross-references
+8. Leave the lower description optional.
+9. Select Commit directly to the main branch.
+10. Click Commit changes.
+
+Expected:
+- 23 production files
+- 6 evidence/instruction files
+- 29 total files
+- No image, manifest.json or unrelated batch files

@@ -1,4 +1,4 @@
-const RELEASE = '146';
+const RELEASE = '147';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
@@ -13,6 +13,8 @@ const PRECACHE_URLS = [
   "/festivals.html",
   "/ai-search.html",
   "/audio-library.html",
+  "/sources.html",
+  "/literature/thirumurugatruppadai.html",
   "/assets/css/osb44.css",
   "/assets/js/osb44.js",
   "/assets/js/pwa-register.js",
@@ -24,24 +26,23 @@ const PRECACHE_URLS = [
   "/data/temples.json",
   "/data/slokas.json",
   "/data/festivals.json",
-  "/festivals/aadi-krittikai.html",
-  "/festivals/panguni-uthiram.html",
-  "/festivals/skanda-sashti.html",
-  "/festivals/thai-poosam.html",
-  "/slokas/kanda-sashti-kavasam.html",
+  "/data/sources.json",
+  "/data/literature.json",
+  "/data/content-publication.json",
   "/slokas/om-saravana-bhava.html",
+  "/slokas/kanda-sashti-kavasam.html",
   "/slokas/subramanya-gayatri.html",
   "/slokas/vel-vel.html",
-  "/temples/marudhamalai.html",
-  "/temples/palani.html",
-  "/temples/pazhamudircholai.html",
-  "/temples/sikkal.html",
-  "/temples/swamimalai.html",
-  "/temples/thiruchendur.html",
+  "/festivals/thai-poosam.html",
+  "/festivals/skanda-sashti.html",
+  "/festivals/panguni-uthiram.html",
+  "/festivals/aadi-krittikai.html",
   "/temples/thirupparamkundram.html",
+  "/temples/thiruchendur.html",
+  "/temples/palani.html",
+  "/temples/swamimalai.html",
   "/temples/thiruthani.html",
-  "/temples/vadapalani.html",
-  "/temples/vayalur.html"
+  "/temples/pazhamudircholai.html"
 ];
 
 self.addEventListener('install', event => {

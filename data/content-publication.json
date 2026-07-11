@@ -1,0 +1,31 @@
+{
+  "release": 147,
+  "generated": "2026-07-11",
+  "states": {
+    "published-source-linked": "Published with an explicit primary-text citation.",
+    "published": "Published record retained from the existing reviewed collection.",
+    "partial-reviewed": "A clearly identified reviewed extract; the full work is not claimed.",
+    "directory-review": "Directory entry only; excluded from search indexing and the offline precache."
+  },
+  "publishedTempleRoutes": [
+    "temples/thirupparamkundram.html",
+    "temples/thiruchendur.html",
+    "temples/palani.html",
+    "temples/swamimalai.html",
+    "temples/thiruthani.html",
+    "temples/pazhamudircholai.html"
+  ],
+  "directoryReviewTempleRoutes": [
+    "temples/vadapalani.html",
+    "temples/marudhamalai.html",
+    "temples/vayalur.html",
+    "temples/sikkal.html"
+  ],
+  "partialReviewedRoutes": [
+    "slokas/kanda-sashti-kavasam.html"
+  ],
+  "sourceRoutes": [
+    "sources.html",
+    "literature/thirumurugatruppadai.html"
+  ]
+}

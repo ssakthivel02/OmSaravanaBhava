@@ -1,0 +1,90 @@
+[
+  {
+    "id": "thirumurugatruppadai",
+    "titleTa": "திருமுருகாற்றுப்படை",
+    "titleEn": "Thirumurugatruppadai",
+    "author": "நக்கீரர் / Nakkirar",
+    "genre": "Tamil guide poem and Murugan devotional literature",
+    "periodLabel": "Sangam literary tradition",
+    "summary": "A foundational Tamil poem guiding a devotee through Murugan’s sacred landscapes, worship and divine qualities.",
+    "url": "literature/thirumurugatruppadai.html",
+    "sourceIds": [
+      "src-thirumurugatruppadai"
+    ],
+    "publicationStatus": "published-source-linked",
+    "sections": [
+      {
+        "id": "thirupparamkundram",
+        "number": 1,
+        "headingTa": "திருப்பரங்குன்றம்",
+        "headingEn": "Thirupparamkundram",
+        "sourceHeading": "Part 1 — Thirupparangundram",
+        "lineRange": "1–77",
+        "classification": "direct-textual-witness",
+        "excerptTa": "சேவடி படரும் செம்மல் உள்ளமொடு … குன்று அமர்ந்து உறைதலும் உரியன்.",
+        "contextEn": "The first movement culminates in Murugan’s dwelling upon the hill near Madurai.",
+        "route": "temples/thirupparamkundram.html"
+      },
+      {
+        "id": "thiruchendur",
+        "number": 2,
+        "headingTa": "திருச்சீரலைவாய்",
+        "headingEn": "Tiruchiralaivay / Thiruchendur",
+        "sourceHeading": "Part 2 — Tiruchiralaivay [Tiruchendur]",
+        "lineRange": "78–125",
+        "classification": "direct-textual-witness",
+        "excerptTa": "உலகம் புகழ்ந்த ஓங்குஉயர் விழுச்சீர் அலைவாய்ச் சேறலும் நிலைஇய பண்பே.",
+        "contextEn": "The second movement names Alaivay and describes Murugan’s radiant faces, twelve hands and divine procession.",
+        "route": "temples/thiruchendur.html"
+      },
+      {
+        "id": "palani",
+        "number": 3,
+        "headingTa": "திரு ஆவினன்குடி",
+        "headingEn": "Thiru Avinankudi / Palani",
+        "sourceHeading": "Part 3 — Thiru Avinankudi [Palani]",
+        "lineRange": "126–176",
+        "classification": "direct-textual-witness",
+        "excerptTa": "தாஇல் கொள்கை மடந்தையொடு சில்நாள் ஆவினன்குடி அசைதலும் உரியன்.",
+        "contextEn": "The third movement explicitly names Avinankudi and describes ascetics, musicians and celestial worshippers.",
+        "route": "temples/palani.html"
+      },
+      {
+        "id": "swamimalai",
+        "number": 4,
+        "headingTa": "திரு ஏரகம்",
+        "headingEn": "Thiru Eragam / Swamimalai",
+        "sourceHeading": "Part 4 — Thiru Eragam [Swamimalai]",
+        "lineRange": "177–189",
+        "classification": "direct-textual-witness",
+        "excerptTa": "ஆறுஎழுத்து அடக்கிய அருமறைக் கேள்வி … ஏரகத்து உறைதலும் உரியன்.",
+        "contextEn": "The fourth movement names Eragam and presents six-syllabled sacred recitation and flower worship.",
+        "route": "temples/swamimalai.html"
+      },
+      {
+        "id": "thiruthani",
+        "number": 5,
+        "headingTa": "குன்றுதோறாடல்",
+        "headingEn": "Kunruthoradal — traditional Tiruttani association",
+        "sourceHeading": "Part 5 — Kunruthoradal",
+        "lineRange": "190–217",
+        "classification": "traditional-association",
+        "excerptTa": "செய்யன் சிவந்த ஆடையன் … குன்றுதொறு ஆடலும் நின்ற தன்பண்பே.",
+        "contextEn": "The fifth movement describes Murugan’s presence and dance across hill country. Release 147 labels the Tiruttani connection as a traditional association because the poem does not name Tiruttani directly in this section.",
+        "route": "temples/thiruthani.html"
+      },
+      {
+        "id": "pazhamudircholai",
+        "number": 6,
+        "headingTa": "பழமுதிர்சோலை",
+        "headingEn": "Pazhamudircholai",
+        "sourceHeading": "Part 6 — Pazhamudircholai",
+        "lineRange": "218–317",
+        "classification": "direct-textual-witness",
+        "excerptTa": "இழுமென இழிதரும் அருவி பழமுதிர் சோலை மலைகிழவோனே.",
+        "contextEn": "The final movement names Pazhamudircholai and closes with the image of its descending waterfall and the Lord of the hill.",
+        "route": "temples/pazhamudircholai.html"
+      }
+    ]
+  }
+]
