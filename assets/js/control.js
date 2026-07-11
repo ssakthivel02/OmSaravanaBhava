@@ -1,0 +1,8 @@
+(function(){
+const q=document.querySelector('[data-filter]');
+if(!q)return;
+q.addEventListener('input',()=>{
+ const t=q.value.toLowerCase();
+ document.querySelectorAll('[data-item]').forEach(x=>x.hidden=!x.textContent.toLowerCase().includes(t));
+});
+})();
