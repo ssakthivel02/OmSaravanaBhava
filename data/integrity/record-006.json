@@ -1,0 +1,12 @@
+{
+  "project": "OmSaravanaBhava",
+  "batch": 121,
+  "module": "Content Hash, Duplicate Detection & Integrity Registry",
+  "record_id": "integrity-006",
+  "status": "repository-data-required",
+  "path": "",
+  "sha256": "",
+  "content_fingerprint": "",
+  "duplicate_candidates": [],
+  "integrity_status": "pending"
+}
