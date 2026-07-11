@@ -1,0 +1,46 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 149,
+  "name": "Thiruppugazh Digital Library — Volume 1",
+  "baseline_github_commit": "eab3edee2e40787dde4a62412635027474bcb609",
+  "generated": "2026-07-11",
+  "validation_status": "PASS",
+  "production_file_count": 21,
+  "published_song_count": 10,
+  "source_file": "697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf",
+  "source_id": "src-thiruppugazh-valluvar-vallalar-vattam",
+  "modified": [
+    "assets/css/osb44.css",
+    "assets/js/osb44.js",
+    "data/content-publication.json",
+    "data/sources.json",
+    "index.html",
+    "service-worker.js",
+    "sitemap.xml",
+    "sloka-library.html",
+    "sources.html"
+  ],
+  "added": [
+    "data/thiruppugazh.json",
+    "thiruppugazh.html",
+    "thiruppugazh/0006-muththaiththaru.html",
+    "thiruppugazh/0007-arukku-mangkaiyar.html",
+    "thiruppugazh/0008-unaith-thinam.html",
+    "thiruppugazh/0009-karuvadaindhu.html",
+    "thiruppugazh/0010-karukkum-anjana.html",
+    "thiruppugazh/0012-kadhadarungkayal.html",
+    "thiruppugazh/0013-sandhadham-bandha.html",
+    "thiruppugazh/0015-thadakkai-pangkayam.html",
+    "thiruppugazh/0016-padhiththa-senchandha.html",
+    "thiruppugazh/0017-poruppurung.html"
+  ],
+  "deleted": [],
+  "protected_unchanged": [
+    "manifest.json",
+    "icons/icon-192.png",
+    "icons/icon-512.png",
+    "icons/icon-maskable-512.png"
+  ],
+  "issues": [],
+  "precache_url_count": 51
+}

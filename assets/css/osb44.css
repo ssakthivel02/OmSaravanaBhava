@@ -12,3 +12,8 @@ body.dark footer a{color:#ffd59a}
 .osb-toast{position:fixed;bottom:80px;right:18px;max-width:min(360px,calc(100vw - 36px));background:var(--red);color:#fff;padding:12px 16px;border-radius:8px;z-index:70;font-weight:900;box-shadow:var(--shadow)}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 @media print{.top,.nav,.tools,.skip-link,#osb-pwa-update{display:none!important}body{background:#fff;color:#000}.wrap{max-width:none;padding:20px}.card{box-shadow:none;background:#fff;break-inside:avoid}a{color:#000;text-decoration:underline}}
+.verse{white-space:pre-wrap;overflow-wrap:anywhere;margin:24px 0;padding:24px;border:1px solid var(--line);border-radius:18px;background:var(--card);font-family:inherit;font-size:1.08rem;line-height:1.9}
+.thiruppugazh-toolbar{display:grid;grid-template-columns:auto minmax(220px,1fr) auto minmax(180px,.7fr) auto;gap:12px;align-items:center;margin:22px 0}
+.thiruppugazh-toolbar input,.thiruppugazh-toolbar select{min-height:44px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff;color:var(--ink);font:inherit}
+.song-pagination{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:28px}
+@media(max-width:760px){.thiruppugazh-toolbar{grid-template-columns:1fr}.verse{padding:18px;font-size:1rem}}

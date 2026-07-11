@@ -1,6 +1,6 @@
 window.OSB = {};
 
-OSB.RELEASE = '148';
+OSB.RELEASE = '149';
 
 OSB.byId = id => document.getElementById(id);
 
@@ -56,6 +56,54 @@ OSB.slokaCard = sloka => {
     <a class="btn" href="slokas/${OSB.slug(sloka.id)}.html">Read sloka</a>
   </article>`;
 };
+
+
+OSB.thiruppugazhCard = song => `<article class="card thiruppugazh-card" data-venue="${OSB.escape(song.venueEn)}">
+  <span class="pill">திருப்புகழ் ${OSB.escape(song.number)}</span>
+  <span class="pill">${OSB.escape(song.venueTa)}</span>
+  <h3>${OSB.escape(song.titleTa)}</h3>
+  <p>${OSB.escape(song.titleEn)}</p>
+  <p>${OSB.escape(song.summaryEn)}</p>
+  <a class="btn" href="${OSB.escape(song.route)}">Read song</a>
+</article>`;
+
+OSB.thiruppugazh = () => OSB.safe(async () => {
+  const songs = await OSB.load('data/thiruppugazh.json');
+  const input = OSB.byId('tgq');
+  const venue = OSB.byId('tgVenue');
+  const reset = OSB.byId('tgReset');
+  const count = OSB.byId('tgCount');
+
+  const renderSongs = () => {
+    const query = (input?.value || '').trim().toLocaleLowerCase();
+    const selectedVenue = venue?.value || 'All';
+    const filtered = songs.filter(song => {
+      const venueMatch = selectedVenue === 'All' || song.venueEn === selectedVenue;
+      const haystack = [
+        song.number, song.titleTa, song.titleEn, song.venueTa, song.venueEn,
+        song.meterTa, song.summaryEn, song.textTa
+      ].join(' ').toLocaleLowerCase();
+      return venueMatch && (!query || haystack.includes(query));
+    });
+    OSB.render(
+      'thiruppugazhGrid',
+      filtered.length
+        ? filtered.map(OSB.thiruppugazhCard).join('')
+        : '<div class="card">No verified published song matched this filter.</div>'
+    );
+    if (count) count.textContent = `${filtered.length} of ${songs.length} verified songs shown.`;
+  };
+
+  input?.addEventListener('input', renderSongs);
+  venue?.addEventListener('change', renderSongs);
+  reset?.addEventListener('click', () => {
+    if (input) input.value = '';
+    if (venue) venue.value = 'All';
+    renderSongs();
+    input?.focus();
+  });
+  renderSongs();
+});
 
 OSB.festivalCard = festival => `<article class="card">
   <span class="pill">${OSB.escape(festival.month)}</span>
@@ -136,11 +184,12 @@ OSB.search = () => OSB.safe(async () => {
   const input = OSB.byId('q');
   if (input) input.value = query;
 
-  const [temples, slokas, festivals, literature] = await Promise.all([
+  const [temples, slokas, festivals, literature, thiruppugazh] = await Promise.all([
     OSB.load('data/temples.json'),
     OSB.load('data/slokas.json'),
     OSB.load('data/festivals.json'),
-    OSB.load('data/literature.json')
+    OSB.load('data/literature.json'),
+    OSB.load('data/thiruppugazh.json')
   ]);
 
   const records = [
@@ -177,6 +226,18 @@ OSB.search = () => OSB.safe(async () => {
         summary: item.summary,
         searchText: [item.titleTa, item.titleEn, item.author, item.genre, item.summary].join(' '),
         url: `literature/${OSB.slug(item.id)}.html`
+      })),
+    ...thiruppugazh
+      .filter(item => item.publicationStatus === 'published-source-linked')
+      .map(item => ({
+        kind: 'Thiruppugazh',
+        title: `${item.number} ${item.titleTa} ${item.titleEn}`,
+        summary: `${item.venueTa} · ${item.summaryEn}`,
+        searchText: [
+          item.number, item.titleTa, item.titleEn, item.venueTa, item.venueEn,
+          item.meterTa, item.summaryEn, item.textTa
+        ].join(' '),
+        url: item.route
       }))
   ];
 
@@ -193,7 +254,7 @@ OSB.search = () => OSB.safe(async () => {
         <p>${OSB.escape(item.summary)}</p>
         <a class="btn" href="${item.url}">Open</a>
       </article>`).join('')
-    : '<div class="card">No published source-linked result matched. Try Palani, Thiruchendur, Vel, Sashti or Thirumurugatruppadai.</div>';
+    : '<div class="card">No published source-linked result matched. Try Palani, Thiruchendur, Muththaiththaru, Vel, Sashti or Thirumurugatruppadai.</div>';
 
   OSB.render('results', resultMarkup);
   const resultsRegion = OSB.byId('results');

@@ -1,4 +1,4 @@
-const RELEASE = '148';
+const RELEASE = '149';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
@@ -45,7 +45,19 @@ const PRECACHE_URLS = [
   "/temples/palani.html",
   "/temples/swamimalai.html",
   "/temples/thiruthani.html",
-  "/temples/pazhamudircholai.html"
+  "/temples/pazhamudircholai.html",
+  "/thiruppugazh.html",
+  "/data/thiruppugazh.json",
+  "/thiruppugazh/0006-muththaiththaru.html",
+  "/thiruppugazh/0007-arukku-mangkaiyar.html",
+  "/thiruppugazh/0008-unaith-thinam.html",
+  "/thiruppugazh/0009-karuvadaindhu.html",
+  "/thiruppugazh/0010-karukkum-anjana.html",
+  "/thiruppugazh/0012-kadhadarungkayal.html",
+  "/thiruppugazh/0013-sandhadham-bandha.html",
+  "/thiruppugazh/0015-thadakkai-pangkayam.html",
+  "/thiruppugazh/0016-padhiththa-senchandha.html",
+  "/thiruppugazh/0017-poruppurung.html"
 ];
 
 self.addEventListener('install', event => {

@@ -1,0 +1,20 @@
+OmSaravanaBhava — Release 149 GitHub Portal Upload
+
+1. Extract the ZIP into a temporary folder.
+2. Open the extracted folder and select everything inside it.
+3. Open the OmSaravanaBhava repository on branch main.
+4. Choose Add file → Upload files.
+5. Drag the selected extracted contents into the upload area.
+6. Confirm there is no Release149, package, output or cleanup parent folder.
+7. In the UPPER commit-title field replace “Add files via upload” with:
+   Release 149: launch verified Thiruppugazh digital library volume 1
+8. Leave the lower description optional.
+9. Select Commit directly to the main branch.
+10. Click Commit changes.
+
+Expected:
+- 21 production files
+- 7 evidence/instruction files
+- 28 total files
+- 10 new song detail pages
+- No manifest.json or icon replacements

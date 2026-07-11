@@ -1,0 +1,1399 @@
+--- release148/assets/css/osb44.css
++++ release149/assets/css/osb44.css
+@@ -12,3 +12,8 @@
+ .osb-toast{position:fixed;bottom:80px;right:18px;max-width:min(360px,calc(100vw - 36px));background:var(--red);color:#fff;padding:12px 16px;border-radius:8px;z-index:70;font-weight:900;box-shadow:var(--shadow)}
+ @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+ @media print{.top,.nav,.tools,.skip-link,#osb-pwa-update{display:none!important}body{background:#fff;color:#000}.wrap{max-width:none;padding:20px}.card{box-shadow:none;background:#fff;break-inside:avoid}a{color:#000;text-decoration:underline}}
++.verse{white-space:pre-wrap;overflow-wrap:anywhere;margin:24px 0;padding:24px;border:1px solid var(--line);border-radius:18px;background:var(--card);font-family:inherit;font-size:1.08rem;line-height:1.9}
++.thiruppugazh-toolbar{display:grid;grid-template-columns:auto minmax(220px,1fr) auto minmax(180px,.7fr) auto;gap:12px;align-items:center;margin:22px 0}
++.thiruppugazh-toolbar input,.thiruppugazh-toolbar select{min-height:44px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff;color:var(--ink);font:inherit}
++.song-pagination{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:28px}
++@media(max-width:760px){.thiruppugazh-toolbar{grid-template-columns:1fr}.verse{padding:18px;font-size:1rem}}
+--- release148/assets/js/osb44.js
++++ release149/assets/js/osb44.js
+@@ -1,6 +1,6 @@
+ window.OSB = {};
+ 
+-OSB.RELEASE = '148';
++OSB.RELEASE = '149';
+ 
+ OSB.byId = id => document.getElementById(id);
+ 
+@@ -56,6 +56,54 @@
+     <a class="btn" href="slokas/${OSB.slug(sloka.id)}.html">Read sloka</a>
+   </article>`;
+ };
++
++
++OSB.thiruppugazhCard = song => `<article class="card thiruppugazh-card" data-venue="${OSB.escape(song.venueEn)}">
++  <span class="pill">திருப்புகழ் ${OSB.escape(song.number)}</span>
++  <span class="pill">${OSB.escape(song.venueTa)}</span>
++  <h3>${OSB.escape(song.titleTa)}</h3>
++  <p>${OSB.escape(song.titleEn)}</p>
++  <p>${OSB.escape(song.summaryEn)}</p>
++  <a class="btn" href="${OSB.escape(song.route)}">Read song</a>
++</article>`;
++
++OSB.thiruppugazh = () => OSB.safe(async () => {
++  const songs = await OSB.load('data/thiruppugazh.json');
++  const input = OSB.byId('tgq');
++  const venue = OSB.byId('tgVenue');
++  const reset = OSB.byId('tgReset');
++  const count = OSB.byId('tgCount');
++
++  const renderSongs = () => {
++    const query = (input?.value || '').trim().toLocaleLowerCase();
++    const selectedVenue = venue?.value || 'All';
++    const filtered = songs.filter(song => {
++      const venueMatch = selectedVenue === 'All' || song.venueEn === selectedVenue;
++      const haystack = [
++        song.number, song.titleTa, song.titleEn, song.venueTa, song.venueEn,
++        song.meterTa, song.summaryEn, song.textTa
++      ].join(' ').toLocaleLowerCase();
++      return venueMatch && (!query || haystack.includes(query));
++    });
++    OSB.render(
++      'thiruppugazhGrid',
++      filtered.length
++        ? filtered.map(OSB.thiruppugazhCard).join('')
++        : '<div class="card">No verified published song matched this filter.</div>'
++    );
++    if (count) count.textContent = `${filtered.length} of ${songs.length} verified songs shown.`;
++  };
++
++  input?.addEventListener('input', renderSongs);
++  venue?.addEventListener('change', renderSongs);
++  reset?.addEventListener('click', () => {
++    if (input) input.value = '';
++    if (venue) venue.value = 'All';
++    renderSongs();
++    input?.focus();
++  });
++  renderSongs();
++});
+ 
+ OSB.festivalCard = festival => `<article class="card">
+   <span class="pill">${OSB.escape(festival.month)}</span>
+@@ -136,11 +184,12 @@
+   const input = OSB.byId('q');
+   if (input) input.value = query;
+ 
+-  const [temples, slokas, festivals, literature] = await Promise.all([
++  const [temples, slokas, festivals, literature, thiruppugazh] = await Promise.all([
+     OSB.load('data/temples.json'),
+     OSB.load('data/slokas.json'),
+     OSB.load('data/festivals.json'),
+-    OSB.load('data/literature.json')
++    OSB.load('data/literature.json'),
++    OSB.load('data/thiruppugazh.json')
+   ]);
+ 
+   const records = [
+@@ -177,6 +226,18 @@
+         summary: item.summary,
+         searchText: [item.titleTa, item.titleEn, item.author, item.genre, item.summary].join(' '),
+         url: `literature/${OSB.slug(item.id)}.html`
++      })),
++    ...thiruppugazh
++      .filter(item => item.publicationStatus === 'published-source-linked')
++      .map(item => ({
++        kind: 'Thiruppugazh',
++        title: `${item.number} ${item.titleTa} ${item.titleEn}`,
++        summary: `${item.venueTa} · ${item.summaryEn}`,
++        searchText: [
++          item.number, item.titleTa, item.titleEn, item.venueTa, item.venueEn,
++          item.meterTa, item.summaryEn, item.textTa
++        ].join(' '),
++        url: item.route
+       }))
+   ];
+ 
+@@ -193,7 +254,7 @@
+         <p>${OSB.escape(item.summary)}</p>
+         <a class="btn" href="${item.url}">Open</a>
+       </article>`).join('')
+-    : '<div class="card">No published source-linked result matched. Try Palani, Thiruchendur, Vel, Sashti or Thirumurugatruppadai.</div>';
++    : '<div class="card">No published source-linked result matched. Try Palani, Thiruchendur, Muththaiththaru, Vel, Sashti or Thirumurugatruppadai.</div>';
+ 
+   OSB.render('results', resultMarkup);
+   const resultsRegion = OSB.byId('results');
+--- release148/data/content-publication.json
++++ release149/data/content-publication.json
+@@ -1,5 +1,5 @@
+ {
+-  "release": 147,
++  "release": 149,
+   "generated": "2026-07-11",
+   "states": {
+     "published-source-linked": "Published with an explicit primary-text citation.",
+@@ -27,5 +27,23 @@
+   "sourceRoutes": [
+     "sources.html",
+     "literature/thirumurugatruppadai.html"
+-  ]
++  ],
++  "thiruppugazh": {
++    "collectionRoute": "thiruppugazh.html",
++    "publishedCount": 10,
++    "publishedRoutes": [
++      "thiruppugazh/0006-muththaiththaru.html",
++      "thiruppugazh/0007-arukku-mangkaiyar.html",
++      "thiruppugazh/0008-unaith-thinam.html",
++      "thiruppugazh/0009-karuvadaindhu.html",
++      "thiruppugazh/0010-karukkum-anjana.html",
++      "thiruppugazh/0012-kadhadarungkayal.html",
++      "thiruppugazh/0013-sandhadham-bandha.html",
++      "thiruppugazh/0015-thadakkai-pangkayam.html",
++      "thiruppugazh/0016-padhiththa-senchandha.html",
++      "thiruppugazh/0017-poruppurung.html"
++    ],
++    "sourceId": "src-thiruppugazh-valluvar-vallalar-vattam",
++    "policy": "Only manually checked full Tamil song texts are indexable. OCR-only records remain unpublished."
++  }
+ }
+--- release148/data/sources.json
++++ release149/data/sources.json
+@@ -22,5 +22,17 @@
+     "scope": "Opening invocation and six temple-linked Kavasam sections.",
+     "useInRelease": "Verified opening extract and source note for Kanda Sashti Kavasam.",
+     "qualityNote": "Only the verified opening extract is published in this release. A complete critical edition remains outside Release 147."
++  },
++  {
++    "id": "src-thiruppugazh-valluvar-vallalar-vattam",
++    "titleTa": "அருணகிரிநாதர் அருளிய திருப்புகழ்",
++    "titleEn": "Thiruppugazh — Digital Compilation",
++    "author": "அருணகிரிநாதர் / Arunagirinathar",
++    "sourceType": "Primary Tamil devotional text",
++    "editionType": "User-uploaded 2,191-page digital compilation PDF",
++    "fileName": "697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf",
++    "scope": "Numbered Thiruppugazh corpus with venue, rhythmic and song-text headings.",
++    "useInRelease": "Primary source for the first ten manually checked digital song records in Release 149.",
++    "qualityNote": "Release 149 publishes only manually checked song texts. OCR-only text and unverified commentary are not published."
+   }
+ ]
+--- release148/data/thiruppugazh.json
++++ release149/data/thiruppugazh.json
+@@ -0,0 +1,202 @@
++[
++  {
++    "number": 6,
++    "slug": "0006-muththaiththaru",
++    "titleTa": "முத்தைத்தரு",
++    "titleEn": "Muththaiththaru",
++    "venueTa": "திருவருணை",
++    "venueEn": "Thiruvarunai",
++    "meterTa": "தத்தத்தன தத்தத் தனதன",
++    "sourceHeading": "பாடல் 6 (நூல்)",
++    "summaryEn": "A prayer to Murugan as the supreme guru and protector, joining the teaching of sacred wisdom with vivid images of divine victory.",
++    "textTa": "முத்தைத்தரு பத்தித் திருநகை\nஅத்திக்கிறை சத்திச் சரவண\nமுத்திக்கொரு வித்துக் குருபர எனவோதும்\n\nமுக்கட்பர மற்குச் சுருதியின்\nமுற்பட்டது கற்பித் திருவரும்\nமுப்பத்துமு வர்க்கத் தமரரும் அடிபேணப்\n\nபத்துத்தலை தத்தக் கணைதொடு\nஒற்றைக்கிரி மத்தைப் பொருதொரு\nபட்டப்பகல் வட்டத் திகிரியில் இரவாகப்\n\nபத்தற்கிர தத்தைக் கடவிய\nபச்சைப்புயல் மெச்சத் தகுபொருள்\nபட்சத்தொடு ரட்சித் தருள்வதும் ஒருநாளே\n\nதித்தித்தெய ஒத்தப் பரிபுர\nநிர்த்தப்பதம் வைத்துப் பயிரவி\nதிக்கொட்கந டிக்கக் கழுகொடு கழுதாடத்\n\nதிக்குப்பரி அட்டப் பயிரவர்\nதொக்குத்தொகு தொக்குத் தொகுதொகு\nசித்ரப்பவு ரிக்குத் த்ரிகடக எனவோதக்\n\nகொத்துப்பறை கொட்டக் களமிசை\nகுக்குக்குகு குக்குக் குகுகுகு\nகுத்திப்புதை புக்குப் பிடியென முதுகூகை\n\nகொட்புற்றெழ நட்பற் றவுணரை\nவெட்டிப்பலி யிட்டுக் குலகிரி\nகுத்துப்பட ஒத்துப் பொரவல பெருமாளே.",
++    "id": "0006",
++    "author": "அருணகிரிநாதர் / Arunagirinathar",
++    "sourceIds": [
++      "src-thiruppugazh-valluvar-vallalar-vattam"
++    ],
++    "publicationStatus": "published-source-linked",
++    "route": "thiruppugazh/0006-muththaiththaru.html",
++    "templeRoute": null
++  },
++  {
++    "number": 7,
++    "slug": "0007-arukku-mangkaiyar",
++    "titleTa": "அருக்கு மங்கையர்",
++    "titleEn": "Arukku Mangkaiyar",
++    "venueTa": "திருப்பரங்குன்றம்",
++    "venueEn": "Thirupparankundram",
++    "meterTa": "தனத்த தந்தன தனதன தனதன",
++    "sourceHeading": "பாடல் 7 (திருப்பரங்குன்றம்)",
++    "summaryEn": "A confession of sensual entanglement that turns toward Murugan, Tamil poetry and the saving presence of Tirupparankundram.",
++    "textTa": "அருக்கு மங்கையர் மலரடி வருடியெ\nகருத்த றிந்துபின் அரைதனில் உடைதனை\nஅவிழ்த்தும் அங்குள அரசிலை தடவியும் இருதோளுற்\n\nறணைத்தும் அங்கையின் அடிதொறும் நகமெழ\nஉதட்டை மென்றுபல் இடுகுறி களுமிட\nஅடிக்க ளந்தனில் மயில்குயில் புறவென மிகவாய்விட்\n\nடுருக்கும் அங்கியின் மெழுகென உருகிய\nசிரத்தை மிஞ்சிடும் அநுபவம் உறுபலம்\nஉறக்கை யின்கனி நிகரென இலகிய முலைமேல்வீழ்ந்\n\nதுருக்க லங்கிமெய் உருகிட அமுதுகு\nபெருத்த உந்தியின் முழுகிமெ யுணர்வற\nஉழைத்தி டுங்கன கலவியை மகிழ்வது தவிர்வேனோ\n\nஇருக்கு மந்திரம் எழுவகை முநிபெற\nஉரைத்த சம்ப்ரம சரவண பவகுக\nஇதத்த இங்கிதம் இலகிய அறுமுக எழில்வேளென்\n\nறிலக்க ணங்களும் இயலிசை களுமிக\nவிரிக்கும் அம்பல மதுரித கவிதனை\nஇயற்று செந்தமிழ் விதமொடு புயமிசை புனைவோனே\n\nசெருக்கும் அம்பல மிசைதனில் அசைவுற\nநடித்த சங்கரர் வழிவழி அடியவர்\nதிருக்கு ருந்தடி அருள்பெற அருளிய குருநாதர்\n\nதிருக்கு ழந்தையு மெனஅவர் வழிபடு\nகுருக்க ளின்திற மெனவரு பெரியவ\nதிருப்ப ரங்கிரி தனிலுறை சரவண பெருமாளே.",
++    "id": "0007",
++    "author": "அருணகிரிநாதர் / Arunagirinathar",
++    "sourceIds": [
++      "src-thiruppugazh-valluvar-vallalar-vattam"
++    ],
++    "publicationStatus": "published-source-linked",
++    "route": "thiruppugazh/0007-arukku-mangkaiyar.html",
++    "templeRoute": "temples/thirupparamkundram.html"
++  },
++  {
++    "number": 8,
++    "slug": "0008-unaith-thinam",
++    "titleTa": "உனைத் தினம்",
++    "titleEn": "Unaith Thinam",
++    "venueTa": "திருப்பரங்குன்றம்",
++    "venueEn": "Thirupparankundram",
++    "meterTa": "தனத்த தந்தன தனதன தனதன",
++    "sourceHeading": "பாடல் 8 (திருப்பரங்குன்றம்)",
++    "summaryEn": "A candid admission of neglected worship and a plea that Murugan arrive on the peacock when fear and mortality close in.",
++    "textTa": "உனைத்தி னந்தொழு திலனுன தியல்பினை\nஉரைத்தி லன்பல மலர்கொடுன் அடியிணை\nஉறப்ப ணிந்திலன் ஒருதவ மிலனுன தருள்மாறா\n\nஉளத்து ளன்பினர் உறைவிடம் அறிகிலன்\nவிருப்பொ டுன்சிக ரமும்வலம் வருகிலன்\nஉவப்பொ டுன்புகழ் துதிசெய விழைகிலன் மலைபோலே\n\nகனைத்தெ ழும்பக டதுபிடர் மிசைவரு\nகறுத்த வெஞ்சின மறலிதன் உழையினர்\nகதித்த டர்ந்தெறி கயிறடு கதைகொடு பொருபோதே\n\nகலக்கு றுஞ்செயல் ஒழிவற அழிவுறு\nகருத்து நைந்தல முறுபொழு தளவைகொள்\nகணத்தில் என்பய மறமயில் முதுகினில் வருவாயே\n\nவினைத்த லந்தனில் அலகைகள் குதிகொள\nவிழுக்கு டைந்துமெய் உகுதசை கழுகுண\nவிரித்த குஞ்சியர் எனுமவு ணரைஅமர் புரிவேலா\n\nமிகுத்த பண்பயில் குயில்மொழி அழகிய\nகொடிச்சி குங்கும முலைமுக டுழுநறை\nவிரைத்த சந்தன ம்ருகமத புயவரை உடையோனே\n\nதினத்தி னஞ்சதுர் மறைமுநி முறைகொடு\nபுனற்சொ ரிந்தலர் பொதியவி ணவரொடு\nசினத்தை நிந்தனை செயுமுநி வரர்தொழ மகிழ்வோனே\n\nதெனத்தெ னந்தன எனவரி யளிநறை\nதெவிட்ட அன்பொடு பருகுயர் பொழில்திகழ்\nதிருப் பரங்கிரி தனிலுறை சரவண பெருமாளே.",
++    "id": "0008",
++    "author": "அருணகிரிநாதர் / Arunagirinathar",
++    "sourceIds": [
++      "src-thiruppugazh-valluvar-vallalar-vattam"
++    ],
++    "publicationStatus": "published-source-linked",
++    "route": "thiruppugazh/0008-unaith-thinam.html",
++    "templeRoute": "temples/thirupparamkundram.html"
++  },
++  {
++    "number": 9,
++    "slug": "0009-karuvadaindhu",
++    "titleTa": "கருவடைந்து",
++    "titleEn": "Karuvadaindhu",
++    "venueTa": "திருப்பரங்குன்றம்",
++    "venueEn": "Thirupparankundram",
++    "meterTa": "தனனதந்த தத்தத்த தந்த",
++    "sourceHeading": "பாடல் 9 (திருப்பரங்குன்றம்)",
++    "summaryEn": "A reflection on birth, growth, desire and suffering that asks when Murugan’s grace will finally settle in the heart.",
++    "textTa": "கருவடைந்து பத்துற்ற திங்கள்\nவயிறிருந்து முற்றிப்ப யின்று\nகடையில்வந்து தித்துக்கு ழந்தை வடிவாகிக்\n\nகழுவியங்கெ டுத்துச்சு ரந்த\nமுலையருந்து விக்கக்கி டந்து\nகதறியங்கை கொட்டித்த வழ்ந்து நடமாடி\n\nஅரைவடங்கள் கட்டிச்ச தங்கை\nஇடுகுதம்பை பொற்சுட்டி தண்டை\nஅவையணிந்து முற்றிக்கி ளர்ந்து வயதேறி\n\nஅரியபெண்கள் நட்பைப்பு ணர்ந்து\nபிணியுழன்று சுற்றித்தி ரிந்த\nதமையுமுன்க்ரு பைச்சித்தம் என்று பெறுவேனோ\n\nஇரவிஇந்த்ரன் வெற்றிக்கு ரங்கி\nனரசரென்றும் ஒப்பற்ற உந்தி\nயிறைவன்எண்கி னக்கர்த்த னென்றும் நெடுநீலன்\n\nஎரியதென்றும் ருத்ரற்சி றந்த\nஅநுமனென்றும் ஒப்பற்ற அண்டர்\nஎவரும்இந்த வர்க்கத்தில் வந்து புனமேவ\n\nஅரியதன்ப டைக்கர்த்த ரென்று\nஅசுரர்தங்கி ளைக்கட்டை வென்ற\nஅரிமுகுந்தன் மெச்சுற்ற பண்பின் மருகோனே\n\nஅயனையும்பு டைத்துச்சி னந்து\nஉலகமும்ப டைத்துப்ப ரிந்து\nஅருள்பரங்கி ரிக்குட்சி றந்த பெருமாளே.",
++    "id": "0009",
++    "author": "அருணகிரிநாதர் / Arunagirinathar",
++    "sourceIds": [
++      "src-thiruppugazh-valluvar-vallalar-vattam"
++    ],
++    "publicationStatus": "published-source-linked",
++    "route": "thiruppugazh/0009-karuvadaindhu.html",
++    "templeRoute": "temples/thirupparamkundram.html"
++  },
++  {
++    "number": 10,
++    "slug": "0010-karukkum-anjana",
++    "titleTa": "கறுக்கும் அஞ்சன",
++    "titleEn": "Karukkum Anjana",
++    "venueTa": "திருப்பரங்குன்றம்",
++    "venueEn": "Thirupparankundram",
++    "meterTa": "தந்தன தனதன தனதன",
++    "sourceHeading": "பாடல் 10 (திருப்பரங்குன்றம்)",
++    "summaryEn": "A plea for release from deceptive attraction, followed by praise of Murugan’s radiant spear and victorious power.",
++    "textTa": "கறுக்கும் அஞ்சன விழியிணை அயில்கொடு\nநெருக்கி நெஞ்சற எறிதரு பொழுதொரு\nகனிக்குள் இன்சுவை அமுதுகும் ஒருசிறு நகையாலே\n\nகளக்கொ ழுங்கலி வலைகொடு விசிறியெ\nமனைக்கெ ழுந்திரும் எனமனம் உருகஒர்\nகவற்சி கொண்டிட மனைதனில் அழகொடு கொடுபோகி\n\nநறைத்த பஞ்சணை மிசையினில் மனமுற\nஅணைத்த கந்தனில் இணைமுலை எதிர்பொர\nநகத்த ழுந்திட அமுதிதழ் பருகியு மிடறூடே\n\nநடித்தெ ழுங்குரல் குமுகுமு குமுவென\nஇசைத்து நன்கொடு மனமது மறுகிட\nநழுப்பு நஞ்சன சிறுமிகள் துயரற அருள்வாயே\n\nநிறைத்த தெண்டிரை மொகுமொகு மொகுவென\nஉரத்த கஞ்சுகி முடிநெறு நெறுவென\nநிறைத்த அண்டமு கடுகிடு கிடுவென வரைபோலும்\n\nநிவத்த திண்கழல் நிசிசர ருரமொடு\nசிரக்கொ டுங்குவை மலைபுரை தரஇரு\nநிணக்கு ழம்பொடு குருதிகள் சொரிதர அடுதீரா\n\nதிறற்க ருங்குழல் உமையவள் அருளுறு\nபுழைக்கை தண்கட கயமுக மிகவுள\nசிவக்கொ ழுந்தன கணபதி யுடன்வரும் இளையோனே\n\nசினத்தொ டுஞ்சமன் உதைபட நிறுவிய\nபரற்கு ளன்புறு புதல்வநன் மணியுகு\nதிருப்ப ரங்கிரி தனிலுறை சரவண பெருமாளே.",
++    "id": "0010",
++    "author": "அருணகிரிநாதர் / Arunagirinathar",
++    "sourceIds": [
++      "src-thiruppugazh-valluvar-vallalar-vattam"
++    ],
++    "publicationStatus": "published-source-linked",
++    "route": "thiruppugazh/0010-karukkum-anjana.html",
++    "templeRoute": "temples/thirupparamkundram.html"
++  },
++  {
++    "number": 12,
++    "slug": "0012-kadhadarungkayal",
++    "titleTa": "காதடருங்கயல்",
++    "titleEn": "Kadhadarungkayal",
++    "venueTa": "திருப்பரங்குன்றம்",
++    "venueEn": "Thirupparankundram",
++    "meterTa": "தானன தந்தன தந்தனந் தந்தன",
++    "sourceHeading": "பாடல் 12 (திருப்பரங்குன்றம்)",
++    "summaryEn": "A prayer to escape the turbulence of desire and receive Murugan’s ankleted feet as the stable centre of devotion.",
++    "textTa": "காதட ருங்கயல் கொண்டிசைந் தைம்பொறி\nவாளிம யங்கம னம்பயந் தந்திருள்\nகால்தர விந்துவி சும்பிலங் கும்பொழு தொருகோடி\n\nகாய்கதி ரென்றொளிர் செஞ்சிலம் புங்கணை\nயாழியு டன்கட கந்துலங் கும்படி\nகாமனெ டுஞ்சிலை கொண்டடர்ந் தும்பொரு மயலாலே\n\nவாதுபு ரிந்தவர் செங்கைதந் திங்கித\nமாகந டந்தவர் பின்திரிந் துந்தன\nமார்பில ழுந்தஅ ணைந்திடுந் துன்பம துழலாதே\n\nவாசமி குந்தக டம்பமென் கிண்கிணி\nமாலைக ரங்கொளும் அன்பர்வந் தன்பொடு\nவாழநி தம்புனை யும்பதந் தந்துன தருள்தாராய்\n\nபோதிலு றைந்தருள் கின்றவன் செஞ்சிர\nமீதுத டிந்துவி லங்கிடும் புங்கவ\nபோதவ ளஞ்சிவ சங்கரன் கொண்டிட மொழிவோனே\n\nபூகமு டன்திகழ் சங்கினங் கொண்டகி\nரீவம டந்தைபு ரந்தரன் தந்தருள்\nபூவைக ருங்குற மின்கலந் தங்குப னிருதோளா\n\nதீதக மொன்றினர் வஞ்சகந் துஞ்சியி\nடாதவர் சங்கரர் தந்ததென் பும்பல\nசேர்நிரு தன்குலம் அஞ்சமுன் சென்றடு திறலோனே\n\nசீதள முந்தும ணந்தயங் கும்பொழில்\nசூழ்தர விஞ்சைகள் வந்திறைஞ் சும்பதி\nதேவர்ப ணிந்தெழு தென்பரங் குன்றுறை பெருமாளே.",
++    "id": "0012",
++    "author": "அருணகிரிநாதர் / Arunagirinathar",
++    "sourceIds": [
++      "src-thiruppugazh-valluvar-vallalar-vattam"
++    ],
++    "publicationStatus": "published-source-linked",
++    "route": "thiruppugazh/0012-kadhadarungkayal.html",
++    "templeRoute": "temples/thirupparamkundram.html"
++  },
++  {
++    "number": 13,
++    "slug": "0013-sandhadham-bandha",
++    "titleTa": "சந்ததம் பந்த",
++    "titleEn": "Sandhadham Bandha",
++    "venueTa": "திருப்பரங்குன்றம்",
++    "venueEn": "Thirupparankundram",
++    "meterTa": "தந்தனந் தந்தத் தனதான",
++    "sourceHeading": "பாடல் 13 (திருப்பரங்குன்றம்)",
++    "summaryEn": "A compact prayer to leave the restless chain of attachment and behold Kandan every day with sustained love.",
++    "textTa": "சந்ததம் பந்தத் தொடராலே\nசஞ்சலந் துஞ்சித் திரியாதே\n\nகந்தனென் றென்றுற் றுனைநாளும்\nகண்டுகொண் டன்புற் றிடுவேனோ\n\nதந்தியின் கொம்பைப் புணர்வோனே\nசங்கரன் பங்கிற் சிவைபாலா\n\nசெந்திலங் கண்டிக் கதிர்வேலா\nதென்பரங் குன்றிற் பெருமாளே.",
++    "id": "0013",
++    "author": "அருணகிரிநாதர் / Arunagirinathar",
++    "sourceIds": [
++      "src-thiruppugazh-valluvar-vallalar-vattam"
++    ],
++    "publicationStatus": "published-source-linked",
++    "route": "thiruppugazh/0013-sandhadham-bandha.html",
++    "templeRoute": "temples/thirupparamkundram.html"
++  },
++  {
++    "number": 15,
++    "slug": "0015-thadakkai-pangkayam",
++    "titleTa": "தடக்கைப் பங்கயம்",
++    "titleEn": "Thadakkai Pangkayam",
++    "venueTa": "திருப்பரங்குன்றம்",
++    "venueEn": "Thirupparankundram",
++    "meterTa": "தனத்தத் தந்தனந் தனத்தத் தந்தனந்",
++    "sourceHeading": "பாடல் 15 (திருப்பரங்குன்றம்)",
++    "summaryEn": "A prayer to end the exhausting cycle of worldly dependence and establish a life of service at Murugan’s ankleted feet.",
++    "textTa": "தடக்கைப் பங்கயம் கொடைக்குக் கொண்டல்தண்\nடமிழ்க்குத் தஞ்சமென் றுலகோரைத்\n\nதவித்துச் சென்றிரந் துளத்திற் புண்படுந்\nதளர்ச்சிப் பம்பரந் தனையூசற்\n\nகடத்தைத் துன்பமண் சடத்தைத் துஞ்சிடுங்\nகலத்தைப் பஞ்சஇந் த்ரியவாழ்வைக்\n\nகணத்திற் சென்றிடந் திருத்தித் தண்டையங்\nகழற்குத் தொண்டுகொண் டருள்வாயே\n\nபடைக்கப் பங்கயன் துடைக்கச் சங்கரன்\nபுரக்கக் கஞ்சைமன் பணியாகப்\n\nபணித்துத் தம்பயந் தணித்துச் சந்ததம்\nபரத்தைக் கொண்டிடுந் தனிவேலா\n\nகுடக்குத் தென்பரம் பொருப்பிற் றங்குமங்\nகுலத்திற் கங்கைதன் சிறியோனே\n\nகுறப்பொற் கொம்பைமுன் புனத்திற் செங்கரங்\nகுவித்துக் கும்பிடும் பெருமாளே.",
++    "id": "0015",
++    "author": "அருணகிரிநாதர் / Arunagirinathar",
++    "sourceIds": [
++      "src-thiruppugazh-valluvar-vallalar-vattam"
++    ],
++    "publicationStatus": "published-source-linked",
++    "route": "thiruppugazh/0015-thadakkai-pangkayam.html",
++    "templeRoute": "temples/thirupparamkundram.html"
++  },
++  {
++    "number": 16,
++    "slug": "0016-padhiththa-senchandha",
++    "titleTa": "பதித்த செஞ்சந்த",
++    "titleEn": "Padhiththa Senchandha",
++    "venueTa": "திருப்பரங்குன்றம்",
++    "venueEn": "Thirupparankundram",
++    "meterTa": "தனத்ததந் தந்தத் தத்தன தத்தந்",
++    "sourceHeading": "பாடல் 16 (திருப்பரங்குன்றம்)",
++    "summaryEn": "A confession of mental delusion that asks for Murugan’s lotus feet, framed by images of Surapadman, Deivayanai and Valli.",
++    "textTa": "பதித்தசெஞ் சந்தப் பொற்குட நித்தம்\nபருந்துயர்ந் தண்டத் திற்றலை முட்டும்\nபருப்பதந் தந்தச் செப்பவை ஒக்குந் தனபாரம்\n\nபடப்புயங் கம்பற் கக்குக டுப்பண்\nசெருக்குவண் டம்பப் பிற்கயல் ஒக்கும்\nபருத்தகண் கொண்டைக் கொக்குமி ருட்டென் றிளைஞோர்கள்\n\nதுதித்துமுன் கும்பிட் டுற்றது ரைத்தன்\nபுவக்கநெஞ் சஞ்சச் சிற்றிடை சுற்றுந்\nதுகிற்களைந் தின்பத் துர்க்கம் அளிக்கும் கொடியார்பால்\n\nதுவக்குணும் பங்கப் பித்தன வத்தன்\nபுவிக்குளென் சிந்தைப் புத்திம யக்கந்\nதுறக்கநின் தண்டைப் பத்மமெ னக்கென் றருள்வாயே\n\nகுதித்துவெண் சங்கத் தைச்சுற வெற்றுங்\nகடற்கரந் தஞ்சிப் புக்கஅ ரக்கன்\nகுடற்சரிந் தெஞ்சக் குத்திவி திர்க்குங் கதிர்வேலா\n\nகுலக்கரும் பின்சொற் றத்தையி பப்பெண்\nதனக்குவஞ் சஞ்சொற் பொச்சையி டைக்குங்\nகுகுக்குகுங் குங்குக் குக்குகு குக்குங் குகுகூகூ\n\nதிதித்திதிந் தித்தித் தித்தியெ னக்கொம்\nபதிர்த்துவெண் சண்டக் கட்கம்வி திர்த்துந்\nதிரட்குவிந் தங்கட் பொட்டெழ வெட்டுங் கொலைவேடர்\n\nதினைப்புனஞ் சென்றிச் சித்தபெ ணைக்கண்\nடுருக்கரந் தங்குக் கிட்டிய ணைத்தொண்\nதிருப்பரங் குன்றிற் புக்குளி ருக்கும் பெருமாளே.",
++    "id": "0016",
++    "author": "அருணகிரிநாதர் / Arunagirinathar",
++    "sourceIds": [
++      "src-thiruppugazh-valluvar-vallalar-vattam"
++    ],
++    "publicationStatus": "published-source-linked",
++    "route": "thiruppugazh/0016-padhiththa-senchandha.html",
++    "templeRoute": "temples/thirupparamkundram.html"
++  },
++  {
++    "number": 17,
++    "slug": "0017-poruppurung",
++    "titleTa": "பொருப்புறுங்",
++    "titleEn": "Poruppurung",
++    "venueTa": "திருப்பரங்குன்றம்",
++    "venueEn": "Thirupparankundram",
++    "meterTa": "தனத்தனந் தந்தன தனத்தனந் தந்தன",
++    "sourceHeading": "பாடல் 17 (திருப்பரங்குன்றம்)",
++    "summaryEn": "An appeal to turn from destructive attachment toward Murugan’s gracious lotus feet and the sanctuary of Tirupparankundram.",
++    "textTa": "பொருப்புறுங் கொங்கையர் பொருட்கவர்ந் தொன்றிய\nபிணக்கிடுஞ் சண்டிகள் வஞ்சமாதர்\n\nபுயற்குழன் றங்கமழ் அறற்குலந் தங்கவிர்\nமுருக்குவண் செந்துவர் தந்துபோகம்\n\nஅருத்திடுஞ் சிங்கியர் தருக்கிடுஞ் செங்கயல்\nஅறச்சிவந் தங்கையில் அன்புமேவும்\n\nஅவர்க்குழன் றங்கமும் அறத்தளர்ந் தென்பயன்\nஅருட்பதம் பங்கயம் அன்புறாதோ\n\nமிருத்தணும் பங்கயன் அலர்க்கணன் சங்கரர்\nவிதித்தெணுங் கும்பிடு கந்தவேளே\n\nமிகுத்திடும் வன்சம ணரைப்பெருந் திண்கழு\nமிசைக்கிடுஞ் செந்தமிழ் அங்கவாயா\n\nபெருக்குதண் சண்பக வனத்திடங் கொங்கொடு\nதிறற்செழுஞ் சந்தகில் துன்றிநீடு\n\nதினைப்புனம் பைங்கொடி தனத்துடன் சென்றணை\nதிருப்பரங் குன்றுறை தம்பிரானே.",
++    "id": "0017",
++    "author": "அருணகிரிநாதர் / Arunagirinathar",
++    "sourceIds": [
++      "src-thiruppugazh-valluvar-vallalar-vattam"
++    ],
++    "publicationStatus": "published-source-linked",
++    "route": "thiruppugazh/0017-poruppurung.html",
++    "templeRoute": "temples/thirupparamkundram.html"
++  }
++]
+--- release148/index.html
++++ release149/index.html
+@@ -34,9 +34,10 @@
+ <section class="hero"><div class="hero-grid"><section><div class="eyebrow">Premium Murugan Experience</div><h1>ஓம்<br>சரவணபவ</h1><p>A production-ready devotional knowledge universe for Lord Murugan — temples, slokas, festivals, Panchangam guidance and local AI search.</p><form class="searchbar" action="ai-search.html" method="get" role="search"><input type="search" name="q" aria-label="Search Murugan knowledge" placeholder="Search Palani, Vel, Sashti, Valli, Thiruchendur..." autocomplete="off" enterkeyhint="search"><button type="submit" class="btn">Search</button></form><p><a class="btn" href="#temples">Explore Six Abodes</a> <a class="btn secondary" href="#daily">Daily Sloka</a></p></section><aside class="hero-card"><div><div style="font-size:76px">✦</div><h2>வேல் வழி ஞானம்</h2><p>Wisdom · Courage · Protection</p></div></aside></div></section>
+ <section id="temples" class="wrap"><h2 class="section-title">ஆறுபடை வீடு</h2><p>Interactive cards for the six sacred abodes.</p><div id="templeGrid" class="grid" aria-busy="true"><div class="loading">Loading temples...</div></div></section>
+ <section id="daily" class="wrap"><h2 class="section-title">Daily Sloka</h2><div id="dailySloka" class="loading" aria-busy="true">Loading sloka...</div></section>
++<section class="wrap"><h2 class="section-title">திருப்புகழ் மின்னியல் நூலகம்</h2><div class="card"><span class="pill">Release 149 · Volume 1</span><h3>Ten verified source-linked songs</h3><p>Begin with Muththaiththaru and the first published Tirupparankundram sequence. Only manually checked full Tamil texts are included.</p><p><a class="btn" href="thiruppugazh.html">Open Thiruppugazh Library</a></p></div></section>
+ <section class="wrap"><h2 class="section-title">Festival Guidance</h2><div class="card"><h3 id="countdown">Loading...</h3><p>Festival observance dates vary by lunar calendar, location and temple tradition; confirm the exact date using an authoritative Panchangam or temple source.</p></div></section>
+ <section class="wrap"><h2 class="section-title">Murugan Festivals</h2><div id="festivalGrid" class="grid" aria-busy="true"><div class="loading">Loading festivals...</div></div></section>
+-<noscript><section class="wrap"><div class="card" role="status">JavaScript is disabled. Use the <a href="temples.html">Temple Explorer</a>, <a href="sloka-library.html">Sloka Library</a>, <a href="festivals.html">Festival Calendar</a>, or <a href="sources.html">source register</a> directly.</div></section></noscript>
++<noscript><section class="wrap"><div class="card" role="status">JavaScript is disabled. Use the <a href="temples.html">Temple Explorer</a>, <a href="sloka-library.html">Sloka Library</a>, <a href="thiruppugazh.html">Thiruppugazh Library</a>, <a href="festivals.html">Festival Calendar</a>, or <a href="sources.html">source register</a> directly.</div></section></noscript>
+ </main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="sources.html">Sources &amp; publication policy</a></footer>
+--- release148/service-worker.js
++++ release149/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '148';
++const RELEASE = '149';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -45,7 +45,19 @@
+   "/temples/palani.html",
+   "/temples/swamimalai.html",
+   "/temples/thiruthani.html",
+-  "/temples/pazhamudircholai.html"
++  "/temples/pazhamudircholai.html",
++  "/thiruppugazh.html",
++  "/data/thiruppugazh.json",
++  "/thiruppugazh/0006-muththaiththaru.html",
++  "/thiruppugazh/0007-arukku-mangkaiyar.html",
++  "/thiruppugazh/0008-unaith-thinam.html",
++  "/thiruppugazh/0009-karuvadaindhu.html",
++  "/thiruppugazh/0010-karukkum-anjana.html",
++  "/thiruppugazh/0012-kadhadarungkayal.html",
++  "/thiruppugazh/0013-sandhadham-bandha.html",
++  "/thiruppugazh/0015-thadakkai-pangkayam.html",
++  "/thiruppugazh/0016-padhiththa-senchandha.html",
++  "/thiruppugazh/0017-poruppurung.html"
+ ];
+ 
+ self.addEventListener('install', event => {
+--- release148/sitemap.xml
++++ release149/sitemap.xml
+@@ -120,4 +120,70 @@
+     <changefreq>weekly</changefreq>
+     <priority>0.8</priority>
+   </url>
++  <url>
++    <loc>https://omsaravanabhava.org/thiruppugazh.html</loc>
++    <lastmod>2026-07-11</lastmod>
++    <changefreq>weekly</changefreq>
++    <priority>0.9</priority>
++  </url>
++  <url>
++    <loc>https://omsaravanabhava.org/thiruppugazh/0006-muththaiththaru.html</loc>
++    <lastmod>2026-07-11</lastmod>
++    <changefreq>weekly</changefreq>
++    <priority>0.8</priority>
++  </url>
++  <url>
++    <loc>https://omsaravanabhava.org/thiruppugazh/0007-arukku-mangkaiyar.html</loc>
++    <lastmod>2026-07-11</lastmod>
++    <changefreq>weekly</changefreq>
++    <priority>0.8</priority>
++  </url>
++  <url>
++    <loc>https://omsaravanabhava.org/thiruppugazh/0008-unaith-thinam.html</loc>
++    <lastmod>2026-07-11</lastmod>
++    <changefreq>weekly</changefreq>
++    <priority>0.8</priority>
++  </url>
++  <url>
++    <loc>https://omsaravanabhava.org/thiruppugazh/0009-karuvadaindhu.html</loc>
++    <lastmod>2026-07-11</lastmod>
++    <changefreq>weekly</changefreq>
++    <priority>0.8</priority>
++  </url>
++  <url>
++    <loc>https://omsaravanabhava.org/thiruppugazh/0010-karukkum-anjana.html</loc>
++    <lastmod>2026-07-11</lastmod>
++    <changefreq>weekly</changefreq>
++    <priority>0.8</priority>
++  </url>
++  <url>
++    <loc>https://omsaravanabhava.org/thiruppugazh/0012-kadhadarungkayal.html</loc>
++    <lastmod>2026-07-11</lastmod>
++    <changefreq>weekly</changefreq>
++    <priority>0.8</priority>
++  </url>
++  <url>
++    <loc>https://omsaravanabhava.org/thiruppugazh/0013-sandhadham-bandha.html</loc>
++    <lastmod>2026-07-11</lastmod>
++    <changefreq>weekly</changefreq>
++    <priority>0.8</priority>
++  </url>
++  <url>
++    <loc>https://omsaravanabhava.org/thiruppugazh/0015-thadakkai-pangkayam.html</loc>
++    <lastmod>2026-07-11</lastmod>
++    <changefreq>weekly</changefreq>
++    <priority>0.8</priority>
++  </url>
++  <url>
++    <loc>https://omsaravanabhava.org/thiruppugazh/0016-padhiththa-senchandha.html</loc>
++    <lastmod>2026-07-11</lastmod>
++    <changefreq>weekly</changefreq>
++    <priority>0.8</priority>
++  </url>
++  <url>
++    <loc>https://omsaravanabhava.org/thiruppugazh/0017-poruppurung.html</loc>
++    <lastmod>2026-07-11</lastmod>
++    <changefreq>weekly</changefreq>
++    <priority>0.8</priority>
++  </url>
+ </urlset>
+--- release148/sloka-library.html
++++ release149/sloka-library.html
+@@ -32,7 +32,7 @@
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="/">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="/">Home</a> › <span aria-current="page">Sloka Library</span></p></nav>
+-<h1 class="section-title">Sloka Library</h1><p><strong>Source note:</strong> Kanda Sashti Kavasam now publishes a verified opening extract with a transparent partial-edition status. <a href="sources.html">View source records</a>.</p><div id="slokaGrid" class="grid" aria-busy="true"><div class="loading">Loading slokas...</div></div>
++<h1 class="section-title">Sloka Library</h1><p><strong>Source note:</strong> Kanda Sashti Kavasam now publishes a verified opening extract with a transparent partial-edition status. <a href="sources.html">View source records</a>.</p><section class="card" style="margin-bottom:22px"><span class="pill">New source-linked collection</span><h2>திருப்புகழ் மின்னியல் நூலகம்</h2><p>Read ten complete manually checked songs from the uploaded Arunagirinathar compilation.</p><a class="btn" href="thiruppugazh.html">Open Thiruppugazh Library</a></section><div id="slokaGrid" class="grid" aria-busy="true"><div class="loading">Loading slokas...</div></div>
+ <noscript><div class="card" role="status" style="margin-top:22px">The dynamic sloka listing requires JavaScript. Open <a href="slokas/om-saravana-bhava.html">Om Saravana Bhava</a>, <a href="slokas/subramanya-gayatri.html">Subramanya Gayatri</a>, or <a href="slokas/kanda-sashti-kavasam.html">Kanda Sashti Kavasam</a> directly.</div></noscript>
+ </main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+--- release148/sources.html
++++ release149/sources.html
+@@ -20,4 +20,4 @@
+ <meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
+ <link rel="manifest" href="manifest.json">
+ <link rel="apple-touch-icon" href="icons/icon-192.png">
+-<script defer src="assets/js/pwa-register.js"></script></head><body><a href="#main-content" class="skip-link">Skip to main content</a><div class="top">🛕 ஓம் சரவணபவ · Source-linked devotional knowledge</div><nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav><main id="main-content" class="wrap"><nav aria-label="Breadcrumb"><p><a href="/">Home</a> › <span aria-current="page">Sources</span></p></nav><h1 class="section-title">Sources &amp; Publication Policy</h1><p>Release 147 separates source-linked publication from directory entries. A page is indexed only when its published claims are tied to an identified source or an explicitly labelled traditional association.</p><section class="grid"><article class="card" id="src-thirumurugatruppadai"><span class="pill">Primary Tamil literary text</span><h2>திருமுருகாற்றுப்படை</h2><h3>Thirumurugatruppadai</h3><p><strong>Attributed author:</strong> நக்கீரர் / Nakkirar</p><p><strong>Repository source:</strong> User-uploaded file <code>திருமுருகாற்றுப்படை.docx</code></p><p><strong>Release use:</strong> Primary literary witness for the six Murugan landscapes and abodes.</p><p>This uploaded file is treated as a transcription/compilation, not as a critical scholarly edition. Release 147 cites precise internal headings and verse ranges and avoids unsupported historical claims.</p></article><article class="card" id="src-kandar-kavasangal-aaru"><span class="pill">Devotional text transcription</span><h2>கந்தர் கவசங்கள் ஆறு</h2><h3>Six Kandar Kavasams</h3><p><strong>Attributed author:</strong> ஸ்ரீ தேவராய சுவாமிகள் / Sri Devaraya Swamigal</p><p><strong>Repository source:</strong> User-uploaded file <code>திருமுருகாற்றுப்படை.docx</code></p><p><strong>Release use:</strong> Verified opening extract and source note for Kanda Sashti Kavasam.</p><p>Only the verified opening extract is published in this release. A complete critical edition remains outside Release 147.</p></article></section><section class="card" style="margin-top:22px"><h2>Publication states</h2><ul><li><strong>Published — source linked:</strong> primary-text citation is visible on the page.</li><li><strong>Partial reviewed:</strong> only the identified extract is published; completeness is not claimed.</li><li><strong>Directory review:</strong> basic navigation entry remains available but is excluded from search indexing, sitemap publication and the offline precache.</li></ul><h2>Claims deliberately deferred</h2><p>Release 147 does not claim inscription dates, architectural chronology, daily temple timings, annual festival dates or a complete critical edition of any long devotional work unless a suitable authoritative source is available.</p><p><a class="btn" href="literature/thirumurugatruppadai.html">Read the Thirumurugatruppadai cross-reference</a></p></section></main><footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="sources.html">Sources &amp; publication policy</a></footer></body></html>+<script defer src="assets/js/pwa-register.js"></script></head><body><a href="#main-content" class="skip-link">Skip to main content</a><div class="top">🛕 ஓம் சரவணபவ · Source-linked devotional knowledge</div><nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav><main id="main-content" class="wrap"><nav aria-label="Breadcrumb"><p><a href="/">Home</a> › <span aria-current="page">Sources</span></p></nav><h1 class="section-title">Sources &amp; Publication Policy</h1><p>The publication framework separates source-linked publication from directory entries. A page is indexed only when its published claims are tied to an identified source or an explicitly labelled traditional association.</p><section class="grid"><article class="card" id="src-thirumurugatruppadai"><span class="pill">Primary Tamil literary text</span><h2>திருமுருகாற்றுப்படை</h2><h3>Thirumurugatruppadai</h3><p><strong>Attributed author:</strong> நக்கீரர் / Nakkirar</p><p><strong>Repository source:</strong> User-uploaded file <code>திருமுருகாற்றுப்படை.docx</code></p><p><strong>Release use:</strong> Primary literary witness for the six Murugan landscapes and abodes.</p><p>This uploaded file is treated as a transcription/compilation, not as a critical scholarly edition. Release 147 cites precise internal headings and verse ranges and avoids unsupported historical claims.</p></article><article class="card" id="src-kandar-kavasangal-aaru"><span class="pill">Devotional text transcription</span><h2>கந்தர் கவசங்கள் ஆறு</h2><h3>Six Kandar Kavasams</h3><p><strong>Attributed author:</strong> ஸ்ரீ தேவராய சுவாமிகள் / Sri Devaraya Swamigal</p><p><strong>Repository source:</strong> User-uploaded file <code>திருமுருகாற்றுப்படை.docx</code></p><p><strong>Release use:</strong> Verified opening extract and source note for Kanda Sashti Kavasam.</p><p>Only the verified opening extract is published in this release. A complete critical edition remains outside Release 147.</p></article><article class="card" id="src-thiruppugazh-valluvar-vallalar-vattam"><span class="pill">Primary Tamil devotional text</span><h2>அருணகிரிநாதர் அருளிய திருப்புகழ்</h2><h3>Thiruppugazh — Digital Compilation</h3><p><strong>Attributed author:</strong> அருணகிரிநாதர் / Arunagirinathar</p><p><strong>Repository source:</strong> User-uploaded file <code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Release use:</strong> Primary source for the first ten manually checked digital song records.</p><p>The uploaded PDF contains 2,191 digital pages. Release 149 publishes only manually checked full Tamil song texts; OCR-only text and unverified commentary remain unpublished.</p><p><a class="btn secondary" href="thiruppugazh.html">Open Thiruppugazh Library</a></p></article></section><section class="card" style="margin-top:22px"><h2>Publication states</h2><ul><li><strong>Published — source linked:</strong> primary-text citation is visible on the page.</li><li><strong>Partial reviewed:</strong> only the identified extract is published; completeness is not claimed.</li><li><strong>Directory review:</strong> basic navigation entry remains available but is excluded from search indexing, sitemap publication and the offline precache.</li></ul><h2>Claims deliberately deferred</h2><p>The platform does not claim inscription dates, architectural chronology, daily temple timings, annual festival dates or a complete critical edition of any long devotional work unless a suitable authoritative source is available.</p><p><a class="btn" href="literature/thirumurugatruppadai.html">Read the Thirumurugatruppadai cross-reference</a></p></section></main><footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="sources.html">Sources &amp; publication policy</a></footer></body></html>--- release148/thiruppugazh.html
++++ release149/thiruppugazh.html
+@@ -0,0 +1,61 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>திருப்புகழ் மின்னியல் நூலகம் | Thiruppugazh Digital Library</title>
++<meta name="description" content="Read the first verified source-linked Thiruppugazh songs digitised from the user-uploaded Arunagirinathar compilation, with venue and rhythmic metadata.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/thiruppugazh.html">
++<meta property="og:site_name" content="Om Saravana Bhava">
++<meta property="og:type" content="website">
++<meta property="og:title" content="Thiruppugazh Digital Library | Om Saravana Bhava">
++<meta property="og:description" content="Read the first verified source-linked Thiruppugazh songs digitised from the user-uploaded Arunagirinathar compilation, with venue and rhythmic metadata.">
++<meta property="og:url" content="https://omsaravanabhava.org/thiruppugazh.html">
++<meta name="twitter:card" content="summary">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://omsaravanabhava.org/thiruppugazh.html#webpage","url":"https://omsaravanabhava.org/thiruppugazh.html","name":"Thiruppugazh Digital Library","alternateName":"திருப்புகழ் மின்னியல் நூலகம்","description":"Read the first verified source-linked Thiruppugazh songs digitised from the user-uploaded Arunagirinathar compilation, with venue and rhythmic metadata.","inLanguage":["ta","en"],"dateModified":"2026-07-11","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"about":{"@type":"Book","name":"Thiruppugazh","alternateName":"திருப்புகழ்","author":{"@type":"Person","name":"Arunagirinathar"}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Slokas","item":"https://omsaravanabhava.org/sloka-library.html"},{"@type":"ListItem","position":3,"name":"Thiruppugazh","item":"https://omsaravanabhava.org/thiruppugazh.html"}]}]}</script>
++<script defer src="assets/js/osb44.js"></script>
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="manifest.json">
++<link rel="apple-touch-icon" href="icons/icon-192.png">
++<script defer src="assets/js/pwa-register.js"></script>
++</head>
++<body data-module="thiruppugazh">
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Source-linked Thiruppugazh digitisation</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="/">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="/">Home</a> › <a href="sloka-library.html">Slokas</a> › <span aria-current="page">Thiruppugazh</span></p></nav>
++<section class="card">
++<span class="pill">Release 149 · Volume 1</span>
++<h1 class="section-title">திருப்புகழ் மின்னியல் நூலகம்</h1>
++<h2>Thiruppugazh Digital Library</h2>
++<p>Read the first verified source-linked Thiruppugazh songs digitised from the user-uploaded Arunagirinathar compilation, with venue and rhythmic metadata.</p>
++<p><strong>Publication boundary:</strong> This volume contains ten complete Tamil songs that were manually checked. Gaps in song numbering are deliberate; songs that have not completed verification are not published as filler.</p>
++<p><a class="btn secondary" href="sources.html#src-thiruppugazh-valluvar-vallalar-vattam">View source record</a></p>
++</section>
++<section class="card thiruppugazh-toolbar" aria-label="Thiruppugazh filters">
++<label for="tgq"><strong>Search songs</strong></label>
++<input type="search" id="tgq" placeholder="Title, song number, venue or Tamil text" autocomplete="off">
++<label for="tgVenue"><strong>Venue</strong></label>
++<select id="tgVenue">
++<option value="All">All published venues</option>
++<option value="Thiruvarunai">Thiruvarunai</option>
++<option value="Thirupparankundram">Thirupparankundram</option>
++</select>
++<button type="button" class="btn secondary" id="tgReset">Reset</button>
++</section>
++<p id="tgCount" role="status" aria-live="polite"></p>
++<section id="thiruppugazhGrid" class="grid" aria-busy="true"><div class="loading">Loading verified songs...</div></section>
++<noscript><div class="card" role="status">JavaScript is required for library filtering. The song pages remain available through the sitemap and source-linked internal pages.</div></noscript>
++</main>
++<div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>
+--- release148/thiruppugazh/0006-muththaiththaru.html
++++ release149/thiruppugazh/0006-muththaiththaru.html
+@@ -0,0 +1,83 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>முத்தைத்தரு | Thiruppugazh 6</title>
++<meta name="description" content="Thiruppugazh song 6, Muththaiththaru, associated with Thiruvarunai; verified Tamil text and source citation.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/thiruppugazh/0006-muththaiththaru.html">
++<meta property="og:site_name" content="Om Saravana Bhava">
++<meta property="og:type" content="article">
++<meta property="og:title" content="முத்தைத்தரு | Thiruppugazh 6">
++<meta property="og:description" content="Thiruppugazh song 6, Muththaiththaru, associated with Thiruvarunai; verified Tamil text and source citation.">
++<meta property="og:url" content="https://omsaravanabhava.org/thiruppugazh/0006-muththaiththaru.html">
++<meta name="twitter:card" content="summary">
++<link rel="stylesheet" href="../assets/css/osb44.css">
++<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CreativeWork","@id":"https://omsaravanabhava.org/thiruppugazh/0006-muththaiththaru.html#work","url":"https://omsaravanabhava.org/thiruppugazh/0006-muththaiththaru.html","name":"Muththaiththaru","alternateName":"முத்தைத்தரு","position":6,"author":{"@type":"Person","name":"Arunagirinathar"},"inLanguage":"ta","genre":"Thiruppugazh","description":"A prayer to Murugan as the supreme guru and protector, joining the teaching of sacred wisdom with vivid images of divine victory.","dateModified":"2026-07-11","isPartOf":{"@type":"CollectionPage","name":"Thiruppugazh Digital Library","url":"https://omsaravanabhava.org/thiruppugazh.html"},"citation":"697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf; பாடல் 6 (நூல்)."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Thiruppugazh","item":"https://omsaravanabhava.org/thiruppugazh.html"},{"@type":"ListItem","position":3,"name":"Muththaiththaru","item":"https://omsaravanabhava.org/thiruppugazh/0006-muththaiththaru.html"}]}]}</script>
++<link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
++</head>
++<body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Verified Thiruppugazh text</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="../">ஓம் சரவணபவ</a><div class="links"><a href="../temples.html">Temples</a><a href="../sloka-library.html">Slokas</a><a href="../festivals.html">Festivals</a><a href="../ai-search.html">AI Search</a><a href="../audio-library.html">Audio</a></div></div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="../">Home</a> › <a href="../thiruppugazh.html">Thiruppugazh</a> › <span aria-current="page">Muththaiththaru</span></p></nav>
++<article class="card">
++<span class="pill">திருப்புகழ் 6</span>
++<span class="pill">திருவருணை</span>
++<h1 class="section-title">முத்தைத்தரு</h1>
++<h2>Muththaiththaru</h2>
++<p><strong>Author:</strong> அருணகிரிநாதர் / Arunagirinathar</p>
++<p><strong>Venue:</strong> திருவருணை · Thiruvarunai literary venue</p>
++<p><strong>Chanda / rhythmic opening:</strong> <span lang="ta">தத்தத்தன தத்தத் தனதன</span></p>
++<div class="verse" lang="ta">முத்தைத்தரு பத்தித் திருநகை
++அத்திக்கிறை சத்திச் சரவண
++முத்திக்கொரு வித்துக் குருபர எனவோதும்
++
++முக்கட்பர மற்குச் சுருதியின்
++முற்பட்டது கற்பித் திருவரும்
++முப்பத்துமு வர்க்கத் தமரரும் அடிபேணப்
++
++பத்துத்தலை தத்தக் கணைதொடு
++ஒற்றைக்கிரி மத்தைப் பொருதொரு
++பட்டப்பகல் வட்டத் திகிரியில் இரவாகப்
++
++பத்தற்கிர தத்தைக் கடவிய
++பச்சைப்புயல் மெச்சத் தகுபொருள்
++பட்சத்தொடு ரட்சித் தருள்வதும் ஒருநாளே
++
++தித்தித்தெய ஒத்தப் பரிபுர
++நிர்த்தப்பதம் வைத்துப் பயிரவி
++திக்கொட்கந டிக்கக் கழுகொடு கழுதாடத்
++
++திக்குப்பரி அட்டப் பயிரவர்
++தொக்குத்தொகு தொக்குத் தொகுதொகு
++சித்ரப்பவு ரிக்குத் த்ரிகடக எனவோதக்
++
++கொத்துப்பறை கொட்டக் களமிசை
++குக்குக்குகு குக்குக் குகுகுகு
++குத்திப்புதை புக்குப் பிடியென முதுகூகை
++
++கொட்புற்றெழ நட்பற் றவுணரை
++வெட்டிப்பலி யிட்டுக் குலகிரி
++குத்துப்பட ஒத்துப் பொரவல பெருமாளே.</div>
++</article>
++<section class="grid" style="margin-top:22px">
++<article class="card"><h2>Editorial reading guide</h2><p>A prayer to Murugan as the supreme guru and protector, joining the teaching of sacred wisdom with vivid images of divine victory.</p><p>This is an editorial orientation, not a line-by-line translation.</p></article>
++<article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 6 (நூல்)</p><p>The Tamil song text was manually checked before publication. OCR-only material was excluded.</p><p><a class="btn secondary" href="../sources.html#src-thiruppugazh-valluvar-vallalar-vattam">Open source record</a></p></article>
++</section>
++<nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0007-arukku-mangkaiyar.html">அருக்கு மங்கையர் →</a></nav>
++</main>
++<div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>
+--- release148/thiruppugazh/0007-arukku-mangkaiyar.html
++++ release149/thiruppugazh/0007-arukku-mangkaiyar.html
+@@ -0,0 +1,83 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>அருக்கு மங்கையர் | Thiruppugazh 7</title>
++<meta name="description" content="Thiruppugazh song 7, Arukku Mangkaiyar, associated with Thirupparankundram; verified Tamil text and source citation.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/thiruppugazh/0007-arukku-mangkaiyar.html">
++<meta property="og:site_name" content="Om Saravana Bhava">
++<meta property="og:type" content="article">
++<meta property="og:title" content="அருக்கு மங்கையர் | Thiruppugazh 7">
++<meta property="og:description" content="Thiruppugazh song 7, Arukku Mangkaiyar, associated with Thirupparankundram; verified Tamil text and source citation.">
++<meta property="og:url" content="https://omsaravanabhava.org/thiruppugazh/0007-arukku-mangkaiyar.html">
++<meta name="twitter:card" content="summary">
++<link rel="stylesheet" href="../assets/css/osb44.css">
++<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CreativeWork","@id":"https://omsaravanabhava.org/thiruppugazh/0007-arukku-mangkaiyar.html#work","url":"https://omsaravanabhava.org/thiruppugazh/0007-arukku-mangkaiyar.html","name":"Arukku Mangkaiyar","alternateName":"அருக்கு மங்கையர்","position":7,"author":{"@type":"Person","name":"Arunagirinathar"},"inLanguage":"ta","genre":"Thiruppugazh","description":"A confession of sensual entanglement that turns toward Murugan, Tamil poetry and the saving presence of Tirupparankundram.","dateModified":"2026-07-11","isPartOf":{"@type":"CollectionPage","name":"Thiruppugazh Digital Library","url":"https://omsaravanabhava.org/thiruppugazh.html"},"citation":"697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf; பாடல் 7 (திருப்பரங்குன்றம்)."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Thiruppugazh","item":"https://omsaravanabhava.org/thiruppugazh.html"},{"@type":"ListItem","position":3,"name":"Arukku Mangkaiyar","item":"https://omsaravanabhava.org/thiruppugazh/0007-arukku-mangkaiyar.html"}]}]}</script>
++<link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
++</head>
++<body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Verified Thiruppugazh text</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="../">ஓம் சரவணபவ</a><div class="links"><a href="../temples.html">Temples</a><a href="../sloka-library.html">Slokas</a><a href="../festivals.html">Festivals</a><a href="../ai-search.html">AI Search</a><a href="../audio-library.html">Audio</a></div></div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="../">Home</a> › <a href="../thiruppugazh.html">Thiruppugazh</a> › <span aria-current="page">Arukku Mangkaiyar</span></p></nav>
++<article class="card">
++<span class="pill">திருப்புகழ் 7</span>
++<span class="pill">திருப்பரங்குன்றம்</span>
++<h1 class="section-title">அருக்கு மங்கையர்</h1>
++<h2>Arukku Mangkaiyar</h2>
++<p><strong>Author:</strong> அருணகிரிநாதர் / Arunagirinathar</p>
++<p><strong>Venue:</strong> திருப்பரங்குன்றம் · <a href="../temples/thirupparamkundram.html">Thirupparankundram temple page</a></p>
++<p><strong>Chanda / rhythmic opening:</strong> <span lang="ta">தனத்த தந்தன தனதன தனதன</span></p>
++<div class="verse" lang="ta">அருக்கு மங்கையர் மலரடி வருடியெ
++கருத்த றிந்துபின் அரைதனில் உடைதனை
++அவிழ்த்தும் அங்குள அரசிலை தடவியும் இருதோளுற்
++
++றணைத்தும் அங்கையின் அடிதொறும் நகமெழ
++உதட்டை மென்றுபல் இடுகுறி களுமிட
++அடிக்க ளந்தனில் மயில்குயில் புறவென மிகவாய்விட்
++
++டுருக்கும் அங்கியின் மெழுகென உருகிய
++சிரத்தை மிஞ்சிடும் அநுபவம் உறுபலம்
++உறக்கை யின்கனி நிகரென இலகிய முலைமேல்வீழ்ந்
++
++துருக்க லங்கிமெய் உருகிட அமுதுகு
++பெருத்த உந்தியின் முழுகிமெ யுணர்வற
++உழைத்தி டுங்கன கலவியை மகிழ்வது தவிர்வேனோ
++
++இருக்கு மந்திரம் எழுவகை முநிபெற
++உரைத்த சம்ப்ரம சரவண பவகுக
++இதத்த இங்கிதம் இலகிய அறுமுக எழில்வேளென்
++
++றிலக்க ணங்களும் இயலிசை களுமிக
++விரிக்கும் அம்பல மதுரித கவிதனை
++இயற்று செந்தமிழ் விதமொடு புயமிசை புனைவோனே
++
++செருக்கும் அம்பல மிசைதனில் அசைவுற
++நடித்த சங்கரர் வழிவழி அடியவர்
++திருக்கு ருந்தடி அருள்பெற அருளிய குருநாதர்
++
++திருக்கு ழந்தையு மெனஅவர் வழிபடு
++குருக்க ளின்திற மெனவரு பெரியவ
++திருப்ப ரங்கிரி தனிலுறை சரவண பெருமாளே.</div>
++</article>
++<section class="grid" style="margin-top:22px">
++<article class="card"><h2>Editorial reading guide</h2><p>A confession of sensual entanglement that turns toward Murugan, Tamil poetry and the saving presence of Tirupparankundram.</p><p>This is an editorial orientation, not a line-by-line translation.</p></article>
++<article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 7 (திருப்பரங்குன்றம்)</p><p>The Tamil song text was manually checked before publication. OCR-only material was excluded.</p><p><a class="btn secondary" href="../sources.html#src-thiruppugazh-valluvar-vallalar-vattam">Open source record</a></p></article>
++</section>
++<nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0006-muththaiththaru.html">← முத்தைத்தரு</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0008-unaith-thinam.html">உனைத் தினம் →</a></nav>
++</main>
++<div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>
+--- release148/thiruppugazh/0008-unaith-thinam.html
++++ release149/thiruppugazh/0008-unaith-thinam.html
+@@ -0,0 +1,83 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>உனைத் தினம் | Thiruppugazh 8</title>
++<meta name="description" content="Thiruppugazh song 8, Unaith Thinam, associated with Thirupparankundram; verified Tamil text and source citation.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/thiruppugazh/0008-unaith-thinam.html">
++<meta property="og:site_name" content="Om Saravana Bhava">
++<meta property="og:type" content="article">
++<meta property="og:title" content="உனைத் தினம் | Thiruppugazh 8">
++<meta property="og:description" content="Thiruppugazh song 8, Unaith Thinam, associated with Thirupparankundram; verified Tamil text and source citation.">
++<meta property="og:url" content="https://omsaravanabhava.org/thiruppugazh/0008-unaith-thinam.html">
++<meta name="twitter:card" content="summary">
++<link rel="stylesheet" href="../assets/css/osb44.css">
++<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CreativeWork","@id":"https://omsaravanabhava.org/thiruppugazh/0008-unaith-thinam.html#work","url":"https://omsaravanabhava.org/thiruppugazh/0008-unaith-thinam.html","name":"Unaith Thinam","alternateName":"உனைத் தினம்","position":8,"author":{"@type":"Person","name":"Arunagirinathar"},"inLanguage":"ta","genre":"Thiruppugazh","description":"A candid admission of neglected worship and a plea that Murugan arrive on the peacock when fear and mortality close in.","dateModified":"2026-07-11","isPartOf":{"@type":"CollectionPage","name":"Thiruppugazh Digital Library","url":"https://omsaravanabhava.org/thiruppugazh.html"},"citation":"697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf; பாடல் 8 (திருப்பரங்குன்றம்)."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Thiruppugazh","item":"https://omsaravanabhava.org/thiruppugazh.html"},{"@type":"ListItem","position":3,"name":"Unaith Thinam","item":"https://omsaravanabhava.org/thiruppugazh/0008-unaith-thinam.html"}]}]}</script>
++<link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
++</head>
++<body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Verified Thiruppugazh text</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="../">ஓம் சரவணபவ</a><div class="links"><a href="../temples.html">Temples</a><a href="../sloka-library.html">Slokas</a><a href="../festivals.html">Festivals</a><a href="../ai-search.html">AI Search</a><a href="../audio-library.html">Audio</a></div></div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="../">Home</a> › <a href="../thiruppugazh.html">Thiruppugazh</a> › <span aria-current="page">Unaith Thinam</span></p></nav>
++<article class="card">
++<span class="pill">திருப்புகழ் 8</span>
++<span class="pill">திருப்பரங்குன்றம்</span>
++<h1 class="section-title">உனைத் தினம்</h1>
++<h2>Unaith Thinam</h2>
++<p><strong>Author:</strong> அருணகிரிநாதர் / Arunagirinathar</p>
++<p><strong>Venue:</strong> திருப்பரங்குன்றம் · <a href="../temples/thirupparamkundram.html">Thirupparankundram temple page</a></p>
++<p><strong>Chanda / rhythmic opening:</strong> <span lang="ta">தனத்த தந்தன தனதன தனதன</span></p>
++<div class="verse" lang="ta">உனைத்தி னந்தொழு திலனுன தியல்பினை
++உரைத்தி லன்பல மலர்கொடுன் அடியிணை
++உறப்ப ணிந்திலன் ஒருதவ மிலனுன தருள்மாறா
++
++உளத்து ளன்பினர் உறைவிடம் அறிகிலன்
++விருப்பொ டுன்சிக ரமும்வலம் வருகிலன்
++உவப்பொ டுன்புகழ் துதிசெய விழைகிலன் மலைபோலே
++
++கனைத்தெ ழும்பக டதுபிடர் மிசைவரு
++கறுத்த வெஞ்சின மறலிதன் உழையினர்
++கதித்த டர்ந்தெறி கயிறடு கதைகொடு பொருபோதே
++
++கலக்கு றுஞ்செயல் ஒழிவற அழிவுறு
++கருத்து நைந்தல முறுபொழு தளவைகொள்
++கணத்தில் என்பய மறமயில் முதுகினில் வருவாயே
++
++வினைத்த லந்தனில் அலகைகள் குதிகொள
++விழுக்கு டைந்துமெய் உகுதசை கழுகுண
++விரித்த குஞ்சியர் எனுமவு ணரைஅமர் புரிவேலா
++
++மிகுத்த பண்பயில் குயில்மொழி அழகிய
++கொடிச்சி குங்கும முலைமுக டுழுநறை
++விரைத்த சந்தன ம்ருகமத புயவரை உடையோனே
++
++தினத்தி னஞ்சதுர் மறைமுநி முறைகொடு
++புனற்சொ ரிந்தலர் பொதியவி ணவரொடு
++சினத்தை நிந்தனை செயுமுநி வரர்தொழ மகிழ்வோனே
++
++தெனத்தெ னந்தன எனவரி யளிநறை
++தெவிட்ட அன்பொடு பருகுயர் பொழில்திகழ்
++திருப் பரங்கிரி தனிலுறை சரவண பெருமாளே.</div>
++</article>
++<section class="grid" style="margin-top:22px">
++<article class="card"><h2>Editorial reading guide</h2><p>A candid admission of neglected worship and a plea that Murugan arrive on the peacock when fear and mortality close in.</p><p>This is an editorial orientation, not a line-by-line translation.</p></article>
++<article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 8 (திருப்பரங்குன்றம்)</p><p>The Tamil song text was manually checked before publication. OCR-only material was excluded.</p><p><a class="btn secondary" href="../sources.html#src-thiruppugazh-valluvar-vallalar-vattam">Open source record</a></p></article>
++</section>
++<nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0007-arukku-mangkaiyar.html">← அருக்கு மங்கையர்</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0009-karuvadaindhu.html">கருவடைந்து →</a></nav>
++</main>
++<div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>
+--- release148/thiruppugazh/0009-karuvadaindhu.html
++++ release149/thiruppugazh/0009-karuvadaindhu.html
+@@ -0,0 +1,83 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>கருவடைந்து | Thiruppugazh 9</title>
++<meta name="description" content="Thiruppugazh song 9, Karuvadaindhu, associated with Thirupparankundram; verified Tamil text and source citation.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/thiruppugazh/0009-karuvadaindhu.html">
++<meta property="og:site_name" content="Om Saravana Bhava">
++<meta property="og:type" content="article">
++<meta property="og:title" content="கருவடைந்து | Thiruppugazh 9">
++<meta property="og:description" content="Thiruppugazh song 9, Karuvadaindhu, associated with Thirupparankundram; verified Tamil text and source citation.">
++<meta property="og:url" content="https://omsaravanabhava.org/thiruppugazh/0009-karuvadaindhu.html">
++<meta name="twitter:card" content="summary">
++<link rel="stylesheet" href="../assets/css/osb44.css">
++<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CreativeWork","@id":"https://omsaravanabhava.org/thiruppugazh/0009-karuvadaindhu.html#work","url":"https://omsaravanabhava.org/thiruppugazh/0009-karuvadaindhu.html","name":"Karuvadaindhu","alternateName":"கருவடைந்து","position":9,"author":{"@type":"Person","name":"Arunagirinathar"},"inLanguage":"ta","genre":"Thiruppugazh","description":"A reflection on birth, growth, desire and suffering that asks when Murugan’s grace will finally settle in the heart.","dateModified":"2026-07-11","isPartOf":{"@type":"CollectionPage","name":"Thiruppugazh Digital Library","url":"https://omsaravanabhava.org/thiruppugazh.html"},"citation":"697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf; பாடல் 9 (திருப்பரங்குன்றம்)."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Thiruppugazh","item":"https://omsaravanabhava.org/thiruppugazh.html"},{"@type":"ListItem","position":3,"name":"Karuvadaindhu","item":"https://omsaravanabhava.org/thiruppugazh/0009-karuvadaindhu.html"}]}]}</script>
++<link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
++</head>
++<body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Verified Thiruppugazh text</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="../">ஓம் சரவணபவ</a><div class="links"><a href="../temples.html">Temples</a><a href="../sloka-library.html">Slokas</a><a href="../festivals.html">Festivals</a><a href="../ai-search.html">AI Search</a><a href="../audio-library.html">Audio</a></div></div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="../">Home</a> › <a href="../thiruppugazh.html">Thiruppugazh</a> › <span aria-current="page">Karuvadaindhu</span></p></nav>
++<article class="card">
++<span class="pill">திருப்புகழ் 9</span>
++<span class="pill">திருப்பரங்குன்றம்</span>
++<h1 class="section-title">கருவடைந்து</h1>
++<h2>Karuvadaindhu</h2>
++<p><strong>Author:</strong> அருணகிரிநாதர் / Arunagirinathar</p>
++<p><strong>Venue:</strong> திருப்பரங்குன்றம் · <a href="../temples/thirupparamkundram.html">Thirupparankundram temple page</a></p>
++<p><strong>Chanda / rhythmic opening:</strong> <span lang="ta">தனனதந்த தத்தத்த தந்த</span></p>
++<div class="verse" lang="ta">கருவடைந்து பத்துற்ற திங்கள்
++வயிறிருந்து முற்றிப்ப யின்று
++கடையில்வந்து தித்துக்கு ழந்தை வடிவாகிக்
++
++கழுவியங்கெ டுத்துச்சு ரந்த
++முலையருந்து விக்கக்கி டந்து
++கதறியங்கை கொட்டித்த வழ்ந்து நடமாடி
++
++அரைவடங்கள் கட்டிச்ச தங்கை
++இடுகுதம்பை பொற்சுட்டி தண்டை
++அவையணிந்து முற்றிக்கி ளர்ந்து வயதேறி
++
++அரியபெண்கள் நட்பைப்பு ணர்ந்து
++பிணியுழன்று சுற்றித்தி ரிந்த
++தமையுமுன்க்ரு பைச்சித்தம் என்று பெறுவேனோ
++
++இரவிஇந்த்ரன் வெற்றிக்கு ரங்கி
++னரசரென்றும் ஒப்பற்ற உந்தி
++யிறைவன்எண்கி னக்கர்த்த னென்றும் நெடுநீலன்
++
++எரியதென்றும் ருத்ரற்சி றந்த
++அநுமனென்றும் ஒப்பற்ற அண்டர்
++எவரும்இந்த வர்க்கத்தில் வந்து புனமேவ
++
++அரியதன்ப டைக்கர்த்த ரென்று
++அசுரர்தங்கி ளைக்கட்டை வென்ற
++அரிமுகுந்தன் மெச்சுற்ற பண்பின் மருகோனே
++
++அயனையும்பு டைத்துச்சி னந்து
++உலகமும்ப டைத்துப்ப ரிந்து
++அருள்பரங்கி ரிக்குட்சி றந்த பெருமாளே.</div>
++</article>
++<section class="grid" style="margin-top:22px">
++<article class="card"><h2>Editorial reading guide</h2><p>A reflection on birth, growth, desire and suffering that asks when Murugan’s grace will finally settle in the heart.</p><p>This is an editorial orientation, not a line-by-line translation.</p></article>
++<article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 9 (திருப்பரங்குன்றம்)</p><p>The Tamil song text was manually checked before publication. OCR-only material was excluded.</p><p><a class="btn secondary" href="../sources.html#src-thiruppugazh-valluvar-vallalar-vattam">Open source record</a></p></article>
++</section>
++<nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0008-unaith-thinam.html">← உனைத் தினம்</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0010-karukkum-anjana.html">கறுக்கும் அஞ்சன →</a></nav>
++</main>
++<div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>
+--- release148/thiruppugazh/0010-karukkum-anjana.html
++++ release149/thiruppugazh/0010-karukkum-anjana.html
+@@ -0,0 +1,83 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>கறுக்கும் அஞ்சன | Thiruppugazh 10</title>
++<meta name="description" content="Thiruppugazh song 10, Karukkum Anjana, associated with Thirupparankundram; verified Tamil text and source citation.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/thiruppugazh/0010-karukkum-anjana.html">
++<meta property="og:site_name" content="Om Saravana Bhava">
++<meta property="og:type" content="article">
++<meta property="og:title" content="கறுக்கும் அஞ்சன | Thiruppugazh 10">
++<meta property="og:description" content="Thiruppugazh song 10, Karukkum Anjana, associated with Thirupparankundram; verified Tamil text and source citation.">
++<meta property="og:url" content="https://omsaravanabhava.org/thiruppugazh/0010-karukkum-anjana.html">
++<meta name="twitter:card" content="summary">
++<link rel="stylesheet" href="../assets/css/osb44.css">
++<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CreativeWork","@id":"https://omsaravanabhava.org/thiruppugazh/0010-karukkum-anjana.html#work","url":"https://omsaravanabhava.org/thiruppugazh/0010-karukkum-anjana.html","name":"Karukkum Anjana","alternateName":"கறுக்கும் அஞ்சன","position":10,"author":{"@type":"Person","name":"Arunagirinathar"},"inLanguage":"ta","genre":"Thiruppugazh","description":"A plea for release from deceptive attraction, followed by praise of Murugan’s radiant spear and victorious power.","dateModified":"2026-07-11","isPartOf":{"@type":"CollectionPage","name":"Thiruppugazh Digital Library","url":"https://omsaravanabhava.org/thiruppugazh.html"},"citation":"697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf; பாடல் 10 (திருப்பரங்குன்றம்)."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Thiruppugazh","item":"https://omsaravanabhava.org/thiruppugazh.html"},{"@type":"ListItem","position":3,"name":"Karukkum Anjana","item":"https://omsaravanabhava.org/thiruppugazh/0010-karukkum-anjana.html"}]}]}</script>
++<link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
++</head>
++<body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Verified Thiruppugazh text</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="../">ஓம் சரவணபவ</a><div class="links"><a href="../temples.html">Temples</a><a href="../sloka-library.html">Slokas</a><a href="../festivals.html">Festivals</a><a href="../ai-search.html">AI Search</a><a href="../audio-library.html">Audio</a></div></div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="../">Home</a> › <a href="../thiruppugazh.html">Thiruppugazh</a> › <span aria-current="page">Karukkum Anjana</span></p></nav>
++<article class="card">
++<span class="pill">திருப்புகழ் 10</span>
++<span class="pill">திருப்பரங்குன்றம்</span>
++<h1 class="section-title">கறுக்கும் அஞ்சன</h1>
++<h2>Karukkum Anjana</h2>
++<p><strong>Author:</strong> அருணகிரிநாதர் / Arunagirinathar</p>
++<p><strong>Venue:</strong> திருப்பரங்குன்றம் · <a href="../temples/thirupparamkundram.html">Thirupparankundram temple page</a></p>
++<p><strong>Chanda / rhythmic opening:</strong> <span lang="ta">தந்தன தனதன தனதன</span></p>
++<div class="verse" lang="ta">கறுக்கும் அஞ்சன விழியிணை அயில்கொடு
++நெருக்கி நெஞ்சற எறிதரு பொழுதொரு
++கனிக்குள் இன்சுவை அமுதுகும் ஒருசிறு நகையாலே
++
++களக்கொ ழுங்கலி வலைகொடு விசிறியெ
++மனைக்கெ ழுந்திரும் எனமனம் உருகஒர்
++கவற்சி கொண்டிட மனைதனில் அழகொடு கொடுபோகி
++
++நறைத்த பஞ்சணை மிசையினில் மனமுற
++அணைத்த கந்தனில் இணைமுலை எதிர்பொர
++நகத்த ழுந்திட அமுதிதழ் பருகியு மிடறூடே
++
++நடித்தெ ழுங்குரல் குமுகுமு குமுவென
++இசைத்து நன்கொடு மனமது மறுகிட
++நழுப்பு நஞ்சன சிறுமிகள் துயரற அருள்வாயே
++
++நிறைத்த தெண்டிரை மொகுமொகு மொகுவென
++உரத்த கஞ்சுகி முடிநெறு நெறுவென
++நிறைத்த அண்டமு கடுகிடு கிடுவென வரைபோலும்
++
++நிவத்த திண்கழல் நிசிசர ருரமொடு
++சிரக்கொ டுங்குவை மலைபுரை தரஇரு
++நிணக்கு ழம்பொடு குருதிகள் சொரிதர அடுதீரா
++
++திறற்க ருங்குழல் உமையவள் அருளுறு
++புழைக்கை தண்கட கயமுக மிகவுள
++சிவக்கொ ழுந்தன கணபதி யுடன்வரும் இளையோனே
++
++சினத்தொ டுஞ்சமன் உதைபட நிறுவிய
++பரற்கு ளன்புறு புதல்வநன் மணியுகு
++திருப்ப ரங்கிரி தனிலுறை சரவண பெருமாளே.</div>
++</article>
++<section class="grid" style="margin-top:22px">
++<article class="card"><h2>Editorial reading guide</h2><p>A plea for release from deceptive attraction, followed by praise of Murugan’s radiant spear and victorious power.</p><p>This is an editorial orientation, not a line-by-line translation.</p></article>
++<article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 10 (திருப்பரங்குன்றம்)</p><p>The Tamil song text was manually checked before publication. OCR-only material was excluded.</p><p><a class="btn secondary" href="../sources.html#src-thiruppugazh-valluvar-vallalar-vattam">Open source record</a></p></article>
++</section>
++<nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0009-karuvadaindhu.html">← கருவடைந்து</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0012-kadhadarungkayal.html">காதடருங்கயல் →</a></nav>
++</main>
++<div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>
+--- release148/thiruppugazh/0012-kadhadarungkayal.html
++++ release149/thiruppugazh/0012-kadhadarungkayal.html
+@@ -0,0 +1,83 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>காதடருங்கயல் | Thiruppugazh 12</title>
++<meta name="description" content="Thiruppugazh song 12, Kadhadarungkayal, associated with Thirupparankundram; verified Tamil text and source citation.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/thiruppugazh/0012-kadhadarungkayal.html">
++<meta property="og:site_name" content="Om Saravana Bhava">
++<meta property="og:type" content="article">
++<meta property="og:title" content="காதடருங்கயல் | Thiruppugazh 12">
++<meta property="og:description" content="Thiruppugazh song 12, Kadhadarungkayal, associated with Thirupparankundram; verified Tamil text and source citation.">
++<meta property="og:url" content="https://omsaravanabhava.org/thiruppugazh/0012-kadhadarungkayal.html">
++<meta name="twitter:card" content="summary">
++<link rel="stylesheet" href="../assets/css/osb44.css">
++<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CreativeWork","@id":"https://omsaravanabhava.org/thiruppugazh/0012-kadhadarungkayal.html#work","url":"https://omsaravanabhava.org/thiruppugazh/0012-kadhadarungkayal.html","name":"Kadhadarungkayal","alternateName":"காதடருங்கயல்","position":12,"author":{"@type":"Person","name":"Arunagirinathar"},"inLanguage":"ta","genre":"Thiruppugazh","description":"A prayer to escape the turbulence of desire and receive Murugan’s ankleted feet as the stable centre of devotion.","dateModified":"2026-07-11","isPartOf":{"@type":"CollectionPage","name":"Thiruppugazh Digital Library","url":"https://omsaravanabhava.org/thiruppugazh.html"},"citation":"697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf; பாடல் 12 (திருப்பரங்குன்றம்)."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Thiruppugazh","item":"https://omsaravanabhava.org/thiruppugazh.html"},{"@type":"ListItem","position":3,"name":"Kadhadarungkayal","item":"https://omsaravanabhava.org/thiruppugazh/0012-kadhadarungkayal.html"}]}]}</script>
++<link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
++</head>
++<body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Verified Thiruppugazh text</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="../">ஓம் சரவணபவ</a><div class="links"><a href="../temples.html">Temples</a><a href="../sloka-library.html">Slokas</a><a href="../festivals.html">Festivals</a><a href="../ai-search.html">AI Search</a><a href="../audio-library.html">Audio</a></div></div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="../">Home</a> › <a href="../thiruppugazh.html">Thiruppugazh</a> › <span aria-current="page">Kadhadarungkayal</span></p></nav>
++<article class="card">
++<span class="pill">திருப்புகழ் 12</span>
++<span class="pill">திருப்பரங்குன்றம்</span>
++<h1 class="section-title">காதடருங்கயல்</h1>
++<h2>Kadhadarungkayal</h2>
++<p><strong>Author:</strong> அருணகிரிநாதர் / Arunagirinathar</p>
++<p><strong>Venue:</strong> திருப்பரங்குன்றம் · <a href="../temples/thirupparamkundram.html">Thirupparankundram temple page</a></p>
++<p><strong>Chanda / rhythmic opening:</strong> <span lang="ta">தானன தந்தன தந்தனந் தந்தன</span></p>
++<div class="verse" lang="ta">காதட ருங்கயல் கொண்டிசைந் தைம்பொறி
++வாளிம யங்கம னம்பயந் தந்திருள்
++கால்தர விந்துவி சும்பிலங் கும்பொழு தொருகோடி
++
++காய்கதி ரென்றொளிர் செஞ்சிலம் புங்கணை
++யாழியு டன்கட கந்துலங் கும்படி
++காமனெ டுஞ்சிலை கொண்டடர்ந் தும்பொரு மயலாலே
++
++வாதுபு ரிந்தவர் செங்கைதந் திங்கித
++மாகந டந்தவர் பின்திரிந் துந்தன
++மார்பில ழுந்தஅ ணைந்திடுந் துன்பம துழலாதே
++
++வாசமி குந்தக டம்பமென் கிண்கிணி
++மாலைக ரங்கொளும் அன்பர்வந் தன்பொடு
++வாழநி தம்புனை யும்பதந் தந்துன தருள்தாராய்
++
++போதிலு றைந்தருள் கின்றவன் செஞ்சிர
++மீதுத டிந்துவி லங்கிடும் புங்கவ
++போதவ ளஞ்சிவ சங்கரன் கொண்டிட மொழிவோனே
++
++பூகமு டன்திகழ் சங்கினங் கொண்டகி
++ரீவம டந்தைபு ரந்தரன் தந்தருள்
++பூவைக ருங்குற மின்கலந் தங்குப னிருதோளா
++
++தீதக மொன்றினர் வஞ்சகந் துஞ்சியி
++டாதவர் சங்கரர் தந்ததென் பும்பல
++சேர்நிரு தன்குலம் அஞ்சமுன் சென்றடு திறலோனே
++
++சீதள முந்தும ணந்தயங் கும்பொழில்
++சூழ்தர விஞ்சைகள் வந்திறைஞ் சும்பதி
++தேவர்ப ணிந்தெழு தென்பரங் குன்றுறை பெருமாளே.</div>
++</article>
++<section class="grid" style="margin-top:22px">
++<article class="card"><h2>Editorial reading guide</h2><p>A prayer to escape the turbulence of desire and receive Murugan’s ankleted feet as the stable centre of devotion.</p><p>This is an editorial orientation, not a line-by-line translation.</p></article>
++<article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 12 (திருப்பரங்குன்றம்)</p><p>The Tamil song text was manually checked before publication. OCR-only material was excluded.</p><p><a class="btn secondary" href="../sources.html#src-thiruppugazh-valluvar-vallalar-vattam">Open source record</a></p></article>
++</section>
++<nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0010-karukkum-anjana.html">← கறுக்கும் அஞ்சன</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0013-sandhadham-bandha.html">சந்ததம் பந்த →</a></nav>
++</main>
++<div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>
+--- release148/thiruppugazh/0013-sandhadham-bandha.html
++++ release149/thiruppugazh/0013-sandhadham-bandha.html
+@@ -0,0 +1,63 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>சந்ததம் பந்த | Thiruppugazh 13</title>
++<meta name="description" content="Thiruppugazh song 13, Sandhadham Bandha, associated with Thirupparankundram; verified Tamil text and source citation.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/thiruppugazh/0013-sandhadham-bandha.html">
++<meta property="og:site_name" content="Om Saravana Bhava">
++<meta property="og:type" content="article">
++<meta property="og:title" content="சந்ததம் பந்த | Thiruppugazh 13">
++<meta property="og:description" content="Thiruppugazh song 13, Sandhadham Bandha, associated with Thirupparankundram; verified Tamil text and source citation.">
++<meta property="og:url" content="https://omsaravanabhava.org/thiruppugazh/0013-sandhadham-bandha.html">
++<meta name="twitter:card" content="summary">
++<link rel="stylesheet" href="../assets/css/osb44.css">
++<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CreativeWork","@id":"https://omsaravanabhava.org/thiruppugazh/0013-sandhadham-bandha.html#work","url":"https://omsaravanabhava.org/thiruppugazh/0013-sandhadham-bandha.html","name":"Sandhadham Bandha","alternateName":"சந்ததம் பந்த","position":13,"author":{"@type":"Person","name":"Arunagirinathar"},"inLanguage":"ta","genre":"Thiruppugazh","description":"A compact prayer to leave the restless chain of attachment and behold Kandan every day with sustained love.","dateModified":"2026-07-11","isPartOf":{"@type":"CollectionPage","name":"Thiruppugazh Digital Library","url":"https://omsaravanabhava.org/thiruppugazh.html"},"citation":"697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf; பாடல் 13 (திருப்பரங்குன்றம்)."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Thiruppugazh","item":"https://omsaravanabhava.org/thiruppugazh.html"},{"@type":"ListItem","position":3,"name":"Sandhadham Bandha","item":"https://omsaravanabhava.org/thiruppugazh/0013-sandhadham-bandha.html"}]}]}</script>
++<link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
++</head>
++<body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Verified Thiruppugazh text</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="../">ஓம் சரவணபவ</a><div class="links"><a href="../temples.html">Temples</a><a href="../sloka-library.html">Slokas</a><a href="../festivals.html">Festivals</a><a href="../ai-search.html">AI Search</a><a href="../audio-library.html">Audio</a></div></div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="../">Home</a> › <a href="../thiruppugazh.html">Thiruppugazh</a> › <span aria-current="page">Sandhadham Bandha</span></p></nav>
++<article class="card">
++<span class="pill">திருப்புகழ் 13</span>
++<span class="pill">திருப்பரங்குன்றம்</span>
++<h1 class="section-title">சந்ததம் பந்த</h1>
++<h2>Sandhadham Bandha</h2>
++<p><strong>Author:</strong> அருணகிரிநாதர் / Arunagirinathar</p>
++<p><strong>Venue:</strong> திருப்பரங்குன்றம் · <a href="../temples/thirupparamkundram.html">Thirupparankundram temple page</a></p>
++<p><strong>Chanda / rhythmic opening:</strong> <span lang="ta">தந்தனந் தந்தத் தனதான</span></p>
++<div class="verse" lang="ta">சந்ததம் பந்தத் தொடராலே
++சஞ்சலந் துஞ்சித் திரியாதே
++
++கந்தனென் றென்றுற் றுனைநாளும்
++கண்டுகொண் டன்புற் றிடுவேனோ
++
++தந்தியின் கொம்பைப் புணர்வோனே
++சங்கரன் பங்கிற் சிவைபாலா
++
++செந்திலங் கண்டிக் கதிர்வேலா
++தென்பரங் குன்றிற் பெருமாளே.</div>
++</article>
++<section class="grid" style="margin-top:22px">
++<article class="card"><h2>Editorial reading guide</h2><p>A compact prayer to leave the restless chain of attachment and behold Kandan every day with sustained love.</p><p>This is an editorial orientation, not a line-by-line translation.</p></article>
++<article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 13 (திருப்பரங்குன்றம்)</p><p>The Tamil song text was manually checked before publication. OCR-only material was excluded.</p><p><a class="btn secondary" href="../sources.html#src-thiruppugazh-valluvar-vallalar-vattam">Open source record</a></p></article>
++</section>
++<nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0012-kadhadarungkayal.html">← காதடருங்கயல்</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0015-thadakkai-pangkayam.html">தடக்கைப் பங்கயம் →</a></nav>
++</main>
++<div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>
+--- release148/thiruppugazh/0015-thadakkai-pangkayam.html
++++ release149/thiruppugazh/0015-thadakkai-pangkayam.html
+@@ -0,0 +1,75 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>தடக்கைப் பங்கயம் | Thiruppugazh 15</title>
++<meta name="description" content="Thiruppugazh song 15, Thadakkai Pangkayam, associated with Thirupparankundram; verified Tamil text and source citation.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/thiruppugazh/0015-thadakkai-pangkayam.html">
++<meta property="og:site_name" content="Om Saravana Bhava">
++<meta property="og:type" content="article">
++<meta property="og:title" content="தடக்கைப் பங்கயம் | Thiruppugazh 15">
++<meta property="og:description" content="Thiruppugazh song 15, Thadakkai Pangkayam, associated with Thirupparankundram; verified Tamil text and source citation.">
++<meta property="og:url" content="https://omsaravanabhava.org/thiruppugazh/0015-thadakkai-pangkayam.html">
++<meta name="twitter:card" content="summary">
++<link rel="stylesheet" href="../assets/css/osb44.css">
++<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CreativeWork","@id":"https://omsaravanabhava.org/thiruppugazh/0015-thadakkai-pangkayam.html#work","url":"https://omsaravanabhava.org/thiruppugazh/0015-thadakkai-pangkayam.html","name":"Thadakkai Pangkayam","alternateName":"தடக்கைப் பங்கயம்","position":15,"author":{"@type":"Person","name":"Arunagirinathar"},"inLanguage":"ta","genre":"Thiruppugazh","description":"A prayer to end the exhausting cycle of worldly dependence and establish a life of service at Murugan’s ankleted feet.","dateModified":"2026-07-11","isPartOf":{"@type":"CollectionPage","name":"Thiruppugazh Digital Library","url":"https://omsaravanabhava.org/thiruppugazh.html"},"citation":"697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf; பாடல் 15 (திருப்பரங்குன்றம்)."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Thiruppugazh","item":"https://omsaravanabhava.org/thiruppugazh.html"},{"@type":"ListItem","position":3,"name":"Thadakkai Pangkayam","item":"https://omsaravanabhava.org/thiruppugazh/0015-thadakkai-pangkayam.html"}]}]}</script>
++<link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
++</head>
++<body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Verified Thiruppugazh text</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="../">ஓம் சரவணபவ</a><div class="links"><a href="../temples.html">Temples</a><a href="../sloka-library.html">Slokas</a><a href="../festivals.html">Festivals</a><a href="../ai-search.html">AI Search</a><a href="../audio-library.html">Audio</a></div></div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="../">Home</a> › <a href="../thiruppugazh.html">Thiruppugazh</a> › <span aria-current="page">Thadakkai Pangkayam</span></p></nav>
++<article class="card">
++<span class="pill">திருப்புகழ் 15</span>
++<span class="pill">திருப்பரங்குன்றம்</span>
++<h1 class="section-title">தடக்கைப் பங்கயம்</h1>
++<h2>Thadakkai Pangkayam</h2>
++<p><strong>Author:</strong> அருணகிரிநாதர் / Arunagirinathar</p>
++<p><strong>Venue:</strong> திருப்பரங்குன்றம் · <a href="../temples/thirupparamkundram.html">Thirupparankundram temple page</a></p>
++<p><strong>Chanda / rhythmic opening:</strong> <span lang="ta">தனத்தத் தந்தனந் தனத்தத் தந்தனந்</span></p>
++<div class="verse" lang="ta">தடக்கைப் பங்கயம் கொடைக்குக் கொண்டல்தண்
++டமிழ்க்குத் தஞ்சமென் றுலகோரைத்
++
++தவித்துச் சென்றிரந் துளத்திற் புண்படுந்
++தளர்ச்சிப் பம்பரந் தனையூசற்
++
++கடத்தைத் துன்பமண் சடத்தைத் துஞ்சிடுங்
++கலத்தைப் பஞ்சஇந் த்ரியவாழ்வைக்
++
++கணத்திற் சென்றிடந் திருத்தித் தண்டையங்
++கழற்குத் தொண்டுகொண் டருள்வாயே
++
++படைக்கப் பங்கயன் துடைக்கச் சங்கரன்
++புரக்கக் கஞ்சைமன் பணியாகப்
++
++பணித்துத் தம்பயந் தணித்துச் சந்ததம்
++பரத்தைக் கொண்டிடுந் தனிவேலா
++
++குடக்குத் தென்பரம் பொருப்பிற் றங்குமங்
++குலத்திற் கங்கைதன் சிறியோனே
++
++குறப்பொற் கொம்பைமுன் புனத்திற் செங்கரங்
++குவித்துக் கும்பிடும் பெருமாளே.</div>
++</article>
++<section class="grid" style="margin-top:22px">
++<article class="card"><h2>Editorial reading guide</h2><p>A prayer to end the exhausting cycle of worldly dependence and establish a life of service at Murugan’s ankleted feet.</p><p>This is an editorial orientation, not a line-by-line translation.</p></article>
++<article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 15 (திருப்பரங்குன்றம்)</p><p>The Tamil song text was manually checked before publication. OCR-only material was excluded.</p><p><a class="btn secondary" href="../sources.html#src-thiruppugazh-valluvar-vallalar-vattam">Open source record</a></p></article>
++</section>
++<nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0013-sandhadham-bandha.html">← சந்ததம் பந்த</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0016-padhiththa-senchandha.html">பதித்த செஞ்சந்த →</a></nav>
++</main>
++<div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>
+--- release148/thiruppugazh/0016-padhiththa-senchandha.html
++++ release149/thiruppugazh/0016-padhiththa-senchandha.html
+@@ -0,0 +1,83 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>பதித்த செஞ்சந்த | Thiruppugazh 16</title>
++<meta name="description" content="Thiruppugazh song 16, Padhiththa Senchandha, associated with Thirupparankundram; verified Tamil text and source citation.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/thiruppugazh/0016-padhiththa-senchandha.html">
++<meta property="og:site_name" content="Om Saravana Bhava">
++<meta property="og:type" content="article">
++<meta property="og:title" content="பதித்த செஞ்சந்த | Thiruppugazh 16">
++<meta property="og:description" content="Thiruppugazh song 16, Padhiththa Senchandha, associated with Thirupparankundram; verified Tamil text and source citation.">
++<meta property="og:url" content="https://omsaravanabhava.org/thiruppugazh/0016-padhiththa-senchandha.html">
++<meta name="twitter:card" content="summary">
++<link rel="stylesheet" href="../assets/css/osb44.css">
++<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CreativeWork","@id":"https://omsaravanabhava.org/thiruppugazh/0016-padhiththa-senchandha.html#work","url":"https://omsaravanabhava.org/thiruppugazh/0016-padhiththa-senchandha.html","name":"Padhiththa Senchandha","alternateName":"பதித்த செஞ்சந்த","position":16,"author":{"@type":"Person","name":"Arunagirinathar"},"inLanguage":"ta","genre":"Thiruppugazh","description":"A confession of mental delusion that asks for Murugan’s lotus feet, framed by images of Surapadman, Deivayanai and Valli.","dateModified":"2026-07-11","isPartOf":{"@type":"CollectionPage","name":"Thiruppugazh Digital Library","url":"https://omsaravanabhava.org/thiruppugazh.html"},"citation":"697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf; பாடல் 16 (திருப்பரங்குன்றம்)."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Thiruppugazh","item":"https://omsaravanabhava.org/thiruppugazh.html"},{"@type":"ListItem","position":3,"name":"Padhiththa Senchandha","item":"https://omsaravanabhava.org/thiruppugazh/0016-padhiththa-senchandha.html"}]}]}</script>
++<link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
++</head>
++<body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Verified Thiruppugazh text</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="../">ஓம் சரவணபவ</a><div class="links"><a href="../temples.html">Temples</a><a href="../sloka-library.html">Slokas</a><a href="../festivals.html">Festivals</a><a href="../ai-search.html">AI Search</a><a href="../audio-library.html">Audio</a></div></div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="../">Home</a> › <a href="../thiruppugazh.html">Thiruppugazh</a> › <span aria-current="page">Padhiththa Senchandha</span></p></nav>
++<article class="card">
++<span class="pill">திருப்புகழ் 16</span>
++<span class="pill">திருப்பரங்குன்றம்</span>
++<h1 class="section-title">பதித்த செஞ்சந்த</h1>
++<h2>Padhiththa Senchandha</h2>
++<p><strong>Author:</strong> அருணகிரிநாதர் / Arunagirinathar</p>
++<p><strong>Venue:</strong> திருப்பரங்குன்றம் · <a href="../temples/thirupparamkundram.html">Thirupparankundram temple page</a></p>
++<p><strong>Chanda / rhythmic opening:</strong> <span lang="ta">தனத்ததந் தந்தத் தத்தன தத்தந்</span></p>
++<div class="verse" lang="ta">பதித்தசெஞ் சந்தப் பொற்குட நித்தம்
++பருந்துயர்ந் தண்டத் திற்றலை முட்டும்
++பருப்பதந் தந்தச் செப்பவை ஒக்குந் தனபாரம்
++
++படப்புயங் கம்பற் கக்குக டுப்பண்
++செருக்குவண் டம்பப் பிற்கயல் ஒக்கும்
++பருத்தகண் கொண்டைக் கொக்குமி ருட்டென் றிளைஞோர்கள்
++
++துதித்துமுன் கும்பிட் டுற்றது ரைத்தன்
++புவக்கநெஞ் சஞ்சச் சிற்றிடை சுற்றுந்
++துகிற்களைந் தின்பத் துர்க்கம் அளிக்கும் கொடியார்பால்
++
++துவக்குணும் பங்கப் பித்தன வத்தன்
++புவிக்குளென் சிந்தைப் புத்திம யக்கந்
++துறக்கநின் தண்டைப் பத்மமெ னக்கென் றருள்வாயே
++
++குதித்துவெண் சங்கத் தைச்சுற வெற்றுங்
++கடற்கரந் தஞ்சிப் புக்கஅ ரக்கன்
++குடற்சரிந் தெஞ்சக் குத்திவி திர்க்குங் கதிர்வேலா
++
++குலக்கரும் பின்சொற் றத்தையி பப்பெண்
++தனக்குவஞ் சஞ்சொற் பொச்சையி டைக்குங்
++குகுக்குகுங் குங்குக் குக்குகு குக்குங் குகுகூகூ
++
++திதித்திதிந் தித்தித் தித்தியெ னக்கொம்
++பதிர்த்துவெண் சண்டக் கட்கம்வி திர்த்துந்
++திரட்குவிந் தங்கட் பொட்டெழ வெட்டுங் கொலைவேடர்
++
++தினைப்புனஞ் சென்றிச் சித்தபெ ணைக்கண்
++டுருக்கரந் தங்குக் கிட்டிய ணைத்தொண்
++திருப்பரங் குன்றிற் புக்குளி ருக்கும் பெருமாளே.</div>
++</article>
++<section class="grid" style="margin-top:22px">
++<article class="card"><h2>Editorial reading guide</h2><p>A confession of mental delusion that asks for Murugan’s lotus feet, framed by images of Surapadman, Deivayanai and Valli.</p><p>This is an editorial orientation, not a line-by-line translation.</p></article>
++<article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 16 (திருப்பரங்குன்றம்)</p><p>The Tamil song text was manually checked before publication. OCR-only material was excluded.</p><p><a class="btn secondary" href="../sources.html#src-thiruppugazh-valluvar-vallalar-vattam">Open source record</a></p></article>
++</section>
++<nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0015-thadakkai-pangkayam.html">← தடக்கைப் பங்கயம்</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0017-poruppurung.html">பொருப்புறுங் →</a></nav>
++</main>
++<div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>
+--- release148/thiruppugazh/0017-poruppurung.html
++++ release149/thiruppugazh/0017-poruppurung.html
+@@ -0,0 +1,75 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>பொருப்புறுங் | Thiruppugazh 17</title>
++<meta name="description" content="Thiruppugazh song 17, Poruppurung, associated with Thirupparankundram; verified Tamil text and source citation.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/thiruppugazh/0017-poruppurung.html">
++<meta property="og:site_name" content="Om Saravana Bhava">
++<meta property="og:type" content="article">
++<meta property="og:title" content="பொருப்புறுங் | Thiruppugazh 17">
++<meta property="og:description" content="Thiruppugazh song 17, Poruppurung, associated with Thirupparankundram; verified Tamil text and source citation.">
++<meta property="og:url" content="https://omsaravanabhava.org/thiruppugazh/0017-poruppurung.html">
++<meta name="twitter:card" content="summary">
++<link rel="stylesheet" href="../assets/css/osb44.css">
++<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CreativeWork","@id":"https://omsaravanabhava.org/thiruppugazh/0017-poruppurung.html#work","url":"https://omsaravanabhava.org/thiruppugazh/0017-poruppurung.html","name":"Poruppurung","alternateName":"பொருப்புறுங்","position":17,"author":{"@type":"Person","name":"Arunagirinathar"},"inLanguage":"ta","genre":"Thiruppugazh","description":"An appeal to turn from destructive attachment toward Murugan’s gracious lotus feet and the sanctuary of Tirupparankundram.","dateModified":"2026-07-11","isPartOf":{"@type":"CollectionPage","name":"Thiruppugazh Digital Library","url":"https://omsaravanabhava.org/thiruppugazh.html"},"citation":"697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf; பாடல் 17 (திருப்பரங்குன்றம்)."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Thiruppugazh","item":"https://omsaravanabhava.org/thiruppugazh.html"},{"@type":"ListItem","position":3,"name":"Poruppurung","item":"https://omsaravanabhava.org/thiruppugazh/0017-poruppurung.html"}]}]}</script>
++<link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
++</head>
++<body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Verified Thiruppugazh text</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="../">ஓம் சரவணபவ</a><div class="links"><a href="../temples.html">Temples</a><a href="../sloka-library.html">Slokas</a><a href="../festivals.html">Festivals</a><a href="../ai-search.html">AI Search</a><a href="../audio-library.html">Audio</a></div></div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="../">Home</a> › <a href="../thiruppugazh.html">Thiruppugazh</a> › <span aria-current="page">Poruppurung</span></p></nav>
++<article class="card">
++<span class="pill">திருப்புகழ் 17</span>
++<span class="pill">திருப்பரங்குன்றம்</span>
++<h1 class="section-title">பொருப்புறுங்</h1>
++<h2>Poruppurung</h2>
++<p><strong>Author:</strong> அருணகிரிநாதர் / Arunagirinathar</p>
++<p><strong>Venue:</strong> திருப்பரங்குன்றம் · <a href="../temples/thirupparamkundram.html">Thirupparankundram temple page</a></p>
++<p><strong>Chanda / rhythmic opening:</strong> <span lang="ta">தனத்தனந் தந்தன தனத்தனந் தந்தன</span></p>
++<div class="verse" lang="ta">பொருப்புறுங் கொங்கையர் பொருட்கவர்ந் தொன்றிய
++பிணக்கிடுஞ் சண்டிகள் வஞ்சமாதர்
++
++புயற்குழன் றங்கமழ் அறற்குலந் தங்கவிர்
++முருக்குவண் செந்துவர் தந்துபோகம்
++
++அருத்திடுஞ் சிங்கியர் தருக்கிடுஞ் செங்கயல்
++அறச்சிவந் தங்கையில் அன்புமேவும்
++
++அவர்க்குழன் றங்கமும் அறத்தளர்ந் தென்பயன்
++அருட்பதம் பங்கயம் அன்புறாதோ
++
++மிருத்தணும் பங்கயன் அலர்க்கணன் சங்கரர்
++விதித்தெணுங் கும்பிடு கந்தவேளே
++
++மிகுத்திடும் வன்சம ணரைப்பெருந் திண்கழு
++மிசைக்கிடுஞ் செந்தமிழ் அங்கவாயா
++
++பெருக்குதண் சண்பக வனத்திடங் கொங்கொடு
++திறற்செழுஞ் சந்தகில் துன்றிநீடு
++
++தினைப்புனம் பைங்கொடி தனத்துடன் சென்றணை
++திருப்பரங் குன்றுறை தம்பிரானே.</div>
++</article>
++<section class="grid" style="margin-top:22px">
++<article class="card"><h2>Editorial reading guide</h2><p>An appeal to turn from destructive attachment toward Murugan’s gracious lotus feet and the sanctuary of Tirupparankundram.</p><p>This is an editorial orientation, not a line-by-line translation.</p></article>
++<article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 17 (திருப்பரங்குன்றம்)</p><p>The Tamil song text was manually checked before publication. OCR-only material was excluded.</p><p><a class="btn secondary" href="../sources.html#src-thiruppugazh-valluvar-vallalar-vattam">Open source record</a></p></article>
++</section>
++<nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0016-padhiththa-senchandha.html">← பதித்த செஞ்சந்த</a><a class="btn" href="../thiruppugazh.html">All songs</a></nav>
++</main>
++<div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>

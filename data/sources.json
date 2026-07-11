@@ -22,5 +22,17 @@
     "scope": "Opening invocation and six temple-linked Kavasam sections.",
     "useInRelease": "Verified opening extract and source note for Kanda Sashti Kavasam.",
     "qualityNote": "Only the verified opening extract is published in this release. A complete critical edition remains outside Release 147."
+  },
+  {
+    "id": "src-thiruppugazh-valluvar-vallalar-vattam",
+    "titleTa": "அருணகிரிநாதர் அருளிய திருப்புகழ்",
+    "titleEn": "Thiruppugazh — Digital Compilation",
+    "author": "அருணகிரிநாதர் / Arunagirinathar",
+    "sourceType": "Primary Tamil devotional text",
+    "editionType": "User-uploaded 2,191-page digital compilation PDF",
+    "fileName": "697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf",
+    "scope": "Numbered Thiruppugazh corpus with venue, rhythmic and song-text headings.",
+    "useInRelease": "Primary source for the first ten manually checked digital song records in Release 149.",
+    "qualityNote": "Release 149 publishes only manually checked song texts. OCR-only text and unverified commentary are not published."
   }
 ]
