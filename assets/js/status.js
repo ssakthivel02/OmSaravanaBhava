@@ -1,3 +1,3 @@
 document.querySelectorAll('[data-status]').forEach(
- el=>el.textContent=el.dataset.status||'repository-data-required'
+ element=>element.textContent=element.dataset.status||'repository-evidence-required'
 );
