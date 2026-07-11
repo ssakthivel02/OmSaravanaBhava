@@ -1,0 +1,4 @@
+
+.status{display:inline-block;padding:4px 10px;border-radius:999px;background:#fff0d2}
+.progress{height:10px;border-radius:999px;background:#ead8b6;overflow:hidden}
+.progress>span{display:block;height:100%;width:0;background:#7a3f00}
