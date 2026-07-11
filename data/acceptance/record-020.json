@@ -1,0 +1,14 @@
+{
+  "project": "OmSaravanaBhava",
+  "batch": 142,
+  "module": "Production Acceptance Report & Outstanding Gaps",
+  "record_id": "acceptance-020",
+  "status": "live-evidence-required",
+  "control_id": "OSB-ACCEPT-020",
+  "area": "",
+  "requirement": "",
+  "evidence": [],
+  "result": "not-tested",
+  "blocking_gap": true,
+  "owner": ""
+}
