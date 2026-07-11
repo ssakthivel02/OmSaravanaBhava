@@ -1,0 +1,27 @@
+OmSaravanaBhava — Release 151 GitHub Portal Upload
+
+1. Extract this ZIP into a temporary folder.
+2. Open the extracted folder and select everything inside it.
+3. Open the OmSaravanaBhava repository on branch main.
+4. Choose Add file → Upload files.
+5. Drag the selected extracted contents into the upload area.
+6. Confirm there is no Release151, package, output or cleanup parent folder.
+7. In the UPPER commit-title field replace “Add files via upload” with:
+   Release 151: publish reviewed Skanda Guru Kavasam opening edition
+8. Leave the lower description blank or optional.
+9. Select Commit directly to the main branch.
+10. Click Commit changes.
+
+Expected production files:
+- slokas/skanda-guru-kavasam.html
+- data/skanda-guru-kavasam.json
+- data/slokas.json
+- data/audio-catalog.json
+- data/sources.json
+- data/content-publication.json
+- sources.html
+- service-worker.js
+
+Important:
+- No sitemap.xml change is expected because the partial edition remains noindex.
+- No MP3 or third-party recording file is included.

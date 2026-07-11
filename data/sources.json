@@ -34,5 +34,17 @@
     "scope": "Numbered Thiruppugazh corpus with venue, rhythmic and song-text headings.",
     "useInRelease": "Primary source for the first ten manually checked digital song records in Release 149.",
     "qualityNote": "Release 149 publishes only manually checked song texts. OCR-only text and unverified commentary are not published."
+  },
+  {
+    "id": "src-skanda-guru-kavasam-uploaded-compilation",
+    "titleTa": "ஸ்கந்த குரு கவசம்",
+    "titleEn": "Skanda Guru Kavasam",
+    "author": "ஸ்ரீமத் சத்குரு சாந்தானந்த சுவாமிகள்",
+    "sourceType": "Devotional text contained in the user-uploaded compilation",
+    "editionType": "Uploaded compilation transcription",
+    "fileName": "திருமுருகாற்றுப்படை.docx",
+    "scope": "Opening invocation and the numbered text extending beyond line 380.",
+    "useInRelease": "Source witness for the manually checked opening invocation and lines 1–20 in Release 151.",
+    "qualityNote": "This is not treated as a critical edition. Release 151 publishes only the verified opening extract and does not reproduce the complete modern work."
   }
 ]

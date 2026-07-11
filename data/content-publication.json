@@ -1,5 +1,5 @@
 {
-  "release": 149,
+  "release": 151,
   "generated": "2026-07-11",
   "states": {
     "published-source-linked": "Published with an explicit primary-text citation.",
@@ -22,7 +22,8 @@
     "temples/sikkal.html"
   ],
   "partialReviewedRoutes": [
-    "slokas/kanda-sashti-kavasam.html"
+    "slokas/kanda-sashti-kavasam.html",
+    "slokas/skanda-guru-kavasam.html"
   ],
   "sourceRoutes": [
     "sources.html",
@@ -45,5 +46,14 @@
     ],
     "sourceId": "src-thiruppugazh-valluvar-vallalar-vattam",
     "policy": "Only manually checked full Tamil song texts are indexable. OCR-only records remain unpublished."
+  },
+  "skandaGuruKavasam": {
+    "route": "slokas/skanda-guru-kavasam.html",
+    "publicationStatus": "partial-reviewed",
+    "publishedRange": "Opening invocation and lines 1–20",
+    "sourceId": "src-skanda-guru-kavasam-uploaded-compilation",
+    "indexable": false,
+    "readAloud": "device-tts",
+    "recordingPolicy": "No third-party recording bundled."
   }
 }

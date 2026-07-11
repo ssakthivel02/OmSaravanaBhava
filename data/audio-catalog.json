@@ -26,10 +26,12 @@
     "titleTa": "ஸ்கந்த குரு கவசம்",
     "titleEn": "Skanda Guru Kavasam",
     "category": "Kavacham",
-    "textStatus": "uploaded-source-identified",
-    "playMode": "not-published",
+    "textStatus": "reviewed-opening-extract",
+    "playMode": "device-tts",
     "recordingStatus": "owned-or-licensed-recording-required",
-    "summaryEn": "The uploaded Murugan compilation contains this work. Full text segmentation and verification are required before read-aloud publication."
+    "summaryEn": "A source-checked opening extract is available for Tamil device read-aloud. The complete work and any human recording remain under review.",
+    "textRoute": "slokas/skanda-guru-kavasam.html",
+    "speechText": "கலியுகத் தெய்வமே கந்தனுக்கு மூத்தோனே\nமுஷிக வாகனனே மூலப் பொருளோனே\nஸ்கந்தகுரு கவசத்தை கலிதோஷம் நீங்கிடவே\nதிருவடியின் திருவருளால் செப்புகிறேன் காத்தருள்வாய்\nசித்தி விநாயக ஜயமருள் போற்றுகிறேன்\n\nசிற்பர கணபதே நற்கதியும் தந்தருள்வாய்\nகணபதி தாளிணையைக் கருத்தினில் வைத்திட்டேன்\nஅச்சம் தீர்த்து என்னை ரக்ஷித்திடுவீரே.\n\nஸ்கந்தா சரணம் ஸ்கந்தா சரணம்\nசரவணபவ குகா சரணம் சரணம்\n\nகுருகுகா சரணம் குருபரா சரணம்\nசரணம் அடைந்திட்டேன் கந்தா சரணம்\nதனைத் தானறிந்து நான் தன்மயமாகிடவே\nஸ்கந்தகிரி குருநாதா தந்திடுவீர் ஞானமுமே\nதத்தகிரி குருநாதா வந்திடுவீர் வந்திடுவீர்\n\nஅவதூத சத்குருவாய் ஆண்டவனே வந்திடுவீர்\nஅன்புருவாய் வந்தென்னை ஆட்கொண்ட குருபரனே\nஅறம் பொருள் இன்பம் வீடுமே தந்தருள்வாய்\nதந்திடுவாய் வரமதனை ஸ்கந்தகுருநாதா\nஷண்முகா சரணம் சரணம் ஸ்கந்த குரோ"
   },
   {
     "id": "shanmuga-kavasam",

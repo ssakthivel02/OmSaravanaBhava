@@ -64,5 +64,23 @@
     ],
     "publicationStatus": "published",
     "sourceIds": []
+  },
+  {
+    "id": "skanda-guru-kavasam",
+    "titleTa": "ஸ்கந்த குரு கவசம்",
+    "titleEn": "Skanda Guru Kavasam",
+    "category": "Kavacham",
+    "textTa": "ஸ்கந்தா சரணம் ஸ்கந்தா சரணம்; சரவணபவ குகா சரணம் சரணம்.",
+    "meaningTa": "பதிவேற்றப்பட்ட மூலத்தில் சரிபார்க்கப்பட்ட தொடக்கப் பகுதி மட்டும் வெளியிடப்பட்டுள்ளது. இது முழுமையான பதிப்பு அல்ல.",
+    "meaningEn": "Only the source-checked opening extract is published. This is not a complete edition.",
+    "benefits": [
+      "Guru devotion",
+      "Surrender theme",
+      "Spiritual reflection"
+    ],
+    "publicationStatus": "partial-reviewed",
+    "sourceIds": [
+      "src-skanda-guru-kavasam-uploaded-compilation"
+    ]
   }
 ]

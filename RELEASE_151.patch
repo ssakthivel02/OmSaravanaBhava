@@ -1,0 +1,286 @@
+--- release150/data/audio-catalog.json
++++ release151/data/audio-catalog.json
+@@ -26,10 +26,12 @@
+     "titleTa": "ஸ்கந்த குரு கவசம்",
+     "titleEn": "Skanda Guru Kavasam",
+     "category": "Kavacham",
+-    "textStatus": "uploaded-source-identified",
+-    "playMode": "not-published",
++    "textStatus": "reviewed-opening-extract",
++    "playMode": "device-tts",
+     "recordingStatus": "owned-or-licensed-recording-required",
+-    "summaryEn": "The uploaded Murugan compilation contains this work. Full text segmentation and verification are required before read-aloud publication."
++    "summaryEn": "A source-checked opening extract is available for Tamil device read-aloud. The complete work and any human recording remain under review.",
++    "textRoute": "slokas/skanda-guru-kavasam.html",
++    "speechText": "கலியுகத் தெய்வமே கந்தனுக்கு மூத்தோனே\nமுஷிக வாகனனே மூலப் பொருளோனே\nஸ்கந்தகுரு கவசத்தை கலிதோஷம் நீங்கிடவே\nதிருவடியின் திருவருளால் செப்புகிறேன் காத்தருள்வாய்\nசித்தி விநாயக ஜயமருள் போற்றுகிறேன்\n\nசிற்பர கணபதே நற்கதியும் தந்தருள்வாய்\nகணபதி தாளிணையைக் கருத்தினில் வைத்திட்டேன்\nஅச்சம் தீர்த்து என்னை ரக்ஷித்திடுவீரே.\n\nஸ்கந்தா சரணம் ஸ்கந்தா சரணம்\nசரவணபவ குகா சரணம் சரணம்\n\nகுருகுகா சரணம் குருபரா சரணம்\nசரணம் அடைந்திட்டேன் கந்தா சரணம்\nதனைத் தானறிந்து நான் தன்மயமாகிடவே\nஸ்கந்தகிரி குருநாதா தந்திடுவீர் ஞானமுமே\nதத்தகிரி குருநாதா வந்திடுவீர் வந்திடுவீர்\n\nஅவதூத சத்குருவாய் ஆண்டவனே வந்திடுவீர்\nஅன்புருவாய் வந்தென்னை ஆட்கொண்ட குருபரனே\nஅறம் பொருள் இன்பம் வீடுமே தந்தருள்வாய்\nதந்திடுவாய் வரமதனை ஸ்கந்தகுருநாதா\nஷண்முகா சரணம் சரணம் ஸ்கந்த குரோ"
+   },
+   {
+     "id": "shanmuga-kavasam",
+--- release150/data/content-publication.json
++++ release151/data/content-publication.json
+@@ -1,5 +1,5 @@
+ {
+-  "release": 149,
++  "release": 151,
+   "generated": "2026-07-11",
+   "states": {
+     "published-source-linked": "Published with an explicit primary-text citation.",
+@@ -22,7 +22,8 @@
+     "temples/sikkal.html"
+   ],
+   "partialReviewedRoutes": [
+-    "slokas/kanda-sashti-kavasam.html"
++    "slokas/kanda-sashti-kavasam.html",
++    "slokas/skanda-guru-kavasam.html"
+   ],
+   "sourceRoutes": [
+     "sources.html",
+@@ -45,5 +46,14 @@
+     ],
+     "sourceId": "src-thiruppugazh-valluvar-vallalar-vattam",
+     "policy": "Only manually checked full Tamil song texts are indexable. OCR-only records remain unpublished."
++  },
++  "skandaGuruKavasam": {
++    "route": "slokas/skanda-guru-kavasam.html",
++    "publicationStatus": "partial-reviewed",
++    "publishedRange": "Opening invocation and lines 1–20",
++    "sourceId": "src-skanda-guru-kavasam-uploaded-compilation",
++    "indexable": false,
++    "readAloud": "device-tts",
++    "recordingPolicy": "No third-party recording bundled."
+   }
+ }
+--- release150/data/skanda-guru-kavasam.json
++++ release151/data/skanda-guru-kavasam.json
+@@ -0,0 +1,48 @@
++{
++  "id": "skanda-guru-kavasam",
++  "titleTa": "ஸ்கந்த குரு கவசம்",
++  "titleEn": "Skanda Guru Kavasam",
++  "attributedAuthor": "ஸ்ரீமத் சத்குரு சாந்தானந்த சுவாமிகள்",
++  "publicationStatus": "partial-reviewed",
++  "robots": "noindex,follow",
++  "sourceId": "src-skanda-guru-kavasam-uploaded-compilation",
++  "sourceFile": "திருமுருகாற்றுப்படை.docx",
++  "sourceHeading": "ஸ்ரீமத் சத்குரு சாந்தானந்த சுவாமிகள் அருளிய 'கந்த குரு கவசம்'",
++  "publishedRange": "Opening invocation and lines 1–20",
++  "route": "slokas/skanda-guru-kavasam.html",
++  "speechText": "கலியுகத் தெய்வமே கந்தனுக்கு மூத்தோனே\nமுஷிக வாகனனே மூலப் பொருளோனே\nஸ்கந்தகுரு கவசத்தை கலிதோஷம் நீங்கிடவே\nதிருவடியின் திருவருளால் செப்புகிறேன் காத்தருள்வாய்\nசித்தி விநாயக ஜயமருள் போற்றுகிறேன்\n\nசிற்பர கணபதே நற்கதியும் தந்தருள்வாய்\nகணபதி தாளிணையைக் கருத்தினில் வைத்திட்டேன்\nஅச்சம் தீர்த்து என்னை ரக்ஷித்திடுவீரே.\n\nஸ்கந்தா சரணம் ஸ்கந்தா சரணம்\nசரவணபவ குகா சரணம் சரணம்\n\nகுருகுகா சரணம் குருபரா சரணம்\nசரணம் அடைந்திட்டேன் கந்தா சரணம்\nதனைத் தானறிந்து நான் தன்மயமாகிடவே\nஸ்கந்தகிரி குருநாதா தந்திடுவீர் ஞானமுமே\nதத்தகிரி குருநாதா வந்திடுவீர் வந்திடுவீர்\n\nஅவதூத சத்குருவாய் ஆண்டவனே வந்திடுவீர்\nஅன்புருவாய் வந்தென்னை ஆட்கொண்ட குருபரனே\nஅறம் பொருள் இன்பம் வீடுமே தந்தருள்வாய்\nதந்திடுவாய் வரமதனை ஸ்கந்தகுருநாதா\nஷண்முகா சரணம் சரணம் ஸ்கந்த குரோ",
++  "segments": [
++    {
++      "id": "vinayagar-vazhthu-1-5",
++      "headingTa": "விநாயகர் வாழ்த்து",
++      "lineRange": "1–5",
++      "textTa": "கலியுகத் தெய்வமே கந்தனுக்கு மூத்தோனே\nமுஷிக வாகனனே மூலப் பொருளோனே\nஸ்கந்தகுரு கவசத்தை கலிதோஷம் நீங்கிடவே\nதிருவடியின் திருவருளால் செப்புகிறேன் காத்தருள்வாய்\nசித்தி விநாயக ஜயமருள் போற்றுகிறேன்"
++    },
++    {
++      "id": "vinayagar-vazhthu-6-8",
++      "headingTa": "விநாயகர் வாழ்த்து — தொடர்ச்சி",
++      "lineRange": "6–8",
++      "textTa": "சிற்பர கணபதே நற்கதியும் தந்தருள்வாய்\nகணபதி தாளிணையைக் கருத்தினில் வைத்திட்டேன்\nஅச்சம் தீர்த்து என்னை ரக்ஷித்திடுவீரே."
++    },
++    {
++      "id": "seyyul-9-10",
++      "headingTa": "செய்யுள் — சரணம்",
++      "lineRange": "9–10",
++      "textTa": "ஸ்கந்தா சரணம் ஸ்கந்தா சரணம்\nசரவணபவ குகா சரணம் சரணம்"
++    },
++    {
++      "id": "seyyul-11-15",
++      "headingTa": "செய்யுள் — குருநாதர் வேண்டுதல்",
++      "lineRange": "11–15",
++      "textTa": "குருகுகா சரணம் குருபரா சரணம்\nசரணம் அடைந்திட்டேன் கந்தா சரணம்\nதனைத் தானறிந்து நான் தன்மயமாகிடவே\nஸ்கந்தகிரி குருநாதா தந்திடுவீர் ஞானமுமே\nதத்தகிரி குருநாதா வந்திடுவீர் வந்திடுவீர்"
++    },
++    {
++      "id": "seyyul-16-20",
++      "headingTa": "செய்யுள் — அருள் வேண்டுதல்",
++      "lineRange": "16–20",
++      "textTa": "அவதூத சத்குருவாய் ஆண்டவனே வந்திடுவீர்\nஅன்புருவாய் வந்தென்னை ஆட்கொண்ட குருபரனே\nஅறம் பொருள் இன்பம் வீடுமே தந்தருள்வாய்\nதந்திடுவாய் வரமதனை ஸ்கந்தகுருநாதா\nஷண்முகா சரணம் சரணம் ஸ்கந்த குரோ"
++    }
++  ],
++  "editorialNoteEn": "This release publishes only a source-checked opening extract. It does not claim to be the complete work.",
++  "rightsNoteEn": "The uploaded compilation is used as the source witness. Full republication and any human performance recording require separate rights review."
++}
+--- release150/data/slokas.json
++++ release151/data/slokas.json
+@@ -64,5 +64,23 @@
+     ],
+     "publicationStatus": "published",
+     "sourceIds": []
++  },
++  {
++    "id": "skanda-guru-kavasam",
++    "titleTa": "ஸ்கந்த குரு கவசம்",
++    "titleEn": "Skanda Guru Kavasam",
++    "category": "Kavacham",
++    "textTa": "ஸ்கந்தா சரணம் ஸ்கந்தா சரணம்; சரவணபவ குகா சரணம் சரணம்.",
++    "meaningTa": "பதிவேற்றப்பட்ட மூலத்தில் சரிபார்க்கப்பட்ட தொடக்கப் பகுதி மட்டும் வெளியிடப்பட்டுள்ளது. இது முழுமையான பதிப்பு அல்ல.",
++    "meaningEn": "Only the source-checked opening extract is published. This is not a complete edition.",
++    "benefits": [
++      "Guru devotion",
++      "Surrender theme",
++      "Spiritual reflection"
++    ],
++    "publicationStatus": "partial-reviewed",
++    "sourceIds": [
++      "src-skanda-guru-kavasam-uploaded-compilation"
++    ]
+   }
+ ]
+--- release150/data/sources.json
++++ release151/data/sources.json
+@@ -34,5 +34,17 @@
+     "scope": "Numbered Thiruppugazh corpus with venue, rhythmic and song-text headings.",
+     "useInRelease": "Primary source for the first ten manually checked digital song records in Release 149.",
+     "qualityNote": "Release 149 publishes only manually checked song texts. OCR-only text and unverified commentary are not published."
++  },
++  {
++    "id": "src-skanda-guru-kavasam-uploaded-compilation",
++    "titleTa": "ஸ்கந்த குரு கவசம்",
++    "titleEn": "Skanda Guru Kavasam",
++    "author": "ஸ்ரீமத் சத்குரு சாந்தானந்த சுவாமிகள்",
++    "sourceType": "Devotional text contained in the user-uploaded compilation",
++    "editionType": "Uploaded compilation transcription",
++    "fileName": "திருமுருகாற்றுப்படை.docx",
++    "scope": "Opening invocation and the numbered text extending beyond line 380.",
++    "useInRelease": "Source witness for the manually checked opening invocation and lines 1–20 in Release 151.",
++    "qualityNote": "This is not treated as a critical edition. Release 151 publishes only the verified opening extract and does not reproduce the complete modern work."
+   }
+ ]
+--- release150/service-worker.js
++++ release151/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '150';
++const RELEASE = '151';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -60,7 +60,9 @@
+   "/thiruppugazh/0017-poruppurung.html",
+   "/assets/js/read-aloud.js",
+   "/assets/js/audio-library.js",
+-  "/data/audio-catalog.json"
++  "/data/audio-catalog.json",
++  "/slokas/skanda-guru-kavasam.html",
++  "/data/skanda-guru-kavasam.json"
+ ];
+ 
+ self.addEventListener('install', event => {
+--- release150/slokas/skanda-guru-kavasam.html
++++ release151/slokas/skanda-guru-kavasam.html
+@@ -0,0 +1,99 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>ஸ்கந்த குரு கவசம் | Reviewed Opening Extract</title>
++<meta name="description" content="Source-checked opening extract of Skanda Guru Kavasam with Tamil device read-aloud and a transparent partial-publication notice.">
++<meta name="robots" content="noindex,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/slokas/skanda-guru-kavasam.html">
++<meta property="og:site_name" content="Om Saravana Bhava">
++<meta property="og:type" content="article">
++<meta property="og:title" content="ஸ்கந்த குரு கவசம் | Reviewed Opening Extract">
++<meta property="og:description" content="Source-checked opening extract of Skanda Guru Kavasam with Tamil device read-aloud and a transparent partial-publication notice.">
++<meta property="og:url" content="https://omsaravanabhava.org/slokas/skanda-guru-kavasam.html">
++<meta name="twitter:card" content="summary">
++<link rel="stylesheet" href="../assets/css/osb44.css">
++<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CreativeWork","@id":"https://omsaravanabhava.org/slokas/skanda-guru-kavasam.html#work","url":"https://omsaravanabhava.org/slokas/skanda-guru-kavasam.html","name":"Skanda Guru Kavasam","alternateName":"ஸ்கந்த குரு கவசம்","author":{"@type":"Person","name":"Srimath Sadguru Santhananda Swamigal"},"inLanguage":"ta","genre":"Kavacham","description":"Source-checked opening extract of Skanda Guru Kavasam with Tamil device read-aloud and a transparent partial-publication notice.","dateModified":"2026-07-11","citation":"திருமுருகாற்றுப்படை.docx; uploaded compilation heading for Skanda Guru Kavasam.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Slokas","item":"https://omsaravanabhava.org/sloka-library.html"},{"@type":"ListItem","position":3,"name":"Skanda Guru Kavasam","item":"https://omsaravanabhava.org/slokas/skanda-guru-kavasam.html"}]}]}</script>
++<script defer src="../assets/js/osb44.js"></script>
++<script defer src="../assets/js/read-aloud.js"></script>
++<link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
++</head>
++<body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Source-checked devotional text</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="../index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="../temples.html">Temples</a><a href="../sloka-library.html">Slokas</a><a href="../thiruppugazh.html">Thiruppugazh</a><a href="../festivals.html">Festivals</a><a href="../ai-search.html">AI Search</a><a href="../audio-library.html">Audio</a></div></div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="../index.html">Home</a> › <a href="../sloka-library.html">Slokas</a> › <span aria-current="page">Skanda Guru Kavasam</span></p></nav>
++<article class="card">
++<span class="pill">Partial reviewed publication</span>
++<h1 class="section-title">ஸ்கந்த குரு கவசம்</h1>
++<h2>Skanda Guru Kavasam</h2>
++<p><strong>Attributed author in the uploaded source:</strong> ஸ்ரீமத் சத்குரு சாந்தானந்த சுவாமிகள்</p>
++<div class="card">
++<strong>Publication boundary:</strong> This page contains only the manually checked opening invocation and lines 1–20 from the uploaded compilation. It is not presented as the complete work.
++</div>
++<div class="read-aloud-panel" data-read-aloud-target="#readAloudText">
++<button type="button" class="btn" data-speech-action="play">▶ Tamil read-aloud</button>
++<button type="button" class="btn secondary" data-speech-action="pause">Pause</button>
++<button type="button" class="btn secondary" data-speech-action="stop">Stop</button>
++<p data-speech-status role="status" aria-live="polite">Uses the Tamil voice installed on this device. No recording is downloaded.</p>
++</div>
++<div id="readAloudText">
++<section class="kavasam-segment" id="vinayagar-vazhthu-1-5">
++<h2>விநாயகர் வாழ்த்து</h2>
++<p class="pill">வரிகள் 1–5</p>
++<div class="verse" lang="ta">கலியுகத் தெய்வமே கந்தனுக்கு மூத்தோனே
++முஷிக வாகனனே மூலப் பொருளோனே
++ஸ்கந்தகுரு கவசத்தை கலிதோஷம் நீங்கிடவே
++திருவடியின் திருவருளால் செப்புகிறேன் காத்தருள்வாய்
++சித்தி விநாயக ஜயமருள் போற்றுகிறேன்</div>
++</section><section class="kavasam-segment" id="vinayagar-vazhthu-6-8">
++<h2>விநாயகர் வாழ்த்து — தொடர்ச்சி</h2>
++<p class="pill">வரிகள் 6–8</p>
++<div class="verse" lang="ta">சிற்பர கணபதே நற்கதியும் தந்தருள்வாய்
++கணபதி தாளிணையைக் கருத்தினில் வைத்திட்டேன்
++அச்சம் தீர்த்து என்னை ரக்ஷித்திடுவீரே.</div>
++</section><section class="kavasam-segment" id="seyyul-9-10">
++<h2>செய்யுள் — சரணம்</h2>
++<p class="pill">வரிகள் 9–10</p>
++<div class="verse" lang="ta">ஸ்கந்தா சரணம் ஸ்கந்தா சரணம்
++சரவணபவ குகா சரணம் சரணம்</div>
++</section><section class="kavasam-segment" id="seyyul-11-15">
++<h2>செய்யுள் — குருநாதர் வேண்டுதல்</h2>
++<p class="pill">வரிகள் 11–15</p>
++<div class="verse" lang="ta">குருகுகா சரணம் குருபரா சரணம்
++சரணம் அடைந்திட்டேன் கந்தா சரணம்
++தனைத் தானறிந்து நான் தன்மயமாகிடவே
++ஸ்கந்தகிரி குருநாதா தந்திடுவீர் ஞானமுமே
++தத்தகிரி குருநாதா வந்திடுவீர் வந்திடுவீர்</div>
++</section><section class="kavasam-segment" id="seyyul-16-20">
++<h2>செய்யுள் — அருள் வேண்டுதல்</h2>
++<p class="pill">வரிகள் 16–20</p>
++<div class="verse" lang="ta">அவதூத சத்குருவாய் ஆண்டவனே வந்திடுவீர்
++அன்புருவாய் வந்தென்னை ஆட்கொண்ட குருபரனே
++அறம் பொருள் இன்பம் வீடுமே தந்தருள்வாய்
++தந்திடுவாய் வரமதனை ஸ்கந்தகுருநாதா
++ஷண்முகா சரணம் சரணம் ஸ்கந்த குரோ</div>
++</section>
++</div>
++</article>
++<section class="grid" style="margin-top:22px">
++<article class="card"><h2>Source record</h2><p><code>திருமுருகாற்றுப்படை.docx</code></p><p><strong>Internal heading:</strong> ஸ்ரீமத் சத்குரு சாந்தானந்த சுவாமிகள் அருளிய 'கந்த குரு கவசம்'</p><p><a class="btn secondary" href="../sources.html#src-skanda-guru-kavasam-uploaded-compilation">Open source record</a></p></article>
++<article class="card"><h2>Recording policy</h2><p>This release uses device speech synthesis. No commercial or third-party performance recording is copied, bundled or hotlinked.</p><p><a class="btn secondary" href="../audio-library.html?track=skanda-guru-kavasam">Open audio catalogue entry</a></p></article>
++<article class="card"><h2>Related devotion</h2><ul><li><a href="kanda-sashti-kavasam.html">Kanda Sashti Kavasam</a></li><li><a href="om-saravana-bhava.html">Saravanabhava Mantra</a></li><li><a href="../thiruppugazh.html">Thiruppugazh Library</a></li></ul></article>
++</section>
++<p><a class="btn secondary" href="../sloka-library.html">Back to Sloka Library</a></p>
++</main>
++<div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>
+--- release150/sources.html
++++ release151/sources.html
+@@ -20,4 +20,13 @@
+ <meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
+ <link rel="manifest" href="manifest.json">
+ <link rel="apple-touch-icon" href="icons/icon-192.png">
+-<script defer src="assets/js/pwa-register.js"></script></head><body><a href="#main-content" class="skip-link">Skip to main content</a><div class="top">🛕 ஓம் சரவணபவ · Source-linked devotional knowledge</div><nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav><main id="main-content" class="wrap"><nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Sources</span></p></nav><h1 class="section-title">Sources &amp; Publication Policy</h1><p>The publication framework separates source-linked publication from directory entries. A page is indexed only when its published claims are tied to an identified source or an explicitly labelled traditional association.</p><section class="grid"><article class="card" id="src-thirumurugatruppadai"><span class="pill">Primary Tamil literary text</span><h2>திருமுருகாற்றுப்படை</h2><h3>Thirumurugatruppadai</h3><p><strong>Attributed author:</strong> நக்கீரர் / Nakkirar</p><p><strong>Repository source:</strong> User-uploaded file <code>திருமுருகாற்றுப்படை.docx</code></p><p><strong>Release use:</strong> Primary literary witness for the six Murugan landscapes and abodes.</p><p>This uploaded file is treated as a transcription/compilation, not as a critical scholarly edition. Release 147 cites precise internal headings and verse ranges and avoids unsupported historical claims.</p></article><article class="card" id="src-kandar-kavasangal-aaru"><span class="pill">Devotional text transcription</span><h2>கந்தர் கவசங்கள் ஆறு</h2><h3>Six Kandar Kavasams</h3><p><strong>Attributed author:</strong> ஸ்ரீ தேவராய சுவாமிகள் / Sri Devaraya Swamigal</p><p><strong>Repository source:</strong> User-uploaded file <code>திருமுருகாற்றுப்படை.docx</code></p><p><strong>Release use:</strong> Verified opening extract and source note for Kanda Sashti Kavasam.</p><p>Only the verified opening extract is published in this release. A complete critical edition remains outside Release 147.</p></article><article class="card" id="src-thiruppugazh-valluvar-vallalar-vattam"><span class="pill">Primary Tamil devotional text</span><h2>அருணகிரிநாதர் அருளிய திருப்புகழ்</h2><h3>Thiruppugazh — Digital Compilation</h3><p><strong>Attributed author:</strong> அருணகிரிநாதர் / Arunagirinathar</p><p><strong>Repository source:</strong> User-uploaded file <code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Release use:</strong> Primary source for the first ten manually checked digital song records.</p><p>The uploaded PDF contains 2,191 digital pages. Release 149 publishes only manually checked full Tamil song texts; OCR-only text and unverified commentary remain unpublished.</p><p><a class="btn secondary" href="thiruppugazh.html">Open Thiruppugazh Library</a></p></article></section><section class="card" style="margin-top:22px"><h2>Publication states</h2><ul><li><strong>Published — source linked:</strong> primary-text citation is visible on the page.</li><li><strong>Partial reviewed:</strong> only the identified extract is published; completeness is not claimed.</li><li><strong>Directory review:</strong> basic navigation entry remains available but is excluded from search indexing, sitemap publication and the offline precache.</li></ul><h2>Claims deliberately deferred</h2><p>The platform does not claim inscription dates, architectural chronology, daily temple timings, annual festival dates or a complete critical edition of any long devotional work unless a suitable authoritative source is available.</p><p><a class="btn" href="literature/thirumurugatruppadai.html">Read the Thirumurugatruppadai cross-reference</a></p></section></main><footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="sources.html">Sources &amp; publication policy</a></footer></body></html>+<script defer src="assets/js/pwa-register.js"></script></head><body><a href="#main-content" class="skip-link">Skip to main content</a><div class="top">🛕 ஓம் சரவணபவ · Source-linked devotional knowledge</div><nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav><main id="main-content" class="wrap"><nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Sources</span></p></nav><h1 class="section-title">Sources &amp; Publication Policy</h1><p>The publication framework separates source-linked publication from directory entries. A page is indexed only when its published claims are tied to an identified source or an explicitly labelled traditional association.</p><section class="grid"><article class="card" id="src-thirumurugatruppadai"><span class="pill">Primary Tamil literary text</span><h2>திருமுருகாற்றுப்படை</h2><h3>Thirumurugatruppadai</h3><p><strong>Attributed author:</strong> நக்கீரர் / Nakkirar</p><p><strong>Repository source:</strong> User-uploaded file <code>திருமுருகாற்றுப்படை.docx</code></p><p><strong>Release use:</strong> Primary literary witness for the six Murugan landscapes and abodes.</p><p>This uploaded file is treated as a transcription/compilation, not as a critical scholarly edition. Release 147 cites precise internal headings and verse ranges and avoids unsupported historical claims.</p></article><article class="card" id="src-kandar-kavasangal-aaru"><span class="pill">Devotional text transcription</span><h2>கந்தர் கவசங்கள் ஆறு</h2><h3>Six Kandar Kavasams</h3><p><strong>Attributed author:</strong> ஸ்ரீ தேவராய சுவாமிகள் / Sri Devaraya Swamigal</p><p><strong>Repository source:</strong> User-uploaded file <code>திருமுருகாற்றுப்படை.docx</code></p><p><strong>Release use:</strong> Verified opening extract and source note for Kanda Sashti Kavasam.</p><p>Only the verified opening extract is published in this release. A complete critical edition remains outside Release 147.</p></article><article class="card" id="src-thiruppugazh-valluvar-vallalar-vattam"><span class="pill">Primary Tamil devotional text</span><h2>அருணகிரிநாதர் அருளிய திருப்புகழ்</h2><h3>Thiruppugazh — Digital Compilation</h3><p><strong>Attributed author:</strong> அருணகிரிநாதர் / Arunagirinathar</p><p><strong>Repository source:</strong> User-uploaded file <code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Release use:</strong> Primary source for the first ten manually checked digital song records.</p><p>The uploaded PDF contains 2,191 digital pages. Release 149 publishes only manually checked full Tamil song texts; OCR-only text and unverified commentary remain unpublished.</p><p><a class="btn secondary" href="thiruppugazh.html">Open Thiruppugazh Library</a></p></article><article class="card" id="src-skanda-guru-kavasam-uploaded-compilation">
++<span class="pill">Uploaded devotional text source</span>
++<h2>ஸ்கந்த குரு கவசம்</h2>
++<h3>Skanda Guru Kavasam</h3>
++<p><strong>Attributed author:</strong> ஸ்ரீமத் சத்குரு சாந்தானந்த சுவாமிகள்</p>
++<p><strong>Repository source:</strong> User-uploaded file <code>திருமுருகாற்றுப்படை.docx</code></p>
++<p><strong>Release use:</strong> Source witness for the checked opening invocation and lines 1–20.</p>
++<p>The source extends far beyond this excerpt. Release 151 deliberately avoids presenting the full modern work until publication rights and the complete text have been reviewed.</p>
++<p><a class="btn secondary" href="slokas/skanda-guru-kavasam.html">Open reviewed extract</a></p>
++</article></section><section class="card" style="margin-top:22px"><h2>Publication states</h2><ul><li><strong>Published — source linked:</strong> primary-text citation is visible on the page.</li><li><strong>Partial reviewed:</strong> only the identified extract is published; completeness is not claimed.</li><li><strong>Directory review:</strong> basic navigation entry remains available but is excluded from search indexing, sitemap publication and the offline precache.</li></ul><h2>Claims deliberately deferred</h2><p>The platform does not claim inscription dates, architectural chronology, daily temple timings, annual festival dates or a complete critical edition of any long devotional work unless a suitable authoritative source is available.</p><p><a class="btn" href="literature/thirumurugatruppadai.html">Read the Thirumurugatruppadai cross-reference</a></p></section></main><footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="sources.html">Sources &amp; publication policy</a></footer></body></html>
