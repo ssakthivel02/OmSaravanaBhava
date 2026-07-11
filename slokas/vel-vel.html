@@ -24,18 +24,24 @@
 <link rel="manifest" href="../manifest.json">
 <link rel="apple-touch-icon" href="../icons/icon-192.png">
 <script defer src="../assets/js/pwa-register.js"></script>
+<script defer src="../assets/js/read-aloud.js"></script>
 </head>
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="top">🛕 ஓம் சரவணபவ · Verified Murugan devotional knowledge platform</div>
-<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="../">ஓம் சரவணபவ</a><div class="links"><a href="../temples.html">Temples</a><a href="../sloka-library.html">Slokas</a><a href="../festivals.html">Festivals</a><a href="../ai-search.html">AI Search</a><a href="../audio-library.html">Audio</a></div></div></nav>
+<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="../index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="../temples.html">Temples</a><a href="../sloka-library.html">Slokas</a><a href="../festivals.html">Festivals</a><a href="../ai-search.html">AI Search</a><a href="../audio-library.html">Audio</a></div></div></nav>
 <main id="main-content" class="wrap">
-<nav aria-label="Breadcrumb"><p><a href="../">Home</a> › <a href="../sloka-library.html">Slokas</a> › <span aria-current="page">Vel Vel Muruga</span></p></nav>
+<nav aria-label="Breadcrumb"><p><a href="../index.html">Home</a> › <a href="../sloka-library.html">Slokas</a> › <span aria-current="page">Vel Vel Muruga</span></p></nav>
 <section class="card">
 <span class="pill">Chant</span>
 <h1 class="section-title">வேல் வேல் முருகா</h1>
 <h2>Vel Vel Muruga</h2>
-<p><strong>Text:</strong> வேல் வேல் முருகா, வெற்றி வேல் முருகா</p>
+<p id="readAloudText" lang="ta"><strong>Text:</strong> வேல் வேல் முருகா, வெற்றி வேல் முருகா</p><div class="read-aloud-panel" data-read-aloud-target="#readAloudText">
+<button type="button" class="btn" data-speech-action="play">▶ Tamil read-aloud</button>
+<button type="button" class="btn secondary" data-speech-action="pause">Pause</button>
+<button type="button" class="btn secondary" data-speech-action="stop">Stop</button>
+<p data-speech-status role="status" aria-live="polite">Uses the Tamil voice installed on this device. No recording is downloaded.</p>
+</div>
 <div class="grid">
 <article class="card"><h3>Tamil meaning</h3><p>அறியாமையை அகற்றி ஞானத்தை வழங்கும் வேலின் அருளை வேண்டுதல்.</p></article>
 <article class="card"><h3>English meaning</h3><p>A chant invoking the Vel as wisdom, protection and victory.</p></article>

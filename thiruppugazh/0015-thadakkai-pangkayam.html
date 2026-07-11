@@ -24,13 +24,14 @@
 <link rel="manifest" href="../manifest.json">
 <link rel="apple-touch-icon" href="../icons/icon-192.png">
 <script defer src="../assets/js/pwa-register.js"></script>
+<script defer src="../assets/js/read-aloud.js"></script>
 </head>
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="top">🛕 ஓம் சரவணபவ · Verified Thiruppugazh text</div>
-<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="../">ஓம் சரவணபவ</a><div class="links"><a href="../temples.html">Temples</a><a href="../sloka-library.html">Slokas</a><a href="../festivals.html">Festivals</a><a href="../ai-search.html">AI Search</a><a href="../audio-library.html">Audio</a></div></div></nav>
+<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="../index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="../temples.html">Temples</a><a href="../sloka-library.html">Slokas</a><a href="../festivals.html">Festivals</a><a href="../ai-search.html">AI Search</a><a href="../audio-library.html">Audio</a></div></div></nav>
 <main id="main-content" class="wrap">
-<nav aria-label="Breadcrumb"><p><a href="../">Home</a> › <a href="../thiruppugazh.html">Thiruppugazh</a> › <span aria-current="page">Thadakkai Pangkayam</span></p></nav>
+<nav aria-label="Breadcrumb"><p><a href="../index.html">Home</a> › <a href="../thiruppugazh.html">Thiruppugazh</a> › <span aria-current="page">Thadakkai Pangkayam</span></p></nav>
 <article class="card">
 <span class="pill">திருப்புகழ் 15</span>
 <span class="pill">திருப்பரங்குன்றம்</span>
@@ -39,7 +40,7 @@
 <p><strong>Author:</strong> அருணகிரிநாதர் / Arunagirinathar</p>
 <p><strong>Venue:</strong> திருப்பரங்குன்றம் · <a href="../temples/thirupparamkundram.html">Thirupparankundram temple page</a></p>
 <p><strong>Chanda / rhythmic opening:</strong> <span lang="ta">தனத்தத் தந்தனந் தனத்தத் தந்தனந்</span></p>
-<div class="verse" lang="ta">தடக்கைப் பங்கயம் கொடைக்குக் கொண்டல்தண்
+<div class="verse" id="readAloudText" lang="ta">தடக்கைப் பங்கயம் கொடைக்குக் கொண்டல்தண்
 டமிழ்க்குத் தஞ்சமென் றுலகோரைத்
 
 தவித்துச் சென்றிரந் துளத்திற் புண்படுந்
@@ -62,6 +63,12 @@
 
 குறப்பொற் கொம்பைமுன் புனத்திற் செங்கரங்
 குவித்துக் கும்பிடும் பெருமாளே.</div>
+<div class="read-aloud-panel" data-read-aloud-target="#readAloudText">
+<button type="button" class="btn" data-speech-action="play">▶ Tamil read-aloud</button>
+<button type="button" class="btn secondary" data-speech-action="pause">Pause</button>
+<button type="button" class="btn secondary" data-speech-action="stop">Stop</button>
+<p data-speech-status role="status" aria-live="polite">Uses the Tamil voice installed on this device. No recording is downloaded.</p>
+</div>
 </article>
 <section class="grid" style="margin-top:22px">
 <article class="card"><h2>Editorial reading guide</h2><p>A prayer to end the exhausting cycle of worldly dependence and establish a life of service at Murugan’s ankleted feet.</p><p>This is an editorial orientation, not a line-by-line translation.</p></article>

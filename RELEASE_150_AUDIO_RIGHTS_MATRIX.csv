@@ -1,0 +1,15 @@
+id,title_ta,title_en,category,text_status,play_mode,recording_status,text_route
+vel-maaral-maha-manthiram,வேல் மாறல் மகா மந்திரம்,Vel Maaral Maha Manthiram,Mantra,source-review-required,not-published,owned-or-licensed-recording-required,
+kanda-sashti-kavasam,கந்த சஷ்டி கவசம்,Kanda Sashti Kavasam,Kavacham,reviewed-opening-extract,device-tts,owned-or-licensed-recording-required,slokas/kanda-sashti-kavasam.html
+skanda-guru-kavasam,ஸ்கந்த குரு கவசம்,Skanda Guru Kavasam,Kavacham,uploaded-source-identified,not-published,owned-or-licensed-recording-required,
+shanmuga-kavasam,சண்முக கவசம்,Shanmuga Kavasam,Kavacham,uploaded-collection-review,not-published,owned-or-licensed-recording-required,
+kandar-anubhuti,கந்தர் அனுபூதி,Kandar Anubhuti,Arunagirinathar,uploaded-source-identified,not-published,owned-or-licensed-recording-required,
+kandar-alangaram,கந்தர் அலங்காரம்,Kandar Alangaram,Arunagirinathar,source-review-required,not-published,owned-or-licensed-recording-required,
+kandar-andhathi,கந்தர் அந்தாதி,Kandar Andhathi,Arunagirinathar,source-review-required,not-published,owned-or-licensed-recording-required,
+kandar-kalivenba,கந்தர் கலிவெண்பா,Kandar Kalivenba,Murugan Literature,source-review-required,not-published,owned-or-licensed-recording-required,
+vel-virutham,வேல் விருத்தம்,Vel Virutham,Arunagirinathar,uploaded-reference-identified,not-published,owned-or-licensed-recording-required,
+mayil-virutham,மயில் விருத்தம்,Mayil Virutham,Arunagirinathar,uploaded-reference-identified,not-published,owned-or-licensed-recording-required,
+subramanya-bhujangam,சுப்பிரமணிய புஜங்கம்,Subramanya Bhujangam,Stotra,source-review-required,not-published,owned-or-licensed-recording-required,
+kanda-gayatri,கந்த காயத்ரி,Kanda Gayatri,Gayatri,published,device-tts,owned-or-licensed-recording-required,slokas/subramanya-gayatri.html
+saravanabhava-mantra,சரவணபவ மந்திரம்,Saravanabhava Mantra,Mantra,published,device-tts,owned-or-licensed-recording-required,slokas/om-saravana-bhava.html
+arupadai-veedu-thuthigal,ஆறுபடை வீடு துதிகள்,Arupadai Veedu Thuthigal,Temple Devotion,source-linked-sections-available,not-published,owned-or-licensed-recording-required,literature/thirumurugatruppadai.html

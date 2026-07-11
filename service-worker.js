@@ -1,4 +1,4 @@
-const RELEASE = '149';
+const RELEASE = '150';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
@@ -57,7 +57,10 @@ const PRECACHE_URLS = [
   "/thiruppugazh/0013-sandhadham-bandha.html",
   "/thiruppugazh/0015-thadakkai-pangkayam.html",
   "/thiruppugazh/0016-padhiththa-senchandha.html",
-  "/thiruppugazh/0017-poruppurung.html"
+  "/thiruppugazh/0017-poruppurung.html",
+  "/assets/js/read-aloud.js",
+  "/assets/js/audio-library.js",
+  "/data/audio-catalog.json"
 ];
 
 self.addEventListener('install', event => {

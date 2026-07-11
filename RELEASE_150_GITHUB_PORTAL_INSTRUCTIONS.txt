@@ -1,0 +1,21 @@
+OmSaravanaBhava — Release 150 GitHub Portal Upload
+
+1. Extract the ZIP into a temporary folder.
+2. Open the extracted folder and select everything inside it.
+3. Open the OmSaravanaBhava repository on branch main.
+4. Choose Add file → Upload files.
+5. Drag the selected extracted contents into the upload area.
+6. Confirm there is no Release150, package, output or cleanup parent folder.
+7. In the UPPER commit-title field replace “Add files via upload” with:
+   Release 150: improve Tamil typography navigation and audio read-aloud
+8. Leave the lower description blank or optional.
+9. Select Commit directly to the main branch.
+10. Click Commit changes.
+11. After deployment, press Ctrl+0 before visual testing to restore browser zoom to 100 percent.
+
+Expected:
+- No MP3, WAV, M4A, OGG or other third-party recording files
+- audio-library.html becomes indexable and functional
+- data/audio-catalog.json contains 14 requested works
+- 14 verified text pages receive Tamil device read-aloud
+- all production brand links use explicit index.html navigation

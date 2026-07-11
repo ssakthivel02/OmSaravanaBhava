@@ -1,0 +1,149 @@
+[
+  {
+    "id": "vel-maaral-maha-manthiram",
+    "titleTa": "வேல் மாறல் மகா மந்திரம்",
+    "titleEn": "Vel Maaral Maha Manthiram",
+    "category": "Mantra",
+    "textStatus": "source-review-required",
+    "playMode": "not-published",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "summaryEn": "Requested for the Murugan audio collection. Full Tamil text and recording provenance must be verified before publication."
+  },
+  {
+    "id": "kanda-sashti-kavasam",
+    "titleTa": "கந்த சஷ்டி கவசம்",
+    "titleEn": "Kanda Sashti Kavasam",
+    "category": "Kavacham",
+    "textStatus": "reviewed-opening-extract",
+    "playMode": "device-tts",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "textRoute": "slokas/kanda-sashti-kavasam.html",
+    "speechText": "துதிப்போர்க்கு வல்வினைபோம், துன்பம் போம், நெஞ்சில் பதிப்போர்க்குச் செல்வம் பலித்துக் கதித்து ஓங்கும், நிஷ்டையுங் கைகூடும், நிமலர் அருள் கந்தர் சஷ்டி கவசந் தனை. அமரர் இடர்தீர அமரம் புரிந்த குமரன் அடி நெஞ்சே குறி.",
+    "summaryEn": "A source-linked opening extract is available for Tamil device read-aloud. A complete reviewed edition is not yet claimed."
+  },
+  {
+    "id": "skanda-guru-kavasam",
+    "titleTa": "ஸ்கந்த குரு கவசம்",
+    "titleEn": "Skanda Guru Kavasam",
+    "category": "Kavacham",
+    "textStatus": "uploaded-source-identified",
+    "playMode": "not-published",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "summaryEn": "The uploaded Murugan compilation contains this work. Full text segmentation and verification are required before read-aloud publication."
+  },
+  {
+    "id": "shanmuga-kavasam",
+    "titleTa": "சண்முக கவசம்",
+    "titleEn": "Shanmuga Kavasam",
+    "category": "Kavacham",
+    "textStatus": "uploaded-collection-review",
+    "playMode": "not-published",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "summaryEn": "Requested for the six-Kavasam collection. Text identity and complete source boundaries must be verified before publication."
+  },
+  {
+    "id": "kandar-anubhuti",
+    "titleTa": "கந்தர் அனுபூதி",
+    "titleEn": "Kandar Anubhuti",
+    "category": "Arunagirinathar",
+    "textStatus": "uploaded-source-identified",
+    "playMode": "not-published",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "summaryEn": "An uploaded source is available. Original verses must be separated from copyrighted modern commentary and translation."
+  },
+  {
+    "id": "kandar-alangaram",
+    "titleTa": "கந்தர் அலங்காரம்",
+    "titleEn": "Kandar Alangaram",
+    "category": "Arunagirinathar",
+    "textStatus": "source-review-required",
+    "playMode": "not-published",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "summaryEn": "Requested for the digital library. A verified complete Tamil source is required before read-aloud publication."
+  },
+  {
+    "id": "kandar-andhathi",
+    "titleTa": "கந்தர் அந்தாதி",
+    "titleEn": "Kandar Andhathi",
+    "category": "Arunagirinathar",
+    "textStatus": "source-review-required",
+    "playMode": "not-published",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "summaryEn": "Requested for the digital library. A verified complete Tamil source is required before read-aloud publication."
+  },
+  {
+    "id": "kandar-kalivenba",
+    "titleTa": "கந்தர் கலிவெண்பா",
+    "titleEn": "Kandar Kalivenba",
+    "category": "Murugan Literature",
+    "textStatus": "source-review-required",
+    "playMode": "not-published",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "summaryEn": "Requested for the digital library. Authorship, edition and full text must be verified."
+  },
+  {
+    "id": "vel-virutham",
+    "titleTa": "வேல் விருத்தம்",
+    "titleEn": "Vel Virutham",
+    "category": "Arunagirinathar",
+    "textStatus": "uploaded-reference-identified",
+    "playMode": "not-published",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "summaryEn": "The uploaded Arunagirinathar research material identifies this work. A complete primary text still requires verification."
+  },
+  {
+    "id": "mayil-virutham",
+    "titleTa": "மயில் விருத்தம்",
+    "titleEn": "Mayil Virutham",
+    "category": "Arunagirinathar",
+    "textStatus": "uploaded-reference-identified",
+    "playMode": "not-published",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "summaryEn": "The uploaded Arunagirinathar research material identifies this work. A complete primary text still requires verification."
+  },
+  {
+    "id": "subramanya-bhujangam",
+    "titleTa": "சுப்பிரமணிய புஜங்கம்",
+    "titleEn": "Subramanya Bhujangam",
+    "category": "Stotra",
+    "textStatus": "source-review-required",
+    "playMode": "not-published",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "summaryEn": "Tamil text or transliteration will be published only after a verified source and edition are selected."
+  },
+  {
+    "id": "kanda-gayatri",
+    "titleTa": "கந்த காயத்ரி",
+    "titleEn": "Kanda Gayatri",
+    "category": "Gayatri",
+    "textStatus": "published",
+    "playMode": "device-tts",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "textRoute": "slokas/subramanya-gayatri.html",
+    "speechText": "ஓம் தத் புருஷாய வித்மஹே மஹாசேனாய தீமஹி தந்நோ ஷண்முக ப்ரசோதயாத்",
+    "summaryEn": "The verified mantra text is available for Tamil device read-aloud."
+  },
+  {
+    "id": "saravanabhava-mantra",
+    "titleTa": "சரவணபவ மந்திரம்",
+    "titleEn": "Saravanabhava Mantra",
+    "category": "Mantra",
+    "textStatus": "published",
+    "playMode": "device-tts",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "textRoute": "slokas/om-saravana-bhava.html",
+    "speechText": "ஓம் சரவணபவ",
+    "summaryEn": "The verified mantra text is available for Tamil device read-aloud."
+  },
+  {
+    "id": "arupadai-veedu-thuthigal",
+    "titleTa": "ஆறுபடை வீடு துதிகள்",
+    "titleEn": "Arupadai Veedu Thuthigal",
+    "category": "Temple Devotion",
+    "textStatus": "source-linked-sections-available",
+    "playMode": "not-published",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "textRoute": "literature/thirumurugatruppadai.html",
+    "summaryEn": "Source-linked literary sections are available, but a dedicated complete hymn collection has not yet been established."
+  }
+]

@@ -1,6 +1,6 @@
 window.OSB = {};
 
-OSB.RELEASE = '149';
+OSB.RELEASE = '150';
 
 OSB.byId = id => document.getElementById(id);
 
@@ -184,12 +184,13 @@ OSB.search = () => OSB.safe(async () => {
   const input = OSB.byId('q');
   if (input) input.value = query;
 
-  const [temples, slokas, festivals, literature, thiruppugazh] = await Promise.all([
+  const [temples, slokas, festivals, literature, thiruppugazh, audioCatalog] = await Promise.all([
     OSB.load('data/temples.json'),
     OSB.load('data/slokas.json'),
     OSB.load('data/festivals.json'),
     OSB.load('data/literature.json'),
-    OSB.load('data/thiruppugazh.json')
+    OSB.load('data/thiruppugazh.json'),
+    OSB.load('data/audio-catalog.json')
   ]);
 
   const records = [
@@ -238,7 +239,14 @@ OSB.search = () => OSB.safe(async () => {
           item.meterTa, item.summaryEn, item.textTa
         ].join(' '),
         url: item.route
-      }))
+      })),
+    ...audioCatalog.map(item => ({
+      kind: 'Audio',
+      title: `${item.titleTa} ${item.titleEn}`,
+      summary: item.summaryEn,
+      searchText: [item.titleTa, item.titleEn, item.category, item.summaryEn].join(' '),
+      url: `audio-library.html?track=${encodeURIComponent(item.id)}`
+    }))
   ];
 
   const terms = query.toLocaleLowerCase().split(/\s+/).filter(Boolean);
