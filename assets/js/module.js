@@ -1,1 +1,1 @@
-document.querySelector('[data-search]')?.addEventListener('input',e=>{const q=e.target.value.toLowerCase();document.querySelectorAll('[data-item]').forEach(x=>x.hidden=!x.textContent.toLowerCase().includes(q))})
+console.log('OSB batch');
