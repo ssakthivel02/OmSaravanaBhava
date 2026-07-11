@@ -15,13 +15,13 @@
     "id": "src-kandar-kavasangal-aaru",
     "titleTa": "கந்தர் கவசங்கள் ஆறு",
     "titleEn": "Six Kandar Kavasams",
-    "author": "ஸ்ரீ தேவராய சுவாமிகள் / Sri Devaraya Swamigal",
-    "sourceType": "Devotional text transcription",
-    "editionType": "Section contained in the user-uploaded compilation",
+    "author": "Work-level attribution required; Kanda Sashti Kavasam section attributed to ஸ்ரீ தேவராய சுவாமிகள் / Sri Devaraya Swamigal",
+    "sourceType": "Section inside a mixed user-uploaded Murugan devotional compilation",
+    "editionType": "Uploaded compilation container; not a standalone critical edition",
     "fileName": "திருமுருகாற்றுப்படை.docx",
-    "scope": "Opening invocation and six temple-linked Kavasam sections.",
-    "useInRelease": "Verified opening extract and source note for Kanda Sashti Kavasam.",
-    "qualityNote": "Only the verified opening extract is published in this release. A complete critical edition remains outside Release 147."
+    "scope": "The uploaded container includes Kanda Sashti Kavasam and other Murugan devotional works. Each work must retain its own author attribution.",
+    "useInRelease": "Source witness only for the reviewed Kanda Sashti Kavasam opening extract.",
+    "qualityNote": "The filename identifies the uploaded container, not the literary identity or authorship of every work inside it. This record does not attribute Kavasam literature to Nakkirar or to Thirumurugatruppadai."
   },
   {
     "id": "src-thiruppugazh-valluvar-vallalar-vattam",
@@ -40,11 +40,11 @@
     "titleTa": "ஸ்கந்த குரு கவசம்",
     "titleEn": "Skanda Guru Kavasam",
     "author": "ஸ்ரீமத் சத்குரு சாந்தானந்த சுவாமிகள்",
-    "sourceType": "Devotional text contained in the user-uploaded compilation",
-    "editionType": "Uploaded compilation transcription",
+    "sourceType": "Skanda Guru Kavasam section inside a mixed user-uploaded Murugan devotional compilation",
+    "editionType": "Uploaded compilation container; not a standalone critical edition",
     "fileName": "திருமுருகாற்றுப்படை.docx",
     "scope": "Opening invocation and the numbered text extending beyond line 380.",
     "useInRelease": "Source witness for the manually checked opening invocation and lines 1–20 in Release 151.",
-    "qualityNote": "This is not treated as a critical edition. Release 151 publishes only the verified opening extract and does not reproduce the complete modern work."
+    "qualityNote": "The container filename does not define this work's authorship. The internal heading attributes Skanda Guru Kavasam to Srimath Sadguru Santhananda Swamigal. Release 151 publishes only the verified opening extract."
   }
 ]

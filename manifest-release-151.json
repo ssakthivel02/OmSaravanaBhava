@@ -1,7 +1,7 @@
 {
   "project": "OmSaravanaBhava",
   "release": 151,
-  "name": "Skanda Guru Kavasam Reviewed Opening Edition",
+  "name": "Skanda Guru Kavasam Opening Edition and Source Registry Integrity Correction",
   "baseline_github_commit": "c0369c4fe3c126b9d6f339d08915f45021f4473e",
   "generated": "2026-07-11",
   "validation_status": "PASS",
@@ -30,5 +30,12 @@
     "The page is intentionally noindex because only the opening extract is published.",
     "Device speech quality depends on the Tamil voice installed on the visitor's device.",
     "No human performance recording is included without documented permission."
-  ]
+  ],
+  "source_container_semantics": {
+    "container_file": "திருமுருகாற்றுப்படை.docx",
+    "classification": "mixed uploaded Murugan devotional compilation",
+    "not_a_work_attribution": true,
+    "kanda_sashti_author": "Sri Devaraya Swamigal",
+    "skanda_guru_author": "Srimath Sadguru Santhananda Swamigal"
+  }
 }

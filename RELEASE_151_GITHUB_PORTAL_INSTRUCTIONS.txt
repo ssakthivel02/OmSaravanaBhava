@@ -7,7 +7,7 @@ OmSaravanaBhava — Release 151 GitHub Portal Upload
 5. Drag the selected extracted contents into the upload area.
 6. Confirm there is no Release151, package, output or cleanup parent folder.
 7. In the UPPER commit-title field replace “Add files via upload” with:
-   Release 151: publish reviewed Skanda Guru Kavasam opening edition
+   Release 151: publish Skanda Guru Kavasam and correct source registry
 8. Leave the lower description blank or optional.
 9. Select Commit directly to the main branch.
 10. Click Commit changes.
@@ -25,3 +25,8 @@ Expected production files:
 Important:
 - No sitemap.xml change is expected because the partial edition remains noindex.
 - No MP3 or third-party recording file is included.
+
+CORRECTION NOTICE:
+This corrected package supersedes the earlier Release 151 ZIP.
+It explicitly classifies திருமுருகாற்றுப்படை.docx as a mixed uploaded container filename,
+not as the authorship or literary identity of all Kavasam works.
