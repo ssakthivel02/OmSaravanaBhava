@@ -1,0 +1,33 @@
+{
+  "release": 144,
+  "generated": "2026-07-11",
+  "temples": [
+    "temples/palani.html",
+    "temples/thiruchendur.html",
+    "temples/thirupparamkundram.html",
+    "temples/swamimalai.html",
+    "temples/thiruthani.html",
+    "temples/pazhamudircholai.html",
+    "temples/vadapalani.html",
+    "temples/marudhamalai.html",
+    "temples/vayalur.html",
+    "temples/sikkal.html"
+  ],
+  "slokas": [
+    "slokas/om-saravana-bhava.html",
+    "slokas/kanda-sashti-kavasam.html",
+    "slokas/subramanya-gayatri.html",
+    "slokas/vel-vel.html"
+  ],
+  "festivals": [
+    "festivals/thai-poosam.html",
+    "festivals/skanda-sashti.html",
+    "festivals/panguni-uthiram.html",
+    "festivals/aadi-krittikai.html"
+  ],
+  "compatibility_aliases": [
+    "temple-details.html",
+    "sloka-reader.html",
+    "festival-details.html"
+  ]
+}
