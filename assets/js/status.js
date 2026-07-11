@@ -1,3 +1,1 @@
-document.querySelectorAll('[data-status]').forEach(
- element=>element.textContent=element.dataset.status||'repository-evidence-required'
-);
+document.querySelectorAll('[data-status]').forEach(e=>e.textContent=e.dataset.status||'live-evidence-required');
