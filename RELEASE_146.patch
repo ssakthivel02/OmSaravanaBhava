@@ -1,0 +1,710 @@
+--- baseline/ai-search.html
++++ release146/ai-search.html
+@@ -17,6 +17,14 @@
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"SearchResultsPage","@id":"https://omsaravanabhava.org/ai-search.html#webpage","url":"https://omsaravanabhava.org/ai-search.html","name":"AI Search","description":"Search the Om Saravana Bhava static knowledge collection for Murugan temples, slokas and festivals in Tamil and English.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"AI Search","item":"https://omsaravanabhava.org/ai-search.html"}]}]}</script>
+ <script defer src="assets/js/osb44.js"></script>
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="manifest.json">
++<link rel="apple-touch-icon" href="icons/icon-192.png">
++<script defer src="assets/js/pwa-register.js"></script>
+ </head>
+ <body data-module="search">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- baseline/assets/js/pwa-register.js
++++ release146/assets/js/pwa-register.js
+@@ -0,0 +1,49 @@
++(() => {
++  if (!('serviceWorker' in navigator)) return;
++
++  let refreshing = false;
++
++  const showUpdateNotice = registration => {
++    if (document.getElementById('osb-pwa-update')) return;
++    const notice = document.createElement('div');
++    notice.id = 'osb-pwa-update';
++    notice.setAttribute('role', 'status');
++    notice.setAttribute('aria-live', 'polite');
++    notice.style.cssText = 'position:fixed;left:16px;right:16px;bottom:16px;z-index:1000;max-width:680px;margin:auto;padding:14px 16px;border:1px solid #edc383;border-radius:16px;background:#fffaf3;color:#2e160f;box-shadow:0 16px 44px rgba(104,45,18,.18);display:flex;gap:12px;align-items:center;justify-content:space-between';
++    notice.innerHTML = '<span>A newer version of Om Saravana Bhava is ready.</span><button type="button" class="btn">Update</button>';
++    notice.querySelector('button').addEventListener('click', () => {
++      registration.waiting?.postMessage({type: 'SKIP_WAITING'});
++    });
++    document.body.appendChild(notice);
++  };
++
++  window.addEventListener('load', async () => {
++    try {
++      const registration = await navigator.serviceWorker.register('/service-worker.js', {scope: '/'});
++
++      if (registration.waiting && navigator.serviceWorker.controller) {
++        showUpdateNotice(registration);
++      }
++
++      registration.addEventListener('updatefound', () => {
++        const worker = registration.installing;
++        if (!worker) return;
++        worker.addEventListener('statechange', () => {
++          if (worker.state === 'installed' && navigator.serviceWorker.controller) {
++            showUpdateNotice(registration);
++          }
++        });
++      });
++
++      navigator.serviceWorker.addEventListener('controllerchange', () => {
++        if (refreshing) return;
++        refreshing = true;
++        location.reload();
++      });
++
++      registration.update().catch(() => {});
++    } catch (error) {
++      console.error('Service worker registration failed:', error);
++    }
++  });
++})();
+--- baseline/audio-library.html
++++ release146/audio-library.html
+@@ -17,6 +17,14 @@
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://omsaravanabhava.org/audio-library.html#webpage","url":"https://omsaravanabhava.org/audio-library.html","name":"Audio Library","description":"Om Saravana Bhava audio library publication area for owned or licensed Murugan devotional recordings.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Audio Library","item":"https://omsaravanabhava.org/audio-library.html"}]}]}</script>
+ <script defer src="assets/js/osb44.js"></script>
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="manifest.json">
++<link rel="apple-touch-icon" href="icons/icon-192.png">
++<script defer src="assets/js/pwa-register.js"></script>
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- baseline/festivals.html
++++ release146/festivals.html
+@@ -17,6 +17,14 @@
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://omsaravanabhava.org/festivals.html#webpage","url":"https://omsaravanabhava.org/festivals.html","name":"Festival Calendar","description":"Learn about Thai Poosam, Skanda Sashti, Panguni Uthiram, Aadi Krittikai and other Murugan festival traditions.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Festival Calendar","item":"https://omsaravanabhava.org/festivals.html"}]}]}</script>
+ <script defer src="assets/js/osb44.js"></script>
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="manifest.json">
++<link rel="apple-touch-icon" href="icons/icon-192.png">
++<script defer src="assets/js/pwa-register.js"></script>
+ </head>
+ <body data-module="festivals">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- baseline/festivals/aadi-krittikai.html
++++ release146/festivals/aadi-krittikai.html
+@@ -16,6 +16,14 @@
+ <link rel="stylesheet" href="../assets/css/osb44.css">
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://omsaravanabhava.org/festivals/aadi-krittikai.html#webpage","url":"https://omsaravanabhava.org/festivals/aadi-krittikai.html","name":"Aadi Krittikai","alternateName":"ஆடி கிருத்திகை","description":"A special day for Murugan worship connected with Krittika nakshatra.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"],"about":{"@type":"Thing","name":"Aadi Krittikai","alternateName":"ஆடி கிருத்திகை"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Festivals","item":"https://omsaravanabhava.org/festivals.html"},{"@type":"ListItem","position":3,"name":"Aadi Krittikai","item":"https://omsaravanabhava.org/festivals/aadi-krittikai.html"}]}]}</script>
+ <link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- baseline/festivals/panguni-uthiram.html
++++ release146/festivals/panguni-uthiram.html
+@@ -16,6 +16,14 @@
+ <link rel="stylesheet" href="../assets/css/osb44.css">
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://omsaravanabhava.org/festivals/panguni-uthiram.html#webpage","url":"https://omsaravanabhava.org/festivals/panguni-uthiram.html","name":"Panguni Uthiram","alternateName":"பங்குனி உத்திரம்","description":"Sacred festival connected with divine marriage and Murugan worship.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"],"about":{"@type":"Thing","name":"Panguni Uthiram","alternateName":"பங்குனி உத்திரம்"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Festivals","item":"https://omsaravanabhava.org/festivals.html"},{"@type":"ListItem","position":3,"name":"Panguni Uthiram","item":"https://omsaravanabhava.org/festivals/panguni-uthiram.html"}]}]}</script>
+ <link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- baseline/festivals/skanda-sashti.html
++++ release146/festivals/skanda-sashti.html
+@@ -16,6 +16,14 @@
+ <link rel="stylesheet" href="../assets/css/osb44.css">
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://omsaravanabhava.org/festivals/skanda-sashti.html#webpage","url":"https://omsaravanabhava.org/festivals/skanda-sashti.html","name":"Skanda Sashti","alternateName":"ஸ்கந்த சஷ்டி","description":"Six-day observance remembering Lord Murugan’s victory over Surapadman.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"],"about":{"@type":"Thing","name":"Skanda Sashti","alternateName":"ஸ்கந்த சஷ்டி"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Festivals","item":"https://omsaravanabhava.org/festivals.html"},{"@type":"ListItem","position":3,"name":"Skanda Sashti","item":"https://omsaravanabhava.org/festivals/skanda-sashti.html"}]}]}</script>
+ <link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- baseline/festivals/thai-poosam.html
++++ release146/festivals/thai-poosam.html
+@@ -16,6 +16,14 @@
+ <link rel="stylesheet" href="../assets/css/osb44.css">
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://omsaravanabhava.org/festivals/thai-poosam.html#webpage","url":"https://omsaravanabhava.org/festivals/thai-poosam.html","name":"Thai Poosam","alternateName":"தைப்பூசம்","description":"Major Murugan festival connected with Vel worship, kavadi and devotion.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"],"about":{"@type":"Thing","name":"Thai Poosam","alternateName":"தைப்பூசம்"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Festivals","item":"https://omsaravanabhava.org/festivals.html"},{"@type":"ListItem","position":3,"name":"Thai Poosam","item":"https://omsaravanabhava.org/festivals/thai-poosam.html"}]}]}</script>
+ <link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- baseline/index.html
++++ release146/index.html
+@@ -17,6 +17,14 @@
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://omsaravanabhava.org/#organization","name":"Om Saravana Bhava","url":"https://omsaravanabhava.org/"},{"@type":"WebSite","@id":"https://omsaravanabhava.org/#website","url":"https://omsaravanabhava.org/","name":"Om Saravana Bhava","inLanguage":["ta","en"],"publisher":{"@id":"https://omsaravanabhava.org/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://omsaravanabhava.org/ai-search.html?q={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"WebPage","@id":"https://omsaravanabhava.org/#webpage","url":"https://omsaravanabhava.org/","name":"Om Saravana Bhava","description":"Tamil-first Murugan devotional knowledge platform for temples, slokas, festivals and local knowledge search.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"]}]}</script>
+ <script defer src="assets/js/osb44.js"></script>
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="manifest.json">
++<link rel="apple-touch-icon" href="icons/icon-192.png">
++<script defer src="assets/js/pwa-register.js"></script>
+ </head>
+ <body data-module="home">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- baseline/manifest.json
++++ release146/manifest.json
+@@ -1,5 +1,85 @@
+ {
+-  "batch": 94,
+-  "module": "Murugan_Literature_Cross_Reference_Volume_06",
+-  "file_count": 99
++  "id": "/",
++  "name": "Om Saravana Bhava",
++  "short_name": "Saravana Bhava",
++  "description": "Tamil-first Murugan devotional knowledge platform for temples, slokas, festivals and spiritual learning.",
++  "lang": "ta",
++  "dir": "ltr",
++  "start_url": "/",
++  "scope": "/",
++  "display": "standalone",
++  "orientation": "any",
++  "background_color": "#fff7ec",
++  "theme_color": "#a51d17",
++  "categories": [
++    "education",
++    "lifestyle",
++    "books"
++  ],
++  "icons": [
++    {
++      "src": "/icons/icon-192.png",
++      "sizes": "192x192",
++      "type": "image/png",
++      "purpose": "any"
++    },
++    {
++      "src": "/icons/icon-512.png",
++      "sizes": "512x512",
++      "type": "image/png",
++      "purpose": "any"
++    },
++    {
++      "src": "/icons/icon-maskable-512.png",
++      "sizes": "512x512",
++      "type": "image/png",
++      "purpose": "maskable"
++    }
++  ],
++  "shortcuts": [
++    {
++      "name": "Temples",
++      "short_name": "Temples",
++      "url": "/temples.html",
++      "icons": [
++        {
++          "src": "/icons/icon-192.png",
++          "sizes": "192x192"
++        }
++      ]
++    },
++    {
++      "name": "Sloka Library",
++      "short_name": "Slokas",
++      "url": "/sloka-library.html",
++      "icons": [
++        {
++          "src": "/icons/icon-192.png",
++          "sizes": "192x192"
++        }
++      ]
++    },
++    {
++      "name": "Festivals",
++      "short_name": "Festivals",
++      "url": "/festivals.html",
++      "icons": [
++        {
++          "src": "/icons/icon-192.png",
++          "sizes": "192x192"
++        }
++      ]
++    },
++    {
++      "name": "Search",
++      "short_name": "Search",
++      "url": "/ai-search.html",
++      "icons": [
++        {
++          "src": "/icons/icon-192.png",
++          "sizes": "192x192"
++        }
++      ]
++    }
++  ]
+ }
+--- baseline/offline.html
++++ release146/offline.html
+@@ -0,0 +1,24 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Offline | Om Saravana Bhava</title>
++<meta name="robots" content="noindex,nofollow">
++<meta name="theme-color" content="#a51d17">
++<link rel="manifest" href="manifest.json">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<link rel="apple-touch-icon" href="icons/icon-192.png">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<script defer src="assets/js/pwa-register.js"></script>
++</head>
++<body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Offline devotional access</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="/">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a></div></div></nav>
++<main id="main-content" class="wrap">
++<section class="card"><span class="pill">Offline</span><h1 class="section-title">Connection unavailable</h1><p>The internet is currently unavailable. Pages opened previously may still be available from the offline cache.</p><p><button type="button" class="btn" onclick="location.reload()">Try again</button> <a class="btn secondary" href="/">Open Home</a></p></section>
++</main>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform</footer>
++</body>
++</html>
+--- baseline/service-worker.js
++++ release146/service-worker.js
+@@ -1 +1,128 @@
+-self.addEventListener('install',e=>self.skipWaiting());self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
++const RELEASE = '146';
++const STATIC_CACHE = `osb-static-v${RELEASE}`;
++const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
++const DATA_CACHE = `osb-data-v${RELEASE}`;
++const CACHE_PREFIX = 'osb-';
++const OFFLINE_URL = '/offline.html';
++const PRECACHE_URLS = [
++  "/",
++  "/index.html",
++  "/offline.html",
++  "/temples.html",
++  "/sloka-library.html",
++  "/festivals.html",
++  "/ai-search.html",
++  "/audio-library.html",
++  "/assets/css/osb44.css",
++  "/assets/js/osb44.js",
++  "/assets/js/pwa-register.js",
++  "/favicon.svg",
++  "/manifest.json",
++  "/icons/icon-192.png",
++  "/icons/icon-512.png",
++  "/icons/icon-maskable-512.png",
++  "/data/temples.json",
++  "/data/slokas.json",
++  "/data/festivals.json",
++  "/festivals/aadi-krittikai.html",
++  "/festivals/panguni-uthiram.html",
++  "/festivals/skanda-sashti.html",
++  "/festivals/thai-poosam.html",
++  "/slokas/kanda-sashti-kavasam.html",
++  "/slokas/om-saravana-bhava.html",
++  "/slokas/subramanya-gayatri.html",
++  "/slokas/vel-vel.html",
++  "/temples/marudhamalai.html",
++  "/temples/palani.html",
++  "/temples/pazhamudircholai.html",
++  "/temples/sikkal.html",
++  "/temples/swamimalai.html",
++  "/temples/thiruchendur.html",
++  "/temples/thirupparamkundram.html",
++  "/temples/thiruthani.html",
++  "/temples/vadapalani.html",
++  "/temples/vayalur.html"
++];
++
++self.addEventListener('install', event => {
++  event.waitUntil(
++    caches.open(STATIC_CACHE)
++      .then(cache => cache.addAll(PRECACHE_URLS))
++      .then(() => self.skipWaiting())
++  );
++});
++
++self.addEventListener('activate', event => {
++  event.waitUntil(
++    caches.keys()
++      .then(keys => Promise.all(
++        keys
++          .filter(key => key.startsWith(CACHE_PREFIX) && ![STATIC_CACHE, RUNTIME_CACHE, DATA_CACHE].includes(key))
++          .map(key => caches.delete(key))
++      ))
++      .then(() => self.clients.claim())
++  );
++});
++
++const cacheResponse = async (cacheName, request, response) => {
++  if (response && response.ok && response.type === 'basic') {
++    const cache = await caches.open(cacheName);
++    await cache.put(request, response.clone());
++  }
++  return response;
++};
++
++const networkFirst = async request => {
++  try {
++    const response = await fetch(request);
++    return cacheResponse(RUNTIME_CACHE, request, response);
++  } catch (error) {
++    return (await caches.match(request, {ignoreSearch: true})) || (await caches.match(OFFLINE_URL));
++  }
++};
++
++const dataNetworkFirst = async request => {
++  try {
++    const response = await fetch(request);
++    return cacheResponse(DATA_CACHE, request, response);
++  } catch (error) {
++    return (await caches.match(request)) || new Response('[]', {headers: {'Content-Type': 'application/json; charset=utf-8'}});
++  }
++};
++
++const staleWhileRevalidate = async request => {
++  const cached = await caches.match(request);
++  const network = fetch(request)
++    .then(response => cacheResponse(RUNTIME_CACHE, request, response))
++    .catch(() => null);
++  return cached || network || new Response('', {status: 504, statusText: 'Offline'});
++};
++
++self.addEventListener('fetch', event => {
++  const request = event.request;
++  if (request.method !== 'GET') return;
++
++  const url = new URL(request.url);
++  if (url.origin !== self.location.origin) return;
++
++  if (request.mode === 'navigate') {
++    event.respondWith(networkFirst(request));
++    return;
++  }
++
++  if (url.pathname.startsWith('/data/') || request.destination === 'json') {
++    event.respondWith(dataNetworkFirst(request));
++    return;
++  }
++
++  if (['style', 'script', 'image', 'font'].includes(request.destination)) {
++    event.respondWith(staleWhileRevalidate(request));
++    return;
++  }
++
++  event.respondWith(staleWhileRevalidate(request));
++});
++
++self.addEventListener('message', event => {
++  if (event.data?.type === 'SKIP_WAITING') self.skipWaiting();
++});
+--- baseline/sloka-library.html
++++ release146/sloka-library.html
+@@ -17,6 +17,14 @@
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://omsaravanabhava.org/sloka-library.html#webpage","url":"https://omsaravanabhava.org/sloka-library.html","name":"Sloka Library","description":"Read Tamil Murugan mantras, chants and devotional meanings in the Om Saravana Bhava sloka library.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Sloka Library","item":"https://omsaravanabhava.org/sloka-library.html"}]}]}</script>
+ <script defer src="assets/js/osb44.js"></script>
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="manifest.json">
++<link rel="apple-touch-icon" href="icons/icon-192.png">
++<script defer src="assets/js/pwa-register.js"></script>
+ </head>
+ <body data-module="slokas">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- baseline/slokas/kanda-sashti-kavasam.html
++++ release146/slokas/kanda-sashti-kavasam.html
+@@ -16,6 +16,14 @@
+ <link rel="stylesheet" href="../assets/css/osb44.css">
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CreativeWork","@id":"https://omsaravanabhava.org/slokas/kanda-sashti-kavasam.html#work","url":"https://omsaravanabhava.org/slokas/kanda-sashti-kavasam.html","name":"Kanda Sashti Kavasam","alternateName":"கந்த சஷ்டி கவசம்","description":"A devotional hymn seeking Lord Murugan’s grace, courage and protection. Full canonical text must be added only after source review.","genre":"Kavacham","inLanguage":["ta","en"],"isPartOf":{"@id":"https://omsaravanabhava.org/#website"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Slokas","item":"https://omsaravanabhava.org/sloka-library.html"},{"@type":"ListItem","position":3,"name":"Kanda Sashti Kavasam","item":"https://omsaravanabhava.org/slokas/kanda-sashti-kavasam.html"}]}]}</script>
+ <link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- baseline/slokas/om-saravana-bhava.html
++++ release146/slokas/om-saravana-bhava.html
+@@ -16,6 +16,14 @@
+ <link rel="stylesheet" href="../assets/css/osb44.css">
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CreativeWork","@id":"https://omsaravanabhava.org/slokas/om-saravana-bhava.html#work","url":"https://omsaravanabhava.org/slokas/om-saravana-bhava.html","name":"Om Saravana Bhava","alternateName":"ஓம் சரவணபவ","description":"A devotional mantra for protection, clarity and spiritual focus.","genre":"Mantra","inLanguage":["ta","en"],"isPartOf":{"@id":"https://omsaravanabhava.org/#website"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Slokas","item":"https://omsaravanabhava.org/sloka-library.html"},{"@type":"ListItem","position":3,"name":"Om Saravana Bhava","item":"https://omsaravanabhava.org/slokas/om-saravana-bhava.html"}]}]}</script>
+ <link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- baseline/slokas/subramanya-gayatri.html
++++ release146/slokas/subramanya-gayatri.html
+@@ -16,6 +16,14 @@
+ <link rel="stylesheet" href="../assets/css/osb44.css">
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CreativeWork","@id":"https://omsaravanabhava.org/slokas/subramanya-gayatri.html#work","url":"https://omsaravanabhava.org/slokas/subramanya-gayatri.html","name":"Subramanya Gayatri","alternateName":"சுப்பிரமண்ய காயத்ரி","description":"A prayer invoking Lord Shanmukha’s wisdom and guidance.","genre":"Gayatri","inLanguage":["ta","en"],"isPartOf":{"@id":"https://omsaravanabhava.org/#website"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Slokas","item":"https://omsaravanabhava.org/sloka-library.html"},{"@type":"ListItem","position":3,"name":"Subramanya Gayatri","item":"https://omsaravanabhava.org/slokas/subramanya-gayatri.html"}]}]}</script>
+ <link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- baseline/slokas/vel-vel.html
++++ release146/slokas/vel-vel.html
+@@ -16,6 +16,14 @@
+ <link rel="stylesheet" href="../assets/css/osb44.css">
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CreativeWork","@id":"https://omsaravanabhava.org/slokas/vel-vel.html#work","url":"https://omsaravanabhava.org/slokas/vel-vel.html","name":"Vel Vel Muruga","alternateName":"வேல் வேல் முருகா","description":"A chant invoking the Vel as wisdom, protection and victory.","genre":"Chant","inLanguage":["ta","en"],"isPartOf":{"@id":"https://omsaravanabhava.org/#website"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Slokas","item":"https://omsaravanabhava.org/sloka-library.html"},{"@type":"ListItem","position":3,"name":"Vel Vel Muruga","item":"https://omsaravanabhava.org/slokas/vel-vel.html"}]}]}</script>
+ <link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- baseline/temples.html
++++ release146/temples.html
+@@ -17,6 +17,14 @@
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://omsaravanabhava.org/temples.html#webpage","url":"https://omsaravanabhava.org/temples.html","name":"Temple Explorer","description":"Explore Murugan temples including the Arupadai Veedu and other important shrines through the Tamil-first Om Saravana Bhava temple directory.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Temple Explorer","item":"https://omsaravanabhava.org/temples.html"}]}]}</script>
+ <script defer src="assets/js/osb44.js"></script>
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="manifest.json">
++<link rel="apple-touch-icon" href="icons/icon-192.png">
++<script defer src="assets/js/pwa-register.js"></script>
+ </head>
+ <body data-module="temples">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- baseline/temples/marudhamalai.html
++++ release146/temples/marudhamalai.html
+@@ -16,6 +16,14 @@
+ <link rel="stylesheet" href="../assets/css/osb44.css">
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://omsaravanabhava.org/temples/marudhamalai.html#webpage","url":"https://omsaravanabhava.org/temples/marudhamalai.html","name":"Marudhamalai Murugan Temple","alternateName":"மருதமலை முருகன் கோவில்","description":"Marudhamalai Murugan Temple in Coimbatore: Coimbatore hill shrine known for peaceful worship and Siddhar tradition.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"],"about":{"@type":"PlaceOfWorship","name":"Marudhamalai Murugan Temple","alternateName":"மருதமலை முருகன் கோவில்","address":"Coimbatore"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Temples","item":"https://omsaravanabhava.org/temples.html"},{"@type":"ListItem","position":3,"name":"Marudhamalai Murugan Temple","item":"https://omsaravanabhava.org/temples/marudhamalai.html"}]}]}</script>
+ <link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- baseline/temples/palani.html
++++ release146/temples/palani.html
+@@ -16,6 +16,14 @@
+ <link rel="stylesheet" href="../assets/css/osb44.css">
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://omsaravanabhava.org/temples/palani.html#webpage","url":"https://omsaravanabhava.org/temples/palani.html","name":"Palani Murugan Temple","alternateName":"பழனி முருகன் கோவில்","description":"Palani Murugan Temple in Palani, Dindigul: Wisdom, renunciation and Dhandayuthapani worship.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"],"about":{"@type":"PlaceOfWorship","name":"Palani Murugan Temple","alternateName":"பழனி முருகன் கோவில்","address":"Palani, Dindigul"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Temples","item":"https://omsaravanabhava.org/temples.html"},{"@type":"ListItem","position":3,"name":"Palani Murugan Temple","item":"https://omsaravanabhava.org/temples/palani.html"}]}]}</script>
+ <link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- baseline/temples/pazhamudircholai.html
++++ release146/temples/pazhamudircholai.html
+@@ -16,6 +16,14 @@
+ <link rel="stylesheet" href="../assets/css/osb44.css">
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://omsaravanabhava.org/temples/pazhamudircholai.html#webpage","url":"https://omsaravanabhava.org/temples/pazhamudircholai.html","name":"Pazhamudircholai Murugan Temple","alternateName":"பழமுதிர்சோலை முருகன் கோவில்","description":"Pazhamudircholai Murugan Temple in Madurai: Forest shrine linked with grace, learning and devotion.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"],"about":{"@type":"PlaceOfWorship","name":"Pazhamudircholai Murugan Temple","alternateName":"பழமுதிர்சோலை முருகன் கோவில்","address":"Madurai"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Temples","item":"https://omsaravanabhava.org/temples.html"},{"@type":"ListItem","position":3,"name":"Pazhamudircholai Murugan Temple","item":"https://omsaravanabhava.org/temples/pazhamudircholai.html"}]}]}</script>
+ <link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- baseline/temples/sikkal.html
++++ release146/temples/sikkal.html
+@@ -16,6 +16,14 @@
+ <link rel="stylesheet" href="../assets/css/osb44.css">
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://omsaravanabhava.org/temples/sikkal.html#webpage","url":"https://omsaravanabhava.org/temples/sikkal.html","name":"Sikkal Singaravelavar Temple","alternateName":"சிக்கல் சிங்காரவேலவர் கோவில்","description":"Sikkal Singaravelavar Temple in Nagapattinam: Sacred shrine connected with Vel worship and Skanda tradition.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"],"about":{"@type":"PlaceOfWorship","name":"Sikkal Singaravelavar Temple","alternateName":"சிக்கல் சிங்காரவேலவர் கோவில்","address":"Nagapattinam"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Temples","item":"https://omsaravanabhava.org/temples.html"},{"@type":"ListItem","position":3,"name":"Sikkal Singaravelavar Temple","item":"https://omsaravanabhava.org/temples/sikkal.html"}]}]}</script>
+ <link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- baseline/temples/swamimalai.html
++++ release146/temples/swamimalai.html
+@@ -16,6 +16,14 @@
+ <link rel="stylesheet" href="../assets/css/osb44.css">
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://omsaravanabhava.org/temples/swamimalai.html#webpage","url":"https://omsaravanabhava.org/temples/swamimalai.html","name":"Swamimalai Murugan Temple","alternateName":"சுவாமிமலை முருகன் கோவில்","description":"Swamimalai Murugan Temple in Kumbakonam: Wisdom shrine where Murugan is revered as teacher of Pranava.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"],"about":{"@type":"PlaceOfWorship","name":"Swamimalai Murugan Temple","alternateName":"சுவாமிமலை முருகன் கோவில்","address":"Kumbakonam"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Temples","item":"https://omsaravanabhava.org/temples.html"},{"@type":"ListItem","position":3,"name":"Swamimalai Murugan Temple","item":"https://omsaravanabhava.org/temples/swamimalai.html"}]}]}</script>
+ <link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- baseline/temples/thiruchendur.html
++++ release146/temples/thiruchendur.html
+@@ -16,6 +16,14 @@
+ <link rel="stylesheet" href="../assets/css/osb44.css">
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://omsaravanabhava.org/temples/thiruchendur.html#webpage","url":"https://omsaravanabhava.org/temples/thiruchendur.html","name":"Thiruchendur Murugan Temple","alternateName":"திருச்செந்தூர் முருகன் கோவில்","description":"Thiruchendur Murugan Temple in Thiruchendur, Thoothukudi: Sea-side shrine connected with victory and Skanda Sashti.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"],"about":{"@type":"PlaceOfWorship","name":"Thiruchendur Murugan Temple","alternateName":"திருச்செந்தூர் முருகன் கோவில்","address":"Thiruchendur, Thoothukudi"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Temples","item":"https://omsaravanabhava.org/temples.html"},{"@type":"ListItem","position":3,"name":"Thiruchendur Murugan Temple","item":"https://omsaravanabhava.org/temples/thiruchendur.html"}]}]}</script>
+ <link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- baseline/temples/thirupparamkundram.html
++++ release146/temples/thirupparamkundram.html
+@@ -16,6 +16,14 @@
+ <link rel="stylesheet" href="../assets/css/osb44.css">
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://omsaravanabhava.org/temples/thirupparamkundram.html#webpage","url":"https://omsaravanabhava.org/temples/thirupparamkundram.html","name":"Thirupparamkundram Murugan Temple","alternateName":"திருப்பரங்குன்றம் முருகன் கோவில்","description":"Thirupparamkundram Murugan Temple in Madurai: Ancient cave shrine connected with Murugan worship and divine marriage.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"],"about":{"@type":"PlaceOfWorship","name":"Thirupparamkundram Murugan Temple","alternateName":"திருப்பரங்குன்றம் முருகன் கோவில்","address":"Madurai"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Temples","item":"https://omsaravanabhava.org/temples.html"},{"@type":"ListItem","position":3,"name":"Thirupparamkundram Murugan Temple","item":"https://omsaravanabhava.org/temples/thirupparamkundram.html"}]}]}</script>
+ <link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- baseline/temples/thiruthani.html
++++ release146/temples/thiruthani.html
+@@ -16,6 +16,14 @@
+ <link rel="stylesheet" href="../assets/css/osb44.css">
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://omsaravanabhava.org/temples/thiruthani.html#webpage","url":"https://omsaravanabhava.org/temples/thiruthani.html","name":"Thiruthani Murugan Temple","alternateName":"திருத்தணி முருகன் கோவில்","description":"Thiruthani Murugan Temple in Tiruttani: Hill shrine associated with peace, courage and inner calm.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"],"about":{"@type":"PlaceOfWorship","name":"Thiruthani Murugan Temple","alternateName":"திருத்தணி முருகன் கோவில்","address":"Tiruttani"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Temples","item":"https://omsaravanabhava.org/temples.html"},{"@type":"ListItem","position":3,"name":"Thiruthani Murugan Temple","item":"https://omsaravanabhava.org/temples/thiruthani.html"}]}]}</script>
+ <link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- baseline/temples/vadapalani.html
++++ release146/temples/vadapalani.html
+@@ -16,6 +16,14 @@
+ <link rel="stylesheet" href="../assets/css/osb44.css">
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://omsaravanabhava.org/temples/vadapalani.html#webpage","url":"https://omsaravanabhava.org/temples/vadapalani.html","name":"Vadapalani Murugan Temple","alternateName":"வடபழனி முருகன் கோவில்","description":"Vadapalani Murugan Temple in Chennai: Major Chennai Murugan temple for daily devotion, vows and family prayers.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"],"about":{"@type":"PlaceOfWorship","name":"Vadapalani Murugan Temple","alternateName":"வடபழனி முருகன் கோவில்","address":"Chennai"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Temples","item":"https://omsaravanabhava.org/temples.html"},{"@type":"ListItem","position":3,"name":"Vadapalani Murugan Temple","item":"https://omsaravanabhava.org/temples/vadapalani.html"}]}]}</script>
+ <link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- baseline/temples/vayalur.html
++++ release146/temples/vayalur.html
+@@ -16,6 +16,14 @@
+ <link rel="stylesheet" href="../assets/css/osb44.css">
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://omsaravanabhava.org/temples/vayalur.html#webpage","url":"https://omsaravanabhava.org/temples/vayalur.html","name":"Vayalur Murugan Temple","alternateName":"வயலூர் முருகன் கோவில்","description":"Vayalur Murugan Temple in Kumaravayalur: Temple associated with devotion, poetry and Murugan worship.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"],"about":{"@type":"PlaceOfWorship","name":"Vayalur Murugan Temple","alternateName":"வயலூர் முருகன் கோவில்","address":"Kumaravayalur"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Temples","item":"https://omsaravanabhava.org/temples.html"},{"@type":"ListItem","position":3,"name":"Vayalur Murugan Temple","item":"https://omsaravanabhava.org/temples/vayalur.html"}]}]}</script>
+ <link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="../manifest.json">
++<link rel="apple-touch-icon" href="../icons/icon-192.png">
++<script defer src="../assets/js/pwa-register.js"></script>
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>

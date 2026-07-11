@@ -1,5 +1,85 @@
 {
-  "batch": 94,
-  "module": "Murugan_Literature_Cross_Reference_Volume_06",
-  "file_count": 99
+  "id": "/",
+  "name": "Om Saravana Bhava",
+  "short_name": "Saravana Bhava",
+  "description": "Tamil-first Murugan devotional knowledge platform for temples, slokas, festivals and spiritual learning.",
+  "lang": "ta",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#fff7ec",
+  "theme_color": "#a51d17",
+  "categories": [
+    "education",
+    "lifestyle",
+    "books"
+  ],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Temples",
+      "short_name": "Temples",
+      "url": "/temples.html",
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Sloka Library",
+      "short_name": "Slokas",
+      "url": "/sloka-library.html",
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Festivals",
+      "short_name": "Festivals",
+      "url": "/festivals.html",
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Search",
+      "short_name": "Search",
+      "url": "/ai-search.html",
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
 }

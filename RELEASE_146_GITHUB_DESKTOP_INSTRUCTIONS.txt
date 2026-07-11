@@ -1,0 +1,21 @@
+OmSaravanaBhava — Release 146 GitHub Desktop Upload
+
+1. Extract this ZIP into a temporary folder.
+2. Open the extracted folder and select everything inside it.
+3. Copy the selected contents directly into the local OmSaravanaBhava repository root.
+4. Choose Replace files in destination.
+5. Do not create a Release146, package, output or cleanup parent folder.
+6. Open GitHub Desktop and review the changed files.
+7. Confirm assets/js/osb44.js and assets/css/osb44.css are NOT changed by this release.
+8. Commit message:
+   Release 146: repair PWA manifest service worker and offline caching
+9. Push origin.
+10. After GitHub Pages deploys, test installation and offline mode in a fresh browser profile.
+
+Expected production changes:
+- 24 existing HTML pages modified
+- manifest.json replaced
+- service-worker.js replaced
+- offline.html added
+- assets/js/pwa-register.js added
+- 3 PWA icons added
