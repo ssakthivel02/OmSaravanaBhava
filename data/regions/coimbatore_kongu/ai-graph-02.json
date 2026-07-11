@@ -1,0 +1,12 @@
+{
+  "batch": 84,
+  "region": "Coimbatore & Kongu Region Murugan Temple Encyclopedia",
+  "nodes": [
+    {
+      "type": "region",
+      "label": "Coimbatore & Kongu Region Murugan Temple Encyclopedia"
+    }
+  ],
+  "edges": [],
+  "status": "review-required"
+}
