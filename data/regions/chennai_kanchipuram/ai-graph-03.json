@@ -1,0 +1,12 @@
+{
+  "batch": 83,
+  "region": "Chennai & Kanchipuram Murugan Temple Encyclopedia",
+  "nodes": [
+    {
+      "type": "region",
+      "label": "Chennai & Kanchipuram Murugan Temple Encyclopedia"
+    }
+  ],
+  "edges": [],
+  "status": "review-required"
+}
