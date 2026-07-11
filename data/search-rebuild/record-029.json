@@ -1,0 +1,14 @@
+{
+  "project": "OmSaravanaBhava",
+  "batch": 139,
+  "module": "Search Index Rebuild & Relevance Tuning",
+  "record_id": "search-rebuild-029",
+  "status": "live-evidence-required",
+  "query": "",
+  "language": "ta",
+  "expected_results": [],
+  "actual_results": [],
+  "precision_score": null,
+  "relevance_notes": "",
+  "tuning_status": "pending"
+}
