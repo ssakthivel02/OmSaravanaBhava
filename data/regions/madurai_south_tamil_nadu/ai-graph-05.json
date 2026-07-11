@@ -1,0 +1,12 @@
+{
+  "batch": 85,
+  "region": "Madurai & South Tamil Nadu Murugan Temple Encyclopedia",
+  "nodes": [
+    {
+      "type": "region",
+      "label": "Madurai & South Tamil Nadu Murugan Temple Encyclopedia"
+    }
+  ],
+  "edges": [],
+  "status": "review-required"
+}
