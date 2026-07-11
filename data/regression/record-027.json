@@ -1,0 +1,13 @@
+{
+  "project": "OmSaravanaBhava",
+  "batch": 134,
+  "module": "Test Fixtures, Validation Samples & Regression Suite",
+  "record_id": "regression-027",
+  "status": "repository-evidence-required",
+  "test_id": "OSB-REG-027",
+  "fixture_path": "",
+  "test_type": "",
+  "expected_result": "",
+  "actual_result": "",
+  "passed": false
+}
