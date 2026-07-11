@@ -1,13 +1,16 @@
-const RELEASE = '147';
+const RELEASE = '148';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
 const CACHE_PREFIX = 'osb-';
 const OFFLINE_URL = '/offline.html';
+const MAX_RUNTIME_ENTRIES = 60;
+const MAX_DATA_ENTRIES = 20;
 const PRECACHE_URLS = [
   "/",
   "/index.html",
   "/offline.html",
+  "/404.html",
   "/temples.html",
   "/sloka-library.html",
   "/festivals.html",
@@ -49,7 +52,6 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(STATIC_CACHE)
       .then(cache => cache.addAll(PRECACHE_URLS))
-      .then(() => self.skipWaiting())
   );
 });
 
@@ -65,10 +67,19 @@ self.addEventListener('activate', event => {
   );
 });
 
-const cacheResponse = async (cacheName, request, response) => {
+const trimCache = async (cacheName, maxEntries) => {
+  const cache = await caches.open(cacheName);
+  const requests = await cache.keys();
+  const excess = requests.length - maxEntries;
+  if (excess <= 0) return;
+  await Promise.all(requests.slice(0, excess).map(request => cache.delete(request)));
+};
+
+const cacheResponse = async (cacheName, request, response, maxEntries) => {
   if (response && response.ok && response.type === 'basic') {
     const cache = await caches.open(cacheName);
     await cache.put(request, response.clone());
+    if (maxEntries) await trimCache(cacheName, maxEntries);
   }
   return response;
 };
@@ -76,27 +87,36 @@ const cacheResponse = async (cacheName, request, response) => {
 const networkFirst = async request => {
   try {
     const response = await fetch(request);
-    return cacheResponse(RUNTIME_CACHE, request, response);
+    if (response.status >= 500) throw new Error(`Server error: ${response.status}`);
+    return cacheResponse(RUNTIME_CACHE, request, response, MAX_RUNTIME_ENTRIES);
   } catch (error) {
-    return (await caches.match(request, {ignoreSearch: true})) || (await caches.match(OFFLINE_URL));
+    return (await caches.match(request, {ignoreSearch: true})) ||
+      (await caches.match(OFFLINE_URL));
   }
 };
 
 const dataNetworkFirst = async request => {
   try {
     const response = await fetch(request);
-    return cacheResponse(DATA_CACHE, request, response);
+    if (!response.ok) throw new Error(`Data error: ${response.status}`);
+    return cacheResponse(DATA_CACHE, request, response, MAX_DATA_ENTRIES);
   } catch (error) {
-    return (await caches.match(request)) || new Response('[]', {headers: {'Content-Type': 'application/json; charset=utf-8'}});
+    return (await caches.match(request)) ||
+      new Response('[]', {
+        headers: {'Content-Type': 'application/json; charset=utf-8'}
+      });
   }
 };
 
 const staleWhileRevalidate = async request => {
   const cached = await caches.match(request);
   const network = fetch(request)
-    .then(response => cacheResponse(RUNTIME_CACHE, request, response))
+    .then(response => cacheResponse(RUNTIME_CACHE, request, response, MAX_RUNTIME_ENTRIES))
     .catch(() => null);
-  return cached || network || new Response('', {status: 504, statusText: 'Offline'});
+  return cached || network || new Response('', {
+    status: 504,
+    statusText: 'Offline'
+  });
 };
 
 self.addEventListener('fetch', event => {
@@ -111,13 +131,8 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  if (url.pathname.startsWith('/data/') || request.destination === 'json') {
+  if (url.pathname.startsWith('/data/')) {
     event.respondWith(dataNetworkFirst(request));
-    return;
-  }
-
-  if (['style', 'script', 'image', 'font'].includes(request.destination)) {
-    event.respondWith(staleWhileRevalidate(request));
     return;
   }
 

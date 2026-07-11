@@ -1,0 +1,41 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 148,
+  "name": "Production QA, Accessibility, Performance and Final Deployment Hardening",
+  "baseline_github_commit": "abebe32748025557f110db64e8263b7a45b56b60",
+  "generated": "2026-07-11",
+  "validation_status": "PASS",
+  "production_file_count": 18,
+  "modified": [
+    "ai-search.html",
+    "assets/css/osb44.css",
+    "assets/js/osb44.js",
+    "audio-library.html",
+    "festivals.html",
+    "festivals/aadi-krittikai.html",
+    "festivals/panguni-uthiram.html",
+    "festivals/skanda-sashti.html",
+    "festivals/thai-poosam.html",
+    "index.html",
+    "offline.html",
+    "service-worker.js",
+    "sloka-library.html",
+    "slokas/om-saravana-bhava.html",
+    "slokas/subramanya-gayatri.html",
+    "slokas/vel-vel.html",
+    "temples.html"
+  ],
+  "added": [
+    "404.html"
+  ],
+  "deleted": [],
+  "html_routes_validated": 28,
+  "sitemap_urls_validated": 20,
+  "precache_urls_validated": 39,
+  "broken_internal_references": 0,
+  "missing_anchors": 0,
+  "json_ld_failures": 0,
+  "cache_version": 148,
+  "issues": [],
+  "warnings": []
+}

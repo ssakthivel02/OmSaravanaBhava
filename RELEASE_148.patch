@@ -1,0 +1,691 @@
+--- baseline/404.html
++++ release148/404.html
+@@ -0,0 +1,39 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Page not found | Om Saravana Bhava</title>
++<meta name="description" content="The requested Om Saravana Bhava page could not be found.">
++<meta name="robots" content="noindex,nofollow">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="manifest.json">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<link rel="apple-touch-icon" href="icons/icon-192.png">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<script defer src="assets/js/pwa-register.js"></script>
++</head>
++<body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Page not found</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="/">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav>
++<main id="main-content" class="wrap">
++<section class="card">
++<span class="pill">404</span>
++<h1 class="section-title">Page not found</h1>
++<p>The requested page does not exist or its address has changed. Use one of the verified routes below.</p>
++<div class="grid">
++<article class="card"><h2>Temples</h2><p>Explore source-linked Murugan temple pages.</p><a class="btn secondary" href="temples.html">Open Temples</a></article>
++<article class="card"><h2>Slokas</h2><p>Read published mantras and reviewed devotional extracts.</p><a class="btn secondary" href="sloka-library.html">Open Slokas</a></article>
++<article class="card"><h2>Search</h2><p>Search temples, slokas, festivals and literature.</p><a class="btn secondary" href="ai-search.html">Open Search</a></article>
++</div>
++<p style="margin-top:22px"><a class="btn" href="/">Return Home</a> <a class="btn secondary" href="sources.html">Sources &amp; publication policy</a></p>
++</section>
++</main>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>
+--- baseline/ai-search.html
++++ release148/ai-search.html
+@@ -32,9 +32,10 @@
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="/">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="/">Home</a> › <span aria-current="page">AI Search</span></p></nav>
+-<section class="card"><div class="eyebrow">Local AI Search</div><h1 class="section-title">Search Murugan knowledge</h1><form class="searchbar"><input id="q" name="q" aria-label="Search Murugan knowledge" placeholder="Palani, Vadapalani, Vel, Sashti, Valli"><button class="btn">Search</button></form></section><section id="results" class="list" style="margin-top:22px" role="status" aria-live="polite" tabindex="-1"><div class="loading">Loading search...</div></section>
++<section class="card"><div class="eyebrow">Local AI Search</div><h1 class="section-title">Search Murugan knowledge</h1><form class="searchbar" action="ai-search.html" method="get" role="search"><input type="search" id="q" name="q" aria-label="Search Murugan knowledge" placeholder="Palani, Vadapalani, Vel, Sashti, Valli" autocomplete="off" enterkeyhint="search"><button type="submit" class="btn">Search</button></form></section><section id="results" class="list" style="margin-top:22px" role="status" aria-live="polite" aria-busy="true" tabindex="-1"><div class="loading">Loading search...</div></section>
++<noscript><div class="card" role="status" style="margin-top:22px">Local search requires JavaScript. Browse <a href="temples.html">Temples</a>, <a href="sloka-library.html">Slokas</a>, <a href="festivals.html">Festivals</a>, or <a href="literature/thirumurugatruppadai.html">Literature</a>.</div></noscript>
+ </main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+-<footer>© Om Saravana Bhava · Static GitHub Pages safe platform</footer>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+ </html>
+--- baseline/assets/css/osb44.css
++++ release148/assets/css/osb44.css
+@@ -1 +1,14 @@
+-:root{--bg:#fff7ec;--card:#fffaf3;--ink:#2e160f;--red:#a51d17;--orange:#f29600;--line:#edc383;--shadow:0 24px 70px rgba(104,45,18,.13)}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#fff5e7,#fffaf3);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;line-height:1.65}.top{background:linear-gradient(90deg,#9f250f,#ed8e00);color:#fff;text-align:center;padding:9px;font-weight:900}.nav{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--line);background:rgba(255,250,243,.92);backdrop-filter:blur(18px)}.nav-inner{max-width:1180px;margin:auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between}.brand{font-size:28px;font-weight:950;color:var(--red);text-decoration:none}.links a{margin-left:18px;color:var(--ink);text-decoration:none;font-weight:900}.skip-link{position:absolute;top:-40px;left:0;background:#a51d17;color:#fff;padding:8px 16px;text-decoration:none;z-index:100}.skip-link:focus{top:0}.wrap{max-width:1180px;margin:auto;padding:64px 24px}.hero{min-height:86vh;position:relative;display:grid;align-items:center;overflow:hidden}.hero:before{content:"";position:absolute;inset:-10%;background:radial-gradient(circle at 82% 32%,rgba(255,197,60,.60),transparent 30%),radial-gradient(circle at 26% 28%,rgba(165,29,23,.10),transparent 34%)}.hero-grid{position:relative;max-width:1180px;margin:auto;padding:58px 24px;display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center}.eyebrow{letter-spacing:.24em;text-transform:uppercase;color:var(--orange);font-weight:950;font-size:12px}.hero h1{font-size:clamp(64px,10vw,132px);line-height:.93;margin:14px 0;color:var(--red);letter-spacing:-.055em}.hero p{font-size:21px;max-width:680px}.searchbar{display:flex;gap:10px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px;box-shadow:var(--shadow)}.searchbar input{flex:1;border:0;outline:2px solid transparent;outline-offset:2px;padding:15px 18px;border-radius:999px;background:transparent}.searchbar input:focus{outline:2px solid var(--red);outline-offset:2px}.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:999px;padding:13px 22px;background:linear-gradient(90deg,#b92b16,#f29600);color:#fff;text-decoration:none;font-weight:950}.btn.secondary{background:#fff;color:var(--red);border:1px solid var(--line)}.hero-card{min-height:330px;border-radius:30px;display:grid;place-items:center;text-align:center;color:#fff;background:linear-gradient(135deg,#74170f,#f09a00);box-shadow:0 34px 84px rgba(144,55,12,.26)}.section-title{font-size:50px;line-height:1.05;color:var(--red);margin:0 0 12px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.card{border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.78);padding:26px;box-shadow:var(--shadow)}.card h3{color:var(--red);font-size:24px;margin-top:8px}.temple-card{min-height:285px;color:white;background:linear-gradient(180deg,rgba(255,255,255,.25),rgba(65,28,18,.86)),linear-gradient(135deg,#e7d4c5,#6c3b28);display:flex;flex-direction:column;justify-content:flex-end}.temple-card h3{color:white;font-size:30px;margin:10px 0}.pill{display:inline-flex;width:max-content;background:#fff;border:1px solid var(--line);border-radius:999px;color:var(--red);font-weight:950;font-size:12px;padding:5px 10px}.list{display:grid;gap:18px}.result{border-left:5px solid var(--orange)}.tools{position:fixed;right:18px;bottom:18px;display:grid;gap:10px;z-index:60}.tool{border:1px solid var(--line);background:#fff;color:var(--red);border-radius:999px;padding:12px 16px;font-weight:900;box-shadow:0 14px 40px rgba(100,42,16,.14);min-height:44px;display:flex;align-items:center;cursor:pointer}.tool:focus{outline:2px solid var(--red);outline-offset:2px}.tool[aria-pressed="true"]{background:var(--red);color:#fff}footer{text-align:center;padding:30px;border-top:1px solid var(--line)}body.dark{background:#160b08;color:#fff1df}body.dark .nav,body.dark .card{background:rgba(36,18,12,.88)}body.dark .links a,body.dark .brand{color:#fff1df}.loading{min-height:220px;display:grid;place-items:center;color:#76584e}.filters{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}.filter{border:1px solid var(--line);border-radius:999px;background:#fff;padding:10px 16px;font-weight:900;color:var(--red);cursor:pointer;min-height:44px;display:flex;align-items:center}.filter:focus{outline:2px solid var(--red);outline-offset:2px}.filter[aria-pressed="true"]{background:var(--red);color:#fff}@media(max-width:860px){.hero-grid{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.links{display:flex;overflow-x:auto;gap:12px;padding:8px 0;flex:1;margin-left:18px;scroll-behavior:smooth}.links a{margin-left:0;white-space:nowrap}.hero h1{font-size:72px}.hero-card{min-height:220px}.section-title{font-size:38px}.searchbar{border-radius:24px;flex-direction:column}.btn{width:100%}}
++:root{--bg:#fff7ec;--card:#fffaf3;--ink:#2e160f;--red:#a51d17;--orange:#a94f00;--line:#edc383;--shadow:0 24px 70px rgba(104,45,18,.13)}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#fff5e7,#fffaf3);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;line-height:1.65}.top{background:linear-gradient(90deg,#9f250f,#a94f00);color:#fff;text-align:center;padding:9px;font-weight:900}.nav{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--line);background:rgba(255,250,243,.92);backdrop-filter:blur(18px)}.nav-inner{max-width:1180px;margin:auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between}.brand{font-size:28px;font-weight:950;color:var(--red);text-decoration:none}.links a{margin-left:18px;color:var(--ink);text-decoration:none;font-weight:900}.skip-link{position:absolute;top:-40px;left:0;background:#a51d17;color:#fff;padding:8px 16px;text-decoration:none;z-index:100}.skip-link:focus{top:0}.wrap{max-width:1180px;margin:auto;padding:64px 24px}.hero{min-height:86vh;position:relative;display:grid;align-items:center;overflow:hidden}.hero:before{content:"";position:absolute;inset:-10%;background:radial-gradient(circle at 82% 32%,rgba(255,197,60,.60),transparent 30%),radial-gradient(circle at 26% 28%,rgba(165,29,23,.10),transparent 34%)}.hero-grid{position:relative;max-width:1180px;margin:auto;padding:58px 24px;display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center}.eyebrow{letter-spacing:.24em;text-transform:uppercase;color:var(--orange);font-weight:950;font-size:12px}.hero h1{font-size:clamp(64px,10vw,132px);line-height:.93;margin:14px 0;color:var(--red);letter-spacing:-.055em}.hero p{font-size:21px;max-width:680px}.searchbar{display:flex;gap:10px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px;box-shadow:var(--shadow)}.searchbar input{flex:1;border:0;outline:2px solid transparent;outline-offset:2px;padding:15px 18px;border-radius:999px;background:transparent}.searchbar input:focus{outline:2px solid var(--red);outline-offset:2px}.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:999px;padding:13px 22px;background:linear-gradient(90deg,#b92b16,#a94f00);color:#fff;text-decoration:none;font-weight:950}.btn.secondary{background:#fff;color:var(--red);border:1px solid var(--line)}.hero-card{min-height:330px;border-radius:30px;display:grid;place-items:center;text-align:center;color:#fff;background:linear-gradient(135deg,#74170f,#a94f00);box-shadow:0 34px 84px rgba(144,55,12,.26)}.section-title{font-size:50px;line-height:1.05;color:var(--red);margin:0 0 12px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.card{border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.78);padding:26px;box-shadow:var(--shadow)}.card h3{color:var(--red);font-size:24px;margin-top:8px}.temple-card{min-height:285px;color:white;background:linear-gradient(180deg,rgba(255,255,255,.25),rgba(65,28,18,.86)),linear-gradient(135deg,#e7d4c5,#6c3b28);display:flex;flex-direction:column;justify-content:flex-end}.temple-card h3{color:white;font-size:30px;margin:10px 0}.pill{display:inline-flex;width:max-content;background:#fff;border:1px solid var(--line);border-radius:999px;color:var(--red);font-weight:950;font-size:12px;padding:5px 10px}.list{display:grid;gap:18px}.result{border-left:5px solid var(--orange)}.tools{position:fixed;right:18px;bottom:18px;display:grid;gap:10px;z-index:60}.tool{border:1px solid var(--line);background:#fff;color:var(--red);border-radius:999px;padding:12px 16px;font-weight:900;box-shadow:0 14px 40px rgba(100,42,16,.14);min-height:44px;display:flex;align-items:center;cursor:pointer}.tool:focus{outline:2px solid var(--red);outline-offset:2px}.tool[aria-pressed="true"]{background:var(--red);color:#fff}footer{text-align:center;padding:30px;border-top:1px solid var(--line)}body.dark{background:#160b08;color:#fff1df}body.dark .nav,body.dark .card{background:rgba(36,18,12,.88)}body.dark .links a,body.dark .brand{color:#fff1df}.loading{min-height:220px;display:grid;place-items:center;color:#76584e}.filters{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}.filter{border:1px solid var(--line);border-radius:999px;background:#fff;padding:10px 16px;font-weight:900;color:var(--red);cursor:pointer;min-height:44px;display:flex;align-items:center}.filter:focus{outline:2px solid var(--red);outline-offset:2px}.filter[aria-pressed="true"]{background:var(--red);color:#fff}@media(max-width:860px){.hero-grid{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.links{display:flex;overflow-x:auto;gap:12px;padding:8px 0;flex:1;margin-left:18px;scroll-behavior:smooth}.links a{margin-left:0;white-space:nowrap}.hero h1{font-size:72px}.hero-card{min-height:220px}.section-title{font-size:38px}.searchbar{border-radius:24px;flex-direction:column}.btn{width:100%}}
++
++button,input{font:inherit}
++.btn{cursor:pointer}
++a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--red);outline-offset:3px}
++footer a{color:var(--red);font-weight:800}
++body.dark{--orange:#f3aa24}
++body.dark footer a{color:#ffd59a}
++:target{scroll-margin-top:110px}
++[hidden]{display:none!important}
++.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
++.osb-toast{position:fixed;bottom:80px;right:18px;max-width:min(360px,calc(100vw - 36px));background:var(--red);color:#fff;padding:12px 16px;border-radius:8px;z-index:70;font-weight:900;box-shadow:var(--shadow)}
++@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
++@media print{.top,.nav,.tools,.skip-link,#osb-pwa-update{display:none!important}body{background:#fff;color:#000}.wrap{max-width:none;padding:20px}.card{box-shadow:none;background:#fff;break-inside:avoid}a{color:#000;text-decoration:underline}}
+--- baseline/assets/js/osb44.js
++++ release148/assets/js/osb44.js
+@@ -1,18 +1,329 @@
+-window.OSB={};
+-OSB.RELEASE='147';
+-OSB.load=async p=>{const r=await fetch(p,{cache:'default'});if(!r.ok)throw Error('Missing '+p);return r.json()};
+-OSB.byId=id=>document.getElementById(id);
+-OSB.templeCard=t=>{const state=t.publicationStatus==='published-source-linked'?'Source linked':'Directory review';return `<article class="card temple-card" data-type="${t.type}"><span class="pill">${t.type}</span><span class="pill">${state}</span><h3>${t.nameTa}</h3><p>${t.nameEn}</p><a class="btn secondary" href="temples/${t.id}.html">Open temple</a></article>`};
+-OSB.slokaCard=s=>{const state=s.publicationStatus==='partial-reviewed'?'Reviewed extract':'Published';return `<article class="card"><span class="pill">${s.category}</span><span class="pill">${state}</span><h3>${s.titleTa}</h3><p>${s.meaningTa||s.meaningEn}</p><a class="btn" href="slokas/${s.id}.html">Read sloka</a></article>`};
+-OSB.festivalCard=f=>`<article class="card"><span class="pill">${f.month}</span><h3>${f.nameTa}</h3><p>${f.summary}</p><a class="btn" href="festivals/${f.id}.html">Open festival</a></article>`;
+-OSB.safe=async fn=>{try{await fn()}catch(e){console.error(e);document.querySelector('main,.wrap,#detail,#reader')?.insertAdjacentHTML('beforeend','<div class="card" role="alert">Content loading issue. Confirm published JSON files are available.</div>')}};
+-OSB.home=()=>OSB.safe(async()=>{const[t,s,f]=await Promise.all([OSB.load('data/temples.json'),OSB.load('data/slokas.json'),OSB.load('data/festivals.json')]);const published=t.filter(x=>x.publicationStatus==='published-source-linked');OSB.byId('templeGrid').innerHTML=published.slice(0,6).map(OSB.templeCard).join('');OSB.byId('dailySloka').innerHTML=OSB.slokaCard(s[0]);OSB.byId('festivalGrid').innerHTML=f.map(OSB.festivalCard).join('');OSB.byId('countdown').textContent='Next major festival: confirm the exact date using an authoritative Panchangam or temple calendar'});
+-OSB.temples=()=>OSB.safe(async()=>{const data=await OSB.load('data/temples.json');OSB.byId('templeGrid').innerHTML=data.map(OSB.templeCard).join('');document.querySelectorAll('[data-filter]').forEach(b=>{b.type='button';b.setAttribute('aria-pressed',b.dataset.filter==='All'?'true':'false');b.onclick=()=>{const value=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(f=>f.setAttribute('aria-pressed',f.dataset.filter===value?'true':'false'));document.querySelectorAll('.temple-card').forEach(c=>{c.style.display=(value==='All'||c.dataset.type===value)?'flex':'none'})}})});
+-OSB.slokas=()=>OSB.safe(async()=>{OSB.byId('slokaGrid').innerHTML=(await OSB.load('data/slokas.json')).filter(x=>x.publicationStatus!=='draft').map(OSB.slokaCard).join('')});
+-OSB.search=()=>OSB.safe(async()=>{const params=new URLSearchParams(location.search);const submitted=params.has('q');const q=(params.get('q')||'').trim();if(OSB.byId('q'))OSB.byId('q').value=q;const[t,s,f,l]=await Promise.all([OSB.load('data/temples.json'),OSB.load('data/slokas.json'),OSB.load('data/festivals.json'),OSB.load('data/literature.json')]);const all=[...t.filter(x=>x.publicationStatus==='published-source-linked').map(x=>({kind:'Temple',title:x.nameTa+' '+x.nameEn,summary:x.summary+' '+x.place,searchText:[x.nameTa,x.nameEn,x.summary,x.place,...x.tags].join(' '),url:'temples/'+x.id+'.html'})),...s.filter(x=>x.publicationStatus!=='draft').map(x=>({kind:'Sloka',title:x.titleTa+' '+x.titleEn,summary:x.meaningEn,searchText:[x.titleTa,x.titleEn,x.textTa,x.meaningTa,x.meaningEn].join(' '),url:'slokas/'+x.id+'.html'})),...f.map(x=>({kind:'Festival',title:x.nameTa+' '+x.nameEn,summary:x.summary,searchText:[x.nameTa,x.nameEn,x.summary,...x.tags].join(' '),url:'festivals/'+x.id+'.html'})),...l.filter(x=>x.publicationStatus==='published-source-linked').map(x=>({kind:'Literature',title:x.titleTa+' '+x.titleEn,summary:x.summary,searchText:[x.titleTa,x.titleEn,x.author,x.genre,x.summary].join(' '),url:x.url}))];const terms=q.toLowerCase().split(/\s+/).filter(Boolean);const res=terms.length?all.filter(x=>terms.every(term=>x.searchText.toLowerCase().includes(term))):all.slice(0,12);const resultsDiv=OSB.byId('results');resultsDiv.innerHTML=res.length?res.map(x=>`<article class="card result"><span class="pill">${x.kind}</span><h3>${x.title}</h3><p>${x.summary}</p><a class="btn" href="${x.url}">Open</a></article>`).join(''):'<div class="card">No published source-linked result matched. Try Palani, Thiruchendur, Vel, Sashti or Thirumurugatruppadai.</div>';if(submitted)resultsDiv.focus()});
+-OSB.festivals=()=>OSB.safe(async()=>{OSB.byId('festivalGrid').innerHTML=(await OSB.load('data/festivals.json')).map(OSB.festivalCard).join('')});
+-OSB.canonicalUrl=()=>document.querySelector('link[rel="canonical"]')?.href||location.href;
+-OSB.announce=message=>{const msg=document.createElement('div');msg.setAttribute('role','status');msg.setAttribute('aria-live','polite');msg.textContent=message;msg.style.cssText='position:fixed;bottom:80px;right:18px;background:#a51d17;color:#fff;padding:12px 16px;border-radius:8px;z-index:70;font-weight:900';document.body.appendChild(msg);setTimeout(()=>msg.remove(),3000)};
+-OSB.restorePrefs=()=>{const dark=localStorage.getItem('osb-dark')==='1';const large=localStorage.getItem('osb-text-large')==='1';document.body.classList.toggle('dark',dark);document.body.style.fontSize=large?'18px':'';const darkButton=document.querySelector('[data-dark]');if(darkButton){darkButton.type='button';darkButton.setAttribute('aria-pressed',dark?'true':'false');darkButton.setAttribute('aria-label',dark?'Disable dark mode':'Enable dark mode')}const textButton=document.querySelector('[data-text]');if(textButton){textButton.type='button';textButton.setAttribute('aria-pressed',large?'true':'false');textButton.setAttribute('aria-label',large?'Reset text size':'Increase text size')}const shareButton=document.querySelector('[data-share]');if(shareButton){shareButton.type='button';shareButton.setAttribute('aria-label','Share this page')}};
+-document.addEventListener('click',e=>{if(e.target.matches('[data-dark]')){document.body.classList.toggle('dark');const active=document.body.classList.contains('dark');e.target.setAttribute('aria-pressed',active?'true':'false');e.target.setAttribute('aria-label',active?'Disable dark mode':'Enable dark mode');localStorage.setItem('osb-dark',active?'1':'0')}if(e.target.matches('[data-text]')){const active=document.body.style.fontSize==='18px';document.body.style.fontSize=active?'':'18px';const next=!active;e.target.setAttribute('aria-pressed',next?'true':'false');e.target.setAttribute('aria-label',next?'Reset text size':'Increase text size');localStorage.setItem('osb-text-large',next?'1':'0')}if(e.target.matches('[data-share]')){const url=OSB.canonicalUrl();if(navigator.share){navigator.share({title:document.title,url}).then(()=>OSB.announce('Shared successfully')).catch(err=>{if(err?.name!=='AbortError')console.error('Share failed',err)})}else if(navigator.clipboard){navigator.clipboard.writeText(url).then(()=>OSB.announce('Link copied to clipboard')).catch(err=>{console.error('Clipboard write failed',err);OSB.announce('Unable to copy link')})}else{OSB.announce('Sharing is not supported in this browser')}}});
+-document.addEventListener('DOMContentLoaded',()=>{OSB.restorePrefs();const moduleName=document.body.dataset.module;if(OSB[moduleName])OSB[moduleName]()});
++window.OSB = {};
++
++OSB.RELEASE = '148';
++
++OSB.byId = id => document.getElementById(id);
++
++OSB.escape = value => String(value ?? '').replace(/[&<>"']/g, character => ({
++  '&': '&amp;',
++  '<': '&lt;',
++  '>': '&gt;',
++  '"': '&quot;',
++  "'": '&#39;'
++}[character]));
++
++OSB.slug = value => encodeURIComponent(String(value ?? '').trim());
++
++OSB.load = async path => {
++  const response = await fetch(path, {
++    cache: 'default',
++    credentials: 'same-origin',
++    headers: {'Accept': 'application/json'}
++  });
++  if (!response.ok) throw new Error(`Unable to load ${path}: HTTP ${response.status}`);
++  return response.json();
++};
++
++OSB.render = (id, markup) => {
++  const container = OSB.byId(id);
++  if (!container) return;
++  container.innerHTML = markup;
++  container.setAttribute('aria-busy', 'false');
++};
++
++OSB.templeCard = temple => {
++  const state = temple.publicationStatus === 'published-source-linked'
++    ? 'Source linked'
++    : 'Directory review';
++  return `<article class="card temple-card" data-type="${OSB.escape(temple.type)}">
++    <span class="pill">${OSB.escape(temple.type)}</span>
++    <span class="pill">${state}</span>
++    <h3>${OSB.escape(temple.nameTa)}</h3>
++    <p>${OSB.escape(temple.nameEn)}</p>
++    <a class="btn secondary" href="temples/${OSB.slug(temple.id)}.html">Open temple</a>
++  </article>`;
++};
++
++OSB.slokaCard = sloka => {
++  const state = sloka.publicationStatus === 'partial-reviewed'
++    ? 'Reviewed extract'
++    : 'Published';
++  return `<article class="card">
++    <span class="pill">${OSB.escape(sloka.category)}</span>
++    <span class="pill">${state}</span>
++    <h3>${OSB.escape(sloka.titleTa)}</h3>
++    <p>${OSB.escape(sloka.meaningTa || sloka.meaningEn)}</p>
++    <a class="btn" href="slokas/${OSB.slug(sloka.id)}.html">Read sloka</a>
++  </article>`;
++};
++
++OSB.festivalCard = festival => `<article class="card">
++  <span class="pill">${OSB.escape(festival.month)}</span>
++  <h3>${OSB.escape(festival.nameTa)}</h3>
++  <p>${OSB.escape(festival.summary)}</p>
++  <a class="btn" href="festivals/${OSB.slug(festival.id)}.html">Open festival</a>
++</article>`;
++
++OSB.clearBusyStates = () => {
++  document.querySelectorAll('[aria-busy="true"]').forEach(element => {
++    element.setAttribute('aria-busy', 'false');
++  });
++};
++
++OSB.safe = async task => {
++  try {
++    await task();
++  } catch (error) {
++    console.error(error);
++    OSB.clearBusyStates();
++    const main = document.querySelector('main,.wrap,#detail,#reader');
++    if (main && !document.getElementById('osb-content-error')) {
++      main.insertAdjacentHTML(
++        'beforeend',
++        '<div id="osb-content-error" class="card" role="alert">Content could not be loaded. Check your connection and try again.</div>'
++      );
++    }
++  }
++};
++
++OSB.home = () => OSB.safe(async () => {
++  const [temples, slokas, festivals] = await Promise.all([
++    OSB.load('data/temples.json'),
++    OSB.load('data/slokas.json'),
++    OSB.load('data/festivals.json')
++  ]);
++  const publishedTemples = temples.filter(item => item.publicationStatus === 'published-source-linked');
++  OSB.render('templeGrid', publishedTemples.slice(0, 6).map(OSB.templeCard).join(''));
++  OSB.render('dailySloka', OSB.slokaCard(slokas[0]));
++  OSB.render('festivalGrid', festivals.map(OSB.festivalCard).join(''));
++  const countdown = OSB.byId('countdown');
++  if (countdown) {
++    countdown.textContent = 'Next major festival: confirm the exact date using an authoritative Panchangam or temple calendar';
++  }
++});
++
++OSB.temples = () => OSB.safe(async () => {
++  const temples = await OSB.load('data/temples.json');
++  OSB.render('templeGrid', temples.map(OSB.templeCard).join(''));
++
++  document.querySelectorAll('[data-filter]').forEach(button => {
++    button.type = 'button';
++    button.setAttribute('aria-pressed', button.dataset.filter === 'All' ? 'true' : 'false');
++    button.addEventListener('click', () => {
++      const selected = button.dataset.filter;
++      document.querySelectorAll('[data-filter]').forEach(filter => {
++        filter.setAttribute('aria-pressed', filter.dataset.filter === selected ? 'true' : 'false');
++      });
++      document.querySelectorAll('.temple-card').forEach(card => {
++        card.hidden = selected !== 'All' && card.dataset.type !== selected;
++      });
++    });
++  });
++});
++
++OSB.slokas = () => OSB.safe(async () => {
++  const slokas = await OSB.load('data/slokas.json');
++  OSB.render(
++    'slokaGrid',
++    slokas.filter(item => item.publicationStatus !== 'draft').map(OSB.slokaCard).join('')
++  );
++});
++
++OSB.search = () => OSB.safe(async () => {
++  const params = new URLSearchParams(location.search);
++  const submitted = params.has('q');
++  const query = (params.get('q') || '').trim();
++  const input = OSB.byId('q');
++  if (input) input.value = query;
++
++  const [temples, slokas, festivals, literature] = await Promise.all([
++    OSB.load('data/temples.json'),
++    OSB.load('data/slokas.json'),
++    OSB.load('data/festivals.json'),
++    OSB.load('data/literature.json')
++  ]);
++
++  const records = [
++    ...temples
++      .filter(item => item.publicationStatus === 'published-source-linked')
++      .map(item => ({
++        kind: 'Temple',
++        title: `${item.nameTa} ${item.nameEn}`,
++        summary: `${item.summary} ${item.place}`,
++        searchText: [item.nameTa, item.nameEn, item.summary, item.place, ...(item.tags || [])].join(' '),
++        url: `temples/${OSB.slug(item.id)}.html`
++      })),
++    ...slokas
++      .filter(item => item.publicationStatus !== 'draft')
++      .map(item => ({
++        kind: 'Sloka',
++        title: `${item.titleTa} ${item.titleEn}`,
++        summary: item.meaningEn,
++        searchText: [item.titleTa, item.titleEn, item.textTa, item.meaningTa, item.meaningEn].join(' '),
++        url: `slokas/${OSB.slug(item.id)}.html`
++      })),
++    ...festivals.map(item => ({
++      kind: 'Festival',
++      title: `${item.nameTa} ${item.nameEn}`,
++      summary: item.summary,
++      searchText: [item.nameTa, item.nameEn, item.summary, ...(item.tags || [])].join(' '),
++      url: `festivals/${OSB.slug(item.id)}.html`
++    })),
++    ...literature
++      .filter(item => item.publicationStatus === 'published-source-linked')
++      .map(item => ({
++        kind: 'Literature',
++        title: `${item.titleTa} ${item.titleEn}`,
++        summary: item.summary,
++        searchText: [item.titleTa, item.titleEn, item.author, item.genre, item.summary].join(' '),
++        url: `literature/${OSB.slug(item.id)}.html`
++      }))
++  ];
++
++  const terms = query.toLocaleLowerCase().split(/\s+/).filter(Boolean);
++  const results = terms.length
++    ? records.filter(item => terms.every(term => item.searchText.toLocaleLowerCase().includes(term)))
++    : records.slice(0, 12);
++
++  const resultMarkup = results.length
++    ? `<p><strong>${results.length}</strong> published result${results.length === 1 ? '' : 's'} found.</p>` +
++      results.map(item => `<article class="card result">
++        <span class="pill">${OSB.escape(item.kind)}</span>
++        <h3>${OSB.escape(item.title)}</h3>
++        <p>${OSB.escape(item.summary)}</p>
++        <a class="btn" href="${item.url}">Open</a>
++      </article>`).join('')
++    : '<div class="card">No published source-linked result matched. Try Palani, Thiruchendur, Vel, Sashti or Thirumurugatruppadai.</div>';
++
++  OSB.render('results', resultMarkup);
++  const resultsRegion = OSB.byId('results');
++  if (submitted && resultsRegion) resultsRegion.focus();
++});
++
++OSB.festivals = () => OSB.safe(async () => {
++  const festivals = await OSB.load('data/festivals.json');
++  OSB.render('festivalGrid', festivals.map(OSB.festivalCard).join(''));
++});
++
++OSB.canonicalUrl = () =>
++  document.querySelector('link[rel="canonical"]')?.href || location.href;
++
++OSB.announce = message => {
++  const existing = document.getElementById('osb-toast');
++  if (existing) existing.remove();
++
++  const toast = document.createElement('div');
++  toast.id = 'osb-toast';
++  toast.className = 'osb-toast';
++  toast.setAttribute('role', 'status');
++  toast.setAttribute('aria-live', 'polite');
++  toast.textContent = message;
++  document.body.appendChild(toast);
++  setTimeout(() => toast.remove(), 3000);
++};
++
++OSB.storage = {
++  get(key) {
++    try {
++      return localStorage.getItem(key);
++    } catch {
++      return null;
++    }
++  },
++  set(key, value) {
++    try {
++      localStorage.setItem(key, value);
++    } catch {
++      // Preferences remain functional for the current page when storage is unavailable.
++    }
++  }
++};
++
++OSB.restorePrefs = () => {
++  const dark = OSB.storage.get('osb-dark') === '1';
++  const large = OSB.storage.get('osb-text-large') === '1';
++
++  document.body.classList.toggle('dark', dark);
++  document.body.style.fontSize = large ? '18px' : '';
++
++  const darkButton = document.querySelector('[data-dark]');
++  if (darkButton) {
++    darkButton.type = 'button';
++    darkButton.setAttribute('aria-pressed', dark ? 'true' : 'false');
++    darkButton.setAttribute('aria-label', dark ? 'Disable dark mode' : 'Enable dark mode');
++  }
++
++  const textButton = document.querySelector('[data-text]');
++  if (textButton) {
++    textButton.type = 'button';
++    textButton.setAttribute('aria-pressed', large ? 'true' : 'false');
++    textButton.setAttribute('aria-label', large ? 'Reset text size' : 'Increase text size');
++  }
++
++  const shareButton = document.querySelector('[data-share]');
++  if (shareButton) {
++    shareButton.type = 'button';
++    shareButton.setAttribute('aria-label', 'Share this page');
++  }
++};
++
++OSB.markCurrentNavigation = () => {
++  const currentPath = location.pathname.replace(/\/index\.html$/, '/');
++  document.querySelectorAll('.links a').forEach(link => {
++    const linkPath = new URL(link.href, location.href).pathname.replace(/\/index\.html$/, '/');
++    if (linkPath === currentPath) {
++      link.setAttribute('aria-current', 'page');
++    } else {
++      link.removeAttribute('aria-current');
++    }
++  });
++};
++
++document.addEventListener('click', event => {
++  const darkButton = event.target.closest('[data-dark]');
++  if (darkButton) {
++    document.body.classList.toggle('dark');
++    const active = document.body.classList.contains('dark');
++    darkButton.setAttribute('aria-pressed', active ? 'true' : 'false');
++    darkButton.setAttribute('aria-label', active ? 'Disable dark mode' : 'Enable dark mode');
++    OSB.storage.set('osb-dark', active ? '1' : '0');
++  }
++
++  const textButton = event.target.closest('[data-text]');
++  if (textButton) {
++    const active = document.body.style.fontSize === '18px';
++    const next = !active;
++    document.body.style.fontSize = next ? '18px' : '';
++    textButton.setAttribute('aria-pressed', next ? 'true' : 'false');
++    textButton.setAttribute('aria-label', next ? 'Reset text size' : 'Increase text size');
++    OSB.storage.set('osb-text-large', next ? '1' : '0');
++  }
++
++  const shareButton = event.target.closest('[data-share]');
++  if (shareButton) {
++    const url = OSB.canonicalUrl();
++    if (navigator.share) {
++      navigator.share({title: document.title, url})
++        .then(() => OSB.announce('Shared successfully'))
++        .catch(error => {
++          if (error?.name !== 'AbortError') console.error('Share failed', error);
++        });
++    } else if (navigator.clipboard) {
++      navigator.clipboard.writeText(url)
++        .then(() => OSB.announce('Link copied to clipboard'))
++        .catch(error => {
++          console.error('Clipboard write failed', error);
++          OSB.announce('Unable to copy link');
++        });
++    } else {
++      OSB.announce('Sharing is not supported in this browser');
++    }
++  }
++});
++
++document.addEventListener('DOMContentLoaded', () => {
++  OSB.restorePrefs();
++  OSB.markCurrentNavigation();
++  const moduleName = document.body.dataset.module;
++  if (OSB[moduleName]) OSB[moduleName]();
++});
+--- baseline/audio-library.html
++++ release148/audio-library.html
+@@ -36,6 +36,6 @@
+ <div class="card"><h3>Licensed audio publication area</h3><p>No copyrighted MP3 is bundled. Only recordings owned by Om Saravana Bhava or published under a verified licence will be added.</p><audio controls style="width:100%" aria-label="Murugan devotional audio player"></audio></div>
+ </main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+-<footer>© Om Saravana Bhava · Static GitHub Pages safe platform</footer>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+ </html>
+--- baseline/festivals.html
++++ release148/festivals.html
+@@ -32,9 +32,10 @@
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="/">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="/">Home</a> › <span aria-current="page">Festival Calendar</span></p></nav>
+-<h1 class="section-title">Festival Calendar</h1><div id="festivalGrid" class="grid"><div class="loading">Loading festivals...</div></div>
++<h1 class="section-title">Festival Calendar</h1><div id="festivalGrid" class="grid" aria-busy="true"><div class="loading">Loading festivals...</div></div>
++<noscript><div class="card" role="status" style="margin-top:22px">The dynamic festival listing requires JavaScript. Open <a href="festivals/thai-poosam.html">Thai Poosam</a>, <a href="festivals/skanda-sashti.html">Skanda Sashti</a>, <a href="festivals/panguni-uthiram.html">Panguni Uthiram</a>, or <a href="festivals/aadi-krittikai.html">Aadi Krittikai</a> directly.</div></noscript>
+ </main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+-<footer>© Om Saravana Bhava · Static GitHub Pages safe platform</footer>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+ </html>
+--- baseline/festivals/aadi-krittikai.html
++++ release148/festivals/aadi-krittikai.html
+@@ -41,6 +41,6 @@
+ </section>
+ <p><a class="btn secondary" href="../festivals.html">Back to Festivals</a></p>
+ </main>
+-<footer>© Om Saravana Bhava · Static GitHub Pages safe platform</footer>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+ </html>
+--- baseline/festivals/panguni-uthiram.html
++++ release148/festivals/panguni-uthiram.html
+@@ -41,6 +41,6 @@
+ </section>
+ <p><a class="btn secondary" href="../festivals.html">Back to Festivals</a></p>
+ </main>
+-<footer>© Om Saravana Bhava · Static GitHub Pages safe platform</footer>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+ </html>
+--- baseline/festivals/skanda-sashti.html
++++ release148/festivals/skanda-sashti.html
+@@ -41,6 +41,6 @@
+ </section>
+ <p><a class="btn secondary" href="../festivals.html">Back to Festivals</a></p>
+ </main>
+-<footer>© Om Saravana Bhava · Static GitHub Pages safe platform</footer>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+ </html>
+--- baseline/festivals/thai-poosam.html
++++ release148/festivals/thai-poosam.html
+@@ -41,6 +41,6 @@
+ </section>
+ <p><a class="btn secondary" href="../festivals.html">Back to Festivals</a></p>
+ </main>
+-<footer>© Om Saravana Bhava · Static GitHub Pages safe platform</footer>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+ </html>
+--- baseline/index.html
++++ release148/index.html
+@@ -31,13 +31,14 @@
+ <div class="top">🛕 ஓம் சரவணபவ · Verified Murugan devotional knowledge platform</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="/">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav>
+ <main id="main-content">
+-<section class="hero"><div class="hero-grid"><section><div class="eyebrow">Premium Murugan Experience</div><h1>ஓம்<br>சரவணபவ</h1><p>A production-ready devotional knowledge universe for Lord Murugan — temples, slokas, festivals, Panchangam guidance and local AI search.</p><form class="searchbar" action="ai-search.html"><input name="q" aria-label="Search Murugan knowledge" placeholder="Search Palani, Vel, Sashti, Valli, Thiruchendur..."><button class="btn">Search</button></form><p><a class="btn" href="#temples">Explore Six Abodes</a> <a class="btn secondary" href="#daily">Daily Sloka</a></p></section><aside class="hero-card"><div><div style="font-size:76px">✦</div><h2>வேல் வழி ஞானம்</h2><p>Wisdom · Courage · Protection</p></div></aside></div></section>
+-<section id="temples" class="wrap"><h2 class="section-title">ஆறுபடை வீடு</h2><p>Interactive cards for the six sacred abodes.</p><div id="templeGrid" class="grid"><div class="loading">Loading temples...</div></div></section>
+-<section id="daily" class="wrap"><h2 class="section-title">Daily Sloka</h2><div id="dailySloka" class="loading">Loading sloka...</div></section>
++<section class="hero"><div class="hero-grid"><section><div class="eyebrow">Premium Murugan Experience</div><h1>ஓம்<br>சரவணபவ</h1><p>A production-ready devotional knowledge universe for Lord Murugan — temples, slokas, festivals, Panchangam guidance and local AI search.</p><form class="searchbar" action="ai-search.html" method="get" role="search"><input type="search" name="q" aria-label="Search Murugan knowledge" placeholder="Search Palani, Vel, Sashti, Valli, Thiruchendur..." autocomplete="off" enterkeyhint="search"><button type="submit" class="btn">Search</button></form><p><a class="btn" href="#temples">Explore Six Abodes</a> <a class="btn secondary" href="#daily">Daily Sloka</a></p></section><aside class="hero-card"><div><div style="font-size:76px">✦</div><h2>வேல் வழி ஞானம்</h2><p>Wisdom · Courage · Protection</p></div></aside></div></section>
++<section id="temples" class="wrap"><h2 class="section-title">ஆறுபடை வீடு</h2><p>Interactive cards for the six sacred abodes.</p><div id="templeGrid" class="grid" aria-busy="true"><div class="loading">Loading temples...</div></div></section>
++<section id="daily" class="wrap"><h2 class="section-title">Daily Sloka</h2><div id="dailySloka" class="loading" aria-busy="true">Loading sloka...</div></section>
+ <section class="wrap"><h2 class="section-title">Festival Guidance</h2><div class="card"><h3 id="countdown">Loading...</h3><p>Festival observance dates vary by lunar calendar, location and temple tradition; confirm the exact date using an authoritative Panchangam or temple source.</p></div></section>
+-<section class="wrap"><h2 class="section-title">Murugan Festivals</h2><div id="festivalGrid" class="grid"><div class="loading">Loading festivals...</div></div></section>
++<section class="wrap"><h2 class="section-title">Murugan Festivals</h2><div id="festivalGrid" class="grid" aria-busy="true"><div class="loading">Loading festivals...</div></div></section>
++<noscript><section class="wrap"><div class="card" role="status">JavaScript is disabled. Use the <a href="temples.html">Temple Explorer</a>, <a href="sloka-library.html">Sloka Library</a>, <a href="festivals.html">Festival Calendar</a>, or <a href="sources.html">source register</a> directly.</div></section></noscript>
+ </main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+-<footer>© Om Saravana Bhava · Static GitHub Pages safe platform</footer>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+ </html>
+--- baseline/offline.html
++++ release148/offline.html
+@@ -4,6 +4,7 @@
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <title>Offline | Om Saravana Bhava</title>
++<meta name="description" content="Offline fallback for previously opened Om Saravana Bhava devotional pages.">
+ <meta name="robots" content="noindex,nofollow">
+ <meta name="theme-color" content="#a51d17">
+ <link rel="manifest" href="manifest.json">
+@@ -19,6 +20,6 @@
+ <main id="main-content" class="wrap">
+ <section class="card"><span class="pill">Offline</span><h1 class="section-title">Connection unavailable</h1><p>The internet is currently unavailable. Pages opened previously may still be available from the offline cache.</p><p><button type="button" class="btn" onclick="location.reload()">Try again</button> <a class="btn secondary" href="/">Open Home</a></p></section>
+ </main>
+-<footer>© Om Saravana Bhava · Static GitHub Pages safe platform</footer>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+ </html>
+--- baseline/service-worker.js
++++ release148/service-worker.js
+@@ -1,13 +1,16 @@
+-const RELEASE = '147';
++const RELEASE = '148';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+ const CACHE_PREFIX = 'osb-';
+ const OFFLINE_URL = '/offline.html';
++const MAX_RUNTIME_ENTRIES = 60;
++const MAX_DATA_ENTRIES = 20;
+ const PRECACHE_URLS = [
+   "/",
+   "/index.html",
+   "/offline.html",
++  "/404.html",
+   "/temples.html",
+   "/sloka-library.html",
+   "/festivals.html",
+@@ -49,7 +52,6 @@
+   event.waitUntil(
+     caches.open(STATIC_CACHE)
+       .then(cache => cache.addAll(PRECACHE_URLS))
+-      .then(() => self.skipWaiting())
+   );
+ });
+ 
+@@ -65,10 +67,19 @@
+   );
+ });
+ 
+-const cacheResponse = async (cacheName, request, response) => {
++const trimCache = async (cacheName, maxEntries) => {
++  const cache = await caches.open(cacheName);
++  const requests = await cache.keys();
++  const excess = requests.length - maxEntries;
++  if (excess <= 0) return;
++  await Promise.all(requests.slice(0, excess).map(request => cache.delete(request)));
++};
++
++const cacheResponse = async (cacheName, request, response, maxEntries) => {
+   if (response && response.ok && response.type === 'basic') {
+     const cache = await caches.open(cacheName);
+     await cache.put(request, response.clone());
++    if (maxEntries) await trimCache(cacheName, maxEntries);
+   }
+   return response;
+ };
+@@ -76,27 +87,36 @@
+ const networkFirst = async request => {
+   try {
+     const response = await fetch(request);
+-    return cacheResponse(RUNTIME_CACHE, request, response);
++    if (response.status >= 500) throw new Error(`Server error: ${response.status}`);
++    return cacheResponse(RUNTIME_CACHE, request, response, MAX_RUNTIME_ENTRIES);
+   } catch (error) {
+-    return (await caches.match(request, {ignoreSearch: true})) || (await caches.match(OFFLINE_URL));
++    return (await caches.match(request, {ignoreSearch: true})) ||
++      (await caches.match(OFFLINE_URL));
+   }
+ };
+ 
+ const dataNetworkFirst = async request => {
+   try {
+     const response = await fetch(request);
+-    return cacheResponse(DATA_CACHE, request, response);
++    if (!response.ok) throw new Error(`Data error: ${response.status}`);
++    return cacheResponse(DATA_CACHE, request, response, MAX_DATA_ENTRIES);
+   } catch (error) {
+-    return (await caches.match(request)) || new Response('[]', {headers: {'Content-Type': 'application/json; charset=utf-8'}});
++    return (await caches.match(request)) ||
++      new Response('[]', {
++        headers: {'Content-Type': 'application/json; charset=utf-8'}
++      });
+   }
+ };
+ 
+ const staleWhileRevalidate = async request => {
+   const cached = await caches.match(request);
+   const network = fetch(request)
+-    .then(response => cacheResponse(RUNTIME_CACHE, request, response))
++    .then(response => cacheResponse(RUNTIME_CACHE, request, response, MAX_RUNTIME_ENTRIES))
+     .catch(() => null);
+-  return cached || network || new Response('', {status: 504, statusText: 'Offline'});
++  return cached || network || new Response('', {
++    status: 504,
++    statusText: 'Offline'
++  });
+ };
+ 
+ self.addEventListener('fetch', event => {
+@@ -111,13 +131,8 @@
+     return;
+   }
+ 
+-  if (url.pathname.startsWith('/data/') || request.destination === 'json') {
++  if (url.pathname.startsWith('/data/')) {
+     event.respondWith(dataNetworkFirst(request));
+-    return;
+-  }
+-
+-  if (['style', 'script', 'image', 'font'].includes(request.destination)) {
+-    event.respondWith(staleWhileRevalidate(request));
+     return;
+   }
+ 
+--- baseline/sloka-library.html
++++ release148/sloka-library.html
+@@ -32,7 +32,8 @@
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="/">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="/">Home</a> › <span aria-current="page">Sloka Library</span></p></nav>
+-<h1 class="section-title">Sloka Library</h1><p><strong>Source note:</strong> Kanda Sashti Kavasam now publishes a verified opening extract with a transparent partial-edition status. <a href="sources.html">View source records</a>.</p><div id="slokaGrid" class="grid"><div class="loading">Loading slokas...</div></div>
++<h1 class="section-title">Sloka Library</h1><p><strong>Source note:</strong> Kanda Sashti Kavasam now publishes a verified opening extract with a transparent partial-edition status. <a href="sources.html">View source records</a>.</p><div id="slokaGrid" class="grid" aria-busy="true"><div class="loading">Loading slokas...</div></div>
++<noscript><div class="card" role="status" style="margin-top:22px">The dynamic sloka listing requires JavaScript. Open <a href="slokas/om-saravana-bhava.html">Om Saravana Bhava</a>, <a href="slokas/subramanya-gayatri.html">Subramanya Gayatri</a>, or <a href="slokas/kanda-sashti-kavasam.html">Kanda Sashti Kavasam</a> directly.</div></noscript>
+ </main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="sources.html">Sources &amp; publication policy</a></footer>
+--- baseline/slokas/om-saravana-bhava.html
++++ release148/slokas/om-saravana-bhava.html
+@@ -46,6 +46,6 @@
+ </section>
+ <p><a class="btn secondary" href="../sloka-library.html">Back to Slokas</a></p>
+ </main>
+-<footer>© Om Saravana Bhava · Static GitHub Pages safe platform</footer>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+ </html>
+--- baseline/slokas/subramanya-gayatri.html
++++ release148/slokas/subramanya-gayatri.html
+@@ -46,6 +46,6 @@
+ </section>
+ <p><a class="btn secondary" href="../sloka-library.html">Back to Slokas</a></p>
+ </main>
+-<footer>© Om Saravana Bhava · Static GitHub Pages safe platform</footer>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+ </html>
+--- baseline/slokas/vel-vel.html
++++ release148/slokas/vel-vel.html
+@@ -46,6 +46,6 @@
+ </section>
+ <p><a class="btn secondary" href="../sloka-library.html">Back to Slokas</a></p>
+ </main>
+-<footer>© Om Saravana Bhava · Static GitHub Pages safe platform</footer>
++<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+ </html>
+--- baseline/temples.html
++++ release148/temples.html
+@@ -32,7 +32,8 @@
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="/">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="/">Home</a> › <span aria-current="page">Temple Explorer</span></p></nav>
+-<h1 class="section-title">Temple Explorer</h1><p><strong>Publication note:</strong> Six Arupadai Veedu pages now include primary-text citations. Four additional temple routes remain clearly labelled directory entries pending authoritative review. <a href="literature/thirumurugatruppadai.html">Read the literary cross-reference</a> or <a href="sources.html">view the publication policy</a>.</p><p>Filter-ready Murugan temple encyclopedia.</p><div class="filters"><button type="button" class="filter" data-filter="All" aria-pressed="true">All</button><button type="button" class="filter" data-filter="Arupadai Veedu" aria-pressed="false">Arupadai Veedu</button><button type="button" class="filter" data-filter="Popular Temple" aria-pressed="false">Popular</button><button type="button" class="filter" data-filter="Hill Temple" aria-pressed="false">Hill</button></div><div id="templeGrid" class="grid"><div class="loading">Loading temples...</div></div>
++<h1 class="section-title">Temple Explorer</h1><p><strong>Publication note:</strong> Six Arupadai Veedu pages now include primary-text citations. Four additional temple routes remain clearly labelled directory entries pending authoritative review. <a href="literature/thirumurugatruppadai.html">Read the literary cross-reference</a> or <a href="sources.html">view the publication policy</a>.</p><p>Filter-ready Murugan temple encyclopedia.</p><div class="filters"><button type="button" class="filter" data-filter="All" aria-pressed="true" aria-controls="templeGrid">All</button><button type="button" class="filter" data-filter="Arupadai Veedu" aria-pressed="false" aria-controls="templeGrid">Arupadai Veedu</button><button type="button" class="filter" data-filter="Popular Temple" aria-pressed="false" aria-controls="templeGrid">Popular</button><button type="button" class="filter" data-filter="Hill Temple" aria-pressed="false" aria-controls="templeGrid">Hill</button></div><div id="templeGrid" class="grid" aria-busy="true"><div class="loading">Loading temples...</div></div>
++<noscript><div class="card" role="status" style="margin-top:22px">Temple filtering requires JavaScript. The six source-linked temple pages remain available from the <a href="literature/thirumurugatruppadai.html">literature cross-reference</a>.</div></noscript>
+ </main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="sources.html">Sources &amp; publication policy</a></footer>

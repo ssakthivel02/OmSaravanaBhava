@@ -1,18 +1,329 @@
-window.OSB={};
-OSB.RELEASE='147';
-OSB.load=async p=>{const r=await fetch(p,{cache:'default'});if(!r.ok)throw Error('Missing '+p);return r.json()};
-OSB.byId=id=>document.getElementById(id);
-OSB.templeCard=t=>{const state=t.publicationStatus==='published-source-linked'?'Source linked':'Directory review';return `<article class="card temple-card" data-type="${t.type}"><span class="pill">${t.type}</span><span class="pill">${state}</span><h3>${t.nameTa}</h3><p>${t.nameEn}</p><a class="btn secondary" href="temples/${t.id}.html">Open temple</a></article>`};
-OSB.slokaCard=s=>{const state=s.publicationStatus==='partial-reviewed'?'Reviewed extract':'Published';return `<article class="card"><span class="pill">${s.category}</span><span class="pill">${state}</span><h3>${s.titleTa}</h3><p>${s.meaningTa||s.meaningEn}</p><a class="btn" href="slokas/${s.id}.html">Read sloka</a></article>`};
-OSB.festivalCard=f=>`<article class="card"><span class="pill">${f.month}</span><h3>${f.nameTa}</h3><p>${f.summary}</p><a class="btn" href="festivals/${f.id}.html">Open festival</a></article>`;
-OSB.safe=async fn=>{try{await fn()}catch(e){console.error(e);document.querySelector('main,.wrap,#detail,#reader')?.insertAdjacentHTML('beforeend','<div class="card" role="alert">Content loading issue. Confirm published JSON files are available.</div>')}};
-OSB.home=()=>OSB.safe(async()=>{const[t,s,f]=await Promise.all([OSB.load('data/temples.json'),OSB.load('data/slokas.json'),OSB.load('data/festivals.json')]);const published=t.filter(x=>x.publicationStatus==='published-source-linked');OSB.byId('templeGrid').innerHTML=published.slice(0,6).map(OSB.templeCard).join('');OSB.byId('dailySloka').innerHTML=OSB.slokaCard(s[0]);OSB.byId('festivalGrid').innerHTML=f.map(OSB.festivalCard).join('');OSB.byId('countdown').textContent='Next major festival: confirm the exact date using an authoritative Panchangam or temple calendar'});
-OSB.temples=()=>OSB.safe(async()=>{const data=await OSB.load('data/temples.json');OSB.byId('templeGrid').innerHTML=data.map(OSB.templeCard).join('');document.querySelectorAll('[data-filter]').forEach(b=>{b.type='button';b.setAttribute('aria-pressed',b.dataset.filter==='All'?'true':'false');b.onclick=()=>{const value=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(f=>f.setAttribute('aria-pressed',f.dataset.filter===value?'true':'false'));document.querySelectorAll('.temple-card').forEach(c=>{c.style.display=(value==='All'||c.dataset.type===value)?'flex':'none'})}})});
-OSB.slokas=()=>OSB.safe(async()=>{OSB.byId('slokaGrid').innerHTML=(await OSB.load('data/slokas.json')).filter(x=>x.publicationStatus!=='draft').map(OSB.slokaCard).join('')});
-OSB.search=()=>OSB.safe(async()=>{const params=new URLSearchParams(location.search);const submitted=params.has('q');const q=(params.get('q')||'').trim();if(OSB.byId('q'))OSB.byId('q').value=q;const[t,s,f,l]=await Promise.all([OSB.load('data/temples.json'),OSB.load('data/slokas.json'),OSB.load('data/festivals.json'),OSB.load('data/literature.json')]);const all=[...t.filter(x=>x.publicationStatus==='published-source-linked').map(x=>({kind:'Temple',title:x.nameTa+' '+x.nameEn,summary:x.summary+' '+x.place,searchText:[x.nameTa,x.nameEn,x.summary,x.place,...x.tags].join(' '),url:'temples/'+x.id+'.html'})),...s.filter(x=>x.publicationStatus!=='draft').map(x=>({kind:'Sloka',title:x.titleTa+' '+x.titleEn,summary:x.meaningEn,searchText:[x.titleTa,x.titleEn,x.textTa,x.meaningTa,x.meaningEn].join(' '),url:'slokas/'+x.id+'.html'})),...f.map(x=>({kind:'Festival',title:x.nameTa+' '+x.nameEn,summary:x.summary,searchText:[x.nameTa,x.nameEn,x.summary,...x.tags].join(' '),url:'festivals/'+x.id+'.html'})),...l.filter(x=>x.publicationStatus==='published-source-linked').map(x=>({kind:'Literature',title:x.titleTa+' '+x.titleEn,summary:x.summary,searchText:[x.titleTa,x.titleEn,x.author,x.genre,x.summary].join(' '),url:x.url}))];const terms=q.toLowerCase().split(/\s+/).filter(Boolean);const res=terms.length?all.filter(x=>terms.every(term=>x.searchText.toLowerCase().includes(term))):all.slice(0,12);const resultsDiv=OSB.byId('results');resultsDiv.innerHTML=res.length?res.map(x=>`<article class="card result"><span class="pill">${x.kind}</span><h3>${x.title}</h3><p>${x.summary}</p><a class="btn" href="${x.url}">Open</a></article>`).join(''):'<div class="card">No published source-linked result matched. Try Palani, Thiruchendur, Vel, Sashti or Thirumurugatruppadai.</div>';if(submitted)resultsDiv.focus()});
-OSB.festivals=()=>OSB.safe(async()=>{OSB.byId('festivalGrid').innerHTML=(await OSB.load('data/festivals.json')).map(OSB.festivalCard).join('')});
-OSB.canonicalUrl=()=>document.querySelector('link[rel="canonical"]')?.href||location.href;
-OSB.announce=message=>{const msg=document.createElement('div');msg.setAttribute('role','status');msg.setAttribute('aria-live','polite');msg.textContent=message;msg.style.cssText='position:fixed;bottom:80px;right:18px;background:#a51d17;color:#fff;padding:12px 16px;border-radius:8px;z-index:70;font-weight:900';document.body.appendChild(msg);setTimeout(()=>msg.remove(),3000)};
-OSB.restorePrefs=()=>{const dark=localStorage.getItem('osb-dark')==='1';const large=localStorage.getItem('osb-text-large')==='1';document.body.classList.toggle('dark',dark);document.body.style.fontSize=large?'18px':'';const darkButton=document.querySelector('[data-dark]');if(darkButton){darkButton.type='button';darkButton.setAttribute('aria-pressed',dark?'true':'false');darkButton.setAttribute('aria-label',dark?'Disable dark mode':'Enable dark mode')}const textButton=document.querySelector('[data-text]');if(textButton){textButton.type='button';textButton.setAttribute('aria-pressed',large?'true':'false');textButton.setAttribute('aria-label',large?'Reset text size':'Increase text size')}const shareButton=document.querySelector('[data-share]');if(shareButton){shareButton.type='button';shareButton.setAttribute('aria-label','Share this page')}};
-document.addEventListener('click',e=>{if(e.target.matches('[data-dark]')){document.body.classList.toggle('dark');const active=document.body.classList.contains('dark');e.target.setAttribute('aria-pressed',active?'true':'false');e.target.setAttribute('aria-label',active?'Disable dark mode':'Enable dark mode');localStorage.setItem('osb-dark',active?'1':'0')}if(e.target.matches('[data-text]')){const active=document.body.style.fontSize==='18px';document.body.style.fontSize=active?'':'18px';const next=!active;e.target.setAttribute('aria-pressed',next?'true':'false');e.target.setAttribute('aria-label',next?'Reset text size':'Increase text size');localStorage.setItem('osb-text-large',next?'1':'0')}if(e.target.matches('[data-share]')){const url=OSB.canonicalUrl();if(navigator.share){navigator.share({title:document.title,url}).then(()=>OSB.announce('Shared successfully')).catch(err=>{if(err?.name!=='AbortError')console.error('Share failed',err)})}else if(navigator.clipboard){navigator.clipboard.writeText(url).then(()=>OSB.announce('Link copied to clipboard')).catch(err=>{console.error('Clipboard write failed',err);OSB.announce('Unable to copy link')})}else{OSB.announce('Sharing is not supported in this browser')}}});
-document.addEventListener('DOMContentLoaded',()=>{OSB.restorePrefs();const moduleName=document.body.dataset.module;if(OSB[moduleName])OSB[moduleName]()});
+window.OSB = {};
+
+OSB.RELEASE = '148';
+
+OSB.byId = id => document.getElementById(id);
+
+OSB.escape = value => String(value ?? '').replace(/[&<>"']/g, character => ({
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;'
+}[character]));
+
+OSB.slug = value => encodeURIComponent(String(value ?? '').trim());
+
+OSB.load = async path => {
+  const response = await fetch(path, {
+    cache: 'default',
+    credentials: 'same-origin',
+    headers: {'Accept': 'application/json'}
+  });
+  if (!response.ok) throw new Error(`Unable to load ${path}: HTTP ${response.status}`);
+  return response.json();
+};
+
+OSB.render = (id, markup) => {
+  const container = OSB.byId(id);
+  if (!container) return;
+  container.innerHTML = markup;
+  container.setAttribute('aria-busy', 'false');
+};
+
+OSB.templeCard = temple => {
+  const state = temple.publicationStatus === 'published-source-linked'
+    ? 'Source linked'
+    : 'Directory review';
+  return `<article class="card temple-card" data-type="${OSB.escape(temple.type)}">
+    <span class="pill">${OSB.escape(temple.type)}</span>
+    <span class="pill">${state}</span>
+    <h3>${OSB.escape(temple.nameTa)}</h3>
+    <p>${OSB.escape(temple.nameEn)}</p>
+    <a class="btn secondary" href="temples/${OSB.slug(temple.id)}.html">Open temple</a>
+  </article>`;
+};
+
+OSB.slokaCard = sloka => {
+  const state = sloka.publicationStatus === 'partial-reviewed'
+    ? 'Reviewed extract'
+    : 'Published';
+  return `<article class="card">
+    <span class="pill">${OSB.escape(sloka.category)}</span>
+    <span class="pill">${state}</span>
+    <h3>${OSB.escape(sloka.titleTa)}</h3>
+    <p>${OSB.escape(sloka.meaningTa || sloka.meaningEn)}</p>
+    <a class="btn" href="slokas/${OSB.slug(sloka.id)}.html">Read sloka</a>
+  </article>`;
+};
+
+OSB.festivalCard = festival => `<article class="card">
+  <span class="pill">${OSB.escape(festival.month)}</span>
+  <h3>${OSB.escape(festival.nameTa)}</h3>
+  <p>${OSB.escape(festival.summary)}</p>
+  <a class="btn" href="festivals/${OSB.slug(festival.id)}.html">Open festival</a>
+</article>`;
+
+OSB.clearBusyStates = () => {
+  document.querySelectorAll('[aria-busy="true"]').forEach(element => {
+    element.setAttribute('aria-busy', 'false');
+  });
+};
+
+OSB.safe = async task => {
+  try {
+    await task();
+  } catch (error) {
+    console.error(error);
+    OSB.clearBusyStates();
+    const main = document.querySelector('main,.wrap,#detail,#reader');
+    if (main && !document.getElementById('osb-content-error')) {
+      main.insertAdjacentHTML(
+        'beforeend',
+        '<div id="osb-content-error" class="card" role="alert">Content could not be loaded. Check your connection and try again.</div>'
+      );
+    }
+  }
+};
+
+OSB.home = () => OSB.safe(async () => {
+  const [temples, slokas, festivals] = await Promise.all([
+    OSB.load('data/temples.json'),
+    OSB.load('data/slokas.json'),
+    OSB.load('data/festivals.json')
+  ]);
+  const publishedTemples = temples.filter(item => item.publicationStatus === 'published-source-linked');
+  OSB.render('templeGrid', publishedTemples.slice(0, 6).map(OSB.templeCard).join(''));
+  OSB.render('dailySloka', OSB.slokaCard(slokas[0]));
+  OSB.render('festivalGrid', festivals.map(OSB.festivalCard).join(''));
+  const countdown = OSB.byId('countdown');
+  if (countdown) {
+    countdown.textContent = 'Next major festival: confirm the exact date using an authoritative Panchangam or temple calendar';
+  }
+});
+
+OSB.temples = () => OSB.safe(async () => {
+  const temples = await OSB.load('data/temples.json');
+  OSB.render('templeGrid', temples.map(OSB.templeCard).join(''));
+
+  document.querySelectorAll('[data-filter]').forEach(button => {
+    button.type = 'button';
+    button.setAttribute('aria-pressed', button.dataset.filter === 'All' ? 'true' : 'false');
+    button.addEventListener('click', () => {
+      const selected = button.dataset.filter;
+      document.querySelectorAll('[data-filter]').forEach(filter => {
+        filter.setAttribute('aria-pressed', filter.dataset.filter === selected ? 'true' : 'false');
+      });
+      document.querySelectorAll('.temple-card').forEach(card => {
+        card.hidden = selected !== 'All' && card.dataset.type !== selected;
+      });
+    });
+  });
+});
+
+OSB.slokas = () => OSB.safe(async () => {
+  const slokas = await OSB.load('data/slokas.json');
+  OSB.render(
+    'slokaGrid',
+    slokas.filter(item => item.publicationStatus !== 'draft').map(OSB.slokaCard).join('')
+  );
+});
+
+OSB.search = () => OSB.safe(async () => {
+  const params = new URLSearchParams(location.search);
+  const submitted = params.has('q');
+  const query = (params.get('q') || '').trim();
+  const input = OSB.byId('q');
+  if (input) input.value = query;
+
+  const [temples, slokas, festivals, literature] = await Promise.all([
+    OSB.load('data/temples.json'),
+    OSB.load('data/slokas.json'),
+    OSB.load('data/festivals.json'),
+    OSB.load('data/literature.json')
+  ]);
+
+  const records = [
+    ...temples
+      .filter(item => item.publicationStatus === 'published-source-linked')
+      .map(item => ({
+        kind: 'Temple',
+        title: `${item.nameTa} ${item.nameEn}`,
+        summary: `${item.summary} ${item.place}`,
+        searchText: [item.nameTa, item.nameEn, item.summary, item.place, ...(item.tags || [])].join(' '),
+        url: `temples/${OSB.slug(item.id)}.html`
+      })),
+    ...slokas
+      .filter(item => item.publicationStatus !== 'draft')
+      .map(item => ({
+        kind: 'Sloka',
+        title: `${item.titleTa} ${item.titleEn}`,
+        summary: item.meaningEn,
+        searchText: [item.titleTa, item.titleEn, item.textTa, item.meaningTa, item.meaningEn].join(' '),
+        url: `slokas/${OSB.slug(item.id)}.html`
+      })),
+    ...festivals.map(item => ({
+      kind: 'Festival',
+      title: `${item.nameTa} ${item.nameEn}`,
+      summary: item.summary,
+      searchText: [item.nameTa, item.nameEn, item.summary, ...(item.tags || [])].join(' '),
+      url: `festivals/${OSB.slug(item.id)}.html`
+    })),
+    ...literature
+      .filter(item => item.publicationStatus === 'published-source-linked')
+      .map(item => ({
+        kind: 'Literature',
+        title: `${item.titleTa} ${item.titleEn}`,
+        summary: item.summary,
+        searchText: [item.titleTa, item.titleEn, item.author, item.genre, item.summary].join(' '),
+        url: `literature/${OSB.slug(item.id)}.html`
+      }))
+  ];
+
+  const terms = query.toLocaleLowerCase().split(/\s+/).filter(Boolean);
+  const results = terms.length
+    ? records.filter(item => terms.every(term => item.searchText.toLocaleLowerCase().includes(term)))
+    : records.slice(0, 12);
+
+  const resultMarkup = results.length
+    ? `<p><strong>${results.length}</strong> published result${results.length === 1 ? '' : 's'} found.</p>` +
+      results.map(item => `<article class="card result">
+        <span class="pill">${OSB.escape(item.kind)}</span>
+        <h3>${OSB.escape(item.title)}</h3>
+        <p>${OSB.escape(item.summary)}</p>
+        <a class="btn" href="${item.url}">Open</a>
+      </article>`).join('')
+    : '<div class="card">No published source-linked result matched. Try Palani, Thiruchendur, Vel, Sashti or Thirumurugatruppadai.</div>';
+
+  OSB.render('results', resultMarkup);
+  const resultsRegion = OSB.byId('results');
+  if (submitted && resultsRegion) resultsRegion.focus();
+});
+
+OSB.festivals = () => OSB.safe(async () => {
+  const festivals = await OSB.load('data/festivals.json');
+  OSB.render('festivalGrid', festivals.map(OSB.festivalCard).join(''));
+});
+
+OSB.canonicalUrl = () =>
+  document.querySelector('link[rel="canonical"]')?.href || location.href;
+
+OSB.announce = message => {
+  const existing = document.getElementById('osb-toast');
+  if (existing) existing.remove();
+
+  const toast = document.createElement('div');
+  toast.id = 'osb-toast';
+  toast.className = 'osb-toast';
+  toast.setAttribute('role', 'status');
+  toast.setAttribute('aria-live', 'polite');
+  toast.textContent = message;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 3000);
+};
+
+OSB.storage = {
+  get(key) {
+    try {
+      return localStorage.getItem(key);
+    } catch {
+      return null;
+    }
+  },
+  set(key, value) {
+    try {
+      localStorage.setItem(key, value);
+    } catch {
+      // Preferences remain functional for the current page when storage is unavailable.
+    }
+  }
+};
+
+OSB.restorePrefs = () => {
+  const dark = OSB.storage.get('osb-dark') === '1';
+  const large = OSB.storage.get('osb-text-large') === '1';
+
+  document.body.classList.toggle('dark', dark);
+  document.body.style.fontSize = large ? '18px' : '';
+
+  const darkButton = document.querySelector('[data-dark]');
+  if (darkButton) {
+    darkButton.type = 'button';
+    darkButton.setAttribute('aria-pressed', dark ? 'true' : 'false');
+    darkButton.setAttribute('aria-label', dark ? 'Disable dark mode' : 'Enable dark mode');
+  }
+
+  const textButton = document.querySelector('[data-text]');
+  if (textButton) {
+    textButton.type = 'button';
+    textButton.setAttribute('aria-pressed', large ? 'true' : 'false');
+    textButton.setAttribute('aria-label', large ? 'Reset text size' : 'Increase text size');
+  }
+
+  const shareButton = document.querySelector('[data-share]');
+  if (shareButton) {
+    shareButton.type = 'button';
+    shareButton.setAttribute('aria-label', 'Share this page');
+  }
+};
+
+OSB.markCurrentNavigation = () => {
+  const currentPath = location.pathname.replace(/\/index\.html$/, '/');
+  document.querySelectorAll('.links a').forEach(link => {
+    const linkPath = new URL(link.href, location.href).pathname.replace(/\/index\.html$/, '/');
+    if (linkPath === currentPath) {
+      link.setAttribute('aria-current', 'page');
+    } else {
+      link.removeAttribute('aria-current');
+    }
+  });
+};
+
+document.addEventListener('click', event => {
+  const darkButton = event.target.closest('[data-dark]');
+  if (darkButton) {
+    document.body.classList.toggle('dark');
+    const active = document.body.classList.contains('dark');
+    darkButton.setAttribute('aria-pressed', active ? 'true' : 'false');
+    darkButton.setAttribute('aria-label', active ? 'Disable dark mode' : 'Enable dark mode');
+    OSB.storage.set('osb-dark', active ? '1' : '0');
+  }
+
+  const textButton = event.target.closest('[data-text]');
+  if (textButton) {
+    const active = document.body.style.fontSize === '18px';
+    const next = !active;
+    document.body.style.fontSize = next ? '18px' : '';
+    textButton.setAttribute('aria-pressed', next ? 'true' : 'false');
+    textButton.setAttribute('aria-label', next ? 'Reset text size' : 'Increase text size');
+    OSB.storage.set('osb-text-large', next ? '1' : '0');
+  }
+
+  const shareButton = event.target.closest('[data-share]');
+  if (shareButton) {
+    const url = OSB.canonicalUrl();
+    if (navigator.share) {
+      navigator.share({title: document.title, url})
+        .then(() => OSB.announce('Shared successfully'))
+        .catch(error => {
+          if (error?.name !== 'AbortError') console.error('Share failed', error);
+        });
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(url)
+        .then(() => OSB.announce('Link copied to clipboard'))
+        .catch(error => {
+          console.error('Clipboard write failed', error);
+          OSB.announce('Unable to copy link');
+        });
+    } else {
+      OSB.announce('Sharing is not supported in this browser');
+    }
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  OSB.restorePrefs();
+  OSB.markCurrentNavigation();
+  const moduleName = document.body.dataset.module;
+  if (OSB[moduleName]) OSB[moduleName]();
+});
