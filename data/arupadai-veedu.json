@@ -1,0 +1,44 @@
+[
+  {
+    "id": "thirupparamkundram",
+    "ta": "திருப்பரங்குன்றம்",
+    "en": "Thirupparankundram",
+    "range": "1–77",
+    "section": "திருப்பரங்குன்றம்"
+  },
+  {
+    "id": "thiruchendur",
+    "ta": "திருச்செந்தூர்",
+    "en": "Thiruchendur",
+    "range": "78–125",
+    "section": "திருச்சீரலைவாய்"
+  },
+  {
+    "id": "palani",
+    "ta": "பழனி",
+    "en": "Palani",
+    "range": "126–176",
+    "section": "திரு ஆவினன்குடி"
+  },
+  {
+    "id": "swamimalai",
+    "ta": "சுவாமிமலை",
+    "en": "Swamimalai",
+    "range": "177–189",
+    "section": "திரு ஏரகம்"
+  },
+  {
+    "id": "thiruthani",
+    "ta": "திருத்தணி",
+    "en": "Thiruthani",
+    "range": "190–217",
+    "section": "குன்றுதோறாடல் — traditional association"
+  },
+  {
+    "id": "pazhamudircholai",
+    "ta": "பழமுதிர்சோலை",
+    "en": "Pazhamudircholai",
+    "range": "218–317",
+    "section": "பழமுதிர்சோலை"
+  }
+]
