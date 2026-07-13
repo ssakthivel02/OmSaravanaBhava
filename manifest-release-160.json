@@ -1,0 +1,19 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 160,
+  "name": "Verified Murugan Mantra Collection",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 5,
+  "modified": [
+    "data/search-index.json",
+    "service-worker.js",
+    "sitemap.xml"
+  ],
+  "added": [
+    "data/murugan-mantras.json",
+    "murugan-mantras.html"
+  ],
+  "deleted": [],
+  "issues": []
+}

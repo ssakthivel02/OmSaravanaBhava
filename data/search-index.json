@@ -562,5 +562,77 @@
       "14"
     ],
     "status": "published-source-linked"
+  },
+  {
+    "kind": "Mantra",
+    "id": "om-saravanabhava",
+    "titleTa": "ஓம் சரவணபவ",
+    "titleEn": "Om Saravanabhava",
+    "summary": "Shadakshara",
+    "route": "murugan-mantras.html#om-saravanabhava",
+    "tags": [
+      "Shadakshara"
+    ],
+    "status": "published"
+  },
+  {
+    "kind": "Mantra",
+    "id": "kanda-gayatri",
+    "titleTa": "கந்த காயத்ரி",
+    "titleEn": "Kanda Gayatri",
+    "summary": "Gayatri",
+    "route": "murugan-mantras.html#kanda-gayatri",
+    "tags": [
+      "Gayatri"
+    ],
+    "status": "published"
+  },
+  {
+    "kind": "Mantra",
+    "id": "vel-vel",
+    "titleTa": "வேல் வேல் முருகா",
+    "titleEn": "Vel Vel Muruga",
+    "summary": "Nama Japa",
+    "route": "murugan-mantras.html#vel-vel",
+    "tags": [
+      "Nama Japa"
+    ],
+    "status": "published"
+  },
+  {
+    "kind": "Mantra",
+    "id": "skanda-sharanam",
+    "titleTa": "ஸ்கந்தா சரணம்",
+    "titleEn": "Skanda Sharanam",
+    "summary": "Surrender",
+    "route": "murugan-mantras.html#skanda-sharanam",
+    "tags": [
+      "Surrender"
+    ],
+    "status": "published"
+  },
+  {
+    "kind": "Mantra",
+    "id": "shanmuga-sharanam",
+    "titleTa": "ஷண்முகா சரணம்",
+    "titleEn": "Shanmuga Sharanam",
+    "summary": "Surrender",
+    "route": "murugan-mantras.html#shanmuga-sharanam",
+    "tags": [
+      "Surrender"
+    ],
+    "status": "published"
+  },
+  {
+    "kind": "Mantra",
+    "id": "muruga-sharanam",
+    "titleTa": "முருகா சரணம்",
+    "titleEn": "Muruga Sharanam",
+    "summary": "Surrender",
+    "route": "murugan-mantras.html#muruga-sharanam",
+    "tags": [
+      "Surrender"
+    ],
+    "status": "published"
   }
 ]

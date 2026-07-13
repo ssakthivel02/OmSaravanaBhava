@@ -1,0 +1,5 @@
+data/murugan-mantras.json
+data/search-index.json
+murugan-mantras.html
+service-worker.js
+sitemap.xml
