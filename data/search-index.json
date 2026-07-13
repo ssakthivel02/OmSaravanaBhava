@@ -647,5 +647,18 @@
       "Devaraya Swamigal"
     ],
     "status": "partial-reviewed"
+  },
+  {
+    "kind": "Literature",
+    "id": "vel-maaral",
+    "titleTa": "வேல் மாறல் மகா மந்திரம்",
+    "titleEn": "Vel Maaral Maha Manthiram",
+    "summary": "Source-controlled register; full text awaits verified publication source.",
+    "route": "literature/vel-maaral.html",
+    "tags": [
+      "Vallimalai Swamigal",
+      "Vel"
+    ],
+    "status": "source-register"
   }
 ]
