@@ -634,5 +634,18 @@
       "Surrender"
     ],
     "status": "published"
+  },
+  {
+    "kind": "Literature",
+    "id": "kanda-sashti-kavasam-edition",
+    "titleTa": "கந்த சஷ்டி கவசம்",
+    "titleEn": "Kanda Sashti Kavasam Structured Edition",
+    "summary": "Reviewed opening extract with a source-controlled structural navigator.",
+    "route": "literature/kanda-sashti-kavasam-edition.html",
+    "tags": [
+      "Kavasam",
+      "Devaraya Swamigal"
+    ],
+    "status": "partial-reviewed"
   }
 ]
