@@ -348,5 +348,55 @@
         "type": "image/png"
       }
     ]
+  },
+  {
+    "id": "thiruppugazh-0011",
+    "titleTa": "கனகந்திரள்",
+    "titleEn": "Thiruppugazh 11 · Kanakan Thiral",
+    "artist": "Arunagirinathar",
+    "album": "Thiruppugazh Digital Library — Volumes 1–2",
+    "kind": "Thiruppugazh",
+    "route": "thiruppugazh/0011-kanakan-thiral.html",
+    "speechText": "கனகந்திரள் கின்ற பெருங்கிரி\nதனில்வந்துத கன் தகன் என்றிடு\nகதிர்மிஞ்சிய செண்டை எறிந்திடு கதியோனே\n\nகடமிஞ்சி அநந்த விதம்புணர்\nகவளந்தனை உண்டு வளர்ந்திடு\nகரியின்றுணை என்று பிறந்திடு முருகோனே\n\nபனகந்துயில் கின்ற திறம்புனை\nகடல்முன் புக அடைந்த பரம்பரர்\nபடரும்புயல் என்றவர் அன்புகொள் மருகோனே\n\nபலதுன்பம் உழன்று கலங்கிய\nசிறியன் புலையன் கொலையன் புரி\nபவமின்று கழிந்திட வந்தருள் புரிவாயே\n\nஅனகன் பெயர்நின்றுருளும் திரி\nபுரமுந்திரி வென்றிட இன்புடன்\nஅழலும் தனகுந்திறல் கொண்டவர் புதல்வோனே\n\nஅடல்வந்து முழங்கியிடும் பறை\nடுடுடுண் டுடு டுண் டுடு டுண் டென\nஅதிர்கின்றிட அண்டம் நெரிந்திட வருசூரர்\n\nமனமுந்தழல் சென்றிட அன்றவர்\nஉடலுங்குட லுங்கிழி கொண்டிட\nமயில்மேல் தனில்வந்தருளுங்கன பெரியோனே\n\nமதியுங்கதிரும் தடவும்படி\nஉயர்கின்ற வனங்கள் பொருந்திய\nவளமொன்றுப் பரங்கிரி வந்தருள் பெருமாளே.",
+    "publicationStatus": "published-source-linked",
+    "playbackMode": "device-tts",
+    "recordingRights": "Text-to-speech only; no human performance recording bundled",
+    "artwork": [
+      {
+        "src": "/icons/icon-192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/icon-512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  },
+  {
+    "id": "thiruppugazh-0014",
+    "titleTa": "சருவும்படி",
+    "titleEn": "Thiruppugazh 14 · Saruvumpadi",
+    "artist": "Arunagirinathar",
+    "album": "Thiruppugazh Digital Library — Volumes 1–2",
+    "kind": "Thiruppugazh",
+    "route": "thiruppugazh/0014-saruvumpadi.html",
+    "speechText": "சருவும்படி வந்தனன் இங்கித\nமதனின்றிட அம்புலியும் சுடு\nதழல்கொண்டிட மங்கையர் கண்களின் வசமாகிச்\n\nசயிலங்கொளும் அன்றல் பொருந்திய\nபொழிலின்பயில் தென்றலும் ஒன்றிய\nதடவஞ்சுனை துன்றி எழுந்திட திறமாவே\n\nஇரவும்பகல் அந்தியும் நின்றிடு\nகுயில்வந்திசை தெந்தன என்றிட\nஇருகண்கள் துயின்றிடல் இன்றியும் அயர்வாகி\n\nஇவனெஞ்சு பதன் பதன் என்றிட\nமயல்கொண்டு வருந்திய வஞ்சகன்\nஇனியுன்றன் மலர்ந்தில கும்பதம் அடைவேனோ\n\nதிருவொன்றி விளங்கிய அண்டர்கள்\nமனையின் தயிருண்டவன் எண்டிசை\nதிகழும்புகழ் கொண்டவன் வண்டமிழ் பயில்வோர்பின்\n\nதிரிகின்றவன் மஞ்சுநிறம்புனை\nவேல் மிஞ்சுதிறங்கொள வென்றடல்\nசெயதுங்க முகுந்தன் மகிழ்ந்தருள் முருகோனே\n\nமதியுங்கதிரும் புயலும் தினம்\nமறுகும்படி அண்டம் இலங்கிட\nவளர்கின்ற பரங்கிரி வந்தருள் பெருமாளே.",
+    "publicationStatus": "published-source-linked",
+    "playbackMode": "device-tts",
+    "recordingRights": "Text-to-speech only; no human performance recording bundled",
+    "artwork": [
+      {
+        "src": "/icons/icon-192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/icon-512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
   }
 ]

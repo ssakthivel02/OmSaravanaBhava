@@ -534,5 +534,33 @@
       "not-published"
     ],
     "status": "source-linked-sections-available"
+  },
+  {
+    "kind": "Thiruppugazh",
+    "id": "0011",
+    "titleTa": "கனகந்திரள்",
+    "titleEn": "Kanakan Thiral",
+    "summary": "திருப்பரங்குன்றம் · A plea for Murugan’s grace amid suffering, praising the son of Shiva and the victorious Lord of fertile Tirupparankundram.",
+    "route": "thiruppugazh/0011-kanakan-thiral.html",
+    "tags": [
+      "Thirupparankundram",
+      "தனதந்தன தந்தன தந்தன",
+      "11"
+    ],
+    "status": "published-source-linked"
+  },
+  {
+    "kind": "Thiruppugazh",
+    "id": "0014",
+    "titleTa": "சருவும்படி",
+    "titleEn": "Saruvumpadi",
+    "summary": "திருப்பரங்குன்றம் · A prayer arising from sleepless longing and worldly entanglement, seeking Murugan’s radiant feet and grace at Tirupparankundram.",
+    "route": "thiruppugazh/0014-saruvumpadi.html",
+    "tags": [
+      "Thirupparankundram",
+      "தனதந்தன தந்தன தந்தன",
+      "14"
+    ],
+    "status": "published-source-linked"
   }
 ]

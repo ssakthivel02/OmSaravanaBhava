@@ -1,6 +1,6 @@
 {
-  "release": 152,
-  "generated": "2026-07-11",
+  "release": 155,
+  "generated": "2026-07-13",
   "states": {
     "published-source-linked": "Published with an explicit primary-text citation.",
     "published": "Published record retained from the existing reviewed collection.",
@@ -31,21 +31,32 @@
   ],
   "thiruppugazh": {
     "collectionRoute": "thiruppugazh.html",
-    "publishedCount": 10,
+    "publishedCount": 12,
     "publishedRoutes": [
       "thiruppugazh/0006-muththaiththaru.html",
       "thiruppugazh/0007-arukku-mangkaiyar.html",
       "thiruppugazh/0008-unaith-thinam.html",
       "thiruppugazh/0009-karuvadaindhu.html",
       "thiruppugazh/0010-karukkum-anjana.html",
+      "thiruppugazh/0011-kanakan-thiral.html",
       "thiruppugazh/0012-kadhadarungkayal.html",
       "thiruppugazh/0013-sandhadham-bandha.html",
+      "thiruppugazh/0014-saruvumpadi.html",
       "thiruppugazh/0015-thadakkai-pangkayam.html",
       "thiruppugazh/0016-padhiththa-senchandha.html",
       "thiruppugazh/0017-poruppurung.html"
     ],
     "sourceId": "src-thiruppugazh-valluvar-vallalar-vattam",
-    "policy": "Only manually checked full Tamil song texts are indexable. OCR-only records remain unpublished."
+    "policy": "Only manually checked full Tamil song texts are indexable. OCR-only records remain unpublished.",
+    "latestVolume": {
+      "release": 155,
+      "volume": 2,
+      "newSongNumbers": [
+        11,
+        14
+      ],
+      "verificationMethod": "Manual normalisation from uploaded source pages 21–22 and 26–27."
+    }
   },
   "skandaGuruKavasam": {
     "route": "slokas/skanda-guru-kavasam.html",
@@ -59,7 +70,7 @@
   "readAloudPlayer": {
     "route": "audio-library.html",
     "playlistData": "data/read-aloud-playlist.json",
-    "trackCount": 14,
+    "trackCount": 16,
     "mode": "device-tts",
     "mediaSession": "progressive-enhancement",
     "autoplay": false,
