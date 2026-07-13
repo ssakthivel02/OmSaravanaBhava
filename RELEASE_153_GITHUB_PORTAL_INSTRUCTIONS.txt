@@ -1,0 +1,8 @@
+PREREQUISITE: Release 152 must already be committed and verified.
+
+Upload extracted contents to repository root.
+Upper commit title:
+Release 153: connect verified texts to the read-aloud player
+
+Leave lower description blank. Commit directly to main.
+Do not upload Release 153 before Release 152.

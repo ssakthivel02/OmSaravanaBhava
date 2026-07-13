@@ -1,6 +1,6 @@
 window.OSB = {};
 
-OSB.RELEASE = '150';
+OSB.RELEASE = '153';
 
 OSB.byId = id => document.getElementById(id);
 
