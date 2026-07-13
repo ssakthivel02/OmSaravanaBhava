@@ -1,0 +1,19 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 159,
+  "name": "Thirumurugatruppadai Structured Edition",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 5,
+  "modified": [
+    "literature/thirumurugatruppadai.html",
+    "service-worker.js",
+    "sitemap.xml"
+  ],
+  "added": [
+    "data/thirumurugatruppadai-sections.json",
+    "literature/thirumurugatruppadai-complete.html"
+  ],
+  "deleted": [],
+  "issues": []
+}
