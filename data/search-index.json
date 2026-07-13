@@ -1,0 +1,538 @@
+[
+  {
+    "kind": "Temple",
+    "id": "palani",
+    "titleTa": "பழனி முருகன் கோவில்",
+    "titleEn": "Palani Murugan Temple",
+    "summary": "Wisdom, renunciation and Dhandayuthapani worship. Palani, Dindigul",
+    "route": "temples/palani.html",
+    "tags": [
+      "palani",
+      "murugan",
+      "arupadai-veedu"
+    ],
+    "status": "published-source-linked"
+  },
+  {
+    "kind": "Temple",
+    "id": "thiruchendur",
+    "titleTa": "திருச்செந்தூர் முருகன் கோவில்",
+    "titleEn": "Thiruchendur Murugan Temple",
+    "summary": "Sea-side shrine connected with victory and Skanda Sashti. Thiruchendur, Thoothukudi",
+    "route": "temples/thiruchendur.html",
+    "tags": [
+      "thiruchendur",
+      "murugan",
+      "arupadai-veedu"
+    ],
+    "status": "published-source-linked"
+  },
+  {
+    "kind": "Temple",
+    "id": "thirupparamkundram",
+    "titleTa": "திருப்பரங்குன்றம் முருகன் கோவில்",
+    "titleEn": "Thirupparamkundram Murugan Temple",
+    "summary": "Ancient cave shrine connected with Murugan worship and divine marriage. Madurai",
+    "route": "temples/thirupparamkundram.html",
+    "tags": [
+      "thirupparamkundram",
+      "murugan",
+      "arupadai-veedu"
+    ],
+    "status": "published-source-linked"
+  },
+  {
+    "kind": "Temple",
+    "id": "swamimalai",
+    "titleTa": "சுவாமிமலை முருகன் கோவில்",
+    "titleEn": "Swamimalai Murugan Temple",
+    "summary": "Wisdom shrine where Murugan is revered as teacher of Pranava. Kumbakonam",
+    "route": "temples/swamimalai.html",
+    "tags": [
+      "swamimalai",
+      "murugan",
+      "arupadai-veedu"
+    ],
+    "status": "published-source-linked"
+  },
+  {
+    "kind": "Temple",
+    "id": "thiruthani",
+    "titleTa": "திருத்தணி முருகன் கோவில்",
+    "titleEn": "Thiruthani Murugan Temple",
+    "summary": "Hill shrine associated with peace, courage and inner calm. Tiruttani",
+    "route": "temples/thiruthani.html",
+    "tags": [
+      "thiruthani",
+      "murugan",
+      "arupadai-veedu"
+    ],
+    "status": "published-source-linked"
+  },
+  {
+    "kind": "Temple",
+    "id": "pazhamudircholai",
+    "titleTa": "பழமுதிர்சோலை முருகன் கோவில்",
+    "titleEn": "Pazhamudircholai Murugan Temple",
+    "summary": "Forest shrine linked with grace, learning and devotion. Madurai",
+    "route": "temples/pazhamudircholai.html",
+    "tags": [
+      "pazhamudircholai",
+      "murugan",
+      "arupadai-veedu"
+    ],
+    "status": "published-source-linked"
+  },
+  {
+    "kind": "Sloka",
+    "id": "om-saravana-bhava",
+    "titleTa": "ஓம் சரவணபவ",
+    "titleEn": "Om Saravana Bhava",
+    "summary": "A devotional mantra for protection, clarity and spiritual focus.",
+    "route": "slokas/om-saravana-bhava.html",
+    "tags": [
+      "Mantra"
+    ],
+    "status": "published"
+  },
+  {
+    "kind": "Sloka",
+    "id": "kanda-sashti-kavasam",
+    "titleTa": "கந்த சஷ்டி கவசம்",
+    "titleEn": "Kanda Sashti Kavasam",
+    "summary": "This release publishes only the source-linked opening extract found in the uploaded compilation. It is not yet a complete critical edition.",
+    "route": "slokas/kanda-sashti-kavasam.html",
+    "tags": [
+      "Kavacham"
+    ],
+    "status": "partial-reviewed"
+  },
+  {
+    "kind": "Sloka",
+    "id": "subramanya-gayatri",
+    "titleTa": "சுப்பிரமண்ய காயத்ரி",
+    "titleEn": "Subramanya Gayatri",
+    "summary": "A prayer invoking Lord Shanmukha’s wisdom and guidance.",
+    "route": "slokas/subramanya-gayatri.html",
+    "tags": [
+      "Gayatri"
+    ],
+    "status": "published"
+  },
+  {
+    "kind": "Sloka",
+    "id": "vel-vel",
+    "titleTa": "வேல் வேல் முருகா",
+    "titleEn": "Vel Vel Muruga",
+    "summary": "A chant invoking the Vel as wisdom, protection and victory.",
+    "route": "slokas/vel-vel.html",
+    "tags": [
+      "Chant"
+    ],
+    "status": "published"
+  },
+  {
+    "kind": "Sloka",
+    "id": "skanda-guru-kavasam",
+    "titleTa": "ஸ்கந்த குரு கவசம்",
+    "titleEn": "Skanda Guru Kavasam",
+    "summary": "Only the source-checked opening extract is published. This is not a complete edition.",
+    "route": "slokas/skanda-guru-kavasam.html",
+    "tags": [
+      "Kavacham"
+    ],
+    "status": "partial-reviewed"
+  },
+  {
+    "kind": "Festival",
+    "id": "thai-poosam",
+    "titleTa": "தைப்பூசம்",
+    "titleEn": "Thai Poosam",
+    "summary": "Major Murugan festival connected with Vel worship, kavadi and devotion.",
+    "route": "festivals/thai-poosam.html",
+    "tags": [
+      "thai",
+      "poosam",
+      "vel",
+      "kavadi"
+    ],
+    "status": "published"
+  },
+  {
+    "kind": "Festival",
+    "id": "skanda-sashti",
+    "titleTa": "ஸ்கந்த சஷ்டி",
+    "titleEn": "Skanda Sashti",
+    "summary": "Six-day observance remembering Lord Murugan’s victory over Surapadman.",
+    "route": "festivals/skanda-sashti.html",
+    "tags": [
+      "sashti",
+      "victory",
+      "thiruchendur"
+    ],
+    "status": "published"
+  },
+  {
+    "kind": "Festival",
+    "id": "panguni-uthiram",
+    "titleTa": "பங்குனி உத்திரம்",
+    "titleEn": "Panguni Uthiram",
+    "summary": "Sacred festival connected with divine marriage and Murugan worship.",
+    "route": "festivals/panguni-uthiram.html",
+    "tags": [
+      "panguni",
+      "uthiram",
+      "marriage"
+    ],
+    "status": "published"
+  },
+  {
+    "kind": "Festival",
+    "id": "aadi-krittikai",
+    "titleTa": "ஆடி கிருத்திகை",
+    "titleEn": "Aadi Krittikai",
+    "summary": "A special day for Murugan worship connected with Krittika nakshatra.",
+    "route": "festivals/aadi-krittikai.html",
+    "tags": [
+      "aadi",
+      "krittikai",
+      "murugan"
+    ],
+    "status": "published"
+  },
+  {
+    "kind": "Literature",
+    "id": "thirumurugatruppadai",
+    "titleTa": "திருமுருகாற்றுப்படை",
+    "titleEn": "Thirumurugatruppadai",
+    "summary": "A foundational Tamil poem guiding a devotee through Murugan’s sacred landscapes, worship and divine qualities.",
+    "route": "literature/thirumurugatruppadai.html",
+    "tags": [
+      "Tamil guide poem and Murugan devotional literature",
+      "நக்கீரர் / Nakkirar"
+    ],
+    "status": "published-source-linked"
+  },
+  {
+    "kind": "Thiruppugazh",
+    "id": "0006",
+    "titleTa": "முத்தைத்தரு",
+    "titleEn": "Muththaiththaru",
+    "summary": "திருவருணை · A prayer to Murugan as the supreme guru and protector, joining the teaching of sacred wisdom with vivid images of divine victory.",
+    "route": "thiruppugazh/0006-muththaiththaru.html",
+    "tags": [
+      "Thiruvarunai",
+      "தத்தத்தன தத்தத் தனதன",
+      "6"
+    ],
+    "status": "published-source-linked"
+  },
+  {
+    "kind": "Thiruppugazh",
+    "id": "0007",
+    "titleTa": "அருக்கு மங்கையர்",
+    "titleEn": "Arukku Mangkaiyar",
+    "summary": "திருப்பரங்குன்றம் · A confession of sensual entanglement that turns toward Murugan, Tamil poetry and the saving presence of Tirupparankundram.",
+    "route": "thiruppugazh/0007-arukku-mangkaiyar.html",
+    "tags": [
+      "Thirupparankundram",
+      "தனத்த தந்தன தனதன தனதன",
+      "7"
+    ],
+    "status": "published-source-linked"
+  },
+  {
+    "kind": "Thiruppugazh",
+    "id": "0008",
+    "titleTa": "உனைத் தினம்",
+    "titleEn": "Unaith Thinam",
+    "summary": "திருப்பரங்குன்றம் · A candid admission of neglected worship and a plea that Murugan arrive on the peacock when fear and mortality close in.",
+    "route": "thiruppugazh/0008-unaith-thinam.html",
+    "tags": [
+      "Thirupparankundram",
+      "தனத்த தந்தன தனதன தனதன",
+      "8"
+    ],
+    "status": "published-source-linked"
+  },
+  {
+    "kind": "Thiruppugazh",
+    "id": "0009",
+    "titleTa": "கருவடைந்து",
+    "titleEn": "Karuvadaindhu",
+    "summary": "திருப்பரங்குன்றம் · A reflection on birth, growth, desire and suffering that asks when Murugan’s grace will finally settle in the heart.",
+    "route": "thiruppugazh/0009-karuvadaindhu.html",
+    "tags": [
+      "Thirupparankundram",
+      "தனனதந்த தத்தத்த தந்த",
+      "9"
+    ],
+    "status": "published-source-linked"
+  },
+  {
+    "kind": "Thiruppugazh",
+    "id": "0010",
+    "titleTa": "கறுக்கும் அஞ்சன",
+    "titleEn": "Karukkum Anjana",
+    "summary": "திருப்பரங்குன்றம் · A plea for release from deceptive attraction, followed by praise of Murugan’s radiant spear and victorious power.",
+    "route": "thiruppugazh/0010-karukkum-anjana.html",
+    "tags": [
+      "Thirupparankundram",
+      "தந்தன தனதன தனதன",
+      "10"
+    ],
+    "status": "published-source-linked"
+  },
+  {
+    "kind": "Thiruppugazh",
+    "id": "0012",
+    "titleTa": "காதடருங்கயல்",
+    "titleEn": "Kadhadarungkayal",
+    "summary": "திருப்பரங்குன்றம் · A prayer to escape the turbulence of desire and receive Murugan’s ankleted feet as the stable centre of devotion.",
+    "route": "thiruppugazh/0012-kadhadarungkayal.html",
+    "tags": [
+      "Thirupparankundram",
+      "தானன தந்தன தந்தனந் தந்தன",
+      "12"
+    ],
+    "status": "published-source-linked"
+  },
+  {
+    "kind": "Thiruppugazh",
+    "id": "0013",
+    "titleTa": "சந்ததம் பந்த",
+    "titleEn": "Sandhadham Bandha",
+    "summary": "திருப்பரங்குன்றம் · A compact prayer to leave the restless chain of attachment and behold Kandan every day with sustained love.",
+    "route": "thiruppugazh/0013-sandhadham-bandha.html",
+    "tags": [
+      "Thirupparankundram",
+      "தந்தனந் தந்தத் தனதான",
+      "13"
+    ],
+    "status": "published-source-linked"
+  },
+  {
+    "kind": "Thiruppugazh",
+    "id": "0015",
+    "titleTa": "தடக்கைப் பங்கயம்",
+    "titleEn": "Thadakkai Pangkayam",
+    "summary": "திருப்பரங்குன்றம் · A prayer to end the exhausting cycle of worldly dependence and establish a life of service at Murugan’s ankleted feet.",
+    "route": "thiruppugazh/0015-thadakkai-pangkayam.html",
+    "tags": [
+      "Thirupparankundram",
+      "தனத்தத் தந்தனந் தனத்தத் தந்தனந்",
+      "15"
+    ],
+    "status": "published-source-linked"
+  },
+  {
+    "kind": "Thiruppugazh",
+    "id": "0016",
+    "titleTa": "பதித்த செஞ்சந்த",
+    "titleEn": "Padhiththa Senchandha",
+    "summary": "திருப்பரங்குன்றம் · A confession of mental delusion that asks for Murugan’s lotus feet, framed by images of Surapadman, Deivayanai and Valli.",
+    "route": "thiruppugazh/0016-padhiththa-senchandha.html",
+    "tags": [
+      "Thirupparankundram",
+      "தனத்ததந் தந்தத் தத்தன தத்தந்",
+      "16"
+    ],
+    "status": "published-source-linked"
+  },
+  {
+    "kind": "Thiruppugazh",
+    "id": "0017",
+    "titleTa": "பொருப்புறுங்",
+    "titleEn": "Poruppurung",
+    "summary": "திருப்பரங்குன்றம் · An appeal to turn from destructive attachment toward Murugan’s gracious lotus feet and the sanctuary of Tirupparankundram.",
+    "route": "thiruppugazh/0017-poruppurung.html",
+    "tags": [
+      "Thirupparankundram",
+      "தனத்தனந் தந்தன தனத்தனந் தந்தன",
+      "17"
+    ],
+    "status": "published-source-linked"
+  },
+  {
+    "kind": "Audio",
+    "id": "vel-maaral-maha-manthiram",
+    "titleTa": "வேல் மாறல் மகா மந்திரம்",
+    "titleEn": "Vel Maaral Maha Manthiram",
+    "summary": "Requested for the Murugan audio collection. Full Tamil text and recording provenance must be verified before publication.",
+    "route": "audio-library.html?track=vel-maaral-maha-manthiram",
+    "tags": [
+      "Mantra",
+      "not-published"
+    ],
+    "status": "source-review-required"
+  },
+  {
+    "kind": "Audio",
+    "id": "kanda-sashti-kavasam",
+    "titleTa": "கந்த சஷ்டி கவசம்",
+    "titleEn": "Kanda Sashti Kavasam",
+    "summary": "A source-linked opening extract is available for Tamil device read-aloud. A complete reviewed edition is not yet claimed.",
+    "route": "audio-library.html?track=kanda-sashti-kavasam",
+    "tags": [
+      "Kavacham",
+      "device-tts"
+    ],
+    "status": "reviewed-opening-extract"
+  },
+  {
+    "kind": "Audio",
+    "id": "skanda-guru-kavasam",
+    "titleTa": "ஸ்கந்த குரு கவசம்",
+    "titleEn": "Skanda Guru Kavasam",
+    "summary": "A source-checked opening extract is available for Tamil device read-aloud. The complete work and any human recording remain under review.",
+    "route": "audio-library.html?track=skanda-guru-kavasam",
+    "tags": [
+      "Kavacham",
+      "device-tts"
+    ],
+    "status": "reviewed-opening-extract"
+  },
+  {
+    "kind": "Audio",
+    "id": "shanmuga-kavasam",
+    "titleTa": "சண்முக கவசம்",
+    "titleEn": "Shanmuga Kavasam",
+    "summary": "Requested for the six-Kavasam collection. Text identity and complete source boundaries must be verified before publication.",
+    "route": "audio-library.html?track=shanmuga-kavasam",
+    "tags": [
+      "Kavacham",
+      "not-published"
+    ],
+    "status": "uploaded-collection-review"
+  },
+  {
+    "kind": "Audio",
+    "id": "kandar-anubhuti",
+    "titleTa": "கந்தர் அனுபூதி",
+    "titleEn": "Kandar Anubhuti",
+    "summary": "An uploaded source is available. Original verses must be separated from copyrighted modern commentary and translation.",
+    "route": "audio-library.html?track=kandar-anubhuti",
+    "tags": [
+      "Arunagirinathar",
+      "not-published"
+    ],
+    "status": "uploaded-source-identified"
+  },
+  {
+    "kind": "Audio",
+    "id": "kandar-alangaram",
+    "titleTa": "கந்தர் அலங்காரம்",
+    "titleEn": "Kandar Alangaram",
+    "summary": "Requested for the digital library. A verified complete Tamil source is required before read-aloud publication.",
+    "route": "audio-library.html?track=kandar-alangaram",
+    "tags": [
+      "Arunagirinathar",
+      "not-published"
+    ],
+    "status": "source-review-required"
+  },
+  {
+    "kind": "Audio",
+    "id": "kandar-andhathi",
+    "titleTa": "கந்தர் அந்தாதி",
+    "titleEn": "Kandar Andhathi",
+    "summary": "Requested for the digital library. A verified complete Tamil source is required before read-aloud publication.",
+    "route": "audio-library.html?track=kandar-andhathi",
+    "tags": [
+      "Arunagirinathar",
+      "not-published"
+    ],
+    "status": "source-review-required"
+  },
+  {
+    "kind": "Audio",
+    "id": "kandar-kalivenba",
+    "titleTa": "கந்தர் கலிவெண்பா",
+    "titleEn": "Kandar Kalivenba",
+    "summary": "Requested for the digital library. Authorship, edition and full text must be verified.",
+    "route": "audio-library.html?track=kandar-kalivenba",
+    "tags": [
+      "Murugan Literature",
+      "not-published"
+    ],
+    "status": "source-review-required"
+  },
+  {
+    "kind": "Audio",
+    "id": "vel-virutham",
+    "titleTa": "வேல் விருத்தம்",
+    "titleEn": "Vel Virutham",
+    "summary": "The uploaded Arunagirinathar research material identifies this work. A complete primary text still requires verification.",
+    "route": "audio-library.html?track=vel-virutham",
+    "tags": [
+      "Arunagirinathar",
+      "not-published"
+    ],
+    "status": "uploaded-reference-identified"
+  },
+  {
+    "kind": "Audio",
+    "id": "mayil-virutham",
+    "titleTa": "மயில் விருத்தம்",
+    "titleEn": "Mayil Virutham",
+    "summary": "The uploaded Arunagirinathar research material identifies this work. A complete primary text still requires verification.",
+    "route": "audio-library.html?track=mayil-virutham",
+    "tags": [
+      "Arunagirinathar",
+      "not-published"
+    ],
+    "status": "uploaded-reference-identified"
+  },
+  {
+    "kind": "Audio",
+    "id": "subramanya-bhujangam",
+    "titleTa": "சுப்பிரமணிய புஜங்கம்",
+    "titleEn": "Subramanya Bhujangam",
+    "summary": "Tamil text or transliteration will be published only after a verified source and edition are selected.",
+    "route": "audio-library.html?track=subramanya-bhujangam",
+    "tags": [
+      "Stotra",
+      "not-published"
+    ],
+    "status": "source-review-required"
+  },
+  {
+    "kind": "Audio",
+    "id": "kanda-gayatri",
+    "titleTa": "கந்த காயத்ரி",
+    "titleEn": "Kanda Gayatri",
+    "summary": "The verified mantra text is available for Tamil device read-aloud.",
+    "route": "audio-library.html?track=kanda-gayatri",
+    "tags": [
+      "Gayatri",
+      "device-tts"
+    ],
+    "status": "published"
+  },
+  {
+    "kind": "Audio",
+    "id": "saravanabhava-mantra",
+    "titleTa": "சரவணபவ மந்திரம்",
+    "titleEn": "Saravanabhava Mantra",
+    "summary": "The verified mantra text is available for Tamil device read-aloud.",
+    "route": "audio-library.html?track=saravanabhava-mantra",
+    "tags": [
+      "Mantra",
+      "device-tts"
+    ],
+    "status": "published"
+  },
+  {
+    "kind": "Audio",
+    "id": "arupadai-veedu-thuthigal",
+    "titleTa": "ஆறுபடை வீடு துதிகள்",
+    "titleEn": "Arupadai Veedu Thuthigal",
+    "summary": "Source-linked literary sections are available, but a dedicated complete hymn collection has not yet been established.",
+    "route": "audio-library.html?track=arupadai-veedu-thuthigal",
+    "tags": [
+      "Temple Devotion",
+      "not-published"
+    ],
+    "status": "source-linked-sections-available"
+  }
+]

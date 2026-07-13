@@ -182,3 +182,8 @@ body.dark .osb-media-player{background:rgba(36,18,12,.96)}
 /* Release 153 — verified text player links */
 .player-launch-link{display:inline-flex;align-items:center;gap:.45rem}
 .card .player-launch-link{margin-top:.5rem}
+/* Release 154 — advanced local search */
+.advanced-search-form{display:grid;grid-template-columns:auto minmax(240px,1fr) auto minmax(150px,.55fr) auto;gap:12px;align-items:center}
+.advanced-search-form input,.advanced-search-form select{min-height:46px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surface-strong);color:var(--ink);font:inherit}
+.search-suggestions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.search-suggestion{cursor:pointer}
+@media(max-width:760px){.advanced-search-form{grid-template-columns:1fr}}

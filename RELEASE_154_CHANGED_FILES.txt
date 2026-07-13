@@ -1,0 +1,5 @@
+ai-search.html
+assets/css/osb44.css
+assets/js/advanced-search.js
+data/search-index.json
+service-worker.js
