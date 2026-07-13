@@ -10,7 +10,7 @@
   })[character]);
 
   const statusLabel = item => {
-    if (item.playMode === 'device-tts') return 'Tamil read-aloud available';
+    if (item.playMode === 'device-tts') return 'Verified text read-aloud';
     if (item.textStatus.includes('uploaded')) return 'Uploaded source identified';
     if (item.textStatus.includes('source-linked')) return 'Source-linked text available';
     return 'Source review required';
@@ -22,8 +22,8 @@
       ? `<a class="btn secondary" href="${escapeHtml(item.textRoute)}">Open verified text</a>`
       : '';
     const playButton = playable
-      ? `<button type="button" class="btn" data-audio-play="${escapeHtml(item.id)}">▶ Tamil read-aloud</button>
-         <button type="button" class="btn secondary" data-audio-stop>Stop</button>`
+      ? `<button type="button" class="btn" data-player-track="${escapeHtml(item.id)}" data-player-mode="play">▶ Play in reader</button>
+         <button type="button" class="btn secondary" data-player-track="${escapeHtml(item.id)}" data-player-mode="select">Add to player</button>`
       : '';
     return `<article class="card audio-catalog-card" id="audio-${escapeHtml(item.id)}"
       data-category="${escapeHtml(item.category)}"
@@ -33,9 +33,8 @@
       <h2 lang="ta">${escapeHtml(item.titleTa)}</h2>
       <h3>${escapeHtml(item.titleEn)}</h3>
       <p>${escapeHtml(item.summaryEn)}</p>
-      <p class="audio-rights-note"><strong>Recording:</strong> no third-party MP3 is bundled; an owned or explicitly licensed recording is required.</p>
+      <p class="audio-rights-note"><strong>Recording:</strong> no third-party MP3 is bundled; an owned or explicitly licensed performance recording is required.</p>
       <div class="audio-card-actions">${playButton}${route}</div>
-      <p class="audio-card-status" role="status" aria-live="polite"></p>
     </article>`;
   };
 
@@ -77,18 +76,6 @@
           : '<div class="card">No audio-library record matched this filter.</div>';
         grid.setAttribute('aria-busy', 'false');
         if (count) count.textContent = `${filtered.length} of ${items.length} requested works shown.`;
-
-        grid.querySelectorAll('[data-audio-play]').forEach(button => {
-          button.addEventListener('click', () => {
-            const item = items.find(entry => entry.id === button.dataset.audioPlay);
-            const card = button.closest('.audio-catalog-card');
-            const status = card?.querySelector('.audio-card-status');
-            window.OSBSpeech?.speakText(item?.speechText || '', status);
-          });
-        });
-        grid.querySelectorAll('[data-audio-stop]').forEach(button => {
-          button.addEventListener('click', () => window.OSBSpeech?.stop());
-        });
 
         const requestedTrack = new URLSearchParams(location.search).get('track');
         if (requestedTrack) {

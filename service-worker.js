@@ -1,4 +1,4 @@
-const RELEASE = '151';
+const RELEASE = '152';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
@@ -62,7 +62,9 @@ const PRECACHE_URLS = [
   "/assets/js/audio-library.js",
   "/data/audio-catalog.json",
   "/slokas/skanda-guru-kavasam.html",
-  "/data/skanda-guru-kavasam.json"
+  "/data/skanda-guru-kavasam.json",
+  "/assets/js/media-session-player.js",
+  "/data/read-aloud-playlist.json"
 ];
 
 self.addEventListener('install', event => {

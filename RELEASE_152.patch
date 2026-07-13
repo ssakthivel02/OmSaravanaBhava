@@ -1,0 +1,1072 @@
+--- release151/assets/css/osb44.css
++++ release152/assets/css/osb44.css
+@@ -91,3 +91,91 @@
+   .card{padding:22px}
+   .tools{right:10px;bottom:10px}
+ }
++/* Release 152 — persistent verified-text player */
++body.osb-player-active{padding-bottom:clamp(300px,34vh,390px)}
++.read-aloud-queue-card{display:flex;flex-direction:column}
++.read-aloud-queue-card .audio-card-actions{margin-top:auto}
++.osb-media-player{
++  position:fixed;
++  left:18px;
++  right:18px;
++  bottom:18px;
++  z-index:120;
++  display:grid;
++  grid-template-columns:minmax(260px,1.4fr) auto minmax(280px,1fr);
++  gap:20px;
++  align-items:center;
++  max-width:1220px;
++  margin:0 auto;
++  padding:18px 54px 18px 20px;
++  border:1px solid rgba(176,141,87,.34);
++  border-radius:26px;
++  background:rgba(255,250,243,.96);
++  box-shadow:0 30px 90px rgba(65,24,10,.28);
++  backdrop-filter:blur(22px) saturate(150%);
++}
++body.dark .osb-media-player{background:rgba(36,18,12,.96)}
++.osb-media-player[hidden]{display:none!important}
++.player-close{
++  position:absolute;
++  top:10px;
++  right:12px;
++  width:40px;
++  height:40px;
++  border:0;
++  border-radius:50%;
++  background:transparent;
++  color:var(--ink);
++  font-size:1.65rem;
++  cursor:pointer;
++}
++.player-identity{display:flex;gap:14px;align-items:center;min-width:0}
++.player-art{
++  flex:0 0 64px;
++  width:64px;
++  height:64px;
++  display:grid;
++  place-items:center;
++  border-radius:18px;
++  background:linear-gradient(145deg,#74170f,#a94f00);
++  color:#fff;
++  font-family:var(--font-tamil);
++  font-size:1.55rem;
++  font-weight:900;
++}
++.player-identity h2{margin:0;font-size:clamp(1.05rem,.95rem + .4vw,1.35rem);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
++.player-identity p{margin:2px 0;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
++.player-kicker{font-size:.78rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--red)}
++.player-controls{display:flex;gap:10px;align-items:center;justify-content:center}
++.player-control{
++  width:46px;
++  height:46px;
++  border:1px solid var(--line);
++  border-radius:50%;
++  background:var(--surface-strong);
++  color:var(--ink);
++  font:inherit;
++  font-size:1.1rem;
++  cursor:pointer;
++}
++.player-control-primary{width:58px;height:58px;background:var(--red);color:#fff;border-color:var(--red);font-size:1.3rem}
++.player-options{display:grid;grid-template-columns:1fr .7fr;gap:8px 12px;align-items:end}
++.player-options label{font-size:.78rem;font-weight:900}
++.player-options select{display:block;width:100%;min-height:42px;margin-top:3px;border:1px solid var(--line);border-radius:10px;padding:6px 8px;background:var(--surface-strong);color:var(--ink);font:inherit}
++.player-checkbox{display:flex!important;align-items:center;gap:8px;min-height:42px}
++.player-checkbox input{width:18px;height:18px}
++.player-status{grid-column:1/-1;margin:0;min-height:1.5em;font-weight:800;color:var(--red)}
++@media(max-width:980px){
++  body.osb-player-active{padding-bottom:460px}
++  .osb-media-player{grid-template-columns:1fr auto;padding-right:48px}
++  .player-options{grid-column:1/-1;grid-template-columns:1fr 1fr}
++  .player-status{grid-column:1/-1}
++}
++@media(max-width:640px){
++  body.osb-player-active{padding-bottom:590px}
++  .osb-media-player{left:8px;right:8px;bottom:8px;grid-template-columns:1fr;padding:16px 44px 16px 16px;border-radius:22px}
++  .player-controls{justify-content:flex-start}
++  .player-options{grid-column:auto;grid-template-columns:1fr}
++  .player-status{grid-column:auto}
++  .player-art{width:52px;height:52px;flex-basis:52px}
++}
+--- release151/assets/js/audio-library.js
++++ release152/assets/js/audio-library.js
+@@ -10,7 +10,7 @@
+   })[character]);
+ 
+   const statusLabel = item => {
+-    if (item.playMode === 'device-tts') return 'Tamil read-aloud available';
++    if (item.playMode === 'device-tts') return 'Verified text read-aloud';
+     if (item.textStatus.includes('uploaded')) return 'Uploaded source identified';
+     if (item.textStatus.includes('source-linked')) return 'Source-linked text available';
+     return 'Source review required';
+@@ -22,8 +22,8 @@
+       ? `<a class="btn secondary" href="${escapeHtml(item.textRoute)}">Open verified text</a>`
+       : '';
+     const playButton = playable
+-      ? `<button type="button" class="btn" data-audio-play="${escapeHtml(item.id)}">▶ Tamil read-aloud</button>
+-         <button type="button" class="btn secondary" data-audio-stop>Stop</button>`
++      ? `<button type="button" class="btn" data-player-track="${escapeHtml(item.id)}" data-player-mode="play">▶ Play in reader</button>
++         <button type="button" class="btn secondary" data-player-track="${escapeHtml(item.id)}" data-player-mode="select">Add to player</button>`
+       : '';
+     return `<article class="card audio-catalog-card" id="audio-${escapeHtml(item.id)}"
+       data-category="${escapeHtml(item.category)}"
+@@ -33,9 +33,8 @@
+       <h2 lang="ta">${escapeHtml(item.titleTa)}</h2>
+       <h3>${escapeHtml(item.titleEn)}</h3>
+       <p>${escapeHtml(item.summaryEn)}</p>
+-      <p class="audio-rights-note"><strong>Recording:</strong> no third-party MP3 is bundled; an owned or explicitly licensed recording is required.</p>
++      <p class="audio-rights-note"><strong>Recording:</strong> no third-party MP3 is bundled; an owned or explicitly licensed performance recording is required.</p>
+       <div class="audio-card-actions">${playButton}${route}</div>
+-      <p class="audio-card-status" role="status" aria-live="polite"></p>
+     </article>`;
+   };
+ 
+@@ -78,18 +77,6 @@
+         grid.setAttribute('aria-busy', 'false');
+         if (count) count.textContent = `${filtered.length} of ${items.length} requested works shown.`;
+ 
+-        grid.querySelectorAll('[data-audio-play]').forEach(button => {
+-          button.addEventListener('click', () => {
+-            const item = items.find(entry => entry.id === button.dataset.audioPlay);
+-            const card = button.closest('.audio-catalog-card');
+-            const status = card?.querySelector('.audio-card-status');
+-            window.OSBSpeech?.speakText(item?.speechText || '', status);
+-          });
+-        });
+-        grid.querySelectorAll('[data-audio-stop]').forEach(button => {
+-          button.addEventListener('click', () => window.OSBSpeech?.stop());
+-        });
+-
+         const requestedTrack = new URLSearchParams(location.search).get('track');
+         if (requestedTrack) {
+           requestAnimationFrame(() => {
+--- release151/assets/js/media-session-player.js
++++ release152/assets/js/media-session-player.js
+@@ -0,0 +1,401 @@
++(() => {
++  'use strict';
++
++  const STORAGE = {
++    track: 'osb-player-track',
++    rate: 'osb-player-rate',
++    voice: 'osb-player-voice',
++    autoNext: 'osb-player-auto-next'
++  };
++
++  const state = {
++    tracks: [],
++    index: -1,
++    chunks: [],
++    chunkIndex: 0,
++    utterance: null,
++    generation: 0,
++    status: 'idle',
++    rate: 0.9,
++    voiceURI: '',
++    autoNext: false
++  };
++
++  const el = {};
++  const supportsSpeech = () =>
++    'speechSynthesis' in window && typeof SpeechSynthesisUtterance !== 'undefined';
++
++  const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, character => ({
++    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
++  })[character]);
++
++  const current = () => state.tracks[state.index] || null;
++
++  const setStatus = message => {
++    if (el.status) el.status.textContent = message;
++  };
++
++  const setPlaybackState = value => {
++    state.status = value;
++    if ('mediaSession' in navigator) {
++      navigator.mediaSession.playbackState =
++        value === 'playing' ? 'playing' :
++        value === 'paused' ? 'paused' : 'none';
++    }
++    if (el.play) {
++      const playing = value === 'playing';
++      el.play.textContent = playing ? '⏸' : '▶';
++      el.play.setAttribute('aria-label', playing ? 'Pause read-aloud' : 'Play read-aloud');
++      el.play.setAttribute('aria-pressed', playing ? 'true' : 'false');
++    }
++  };
++
++  const splitText = text => {
++    const paragraphs = String(text || '')
++      .replace(/\r/g, '')
++      .split(/\n\s*\n/)
++      .map(value => value.replace(/\s+/g, ' ').trim())
++      .filter(Boolean);
++
++    const chunks = [];
++    paragraphs.forEach(paragraph => {
++      if (paragraph.length <= 650) {
++        chunks.push(paragraph);
++        return;
++      }
++      const sentences = paragraph.split(/(?<=[.!?।])\s+|(?<=\n)/).filter(Boolean);
++      let buffer = '';
++      sentences.forEach(sentence => {
++        const candidate = `${buffer} ${sentence}`.trim();
++        if (candidate.length > 650 && buffer) {
++          chunks.push(buffer);
++          buffer = sentence.trim();
++        } else {
++          buffer = candidate;
++        }
++      });
++      if (buffer) chunks.push(buffer);
++    });
++    return chunks.length ? chunks : [String(text || '').trim()].filter(Boolean);
++  };
++
++  const voices = () => window.speechSynthesis?.getVoices?.() || [];
++
++  const selectedVoice = () => {
++    const available = voices();
++    return available.find(voice => voice.voiceURI === state.voiceURI)
++      || available.find(voice => /^ta(?:-|_)/i.test(voice.lang))
++      || available.find(voice => /Tamil/i.test(voice.name))
++      || null;
++  };
++
++  const populateVoices = () => {
++    if (!el.voice) return;
++    const available = voices();
++    const tamil = available.filter(voice =>
++      /^ta(?:-|_)/i.test(voice.lang) || /Tamil/i.test(voice.name)
++    );
++    const options = tamil.length ? tamil : available;
++    el.voice.innerHTML = options.length
++      ? options.map(voice =>
++          `<option value="${escapeHtml(voice.voiceURI)}">${escapeHtml(voice.name)} · ${escapeHtml(voice.lang)}</option>`
++        ).join('')
++      : '<option value="">System default voice</option>';
++
++    const preferred = options.find(voice => voice.voiceURI === state.voiceURI)
++      || options.find(voice => /^ta(?:-|_)/i.test(voice.lang))
++      || options[0];
++    if (preferred) {
++      state.voiceURI = preferred.voiceURI;
++      el.voice.value = preferred.voiceURI;
++    }
++  };
++
++  const updateMediaMetadata = track => {
++    if (!('mediaSession' in navigator) || typeof MediaMetadata === 'undefined' || !track) return;
++    navigator.mediaSession.metadata = new MediaMetadata({
++      title: track.titleTa,
++      artist: track.artist,
++      album: track.album,
++      artwork: track.artwork
++    });
++  };
++
++  const renderTrack = () => {
++    const track = current();
++    if (!track) return;
++    document.body.classList.add('osb-player-active');
++    if (el.player) el.player.hidden = false;
++    if (el.titleTa) el.titleTa.textContent = track.titleTa;
++    if (el.titleEn) el.titleEn.textContent = track.titleEn;
++    if (el.meta) el.meta.textContent = `${track.artist} · ${track.album}`;
++    if (el.position) el.position.textContent = `${state.index + 1} of ${state.tracks.length}`;
++    if (el.open) el.open.href = track.route;
++    updateMediaMetadata(track);
++    localStorage.setItem(STORAGE.track, track.id);
++    document.querySelectorAll('[data-player-track]').forEach(button => {
++      button.setAttribute(
++        'aria-current',
++        button.dataset.playerTrack === track.id ? 'true' : 'false'
++      );
++    });
++  };
++
++  const select = (id, options = {}) => {
++    const index = state.tracks.findIndex(track => track.id === id);
++    if (index < 0) return false;
++    stop(false);
++    state.index = index;
++    state.chunks = splitText(current().speechText);
++    state.chunkIndex = 0;
++    renderTrack();
++    setStatus(`Selected ${current().titleEn}. Press Play to begin.`);
++    if (options.play) play();
++    return true;
++  };
++
++  const speakChunk = () => {
++    const track = current();
++    if (!track || !state.chunks[state.chunkIndex]) {
++      setPlaybackState('idle');
++      setStatus('Read-aloud completed.');
++      if (state.autoNext) next(true);
++      return;
++    }
++
++    const generation = state.generation;
++    const utterance = new SpeechSynthesisUtterance(state.chunks[state.chunkIndex]);
++    const voice = selectedVoice();
++    utterance.lang = voice?.lang || 'ta-IN';
++    if (voice) utterance.voice = voice;
++    utterance.rate = state.rate;
++    utterance.pitch = 1;
++    state.utterance = utterance;
++
++    utterance.onstart = () => {
++      if (generation !== state.generation) return;
++      setPlaybackState('playing');
++      setStatus(
++        `Reading section ${state.chunkIndex + 1} of ${state.chunks.length}` +
++        (voice ? ` with ${voice.name}.` : '. Install a Tamil voice for better pronunciation.')
++      );
++    };
++
++    utterance.onend = () => {
++      if (generation !== state.generation) return;
++      state.utterance = null;
++      state.chunkIndex += 1;
++      speakChunk();
++    };
++
++    utterance.onerror = event => {
++      if (generation !== state.generation) return;
++      state.utterance = null;
++      if (!['canceled', 'interrupted'].includes(event.error)) {
++        setPlaybackState('idle');
++        setStatus('The browser could not continue this read-aloud.');
++      }
++    };
++
++    window.speechSynthesis.speak(utterance);
++  };
++
++  const play = () => {
++    if (!supportsSpeech()) {
++      setStatus('Tamil read-aloud is not supported by this browser.');
++      return;
++    }
++    if (!current()) {
++      if (!state.tracks.length) return;
++      select(state.tracks[0].id);
++    }
++    if (window.speechSynthesis.paused && state.utterance) {
++      window.speechSynthesis.resume();
++      setPlaybackState('playing');
++      setStatus('Read-aloud resumed.');
++      return;
++    }
++    if (state.status === 'playing') {
++      pause();
++      return;
++    }
++    if (state.chunkIndex >= state.chunks.length) state.chunkIndex = 0;
++    speakChunk();
++  };
++
++  const pause = () => {
++    if (window.speechSynthesis?.speaking && !window.speechSynthesis.paused) {
++      window.speechSynthesis.pause();
++      setPlaybackState('paused');
++      setStatus('Read-aloud paused.');
++    }
++  };
++
++  const stop = (announce = true) => {
++    state.generation += 1;
++    window.speechSynthesis?.cancel?.();
++    state.utterance = null;
++    state.chunkIndex = 0;
++    setPlaybackState('idle');
++    if (announce) setStatus('Read-aloud stopped.');
++  };
++
++  const move = (direction, autoplay = false) => {
++    if (!state.tracks.length) return;
++    const nextIndex = state.index < 0
++      ? 0
++      : (state.index + direction + state.tracks.length) % state.tracks.length;
++    select(state.tracks[nextIndex].id, { play: autoplay });
++  };
++
++  const next = autoplay => move(1, autoplay);
++  const previous = autoplay => move(-1, autoplay);
++
++  const close = () => {
++    stop(false);
++    if (el.player) el.player.hidden = true;
++    document.body.classList.remove('osb-player-active');
++    setStatus('');
++  };
++
++  const bindMediaSession = () => {
++    if (!('mediaSession' in navigator)) return;
++    const handlers = {
++      play,
++      pause,
++      stop,
++      nexttrack: () => next(true),
++      previoustrack: () => previous(true)
++    };
++    Object.entries(handlers).forEach(([action, handler]) => {
++      try {
++        navigator.mediaSession.setActionHandler(action, handler);
++      } catch (error) {
++        console.debug(`Media Session action unavailable: ${action}`, error);
++      }
++    });
++  };
++
++  const renderQueue = () => {
++    if (!el.queue) return;
++    el.queue.innerHTML = state.tracks.map((track, index) => `
++      <article class="card read-aloud-queue-card">
++        <span class="pill">${escapeHtml(track.kind)}</span>
++        <span class="pill">${index + 1}</span>
++        <h3 lang="ta">${escapeHtml(track.titleTa)}</h3>
++        <p>${escapeHtml(track.titleEn)}</p>
++        <p class="audio-rights-note">${escapeHtml(track.artist)}</p>
++        <div class="audio-card-actions">
++          <button type="button" class="btn" data-player-track="${escapeHtml(track.id)}" data-player-mode="play">▶ Play</button>
++          <button type="button" class="btn secondary" data-player-track="${escapeHtml(track.id)}" data-player-mode="select">Select</button>
++          <a class="btn secondary" href="${escapeHtml(track.route)}">Open text</a>
++        </div>
++      </article>
++    `).join('');
++    if (el.queueCount) {
++      el.queueCount.textContent = `${state.tracks.length} verified read-aloud items are available.`;
++    }
++  };
++
++  const bindControls = () => {
++    document.addEventListener('click', event => {
++      const trackButton = event.target.closest('[data-player-track]');
++      if (trackButton) {
++        select(trackButton.dataset.playerTrack, {
++          play: trackButton.dataset.playerMode === 'play'
++        });
++      }
++    });
++
++    el.play?.addEventListener('click', play);
++    el.stop?.addEventListener('click', () => stop(true));
++    el.next?.addEventListener('click', () => next(state.status === 'playing'));
++    el.previous?.addEventListener('click', () => previous(state.status === 'playing'));
++    el.close?.addEventListener('click', close);
++
++    el.rate?.addEventListener('change', () => {
++      const rate = Number(el.rate.value);
++      state.rate = Number.isFinite(rate) ? rate : 0.9;
++      localStorage.setItem(STORAGE.rate, String(state.rate));
++      if (state.status === 'playing' || state.status === 'paused') {
++        stop(false);
++        play();
++      }
++    });
++
++    el.voice?.addEventListener('change', () => {
++      state.voiceURI = el.voice.value;
++      localStorage.setItem(STORAGE.voice, state.voiceURI);
++      if (state.status === 'playing' || state.status === 'paused') {
++        stop(false);
++        play();
++      }
++    });
++
++    el.autoNext?.addEventListener('change', () => {
++      state.autoNext = el.autoNext.checked;
++      localStorage.setItem(STORAGE.autoNext, state.autoNext ? '1' : '0');
++    });
++
++    window.speechSynthesis?.addEventListener?.('voiceschanged', populateVoices);
++    window.addEventListener('pagehide', () => stop(false));
++  };
++
++  document.addEventListener('DOMContentLoaded', async () => {
++    Object.assign(el, {
++      player: document.getElementById('osbMediaPlayer'),
++      titleTa: document.getElementById('playerTitleTa'),
++      titleEn: document.getElementById('playerTitleEn'),
++      meta: document.getElementById('playerMeta'),
++      position: document.getElementById('playerPosition'),
++      status: document.getElementById('playerStatus'),
++      play: document.getElementById('playerPlay'),
++      stop: document.getElementById('playerStop'),
++      next: document.getElementById('playerNext'),
++      previous: document.getElementById('playerPrevious'),
++      close: document.getElementById('playerClose'),
++      open: document.getElementById('playerOpenText'),
++      rate: document.getElementById('playerRate'),
++      voice: document.getElementById('playerVoice'),
++      autoNext: document.getElementById('playerAutoNext'),
++      queue: document.getElementById('readAloudQueueGrid'),
++      queueCount: document.getElementById('readAloudQueueCount')
++    });
++
++    if (!el.player || !el.queue) return;
++
++    try {
++      const response = await fetch('data/read-aloud-playlist.json', { cache: 'default' });
++      if (!response.ok) throw new Error(`HTTP ${response.status}`);
++      state.tracks = await response.json();
++
++      state.rate = Number(localStorage.getItem(STORAGE.rate)) || 0.9;
++      state.voiceURI = localStorage.getItem(STORAGE.voice) || '';
++      state.autoNext = localStorage.getItem(STORAGE.autoNext) === '1';
++
++      if (el.rate) el.rate.value = String(state.rate);
++      if (el.autoNext) el.autoNext.checked = state.autoNext;
++
++      populateVoices();
++      renderQueue();
++      bindControls();
++      bindMediaSession();
++
++      const requested = new URLSearchParams(location.search).get('track');
++      const saved = localStorage.getItem(STORAGE.track);
++      const initial = requested || saved;
++      if (initial && state.tracks.some(track => track.id === initial)) {
++        select(initial);
++      }
++    } catch (error) {
++      console.error('Read-aloud playlist failed to initialize:', error);
++      if (el.queue) {
++        el.queue.innerHTML =
++          '<div class="card" role="alert">The verified read-aloud queue could not be loaded.</div>';
++      }
++      setStatus('The read-aloud player could not be initialized.');
++    }
++  });
++
++  window.OSBMediaPlayer = { select, play, pause, stop, next, previous };
++})();--- release151/audio-library.html
++++ release152/audio-library.html
+@@ -3,21 +3,21 @@
+ <head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+-<title>Murugan Audio & Tamil Read-Aloud Library | Om Saravana Bhava</title>
+-<meta name="description" content="Tamil Murugan read-aloud library for verified devotional texts, with a transparent recording-rights policy and requested-work publication status.">
++<title>Tamil Devotional Read-Aloud Player | Om Saravana Bhava</title>
++<meta name="description" content="Verified Tamil devotional read-aloud queue with voice and speed controls, accessible playback and progressive Media Session integration.">
+ <meta name="robots" content="index,follow">
+ <link rel="canonical" href="https://omsaravanabhava.org/audio-library.html">
+ <meta property="og:site_name" content="Om Saravana Bhava">
+ <meta property="og:type" content="website">
+-<meta property="og:title" content="Murugan Audio & Tamil Read-Aloud Library">
+-<meta property="og:description" content="Tamil Murugan read-aloud library for verified devotional texts, with a transparent recording-rights policy and requested-work publication status.">
++<meta property="og:title" content="Tamil Devotional Read-Aloud Player">
++<meta property="og:description" content="Verified Tamil devotional read-aloud queue with voice and speed controls, accessible playback and progressive Media Session integration.">
+ <meta property="og:url" content="https://omsaravanabhava.org/audio-library.html">
+ <meta name="twitter:card" content="summary">
+ <link rel="stylesheet" href="assets/css/osb44.css">
+-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://omsaravanabhava.org/audio-library.html#webpage","url":"https://omsaravanabhava.org/audio-library.html","name":"Murugan Audio and Tamil Read-Aloud Library","description":"Tamil Murugan read-aloud library for verified devotional texts, with a transparent recording-rights policy and requested-work publication status.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Audio Library","item":"https://omsaravanabhava.org/audio-library.html"}]}]}</script>
++<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://omsaravanabhava.org/audio-library.html#webpage","url":"https://omsaravanabhava.org/audio-library.html","name":"Tamil Devotional Read-Aloud Player","description":"Verified Tamil devotional read-aloud queue with voice and speed controls, accessible playback and progressive Media Session integration.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Audio Library","item":"https://omsaravanabhava.org/audio-library.html"}]}]}</script>
+ <script defer src="assets/js/osb44.js"></script>
+-<script defer src="assets/js/read-aloud.js"></script>
+ <script defer src="assets/js/audio-library.js"></script>
++<script defer src="assets/js/media-session-player.js"></script>
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+ <meta name="theme-color" content="#a51d17">
+ <meta name="mobile-web-app-capable" content="yes">
+@@ -30,27 +30,33 @@
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+-<div class="top">🛕 ஓம் சரவணபவ · Tamil audio and read-aloud library</div>
++<div class="top">🛕 ஓம் சரவணபவ · Verified Tamil read-aloud player</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html" aria-current="page">Audio</a></div></div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Audio Library</span></p></nav>
+ <section class="audio-hero">
+ <div>
+-<span class="eyebrow">Release 150 · Verified text first</span>
+-<h1 class="section-title">தமிழ் ஒலி மற்றும் வாசிப்பு நூலகம்</h1>
+-<h2>Murugan Audio & Tamil Read-Aloud Library</h2>
+-<p class="lead">Play verified Tamil text using your device’s Tamil speech voice. No autoplay, no hidden tracking and no third-party recording is re-hosted without permission.</p>
+-<div class="audio-hero-actions"><a class="btn" href="#audioCatalogGrid">Explore requested works</a><a class="btn secondary" href="sources.html">View source policy</a></div>
++<span class="eyebrow">Release 152 · Verified queue and device controls</span>
++<h1 class="section-title">தமிழ் வாசிப்பு இயக்கி</h1>
++<h2>Tamil Devotional Read-Aloud Player</h2>
++<p class="lead">Choose a verified text, select an installed voice and reading speed, then control playback from the persistent player. Compatible browsers may also expose play, pause, previous and next controls through system media surfaces.</p>
++<div class="audio-hero-actions"><a class="btn" href="#readAloudQueueGrid">Open verified queue</a><a class="btn secondary" href="#audioCatalogGrid">Review requested works</a><a class="btn secondary" href="sources.html">Source policy</a></div>
+ </div>
+ <div class="audio-hero-mark" aria-hidden="true">வேல்</div>
+ </section>
+ <section class="card rights-panel">
+-<h2>Why recordings are handled separately</h2>
+-<p>An ancient or public-domain hymn and a modern studio recording are different rights objects. This release therefore provides browser-based Tamil read-aloud for verified texts and keeps every commercial or modern recording out until ownership or an explicit licence is documented.</p>
+-<p><strong>Available now:</strong> Kanda Sashti Kavasam reviewed opening extract, Kanda Gayatri and Saravanabhava Mantra. The ten verified Thiruppugazh Volume 1 pages also have read-aloud controls.</p>
++<h2>Real functionality—no simulated audio</h2>
++<p>This player reads verified Tamil text through the speech voice installed on the visitor’s device. It does not display a fake duration, fake waveform, false “Hi-Fi” badge or pretend that a modern studio recording is available.</p>
++<p><strong>Current verified queue:</strong> four mantra or Kavasam records plus ten Thiruppugazh songs. No playback starts automatically.</p>
+ </section>
+-<section class="card audio-toolbar" aria-label="Audio catalogue filters">
+-<label for="audioSearch">Search</label>
++<section class="card">
++<span class="pill">Verified text queue</span>
++<h2>Play, continue or open the source text</h2>
++<p id="readAloudQueueCount" role="status" aria-live="polite">Loading the verified queue...</p>
++<div id="readAloudQueueGrid" class="grid audio-grid" aria-busy="false"></div>
++</section>
++<section class="card audio-toolbar" aria-label="Requested-work filters">
++<label for="audioSearch">Search requested works</label>
+ <input type="search" id="audioSearch" placeholder="Tamil or English title" autocomplete="off">
+ <label for="audioCategory">Category</label>
+ <select id="audioCategory">
+@@ -72,9 +78,45 @@
+ <button type="button" class="btn secondary" id="audioReset">Reset</button>
+ </section>
+ <p id="audioCount" role="status" aria-live="polite"></p>
+-<section id="audioCatalogGrid" class="grid audio-grid" aria-busy="true"><div class="loading">Loading audio catalogue...</div></section>
+-<noscript><div class="card" role="status">Tamil read-aloud requires JavaScript. Verified text pages remain available through the Sloka and Thiruppugazh libraries.</div></noscript>
++<section id="audioCatalogGrid" class="grid audio-grid" aria-busy="true"><div class="loading">Loading requested works...</div></section>
++<noscript><div class="card" role="status">The interactive reader requires JavaScript. Every verified text remains available through its normal page.</div></noscript>
+ </main>
++
++<section id="osbMediaPlayer" class="osb-media-player" aria-label="Tamil read-aloud player" hidden>
++<button type="button" class="player-close" id="playerClose" aria-label="Stop and close player">×</button>
++<div class="player-identity">
++<div class="player-art" aria-hidden="true">ஓம்</div>
++<div>
++<p class="player-kicker" id="playerPosition">0 of 0</p>
++<h2 id="playerTitleTa" lang="ta">Select a verified text</h2>
++<p id="playerTitleEn">Tamil read-aloud</p>
++<p id="playerMeta"></p>
++</div>
++</div>
++<div class="player-controls" aria-label="Playback controls">
++<button type="button" id="playerPrevious" class="player-control" aria-label="Previous text">⏮</button>
++<button type="button" id="playerPlay" class="player-control player-control-primary" aria-label="Play read-aloud" aria-pressed="false">▶</button>
++<button type="button" id="playerStop" class="player-control" aria-label="Stop read-aloud">■</button>
++<button type="button" id="playerNext" class="player-control" aria-label="Next text">⏭</button>
++</div>
++<div class="player-options">
++<label for="playerVoice">Voice
++<select id="playerVoice"><option value="">System default voice</option></select>
++</label>
++<label for="playerRate">Speed
++<select id="playerRate">
++<option value="0.75">0.75×</option>
++<option value="0.9" selected>0.9×</option>
++<option value="1">1×</option>
++<option value="1.15">1.15×</option>
++</select>
++</label>
++<label class="player-checkbox"><input type="checkbox" id="playerAutoNext"> Continue to next</label>
++<a class="btn secondary" id="playerOpenText" href="audio-library.html">Open text</a>
++</div>
++<p id="playerStatus" class="player-status" role="status" aria-live="polite">Select a verified text to begin.</p>
++</section>
++
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+--- release151/data/content-publication.json
++++ release152/data/content-publication.json
+@@ -1,5 +1,5 @@
+ {
+-  "release": 151,
++  "release": 152,
+   "generated": "2026-07-11",
+   "states": {
+     "published-source-linked": "Published with an explicit primary-text citation.",
+@@ -55,5 +55,16 @@
+     "indexable": false,
+     "readAloud": "device-tts",
+     "recordingPolicy": "No third-party recording bundled."
++  },
++  "readAloudPlayer": {
++    "route": "audio-library.html",
++    "playlistData": "data/read-aloud-playlist.json",
++    "trackCount": 14,
++    "mode": "device-tts",
++    "mediaSession": "progressive-enhancement",
++    "autoplay": false,
++    "seekControls": false,
++    "reasonSeekDisabled": "Speech synthesis has no reliable duration or seek position model.",
++    "thirdPartyAudioFiles": 0
+   }
+ }
+--- release151/data/read-aloud-playlist.json
++++ release152/data/read-aloud-playlist.json
+@@ -0,0 +1,352 @@
++[
++  {
++    "id": "kanda-sashti-kavasam",
++    "titleTa": "கந்த சஷ்டி கவசம்",
++    "titleEn": "Kanda Sashti Kavasam",
++    "artist": "Sri Devaraya Swamigal — text attribution",
++    "album": "Reviewed Kavasam Extracts",
++    "kind": "Kavacham",
++    "route": "slokas/kanda-sashti-kavasam.html",
++    "speechText": "துதிப்போர்க்கு வல்வினைபோம், துன்பம் போம், நெஞ்சில் பதிப்போர்க்குச் செல்வம் பலித்துக் கதித்து ஓங்கும், நிஷ்டையுங் கைகூடும், நிமலர் அருள் கந்தர் சஷ்டி கவசந் தனை. அமரர் இடர்தீர அமரம் புரிந்த குமரன் அடி நெஞ்சே குறி.",
++    "publicationStatus": "reviewed-opening-extract",
++    "playbackMode": "device-tts",
++    "recordingRights": "No third-party performance recording bundled",
++    "artwork": [
++      {
++        "src": "/icons/icon-192.png",
++        "sizes": "192x192",
++        "type": "image/png"
++      },
++      {
++        "src": "/icons/icon-512.png",
++        "sizes": "512x512",
++        "type": "image/png"
++      }
++    ]
++  },
++  {
++    "id": "skanda-guru-kavasam",
++    "titleTa": "ஸ்கந்த குரு கவசம்",
++    "titleEn": "Skanda Guru Kavasam",
++    "artist": "Srimath Sadguru Santhananda Swamigal — text attribution",
++    "album": "Reviewed Kavasam Extracts",
++    "kind": "Kavacham",
++    "route": "slokas/skanda-guru-kavasam.html",
++    "speechText": "கலியுகத் தெய்வமே கந்தனுக்கு மூத்தோனே\nமுஷிக வாகனனே மூலப் பொருளோனே\nஸ்கந்தகுரு கவசத்தை கலிதோஷம் நீங்கிடவே\nதிருவடியின் திருவருளால் செப்புகிறேன் காத்தருள்வாய்\nசித்தி விநாயக ஜயமருள் போற்றுகிறேன்\n\nசிற்பர கணபதே நற்கதியும் தந்தருள்வாய்\nகணபதி தாளிணையைக் கருத்தினில் வைத்திட்டேன்\nஅச்சம் தீர்த்து என்னை ரக்ஷித்திடுவீரே.\n\nஸ்கந்தா சரணம் ஸ்கந்தா சரணம்\nசரவணபவ குகா சரணம் சரணம்\n\nகுருகுகா சரணம் குருபரா சரணம்\nசரணம் அடைந்திட்டேன் கந்தா சரணம்\nதனைத் தானறிந்து நான் தன்மயமாகிடவே\nஸ்கந்தகிரி குருநாதா தந்திடுவீர் ஞானமுமே\nதத்தகிரி குருநாதா வந்திடுவீர் வந்திடுவீர்\n\nஅவதூத சத்குருவாய் ஆண்டவனே வந்திடுவீர்\nஅன்புருவாய் வந்தென்னை ஆட்கொண்ட குருபரனே\nஅறம் பொருள் இன்பம் வீடுமே தந்தருள்வாய்\nதந்திடுவாய் வரமதனை ஸ்கந்தகுருநாதா\nஷண்முகா சரணம் சரணம் ஸ்கந்த குரோ",
++    "publicationStatus": "reviewed-opening-extract",
++    "playbackMode": "device-tts",
++    "recordingRights": "No third-party performance recording bundled",
++    "artwork": [
++      {
++        "src": "/icons/icon-192.png",
++        "sizes": "192x192",
++        "type": "image/png"
++      },
++      {
++        "src": "/icons/icon-512.png",
++        "sizes": "512x512",
++        "type": "image/png"
++      }
++    ]
++  },
++  {
++    "id": "kanda-gayatri",
++    "titleTa": "கந்த காயத்ரி",
++    "titleEn": "Kanda Gayatri",
++    "artist": "Traditional devotional text",
++    "album": "Murugan Mantras",
++    "kind": "Gayatri",
++    "route": "slokas/subramanya-gayatri.html",
++    "speechText": "ஓம் தத் புருஷாய வித்மஹே மஹாசேனாய தீமஹி தந்நோ ஷண்முக ப்ரசோதயாத்",
++    "publicationStatus": "published",
++    "playbackMode": "device-tts",
++    "recordingRights": "No third-party performance recording bundled",
++    "artwork": [
++      {
++        "src": "/icons/icon-192.png",
++        "sizes": "192x192",
++        "type": "image/png"
++      },
++      {
++        "src": "/icons/icon-512.png",
++        "sizes": "512x512",
++        "type": "image/png"
++      }
++    ]
++  },
++  {
++    "id": "saravanabhava-mantra",
++    "titleTa": "சரவணபவ மந்திரம்",
++    "titleEn": "Saravanabhava Mantra",
++    "artist": "Traditional devotional text",
++    "album": "Murugan Mantras",
++    "kind": "Mantra",
++    "route": "slokas/om-saravana-bhava.html",
++    "speechText": "ஓம் சரவணபவ",
++    "publicationStatus": "published",
++    "playbackMode": "device-tts",
++    "recordingRights": "No third-party performance recording bundled",
++    "artwork": [
++      {
++        "src": "/icons/icon-192.png",
++        "sizes": "192x192",
++        "type": "image/png"
++      },
++      {
++        "src": "/icons/icon-512.png",
++        "sizes": "512x512",
++        "type": "image/png"
++      }
++    ]
++  },
++  {
++    "id": "thiruppugazh-0006",
++    "titleTa": "முத்தைத்தரு",
++    "titleEn": "Thiruppugazh 6 · Muththaiththaru",
++    "artist": "Arunagirinathar",
++    "album": "Thiruppugazh Digital Library — Volume 1",
++    "kind": "Thiruppugazh",
++    "route": "thiruppugazh/0006-muththaiththaru.html",
++    "speechText": "முத்தைத்தரு பத்தித் திருநகை\nஅத்திக்கிறை சத்திச் சரவண\nமுத்திக்கொரு வித்துக் குருபர எனவோதும்\n\nமுக்கட்பர மற்குச் சுருதியின்\nமுற்பட்டது கற்பித் திருவரும்\nமுப்பத்துமு வர்க்கத் தமரரும் அடிபேணப்\n\nபத்துத்தலை தத்தக் கணைதொடு\nஒற்றைக்கிரி மத்தைப் பொருதொரு\nபட்டப்பகல் வட்டத் திகிரியில் இரவாகப்\n\nபத்தற்கிர தத்தைக் கடவிய\nபச்சைப்புயல் மெச்சத் தகுபொருள்\nபட்சத்தொடு ரட்சித் தருள்வதும் ஒருநாளே\n\nதித்தித்தெய ஒத்தப் பரிபுர\nநிர்த்தப்பதம் வைத்துப் பயிரவி\nதிக்கொட்கந டிக்கக் கழுகொடு கழுதாடத்\n\nதிக்குப்பரி அட்டப் பயிரவர்\nதொக்குத்தொகு தொக்குத் தொகுதொகு\nசித்ரப்பவு ரிக்குத் த்ரிகடக எனவோதக்\n\nகொத்துப்பறை கொட்டக் களமிசை\nகுக்குக்குகு குக்குக் குகுகுகு\nகுத்திப்புதை புக்குப் பிடியென முதுகூகை\n\nகொட்புற்றெழ நட்பற் றவுணரை\nவெட்டிப்பலி யிட்டுக் குலகிரி\nகுத்துப்பட ஒத்துப் பொரவல பெருமாளே.",
++    "publicationStatus": "published-source-linked",
++    "playbackMode": "device-tts",
++    "recordingRights": "Text-to-speech only; no human performance recording bundled",
++    "artwork": [
++      {
++        "src": "/icons/icon-192.png",
++        "sizes": "192x192",
++        "type": "image/png"
++      },
++      {
++        "src": "/icons/icon-512.png",
++        "sizes": "512x512",
++        "type": "image/png"
++      }
++    ]
++  },
++  {
++    "id": "thiruppugazh-0007",
++    "titleTa": "அருக்கு மங்கையர்",
++    "titleEn": "Thiruppugazh 7 · Arukku Mangkaiyar",
++    "artist": "Arunagirinathar",
++    "album": "Thiruppugazh Digital Library — Volume 1",
++    "kind": "Thiruppugazh",
++    "route": "thiruppugazh/0007-arukku-mangkaiyar.html",
++    "speechText": "அருக்கு மங்கையர் மலரடி வருடியெ\nகருத்த றிந்துபின் அரைதனில் உடைதனை\nஅவிழ்த்தும் அங்குள அரசிலை தடவியும் இருதோளுற்\n\nறணைத்தும் அங்கையின் அடிதொறும் நகமெழ\nஉதட்டை மென்றுபல் இடுகுறி களுமிட\nஅடிக்க ளந்தனில் மயில்குயில் புறவென மிகவாய்விட்\n\nடுருக்கும் அங்கியின் மெழுகென உருகிய\nசிரத்தை மிஞ்சிடும் அநுபவம் உறுபலம்\nஉறக்கை யின்கனி நிகரென இலகிய முலைமேல்வீழ்ந்\n\nதுருக்க லங்கிமெய் உருகிட அமுதுகு\nபெருத்த உந்தியின் முழுகிமெ யுணர்வற\nஉழைத்தி டுங்கன கலவியை மகிழ்வது தவிர்வேனோ\n\nஇருக்கு மந்திரம் எழுவகை முநிபெற\nஉரைத்த சம்ப்ரம சரவண பவகுக\nஇதத்த இங்கிதம் இலகிய அறுமுக எழில்வேளென்\n\nறிலக்க ணங்களும் இயலிசை களுமிக\nவிரிக்கும் அம்பல மதுரித கவிதனை\nஇயற்று செந்தமிழ் விதமொடு புயமிசை புனைவோனே\n\nசெருக்கும் அம்பல மிசைதனில் அசைவுற\nநடித்த சங்கரர் வழிவழி அடியவர்\nதிருக்கு ருந்தடி அருள்பெற அருளிய குருநாதர்\n\nதிருக்கு ழந்தையு மெனஅவர் வழிபடு\nகுருக்க ளின்திற மெனவரு பெரியவ\nதிருப்ப ரங்கிரி தனிலுறை சரவண பெருமாளே.",
++    "publicationStatus": "published-source-linked",
++    "playbackMode": "device-tts",
++    "recordingRights": "Text-to-speech only; no human performance recording bundled",
++    "artwork": [
++      {
++        "src": "/icons/icon-192.png",
++        "sizes": "192x192",
++        "type": "image/png"
++      },
++      {
++        "src": "/icons/icon-512.png",
++        "sizes": "512x512",
++        "type": "image/png"
++      }
++    ]
++  },
++  {
++    "id": "thiruppugazh-0008",
++    "titleTa": "உனைத் தினம்",
++    "titleEn": "Thiruppugazh 8 · Unaith Thinam",
++    "artist": "Arunagirinathar",
++    "album": "Thiruppugazh Digital Library — Volume 1",
++    "kind": "Thiruppugazh",
++    "route": "thiruppugazh/0008-unaith-thinam.html",
++    "speechText": "உனைத்தி னந்தொழு திலனுன தியல்பினை\nஉரைத்தி லன்பல மலர்கொடுன் அடியிணை\nஉறப்ப ணிந்திலன் ஒருதவ மிலனுன தருள்மாறா\n\nஉளத்து ளன்பினர் உறைவிடம் அறிகிலன்\nவிருப்பொ டுன்சிக ரமும்வலம் வருகிலன்\nஉவப்பொ டுன்புகழ் துதிசெய விழைகிலன் மலைபோலே\n\nகனைத்தெ ழும்பக டதுபிடர் மிசைவரு\nகறுத்த வெஞ்சின மறலிதன் உழையினர்\nகதித்த டர்ந்தெறி கயிறடு கதைகொடு பொருபோதே\n\nகலக்கு றுஞ்செயல் ஒழிவற அழிவுறு\nகருத்து நைந்தல முறுபொழு தளவைகொள்\nகணத்தில் என்பய மறமயில் முதுகினில் வருவாயே\n\nவினைத்த லந்தனில் அலகைகள் குதிகொள\nவிழுக்கு டைந்துமெய் உகுதசை கழுகுண\nவிரித்த குஞ்சியர் எனுமவு ணரைஅமர் புரிவேலா\n\nமிகுத்த பண்பயில் குயில்மொழி அழகிய\nகொடிச்சி குங்கும முலைமுக டுழுநறை\nவிரைத்த சந்தன ம்ருகமத புயவரை உடையோனே\n\nதினத்தி னஞ்சதுர் மறைமுநி முறைகொடு\nபுனற்சொ ரிந்தலர் பொதியவி ணவரொடு\nசினத்தை நிந்தனை செயுமுநி வரர்தொழ மகிழ்வோனே\n\nதெனத்தெ னந்தன எனவரி யளிநறை\nதெவிட்ட அன்பொடு பருகுயர் பொழில்திகழ்\nதிருப் பரங்கிரி தனிலுறை சரவண பெருமாளே.",
++    "publicationStatus": "published-source-linked",
++    "playbackMode": "device-tts",
++    "recordingRights": "Text-to-speech only; no human performance recording bundled",
++    "artwork": [
++      {
++        "src": "/icons/icon-192.png",
++        "sizes": "192x192",
++        "type": "image/png"
++      },
++      {
++        "src": "/icons/icon-512.png",
++        "sizes": "512x512",
++        "type": "image/png"
++      }
++    ]
++  },
++  {
++    "id": "thiruppugazh-0009",
++    "titleTa": "கருவடைந்து",
++    "titleEn": "Thiruppugazh 9 · Karuvadaindhu",
++    "artist": "Arunagirinathar",
++    "album": "Thiruppugazh Digital Library — Volume 1",
++    "kind": "Thiruppugazh",
++    "route": "thiruppugazh/0009-karuvadaindhu.html",
++    "speechText": "கருவடைந்து பத்துற்ற திங்கள்\nவயிறிருந்து முற்றிப்ப யின்று\nகடையில்வந்து தித்துக்கு ழந்தை வடிவாகிக்\n\nகழுவியங்கெ டுத்துச்சு ரந்த\nமுலையருந்து விக்கக்கி டந்து\nகதறியங்கை கொட்டித்த வழ்ந்து நடமாடி\n\nஅரைவடங்கள் கட்டிச்ச தங்கை\nஇடுகுதம்பை பொற்சுட்டி தண்டை\nஅவையணிந்து முற்றிக்கி ளர்ந்து வயதேறி\n\nஅரியபெண்கள் நட்பைப்பு ணர்ந்து\nபிணியுழன்று சுற்றித்தி ரிந்த\nதமையுமுன்க்ரு பைச்சித்தம் என்று பெறுவேனோ\n\nஇரவிஇந்த்ரன் வெற்றிக்கு ரங்கி\nனரசரென்றும் ஒப்பற்ற உந்தி\nயிறைவன்எண்கி னக்கர்த்த னென்றும் நெடுநீலன்\n\nஎரியதென்றும் ருத்ரற்சி றந்த\nஅநுமனென்றும் ஒப்பற்ற அண்டர்\nஎவரும்இந்த வர்க்கத்தில் வந்து புனமேவ\n\nஅரியதன்ப டைக்கர்த்த ரென்று\nஅசுரர்தங்கி ளைக்கட்டை வென்ற\nஅரிமுகுந்தன் மெச்சுற்ற பண்பின் மருகோனே\n\nஅயனையும்பு டைத்துச்சி னந்து\nஉலகமும்ப டைத்துப்ப ரிந்து\nஅருள்பரங்கி ரிக்குட்சி றந்த பெருமாளே.",
++    "publicationStatus": "published-source-linked",
++    "playbackMode": "device-tts",
++    "recordingRights": "Text-to-speech only; no human performance recording bundled",
++    "artwork": [
++      {
++        "src": "/icons/icon-192.png",
++        "sizes": "192x192",
++        "type": "image/png"
++      },
++      {
++        "src": "/icons/icon-512.png",
++        "sizes": "512x512",
++        "type": "image/png"
++      }
++    ]
++  },
++  {
++    "id": "thiruppugazh-0010",
++    "titleTa": "கறுக்கும் அஞ்சன",
++    "titleEn": "Thiruppugazh 10 · Karukkum Anjana",
++    "artist": "Arunagirinathar",
++    "album": "Thiruppugazh Digital Library — Volume 1",
++    "kind": "Thiruppugazh",
++    "route": "thiruppugazh/0010-karukkum-anjana.html",
++    "speechText": "கறுக்கும் அஞ்சன விழியிணை அயில்கொடு\nநெருக்கி நெஞ்சற எறிதரு பொழுதொரு\nகனிக்குள் இன்சுவை அமுதுகும் ஒருசிறு நகையாலே\n\nகளக்கொ ழுங்கலி வலைகொடு விசிறியெ\nமனைக்கெ ழுந்திரும் எனமனம் உருகஒர்\nகவற்சி கொண்டிட மனைதனில் அழகொடு கொடுபோகி\n\nநறைத்த பஞ்சணை மிசையினில் மனமுற\nஅணைத்த கந்தனில் இணைமுலை எதிர்பொர\nநகத்த ழுந்திட அமுதிதழ் பருகியு மிடறூடே\n\nநடித்தெ ழுங்குரல் குமுகுமு குமுவென\nஇசைத்து நன்கொடு மனமது மறுகிட\nநழுப்பு நஞ்சன சிறுமிகள் துயரற அருள்வாயே\n\nநிறைத்த தெண்டிரை மொகுமொகு மொகுவென\nஉரத்த கஞ்சுகி முடிநெறு நெறுவென\nநிறைத்த அண்டமு கடுகிடு கிடுவென வரைபோலும்\n\nநிவத்த திண்கழல் நிசிசர ருரமொடு\nசிரக்கொ டுங்குவை மலைபுரை தரஇரு\nநிணக்கு ழம்பொடு குருதிகள் சொரிதர அடுதீரா\n\nதிறற்க ருங்குழல் உமையவள் அருளுறு\nபுழைக்கை தண்கட கயமுக மிகவுள\nசிவக்கொ ழுந்தன கணபதி யுடன்வரும் இளையோனே\n\nசினத்தொ டுஞ்சமன் உதைபட நிறுவிய\nபரற்கு ளன்புறு புதல்வநன் மணியுகு\nதிருப்ப ரங்கிரி தனிலுறை சரவண பெருமாளே.",
++    "publicationStatus": "published-source-linked",
++    "playbackMode": "device-tts",
++    "recordingRights": "Text-to-speech only; no human performance recording bundled",
++    "artwork": [
++      {
++        "src": "/icons/icon-192.png",
++        "sizes": "192x192",
++        "type": "image/png"
++      },
++      {
++        "src": "/icons/icon-512.png",
++        "sizes": "512x512",
++        "type": "image/png"
++      }
++    ]
++  },
++  {
++    "id": "thiruppugazh-0012",
++    "titleTa": "காதடருங்கயல்",
++    "titleEn": "Thiruppugazh 12 · Kadhadarungkayal",
++    "artist": "Arunagirinathar",
++    "album": "Thiruppugazh Digital Library — Volume 1",
++    "kind": "Thiruppugazh",
++    "route": "thiruppugazh/0012-kadhadarungkayal.html",
++    "speechText": "காதட ருங்கயல் கொண்டிசைந் தைம்பொறி\nவாளிம யங்கம னம்பயந் தந்திருள்\nகால்தர விந்துவி சும்பிலங் கும்பொழு தொருகோடி\n\nகாய்கதி ரென்றொளிர் செஞ்சிலம் புங்கணை\nயாழியு டன்கட கந்துலங் கும்படி\nகாமனெ டுஞ்சிலை கொண்டடர்ந் தும்பொரு மயலாலே\n\nவாதுபு ரிந்தவர் செங்கைதந் திங்கித\nமாகந டந்தவர் பின்திரிந் துந்தன\nமார்பில ழுந்தஅ ணைந்திடுந் துன்பம துழலாதே\n\nவாசமி குந்தக டம்பமென் கிண்கிணி\nமாலைக ரங்கொளும் அன்பர்வந் தன்பொடு\nவாழநி தம்புனை யும்பதந் தந்துன தருள்தாராய்\n\nபோதிலு றைந்தருள் கின்றவன் செஞ்சிர\nமீதுத டிந்துவி லங்கிடும் புங்கவ\nபோதவ ளஞ்சிவ சங்கரன் கொண்டிட மொழிவோனே\n\nபூகமு டன்திகழ் சங்கினங் கொண்டகி\nரீவம டந்தைபு ரந்தரன் தந்தருள்\nபூவைக ருங்குற மின்கலந் தங்குப னிருதோளா\n\nதீதக மொன்றினர் வஞ்சகந் துஞ்சியி\nடாதவர் சங்கரர் தந்ததென் பும்பல\nசேர்நிரு தன்குலம் அஞ்சமுன் சென்றடு திறலோனே\n\nசீதள முந்தும ணந்தயங் கும்பொழில்\nசூழ்தர விஞ்சைகள் வந்திறைஞ் சும்பதி\nதேவர்ப ணிந்தெழு தென்பரங் குன்றுறை பெருமாளே.",
++    "publicationStatus": "published-source-linked",
++    "playbackMode": "device-tts",
++    "recordingRights": "Text-to-speech only; no human performance recording bundled",
++    "artwork": [
++      {
++        "src": "/icons/icon-192.png",
++        "sizes": "192x192",
++        "type": "image/png"
++      },
++      {
++        "src": "/icons/icon-512.png",
++        "sizes": "512x512",
++        "type": "image/png"
++      }
++    ]
++  },
++  {
++    "id": "thiruppugazh-0013",
++    "titleTa": "சந்ததம் பந்த",
++    "titleEn": "Thiruppugazh 13 · Sandhadham Bandha",
++    "artist": "Arunagirinathar",
++    "album": "Thiruppugazh Digital Library — Volume 1",
++    "kind": "Thiruppugazh",
++    "route": "thiruppugazh/0013-sandhadham-bandha.html",
++    "speechText": "சந்ததம் பந்தத் தொடராலே\nசஞ்சலந் துஞ்சித் திரியாதே\n\nகந்தனென் றென்றுற் றுனைநாளும்\nகண்டுகொண் டன்புற் றிடுவேனோ\n\nதந்தியின் கொம்பைப் புணர்வோனே\nசங்கரன் பங்கிற் சிவைபாலா\n\nசெந்திலங் கண்டிக் கதிர்வேலா\nதென்பரங் குன்றிற் பெருமாளே.",
++    "publicationStatus": "published-source-linked",
++    "playbackMode": "device-tts",
++    "recordingRights": "Text-to-speech only; no human performance recording bundled",
++    "artwork": [
++      {
++        "src": "/icons/icon-192.png",
++        "sizes": "192x192",
++        "type": "image/png"
++      },
++      {
++        "src": "/icons/icon-512.png",
++        "sizes": "512x512",
++        "type": "image/png"
++      }
++    ]
++  },
++  {
++    "id": "thiruppugazh-0015",
++    "titleTa": "தடக்கைப் பங்கயம்",
++    "titleEn": "Thiruppugazh 15 · Thadakkai Pangkayam",
++    "artist": "Arunagirinathar",
++    "album": "Thiruppugazh Digital Library — Volume 1",
++    "kind": "Thiruppugazh",
++    "route": "thiruppugazh/0015-thadakkai-pangkayam.html",
++    "speechText": "தடக்கைப் பங்கயம் கொடைக்குக் கொண்டல்தண்\nடமிழ்க்குத் தஞ்சமென் றுலகோரைத்\n\nதவித்துச் சென்றிரந் துளத்திற் புண்படுந்\nதளர்ச்சிப் பம்பரந் தனையூசற்\n\nகடத்தைத் துன்பமண் சடத்தைத் துஞ்சிடுங்\nகலத்தைப் பஞ்சஇந் த்ரியவாழ்வைக்\n\nகணத்திற் சென்றிடந் திருத்தித் தண்டையங்\nகழற்குத் தொண்டுகொண் டருள்வாயே\n\nபடைக்கப் பங்கயன் துடைக்கச் சங்கரன்\nபுரக்கக் கஞ்சைமன் பணியாகப்\n\nபணித்துத் தம்பயந் தணித்துச் சந்ததம்\nபரத்தைக் கொண்டிடுந் தனிவேலா\n\nகுடக்குத் தென்பரம் பொருப்பிற் றங்குமங்\nகுலத்திற் கங்கைதன் சிறியோனே\n\nகுறப்பொற் கொம்பைமுன் புனத்திற் செங்கரங்\nகுவித்துக் கும்பிடும் பெருமாளே.",
++    "publicationStatus": "published-source-linked",
++    "playbackMode": "device-tts",
++    "recordingRights": "Text-to-speech only; no human performance recording bundled",
++    "artwork": [
++      {
++        "src": "/icons/icon-192.png",
++        "sizes": "192x192",
++        "type": "image/png"
++      },
++      {
++        "src": "/icons/icon-512.png",
++        "sizes": "512x512",
++        "type": "image/png"
++      }
++    ]
++  },
++  {
++    "id": "thiruppugazh-0016",
++    "titleTa": "பதித்த செஞ்சந்த",
++    "titleEn": "Thiruppugazh 16 · Padhiththa Senchandha",
++    "artist": "Arunagirinathar",
++    "album": "Thiruppugazh Digital Library — Volume 1",
++    "kind": "Thiruppugazh",
++    "route": "thiruppugazh/0016-padhiththa-senchandha.html",
++    "speechText": "பதித்தசெஞ் சந்தப் பொற்குட நித்தம்\nபருந்துயர்ந் தண்டத் திற்றலை முட்டும்\nபருப்பதந் தந்தச் செப்பவை ஒக்குந் தனபாரம்\n\nபடப்புயங் கம்பற் கக்குக டுப்பண்\nசெருக்குவண் டம்பப் பிற்கயல் ஒக்கும்\nபருத்தகண் கொண்டைக் கொக்குமி ருட்டென் றிளைஞோர்கள்\n\nதுதித்துமுன் கும்பிட் டுற்றது ரைத்தன்\nபுவக்கநெஞ் சஞ்சச் சிற்றிடை சுற்றுந்\nதுகிற்களைந் தின்பத் துர்க்கம் அளிக்கும் கொடியார்பால்\n\nதுவக்குணும் பங்கப் பித்தன வத்தன்\nபுவிக்குளென் சிந்தைப் புத்திம யக்கந்\nதுறக்கநின் தண்டைப் பத்மமெ னக்கென் றருள்வாயே\n\nகுதித்துவெண் சங்கத் தைச்சுற வெற்றுங்\nகடற்கரந் தஞ்சிப் புக்கஅ ரக்கன்\nகுடற்சரிந் தெஞ்சக் குத்திவி திர்க்குங் கதிர்வேலா\n\nகுலக்கரும் பின்சொற் றத்தையி பப்பெண்\nதனக்குவஞ் சஞ்சொற் பொச்சையி டைக்குங்\nகுகுக்குகுங் குங்குக் குக்குகு குக்குங் குகுகூகூ\n\nதிதித்திதிந் தித்தித் தித்தியெ னக்கொம்\nபதிர்த்துவெண் சண்டக் கட்கம்வி திர்த்துந்\nதிரட்குவிந் தங்கட் பொட்டெழ வெட்டுங் கொலைவேடர்\n\nதினைப்புனஞ் சென்றிச் சித்தபெ ணைக்கண்\nடுருக்கரந் தங்குக் கிட்டிய ணைத்தொண்\nதிருப்பரங் குன்றிற் புக்குளி ருக்கும் பெருமாளே.",
++    "publicationStatus": "published-source-linked",
++    "playbackMode": "device-tts",
++    "recordingRights": "Text-to-speech only; no human performance recording bundled",
++    "artwork": [
++      {
++        "src": "/icons/icon-192.png",
++        "sizes": "192x192",
++        "type": "image/png"
++      },
++      {
++        "src": "/icons/icon-512.png",
++        "sizes": "512x512",
++        "type": "image/png"
++      }
++    ]
++  },
++  {
++    "id": "thiruppugazh-0017",
++    "titleTa": "பொருப்புறுங்",
++    "titleEn": "Thiruppugazh 17 · Poruppurung",
++    "artist": "Arunagirinathar",
++    "album": "Thiruppugazh Digital Library — Volume 1",
++    "kind": "Thiruppugazh",
++    "route": "thiruppugazh/0017-poruppurung.html",
++    "speechText": "பொருப்புறுங் கொங்கையர் பொருட்கவர்ந் தொன்றிய\nபிணக்கிடுஞ் சண்டிகள் வஞ்சமாதர்\n\nபுயற்குழன் றங்கமழ் அறற்குலந் தங்கவிர்\nமுருக்குவண் செந்துவர் தந்துபோகம்\n\nஅருத்திடுஞ் சிங்கியர் தருக்கிடுஞ் செங்கயல்\nஅறச்சிவந் தங்கையில் அன்புமேவும்\n\nஅவர்க்குழன் றங்கமும் அறத்தளர்ந் தென்பயன்\nஅருட்பதம் பங்கயம் அன்புறாதோ\n\nமிருத்தணும் பங்கயன் அலர்க்கணன் சங்கரர்\nவிதித்தெணுங் கும்பிடு கந்தவேளே\n\nமிகுத்திடும் வன்சம ணரைப்பெருந் திண்கழு\nமிசைக்கிடுஞ் செந்தமிழ் அங்கவாயா\n\nபெருக்குதண் சண்பக வனத்திடங் கொங்கொடு\nதிறற்செழுஞ் சந்தகில் துன்றிநீடு\n\nதினைப்புனம் பைங்கொடி தனத்துடன் சென்றணை\nதிருப்பரங் குன்றுறை தம்பிரானே.",
++    "publicationStatus": "published-source-linked",
++    "playbackMode": "device-tts",
++    "recordingRights": "Text-to-speech only; no human performance recording bundled",
++    "artwork": [
++      {
++        "src": "/icons/icon-192.png",
++        "sizes": "192x192",
++        "type": "image/png"
++      },
++      {
++        "src": "/icons/icon-512.png",
++        "sizes": "512x512",
++        "type": "image/png"
++      }
++    ]
++  }
++]
+--- release151/service-worker.js
++++ release152/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '151';
++const RELEASE = '152';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -62,7 +62,9 @@
+   "/assets/js/audio-library.js",
+   "/data/audio-catalog.json",
+   "/slokas/skanda-guru-kavasam.html",
+-  "/data/skanda-guru-kavasam.json"
++  "/data/skanda-guru-kavasam.json",
++  "/assets/js/media-session-player.js",
++  "/data/read-aloud-playlist.json"
+ ];
+ 
+ self.addEventListener('install', event => {

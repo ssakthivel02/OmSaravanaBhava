@@ -1,5 +1,5 @@
 {
-  "release": 151,
+  "release": 152,
   "generated": "2026-07-11",
   "states": {
     "published-source-linked": "Published with an explicit primary-text citation.",
@@ -55,5 +55,16 @@
     "indexable": false,
     "readAloud": "device-tts",
     "recordingPolicy": "No third-party recording bundled."
+  },
+  "readAloudPlayer": {
+    "route": "audio-library.html",
+    "playlistData": "data/read-aloud-playlist.json",
+    "trackCount": 14,
+    "mode": "device-tts",
+    "mediaSession": "progressive-enhancement",
+    "autoplay": false,
+    "seekControls": false,
+    "reasonSeekDisabled": "Speech synthesis has no reliable duration or seek position model.",
+    "thirdPartyAudioFiles": 0
   }
 }
