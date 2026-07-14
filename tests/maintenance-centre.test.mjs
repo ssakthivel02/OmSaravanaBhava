@@ -25,8 +25,8 @@ const registry = JSON.parse(
 );
 
 test('release and registry identities are stable', () => {
-  assert.equal(RELEASE, 226);
-  assert.equal(registry.release, 226);
+  assert.equal(RELEASE, 227);
+  assert.equal(registry.release, 227);
   assert.equal(registry.builtAgainstCommit.length, 40);
   assert.equal(registry.checks.length, 8);
 });
@@ -49,51 +49,51 @@ test('same-origin path normalisation rejects external resources', () => {
 });
 
 test('JSON path lookup and equality checks are deterministic', () => {
-  const value = {release: 226, nested: {state: 'ready'}};
+  const value = {release: 227, nested: {state: 'ready'}};
   assert.equal(readJsonPath(value, 'nested.state'), 'ready');
   assert.equal(readJsonPath(value, 'nested.missing'), undefined);
   assert.deepEqual(
-    evaluateJsonEquals(value, 'release', 226),
-    {ok: true, actual: 226}
+    evaluateJsonEquals(value, 'release', 227),
+    {ok: true, actual: 227}
   );
 });
 
 test('route registry requires one maintenance route and no duplicates', () => {
   const valid = evaluateRouteRegistry({
-    release: 226,
+    release: 227,
     routes: [
       {path: '/index.html'},
-      {path: '/personal-library.html'}
+      {path: '/devotional-collections.html'}
     ]
-  }, 226, '/personal-library.html');
+  }, 227, '/devotional-collections.html');
   assert.equal(valid.ok, true);
 
   const duplicate = evaluateRouteRegistry({
-    release: 226,
+    release: 227,
     routes: [
-      {path: '/personal-library.html'},
-      {path: '/personal-library.html'}
+      {path: '/devotional-collections.html'},
+      {path: '/devotional-collections.html'}
     ]
-  }, 226, '/personal-library.html');
+  }, 227, '/devotional-collections.html');
   assert.equal(duplicate.ok, false);
   assert.equal(duplicate.actual.duplicateCount, 1);
 });
 
 test('audit configuration requires the current release and files', () => {
   const result = evaluateAuditConfig({
-    expectedRelease: '226',
-    requiredFiles: ['personal-library.html', 'manifest-release-226.json']
-  }, '226', ['personal-library.html', 'manifest-release-226.json']);
+    expectedRelease: '227',
+    requiredFiles: ['devotional-collections.html', 'manifest-release-227.json']
+  }, '227', ['devotional-collections.html', 'manifest-release-227.json']);
   assert.equal(result.ok, true);
 
   const missing = evaluateAuditConfig({
-    expectedRelease: '226',
-    requiredFiles: ['personal-library.html']
-  }, '226', ['personal-library.html', 'manifest-release-226.json']);
+    expectedRelease: '227',
+    requiredFiles: ['devotional-collections.html']
+  }, '227', ['devotional-collections.html', 'manifest-release-227.json']);
   assert.equal(missing.ok, false);
   assert.deepEqual(
     missing.actual.missing,
-    ['manifest-release-226.json']
+    ['manifest-release-227.json']
   );
 });
 
@@ -123,8 +123,8 @@ test('check payload supports all configured check modes', () => {
   const result = evaluateCheckPayload(
     routeCheck,
     JSON.stringify({
-      release: 226,
-      routes: [{path: '/personal-library.html'}]
+      release: 227,
+      routes: [{path: '/devotional-collections.html'}]
     })
   );
   assert.equal(result.ok, true);
@@ -136,14 +136,14 @@ test('resource checks record HTTP and marker results', async () => {
     status: 200,
     async text() {
       return path === '/service-worker.js'
-        ? "const RELEASE = '226';"
+        ? "const RELEASE = '227';"
         : '';
     }
   });
   const result = await runResourceCheck({
     path: '/service-worker.js',
     mode: 'textIncludes',
-    expected: "const RELEASE = '226';"
+    expected: "const RELEASE = '227';"
   }, fetcher);
   assert.equal(result.ok, true);
   assert.equal(result.status, 200);
@@ -174,7 +174,7 @@ test('path auditing preserves independent failures', async () => {
 
 test('transient cache cleanup preserves static and user caches', async () => {
   const names = [
-    'osb-static-v226',
+    'osb-static-v227',
     'osb-runtime-v220',
     'osb-data-v219',
     'osb-user-reading-v1'

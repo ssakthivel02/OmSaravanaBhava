@@ -1,12 +1,12 @@
 {
-  "release": 225,
+  "release": 227,
   "generated": "2026-07-14",
-  "builtAgainstCommit": "3600bf1b301d2240f3bdb7f8edbcbe8e552e916c",
+  "builtAgainstCommit": "a241ba10ff7fc319a4347d616e2f0c6bb816cbd7",
   "schema": "osb-personal-data-backup-v1",
   "canonicalOrigin": "https://omsaravanabhava.org",
   "maximumImportBytes": 1048576,
   "title": "OmSaravanaBhava Browser-Local Personal Data Registry",
-  "scope": "Explicitly registered browser-local datasets only. Cache contents, devotional page bodies, selected source text, credentials and unrelated localStorage keys are excluded.",
+  "scope": "Six explicitly registered browser-local datasets only. Cache contents, devotional page bodies, selected source text, credentials and unrelated localStorage keys are excluded.",
   "datasets": [
     {
       "id": "readingList",
@@ -54,6 +54,17 @@
       "maximumItems": 20,
       "uniqueBy": "id",
       "timestampField": "lastPlayedAt",
+      "mergeSupported": true
+    },
+    {
+      "id": "collections",
+      "label": "Devotional Collections",
+      "storageKey": "osb-devotional-collections-v1",
+      "shape": "array",
+      "maximumItems": 20,
+      "maximumRoutesPerCollection": 50,
+      "uniqueBy": "id",
+      "timestampField": "updatedAt",
       "mergeSupported": true
     }
   ],

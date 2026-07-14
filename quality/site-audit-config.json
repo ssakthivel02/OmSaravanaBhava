@@ -1,5 +1,5 @@
 {
-  "expectedRelease": "226",
+  "expectedRelease": "227",
   "canonicalOrigin": "https://omsaravanabhava.org",
   "requiredFiles": [
     "index.html",
@@ -72,7 +72,12 @@
     "assets/css/personal-library.css",
     "assets/js/personal-library.mjs",
     "data/personal-library.json",
-    "manifest-release-226.json"
+    "manifest-release-226.json",
+    "devotional-collections.html",
+    "assets/css/devotional-collections.css",
+    "assets/js/devotional-collections.mjs",
+    "data/devotional-collections.json",
+    "manifest-release-227.json"
   ],
   "canonicalOptional": [
     "404.html",

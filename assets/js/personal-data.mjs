@@ -1,14 +1,16 @@
-export const RELEASE = 225;
+export const RELEASE = 227;
 export const REGISTRY_PATH = '/data/personal-data-registry.json';
 export const BACKUP_SCHEMA = 'osb-personal-data-backup-v1';
 export const CANONICAL_ORIGIN = 'https://omsaravanabhava.org';
+export const COLLECTIONS_STORAGE_KEY = 'osb-devotional-collections-v1';
 
 export const DATASET_IDS = Object.freeze([
   'readingList',
   'readingProgress',
   'readingNotes',
   'accessibility',
-  'audioHistory'
+  'audioHistory',
+  'collections'
 ]);
 
 const safeStorage = storage => {
@@ -168,6 +170,69 @@ export const sanitiseAudioHistory = (value, maximumItems = 20) => {
   return items.slice(0, Math.max(1, Number(maximumItems) || 20));
 };
 
+
+export const sanitiseCollections = (
+  value,
+  maximumItems = 20,
+  maximumRoutesPerCollection = 50
+) => {
+  const seenCollections = new Set();
+  const collections = [];
+
+  (Array.isArray(value) ? value : []).forEach(record => {
+    if (!record || typeof record !== 'object') return;
+
+    const id = cleanText(record.id, 180);
+    const name = cleanText(record.name, 60);
+    if (!id || !name || seenCollections.has(id)) return;
+
+    const seenRoutes = new Set();
+    const items = [];
+    (Array.isArray(record.items) ? record.items : [])
+      .forEach(item => {
+        if (!item || typeof item !== 'object') return;
+        const route = normaliseSameOriginRoute(item.route);
+        const path = route
+          ? new URL(route, CANONICAL_ORIGIN).pathname
+          : '';
+        if (!route || !path || seenRoutes.has(path)) return;
+        seenRoutes.add(path);
+        items.push({
+          route,
+          addedAt:
+            normaliseIsoDate(item.addedAt) ||
+            new Date(0).toISOString()
+        });
+      });
+
+    seenCollections.add(id);
+    collections.push({
+      id,
+      name,
+      description: cleanText(record.description, 240),
+      items: items.slice(
+        0,
+        Math.max(
+          1,
+          Number(maximumRoutesPerCollection) || 50
+        )
+      ),
+      createdAt:
+        normaliseIsoDate(record.createdAt) ||
+        new Date(0).toISOString(),
+      updatedAt:
+        normaliseIsoDate(record.updatedAt) ||
+        normaliseIsoDate(record.createdAt) ||
+        new Date(0).toISOString()
+    });
+  });
+
+  return collections.slice(
+    0,
+    Math.max(1, Number(maximumItems) || 20)
+  );
+};
+
 export const registryMap = registry =>
   new Map(
     (Array.isArray(registry?.datasets) ? registry.datasets : [])
@@ -192,6 +257,13 @@ export const sanitiseDataset = (id, value, registry) => {
   }
   if (id === 'audioHistory') {
     return sanitiseAudioHistory(value, definition.maximumItems);
+  }
+  if (id === 'collections') {
+    return sanitiseCollections(
+      value,
+      definition.maximumItems,
+      definition.maximumRoutesPerCollection
+    );
   }
   return undefined;
 };

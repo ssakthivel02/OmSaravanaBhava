@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ta">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Devotional Collections Centre | Om Saravana Bhava</title>
+<meta name="description" content="Create browser-local named collections of current published OmSaravanaBhava routes without copying devotional text or page content.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://omsaravanabhava.org/devotional-collections.html">
+<link rel="stylesheet" href="assets/css/osb44.css">
+<link rel="stylesheet" href="assets/css/devotional-collections.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#a51d17">
+<link rel="manifest" href="manifest.json">
+<script defer src="assets/js/pwa-register.js"></script>
+<script type="module" src="assets/js/devotional-collections.mjs"></script>
+</head>
+<body data-release="227">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="top">🛕 ஓம் சரவணபவ · Browser-local route collections</div>
+<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+<div class="links"><a href="discovery.html">Discover</a><a href="personal-library.html">My Library</a><a href="devotional-collections.html" aria-current="page">Collections</a><a href="reading-workspace.html">Reading</a><a href="personal-data.html">Backup</a></div>
+</div></nav>
+
+<main id="main-content" class="wrap">
+<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="personal-library.html">Personal Library</a> › <span aria-current="page">Devotional Collections</span></p></nav>
+
+<section class="card collections-hero">
+<div>
+<span class="pill">Release 227 · Route-only local organisation</span>
+<h1 class="section-title" lang="ta">பக்தி தொகுப்புகள்</h1>
+<h2>Devotional Collections Centre</h2>
+<p>Create named collections from eligible published routes. Only same-origin route references and your collection names are stored—never devotional text or page-body content.</p>
+</div>
+<div class="collections-metric"><strong id="collectionsCount">0</strong><span>collections</span></div>
+<div class="collections-metric"><strong id="collectionsRouteCount">0</strong><span>valid route references</span></div>
+<div class="collections-metric"><strong id="collectionsIgnoredCount">0</strong><span>stale references</span></div>
+<div class="collections-metric"><strong id="collectionsCapacity">20 × 50</strong><span>bounded capacity</span></div>
+</section>
+
+<p id="collectionsStatus" role="status" aria-live="polite">Loading local collections…</p>
+
+<section class="collections-layout">
+<aside class="collections-sidebar">
+<article class="card">
+<h2>Create a collection</h2>
+<form id="collectionsCreateForm">
+<label for="collectionsName">Collection name
+<input id="collectionsName" required maxlength="60" placeholder="Morning reading, Arupadai Veedu…">
+</label>
+<label for="collectionsDescription">Description
+<textarea id="collectionsDescription" rows="4" maxlength="240" placeholder="Optional purpose or reminder"></textarea>
+</label>
+<button class="btn" type="submit">Create locally</button>
+</form>
+</article>
+
+<article class="card">
+<h2>Find a collection</h2>
+<label for="collectionsSearch">Search collections
+<input id="collectionsSearch" type="search" placeholder="Tamil, English or category…" autocomplete="off">
+</label>
+</article>
+
+<article class="card">
+<h2>Storage boundary</h2>
+<p>Maximum 20 collections and 50 route references per collection.</p>
+<p><a class="btn secondary" href="personal-data.html">Back up collections</a></p>
+</article>
+</aside>
+
+<div>
+<section id="collectionsList" class="collections-list" aria-label="Saved devotional collections">
+<article class="card">Loading collections…</article>
+</section>
+</div>
+</section>
+
+<section class="card collections-route-browser">
+<div>
+<span class="pill">Current route directory</span>
+<h2>Add eligible published routes</h2>
+<p>Titles, categories and publication states are resolved from the current site route directory. Utility, draft, private, unpublished and archived routes are excluded.</p>
+</div>
+<div class="collections-route-tools">
+<div class="collections-route-controls">
+<label for="collectionsRouteSearch">Search eligible routes
+<input id="collectionsRouteSearch" type="search" placeholder="Thiruppugazh, temple, festival, கந்தர்…" autocomplete="off">
+</label>
+<label for="collectionsTarget">Target collection
+<select id="collectionsTarget">
+<option value="">Create a collection first</option>
+</select>
+</label>
+<button class="btn secondary" id="collectionsRouteReset" type="button">Reset route search</button>
+</div>
+<div id="collectionsRouteResults" class="grid collections-route-results" aria-label="Eligible route search results">
+<article class="card">Loading eligible routes…</article>
+</div>
+</div>
+</section>
+
+<section class="card collections-boundary">
+<h2>Data and editorial boundary</h2>
+<ul>
+<li>Collection storage contains only collection identifiers, names, descriptions, route references and timestamps.</li>
+<li>Devotional text, selected passages, page-body content, images and audio files are not copied into collections.</li>
+<li>Route titles and publication metadata always come from the current route directory.</li>
+<li>Removed or no-longer-eligible routes are reported as stale references and can be removed explicitly.</li>
+<li>Collections are included in Release 227 Personal Data backup and restore as the sixth registered local dataset.</li>
+<li>No account, cloud synchronization, analytics, recommendation engine or collaborative service is used.</li>
+</ul>
+</section>
+
+<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>Browser-local collections require JavaScript. Published routes remain available through <a href="discovery.html">Discovery</a>.</p></section></noscript>
+</main>
+<footer>© Om Saravana Bhava · <a href="devotional-collections.html">Collections</a> · <a href="personal-library.html">My Library</a> · <a href="personal-data.html">Backup</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
+</body>
+</html>

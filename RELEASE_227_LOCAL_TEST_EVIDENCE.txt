@@ -1,0 +1,326 @@
+Release 227 — Local Test Evidence
+Generated: 2026-07-14
+Base commit: a241ba10ff7fc319a4347d616e2f0c6bb816cbd7
+
+LOCAL PACKAGE RESULT: PASS
+GITHUB ACTIONS RESULT: NOT RUN
+DEPLOYED PRODUCTION RESULT: NOT RUN
+
+$ node --check assets/js/devotional-collections.mjs
+Exit code: 0
+
+
+$ node --check assets/js/personal-data.mjs
+Exit code: 0
+
+
+$ node --check assets/js/maintenance-centre.mjs
+Exit code: 0
+
+
+$ node --test tests/devotional-collections.test.mjs
+Exit code: 0
+TAP version 13
+# Subtest: release and storage configuration are stable
+ok 1 - release and storage configuration are stable
+  ---
+  duration_ms: 1.173623
+  type: 'test'
+  ...
+# Subtest: same-origin route normalisation rejects external routes
+ok 2 - same-origin route normalisation rejects external routes
+  ---
+  duration_ms: 0.307985
+  type: 'test'
+  ...
+# Subtest: collection sanitiser stores route references only
+ok 3 - collection sanitiser stores route references only
+  ---
+  duration_ms: 1.282878
+  type: 'test'
+  ...
+# Subtest: eligible route registry excludes utility and draft pages
+ok 4 - eligible route registry excludes utility and draft pages
+  ---
+  duration_ms: 6.293927
+  type: 'test'
+  ...
+# Subtest: create, update and delete are bounded
+ok 5 - create, update and delete are bounded
+  ---
+  duration_ms: 0.474327
+  type: 'test'
+  ...
+# Subtest: route add prevents duplicates and route removal works
+ok 6 - route add prevents duplicates and route removal works
+  ---
+  duration_ms: 0.44355
+  type: 'test'
+  ...
+# Subtest: route order can move up and down deterministically
+ok 7 - route order can move up and down deterministically
+  ---
+  duration_ms: 0.322397
+  type: 'test'
+  ...
+# Subtest: storage roundtrip applies collection capacity
+ok 8 - storage roundtrip applies collection capacity
+  ---
+  duration_ms: 1.759453
+  type: 'test'
+  ...
+# Subtest: resolution reports stale route references and metrics
+ok 9 - resolution reports stale route references and metrics
+  ---
+  duration_ms: 0.680128
+  type: 'test'
+  ...
+# Subtest: Tamil and English filtering remains local
+ok 10 - Tamil and English filtering remains local
+  ---
+  duration_ms: 0.597392
+  type: 'test'
+  ...
+# Subtest: module contains no tracking or source-text capture operations
+ok 11 - module contains no tracking or source-text capture operations
+  ---
+  duration_ms: 0.521983
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 133.224349
+
+$ node --test tests/personal-data.test.mjs
+Exit code: 0
+TAP version 13
+# Subtest: release, schema and six registered datasets are stable
+ok 1 - release, schema and six registered datasets are stable
+  ---
+  duration_ms: 1.423384
+  type: 'test'
+  ...
+# Subtest: same-origin routes are accepted and external routes rejected
+ok 2 - same-origin routes are accepted and external routes rejected
+  ---
+  duration_ms: 0.179802
+  type: 'test'
+  ...
+# Subtest: reading records remain bounded and source body fields are discarded
+ok 3 - reading records remain bounded and source body fields are discarded
+  ---
+  duration_ms: 1.010722
+  type: 'test'
+  ...
+# Subtest: accessibility and audio schemas remain bounded
+ok 4 - accessibility and audio schemas remain bounded
+  ---
+  duration_ms: 0.319943
+  type: 'test'
+  ...
+# Subtest: collections store bounded route references only
+ok 5 - collections store bounded route references only
+  ---
+  duration_ms: 0.441026
+  type: 'test'
+  ...
+# Subtest: inventory and export include only registered keys
+ok 6 - inventory and export include only registered keys
+  ---
+  duration_ms: 0.710894
+  type: 'test'
+  ...
+# Subtest: backup validation ignores unknown datasets and validates collections
+ok 7 - backup validation ignores unknown datasets and validates collections
+  ---
+  duration_ms: 0.383399
+  type: 'test'
+  ...
+# Subtest: generic merge keeps newer collection by id
+ok 8 - generic merge keeps newer collection by id
+  ---
+  duration_ms: 0.275035
+  type: 'test'
+  ...
+# Subtest: validated restore changes only selected registered datasets
+ok 9 - validated restore changes only selected registered datasets
+  ---
+  duration_ms: 0.680548
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 108.559194
+
+$ node --test tests/maintenance-centre.test.mjs
+Exit code: 0
+TAP version 13
+# Subtest: release and registry identities are stable
+ok 1 - release and registry identities are stable
+  ---
+  duration_ms: 0.989635
+  type: 'test'
+  ...
+# Subtest: same-origin path normalisation rejects external resources
+ok 2 - same-origin path normalisation rejects external resources
+  ---
+  duration_ms: 0.290178
+  type: 'test'
+  ...
+# Subtest: JSON path lookup and equality checks are deterministic
+ok 3 - JSON path lookup and equality checks are deterministic
+  ---
+  duration_ms: 0.746668
+  type: 'test'
+  ...
+# Subtest: route registry requires one maintenance route and no duplicates
+ok 4 - route registry requires one maintenance route and no duplicates
+  ---
+  duration_ms: 0.212692
+  type: 'test'
+  ...
+# Subtest: audit configuration requires the current release and files
+ok 5 - audit configuration requires the current release and files
+  ---
+  duration_ms: 0.30445
+  type: 'test'
+  ...
+# Subtest: text count checks require exactly one sitemap entry
+ok 6 - text count checks require exactly one sitemap entry
+  ---
+  duration_ms: 0.148194
+  type: 'test'
+  ...
+# Subtest: check payload supports all configured check modes
+ok 7 - check payload supports all configured check modes
+  ---
+  duration_ms: 0.263909
+  type: 'test'
+  ...
+# Subtest: resource checks record HTTP and marker results
+ok 8 - resource checks record HTTP and marker results
+  ---
+  duration_ms: 0.321275
+  type: 'test'
+  ...
+# Subtest: path auditing preserves independent failures
+ok 9 - path auditing preserves independent failures
+  ---
+  duration_ms: 0.733588
+  type: 'test'
+  ...
+# Subtest: transient cache cleanup preserves static and user caches
+ok 10 - transient cache cleanup preserves static and user caches
+  ---
+  duration_ms: 0.667799
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 112.581975
+
+$ python -m py_compile tools/production_smoke.py tools/release_227_validate.py tests/test_site_audit.py
+Exit code: 0
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/generated/interface/models.py", line 30820, in hydrate_crdt_from_proto
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/remote.py", line 749, in __call__
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/client.py", line 150, in call
+artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
+
+$ python tools/release_227_validate.py --root . --package-mode --report artifacts/release-227-package-validation.json
+Exit code: 0
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/generated/interface/models.py", line 30820, in hydrate_crdt_from_proto
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/remote.py", line 749, in __call__
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/client.py", line 150, in call
+artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
+{
+  "release": 227,
+  "base_commit": "a241ba10ff7fc319a4347d616e2f0c6bb816cbd7",
+  "mode": "package",
+  "status": "PASS",
+  "errors": [],
+  "checks": [
+    "exists: devotional-collections.html",
+    "exists: assets/css/devotional-collections.css",
+    "exists: assets/js/devotional-collections.mjs",
+    "exists: data/devotional-collections.json",
+    "exists: assets/js/personal-data.mjs",
+    "exists: data/personal-data-registry.json",
+    "exists: index.html",
+    "exists: platform.html",
+    "exists: discovery.html",
+    "exists: reading-workspace.html",
+    "exists: reading-notes.html",
+    "exists: personal-library.html",
+    "exists: personal-data.html",
+    "exists: maintenance.html",
+    "exists: assets/js/maintenance-centre.mjs",
+    "exists: data/maintenance-checks.json",
+    "exists: data/site-routes.json",
+    "exists: sitemap.xml",
+    "exists: service-worker.js",
+    "exists: quality/site-audit-config.json",
+    "exists: tools/production_smoke.py",
+    "exists: tests/test_site_audit.py",
+    "exists: tests/devotional-collections.test.mjs",
+    "exists: tests/personal-data.test.mjs",
+    "exists: tests/maintenance-centre.test.mjs",
+    "exists: .github/workflows/static-site-integrity.yml",
+    "exists: .github/workflows/production-smoke.yml",
+    "exists: manifest-release-227.json"
+  ],
+  "github_actions": "NOT_RUN",
+  "deployed_production": "NOT_RUN"
+}
+
+$ git apply --check release.patch
+Exit code: 0
+
+
+JSON files parsed: 7
+Sitemap XML parsed: PASS
+Twenty-collection capacity: PASS
+Fifty-route-per-collection capacity: PASS
+Same-origin route enforcement: PASS
+Duplicate-route prevention: PASS
+Disallowed publication-state exclusion: PASS
+Excluded utility category handling: PASS
+Route-only storage schema: PASS
+Selected devotional text storage: ABSENT
+Page-body content storage: ABSENT
+Route reorder operations: PASS
+Stale-reference reporting: PASS
+Six-dataset backup registry: PASS
+Collections backup merge: PASS
+Unknown browser-key preservation: PASS
+Tracking and recommendation markers: ABSENT
+Optional service-worker caching: PASS

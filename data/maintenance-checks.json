@@ -1,25 +1,25 @@
 {
-  "release": 226,
+  "release": 227,
   "generated": "2026-07-14",
-  "builtAgainstCommit": "2fac2649e2e721e9b4249c6e3651f598bf34191c",
+  "builtAgainstCommit": "a241ba10ff7fc319a4347d616e2f0c6bb816cbd7",
   "title": "OmSaravanaBhava Browser Maintenance Check Registry",
-  "scope": "Same-origin Release 226 personal-library, route, audit and maintenance continuity checks. This registry does not prove GitHub Actions status or repository certification.",
+  "scope": "Same-origin Release 227 devotional-collections, personal-data, route, audit and maintenance continuity checks. This registry does not prove GitHub Actions status or repository certification.",
   "checks": [
     {
       "id": "service-worker-release",
       "label": "Service-worker release identity",
       "path": "/service-worker.js",
       "mode": "textIncludes",
-      "expected": "const RELEASE = '226';",
+      "expected": "const RELEASE = '227';",
       "severity": "critical"
     },
     {
       "id": "release-manifest",
       "label": "Release manifest identity",
-      "path": "/manifest-release-226.json",
+      "path": "/manifest-release-227.json",
       "mode": "jsonEquals",
       "jsonPath": "release",
-      "expected": 226,
+      "expected": 227,
       "severity": "critical"
     },
     {
@@ -27,8 +27,8 @@
       "label": "Route directory integrity",
       "path": "/data/site-routes.json",
       "mode": "routeRegistry",
-      "expectedRelease": 226,
-      "requiredRoute": "/personal-library.html",
+      "expectedRelease": 227,
+      "requiredRoute": "/devotional-collections.html",
       "severity": "critical"
     },
     {
@@ -36,48 +36,48 @@
       "label": "Static-audit configuration",
       "path": "/quality/site-audit-config.json",
       "mode": "auditConfig",
-      "expectedRelease": "226",
+      "expectedRelease": "227",
       "requiredFiles": [
-        "personal-library.html",
-        "assets/css/personal-library.css",
-        "assets/js/personal-library.mjs",
-        "data/personal-library.json",
-        "manifest-release-226.json"
+        "devotional-collections.html",
+        "assets/css/devotional-collections.css",
+        "assets/js/devotional-collections.mjs",
+        "data/devotional-collections.json",
+        "manifest-release-227.json"
       ],
       "severity": "critical"
     },
     {
       "id": "sitemap-route",
-      "label": "Personal Library sitemap registration",
+      "label": "Collections sitemap registration",
       "path": "/sitemap.xml",
       "mode": "textCount",
-      "expected": "https://omsaravanabhava.org/personal-library.html",
+      "expected": "https://omsaravanabhava.org/devotional-collections.html",
       "expectedCount": 1,
       "severity": "important"
     },
     {
-      "id": "personal-library-page",
-      "label": "Personal Library page",
-      "path": "/personal-library.html",
+      "id": "collections-page",
+      "label": "Devotional Collections page",
+      "path": "/devotional-collections.html",
       "mode": "textIncludes",
-      "expected": "data-release=\"226\"",
+      "expected": "data-release=\"227\"",
       "severity": "critical"
     },
     {
-      "id": "personal-library-module",
-      "label": "Personal Library browser module",
-      "path": "/assets/js/personal-library.mjs",
+      "id": "collections-module",
+      "label": "Devotional Collections browser module",
+      "path": "/assets/js/devotional-collections.mjs",
       "mode": "textIncludes",
-      "expected": "export const RELEASE = 226;",
+      "expected": "export const RELEASE = 227;",
       "severity": "critical"
     },
     {
-      "id": "personal-library-config",
-      "label": "Personal Library configuration",
-      "path": "/data/personal-library.json",
+      "id": "personal-data-registry",
+      "label": "Six-dataset personal-data registry",
+      "path": "/data/personal-data-registry.json",
       "mode": "jsonEquals",
       "jsonPath": "release",
-      "expected": 226,
+      "expected": 227,
       "severity": "important"
     }
   ],
@@ -100,7 +100,8 @@
     "/knowledge-graph-explorer.html",
     "/maintenance.html",
     "/personal-data.html",
-    "/personal-library.html"
+    "/personal-library.html",
+    "/devotional-collections.html"
   ],
   "transientCachePrefixes": [
     "osb-runtime-v",

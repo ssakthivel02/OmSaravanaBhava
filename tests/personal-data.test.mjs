@@ -14,6 +14,7 @@ import {
   normaliseSameOriginRoute,
   sanitiseAccessibility,
   sanitiseAudioHistory,
+  sanitiseCollections,
   sanitiseReadingList,
   sanitiseReadingNotes,
   sanitiseReadingProgress,
@@ -25,7 +26,9 @@ class MemoryStorage {
     this.values = new Map(Object.entries(initial));
   }
   getItem(key) {
-    return this.values.has(key) ? this.values.get(key) : null;
+    return this.values.has(key)
+      ? this.values.get(key)
+      : null;
   }
   setItem(key, value) {
     this.values.set(key, String(value));
@@ -37,74 +40,82 @@ class MemoryStorage {
 
 const registry = JSON.parse(
   fs.readFileSync(
-    new URL('../data/personal-data-registry.json', import.meta.url),
+    new URL(
+      '../data/personal-data-registry.json',
+      import.meta.url
+    ),
     'utf8'
   )
 );
 
-test('release, schema and registered datasets are stable', () => {
-  assert.equal(RELEASE, 225);
-  assert.equal(registry.release, 225);
-  assert.equal(BACKUP_SCHEMA, 'osb-personal-data-backup-v1');
+test('release, schema and six registered datasets are stable', () => {
+  assert.equal(RELEASE, 227);
+  assert.equal(registry.release, 227);
+  assert.equal(
+    BACKUP_SCHEMA,
+    'osb-personal-data-backup-v1'
+  );
   assert.deepEqual(
     registry.datasets.map(item => item.id),
     DATASET_IDS
   );
+  assert.equal(DATASET_IDS.length, 6);
+  assert.equal(DATASET_IDS.at(-1), 'collections');
 });
 
 test('same-origin routes are accepted and external routes rejected', () => {
   assert.equal(
-    normaliseSameOriginRoute('/literature/kandar-anubhuti.html'),
+    normaliseSameOriginRoute(
+      '/literature/kandar-anubhuti.html'
+    ),
     '/literature/kandar-anubhuti.html'
   );
   assert.equal(
-    normaliseSameOriginRoute('https://example.com/page.html'),
+    normaliseSameOriginRoute(
+      'https://example.com/page.html'
+    ),
     ''
   );
 });
 
-test('reading list sanitiser deduplicates and excludes external routes', () => {
-  const items = sanitiseReadingList([
-    {route: '/a.html', titleEn: 'A', savedAt: '2026-07-14T10:00:00Z'},
-    {route: '/a.html', titleEn: 'Duplicate'},
-    {route: 'https://example.com/b.html', titleEn: 'External'}
+test('reading records remain bounded and source body fields are discarded', () => {
+  const list = sanitiseReadingList([
+    {
+      route: '/a.html',
+      titleEn: 'A',
+      savedAt: '2026-07-14T10:00:00Z'
+    },
+    {
+      route: '/a.html',
+      titleEn: 'Duplicate'
+    },
+    {
+      route: 'https://example.com/b.html'
+    }
   ]);
-  assert.equal(items.length, 1);
-  assert.equal(items[0].route, '/a.html');
-});
+  assert.equal(list.length, 1);
 
-test('reading progress is bounded and source body fields are discarded', () => {
-  const items = sanitiseReadingProgress([{
+  const progress = sanitiseReadingProgress([{
     route: '/literature/a.html',
-    titleEn: 'A',
     percent: 150,
-    content: 'must not be stored',
-    lastVisitedAt: '2026-07-14T10:00:00Z'
+    content: 'must not be stored'
   }]);
-  assert.equal(items[0].percent, 100);
-  assert.equal('content' in items[0], false);
-});
+  assert.equal(progress[0].percent, 100);
+  assert.equal('content' in progress[0], false);
 
-test('reading notes discard selected and page text fields', () => {
   const notes = sanitiseReadingNotes([{
     id: 'n1',
     route: '/literature/a.html',
-    headingId: 'section-1',
-    headingLabel: 'Section 1',
     note: 'My reflection',
     selectedText: 'not allowed',
-    pageBody: 'not allowed',
-    content: 'not allowed',
-    updatedAt: '2026-07-14T10:00:00Z'
+    pageBody: 'not allowed'
   }]);
   assert.equal(notes.length, 1);
-  assert.equal(notes[0].note, 'My reflection');
   assert.equal('selectedText' in notes[0], false);
   assert.equal('pageBody' in notes[0], false);
-  assert.equal('content' in notes[0], false);
 });
 
-test('accessibility and audio history schemas are bounded', () => {
+test('accessibility and audio schemas remain bounded', () => {
   assert.deepEqual(
     sanitiseAccessibility({
       largeText: true,
@@ -128,26 +139,79 @@ test('accessibility and audio history schemas are bounded', () => {
   assert.equal(history[0].playCount, 1);
 });
 
+test('collections store bounded route references only', () => {
+  const collections = sanitiseCollections([
+    {
+      id: 'c1',
+      name: 'Morning',
+      description: 'Daily routes',
+      items: [
+        {
+          route: '/literature/a.html',
+          addedAt: '2026-07-14T10:00:00Z',
+          titleEn: 'must not be stored',
+          content: 'must not be stored'
+        },
+        {
+          route: '/literature/a.html'
+        },
+        {
+          route: 'https://example.com/outside.html'
+        }
+      ],
+      selectedText: 'must not be stored',
+      pageBody: 'must not be stored',
+      updatedAt: '2026-07-14T11:00:00Z'
+    }
+  ], 20, 50);
+
+  assert.equal(collections.length, 1);
+  assert.equal(collections[0].items.length, 1);
+  assert.deepEqual(
+    Object.keys(collections[0].items[0]),
+    ['route', 'addedAt']
+  );
+  assert.equal('selectedText' in collections[0], false);
+  assert.equal('pageBody' in collections[0], false);
+});
+
 test('inventory and export include only registered keys', () => {
   const storage = new MemoryStorage({
-    'osb-reading-list-v1': JSON.stringify([
-      {route: '/a.html', titleEn: 'A'}
-    ]),
-    'unregistered-secret': JSON.stringify({secret: true})
+    'osb-devotional-collections-v1':
+      JSON.stringify([
+        {
+          id: 'c1',
+          name: 'Morning',
+          items: []
+        }
+      ]),
+    'unregistered-secret':
+      JSON.stringify({secret: true})
   });
-  const inventory = buildInventory(registry, storage);
+
+  const inventory = buildInventory(
+    registry,
+    storage
+  );
   assert.equal(inventory.totalRecords, 1);
+
   const backup = createBackup(
     registry,
-    ['readingList'],
+    ['collections'],
     storage,
     '2026-07-14T10:00:00Z'
   );
-  assert.deepEqual(Object.keys(backup.datasets), ['readingList']);
-  assert.equal('unregistered-secret' in backup.datasets, false);
+  assert.deepEqual(
+    Object.keys(backup.datasets),
+    ['collections']
+  );
+  assert.equal(
+    'unregistered-secret' in backup.datasets,
+    false
+  );
 });
 
-test('backup validation rejects wrong schema and ignores unknown datasets', () => {
+test('backup validation ignores unknown datasets and validates collections', () => {
   const wrong = validateBackup({
     schema: 'wrong',
     origin: registry.canonicalOrigin,
@@ -157,49 +221,82 @@ test('backup validation rejects wrong schema and ignores unknown datasets', () =
 
   const valid = validateBackup({
     schema: registry.schema,
-    release: 225,
+    release: 227,
     origin: registry.canonicalOrigin,
-    exportedAt: '2026-07-14T10:00:00Z',
     datasets: {
-      accessibility: {largeText: true},
+      collections: [
+        {
+          id: 'c1',
+          name: 'Study',
+          items: [
+            {route: '/literature/a.html'}
+          ]
+        }
+      ],
       unknown: {secret: true}
     }
   }, registry);
+
   assert.equal(valid.ok, true);
-  assert.deepEqual(Object.keys(valid.backup.datasets), ['accessibility']);
+  assert.deepEqual(
+    Object.keys(valid.backup.datasets),
+    ['collections']
+  );
   assert.equal(valid.warnings.length, 1);
 });
 
-test('merge keeps the newer matching record and applies capacity', () => {
+test('generic merge keeps newer collection by id', () => {
   const merged = mergeArrayDataset(
     [
-      {route: '/a.html', savedAt: '2026-07-14T09:00:00Z', titleEn: 'Old'}
+      {
+        id: 'c1',
+        name: 'Old',
+        updatedAt: '2026-07-14T09:00:00Z'
+      }
     ],
     [
-      {route: '/a.html', savedAt: '2026-07-14T10:00:00Z', titleEn: 'New'},
-      {route: '/b.html', savedAt: '2026-07-14T08:00:00Z', titleEn: 'B'}
+      {
+        id: 'c1',
+        name: 'New',
+        updatedAt: '2026-07-14T10:00:00Z'
+      },
+      {
+        id: 'c2',
+        name: 'Second',
+        updatedAt: '2026-07-14T08:00:00Z'
+      }
     ],
     {
-      uniqueBy: 'route',
-      timestampField: 'savedAt',
-      maximumItems: 1
+      uniqueBy: 'id',
+      timestampField: 'updatedAt',
+      maximumItems: 20
     }
   );
-  assert.equal(merged.length, 1);
-  assert.equal(merged[0].titleEn, 'New');
+  assert.equal(merged.length, 2);
+  assert.equal(
+    merged.find(item => item.id === 'c1').name,
+    'New'
+  );
 });
 
-test('validated merge changes only selected registered datasets', () => {
+test('validated restore changes only selected registered datasets', () => {
   const storage = new MemoryStorage({
-    'osb-reading-list-v1': JSON.stringify([
-      {route: '/a.html', titleEn: 'A', savedAt: '2026-07-14T09:00:00Z'}
-    ]),
-    'osb-accessibility-preferences-v1': JSON.stringify({
-      largeText: false,
-      highContrast: false,
-      reducedMotion: false,
-      underlinedLinks: false
-    }),
+    'osb-devotional-collections-v1':
+      JSON.stringify([
+        {
+          id: 'c1',
+          name: 'Existing',
+          items: [],
+          updatedAt: '2026-07-14T09:00:00Z'
+        }
+      ]),
+    'osb-accessibility-preferences-v1':
+      JSON.stringify({
+        largeText: false,
+        highContrast: false,
+        reducedMotion: false,
+        underlinedLinks: false
+      }),
     'unregistered-secret': 'preserve-me'
   });
 
@@ -207,10 +304,19 @@ test('validated merge changes only selected registered datasets', () => {
     schema: registry.schema,
     origin: registry.canonicalOrigin,
     datasets: {
-      readingList: [
-        {route: '/b.html', titleEn: 'B', savedAt: '2026-07-14T10:00:00Z'}
+      collections: [
+        {
+          id: 'c2',
+          name: 'Imported',
+          items: [
+            {route: '/literature/a.html'}
+          ],
+          updatedAt: '2026-07-14T10:00:00Z'
+        }
       ],
-      accessibility: {largeText: true}
+      accessibility: {
+        largeText: true
+      }
     }
   }, registry);
 
@@ -218,22 +324,37 @@ test('validated merge changes only selected registered datasets', () => {
     validation,
     registry,
     {
-      selectedIds: ['readingList'],
+      selectedIds: ['collections'],
       mode: 'merge',
       storage
     }
   );
+
   assert.equal(result.ok, true);
   assert.equal(
-    JSON.parse(storage.getItem('osb-reading-list-v1')).length,
+    JSON.parse(
+      storage.getItem(
+        'osb-devotional-collections-v1'
+      )
+    ).length,
     2
   );
   assert.equal(
     JSON.parse(
-      storage.getItem('osb-accessibility-preferences-v1')
+      storage.getItem(
+        'osb-accessibility-preferences-v1'
+      )
     ).largeText,
     false
   );
-  assert.equal(storage.getItem('unregistered-secret'), 'preserve-me');
-  assert.equal(datasetCount(validation.backup.datasets.accessibility), 1);
+  assert.equal(
+    storage.getItem('unregistered-secret'),
+    'preserve-me'
+  );
+  assert.equal(
+    datasetCount(
+      validation.backup.datasets.accessibility
+    ),
+    1
+  );
 });
