@@ -1,0 +1,22 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 166,
+  "name": "Kandar Andhadhi Source Register",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 4,
+  "modified": [
+    "data/search-index.json",
+    "service-worker.js"
+  ],
+  "added": [
+    "data/kandar-andhadhi.json",
+    "literature/kandar-andhadhi.html"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Linked-verse engine": "Registered",
+    "Full text published": "No"
+  }
+}

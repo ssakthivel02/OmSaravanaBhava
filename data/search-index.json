@@ -685,5 +685,18 @@
       "Arunagirinathar"
     ],
     "status": "source-register"
+  },
+  {
+    "kind": "Literature",
+    "id": "kandar-andhadhi",
+    "titleTa": "கந்தர் அந்தாதி",
+    "titleEn": "Kandar Andhadhi",
+    "summary": "Linked-verse literary register awaiting verified full text.",
+    "route": "literature/kandar-andhadhi.html",
+    "tags": [
+      "Arunagirinathar",
+      "Andhadhi"
+    ],
+    "status": "source-register"
   }
 ]

@@ -1,0 +1,12 @@
+OmSaravanaBhava Release 166
+
+Upload only after all earlier releases are committed.
+
+1. Extract this ZIP.
+2. Select everything inside the extracted folder.
+3. Upload to repository root.
+4. No Release166, package, output or cleanup parent folder.
+5. Small upper commit title:
+   Release 166: add Kandar Andhadhi source register
+6. Leave lower description blank.
+7. Commit directly to main.
