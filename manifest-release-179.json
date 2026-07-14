@@ -1,0 +1,26 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 179,
+  "name": "Premium Reading Experience Phase 1",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 8,
+  "modified": [
+    "service-worker.js",
+    "sloka-library.html",
+    "thiruppugazh.html",
+    "murugan-mantras.html",
+    "literature/kanda-sashti-kavasam-edition.html",
+    "literature/kandar-anubhuti.html",
+    "literature/thirumurugatruppadai-complete.html"
+  ],
+  "added": [
+    "assets/js/reader-experience.js"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Bookmarks": "Local browser only",
+    "Account required": "No"
+  }
+}

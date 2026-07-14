@@ -1,0 +1,81 @@
+--- before/assets/js/reader-experience.js
++++ release179/assets/js/reader-experience.js
+@@ -0,0 +1 @@
++(()=>{'use strict';const B='osb-bookmarks';document.addEventListener('DOMContentLoaded',()=>{const main=document.querySelector('main');if(!main)return;const b=document.createElement('button');b.className='tool';b.textContent='☆ Bookmark';b.type='button';let saved=new Set(JSON.parse(localStorage.getItem(B)||'[]'));const key=location.pathname;const sync=()=>{b.textContent=saved.has(key)?'★ Bookmarked':'☆ Bookmark';b.setAttribute('aria-pressed',saved.has(key))};b.addEventListener('click',()=>{saved.has(key)?saved.delete(key):saved.add(key);localStorage.setItem(B,JSON.stringify([...saved]));sync()});document.querySelector('.tools')?.appendChild(b);sync()})})();--- before/service-worker.js
++++ release179/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '178';
++const RELEASE = '179';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -113,7 +113,8 @@
+   "/festival-intelligence.html",
+   "/data/festival-intelligence.json",
+   "/assets/js/search-recommendations.js",
+-  "/data/search-recommendations.json"
++  "/data/search-recommendations.json",
++  "/assets/js/reader-experience.js"
+ ];
+ 
+ self.addEventListener('install', event => {
+--- before/sloka-library.html
++++ release179/sloka-library.html
+@@ -26,6 +26,7 @@
+ <link rel="apple-touch-icon" href="icons/icon-192.png">
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script defer src="assets/js/premium-interactions.js"></script>
++<script defer src="assets/js/reader-experience.js"></script>
+ </head>
+ <body data-module="slokas">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- before/thiruppugazh.html
++++ release179/thiruppugazh.html
+@@ -26,6 +26,7 @@
+ <link rel="apple-touch-icon" href="icons/icon-192.png">
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script defer src="assets/js/premium-interactions.js"></script>
++<script defer src="assets/js/reader-experience.js"></script>
+ </head>
+ <body data-module="thiruppugazh">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- before/murugan-mantras.html
++++ release179/murugan-mantras.html
+@@ -11,6 +11,7 @@
+ <meta name="theme-color" content="#a51d17">
+ <link rel="manifest" href="manifest.json">
+ <script defer src="assets/js/pwa-register.js"></script>
++<script defer src="assets/js/reader-experience.js"></script>
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- before/literature/kanda-sashti-kavasam-edition.html
++++ release179/literature/kanda-sashti-kavasam-edition.html
+@@ -10,6 +10,7 @@
+ <meta name="theme-color" content="#a51d17">
+ <link rel="manifest" href="../manifest.json">
+ <script defer src="../assets/js/pwa-register.js"></script>
++<script defer src="../assets/js/reader-experience.js"></script>
+ </head><body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Source-controlled devotional edition</div>
+--- before/literature/kandar-anubhuti.html
++++ release179/literature/kandar-anubhuti.html
+@@ -11,6 +11,7 @@
+ <meta name="theme-color" content="#a51d17">
+ <link rel="manifest" href="../manifest.json">
+ <script defer src="../assets/js/pwa-register.js"></script>
++<script defer src="../assets/js/reader-experience.js"></script>
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- before/literature/thirumurugatruppadai-complete.html
++++ release179/literature/thirumurugatruppadai-complete.html
+@@ -11,6 +11,7 @@
+ <meta name="theme-color" content="#a51d17">
+ <link rel="manifest" href="../manifest.json">
+ <script defer src="../assets/js/pwa-register.js"></script>
++<script defer src="../assets/js/reader-experience.js"></script>
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
