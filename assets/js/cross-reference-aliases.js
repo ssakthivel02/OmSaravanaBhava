@@ -1,0 +1,1 @@
+(()=>{'use strict';window.OSBAliasSearch={async expand(q){const a=await fetch('data/cross-reference-aliases.json').then(r=>r.json());const n=String(q||'').toLocaleLowerCase();const hit=a.find(x=>x.term===n||x.aliases.some(v=>v.toLocaleLowerCase()===n));return hit?[hit.term,...hit.aliases]:[q]}}})();

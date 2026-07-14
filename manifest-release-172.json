@@ -1,0 +1,23 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 172,
+  "name": "Tamil–English Cross Reference Engine",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 5,
+  "modified": [
+    "service-worker.js",
+    "sitemap.xml"
+  ],
+  "added": [
+    "cross-references.html",
+    "data/cross-reference-aliases.json",
+    "assets/js/cross-reference-aliases.js"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Alias groups": 5,
+    "Remote API": "None"
+  }
+}

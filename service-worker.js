@@ -1,4 +1,4 @@
-const RELEASE = '171';
+const RELEASE = '172';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
@@ -98,7 +98,10 @@ const PRECACHE_URLS = [
   "/assets/js/premium-interactions.js",
   "/audio-collections.html",
   "/data/audio-collections.json",
-  "/assets/js/audio-collections.js"
+  "/assets/js/audio-collections.js",
+  "/cross-references.html",
+  "/data/cross-reference-aliases.json",
+  "/assets/js/cross-reference-aliases.js"
 ];
 
 self.addEventListener('install', event => {
