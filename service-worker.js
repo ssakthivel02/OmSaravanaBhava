@@ -1,4 +1,4 @@
-const RELEASE = '209';
+const RELEASE = '210';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
@@ -167,7 +167,8 @@ const PRECACHE_URLS = [
   "/panchangam-framework.html",
   "/data/panchangam-framework.json",
   "/data/search-concepts.json",
-  "/assets/js/search-concepts.js"
+  "/assets/js/search-concepts.js",
+  "/assets/js/premium-home.js"
 ];
 
 self.addEventListener('install', event => {
