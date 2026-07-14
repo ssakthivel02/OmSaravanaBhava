@@ -1,0 +1,968 @@
+--- before/index.html
++++ release211/index.html
+@@ -1,33 +1,57 @@
+-<!doctype html><html lang="ta"><head>
+-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+-<title>Premium OmSaravanaBhava Home | Om Saravana Bhava</title>
+-<meta name="description" content="Desktop-first premium gateway to the verified Murugan digital heritage platform.">
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Om Saravana Bhava | Verified Murugan Digital Heritage Platform</title>
++<meta name="description" content="Tamil-first, source-aware Murugan knowledge platform for temples, devotional literature, learning, search and transparent publication status.">
+ <meta name="robots" content="index,follow">
+ <link rel="canonical" href="https://omsaravanabhava.org/">
++<meta property="og:site_name" content="Om Saravana Bhava">
++<meta property="og:type" content="website">
++<meta property="og:title" content="Om Saravana Bhava | Verified Murugan Digital Heritage Platform">
++<meta property="og:description" content="Explore source-aware Murugan temples, literature, learning, search and publication-status modules.">
++<meta property="og:url" content="https://omsaravanabhava.org/">
++<meta name="twitter:card" content="summary">
+ <link rel="stylesheet" href="assets/css/osb44.css">
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+-<meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
++<meta name="theme-color" content="#a51d17">
++<meta name="mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-capable" content="yes">
++<meta name="apple-mobile-web-app-status-bar-style" content="default">
++<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
++<link rel="manifest" href="manifest.json">
++<link rel="apple-touch-icon" href="icons/icon-192.png">
++<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://omsaravanabhava.org/#organization","name":"Om Saravana Bhava","url":"https://omsaravanabhava.org/"},{"@type":"WebSite","@id":"https://omsaravanabhava.org/#website","url":"https://omsaravanabhava.org/","name":"Om Saravana Bhava","inLanguage":["ta","en"],"publisher":{"@id":"https://omsaravanabhava.org/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://omsaravanabhava.org/ai-search.html?q={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"WebPage","@id":"https://omsaravanabhava.org/#webpage","url":"https://omsaravanabhava.org/","name":"Om Saravana Bhava","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"]}]}</script>
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script defer src="assets/js/premium-home.js"></script>
+ <script defer src="assets/js/desktop-layout.js"></script>
+-</head><body>
++</head>
++<body data-release="211">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+-<div class="top">🛕 ஓம் சரவணபவ · Verified Murugan digital platform</div>
++<div class="top">🛕 ஓம் சரவணபவ · Verified Murugan digital heritage platform</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+ <div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+-<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Premium OmSaravanaBhava Home</span></p></nav>
+-<section class="card"><h1 class="section-title" lang="ta">ஓம் சரவணபவ</h1><h2>Premium OmSaravanaBhava Home</h2><p>Desktop-first premium gateway to the verified Murugan digital heritage platform.</p></section>
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">OmSaravanaBhava Home</span></p></nav>
+ <section class="home-stage">
+-<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Version 3</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-verified Murugan knowledge platform designed for desktop, mobile, reading, research, discovery and future licensed audio.</p><div class="audio-hero-actions"><a class="btn" href="platform.html">Explore platform</a><a class="btn secondary" href="ai-search.html">Search knowledge</a></div></div>
+-<div class="home-stage-panel">
+-<div class="home-metric"><span>Search records</span><strong data-count="56">0</strong></div>
+-<div class="home-metric"><span>Source records</span><strong data-count="4">0</strong></div>
+-<div class="home-metric"><span>Verified read-aloud tracks</span><strong data-count="16">0</strong></div>
++<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 211</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="platform.html">Explore platform</a><a class="btn secondary" href="ai-search.html">Search knowledge</a></div></div>
++<div class="home-stage-panel" aria-label="Published platform data">
++<div class="home-metric"><span>Search records</span><strong data-count-source="data/search-index.json" aria-live="polite">…</strong></div>
++<div class="home-metric"><span>Source records</span><strong data-count-source="data/sources.json" aria-live="polite">…</strong></div>
++<div class="home-metric"><span>Device read-aloud entries</span><strong data-count-source="data/read-aloud-playlist.json" aria-live="polite">…</strong></div>
+ </div></section>
+-<section class="home-feature-grid"><article class="card home-feature"><div><span class="pill">Module</span><h2>Temples</h2><p>Explore source-aware sacred-place profiles.</p></div><a class="btn" href="temple-encyclopedia.html">Open</a></article><article class="card home-feature"><div><span class="pill">Module</span><h2>Literature</h2><p>Read verified and clearly bounded devotional texts.</p></div><a class="btn" href="sloka-library.html">Open</a></article><article class="card home-feature"><div><span class="pill">Module</span><h2>Knowledge Graph</h2><p>Discover relationships across symbols, saints and works.</p></div><a class="btn" href="knowledge-graph-phase-4.html">Open</a></article><article class="card home-feature"><div><span class="pill">Module</span><h2>Learning</h2><p>Follow structured beginner and advanced study paths.</p></div><a class="btn" href="learning-paths.html">Open</a></article></section>
++<section class="home-feature-grid" aria-label="Featured modules">
++<article class="card home-feature"><div><span class="pill">Module</span><h2>Temples</h2><p>Explore source-aware sacred-place profiles.</p></div><a class="btn" href="temple-encyclopedia.html">Open</a></article>
++<article class="card home-feature"><div><span class="pill">Module</span><h2>Literature</h2><p>Read verified and clearly bounded devotional texts.</p></div><a class="btn" href="sloka-library.html">Open</a></article>
++<article class="card home-feature"><div><span class="pill">Module</span><h2>Knowledge Graph</h2><p>Discover relationships across symbols, saints and works.</p></div><a class="btn" href="knowledge-graph-phase-4.html">Open</a></article>
++<article class="card home-feature"><div><span class="pill">Framework</span><h2>Panchangam</h2><p>Review the verified-data contract. No live date computation is claimed.</p></div><a class="btn" href="panchangam-framework.html">Open</a></article>
++</section>
++<section class="card" aria-labelledby="integrity-heading"><h2 id="integrity-heading">Publication integrity</h2><p>Repository releases, deployed pages and runtime behaviour are separate evidence layers. Content and feature claims remain bounded until automated checks and production observation confirm them.</p><p><a class="btn secondary" href="production-audit.html">Open production audit</a> <a class="btn secondary" href="content-status.html">Open content status</a></p></section>
++<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>All primary modules remain available through the navigation links. Live data counts are unavailable without JavaScript.</p></section></noscript>
+ </main>
+ <footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer>
+-</body></html>
++</body>
++</html>
+--- before/platform.html
++++ release211/platform.html
+@@ -1,25 +1,37 @@
+-<!doctype html><html lang="ta"><head>
++<!doctype html>
++<html lang="ta">
++<head>
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+ <title>OmSaravanaBhava Platform Hub | Om Saravana Bhava</title>
+-<meta name="description" content="Unified gateway to the verified devotional, literature, temple, search, graph and reading modules.">
++<meta name="description" content="Unified gateway to verified devotional, literature, temple, search, graph, Panchangam-framework and reading modules.">
+ <meta name="robots" content="index,follow">
+ <link rel="canonical" href="https://omsaravanabhava.org/platform.html">
+-<link rel="stylesheet" href="assets/css/osb44.css">
+-<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<link rel="stylesheet" href="assets/css/osb44.css"><link rel="icon" href="favicon.svg" type="image/svg+xml">
+ <meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
+-<script defer src="assets/js/pwa-register.js"></script>
+-<script defer src="assets/js/desktop-layout.js"></script>
+-</head><body>
++<script defer src="assets/js/pwa-register.js"></script><script defer src="assets/js/desktop-layout.js"></script>
++</head>
++<body data-release="211">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Digital Murugan knowledge platform</div>
+-<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+-<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div>
+-</div></nav>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">OmSaravanaBhava Platform Hub</span></p></nav>
+-<section class="card"><h1 class="section-title" lang="ta">ஓம் சரவணபவ தளம்</h1><h2>OmSaravanaBhava Platform Hub</h2><p>Unified gateway to the verified devotional, literature, temple, search, graph and reading modules.</p></section>
+-<section class="grid"><article class="card"><h2>Audio Platform</h2><a class="btn" href="audio-collections.html">Open module</a></article><article class="card"><h2>Cross References</h2><a class="btn" href="cross-references.html">Open module</a></article><article class="card"><h2>Timeline</h2><a class="btn" href="murugan-timeline.html">Open module</a></article><article class="card"><h2>Temple Encyclopedia</h2><a class="btn" href="temple-encyclopedia.html">Open module</a></article><article class="card"><h2>Siddhar Graph</h2><a class="btn" href="siddhar-knowledge-graph.html">Open module</a></article><article class="card"><h2>Map Index</h2><a class="btn" href="murugan-map.html">Open module</a></article><article class="card"><h2>Festival Intelligence</h2><a class="btn" href="festival-intelligence.html">Open module</a></article><article class="card"><h2>Search</h2><a class="btn" href="ai-search.html">Open module</a></article><article class="card"><h2>Knowledge Graph</h2><a class="btn" href="knowledge-graph.html">Open module</a></article></section><section class="card"><h2>Milestone boundary</h2><p>Release 180 unifies the modules built through Releases 145–179. It does not claim completion of every Murugan text, temple, audio recording or calendar date.</p></section>
+-<section class="card"><h2>Version 3 milestone</h2><a class="btn" href="version-3.html">Open milestone dashboard</a></section></main>
++<section class="card"><h1 class="section-title" lang="ta">ஓம் சரவணபவ தளம்</h1><h2>OmSaravanaBhava Platform Hub</h2><p>Unified gateway to the source-aware devotional, literature, temple, search, graph and reading modules.</p></section>
++<section class="grid">
++<article class="card"><h2>Audio Platform</h2><a class="btn" href="audio-collections.html">Open module</a></article>
++<article class="card"><h2>Cross References</h2><a class="btn" href="cross-references.html">Open module</a></article>
++<article class="card"><h2>Timeline</h2><a class="btn" href="murugan-timeline-v2.html">Open module</a></article>
++<article class="card"><h2>Temple Encyclopedia</h2><a class="btn" href="temple-encyclopedia.html">Open module</a></article>
++<article class="card"><h2>Siddhar Encyclopedia</h2><a class="btn" href="siddhar-encyclopedia.html">Open module</a></article>
++<article class="card"><h2>Map Index</h2><a class="btn" href="murugan-map.html">Open module</a></article>
++<article class="card"><h2>Festival Intelligence</h2><a class="btn" href="festival-intelligence.html">Open module</a></article>
++<article class="card"><h2>Search</h2><a class="btn" href="ai-search.html">Open module</a></article>
++<article class="card"><h2>Knowledge Graph</h2><a class="btn" href="knowledge-graph-phase-4.html">Open module</a></article>
++<article class="card"><h2>Panchangam Framework</h2><p>Verified-data contract only; no live calendar calculation.</p><a class="btn" href="panchangam-framework.html">Open framework</a></article>
++</section>
++<section class="card"><h2>Milestone boundary</h2><p>The platform hub connects published modules. It does not certify complete Murugan literature, licensed human audio, live Panchangam computation or server-side accounts.</p></section>
++<section class="card"><h2>Version 3 milestone</h2><a class="btn" href="version-3.html">Open milestone dashboard</a></section>
++</main>
+ <footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer>
+-</body></html>
++</body>
++</html>
+--- before/assets/js/premium-home.js
++++ release211/assets/js/premium-home.js
+@@ -1 +1,50 @@
+-(()=>{'use strict';document.addEventListener('DOMContentLoaded',()=>{const stage=document.querySelector('.home-stage');if(!stage)return;if(!matchMedia('(prefers-reduced-motion: reduce)').matches){stage.addEventListener('pointermove',e=>{const r=stage.getBoundingClientRect();stage.style.setProperty('--home-x',`${e.clientX-r.left-r.width/2}px`);stage.style.setProperty('--home-y',`${e.clientY-r.top-r.height/2}px`)},{passive:true})}document.querySelectorAll('[data-count]').forEach(el=>{const target=Number(el.dataset.count);let n=0;const step=()=>{n=Math.min(target,n+Math.max(1,Math.ceil(target/35)));el.textContent=n;if(n<target)requestAnimationFrame(step)};step()})})})();
++(() => {
++  'use strict';
++
++  const prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
++
++  const animateCount = (element, target) => {
++    if (prefersReducedMotion) {
++      element.textContent = String(target);
++      return;
++    }
++    let value = 0;
++    const increment = Math.max(1, Math.ceil(target / 35));
++    const step = () => {
++      value = Math.min(target, value + increment);
++      element.textContent = String(value);
++      if (value < target) requestAnimationFrame(step);
++    };
++    step();
++  };
++
++  const loadCount = async element => {
++    const source = element.dataset.countSource;
++    if (!source) return;
++    try {
++      const response = await fetch(source, {
++        credentials: 'same-origin',
++        headers: {'Accept': 'application/json'}
++      });
++      if (!response.ok) throw new Error(`HTTP ${response.status}`);
++      const payload = await response.json();
++      if (!Array.isArray(payload)) throw new Error('Expected a JSON array');
++      animateCount(element, payload.length);
++    } catch (error) {
++      console.error(`Unable to load count from ${source}`, error);
++      element.textContent = 'Unavailable';
++    }
++  };
++
++  document.addEventListener('DOMContentLoaded', () => {
++    const stage = document.querySelector('.home-stage');
++    if (stage && !prefersReducedMotion) {
++      stage.addEventListener('pointermove', event => {
++        const bounds = stage.getBoundingClientRect();
++        stage.style.setProperty('--home-x', `${event.clientX - bounds.left - bounds.width / 2}px`);
++        stage.style.setProperty('--home-y', `${event.clientY - bounds.top - bounds.height / 2}px`);
++      }, {passive: true});
++    }
++    document.querySelectorAll('[data-count-source]').forEach(loadCount);
++  });
++})();
+--- before/service-worker.js
++++ release211/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '210';
++const RELEASE = '211';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -7,6 +7,21 @@
+ const MAX_RUNTIME_ENTRIES = 60;
+ const MAX_DATA_ENTRIES = 20;
+ 
++// Core shell failures are blocking. Optional editorial/module failures are logged
++// individually so one missing page cannot invalidate the complete PWA install.
++const CORE_PRECACHE_URLS = [
++  "/",
++  "/index.html",
++  "/offline.html",
++  "/404.html",
++  "/assets/css/osb44.css",
++  "/assets/js/pwa-register.js",
++  "/favicon.svg",
++  "/manifest.json",
++  "/icons/icon-192.png",
++  "/icons/icon-512.png"
++];
++
+ const PRECACHE_URLS = [
+   "/",
+   "/index.html",
+@@ -172,11 +187,30 @@
+   "/assets/js/premium-home.js"
+ ];
+ 
++const cacheOptionalAssets = async cache => {
++  const optionalUrls = PRECACHE_URLS.filter(url => !CORE_PRECACHE_URLS.includes(url));
++  const failures = [];
++  await Promise.all(optionalUrls.map(async url => {
++    try {
++      const response = await fetch(url, {cache: 'reload'});
++      if (!response.ok) throw new Error(`HTTP ${response.status}`);
++      await cache.put(url, response);
++    } catch (error) {
++      failures.push(url);
++      console.warn(`[OmSaravanaBhava] Optional precache skipped: ${url}`, error);
++    }
++  }));
++  if (failures.length) {
++    console.warn(`[OmSaravanaBhava] ${failures.length} optional asset(s) were not precached.`, failures);
++  }
++};
++
+ self.addEventListener('install', event => {
+-  event.waitUntil(
+-    caches.open(STATIC_CACHE)
+-      .then(cache => cache.addAll(PRECACHE_URLS))
+-  );
++  event.waitUntil((async () => {
++    const cache = await caches.open(STATIC_CACHE);
++    await cache.addAll(CORE_PRECACHE_URLS);
++    await cacheOptionalAssets(cache);
++  })());
+ });
+ 
+ self.addEventListener('activate', event => {
+--- /dev/null
++++ release211/panchangam-framework.html
+@@ -0,0 +1,30 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Panchangam Data Framework | Om Saravana Bhava</title>
++<meta name="description" content="Transparent verified-data framework for future location-aware Murugan Panchangam guidance; no live astronomical computation is provided.">
++<meta name="robots" content="noindex,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/panchangam-framework.html">
++<link rel="stylesheet" href="assets/css/osb44.css"><link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script><script defer src="assets/js/desktop-layout.js"></script>
++</head>
++<body data-release="211">
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Verified-data Panchangam framework</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="platform.html">Platform</a><a href="festivals.html">Festivals</a><a href="sources.html">Sources</a></div></div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Panchangam Framework</span></p></nav>
++<section class="card"><span class="pill">Framework only</span><h1 class="section-title" lang="ta">பஞ்சாங்கத் தரவு கட்டமைப்பு</h1><h2>Panchangam Data Framework</h2><p>This module defines the data and editorial controls required before location-aware Murugan calendar guidance can be published.</p></section>
++<section class="card" role="status"><h2>Current boundary</h2><p><strong>No live Panchangam calculation is active.</strong> No tithi, nakshatra, sunrise, rahu kalam or festival time shown by this framework should be treated as a computed daily result.</p></section>
++<section class="grid">
++<article class="card"><h2>Required inputs</h2><ul><li>Date and IANA timezone</li><li>Latitude, longitude and elevation</li><li>Authoritative ephemeris and ayanamsa policy</li><li>Temple or regional observance authority</li></ul></article>
++<article class="card"><h2>Planned fields</h2><ul><li>Sunrise and sunset</li><li>Tithi and nakshatra intervals</li><li>Yoga and karana</li><li>Rahu kalam, yamagandam and gulika</li><li>Murugan observance qualification</li></ul></article>
++<article class="card"><h2>Publication controls</h2><ul><li>Source identifier and calculation-engine version</li><li>Location and timezone displayed with every result</li><li>Uncertainty and regional variation notice</li><li>Human review for festival assertions</li></ul></article>
++</section>
++<section class="card"><h2>Machine-readable contract</h2><p>The current non-computational status and planned schema are published in <a href="data/panchangam-framework.json">data/panchangam-framework.json</a>.</p></section>
++</main>
++<footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>
+--- /dev/null
++++ release211/data/panchangam-framework.json
+@@ -0,0 +1,38 @@
++{
++  "release": 211,
++  "status": "framework-only",
++  "generated": "2026-07-14",
++  "liveComputation": false,
++  "bundledVerifiedDailyData": false,
++  "locationAwareResults": false,
++  "calendarDisclaimer": "This file defines a future data contract. It does not provide computed Panchangam values or festival timings.",
++  "requiredInputs": [
++    "date",
++    "ianaTimezone",
++    "latitude",
++    "longitude",
++    "elevationMetres",
++    "ephemerisProvider",
++    "ayanamsaPolicy",
++    "regionalObservanceAuthority"
++  ],
++  "plannedFields": [
++    "sunrise",
++    "sunset",
++    "tithi",
++    "nakshatra",
++    "yoga",
++    "karana",
++    "rahuKalam",
++    "yamagandam",
++    "gulika",
++    "muruganObservances"
++  ],
++  "publicationRules": [
++    "Display location and timezone with every result",
++    "Record calculation engine and source versions",
++    "State regional variation and uncertainty",
++    "Require editorial review for festival assertions",
++    "Never infer a daily value from an empty or stale dataset"
++  ]
++}
+--- /dev/null
++++ release211/.github/workflows/static-site-integrity.yml
+@@ -0,0 +1,36 @@
++name: Static site integrity
++
++on:
++  push:
++    branches: [main]
++  pull_request:
++    branches: [main]
++  workflow_dispatch:
++
++permissions:
++  contents: read
++
++jobs:
++  audit:
++    name: Static site integrity
++    runs-on: ubuntu-latest
++    timeout-minutes: 10
++    steps:
++      - name: Check out repository
++        uses: actions/checkout@v7
++      - name: Set up Python
++        uses: actions/setup-python@v6
++        with:
++          python-version: '3.12'
++      - name: Run validator unit tests
++        run: python -m unittest discover -s tests -p 'test_*.py' -v
++      - name: Run repository-wide audit
++        run: python tools/site_audit.py
++      - name: Upload audit evidence
++        if: always()
++        uses: actions/upload-artifact@v7
++        with:
++          name: release-211-static-site-integrity
++          path: artifacts/
++          if-no-files-found: error
++          retention-days: 30
+--- /dev/null
++++ release211/.github/workflows/production-smoke.yml
+@@ -0,0 +1,34 @@
++name: Production smoke
++
++on:
++  push:
++    branches: [main]
++  schedule:
++    - cron: '17 2 * * *'
++  workflow_dispatch:
++
++permissions:
++  contents: read
++
++jobs:
++  observe-production:
++    name: Observe Release 211 production
++    runs-on: ubuntu-latest
++    timeout-minutes: 10
++    steps:
++      - name: Check out repository
++        uses: actions/checkout@v7
++      - name: Set up Python
++        uses: actions/setup-python@v6
++        with:
++          python-version: '3.12'
++      - name: Verify deployed routes and release identity
++        run: python tools/production_smoke.py --retries 12 --delay 20
++      - name: Upload production evidence
++        if: always()
++        uses: actions/upload-artifact@v7
++        with:
++          name: release-211-production-smoke
++          path: artifacts/production-smoke.json
++          if-no-files-found: error
++          retention-days: 30
+--- /dev/null
++++ release211/tools/__init__.py
+@@ -0,0 +1 @@
++"""OmSaravanaBhava quality tooling."""
+--- /dev/null
++++ release211/tools/site_audit.py
+@@ -0,0 +1,343 @@
++#!/usr/bin/env python3
++"""Repository-wide static integrity gate for OmSaravanaBhava.
++
++Uses only Python's standard library. The command writes machine-readable JSON and
++human-readable Markdown evidence and exits non-zero when blocking defects exist.
++"""
++from __future__ import annotations
++
++import argparse
++import json
++import re
++import sys
++import xml.etree.ElementTree as ET
++from collections import Counter
++from dataclasses import dataclass, asdict
++from html.parser import HTMLParser
++from pathlib import Path
++from typing import Iterable
++from urllib.parse import unquote, urlsplit
++
++TAMIL_RE = re.compile(r"[\u0B80-\u0BFF]")
++URL_ATTRS = {"href", "src", "poster"}
++SKIP_SCHEMES = {"http", "https", "mailto", "tel", "data", "javascript"}
++SW_STRING_RE = re.compile(r"[\"'](/[^\"']*)[\"']")
++CSS_URL_RE = re.compile(r"url\(\s*(['\"]?)([^)'\"]+)\1\s*\)", re.I)
++
++
++@dataclass(frozen=True)
++class Finding:
++    severity: str
++    code: str
++    path: str
++    message: str
++
++
++class PageParser(HTMLParser):
++    def __init__(self) -> None:
++        super().__init__(convert_charrefs=True)
++        self.doctype = False
++        self.html_lang = ""
++        self.has_html = False
++        self.has_head = False
++        self.has_body = False
++        self.in_title = False
++        self.title_parts: list[str] = []
++        self.canonicals: list[str] = []
++        self.references: list[str] = []
++        self.robots = ""
++
++    @property
++    def title(self) -> str:
++        return " ".join("".join(self.title_parts).split())
++
++    def handle_decl(self, decl: str) -> None:
++        if decl.lower().strip() == "doctype html":
++            self.doctype = True
++
++    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
++        attr_map = {key.lower(): value or "" for key, value in attrs}
++        tag = tag.lower()
++        if tag == "html":
++            self.has_html = True
++            self.html_lang = attr_map.get("lang", "").strip().lower()
++        elif tag == "head":
++            self.has_head = True
++        elif tag == "body":
++            self.has_body = True
++        elif tag == "title":
++            self.in_title = True
++        elif tag == "link" and attr_map.get("rel", "").lower() == "canonical":
++            self.canonicals.append(attr_map.get("href", "").strip())
++        elif tag == "meta" and attr_map.get("name", "").lower() == "robots":
++            self.robots = attr_map.get("content", "").lower()
++        for name in URL_ATTRS:
++            if attr_map.get(name):
++                self.references.append(attr_map[name].strip())
++        if attr_map.get("srcset"):
++            for candidate in attr_map["srcset"].split(","):
++                value = candidate.strip().split(" ", 1)[0]
++                if value:
++                    self.references.append(value)
++
++    def handle_endtag(self, tag: str) -> None:
++        if tag.lower() == "title":
++            self.in_title = False
++
++    def handle_data(self, data: str) -> None:
++        if self.in_title:
++            self.title_parts.append(data)
++
++
++class SiteAudit:
++    def __init__(self, root: Path, config_path: Path) -> None:
++        self.root = root.resolve()
++        self.config = json.loads(config_path.read_text(encoding="utf-8"))
++        self.findings: list[Finding] = []
++        self.pages: dict[Path, PageParser] = {}
++        self.canonicals: dict[str, list[str]] = {}
++        self.ignored = set(self.config.get("ignoredDirectories", []))
++
++    def add(self, severity: str, code: str, path: Path | str, message: str) -> None:
++        relative = str(path) if isinstance(path, str) else self.display(path)
++        self.findings.append(Finding(severity, code, relative, message))
++
++    def display(self, path: Path) -> str:
++        try:
++            return path.resolve().relative_to(self.root).as_posix()
++        except ValueError:
++            return path.as_posix()
++
++    def files(self, suffix: str | None = None) -> Iterable[Path]:
++        for path in self.root.rglob("*"):
++            if not path.is_file():
++                continue
++            relative = path.relative_to(self.root)
++            if any(part in self.ignored for part in relative.parts):
++                continue
++            if suffix is None or path.suffix.lower() == suffix:
++                yield path
++
++    def audit(self) -> dict[str, object]:
++        self.check_required_files()
++        self.check_json()
++        self.check_html()
++        self.check_internal_references()
++        self.check_css_assets()
++        self.check_sitemap()
++        self.check_manifest()
++        self.check_service_worker()
++        counts = Counter(item.severity for item in self.findings)
++        return {
++            "release": self.config.get("expectedRelease"),
++            "root": str(self.root),
++            "status": "FAIL" if counts["error"] else "PASS",
++            "summary": {
++                "errors": counts["error"],
++                "warnings": counts["warning"],
++                "htmlFiles": len(self.pages),
++                "jsonFiles": sum(1 for _ in self.files(".json"))
++            },
++            "findings": [asdict(item) for item in sorted(self.findings, key=lambda x: (x.severity, x.path, x.code))]
++        }
++
++    def check_required_files(self) -> None:
++        for relative in self.config.get("requiredFiles", []):
++            if not (self.root / relative).is_file():
++                self.add("error", "required-file-missing", relative, "Mandatory production file is missing.")
++
++    def check_json(self) -> None:
++        for path in self.files(".json"):
++            try:
++                json.loads(path.read_text(encoding="utf-8"))
++            except (UnicodeDecodeError, json.JSONDecodeError) as error:
++                self.add("error", "invalid-json", path, str(error))
++
++    def check_html(self) -> None:
++        canonical_optional = set(self.config.get("canonicalOptional", []))
++        canonical_origin = self.config.get("canonicalOrigin", "").rstrip("/")
++        for path in self.files(".html"):
++            try:
++                text = path.read_text(encoding="utf-8")
++                parser = PageParser()
++                parser.feed(text)
++                parser.close()
++            except (UnicodeDecodeError, Exception) as error:
++                self.add("error", "html-parse-failed", path, str(error))
++                continue
++            self.pages[path] = parser
++            relative = self.display(path)
++            if not parser.doctype:
++                self.add("error", "missing-doctype", path, "Expected <!doctype html>.")
++            if not parser.has_html or not parser.has_head or not parser.has_body:
++                self.add("error", "html-structure", path, "Page must contain html, head and body elements.")
++            if not parser.title:
++                self.add("error", "missing-title", path, "Page has no non-empty title.")
++            if not parser.html_lang:
++                self.add("error", "missing-root-language", path, "The html element has no lang attribute.")
++            elif TAMIL_RE.search(text) and parser.html_lang not in {"ta", "ta-in"}:
++                self.add("error", "tamil-language-mismatch", path, f"Tamil content uses root language {parser.html_lang!r}.")
++            if relative not in canonical_optional:
++                if len(parser.canonicals) != 1:
++                    self.add("error", "canonical-count", path, f"Expected one canonical URL; found {len(parser.canonicals)}.")
++                elif not parser.canonicals[0].startswith(canonical_origin + "/") and parser.canonicals[0] != canonical_origin:
++                    self.add("error", "canonical-origin", path, f"Canonical must use {canonical_origin}.")
++            for canonical in parser.canonicals:
++                if canonical:
++                    self.canonicals.setdefault(canonical, []).append(relative)
++        for canonical, paths in self.canonicals.items():
++            if len(paths) > 1:
++                self.add("error", "duplicate-canonical", ", ".join(paths), f"Canonical {canonical} is used by multiple pages.")
++
++    def resolve_local(self, source: Path, reference: str) -> Path | None:
++        reference = reference.strip()
++        if not reference or reference.startswith("#") or reference.startswith("//"):
++            return None
++        parsed = urlsplit(reference)
++        if parsed.scheme.lower() in SKIP_SCHEMES or parsed.netloc:
++            return None
++        raw_path = unquote(parsed.path)
++        if not raw_path:
++            return None
++        if raw_path.startswith("/"):
++            target = self.root / raw_path.lstrip("/")
++        else:
++            target = source.parent / raw_path
++        if raw_path.endswith("/") or target.is_dir():
++            target = target / "index.html"
++        return target.resolve()
++
++    def check_internal_references(self) -> None:
++        for page, parser in self.pages.items():
++            for reference in parser.references:
++                target = self.resolve_local(page, reference)
++                if target is not None and not target.is_file():
++                    self.add("error", "broken-internal-reference", page, f"{reference} resolves to missing {self.display(target)}.")
++
++    def check_css_assets(self) -> None:
++        for stylesheet in self.files(".css"):
++            try:
++                text = stylesheet.read_text(encoding="utf-8")
++            except UnicodeDecodeError as error:
++                self.add("error", "css-decode-failed", stylesheet, str(error))
++                continue
++            for _, reference in CSS_URL_RE.findall(text):
++                target = self.resolve_local(stylesheet, reference)
++                if target is not None and not target.is_file():
++                    self.add("error", "broken-css-asset", stylesheet, f"{reference} resolves to missing {self.display(target)}.")
++
++    def check_sitemap(self) -> None:
++        sitemap = self.root / "sitemap.xml"
++        if not sitemap.is_file():
++            return
++        try:
++            tree = ET.parse(sitemap)
++        except ET.ParseError as error:
++            self.add("error", "invalid-sitemap", sitemap, str(error))
++            return
++        namespace = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
++        locations = [node.text.strip() for node in tree.findall(".//sm:loc", namespace) if node.text and node.text.strip()]
++        for value, count in Counter(locations).items():
++            if count > 1:
++                self.add("error", "duplicate-sitemap-url", sitemap, value)
++        origin = self.config.get("canonicalOrigin", "").rstrip("/")
++        local_routes: set[str] = set()
++        for location in locations:
++            if not location.startswith(origin):
++                self.add("error", "sitemap-origin", sitemap, f"Unexpected origin: {location}")
++                continue
++            path = urlsplit(location).path
++            local_routes.add(path)
++            target = self.root / (path.lstrip("/") or "index.html")
++            if path.endswith("/") and path != "/":
++                target = target / "index.html"
++            if not target.is_file():
++                self.add("error", "sitemap-target-missing", sitemap, f"{location} maps to missing {self.display(target)}.")
++        for page in self.pages:
++            relative = self.display(page)
++            if relative in set(self.config.get("canonicalOptional", [])) or "noindex" in self.pages[page].robots:
++                continue
++            route = "/" if relative == "index.html" else "/" + relative
++            if route not in local_routes:
++                self.add("warning", "page-not-in-sitemap", page, "Indexable HTML page is absent from sitemap.xml.")
++
++    def check_manifest(self) -> None:
++        manifest = self.root / "manifest.json"
++        if not manifest.is_file():
++            return
++        try:
++            payload = json.loads(manifest.read_text(encoding="utf-8"))
++        except (UnicodeDecodeError, json.JSONDecodeError):
++            return
++        for icon in payload.get("icons", []):
++            source = icon.get("src") if isinstance(icon, dict) else None
++            if source:
++                target = self.resolve_local(manifest, source)
++                if target is not None and not target.is_file():
++                    self.add("error", "manifest-icon-missing", manifest, f"{source} resolves to missing {self.display(target)}.")
++
++    def check_service_worker(self) -> None:
++        worker = self.root / "service-worker.js"
++        if not worker.is_file():
++            return
++        text = worker.read_text(encoding="utf-8")
++        expected = str(self.config.get("expectedRelease", ""))
++        if not re.search(rf"const\s+RELEASE\s*=\s*['\"]{re.escape(expected)}['\"]", text):
++            self.add("error", "service-worker-release", worker, f"Expected RELEASE {expected}.")
++        if re.search(r"cache\.addAll\(\s*PRECACHE_URLS\s*\)", text):
++            self.add("error", "atomic-complete-precache", worker, "Complete optional precache must not be installed atomically.")
++        urls = SW_STRING_RE.findall(text[text.find("const PRECACHE_URLS"):text.find("const cacheOptionalAssets")])
++        for value, count in Counter(urls).items():
++            if count > 1:
++                self.add("error", "duplicate-precache-url", worker, value)
++        for url in urls:
++            target = self.root / (url.lstrip("/") or "index.html")
++            if not target.is_file():
++                self.add("error", "precache-target-missing", worker, f"{url} maps to missing {self.display(target)}.")
++
++
++def write_markdown(report: dict[str, object], path: Path) -> None:
++    summary = report["summary"]
++    lines = [
++        f"# Static Site Integrity — Release {report['release']}",
++        "",
++        f"- Status: **{report['status']}**",
++        f"- Errors: **{summary['errors']}**",
++        f"- Warnings: **{summary['warnings']}**",
++        f"- HTML files scanned: **{summary['htmlFiles']}**",
++        f"- JSON files scanned: **{summary['jsonFiles']}**",
++        "",
++        "## Findings",
++        ""
++    ]
++    findings = report["findings"]
++    if findings:
++        lines.extend(f"- **{item['severity'].upper()} · {item['code']} · {item['path']}** — {item['message']}" for item in findings)
++    else:
++        lines.append("No findings.")
++    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
++
++
++def main(argv: list[str] | None = None) -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", type=Path, default=Path.cwd())
++    parser.add_argument("--config", type=Path, default=Path("quality/site-audit-config.json"))
++    parser.add_argument("--json-report", type=Path, default=Path("artifacts/site-audit.json"))
++    parser.add_argument("--markdown-report", type=Path, default=Path("artifacts/site-audit.md"))
++    args = parser.parse_args(argv)
++    root = args.root.resolve()
++    config = args.config if args.config.is_absolute() else root / args.config
++    audit = SiteAudit(root, config)
++    report = audit.audit()
++    json_report = args.json_report if args.json_report.is_absolute() else root / args.json_report
++    markdown_report = args.markdown_report if args.markdown_report.is_absolute() else root / args.markdown_report
++    json_report.parent.mkdir(parents=True, exist_ok=True)
++    markdown_report.parent.mkdir(parents=True, exist_ok=True)
++    json_report.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
++    write_markdown(report, markdown_report)
++    print(json.dumps(report["summary"], indent=2))
++    return 1 if report["status"] == "FAIL" else 0
++
++
++if __name__ == "__main__":
++    sys.exit(main())
+--- /dev/null
++++ release211/tools/production_smoke.py
+@@ -0,0 +1,65 @@
++#!/usr/bin/env python3
++"""Observe the deployed custom domain and fail when Release 211 is not live."""
++from __future__ import annotations
++
++import argparse
++import json
++import time
++import urllib.error
++import urllib.request
++from pathlib import Path
++
++CHECKS = [
++    ("/", 'data-release="211"'),
++    ("/service-worker.js", "const RELEASE = '211';"),
++    ("/panchangam-framework.html", "Panchangam Data Framework"),
++    ("/data/panchangam-framework.json", '"release": 211'),
++    ("/version-3.html", "Version 3"),
++    ("/knowledge-graph-phase-4.html", "Knowledge Graph"),
++    ("/sitemap.xml", "<urlset")
++]
++
++
++def fetch(url: str, timeout: int) -> tuple[int, str]:
++    request = urllib.request.Request(url, headers={"User-Agent": "OmSaravanaBhava-Production-Smoke/211", "Cache-Control": "no-cache"})
++    with urllib.request.urlopen(request, timeout=timeout) as response:
++        return response.status, response.read().decode("utf-8", errors="replace")
++
++
++def run(origin: str, retries: int, delay: int, timeout: int) -> dict[str, object]:
++    last_results: list[dict[str, object]] = []
++    for attempt in range(1, retries + 1):
++        results = []
++        for path, marker in CHECKS:
++            url = origin.rstrip("/") + path
++            try:
++                status, body = fetch(url, timeout)
++                ok = 200 <= status < 400 and marker in body
++                results.append({"url": url, "status": status, "marker": marker, "ok": ok})
++            except (urllib.error.URLError, TimeoutError, OSError) as error:
++                results.append({"url": url, "status": None, "marker": marker, "ok": False, "error": str(error)})
++        last_results = results
++        if all(item["ok"] for item in results):
++            return {"status": "PASS", "attempt": attempt, "checks": results}
++        if attempt < retries:
++            time.sleep(delay)
++    return {"status": "FAIL", "attempt": retries, "checks": last_results}
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--origin", default="https://omsaravanabhava.org")
++    parser.add_argument("--retries", type=int, default=12)
++    parser.add_argument("--delay", type=int, default=20)
++    parser.add_argument("--timeout", type=int, default=20)
++    parser.add_argument("--report", type=Path, default=Path("artifacts/production-smoke.json"))
++    args = parser.parse_args()
++    report = run(args.origin, args.retries, args.delay, args.timeout)
++    args.report.parent.mkdir(parents=True, exist_ok=True)
++    args.report.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
++    print(json.dumps(report, indent=2))
++    return 0 if report["status"] == "PASS" else 1
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+--- /dev/null
++++ release211/tests/test_site_audit.py
+@@ -0,0 +1,82 @@
++from __future__ import annotations
++
++import json
++import tempfile
++import unittest
++from pathlib import Path
++
++from tools.site_audit import SiteAudit
++
++
++class SiteAuditTests(unittest.TestCase):
++    def make_repo(self) -> tuple[tempfile.TemporaryDirectory, Path]:
++        temporary = tempfile.TemporaryDirectory()
++        root = Path(temporary.name)
++        for directory in ("quality", "assets/css", "assets/js", "icons", "data"):
++            (root / directory).mkdir(parents=True, exist_ok=True)
++        config = {
++            "expectedRelease": "211",
++            "canonicalOrigin": "https://omsaravanabhava.org",
++            "requiredFiles": ["index.html", "404.html", "offline.html", "manifest.json", "service-worker.js", "sitemap.xml", "favicon.svg", "assets/css/osb44.css", "assets/js/pwa-register.js", "icons/icon-192.png", "icons/icon-512.png"],
++            "canonicalOptional": ["404.html", "offline.html"],
++            "ignoredDirectories": [".git", ".github"]
++        }
++        (root / "quality/site-audit-config.json").write_text(json.dumps(config), encoding="utf-8")
++        (root / "404.html").write_text('<!doctype html><html lang="ta"><head><title>404</title></head><body>இல்லை</body></html>', encoding="utf-8")
++        (root / "offline.html").write_text('<!doctype html><html lang="ta"><head><title>Offline</title></head><body>இணையமில்லை</body></html>', encoding="utf-8")
++        (root / "favicon.svg").write_text('<svg xmlns="http://www.w3.org/2000/svg"/>', encoding="utf-8")
++        (root / "assets/css/osb44.css").write_text('body{display:block}', encoding="utf-8")
++        (root / "assets/js/pwa-register.js").write_text('void 0;', encoding="utf-8")
++        (root / "icons/icon-192.png").write_bytes(b'png')
++        (root / "icons/icon-512.png").write_bytes(b'png')
++        (root / "manifest.json").write_text(json.dumps({"icons": [{"src": "/icons/icon-192.png"}, {"src": "/icons/icon-512.png"}]}), encoding="utf-8")
++        (root / "data/example.json").write_text('[]', encoding="utf-8")
++        (root / "index.html").write_text('''<!doctype html><html lang="ta"><head><title>Home</title><link rel="canonical" href="https://omsaravanabhava.org/"></head><body>ஓம் <a href="about.html">About</a></body></html>''', encoding="utf-8")
++        (root / "about.html").write_text('''<!doctype html><html lang="ta"><head><title>About</title><link rel="canonical" href="https://omsaravanabhava.org/about.html"></head><body>முருகன்</body></html>''', encoding="utf-8")
++        (root / "sitemap.xml").write_text('''<?xml version="1.0"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://omsaravanabhava.org/</loc></url><url><loc>https://omsaravanabhava.org/about.html</loc></url></urlset>''', encoding="utf-8")
++        (root / "service-worker.js").write_text('''const RELEASE = '211'; const CORE_PRECACHE_URLS = ["/", "/index.html"]; const PRECACHE_URLS = ["/", "/index.html", "/about.html"]; self.addEventListener('install', event => event.waitUntil(caches.open('x').then(cache => cache.addAll(CORE_PRECACHE_URLS)))); const cacheOptionalAssets = async cache => {};''', encoding="utf-8")
++        return temporary, root
++
++    def audit(self, root: Path):
++        return SiteAudit(root, root / "quality/site-audit-config.json").audit()
++
++    def test_valid_fixture_passes(self):
++        temporary, root = self.make_repo()
++        self.addCleanup(temporary.cleanup)
++        report = self.audit(root)
++        self.assertEqual(report["status"], "PASS", report["findings"])
++
++    def test_broken_internal_link_fails(self):
++        temporary, root = self.make_repo()
++        self.addCleanup(temporary.cleanup)
++        (root / "index.html").write_text((root / "index.html").read_text().replace('about.html', 'missing.html'), encoding="utf-8")
++        report = self.audit(root)
++        self.assertTrue(any(item["code"] == "broken-internal-reference" for item in report["findings"]))
++        self.assertEqual(report["status"], "FAIL")
++
++    def test_malformed_json_fails(self):
++        temporary, root = self.make_repo()
++        self.addCleanup(temporary.cleanup)
++        (root / "data/example.json").write_text('{broken', encoding="utf-8")
++        report = self.audit(root)
++        self.assertTrue(any(item["code"] == "invalid-json" for item in report["findings"]))
++
++    def test_duplicate_canonical_fails(self):
++        temporary, root = self.make_repo()
++        self.addCleanup(temporary.cleanup)
++        about = (root / "about.html").read_text().replace('https://omsaravanabhava.org/about.html', 'https://omsaravanabhava.org/')
++        (root / "about.html").write_text(about, encoding="utf-8")
++        report = self.audit(root)
++        self.assertTrue(any(item["code"] == "duplicate-canonical" for item in report["findings"]))
++
++    def test_missing_precache_target_fails(self):
++        temporary, root = self.make_repo()
++        self.addCleanup(temporary.cleanup)
++        worker = (root / "service-worker.js").read_text().replace('"/about.html"', '"/missing.html"')
++        (root / "service-worker.js").write_text(worker, encoding="utf-8")
++        report = self.audit(root)
++        self.assertTrue(any(item["code"] == "precache-target-missing" for item in report["findings"]))
++
++
++if __name__ == "__main__":
++    unittest.main()
+--- /dev/null
++++ release211/quality/site-audit-config.json
+@@ -0,0 +1,29 @@
++{
++  "expectedRelease": "211",
++  "canonicalOrigin": "https://omsaravanabhava.org",
++  "requiredFiles": [
++    "index.html",
++    "404.html",
++    "offline.html",
++    "manifest.json",
++    "service-worker.js",
++    "sitemap.xml",
++    "favicon.svg",
++    "assets/css/osb44.css",
++    "assets/js/pwa-register.js",
++    "icons/icon-192.png",
++    "icons/icon-512.png",
++    "panchangam-framework.html",
++    "data/panchangam-framework.json"
++  ],
++  "canonicalOptional": [
++    "404.html",
++    "offline.html"
++  ],
++  "ignoredDirectories": [
++    ".git",
++    ".github",
++    "node_modules",
++    "vendor"
++  ]
++}
+--- /dev/null
++++ release211/manifest-release-211.json
+@@ -0,0 +1,30 @@
++{
++  "project": "OmSaravanaBhava",
++  "release": 211,
++  "name": "Production Integrity Recovery",
++  "generated": "2026-07-14",
++  "baseCommit": "6ff49f60695fb3a970fa8b294d2f744c00768487",
++  "validationStatus": "PACKAGE_TESTS_PASS_REPOSITORY_AUDIT_PENDING",
++  "productionFiles": {
++    "modified": [
++      "index.html",
++      "platform.html",
++      "assets/js/premium-home.js",
++      "service-worker.js"
++    ],
++    "added": [
++      "panchangam-framework.html",
++      "data/panchangam-framework.json"
++    ]
++  },
++  "qualityFiles": [
++    ".github/workflows/static-site-integrity.yml",
++    ".github/workflows/production-smoke.yml",
++    "tools/__init__.py",
++    "tools/site_audit.py",
++    "tools/production_smoke.py",
++    "tests/test_site_audit.py",
++    "quality/site-audit-config.json"
++  ],
++  "knownBoundary": "Release 211 is not production-certified until the repository-wide GitHub Actions audit and deployed production smoke both pass."
++}

@@ -1,4 +1,4 @@
-const RELEASE = '210';
+const RELEASE = '211';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
@@ -6,6 +6,22 @@ const CACHE_PREFIX = 'osb-';
 const OFFLINE_URL = '/offline.html';
 const MAX_RUNTIME_ENTRIES = 60;
 const MAX_DATA_ENTRIES = 20;
+
+// Core shell failures are blocking. Optional editorial/module failures are logged
+// individually so one missing page cannot invalidate the complete PWA install.
+const CORE_PRECACHE_URLS = [
+  "/",
+  "/index.html",
+  "/offline.html",
+  "/404.html",
+  "/assets/css/osb44.css",
+  "/assets/js/pwa-register.js",
+  "/favicon.svg",
+  "/manifest.json",
+  "/icons/icon-192.png",
+  "/icons/icon-512.png"
+];
+
 const PRECACHE_URLS = [
   "/",
   "/index.html",
@@ -171,11 +187,30 @@ const PRECACHE_URLS = [
   "/assets/js/premium-home.js"
 ];
 
+const cacheOptionalAssets = async cache => {
+  const optionalUrls = PRECACHE_URLS.filter(url => !CORE_PRECACHE_URLS.includes(url));
+  const failures = [];
+  await Promise.all(optionalUrls.map(async url => {
+    try {
+      const response = await fetch(url, {cache: 'reload'});
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      await cache.put(url, response);
+    } catch (error) {
+      failures.push(url);
+      console.warn(`[OmSaravanaBhava] Optional precache skipped: ${url}`, error);
+    }
+  }));
+  if (failures.length) {
+    console.warn(`[OmSaravanaBhava] ${failures.length} optional asset(s) were not precached.`, failures);
+  }
+};
+
 self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(STATIC_CACHE)
-      .then(cache => cache.addAll(PRECACHE_URLS))
-  );
+  event.waitUntil((async () => {
+    const cache = await caches.open(STATIC_CACHE);
+    await cache.addAll(CORE_PRECACHE_URLS);
+    await cacheOptionalAssets(cache);
+  })());
 });
 
 self.addEventListener('activate', event => {
