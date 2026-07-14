@@ -725,5 +725,18 @@
       "Mayil"
     ],
     "status": "source-register"
+  },
+  {
+    "kind": "Knowledge Graph",
+    "id": "murugan-knowledge-graph",
+    "titleTa": "முருகன் அறிவுக் கோப்பு",
+    "titleEn": "Murugan Knowledge Graph",
+    "summary": "Relationship graph for Murugan, symbols, abodes and literature.",
+    "route": "knowledge-graph.html",
+    "tags": [
+      "Graph",
+      "Murugan"
+    ],
+    "status": "published"
   }
 ]

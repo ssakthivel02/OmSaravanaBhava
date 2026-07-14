@@ -1,0 +1,79 @@
+{
+  "nodes": [
+    {
+      "id": "murugan",
+      "type": "Deity",
+      "labelTa": "முருகன்",
+      "labelEn": "Murugan"
+    },
+    {
+      "id": "vel",
+      "type": "Symbol",
+      "labelTa": "வேல்",
+      "labelEn": "Vel"
+    },
+    {
+      "id": "mayil",
+      "type": "Symbol",
+      "labelTa": "மயில்",
+      "labelEn": "Peacock"
+    },
+    {
+      "id": "arupadai-veedu",
+      "type": "Concept",
+      "labelTa": "ஆறுபடை வீடு",
+      "labelEn": "Six Sacred Abodes"
+    },
+    {
+      "id": "thiruppugazh",
+      "type": "Literature",
+      "labelTa": "திருப்புகழ்",
+      "labelEn": "Thiruppugazh"
+    },
+    {
+      "id": "kanda-sashti-kavasam",
+      "type": "Literature",
+      "labelTa": "கந்த சஷ்டி கவசம்",
+      "labelEn": "Kanda Sashti Kavasam"
+    },
+    {
+      "id": "skanda-guru-kavasam",
+      "type": "Literature",
+      "labelTa": "ஸ்கந்த குரு கவசம்",
+      "labelEn": "Skanda Guru Kavasam"
+    }
+  ],
+  "edges": [
+    {
+      "from": "murugan",
+      "to": "vel",
+      "relation": "bears"
+    },
+    {
+      "from": "murugan",
+      "to": "mayil",
+      "relation": "rides"
+    },
+    {
+      "from": "murugan",
+      "to": "arupadai-veedu",
+      "relation": "worshipped-at"
+    },
+    {
+      "from": "thiruppugazh",
+      "to": "murugan",
+      "relation": "praises"
+    },
+    {
+      "from": "kanda-sashti-kavasam",
+      "to": "murugan",
+      "relation": "invokes"
+    },
+    {
+      "from": "skanda-guru-kavasam",
+      "to": "murugan",
+      "relation": "invokes-as-guru"
+    }
+  ],
+  "release": 169
+}
