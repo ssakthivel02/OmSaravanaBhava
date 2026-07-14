@@ -1,0 +1,22 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 203,
+  "name": "Temple Encyclopedia Phase 4",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 4,
+  "modified": [
+    "data/temple-profiles.json",
+    "service-worker.js",
+    "sitemap.xml"
+  ],
+  "added": [
+    "temple-travel-guidance.html"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Temple profiles": 10,
+    "Stale timing claims": "Avoided"
+  }
+}

@@ -1,4 +1,4 @@
-const RELEASE = '202';
+const RELEASE = '203';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
@@ -155,7 +155,8 @@ const PRECACHE_URLS = [
   "/version-3.html",
   "/data/version-3-status.json",
   "/thiruppugazh-volume-6.html",
-  "/thiruppugazh-volume-7.html"
+  "/thiruppugazh-volume-7.html",
+  "/temple-travel-guidance.html"
 ];
 
 self.addEventListener('install', event => {

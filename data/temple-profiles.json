@@ -13,6 +13,12 @@
       "sacredWater": "source-review-required",
       "festivals": "linked-where-published",
       "literature": "linked-where-published"
+    },
+    "travellerGuidance": {
+      "timings": "verify-with-official-temple-authority",
+      "dressCode": "verify-with-official-temple-authority",
+      "accessibility": "source-review-required",
+      "transport": "external-planning-required"
     }
   },
   {
@@ -29,6 +35,12 @@
       "sacredWater": "source-review-required",
       "festivals": "linked-where-published",
       "literature": "linked-where-published"
+    },
+    "travellerGuidance": {
+      "timings": "verify-with-official-temple-authority",
+      "dressCode": "verify-with-official-temple-authority",
+      "accessibility": "source-review-required",
+      "transport": "external-planning-required"
     }
   },
   {
@@ -45,6 +57,12 @@
       "sacredWater": "source-review-required",
       "festivals": "linked-where-published",
       "literature": "linked-where-published"
+    },
+    "travellerGuidance": {
+      "timings": "verify-with-official-temple-authority",
+      "dressCode": "verify-with-official-temple-authority",
+      "accessibility": "source-review-required",
+      "transport": "external-planning-required"
     }
   },
   {
@@ -61,6 +79,12 @@
       "sacredWater": "source-review-required",
       "festivals": "linked-where-published",
       "literature": "linked-where-published"
+    },
+    "travellerGuidance": {
+      "timings": "verify-with-official-temple-authority",
+      "dressCode": "verify-with-official-temple-authority",
+      "accessibility": "source-review-required",
+      "transport": "external-planning-required"
     }
   },
   {
@@ -77,6 +101,12 @@
       "sacredWater": "source-review-required",
       "festivals": "linked-where-published",
       "literature": "linked-where-published"
+    },
+    "travellerGuidance": {
+      "timings": "verify-with-official-temple-authority",
+      "dressCode": "verify-with-official-temple-authority",
+      "accessibility": "source-review-required",
+      "transport": "external-planning-required"
     }
   },
   {
@@ -93,6 +123,12 @@
       "sacredWater": "source-review-required",
       "festivals": "linked-where-published",
       "literature": "linked-where-published"
+    },
+    "travellerGuidance": {
+      "timings": "verify-with-official-temple-authority",
+      "dressCode": "verify-with-official-temple-authority",
+      "accessibility": "source-review-required",
+      "transport": "external-planning-required"
     }
   },
   {
@@ -109,6 +145,12 @@
       "sacredWater": "source-review-required",
       "festivals": "linked-where-published",
       "literature": "linked-where-published"
+    },
+    "travellerGuidance": {
+      "timings": "verify-with-official-temple-authority",
+      "dressCode": "verify-with-official-temple-authority",
+      "accessibility": "source-review-required",
+      "transport": "external-planning-required"
     }
   },
   {
@@ -125,6 +167,12 @@
       "sacredWater": "source-review-required",
       "festivals": "linked-where-published",
       "literature": "linked-where-published"
+    },
+    "travellerGuidance": {
+      "timings": "verify-with-official-temple-authority",
+      "dressCode": "verify-with-official-temple-authority",
+      "accessibility": "source-review-required",
+      "transport": "external-planning-required"
     }
   },
   {
@@ -141,6 +189,12 @@
       "sacredWater": "source-review-required",
       "festivals": "linked-where-published",
       "literature": "linked-where-published"
+    },
+    "travellerGuidance": {
+      "timings": "verify-with-official-temple-authority",
+      "dressCode": "verify-with-official-temple-authority",
+      "accessibility": "source-review-required",
+      "transport": "external-planning-required"
     }
   },
   {
@@ -157,6 +211,12 @@
       "sacredWater": "source-review-required",
       "festivals": "linked-where-published",
       "literature": "linked-where-published"
+    },
+    "travellerGuidance": {
+      "timings": "verify-with-official-temple-authority",
+      "dressCode": "verify-with-official-temple-authority",
+      "accessibility": "source-review-required",
+      "transport": "external-planning-required"
     }
   }
 ]
