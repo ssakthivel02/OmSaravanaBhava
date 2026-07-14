@@ -1,4 +1,4 @@
-const RELEASE = '213';
+const RELEASE = '214';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
@@ -189,7 +189,10 @@ const PRECACHE_URLS = [
   "/data/site-routes.json",
   "/assets/js/site-directory.js",
   "/assets/css/site-directory.css",
-  "/assets/js/404-suggestions.js"
+  "/assets/js/404-suggestions.js",
+  "/explore.html",
+  "/data/navigation-sections.json",
+  "/assets/js/explore-navigation.js"
 ];
 
 const cacheOptionalAssets = async cache => {

@@ -15,7 +15,7 @@ class SiteAuditTests(unittest.TestCase):
         for directory in ("quality", "assets/css", "assets/js", "icons", "data"):
             (root / directory).mkdir(parents=True, exist_ok=True)
         config = {
-            "expectedRelease": "212",
+            "expectedRelease": "214",
             "canonicalOrigin": "https://omsaravanabhava.org",
             "requiredFiles": ["index.html", "404.html", "offline.html", "manifest.json", "service-worker.js", "sitemap.xml", "favicon.svg", "assets/css/osb44.css", "assets/js/pwa-register.js", "icons/icon-192.png", "icons/icon-512.png"],
             "canonicalOptional": ["404.html", "offline.html"],
@@ -35,7 +35,7 @@ class SiteAuditTests(unittest.TestCase):
         (root / "index.html").write_text('''<!doctype html><html lang="ta"><head><title>Home</title><link rel="canonical" href="https://omsaravanabhava.org/"></head><body>ஓம் <a href="about.html">About</a></body></html>''', encoding="utf-8")
         (root / "about.html").write_text('''<!doctype html><html lang="ta"><head><title>About</title><link rel="canonical" href="https://omsaravanabhava.org/about.html"></head><body>முருகன்</body></html>''', encoding="utf-8")
         (root / "sitemap.xml").write_text('''<?xml version="1.0"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://omsaravanabhava.org/</loc></url><url><loc>https://omsaravanabhava.org/about.html</loc></url></urlset>''', encoding="utf-8")
-        (root / "service-worker.js").write_text('''const RELEASE = '212'; const CORE_PRECACHE_URLS = ["/", "/index.html"]; const PRECACHE_URLS = ["/", "/index.html", "/about.html"]; self.addEventListener('install', event => event.waitUntil(caches.open('x').then(cache => cache.addAll(CORE_PRECACHE_URLS)))); const cacheOptionalAssets = async cache => {};''', encoding="utf-8")
+        (root / "service-worker.js").write_text('''const RELEASE = '214'; const CORE_PRECACHE_URLS = ["/", "/index.html"]; const PRECACHE_URLS = ["/", "/index.html", "/about.html"]; self.addEventListener('install', event => event.waitUntil(caches.open('x').then(cache => cache.addAll(CORE_PRECACHE_URLS)))); const cacheOptionalAssets = async cache => {};''', encoding="utf-8")
         return temporary, root
 
     def audit(self, root: Path):

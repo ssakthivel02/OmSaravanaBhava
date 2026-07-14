@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Observe the deployed custom domain and fail when Release 212 is not live."""
+"""Observe the deployed custom domain and fail when Release 214 is not live."""
 from __future__ import annotations
 
 import argparse
@@ -10,18 +10,24 @@ import urllib.request
 from pathlib import Path
 
 CHECKS = [
-    ("/", 'data-release="211"'),
-    ("/service-worker.js", "const RELEASE = '211';"),
-    ("/panchangam-framework.html", "Panchangam Data Framework"),
-    ("/data/panchangam-framework.json", '"release": 211'),
-    ("/version-3.html", "Version 3"),
-    ("/knowledge-graph-phase-4.html", "Knowledge Graph"),
-    ("/sitemap.xml", "<urlset")
+    ("/", 'data-release="214"'),
+    ("/service-worker.js", "const RELEASE = '214';"),
+    ("/explore.html", "Explore OmSaravanaBhava"),
+    ("/data/navigation-sections.json", '"release": 214'),
+    ("/site-directory.html", "Complete Site Route Directory"),
+    ("/404.html", "Local route recovery"),
+    ("/sitemap.xml", "https://omsaravanabhava.org/explore.html")
 ]
 
 
 def fetch(url: str, timeout: int) -> tuple[int, str]:
-    request = urllib.request.Request(url, headers={"User-Agent": "OmSaravanaBhava-Production-Smoke/212", "Cache-Control": "no-cache"})
+    request = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": "OmSaravanaBhava-Production-Smoke/214",
+            "Cache-Control": "no-cache"
+        }
+    )
     with urllib.request.urlopen(request, timeout=timeout) as response:
         return response.status, response.read().decode("utf-8", errors="replace")
 
@@ -37,7 +43,13 @@ def run(origin: str, retries: int, delay: int, timeout: int) -> dict[str, object
                 ok = 200 <= status < 400 and marker in body
                 results.append({"url": url, "status": status, "marker": marker, "ok": ok})
             except (urllib.error.URLError, TimeoutError, OSError) as error:
-                results.append({"url": url, "status": None, "marker": marker, "ok": False, "error": str(error)})
+                results.append({
+                    "url": url,
+                    "status": None,
+                    "marker": marker,
+                    "ok": False,
+                    "error": str(error)
+                })
         last_results = results
         if all(item["ok"] for item in results):
             return {"status": "PASS", "attempt": attempt, "checks": results}

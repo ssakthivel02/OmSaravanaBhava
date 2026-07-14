@@ -1,14 +1,15 @@
 {
-  "release": 212,
+  "release": 214,
   "generated": "2026-07-14",
-  "scope": "Public HTML routes represented by the Release 212 sitemap and route directory.",
+  "scope": "Public HTML routes represented by the Release 214 sitemap and route directory.",
   "statusMeaning": {
     "published": "Route exists; content-specific verification remains governed by the page and source records.",
     "partial-reviewed": "Only a bounded reviewed extract is published.",
     "source-register": "Route documents sources, coverage or editorial status.",
     "framework": "Architecture or data contract only; no live computation is claimed.",
     "milestone": "Checkpoint or audit page, not independent production certification.",
-    "directory": "Navigation and route-discovery utility."
+    "directory": "Navigation and route-discovery utility.",
+    "navigation": "Information-architecture gateway to existing published routes."
   },
   "routes": [
     {
@@ -52,20 +53,28 @@
       "summary": "Published devotional route in the OmSaravanaBhava static platform."
     },
     {
-      "path": "/slokas/kanda-sashti-kavasam.html",
-      "titleTa": "",
-      "titleEn": "Kanda Sashti Kavasam",
-      "category": "Devotional",
-      "status": "partial-reviewed",
-      "summary": "Published route containing a bounded, reviewed extract rather than a complete critical edition."
-    },
-    {
       "path": "/murugan-mantras.html",
       "titleTa": "முருகன் மந்திரங்கள்",
       "titleEn": "Murugan Mantras",
       "category": "Devotional",
       "status": "published",
       "summary": "Published devotional route in the OmSaravanaBhava static platform."
+    },
+    {
+      "path": "/sloka-library.html",
+      "titleTa": "ஸ்லோக நூலகம்",
+      "titleEn": "Sloka Library",
+      "category": "Devotional",
+      "status": "published",
+      "summary": "Published devotional route in the OmSaravanaBhava static platform."
+    },
+    {
+      "path": "/slokas/kanda-sashti-kavasam.html",
+      "titleTa": "",
+      "titleEn": "Kanda Sashti Kavasam",
+      "category": "Devotional",
+      "status": "partial-reviewed",
+      "summary": "Published route containing a bounded, reviewed extract rather than a complete critical edition."
     },
     {
       "path": "/slokas/om-saravana-bhava.html",
@@ -84,14 +93,6 @@
       "summary": "Published route containing a bounded, reviewed extract rather than a complete critical edition."
     },
     {
-      "path": "/sloka-library.html",
-      "titleTa": "ஸ்லோக நூலகம்",
-      "titleEn": "Sloka Library",
-      "category": "Devotional",
-      "status": "published",
-      "summary": "Published devotional route in the OmSaravanaBhava static platform."
-    },
-    {
       "path": "/slokas/subramanya-gayatri.html",
       "titleTa": "",
       "titleEn": "Subramanya Gayatri",
@@ -108,6 +109,14 @@
       "summary": "Published devotional route in the OmSaravanaBhava static platform."
     },
     {
+      "path": "/explore.html",
+      "titleTa": "ஆராய்ந்து காணுங்கள்",
+      "titleEn": "Explore OmSaravanaBhava",
+      "category": "Directory",
+      "status": "navigation",
+      "summary": "Structured navigation gateway organised by purpose and audience."
+    },
+    {
       "path": "/site-directory.html",
       "titleTa": "தள வழித்தட அட்டவணை",
       "titleEn": "Complete Site Route Directory",
@@ -116,9 +125,9 @@
       "summary": "Human-readable and machine-readable directory of public site routes."
     },
     {
-      "path": "/festivals/aadi-krittikai.html",
-      "titleTa": "",
-      "titleEn": "Aadi Krittikai",
+      "path": "/festival-intelligence.html",
+      "titleTa": "திருவிழா அறிவு",
+      "titleEn": "Festival Intelligence",
       "category": "Festivals",
       "status": "published",
       "summary": "Published festivals route in the OmSaravanaBhava static platform."
@@ -132,20 +141,12 @@
       "summary": "Published festivals route in the OmSaravanaBhava static platform."
     },
     {
-      "path": "/festival-intelligence.html",
-      "titleTa": "திருவிழா அறிவு",
-      "titleEn": "Festival Intelligence",
+      "path": "/festivals/aadi-krittikai.html",
+      "titleTa": "",
+      "titleEn": "Aadi Krittikai",
       "category": "Festivals",
       "status": "published",
       "summary": "Published festivals route in the OmSaravanaBhava static platform."
-    },
-    {
-      "path": "/panchangam-framework.html",
-      "titleTa": "பஞ்சாங்க தரவு கட்டமைப்பு",
-      "titleEn": "Panchangam Data Framework",
-      "category": "Festivals",
-      "status": "framework",
-      "summary": "Data contract and verification boundary; no live astronomical calculation is claimed."
     },
     {
       "path": "/festivals/panguni-uthiram.html",
@@ -172,6 +173,14 @@
       "summary": "Published festivals route in the OmSaravanaBhava static platform."
     },
     {
+      "path": "/panchangam-framework.html",
+      "titleTa": "பஞ்சாங்க தரவு கட்டமைப்பு",
+      "titleEn": "Panchangam Data Framework",
+      "category": "Festivals",
+      "status": "framework",
+      "summary": "Data contract and verification boundary; no live astronomical calculation is claimed."
+    },
+    {
       "path": "/",
       "titleTa": "ஓம் சரவணபவ",
       "titleEn": "Home",
@@ -183,14 +192,6 @@
       "path": "/cross-references.html",
       "titleTa": "குறுக்கு மேற்கோள்கள்",
       "titleEn": "Cross References",
-      "category": "Knowledge",
-      "status": "published",
-      "summary": "Published knowledge route in the OmSaravanaBhava static platform."
-    },
-    {
-      "path": "/knowledge-graph.html",
-      "titleTa": "அறிவு தொடர்புகள்",
-      "titleEn": "Knowledge Graph",
       "category": "Knowledge",
       "status": "published",
       "summary": "Published knowledge route in the OmSaravanaBhava static platform."
@@ -212,9 +213,9 @@
       "summary": "Published knowledge route in the OmSaravanaBhava static platform."
     },
     {
-      "path": "/murugan-timeline.html",
-      "titleTa": "முருகன் காலவரிசை",
-      "titleEn": "Murugan Timeline",
+      "path": "/knowledge-graph.html",
+      "titleTa": "அறிவு தொடர்புகள்",
+      "titleEn": "Knowledge Graph",
       "category": "Knowledge",
       "status": "published",
       "summary": "Published knowledge route in the OmSaravanaBhava static platform."
@@ -223,6 +224,14 @@
       "path": "/murugan-timeline-v2.html",
       "titleTa": "முருகன் காலவரிசை",
       "titleEn": "Murugan Timeline V2",
+      "category": "Knowledge",
+      "status": "published",
+      "summary": "Published knowledge route in the OmSaravanaBhava static platform."
+    },
+    {
+      "path": "/murugan-timeline.html",
+      "titleTa": "முருகன் காலவரிசை",
+      "titleEn": "Murugan Timeline",
       "category": "Knowledge",
       "status": "published",
       "summary": "Published knowledge route in the OmSaravanaBhava static platform."
@@ -324,17 +333,17 @@
       "summary": "Published literature route in the OmSaravanaBhava static platform."
     },
     {
-      "path": "/research-library.html",
-      "titleTa": "ஆராய்ச்சி நூலகம்",
-      "titleEn": "Research Library",
+      "path": "/literature/shanmuga-kavasam.html",
+      "titleTa": "",
+      "titleEn": "Shanmuga Kavasam",
       "category": "Literature",
       "status": "published",
       "summary": "Published literature route in the OmSaravanaBhava static platform."
     },
     {
-      "path": "/literature/shanmuga-kavasam.html",
+      "path": "/literature/thirumurugatruppadai-complete.html",
       "titleTa": "",
-      "titleEn": "Shanmuga Kavasam",
+      "titleEn": "Thirumurugatruppadai Complete Edition",
       "category": "Literature",
       "status": "published",
       "summary": "Published literature route in the OmSaravanaBhava static platform."
@@ -348,12 +357,68 @@
       "summary": "Published literature route in the OmSaravanaBhava static platform."
     },
     {
-      "path": "/literature/thirumurugatruppadai-complete.html",
+      "path": "/literature/vel-maaral.html",
       "titleTa": "",
-      "titleEn": "Thirumurugatruppadai Complete Edition",
+      "titleEn": "Vel Maaral",
       "category": "Literature",
       "status": "published",
       "summary": "Published literature route in the OmSaravanaBhava static platform."
+    },
+    {
+      "path": "/literature/vel-mayil-virutham.html",
+      "titleTa": "",
+      "titleEn": "Vel and Mayil Virutham",
+      "category": "Literature",
+      "status": "published",
+      "summary": "Published literature route in the OmSaravanaBhava static platform."
+    },
+    {
+      "path": "/research-library.html",
+      "titleTa": "ஆராய்ச்சி நூலகம்",
+      "titleEn": "Research Library",
+      "category": "Literature",
+      "status": "published",
+      "summary": "Published literature route in the OmSaravanaBhava static platform."
+    },
+    {
+      "path": "/thiruppugazh-volume-3.html",
+      "titleTa": "",
+      "titleEn": "Thiruppugazh Volume 3",
+      "category": "Literature",
+      "status": "source-register",
+      "summary": "Source, coverage or publication-status register supporting transparent editorial boundaries."
+    },
+    {
+      "path": "/thiruppugazh-volume-4.html",
+      "titleTa": "",
+      "titleEn": "Thiruppugazh Volume 4",
+      "category": "Literature",
+      "status": "source-register",
+      "summary": "Source, coverage or publication-status register supporting transparent editorial boundaries."
+    },
+    {
+      "path": "/thiruppugazh-volume-5.html",
+      "titleTa": "",
+      "titleEn": "Thiruppugazh Volume 5",
+      "category": "Literature",
+      "status": "source-register",
+      "summary": "Source, coverage or publication-status register supporting transparent editorial boundaries."
+    },
+    {
+      "path": "/thiruppugazh-volume-6.html",
+      "titleTa": "",
+      "titleEn": "Thiruppugazh Volume 6",
+      "category": "Literature",
+      "status": "source-register",
+      "summary": "Source, coverage or publication-status register supporting transparent editorial boundaries."
+    },
+    {
+      "path": "/thiruppugazh-volume-7.html",
+      "titleTa": "",
+      "titleEn": "Thiruppugazh Volume 7",
+      "category": "Literature",
+      "status": "source-register",
+      "summary": "Source, coverage or publication-status register supporting transparent editorial boundaries."
     },
     {
       "path": "/thiruppugazh.html",
@@ -460,62 +525,6 @@
       "summary": "Published literature route in the OmSaravanaBhava static platform."
     },
     {
-      "path": "/thiruppugazh-volume-3.html",
-      "titleTa": "",
-      "titleEn": "Thiruppugazh Volume 3",
-      "category": "Literature",
-      "status": "source-register",
-      "summary": "Source, coverage or publication-status register supporting transparent editorial boundaries."
-    },
-    {
-      "path": "/thiruppugazh-volume-4.html",
-      "titleTa": "",
-      "titleEn": "Thiruppugazh Volume 4",
-      "category": "Literature",
-      "status": "source-register",
-      "summary": "Source, coverage or publication-status register supporting transparent editorial boundaries."
-    },
-    {
-      "path": "/thiruppugazh-volume-5.html",
-      "titleTa": "",
-      "titleEn": "Thiruppugazh Volume 5",
-      "category": "Literature",
-      "status": "source-register",
-      "summary": "Source, coverage or publication-status register supporting transparent editorial boundaries."
-    },
-    {
-      "path": "/thiruppugazh-volume-6.html",
-      "titleTa": "",
-      "titleEn": "Thiruppugazh Volume 6",
-      "category": "Literature",
-      "status": "source-register",
-      "summary": "Source, coverage or publication-status register supporting transparent editorial boundaries."
-    },
-    {
-      "path": "/thiruppugazh-volume-7.html",
-      "titleTa": "",
-      "titleEn": "Thiruppugazh Volume 7",
-      "category": "Literature",
-      "status": "source-register",
-      "summary": "Source, coverage or publication-status register supporting transparent editorial boundaries."
-    },
-    {
-      "path": "/literature/vel-mayil-virutham.html",
-      "titleTa": "",
-      "titleEn": "Vel and Mayil Virutham",
-      "category": "Literature",
-      "status": "published",
-      "summary": "Published literature route in the OmSaravanaBhava static platform."
-    },
-    {
-      "path": "/literature/vel-maaral.html",
-      "titleTa": "",
-      "titleEn": "Vel Maaral",
-      "category": "Literature",
-      "status": "published",
-      "summary": "Published literature route in the OmSaravanaBhava static platform."
-    },
-    {
       "path": "/ai-search.html",
       "titleTa": "அறிவு தேடல்",
       "titleEn": "Knowledge Search",
@@ -612,6 +621,38 @@
       "summary": "Published temples route in the OmSaravanaBhava static platform."
     },
     {
+      "path": "/temple-encyclopedia.html",
+      "titleTa": "கோவில் கலைக்களஞ்சியம்",
+      "titleEn": "Temple Encyclopedia",
+      "category": "Temples",
+      "status": "published",
+      "summary": "Published temples route in the OmSaravanaBhava static platform."
+    },
+    {
+      "path": "/temple-research-dashboard.html",
+      "titleTa": "கோவில் ஆய்வு",
+      "titleEn": "Temple Research Dashboard",
+      "category": "Temples",
+      "status": "published",
+      "summary": "Published temples route in the OmSaravanaBhava static platform."
+    },
+    {
+      "path": "/temple-travel-guidance.html",
+      "titleTa": "கோவில் பயண வழிகாட்டி",
+      "titleEn": "Temple Travel Guidance",
+      "category": "Temples",
+      "status": "published",
+      "summary": "Published temples route in the OmSaravanaBhava static platform."
+    },
+    {
+      "path": "/temples.html",
+      "titleTa": "முருகன் திருத்தலங்கள்",
+      "titleEn": "Temple Explorer",
+      "category": "Temples",
+      "status": "published",
+      "summary": "Published temples route in the OmSaravanaBhava static platform."
+    },
+    {
       "path": "/temples/palani.html",
       "titleTa": "",
       "titleEn": "Palani Temple",
@@ -631,38 +672,6 @@
       "path": "/temples/swamimalai.html",
       "titleTa": "",
       "titleEn": "Swamimalai Temple",
-      "category": "Temples",
-      "status": "published",
-      "summary": "Published temples route in the OmSaravanaBhava static platform."
-    },
-    {
-      "path": "/temple-encyclopedia.html",
-      "titleTa": "கோவில் கலைக்களஞ்சியம்",
-      "titleEn": "Temple Encyclopedia",
-      "category": "Temples",
-      "status": "published",
-      "summary": "Published temples route in the OmSaravanaBhava static platform."
-    },
-    {
-      "path": "/temples.html",
-      "titleTa": "முருகன் திருத்தலங்கள்",
-      "titleEn": "Temple Explorer",
-      "category": "Temples",
-      "status": "published",
-      "summary": "Published temples route in the OmSaravanaBhava static platform."
-    },
-    {
-      "path": "/temple-research-dashboard.html",
-      "titleTa": "கோவில் ஆய்வு",
-      "titleEn": "Temple Research Dashboard",
-      "category": "Temples",
-      "status": "published",
-      "summary": "Published temples route in the OmSaravanaBhava static platform."
-    },
-    {
-      "path": "/temple-travel-guidance.html",
-      "titleTa": "கோவில் பயண வழிகாட்டி",
-      "titleEn": "Temple Travel Guidance",
       "category": "Temples",
       "status": "published",
       "summary": "Published temples route in the OmSaravanaBhava static platform."
