@@ -41,6 +41,24 @@
       "type": "Literature",
       "labelTa": "ஸ்கந்த குரு கவசம்",
       "labelEn": "Skanda Guru Kavasam"
+    },
+    {
+      "id": "thai-poosam",
+      "type": "Festival",
+      "labelTa": "தைப்பூசம்",
+      "labelEn": "Thai Poosam"
+    },
+    {
+      "id": "palani",
+      "type": "Temple",
+      "labelTa": "பழனி",
+      "labelEn": "Palani"
+    },
+    {
+      "id": "arunagirinathar",
+      "type": "Saint",
+      "labelTa": "அருணகிரிநாதர்",
+      "labelEn": "Arunagirinathar"
     }
   ],
   "edges": [
@@ -73,7 +91,22 @@
       "from": "skanda-guru-kavasam",
       "to": "murugan",
       "relation": "invokes-as-guru"
+    },
+    {
+      "from": "thai-poosam",
+      "to": "murugan",
+      "relation": "celebrates"
+    },
+    {
+      "from": "palani",
+      "to": "murugan",
+      "relation": "worship-site"
+    },
+    {
+      "from": "arunagirinathar",
+      "to": "thiruppugazh",
+      "relation": "author-of"
     }
   ],
-  "release": 169
+  "release": 197
 }
