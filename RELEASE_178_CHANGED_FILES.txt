@@ -1,0 +1,4 @@
+ai-search.html
+assets/js/search-recommendations.js
+data/search-recommendations.json
+service-worker.js

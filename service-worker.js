@@ -1,4 +1,4 @@
-const RELEASE = '177';
+const RELEASE = '178';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
@@ -111,7 +111,9 @@ const PRECACHE_URLS = [
   "/murugan-map.html",
   "/data/murugan-map.json",
   "/festival-intelligence.html",
-  "/data/festival-intelligence.json"
+  "/data/festival-intelligence.json",
+  "/assets/js/search-recommendations.js",
+  "/data/search-recommendations.json"
 ];
 
 self.addEventListener('install', event => {

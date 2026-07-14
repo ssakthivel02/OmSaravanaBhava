@@ -1,0 +1,35 @@
+[
+  {
+    "match": [
+      "vel",
+      "வேல்"
+    ],
+    "recommend": [
+      "murugan-mantras.html",
+      "literature/vel-maaral.html",
+      "literature/vel-mayil-virutham.html"
+    ]
+  },
+  {
+    "match": [
+      "palani",
+      "பழனி"
+    ],
+    "recommend": [
+      "temples/palani.html",
+      "arupadai-veedu.html",
+      "murugan-map.html"
+    ]
+  },
+  {
+    "match": [
+      "kavasam",
+      "கவசம்"
+    ],
+    "recommend": [
+      "literature/kanda-sashti-kavasam-edition.html",
+      "slokas/skanda-guru-kavasam.html",
+      "literature/shanmuga-kavasam.html"
+    ]
+  }
+]
