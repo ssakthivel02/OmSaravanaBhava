@@ -1,0 +1,32 @@
+[
+  {
+    "id": "mantras",
+    "titleTa": "மந்திரங்கள்",
+    "titleEn": "Mantras",
+    "trackIds": [
+      "kanda-sashti-kavasam",
+      "skanda-guru-kavasam",
+      "kanda-gayatri",
+      "saravanabhava-mantra"
+    ]
+  },
+  {
+    "id": "thiruppugazh-vol-1-2",
+    "titleTa": "திருப்புகழ்",
+    "titleEn": "Thiruppugazh Volumes 1–2",
+    "trackIds": [
+      "thiruppugazh-0006",
+      "thiruppugazh-0007",
+      "thiruppugazh-0008",
+      "thiruppugazh-0009",
+      "thiruppugazh-0010",
+      "thiruppugazh-0012",
+      "thiruppugazh-0013",
+      "thiruppugazh-0015",
+      "thiruppugazh-0016",
+      "thiruppugazh-0017",
+      "thiruppugazh-0011",
+      "thiruppugazh-0014"
+    ]
+  }
+]

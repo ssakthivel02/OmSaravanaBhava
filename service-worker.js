@@ -1,4 +1,4 @@
-const RELEASE = '170';
+const RELEASE = '171';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
@@ -95,7 +95,10 @@ const PRECACHE_URLS = [
   "/data/vel-mayil-virutham.json",
   "/knowledge-graph.html",
   "/data/knowledge-graph.json",
-  "/assets/js/premium-interactions.js"
+  "/assets/js/premium-interactions.js",
+  "/audio-collections.html",
+  "/data/audio-collections.json",
+  "/assets/js/audio-collections.js"
 ];
 
 self.addEventListener('install', event => {

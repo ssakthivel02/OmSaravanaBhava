@@ -1,0 +1,23 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 171,
+  "name": "Audio Platform Phase 1",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 5,
+  "modified": [
+    "service-worker.js",
+    "sitemap.xml"
+  ],
+  "added": [
+    "audio-collections.html",
+    "data/audio-collections.json",
+    "assets/js/audio-collections.js"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Third-party recordings": "0",
+    "Favourites storage": "Local browser only"
+  }
+}
