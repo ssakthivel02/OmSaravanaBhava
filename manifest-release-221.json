@@ -1,0 +1,57 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 221,
+  "name": "Static Platform Maintenance Centre",
+  "base_commit": "a3bebc4f28059e0147d9ddcb8cfa3372b36b2ebb",
+  "generated": "2026-07-14",
+  "required_commit_title": "Release 221: add static platform maintenance centre",
+  "validation_status": "LOCAL_PACKAGE_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
+  "production_files": [
+    "maintenance.html",
+    "assets/css/maintenance-centre.css",
+    "assets/js/maintenance-centre.mjs",
+    "data/maintenance-checks.json",
+    "index.html",
+    "platform.html",
+    "data/site-routes.json",
+    "sitemap.xml",
+    "service-worker.js"
+  ],
+  "ci_alignment_files": [
+    "quality/site-audit-config.json",
+    "tools/production_smoke.py",
+    "tests/test_site_audit.py",
+    "tests/maintenance-centre.test.mjs",
+    "tools/release_221_validate.py",
+    ".github/workflows/static-site-integrity.yml",
+    ".github/workflows/production-smoke.yml"
+  ],
+  "claims": {
+    "same_origin_release_checks": 8,
+    "critical_route_audit": true,
+    "required_file_audit": true,
+    "service_worker_update_check": true,
+    "transient_cache_cleanup": [
+      "osb-runtime-v*",
+      "osb-data-v*"
+    ],
+    "static_shell_cache_cleanup": false,
+    "reading_list_deleted": false,
+    "accessibility_preferences_deleted": false,
+    "audio_history_deleted": false,
+    "remote_analytics": false,
+    "server_account": false,
+    "repository_write_actions": false,
+    "github_actions_observed_by_page": false,
+    "production_certification_claim": false,
+    "service_worker_release": 221,
+    "new_optional_cache_assets": 5
+  },
+  "limitations": [
+    "The browser page inspects deployed same-origin resources, not the Git repository tree.",
+    "GitHub Actions status must be reviewed separately in GitHub.",
+    "A browser failure can result from network, caching or deployment propagation.",
+    "Successful browser checks are operational evidence, not production certification.",
+    "GitHub Actions and deployed production validation remain pending until commit."
+  ]
+}

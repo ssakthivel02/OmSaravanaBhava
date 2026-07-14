@@ -1,4 +1,4 @@
-const RELEASE = '220';
+const RELEASE = '221';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
@@ -212,7 +212,12 @@ const PRECACHE_URLS = [
   "/knowledge-graph-explorer.html",
   "/assets/css/knowledge-graph-explorer.css",
   "/assets/js/knowledge-graph-explorer.mjs",
-  "/data/knowledge-graph-explorer.json"
+  "/data/knowledge-graph-explorer.json",
+  "/maintenance.html",
+  "/assets/css/maintenance-centre.css",
+  "/assets/js/maintenance-centre.mjs",
+  "/data/maintenance-checks.json",
+  "/manifest-release-221.json"
 ];
 
 const cacheOptionalAssets = async cache => {

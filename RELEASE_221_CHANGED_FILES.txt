@@ -1,0 +1,28 @@
+Release 221 — Static Platform Maintenance Centre
+Base commit: a3bebc4f28059e0147d9ddcb8cfa3372b36b2ebb
+
+M  .github/workflows/production-smoke.yml
+M  .github/workflows/static-site-integrity.yml
+A  assets/css/maintenance-centre.css
+A  assets/js/maintenance-centre.mjs
+A  data/maintenance-checks.json
+M  data/site-routes.json
+M  index.html
+A  maintenance.html
+A  manifest-release-221.json
+M  platform.html
+M  quality/site-audit-config.json
+M  service-worker.js
+M  sitemap.xml
+A  tests/maintenance-centre.test.mjs
+M  tests/test_site_audit.py
+M  tools/production_smoke.py
+A  tools/release_221_validate.py
+
+Evidence files included:
+A  RELEASE_221_CHANGED_FILES.txt
+A  RELEASE_221_GITHUB_PORTAL_INSTRUCTIONS.txt
+A  RELEASE_221_LOCAL_TEST_EVIDENCE.txt
+A  RELEASE_221_SHA256SUMS.txt
+A  RELEASE_221_VALIDATION_REPORT.md
+A  RELEASE_221.patch

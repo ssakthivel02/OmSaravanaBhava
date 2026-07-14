@@ -1,5 +1,5 @@
 {
-  "expectedRelease": "220",
+  "expectedRelease": "221",
   "canonicalOrigin": "https://omsaravanabhava.org",
   "requiredFiles": [
     "index.html",
@@ -42,7 +42,12 @@
     "knowledge-graph-explorer.html",
     "assets/css/knowledge-graph-explorer.css",
     "assets/js/knowledge-graph-explorer.mjs",
-    "data/knowledge-graph-explorer.json"
+    "data/knowledge-graph-explorer.json",
+    "maintenance.html",
+    "assets/css/maintenance-centre.css",
+    "assets/js/maintenance-centre.mjs",
+    "data/maintenance-checks.json",
+    "manifest-release-221.json"
   ],
   "canonicalOptional": [
     "404.html",

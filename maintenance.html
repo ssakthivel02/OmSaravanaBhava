@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ta">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Maintenance Centre | Om Saravana Bhava</title>
+<meta name="description" content="Run same-origin release checks, route audits, required-file checks, service-worker updates and safe transient-cache cleanup for OmSaravanaBhava.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://omsaravanabhava.org/maintenance.html">
+<link rel="stylesheet" href="assets/css/osb44.css">
+<link rel="stylesheet" href="assets/css/maintenance-centre.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#a51d17">
+<link rel="manifest" href="manifest.json">
+<script defer src="assets/js/pwa-register.js"></script>
+<script type="module" src="assets/js/maintenance-centre.mjs"></script>
+</head>
+<body data-release="221">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="top">🛕 ஓம் சரவணபவ · Static-platform maintenance and local diagnostics</div>
+<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+<div class="links"><a href="explore.html">Explore</a><a href="platform.html">Platform</a><a href="knowledge-graph-explorer.html">Graph Explorer</a><a href="maintenance.html" aria-current="page">Maintenance</a></div>
+</div></nav>
+<main id="main-content" class="wrap">
+<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Maintenance Centre</span></p></nav>
+
+<section class="card maintenance-hero">
+<div>
+<span class="pill">Release 221 · Same-origin diagnostics</span>
+<h1 class="section-title" lang="ta">பராமரிப்பு மையம்</h1>
+<h2>Maintenance Centre</h2>
+<p>Inspect deployed static resources and browser state without a server account, remote analytics or destructive repository actions.</p>
+</div>
+<div class="maintenance-metric"><strong id="maintenanceChecksPassed">0</strong><span>release checks passed</span></div>
+<div class="maintenance-metric"><strong id="maintenanceRoutesPassed">0</strong><span>critical routes available</span></div>
+<div class="maintenance-metric"><strong id="maintenanceRequiredPassed">0</strong><span>required files available</span></div>
+</section>
+
+<section class="card">
+<h2>Maintenance actions</h2>
+<div class="maintenance-actions">
+<button class="btn" id="maintenanceRunChecks" type="button">Run release checks</button>
+<button class="btn secondary" id="maintenanceAuditRoutes" type="button">Audit critical routes</button>
+<button class="btn secondary" id="maintenanceAuditRequired" type="button">Audit required files</button>
+<button class="btn secondary" id="maintenanceCheckUpdate" type="button">Check app update</button>
+<button class="btn secondary" id="maintenanceClearCaches" type="button">Clear transient caches</button>
+<button class="btn secondary" id="maintenanceExport" type="button" disabled>Export JSON report</button>
+</div>
+<p id="maintenanceStatus" class="maintenance-status-line" role="status" aria-live="polite">Loading maintenance registry…</p>
+</section>
+
+<section class="maintenance-grid">
+<article class="card">
+<h2>Latest local check results</h2>
+<div class="maintenance-metric-summary" aria-label="Release check totals">
+<span>Total: <strong id="maintenanceChecksTotal">0</strong></span> ·
+<span>Passed: <strong id="maintenanceChecksPassedInline">0</strong></span> ·
+<span>Failed: <strong id="maintenanceChecksFailed">0</strong></span>
+</div>
+<div id="maintenanceResults" class="maintenance-results">
+<p>No maintenance check has run yet.</p>
+</div>
+</article>
+
+<aside class="card">
+<h2>Current browser state</h2>
+<div id="maintenanceBrowserState" class="maintenance-browser-state">
+<p>Collecting browser diagnostics…</p>
+</div>
+<h3>Route audit</h3>
+<p>Total: <strong id="maintenanceRoutesTotal">0</strong> · Passed: <strong id="maintenanceRoutesPassedInline">0</strong> · Failed: <strong id="maintenanceRoutesFailed">0</strong></p>
+<h3>Required-file audit</h3>
+<p>Total: <strong id="maintenanceRequiredTotal">0</strong> · Passed: <strong id="maintenanceRequiredPassedInline">0</strong> · Failed: <strong id="maintenanceRequiredFailed">0</strong></p>
+</aside>
+</section>
+
+<section class="card maintenance-boundary">
+<h2>Evidence and safety boundary</h2>
+<ul>
+<li>This page checks resources from the currently loaded website origin. It does not inspect the Git repository tree directly.</li>
+<li>This page cannot prove that GitHub Actions passed. Review the repository Actions page for workflow evidence.</li>
+<li>“Clear transient caches” removes only versioned runtime and JSON caches. It preserves reading lists, accessibility preferences and audio listening history.</li>
+<li>No production certification is claimed by this browser page or by a successful local check.</li>
+<li>A failed check may indicate deployment propagation, browser caching, network failure or a genuine missing resource; investigate before changing content.</li>
+</ul>
+<p><a class="btn secondary" href="https://github.com/ssakthivel02/OmSaravanaBhava/actions" target="_blank" rel="noopener">Open GitHub Actions</a> <a class="btn secondary" href="site-directory.html">Open site directory</a></p>
+</section>
+
+<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>The interactive maintenance checks require JavaScript. Existing content remains available through the <a href="site-directory.html">site directory</a>.</p></section></noscript>
+</main>
+<footer>© Om Saravana Bhava · <a href="maintenance.html">Maintenance</a> · <a href="platform.html">Platform</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
+</body>
+</html>

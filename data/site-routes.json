@@ -1,5 +1,5 @@
 {
-  "release": 220,
+  "release": 221,
   "generated": "2026-07-14",
   "scope": "Public HTML routes represented by the Release 215 sitemap and route directory.",
   "statusMeaning": {
@@ -596,6 +596,14 @@
       "category": "Platform",
       "status": "published",
       "summary": "Published platform route in the OmSaravanaBhava static platform."
+    },
+    {
+      "path": "/maintenance.html",
+      "titleTa": "பராமரிப்பு மையம்",
+      "titleEn": "Maintenance Centre",
+      "category": "Platform",
+      "status": "utility",
+      "summary": "Same-origin release checks, route and required-file audits, service-worker update checks and safe transient-cache cleanup."
     },
     {
       "path": "/privacy.html",

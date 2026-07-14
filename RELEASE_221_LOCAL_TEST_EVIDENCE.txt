@@ -1,0 +1,154 @@
+Release 221 — Local Test Evidence
+Generated: 2026-07-14
+Base commit: a3bebc4f28059e0147d9ddcb8cfa3372b36b2ebb
+
+LOCAL PACKAGE RESULT: PASS
+GITHUB ACTIONS RESULT: NOT RUN
+DEPLOYED PRODUCTION RESULT: NOT RUN
+
+$ node --check assets/js/maintenance-centre.mjs
+Exit code: 0
+
+
+$ node --test tests/maintenance-centre.test.mjs
+Exit code: 0
+TAP version 13
+# Subtest: release and registry identities are stable
+ok 1 - release and registry identities are stable
+  ---
+  duration_ms: 0.961989
+  type: 'test'
+  ...
+# Subtest: same-origin path normalisation rejects external resources
+ok 2 - same-origin path normalisation rejects external resources
+  ---
+  duration_ms: 0.250939
+  type: 'test'
+  ...
+# Subtest: JSON path lookup and equality checks are deterministic
+ok 3 - JSON path lookup and equality checks are deterministic
+  ---
+  duration_ms: 0.71031
+  type: 'test'
+  ...
+# Subtest: route registry requires one maintenance route and no duplicates
+ok 4 - route registry requires one maintenance route and no duplicates
+  ---
+  duration_ms: 0.224057
+  type: 'test'
+  ...
+# Subtest: audit configuration requires the current release and files
+ok 5 - audit configuration requires the current release and files
+  ---
+  duration_ms: 0.309046
+  type: 'test'
+  ...
+# Subtest: text count checks require exactly one sitemap entry
+ok 6 - text count checks require exactly one sitemap entry
+  ---
+  duration_ms: 0.150797
+  type: 'test'
+  ...
+# Subtest: check payload supports all configured check modes
+ok 7 - check payload supports all configured check modes
+  ---
+  duration_ms: 0.253332
+  type: 'test'
+  ...
+# Subtest: resource checks record HTTP and marker results
+ok 8 - resource checks record HTTP and marker results
+  ---
+  duration_ms: 0.295796
+  type: 'test'
+  ...
+# Subtest: path auditing preserves independent failures
+ok 9 - path auditing preserves independent failures
+  ---
+  duration_ms: 0.896421
+  type: 'test'
+  ...
+# Subtest: transient cache cleanup preserves static and user caches
+ok 10 - transient cache cleanup preserves static and user caches
+  ---
+  duration_ms: 0.684902
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 122.67259
+
+$ python -m py_compile tools/production_smoke.py tools/release_221_validate.py tests/test_site_audit.py
+Exit code: 0
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/generated/interface/models.py", line 30820, in hydrate_crdt_from_proto
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/remote.py", line 749, in __call__
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/client.py", line 150, in call
+artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
+
+$ python tools/release_221_validate.py --root . --package-mode --report artifacts/release-221-package-validation.json
+Exit code: 0
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/generated/interface/models.py", line 30820, in hydrate_crdt_from_proto
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/remote.py", line 749, in __call__
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/client.py", line 150, in call
+artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
+{
+  "release": 221,
+  "base_commit": "a3bebc4f28059e0147d9ddcb8cfa3372b36b2ebb",
+  "mode": "package",
+  "status": "PASS",
+  "errors": [],
+  "checks": [
+    "exists: maintenance.html",
+    "exists: assets/css/maintenance-centre.css",
+    "exists: assets/js/maintenance-centre.mjs",
+    "exists: data/maintenance-checks.json",
+    "exists: index.html",
+    "exists: platform.html",
+    "exists: data/site-routes.json",
+    "exists: sitemap.xml",
+    "exists: service-worker.js",
+    "exists: quality/site-audit-config.json",
+    "exists: tools/production_smoke.py",
+    "exists: tests/test_site_audit.py",
+    "exists: tests/maintenance-centre.test.mjs",
+    "exists: .github/workflows/static-site-integrity.yml",
+    "exists: .github/workflows/production-smoke.yml",
+    "exists: manifest-release-221.json"
+  ],
+  "github_actions": "NOT_RUN",
+  "deployed_production": "NOT_RUN"
+}
+
+$ git apply --check release.patch
+Exit code: 0
+
+
+JSON files parsed: 5
+Sitemap XML parsed: PASS
+Eight bounded same-origin checks: PASS
+Critical-route independent failure handling: PASS
+Required-file audit source: site-audit configuration
+Transient cache prefixes restricted: PASS
+Static shell cache preserved: PASS
+Reading-list state preserved: PASS
+Accessibility state preserved: PASS
+Audio-history state preserved: PASS
+Remote analytics absent: PASS
+Production-certification claim absent: PASS
