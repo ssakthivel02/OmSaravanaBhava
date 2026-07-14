@@ -59,6 +59,24 @@
       "type": "Saint",
       "labelTa": "அருணகிரிநாதர்",
       "labelEn": "Arunagirinathar"
+    },
+    {
+      "id": "valli",
+      "type": "Deity",
+      "labelTa": "வள்ளி",
+      "labelEn": "Valli"
+    },
+    {
+      "id": "deivanai",
+      "type": "Deity",
+      "labelTa": "தெய்வானை",
+      "labelEn": "Deivanai"
+    },
+    {
+      "id": "seval",
+      "type": "Symbol",
+      "labelTa": "சேவல்",
+      "labelEn": "Rooster"
     }
   ],
   "edges": [
@@ -106,7 +124,22 @@
       "from": "arunagirinathar",
       "to": "thiruppugazh",
       "relation": "author-of"
+    },
+    {
+      "from": "murugan",
+      "to": "valli",
+      "relation": "consort-of"
+    },
+    {
+      "from": "murugan",
+      "to": "deivanai",
+      "relation": "consort-of"
+    },
+    {
+      "from": "murugan",
+      "to": "seval",
+      "relation": "emblem-associated-with"
     }
   ],
-  "release": 197
+  "release": 204
 }
