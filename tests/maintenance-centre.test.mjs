@@ -25,8 +25,8 @@ const registry = JSON.parse(
 );
 
 test('release and registry identities are stable', () => {
-  assert.equal(RELEASE, 221);
-  assert.equal(registry.release, 221);
+  assert.equal(RELEASE, 222);
+  assert.equal(registry.release, 222);
   assert.equal(registry.builtAgainstCommit.length, 40);
   assert.equal(registry.checks.length, 8);
 });
@@ -49,51 +49,51 @@ test('same-origin path normalisation rejects external resources', () => {
 });
 
 test('JSON path lookup and equality checks are deterministic', () => {
-  const value = {release: 221, nested: {state: 'ready'}};
+  const value = {release: 222, nested: {state: 'ready'}};
   assert.equal(readJsonPath(value, 'nested.state'), 'ready');
   assert.equal(readJsonPath(value, 'nested.missing'), undefined);
   assert.deepEqual(
-    evaluateJsonEquals(value, 'release', 221),
-    {ok: true, actual: 221}
+    evaluateJsonEquals(value, 'release', 222),
+    {ok: true, actual: 222}
   );
 });
 
 test('route registry requires one maintenance route and no duplicates', () => {
   const valid = evaluateRouteRegistry({
-    release: 221,
+    release: 222,
     routes: [
       {path: '/index.html'},
-      {path: '/maintenance.html'}
+      {path: '/discovery.html'}
     ]
-  }, 221, '/maintenance.html');
+  }, 222, '/discovery.html');
   assert.equal(valid.ok, true);
 
   const duplicate = evaluateRouteRegistry({
-    release: 221,
+    release: 222,
     routes: [
-      {path: '/maintenance.html'},
-      {path: '/maintenance.html'}
+      {path: '/discovery.html'},
+      {path: '/discovery.html'}
     ]
-  }, 221, '/maintenance.html');
+  }, 222, '/discovery.html');
   assert.equal(duplicate.ok, false);
   assert.equal(duplicate.actual.duplicateCount, 1);
 });
 
 test('audit configuration requires the current release and files', () => {
   const result = evaluateAuditConfig({
-    expectedRelease: '221',
-    requiredFiles: ['maintenance.html', 'manifest-release-221.json']
-  }, '221', ['maintenance.html', 'manifest-release-221.json']);
+    expectedRelease: '222',
+    requiredFiles: ['discovery.html', 'manifest-release-222.json']
+  }, '222', ['discovery.html', 'manifest-release-222.json']);
   assert.equal(result.ok, true);
 
   const missing = evaluateAuditConfig({
-    expectedRelease: '221',
-    requiredFiles: ['maintenance.html']
-  }, '221', ['maintenance.html', 'manifest-release-221.json']);
+    expectedRelease: '222',
+    requiredFiles: ['discovery.html']
+  }, '222', ['discovery.html', 'manifest-release-222.json']);
   assert.equal(missing.ok, false);
   assert.deepEqual(
     missing.actual.missing,
-    ['manifest-release-221.json']
+    ['manifest-release-222.json']
   );
 });
 
@@ -123,8 +123,8 @@ test('check payload supports all configured check modes', () => {
   const result = evaluateCheckPayload(
     routeCheck,
     JSON.stringify({
-      release: 221,
-      routes: [{path: '/maintenance.html'}]
+      release: 222,
+      routes: [{path: '/discovery.html'}]
     })
   );
   assert.equal(result.ok, true);
@@ -136,14 +136,14 @@ test('resource checks record HTTP and marker results', async () => {
     status: 200,
     async text() {
       return path === '/service-worker.js'
-        ? "const RELEASE = '221';"
+        ? "const RELEASE = '222';"
         : '';
     }
   });
   const result = await runResourceCheck({
     path: '/service-worker.js',
     mode: 'textIncludes',
-    expected: "const RELEASE = '221';"
+    expected: "const RELEASE = '222';"
   }, fetcher);
   assert.equal(result.ok, true);
   assert.equal(result.status, 200);
@@ -174,7 +174,7 @@ test('path auditing preserves independent failures', async () => {
 
 test('transient cache cleanup preserves static and user caches', async () => {
   const names = [
-    'osb-static-v221',
+    'osb-static-v222',
     'osb-runtime-v220',
     'osb-data-v219',
     'osb-user-reading-v1'

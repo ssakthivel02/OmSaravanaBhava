@@ -1,5 +1,5 @@
 {
-  "release": 221,
+  "release": 222,
   "generated": "2026-07-14",
   "scope": "Public HTML routes represented by the Release 215 sitemap and route directory.",
   "statusMeaning": {
@@ -124,6 +124,14 @@
       "category": "Directory",
       "status": "navigation",
       "summary": "Structured navigation gateway organised by purpose and audience."
+    },
+    {
+      "path": "/discovery.html",
+      "titleTa": "கண்டறியும் பணிமனை",
+      "titleEn": "Discovery Workspace",
+      "category": "Navigation",
+      "status": "navigation",
+      "summary": "Published-route discovery by purpose, audience, publication state and Tamil or English search using local JSON."
     },
     {
       "path": "/site-directory.html",

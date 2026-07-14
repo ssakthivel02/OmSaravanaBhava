@@ -1,0 +1,166 @@
+{
+  "release": 222,
+  "generated": "2026-07-14",
+  "title": "OmSaravanaBhava Discovery Lenses",
+  "scope": "Presentation definitions for a browser-local discovery workspace. Route availability and counts are derived from the published route directory and structured Explore navigation.",
+  "allowedStatuses": [
+    "published",
+    "partial-reviewed",
+    "source-register",
+    "framework",
+    "milestone",
+    "directory",
+    "navigation",
+    "utility"
+  ],
+  "excludedStatuses": [
+    "draft",
+    "private",
+    "unpublished",
+    "archived"
+  ],
+  "featuredLensIds": [
+    "start",
+    "devotion",
+    "places",
+    "literature"
+  ],
+  "lenses": [
+    {
+      "id": "all",
+      "titleTa": "அனைத்து வழிகளும்",
+      "titleEn": "All discovery paths",
+      "summary": "Browse every curated route currently represented by the structured navigation registry.",
+      "sectionIds": [],
+      "audiences": [
+        "all",
+        "new",
+        "devotee",
+        "learner",
+        "researcher"
+      ]
+    },
+    {
+      "id": "start",
+      "titleTa": "இங்கே தொடங்குங்கள்",
+      "titleEn": "Start here",
+      "summary": "Core gateways for new visitors, search and publication-status review.",
+      "sectionIds": [
+        "start"
+      ],
+      "audiences": [
+        "all",
+        "new",
+        "devotee",
+        "learner",
+        "researcher"
+      ]
+    },
+    {
+      "id": "devotion",
+      "titleTa": "பக்தி மற்றும் வழிபாடு",
+      "titleEn": "Devotion and worship",
+      "summary": "Daily devotional, mantra, sloka and festival routes.",
+      "sectionIds": [
+        "devotion"
+      ],
+      "audiences": [
+        "all",
+        "new",
+        "devotee"
+      ]
+    },
+    {
+      "id": "places",
+      "titleTa": "திருத்தலங்கள் மற்றும் யாத்திரை",
+      "titleEn": "Sacred places and pilgrimage",
+      "summary": "Temple, map and browser-local pilgrimage planning routes.",
+      "sectionIds": [
+        "places"
+      ],
+      "audiences": [
+        "all",
+        "new",
+        "devotee",
+        "researcher"
+      ]
+    },
+    {
+      "id": "literature",
+      "titleTa": "தமிழ் பக்தி இலக்கியம்",
+      "titleEn": "Tamil devotional literature",
+      "summary": "Published and clearly bounded literature reading routes.",
+      "sectionIds": [
+        "literature"
+      ],
+      "audiences": [
+        "all",
+        "devotee",
+        "learner",
+        "researcher"
+      ]
+    },
+    {
+      "id": "learning",
+      "titleTa": "கற்றல்",
+      "titleEn": "Learning",
+      "summary": "Structured learning, quiz and terminology routes.",
+      "sectionIds": [
+        "learning"
+      ],
+      "audiences": [
+        "all",
+        "new",
+        "learner"
+      ]
+    },
+    {
+      "id": "knowledge",
+      "titleTa": "அறிவு மற்றும் ஆய்வு",
+      "titleEn": "Knowledge and research",
+      "summary": "Graph, chronology, cross-reference and research gateways.",
+      "sectionIds": [
+        "knowledge"
+      ],
+      "audiences": [
+        "all",
+        "learner",
+        "researcher"
+      ]
+    },
+    {
+      "id": "audio",
+      "titleTa": "ஒலி மற்றும் வாசிப்பு",
+      "titleEn": "Audio and reading",
+      "summary": "Device read-aloud and local audio-metadata routes without licensed-recording claims.",
+      "sectionIds": [
+        "audio"
+      ],
+      "audiences": [
+        "all",
+        "new",
+        "devotee",
+        "learner"
+      ]
+    },
+    {
+      "id": "integrity",
+      "titleTa": "ஆதாரங்கள் மற்றும் வெளிப்படைத்தன்மை",
+      "titleEn": "Sources and transparency",
+      "summary": "Source, publication-status, audit and maintenance routes.",
+      "sectionIds": [
+        "integrity"
+      ],
+      "audiences": [
+        "all",
+        "researcher"
+      ]
+    }
+  ],
+  "limitations": [
+    "Counts are calculated from local JSON at runtime and are not certification totals.",
+    "A route remains governed by its own publication and source boundaries.",
+    "The workspace does not use remote AI, analytics or a recommendation service.",
+    "Routes absent from the published route directory are not displayed."
+  ]
+}

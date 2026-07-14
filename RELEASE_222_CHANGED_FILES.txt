@@ -1,0 +1,32 @@
+Release 222 — Premium Desktop Discovery Workspace
+Base commit: 99d62afcdd8ea5ccc8dd9170b98f9d0e4942e8f4
+
+M  .github/workflows/production-smoke.yml
+M  .github/workflows/static-site-integrity.yml
+A  assets/css/discovery-workspace.css
+A  assets/js/discovery-workspace.mjs
+M  assets/js/maintenance-centre.mjs
+A  data/discovery-lenses.json
+M  data/maintenance-checks.json
+M  data/site-routes.json
+A  discovery.html
+M  index.html
+M  maintenance.html
+A  manifest-release-222.json
+M  platform.html
+M  quality/site-audit-config.json
+M  service-worker.js
+M  sitemap.xml
+A  tests/discovery-workspace.test.mjs
+M  tests/maintenance-centre.test.mjs
+M  tests/test_site_audit.py
+M  tools/production_smoke.py
+A  tools/release_222_validate.py
+
+Evidence files included:
+A  RELEASE_222_CHANGED_FILES.txt
+A  RELEASE_222_GITHUB_PORTAL_INSTRUCTIONS.txt
+A  RELEASE_222_LOCAL_TEST_EVIDENCE.txt
+A  RELEASE_222_SHA256SUMS.txt
+A  RELEASE_222_VALIDATION_REPORT.md
+A  RELEASE_222.patch

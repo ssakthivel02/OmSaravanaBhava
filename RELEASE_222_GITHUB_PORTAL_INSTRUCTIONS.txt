@@ -1,0 +1,58 @@
+Release 222 — GitHub browser upload instructions
+
+Repository:
+https://github.com/ssakthivel02/OmSaravanaBhava
+
+Verified Release 221 base head:
+99d62afcdd8ea5ccc8dd9170b98f9d0e4942e8f4
+
+Required commit title — enter this in the SMALL UPPER FIELD:
+Release 222: add premium desktop discovery workspace
+
+Leave the large commit-description field blank.
+
+UPLOAD
+1. Download and extract OmSaravanaBhava-Release-222.zip.
+2. Enable Windows View > Show > Hidden items.
+3. Open the extracted package folder.
+4. In GitHub main, select Add file > Upload files.
+5. Drag the CONTENTS of the extracted folder, not the outer folder.
+6. Preserve all directory paths.
+7. Confirm these exact paths appear before committing:
+   .github/workflows/static-site-integrity.yml
+   .github/workflows/production-smoke.yml
+   discovery.html
+   assets/css/discovery-workspace.css
+   assets/js/discovery-workspace.mjs
+   data/discovery-lenses.json
+   manifest-release-222.json
+   tools/release_222_validate.py
+8. Enter the required title in the small upper field.
+9. Leave the large description field blank.
+10. Commit directly to main.
+
+POST-COMMIT VERIFICATION
+1. Copy the new main commit SHA.
+2. Confirm service-worker.js contains:
+   const RELEASE = '222';
+3. Open discovery.html.
+4. Confirm route, section and category totals load from local JSON.
+5. Test all discovery lenses.
+6. Test audience, publication-state and Tamil/English search filters.
+7. Confirm draft/private/unpublished/archived routes are not displayed.
+8. Open the homepage and confirm the four discovery-path cards load.
+9. Confirm data/site-routes.json contains /discovery.html exactly once.
+10. Confirm sitemap.xml contains the discovery URL exactly once.
+11. Open maintenance.html and run Release 222 checks.
+12. Wait for:
+    Release 222 Static Site Integrity
+    Release 222 Production Smoke
+13. Do not proceed to Release 223 until Release 222 is verified.
+
+DO NOT
+- Do not upload only discovery.html.
+- Do not omit hidden .github workflow files.
+- Do not rename an older ZIP.
+- Do not claim personalised AI recommendations.
+- Do not enter the release title in the large description field.
+- Do not mark GitHub Actions or production as passed before they run.

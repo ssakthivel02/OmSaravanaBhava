@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ta">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Discovery Workspace | Om Saravana Bhava</title>
+<meta name="description" content="Explore published OmSaravanaBhava routes by visitor audience, purpose, publication state and Tamil or English search using local JSON only.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://omsaravanabhava.org/discovery.html">
+<link rel="stylesheet" href="assets/css/osb44.css">
+<link rel="stylesheet" href="assets/css/discovery-workspace.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#a51d17">
+<link rel="manifest" href="manifest.json">
+<script defer src="assets/js/pwa-register.js"></script>
+<script type="module" src="assets/js/discovery-workspace.mjs"></script>
+</head>
+<body data-release="222">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="top">🛕 ஓம் சரவணபவ · Local published-route discovery workspace</div>
+<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+<div class="links"><a href="discovery.html" aria-current="page">Discover</a><a href="explore.html">Explore</a><a href="search-facets.html">Facets</a><a href="site-directory.html">Directory</a><a href="platform.html">Platform</a></div>
+</div></nav>
+<main id="main-content" class="wrap">
+<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Discovery Workspace</span></p></nav>
+
+<section class="card discovery-hero">
+<div>
+<span class="pill">Release 222 · Local route composition</span>
+<h1 class="section-title" lang="ta">கண்டறியும் பணிமனை</h1>
+<h2>Discovery Workspace</h2>
+<p>Choose a purpose, audience or publication boundary. Every displayed count and route is derived from the local structured-navigation and route-directory JSON.</p>
+</div>
+<div class="discovery-metric"><strong id="discoveryRouteCount">0</strong><span>curated published routes</span></div>
+<div class="discovery-metric"><strong id="discoverySectionCount">0</strong><span>active navigation sections</span></div>
+<div class="discovery-metric"><strong id="discoveryCategoryCount">0</strong><span>route categories</span></div>
+</section>
+
+<p id="discoveryLoadStatus" role="status" aria-live="polite">Loading local discovery registries…</p>
+
+<section class="discovery-workspace">
+<aside class="card discovery-controls">
+<h2>Refine discovery</h2>
+<label for="discoverySearch">Tamil or English search
+<input id="discoverySearch" type="search" placeholder="Murugan, temple, literature…" autocomplete="off">
+</label>
+<label for="discoveryAudience">Visitor audience
+<select id="discoveryAudience"><option>Loading…</option></select>
+</label>
+<label for="discoveryStatusFilter">Publication state
+<select id="discoveryStatusFilter"><option>Loading…</option></select>
+</label>
+<button id="discoveryReset" class="btn secondary" type="button">Reset view</button>
+<h2>Discovery lenses</h2>
+<div id="discoveryLensGrid" class="discovery-lens-grid"></div>
+</aside>
+
+<div>
+<p id="discoveryResultStatus" role="status" aria-live="polite">Preparing published routes…</p>
+<div id="discoveryResults" class="grid discovery-results">
+<article class="card">Loading discovery routes…</article>
+</div>
+</div>
+</section>
+
+<section class="card discovery-boundary">
+<h2>Publication and recommendation boundary</h2>
+<ul>
+<li>Routes are shown only when they exist in the published route directory and have an allowed publication state.</li>
+<li>Draft, private, unpublished and archived states are excluded.</li>
+<li>Counts are runtime calculations, not claims of complete Murugan coverage.</li>
+<li>The route order uses local filters and deterministic sorting; it is not personalised AI.</li>
+<li>No remote analytics, recommendation service or visitor profile is used.</li>
+</ul>
+</section>
+
+<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>The dynamic discovery workspace requires JavaScript. Use the <a href="explore.html">structured Explore page</a> or <a href="site-directory.html">site directory</a>.</p></section></noscript>
+</main>
+<footer>© Om Saravana Bhava · <a href="discovery.html">Discover</a> · <a href="explore.html">Explore</a> · <a href="site-directory.html">Directory</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
+</body>
+</html>
