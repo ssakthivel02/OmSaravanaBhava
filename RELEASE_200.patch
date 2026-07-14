@@ -1,0 +1,101 @@
+--- before/version-3.html
++++ release200/version-3.html
+@@ -0,0 +1,24 @@
++<!doctype html><html lang="ta"><head>
++<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
++<title>OmSaravanaBhava Version 3 Milestone | Om Saravana Bhava</title>
++<meta name="description" content="Version 3 milestone connecting wide-screen UX, knowledge, learning, research, privacy and production-status modules.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/version-3.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++</head><body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Digital Murugan heritage platform</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">OmSaravanaBhava Version 3 Milestone</span></p></nav>
++<section class="card"><h1 class="section-title" lang="ta">ஓம் சரவணபவ பதிப்பு 3</h1><h2>OmSaravanaBhava Version 3 Milestone</h2><p>Version 3 milestone connecting wide-screen UX, knowledge, learning, research, privacy and production-status modules.</p></section>
++<section class="grid"><article class="card"><h2>platform hub</h2></article><article class="card"><h2>audio</h2></article><article class="card"><h2>search</h2></article><article class="card"><h2>knowledge graph</h2></article><article class="card"><h2>temples</h2></article><article class="card"><h2>timeline</h2></article><article class="card"><h2>learning center</h2></article><article class="card"><h2>research library</h2></article><article class="card"><h2>privacy</h2></article><article class="card"><h2>production audit</h2></article></section><section class="card"><h2>Version 3 limitations</h2><ul><li>Incomplete full-text digitisation for several works</li><li>No live Panchangam computation</li><li>No licensed human audio bundled</li><li>No server-side accounts</li></ul></section>
++</main>
++<footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body></html>--- before/data/version-3-status.json
++++ release200/data/version-3-status.json
+@@ -0,0 +1,25 @@
++{
++  "version": "3.0",
++  "release": 200,
++  "generated": "2026-07-13",
++  "desktopExperience": "wide-screen responsive",
++  "modules": [
++    "platform hub",
++    "audio",
++    "search",
++    "knowledge graph",
++    "temples",
++    "timeline",
++    "learning center",
++    "research library",
++    "privacy",
++    "production audit"
++  ],
++  "contentPolicy": "verified-first",
++  "limitations": [
++    "Incomplete full-text digitisation for several works",
++    "No live Panchangam computation",
++    "No licensed human audio bundled",
++    "No server-side accounts"
++  ]
++}
+--- before/index.html
++++ release200/index.html
+@@ -40,7 +40,7 @@
+ <section class="wrap"><h2 class="section-title">Festival Guidance</h2><div class="card"><h3 id="countdown">Loading...</h3><p>Festival observance dates vary by lunar calendar, location and temple tradition; confirm the exact date using an authoritative Panchangam or temple source.</p></div></section>
+ <section class="wrap"><h2 class="section-title">Murugan Festivals</h2><div id="festivalGrid" class="grid" aria-busy="true"><div class="loading">Loading festivals...</div></div></section>
+ <noscript><section class="wrap"><div class="card" role="status">JavaScript is disabled. Use the <a href="temples.html">Temple Explorer</a>, <a href="sloka-library.html">Sloka Library</a>, <a href="thiruppugazh.html">Thiruppugazh Library</a>, <a href="festivals.html">Festival Calendar</a>, or <a href="sources.html">source register</a> directly.</div></section></noscript>
+-<section class="card"><h2>Platform Hub</h2><p>Explore the connected Murugan knowledge, reading, search, audio and temple modules.</p><a class="btn" href="platform.html">Open Platform Hub</a></section></main>
++<section class="card"><h2>Platform Hub</h2><p>Explore the connected Murugan knowledge, reading, search, audio and temple modules.</p><a class="btn" href="platform.html">Open Platform Hub</a></section><section class="card"><h2>Version 3 Milestone</h2><p>Explore the wide-screen platform, research library, learning paths and transparent publication controls.</p><a class="btn" href="version-3.html">Open Version 3</a></section></main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+--- before/platform.html
++++ release200/platform.html
+@@ -20,6 +20,6 @@
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">OmSaravanaBhava Platform Hub</span></p></nav>
+ <section class="card"><h1 class="section-title" lang="ta">ஓம் சரவணபவ தளம்</h1><h2>OmSaravanaBhava Platform Hub</h2><p>Unified gateway to the verified devotional, literature, temple, search, graph and reading modules.</p></section>
+ <section class="grid"><article class="card"><h2>Audio Platform</h2><a class="btn" href="audio-collections.html">Open module</a></article><article class="card"><h2>Cross References</h2><a class="btn" href="cross-references.html">Open module</a></article><article class="card"><h2>Timeline</h2><a class="btn" href="murugan-timeline.html">Open module</a></article><article class="card"><h2>Temple Encyclopedia</h2><a class="btn" href="temple-encyclopedia.html">Open module</a></article><article class="card"><h2>Siddhar Graph</h2><a class="btn" href="siddhar-knowledge-graph.html">Open module</a></article><article class="card"><h2>Map Index</h2><a class="btn" href="murugan-map.html">Open module</a></article><article class="card"><h2>Festival Intelligence</h2><a class="btn" href="festival-intelligence.html">Open module</a></article><article class="card"><h2>Search</h2><a class="btn" href="ai-search.html">Open module</a></article><article class="card"><h2>Knowledge Graph</h2><a class="btn" href="knowledge-graph.html">Open module</a></article></section><section class="card"><h2>Milestone boundary</h2><p>Release 180 unifies the modules built through Releases 145–179. It does not claim completion of every Murugan text, temple, audio recording or calendar date.</p></section>
+-</main>
++<section class="card"><h2>Version 3 milestone</h2><a class="btn" href="version-3.html">Open milestone dashboard</a></section></main>
+ <footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer>
+ </body></html>--- before/service-worker.js
++++ release200/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '199';
++const RELEASE = '200';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -151,7 +151,9 @@
+   "/knowledge-graph-phase-3.html",
+   "/learning-paths.html",
+   "/research-library.html",
+-  "/data/research-library.json"
++  "/data/research-library.json",
++  "/version-3.html",
++  "/data/version-3-status.json"
+ ];
+ 
+ self.addEventListener('install', event => {
+--- before/sitemap.xml
++++ release200/sitemap.xml
+@@ -234,4 +234,5 @@
+   <url><loc>https://omsaravanabhava.org/knowledge-graph-phase-3.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+   <url><loc>https://omsaravanabhava.org/learning-paths.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+   <url><loc>https://omsaravanabhava.org/research-library.html</loc><lastmod>2026-07-13</lastmod><priority>0.9</priority></url>
++  <url><loc>https://omsaravanabhava.org/version-3.html</loc><lastmod>2026-07-13</lastmod><priority>1.0</priority></url>
+ </urlset>
