@@ -3,36 +3,48 @@
     "period": "Sangam era",
     "titleTa": "திருமுருகாற்றுப்படை",
     "titleEn": "Thirumurugatruppadai",
-    "certainty": "broad historical period"
+    "certainty": "broad historical period",
+    "precision": "broad-period",
+    "sourceStatus": "qualified"
   },
   {
     "period": "15th century",
     "titleTa": "அருணகிரிநாதர்",
     "titleEn": "Arunagirinathar",
-    "certainty": "traditional historical placement"
+    "certainty": "traditional historical placement",
+    "precision": "broad-period",
+    "sourceStatus": "qualified"
   },
   {
     "period": "17th century",
     "titleTa": "குமரகுருபரர்",
     "titleEn": "Kumara Gurupara Swamigal",
-    "certainty": "historical placement"
+    "certainty": "historical placement",
+    "precision": "broad-period",
+    "sourceStatus": "qualified"
   },
   {
     "period": "19th century",
     "titleTa": "தேவராய சுவாமிகள்",
     "titleEn": "Sri Devaraya Swamigal",
-    "certainty": "historical placement"
+    "certainty": "historical placement",
+    "precision": "broad-period",
+    "sourceStatus": "qualified"
   },
   {
     "period": "19th–20th century",
     "titleTa": "பாம்பன் சுவாமிகள்",
     "titleEn": "Pamban Swamigal",
-    "certainty": "historical placement"
+    "certainty": "historical placement",
+    "precision": "broad-period",
+    "sourceStatus": "qualified"
   },
   {
     "period": "20th century",
     "titleTa": "வள்ளிமலை சுவாமிகள்",
     "titleEn": "Vallimalai Swamigal",
-    "certainty": "historical placement"
+    "certainty": "historical placement",
+    "precision": "broad-period",
+    "sourceStatus": "qualified"
   }
 ]

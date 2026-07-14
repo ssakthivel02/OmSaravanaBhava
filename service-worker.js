@@ -1,4 +1,4 @@
-const RELEASE = '205';
+const RELEASE = '206';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
@@ -159,7 +159,9 @@ const PRECACHE_URLS = [
   "/temple-travel-guidance.html",
   "/knowledge-graph-phase-4.html",
   "/devotional-dictionary.html",
-  "/data/devotional-dictionary.json"
+  "/data/devotional-dictionary.json",
+  "/murugan-timeline-v2.html",
+  "/assets/js/timeline-filter.js"
 ];
 
 self.addEventListener('install', event => {
