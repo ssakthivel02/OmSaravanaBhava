@@ -45,5 +45,12 @@
     "songs": [],
     "status": "source-review-register",
     "note": "Reserved for a later manually verified hymn set."
+  },
+  {
+    "volume": 6,
+    "release": 201,
+    "songs": [],
+    "status": "source-review-register",
+    "note": "Reserved for manually verified songs only."
   }
 ]
