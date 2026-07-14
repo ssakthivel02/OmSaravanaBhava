@@ -9,6 +9,9 @@
   import('/assets/js/reader-experience.js')
     .catch(error => console.warn('[OmSaravanaBhava] Reader experience unavailable', error));
 
+  import('/assets/js/reading-notes.mjs')
+    .catch(error => console.warn('[OmSaravanaBhava] Reading notes unavailable', error));
+
   if (!('serviceWorker' in navigator)) return;
 
   let refreshing = false;

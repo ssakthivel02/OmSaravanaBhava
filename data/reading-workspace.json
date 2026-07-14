@@ -1,7 +1,7 @@
 {
-  "release": 223,
+  "release": 224,
   "generated": "2026-07-14",
-  "builtAgainstCommit": "131e51863ef4f1512b77a32025b249f45ee9834a",
+  "builtAgainstCommit": "03f8c23e50aea1323211d2ca44cf4cddcf0deec4",
   "title": "OmSaravanaBhava Premium Reading Workspace",
   "scope": "Browser-local reading progress and focus tools for existing published or clearly bounded devotional reading routes.",
   "storageKey": "osb-reading-progress-v1",
@@ -38,5 +38,11 @@
     "Scroll percentage is an approximate reading position, not proof of completion.",
     "The workspace does not alter publication, source or copyright status.",
     "No account, analytics or cross-device synchronization is provided."
-  ]
+  ],
+  "notesIntegration": {
+    "enabled": true,
+    "storageKey": "osb-reading-notes-v1",
+    "maximumItems": 100,
+    "storesSelectedDevotionalText": false
+  }
 }

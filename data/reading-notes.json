@@ -1,0 +1,41 @@
+{
+  "release": 224,
+  "generated": "2026-07-14",
+  "builtAgainstCommit": "03f8c23e50aea1323211d2ca44cf4cddcf0deec4",
+  "title": "OmSaravanaBhava Reading Notes and Section Bookmarks",
+  "scope": "Browser-local user-authored notes and heading bookmarks for routes eligible in the existing Premium Reading Workspace.",
+  "storageKey": "osb-reading-notes-v1",
+  "maximumItems": 100,
+  "maximumNoteLength": 500,
+  "allowedKinds": [
+    {
+      "id": "reflection",
+      "label": "Reflection"
+    },
+    {
+      "id": "question",
+      "label": "Question"
+    },
+    {
+      "id": "practice",
+      "label": "Practice"
+    },
+    {
+      "id": "reference",
+      "label": "Reference"
+    }
+  ],
+  "protectedStorageKeys": [
+    "osb-reading-progress-v1",
+    "osb-reading-list-v1",
+    "osb-accessibility-preferences-v1",
+    "osb-audio-listening-history-v1"
+  ],
+  "limitations": [
+    "Selected devotional text and page body content are not stored.",
+    "A heading label may be stored only as navigation metadata.",
+    "Notes remain in the current browser profile.",
+    "No account, analytics, cloud synchronization or collaborative editing is provided.",
+    "Notes do not change source, publication, copyright or completeness status."
+  ]
+}

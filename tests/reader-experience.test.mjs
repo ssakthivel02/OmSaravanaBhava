@@ -42,7 +42,7 @@ const config = JSON.parse(
 );
 
 const routePayload = {
-  release: 223,
+  release: 224,
   routes: [
     {
       path: '/literature/kandar-anubhuti.html',
@@ -78,8 +78,8 @@ const routePayload = {
 };
 
 test('release and storage identities are stable', () => {
-  assert.equal(RELEASE, 223);
-  assert.equal(config.release, 223);
+  assert.equal(RELEASE, 224);
+  assert.equal(config.release, 224);
   assert.equal(STORAGE_KEY, 'osb-reading-progress-v1');
   assert.equal(config.maximumProgressItems, 50);
 });

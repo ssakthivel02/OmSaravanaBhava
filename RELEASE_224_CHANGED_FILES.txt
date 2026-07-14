@@ -1,0 +1,38 @@
+Release 224 — Browser-Local Reading Notes and Section Bookmarks
+Base commit: 03f8c23e50aea1323211d2ca44cf4cddcf0deec4
+
+M  .github/workflows/production-smoke.yml
+M  .github/workflows/static-site-integrity.yml
+A  assets/css/reading-notes.css
+M  assets/js/maintenance-centre.mjs
+M  assets/js/pwa-register.js
+M  assets/js/reader-experience.js
+A  assets/js/reading-notes.mjs
+M  data/maintenance-checks.json
+A  data/reading-notes.json
+M  data/reading-workspace.json
+M  data/site-routes.json
+M  discovery.html
+M  index.html
+M  maintenance.html
+A  manifest-release-224.json
+M  platform.html
+M  quality/site-audit-config.json
+A  reading-notes.html
+M  reading-workspace.html
+M  service-worker.js
+M  sitemap.xml
+M  tests/maintenance-centre.test.mjs
+M  tests/reader-experience.test.mjs
+A  tests/reading-notes.test.mjs
+M  tests/test_site_audit.py
+M  tools/production_smoke.py
+A  tools/release_224_validate.py
+
+Evidence files included:
+A  RELEASE_224_CHANGED_FILES.txt
+A  RELEASE_224_GITHUB_PORTAL_INSTRUCTIONS.txt
+A  RELEASE_224_LOCAL_TEST_EVIDENCE.txt
+A  RELEASE_224_SHA256SUMS.txt
+A  RELEASE_224_VALIDATION_REPORT.md
+A  RELEASE_224.patch

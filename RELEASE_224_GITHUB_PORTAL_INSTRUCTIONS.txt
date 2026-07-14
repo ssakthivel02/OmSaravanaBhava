@@ -1,0 +1,63 @@
+Release 224 — GitHub browser upload instructions
+
+Repository:
+https://github.com/ssakthivel02/OmSaravanaBhava
+
+Verified Release 223 base head:
+03f8c23e50aea1323211d2ca44cf4cddcf0deec4
+
+Required commit title — enter this in the SMALL UPPER FIELD:
+Release 224: add browser-local reading notes centre
+
+Leave the large commit-description field blank.
+
+UPLOAD
+1. Download and extract OmSaravanaBhava-Release-224.zip.
+2. Enable Windows View > Show > Hidden items.
+3. Open the extracted package folder.
+4. In GitHub main, select Add file > Upload files.
+5. Drag the CONTENTS of the extracted folder, not the outer folder.
+6. Preserve every directory path.
+7. Confirm these exact paths appear before committing:
+   .github/workflows/static-site-integrity.yml
+   .github/workflows/production-smoke.yml
+   reading-notes.html
+   assets/css/reading-notes.css
+   assets/js/reading-notes.mjs
+   assets/js/reader-experience.js
+   assets/js/pwa-register.js
+   data/reading-notes.json
+   manifest-release-224.json
+   tools/release_224_validate.py
+8. Enter the required title in the small upper field.
+9. Leave the large description field completely blank.
+10. Commit directly to main.
+
+POST-COMMIT VERIFICATION
+1. Copy the new main commit SHA.
+2. Confirm service-worker.js contains:
+   const RELEASE = '224';
+3. Open reading-workspace.html and then an eligible literature or sloka route.
+4. Confirm “Add section note” and “Notes centre” appear in the reading toolbar.
+5. Save:
+   - one section bookmark without note text
+   - one user-authored reflection or question
+6. Open reading-notes.html and confirm actual record, route, bookmark and written-note counts.
+7. Test search, note-kind filtering, route filtering, edit, delete and JSON export.
+8. Clear notes and confirm reading progress, reading list, accessibility preferences and audio history remain.
+9. Confirm data/site-routes.json contains /reading-notes.html once.
+10. Confirm sitemap.xml contains the Reading Notes URL once.
+11. Open maintenance.html and run Release 224 checks.
+12. Wait for:
+    Release 224 Static Site Integrity
+    Release 224 Production Smoke
+13. Do not proceed to Release 225 until Release 224 is verified.
+
+DO NOT
+- Do not upload only reading-notes.html.
+- Do not omit hidden .github workflow files.
+- Do not rename an older ZIP.
+- Do not paste or store selected devotional text as application-generated note data.
+- Do not claim cloud synchronization, collaboration or user accounts.
+- Do not place the release title in the large description field.
+- Do not mark GitHub Actions or production as passed before they run.

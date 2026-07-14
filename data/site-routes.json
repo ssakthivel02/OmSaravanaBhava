@@ -1,5 +1,5 @@
 {
-  "release": 223,
+  "release": 224,
   "generated": "2026-07-14",
   "scope": "Public HTML routes represented by the Release 215 sitemap and route directory.",
   "statusMeaning": {
@@ -580,6 +580,14 @@
       "category": "Platform",
       "status": "utility",
       "summary": "Browser-local progress, resume, focus mode and reading-list integration for existing eligible literature routes."
+    },
+    {
+      "path": "/reading-notes.html",
+      "titleTa": "வாசிப்பு குறிப்புகள்",
+      "titleEn": "Reading Notes and Section Bookmarks",
+      "category": "Platform",
+      "status": "utility",
+      "summary": "Browser-local user-authored notes and heading bookmarks for eligible reading routes without storing selected devotional text."
     },
     {
       "path": "/accessibility.html",

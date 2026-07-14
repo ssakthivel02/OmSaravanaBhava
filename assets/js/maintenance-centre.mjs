@@ -1,4 +1,4 @@
-export const RELEASE = 223;
+export const RELEASE = 224;
 export const CONFIG_PATH = '/data/maintenance-checks.json';
 export const DEFAULT_TRANSIENT_CACHE_PREFIXES = Object.freeze([
   'osb-runtime-v',

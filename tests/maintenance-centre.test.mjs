@@ -25,8 +25,8 @@ const registry = JSON.parse(
 );
 
 test('release and registry identities are stable', () => {
-  assert.equal(RELEASE, 223);
-  assert.equal(registry.release, 223);
+  assert.equal(RELEASE, 224);
+  assert.equal(registry.release, 224);
   assert.equal(registry.builtAgainstCommit.length, 40);
   assert.equal(registry.checks.length, 8);
 });
@@ -49,51 +49,51 @@ test('same-origin path normalisation rejects external resources', () => {
 });
 
 test('JSON path lookup and equality checks are deterministic', () => {
-  const value = {release: 223, nested: {state: 'ready'}};
+  const value = {release: 224, nested: {state: 'ready'}};
   assert.equal(readJsonPath(value, 'nested.state'), 'ready');
   assert.equal(readJsonPath(value, 'nested.missing'), undefined);
   assert.deepEqual(
-    evaluateJsonEquals(value, 'release', 223),
-    {ok: true, actual: 223}
+    evaluateJsonEquals(value, 'release', 224),
+    {ok: true, actual: 224}
   );
 });
 
 test('route registry requires one maintenance route and no duplicates', () => {
   const valid = evaluateRouteRegistry({
-    release: 223,
+    release: 224,
     routes: [
       {path: '/index.html'},
-      {path: '/reading-workspace.html'}
+      {path: '/reading-notes.html'}
     ]
-  }, 223, '/reading-workspace.html');
+  }, 224, '/reading-notes.html');
   assert.equal(valid.ok, true);
 
   const duplicate = evaluateRouteRegistry({
-    release: 223,
+    release: 224,
     routes: [
-      {path: '/reading-workspace.html'},
-      {path: '/reading-workspace.html'}
+      {path: '/reading-notes.html'},
+      {path: '/reading-notes.html'}
     ]
-  }, 223, '/reading-workspace.html');
+  }, 224, '/reading-notes.html');
   assert.equal(duplicate.ok, false);
   assert.equal(duplicate.actual.duplicateCount, 1);
 });
 
 test('audit configuration requires the current release and files', () => {
   const result = evaluateAuditConfig({
-    expectedRelease: '223',
-    requiredFiles: ['reading-workspace.html', 'manifest-release-223.json']
-  }, '223', ['reading-workspace.html', 'manifest-release-223.json']);
+    expectedRelease: '224',
+    requiredFiles: ['reading-notes.html', 'manifest-release-224.json']
+  }, '224', ['reading-notes.html', 'manifest-release-224.json']);
   assert.equal(result.ok, true);
 
   const missing = evaluateAuditConfig({
-    expectedRelease: '223',
-    requiredFiles: ['reading-workspace.html']
-  }, '223', ['reading-workspace.html', 'manifest-release-223.json']);
+    expectedRelease: '224',
+    requiredFiles: ['reading-notes.html']
+  }, '224', ['reading-notes.html', 'manifest-release-224.json']);
   assert.equal(missing.ok, false);
   assert.deepEqual(
     missing.actual.missing,
-    ['manifest-release-223.json']
+    ['manifest-release-224.json']
   );
 });
 
@@ -123,8 +123,8 @@ test('check payload supports all configured check modes', () => {
   const result = evaluateCheckPayload(
     routeCheck,
     JSON.stringify({
-      release: 223,
-      routes: [{path: '/reading-workspace.html'}]
+      release: 224,
+      routes: [{path: '/reading-notes.html'}]
     })
   );
   assert.equal(result.ok, true);
@@ -136,14 +136,14 @@ test('resource checks record HTTP and marker results', async () => {
     status: 200,
     async text() {
       return path === '/service-worker.js'
-        ? "const RELEASE = '223';"
+        ? "const RELEASE = '224';"
         : '';
     }
   });
   const result = await runResourceCheck({
     path: '/service-worker.js',
     mode: 'textIncludes',
-    expected: "const RELEASE = '223';"
+    expected: "const RELEASE = '224';"
   }, fetcher);
   assert.equal(result.ok, true);
   assert.equal(result.status, 200);
@@ -174,7 +174,7 @@ test('path auditing preserves independent failures', async () => {
 
 test('transient cache cleanup preserves static and user caches', async () => {
   const names = [
-    'osb-static-v223',
+    'osb-static-v224',
     'osb-runtime-v220',
     'osb-data-v219',
     'osb-user-reading-v1'

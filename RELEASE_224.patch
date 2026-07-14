@@ -1,0 +1,2456 @@
+diff --git a/reading-notes.html b/reading-notes.html
+new file mode 100644
+--- /dev/null
++++ b/reading-notes.html
+@@ -0,0 +1,80 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Reading Notes &amp; Section Bookmarks | Om Saravana Bhava</title>
++<meta name="description" content="Manage browser-local personal notes and heading bookmarks for eligible OmSaravanaBhava literature routes without storing selected devotional text.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/reading-notes.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="stylesheet" href="assets/css/reading-notes.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++</head>
++<body data-release="224">
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Browser-local reading notes and section bookmarks</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="reading-notes.html" aria-current="page">Notes</a><a href="reading-list.html">Reading List</a><a href="print-pdf.html">Print &amp; PDF</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="reading-workspace.html">Reading Workspace</a> › <span aria-current="page">Reading Notes</span></p></nav>
++
++<section class="card reading-notes-hero">
++<div>
++<span class="pill">Release 224 · Local notes and bookmarks</span>
++<h1 class="section-title" lang="ta">வாசிப்பு குறிப்புகள்</h1>
++<h2>Reading Notes &amp; Section Bookmarks</h2>
++<p>Review your own reflections, questions, practice notes and section bookmarks. Records remain in this browser and do not copy selected devotional text.</p>
++</div>
++<div class="reading-notes-metric"><strong id="readingNotesTotal">0</strong><span>local records</span></div>
++<div class="reading-notes-metric"><strong id="readingNotesRoutes">0</strong><span>reading routes</span></div>
++<div class="reading-notes-metric"><strong id="readingNotesBookmarks">0</strong><span>section bookmarks</span></div>
++<div class="reading-notes-metric"><strong id="readingNotesWritten">0</strong><span>written notes</span></div>
++</section>
++
++<section class="card reading-notes-controls" aria-label="Reading-note filters">
++<label for="readingNotesSearch">Search your notes
++<input id="readingNotesSearch" type="search" placeholder="Tamil or English note text…" autocomplete="off">
++</label>
++<label for="readingNotesKindFilter">Note kind
++<select id="readingNotesKindFilter">
++<option value="all">All note kinds</option>
++</select>
++</label>
++<label for="readingNotesRouteFilter">Reading route
++<select id="readingNotesRouteFilter">
++<option value="all">All reading routes</option>
++</select>
++</label>
++<button class="btn secondary" id="readingNotesReset" type="button">Reset filters</button>
++<button class="btn secondary" id="readingNotesExport" type="button" disabled>Export JSON</button>
++<button class="btn secondary" id="readingNotesClear" type="button" disabled>Clear notes</button>
++</section>
++
++<p id="readingNotesStatus" role="status" aria-live="polite">Loading browser-local notes…</p>
++<section id="readingNotesItems" class="grid reading-notes-grid" aria-label="Reading notes and bookmarks">
++<article class="card">Loading notes…</article>
++</section>
++
++<section class="card reading-notes-boundary-card">
++<h2>Privacy and publication boundary</h2>
++<ul>
++<li>Only your note, route metadata and optional heading label are stored.</li>
++<li>Selected devotional text and page body content are not stored.</li>
++<li>Notes do not modify the published page, source evidence, copyright status or completeness statement.</li>
++<li>Clearing notes preserves reading progress, the reading list, accessibility preferences and audio history.</li>
++<li>No account, analytics, cloud synchronization or collaborative editing is used.</li>
++</ul>
++<p><a class="btn" href="reading-workspace.html">Open Reading Workspace</a></p>
++</section>
++
++<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>Browser-local notes require JavaScript. Existing literature remains available through the <a href="reading-workspace.html">Reading Workspace</a>.</p></section></noscript>
++</main>
++<footer>© Om Saravana Bhava · <a href="reading-notes.html">Reading Notes</a> · <a href="reading-workspace.html">Reading Workspace</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>
+diff --git a/assets/css/reading-notes.css b/assets/css/reading-notes.css
+new file mode 100644
+--- /dev/null
++++ b/assets/css/reading-notes.css
+@@ -0,0 +1 @@
++.reading-notes-hero{display:grid;grid-template-columns:minmax(0,1.45fr) repeat(4,minmax(105px,.28fr));gap:16px;align-items:center}.reading-notes-metric{display:grid;place-items:center;min-height:112px;border:1px solid var(--line);border-radius:22px;background:var(--surface-strong,#fff);text-align:center;padding:12px}.reading-notes-metric strong{font-size:clamp(2rem,5vw,3.8rem);line-height:1;color:var(--red)}.reading-notes-metric span{font-size:.84rem;font-weight:850}.reading-notes-controls{display:grid;grid-template-columns:minmax(220px,1.4fr) repeat(2,minmax(180px,.65fr)) auto auto auto;gap:12px;align-items:end}.reading-notes-controls label{display:grid;gap:6px;font-weight:850}.reading-notes-controls input,.reading-notes-controls select{width:100%}.reading-notes-grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}.reading-note-card{display:flex;flex-direction:column;gap:10px}.reading-note-card h2{margin:0}.reading-note-labels,.reading-note-actions{display:flex;flex-wrap:wrap;gap:8px}.reading-note-actions{margin-top:auto;padding-top:8px}.reading-note-section{font-weight:850;color:var(--red)}.reading-note-text{white-space:pre-wrap}.reading-note-meta{font-size:.86rem;color:#6a4638}.reading-note-empty{grid-column:1/-1}.reading-notes-boundary-card{border-left:5px solid var(--orange)}.reading-notes-dialog{width:min(680px,calc(100% - 28px));max-height:90vh;overflow:auto;border:1px solid var(--line);border-radius:24px;padding:0;background:var(--surface-strong,#fff);color:var(--ink);box-shadow:0 24px 70px rgba(46,22,15,.28)}.reading-notes-dialog::backdrop{background:rgba(30,16,11,.58);backdrop-filter:blur(4px)}.reading-notes-dialog form{display:grid;gap:14px;padding:22px}.reading-notes-dialog label{display:grid;gap:6px;font-weight:850}.reading-notes-dialog select,.reading-notes-dialog textarea{width:100%}.reading-notes-dialog-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.reading-notes-dialog-heading h2{margin:.35rem 0 0}.reading-notes-dialog-actions{display:flex;flex-wrap:wrap;gap:9px}.reading-notes-boundary{font-size:.86rem;color:#6a4638}.home-reading-notes-224{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center}.home-reading-notes-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:9px}body.dark .reading-note-meta,body.dark .reading-notes-boundary{color:#f4d9c8}@media(max-width:1120px){.reading-notes-hero{grid-template-columns:repeat(2,minmax(0,1fr))}.reading-notes-hero>div:first-child{grid-column:1/-1}.reading-notes-controls{grid-template-columns:repeat(2,minmax(0,1fr))}.reading-notes-controls>label:first-child{grid-column:1/-1}.reading-notes-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:760px){.reading-notes-controls,.reading-notes-grid,.home-reading-notes-224{grid-template-columns:1fr}.reading-notes-controls>label:first-child{grid-column:auto}.home-reading-notes-actions{justify-content:flex-start}.reading-notes-controls .btn,.home-reading-notes-actions .btn,.reading-notes-dialog-actions .btn{width:100%}.reading-notes-dialog-heading{flex-direction:column}}@media(max-width:560px){.reading-notes-hero{grid-template-columns:1fr}.reading-notes-hero>div:first-child{grid-column:auto}}@media print{.reading-notes-controls,.reading-note-actions,#readingNotesStatus,.reading-notes-dialog{display:none!important}.reading-notes-grid{display:block!important}.reading-note-card{break-inside:avoid}}
+diff --git a/assets/js/reading-notes.mjs b/assets/js/reading-notes.mjs
+new file mode 100644
+--- /dev/null
++++ b/assets/js/reading-notes.mjs
+@@ -0,0 +1,907 @@
++export const RELEASE = 224;
++export const CONFIG_PATH = '/data/reading-notes.json';
++export const READING_CONFIG_PATH = '/data/reading-workspace.json';
++export const ROUTES_PATH = '/data/site-routes.json';
++export const STORAGE_KEY = 'osb-reading-notes-v1';
++export const DEFAULT_MAX_ITEMS = 100;
++export const DEFAULT_MAX_LENGTH = 500;
++export const CANONICAL_ORIGIN = 'https://omsaravanabhava.org';
++
++const safeStorage = storage => {
++  if (storage) return storage;
++  try {
++    return globalThis.localStorage;
++  } catch {
++    return null;
++  }
++};
++
++export const normaliseNoteRoute = value => {
++  const raw = String(value ?? '').trim();
++  if (!raw) return '';
++  try {
++    const url = new URL(raw, `${CANONICAL_ORIGIN}/`);
++    if (url.origin !== CANONICAL_ORIGIN) return '';
++    return `${url.pathname}${url.search}${url.hash}`;
++  } catch {
++    return '';
++  }
++};
++
++export const routePath = value => {
++  const route = normaliseNoteRoute(value);
++  if (!route) return '';
++  try {
++    return new URL(route, CANONICAL_ORIGIN).pathname;
++  } catch {
++    return '';
++  }
++};
++
++export const slugifyHeading = (text, index = 0) => {
++  const base = String(text ?? '')
++    .trim()
++    .toLocaleLowerCase()
++    .normalize('NFKD')
++    .replace(/[^\p{L}\p{N}]+/gu, '-')
++    .replace(/^-+|-+$/g, '')
++    .slice(0, 64);
++  return `osb-section-${base || 'section'}-${Number(index) + 1}`;
++};
++
++export const sanitiseNoteRecord = (
++  record,
++  {
++    maximumNoteLength = DEFAULT_MAX_LENGTH,
++    allowedKinds = ['reflection', 'question', 'practice', 'reference'],
++    timestamp = new Date().toISOString()
++  } = {}
++) => {
++  if (!record || typeof record !== 'object') return null;
++  const route = normaliseNoteRoute(record.route);
++  if (!route) return null;
++
++  const headingId = String(record.headingId ?? '')
++    .trim()
++    .replace(/^#/, '')
++    .slice(0, 120);
++  const headingLabel = String(record.headingLabel ?? '')
++    .trim()
++    .slice(0, 160);
++  const note = String(record.note ?? '')
++    .trim()
++    .slice(0, Math.max(1, Number(maximumNoteLength) || DEFAULT_MAX_LENGTH));
++
++  if (!note && !headingId) return null;
++
++  const kindValue = String(record.kind ?? 'reflection')
++    .trim()
++    .toLocaleLowerCase();
++  const allowed = new Set(
++    (Array.isArray(allowedKinds) ? allowedKinds : [])
++      .map(value =>
++        typeof value === 'object'
++          ? String(value.id ?? '').trim().toLocaleLowerCase()
++          : String(value).trim().toLocaleLowerCase()
++      )
++      .filter(Boolean)
++  );
++  const kind = allowed.has(kindValue)
++    ? kindValue
++    : (allowed.values().next().value || 'reflection');
++
++  const id = String(record.id ?? '').trim() ||
++    `note-${timestamp.replace(/[^0-9]/g, '')}-${headingId || 'page'}`;
++
++  return {
++    id: id.slice(0, 180),
++    route,
++    titleTa: String(record.titleTa ?? '').trim().slice(0, 180),
++    titleEn:
++      String(record.titleEn ?? record.title ?? route).trim().slice(0, 180) ||
++      route,
++    category:
++      String(record.category ?? 'Reading').trim().slice(0, 80) ||
++      'Reading',
++    status:
++      String(record.status ?? 'published').trim().toLocaleLowerCase().slice(0, 80) ||
++      'published',
++    headingId,
++    headingLabel,
++    kind,
++    note,
++    createdAt: String(record.createdAt ?? timestamp),
++    updatedAt: String(record.updatedAt ?? timestamp)
++  };
++};
++
++export const loadNotes = (
++  storage,
++  maximumItems = DEFAULT_MAX_ITEMS,
++  options = {}
++) => {
++  const target = safeStorage(storage);
++  if (!target) return [];
++  try {
++    const parsed = JSON.parse(target.getItem(STORAGE_KEY) || '[]');
++    if (!Array.isArray(parsed)) return [];
++    const seen = new Set();
++    const notes = [];
++    parsed.forEach(record => {
++      const note = sanitiseNoteRecord(record, {
++        ...options,
++        timestamp: record?.updatedAt || record?.createdAt
++      });
++      if (!note || seen.has(note.id)) return;
++      seen.add(note.id);
++      notes.push(note);
++    });
++    return notes
++      .sort((left, right) =>
++        String(right.updatedAt).localeCompare(String(left.updatedAt))
++      )
++      .slice(0, Math.max(1, Number(maximumItems) || DEFAULT_MAX_ITEMS));
++  } catch {
++    return [];
++  }
++};
++
++export const saveNotes = (
++  notes,
++  storage,
++  maximumItems = DEFAULT_MAX_ITEMS,
++  options = {}
++) => {
++  const target = safeStorage(storage);
++  if (!target) return false;
++  try {
++    const clean = [];
++    const seen = new Set();
++    (Array.isArray(notes) ? notes : []).forEach(record => {
++      const note = sanitiseNoteRecord(record, {
++        ...options,
++        timestamp: record?.updatedAt || record?.createdAt
++      });
++      if (!note || seen.has(note.id)) return;
++      seen.add(note.id);
++      clean.push(note);
++    });
++    target.setItem(
++      STORAGE_KEY,
++      JSON.stringify(
++        clean.slice(0, Math.max(1, Number(maximumItems) || DEFAULT_MAX_ITEMS))
++      )
++    );
++    return true;
++  } catch {
++    return false;
++  }
++};
++
++export const upsertNote = (
++  notes,
++  record,
++  {
++    maximumItems = DEFAULT_MAX_ITEMS,
++    maximumNoteLength = DEFAULT_MAX_LENGTH,
++    allowedKinds = ['reflection', 'question', 'practice', 'reference'],
++    timestamp = new Date().toISOString()
++  } = {}
++) => {
++  const incoming = sanitiseNoteRecord(record, {
++    maximumNoteLength,
++    allowedKinds,
++    timestamp
++  });
++  if (!incoming) return Array.isArray(notes) ? [...notes] : [];
++
++  const previous = (Array.isArray(notes) ? notes : [])
++    .map(item => sanitiseNoteRecord(item, {
++      maximumNoteLength,
++      allowedKinds,
++      timestamp: item?.updatedAt || item?.createdAt
++    }))
++    .filter(Boolean);
++
++  const existing = previous.find(item => item.id === incoming.id);
++  incoming.createdAt = existing?.createdAt || incoming.createdAt || timestamp;
++  incoming.updatedAt = timestamp;
++
++  return [
++    incoming,
++    ...previous.filter(item => item.id !== incoming.id)
++  ].slice(0, Math.max(1, Number(maximumItems) || DEFAULT_MAX_ITEMS));
++};
++
++export const removeNote = (
++  id,
++  storage,
++  maximumItems = DEFAULT_MAX_ITEMS,
++  options = {}
++) => {
++  const targetId = String(id ?? '').trim();
++  const notes = loadNotes(storage, maximumItems, options)
++    .filter(note => note.id !== targetId);
++  saveNotes(notes, storage, maximumItems, options);
++  return notes;
++};
++
++export const clearNotes = storage => {
++  const target = safeStorage(storage);
++  if (!target) return false;
++  try {
++    target.removeItem(STORAGE_KEY);
++    return true;
++  } catch {
++    return false;
++  }
++};
++
++export const filterNotes = (
++  notes,
++  {
++    query = '',
++    kind = 'all',
++    route = 'all'
++  } = {}
++) => {
++  const needle = String(query).trim().toLocaleLowerCase();
++  return (Array.isArray(notes) ? notes : [])
++    .filter(note => {
++      if (kind !== 'all' && note.kind !== kind) return false;
++      if (route !== 'all' && routePath(note.route) !== route) return false;
++      if (!needle) return true;
++      const haystack = [
++        note.titleTa,
++        note.titleEn,
++        note.category,
++        note.status,
++        note.headingLabel,
++        note.kind,
++        note.note
++      ].join(' ').toLocaleLowerCase();
++      return haystack.includes(needle);
++    })
++    .sort((left, right) =>
++      String(right.updatedAt).localeCompare(String(left.updatedAt))
++    );
++};
++
++export const buildNotesMetrics = notes => {
++  const items = Array.isArray(notes) ? notes : [];
++  return {
++    total: items.length,
++    routes: new Set(items.map(item => routePath(item.route)).filter(Boolean)).size,
++    sectionBookmarks: items.filter(item => Boolean(item.headingId)).length,
++    writtenNotes: items.filter(item => Boolean(item.note)).length
++  };
++};
++
++export const collectSectionOptions = root => {
++  if (!root?.querySelectorAll) return [];
++  const headings = [...root.querySelectorAll('main h2, main h3')]
++    .filter(heading =>
++      !heading.closest(
++        '#osb-reader-toolbar, .reading-notes-dialog, .reading-workspace-controls'
++      )
++    );
++  const seen = new Set();
++  return headings.map((heading, index) => {
++    const label = String(heading.textContent ?? '').trim();
++    if (!label) return null;
++    let id = String(heading.id ?? '').trim();
++    if (!id) {
++      id = slugifyHeading(label, index);
++      let candidate = id;
++      let suffix = 2;
++      while (seen.has(candidate) || document.getElementById(candidate)) {
++        candidate = `${id}-${suffix}`;
++        suffix += 1;
++      }
++      id = candidate;
++      heading.id = id;
++    }
++    seen.add(id);
++    return {id, label};
++  }).filter(Boolean);
++};
++
++export const buildNoteHref = note => {
++  const path = routePath(note?.route);
++  if (!path) return '';
++  return note.headingId
++    ? `${path}#${encodeURIComponent(note.headingId)}`
++    : path;
++};
++
++const fetchJson = async (path, fetcher = globalThis.fetch) => {
++  if (typeof fetcher !== 'function') throw new Error('Fetch API unavailable');
++  const response = await fetcher(path, {
++    cache: 'default',
++    credentials: 'same-origin',
++    headers: {'Accept': 'application/json'}
++  });
++  if (!response.ok) throw new Error(`${path} returned HTTP ${response.status}`);
++  return response.json();
++};
++
++const routeIsEligible = (record, readingConfig) => {
++  const path = routePath(record?.path);
++  if (!path) return false;
++
++  const allowedStatuses = new Set(
++    (readingConfig?.allowedStatuses || [])
++      .map(value => String(value).trim().toLocaleLowerCase())
++  );
++  if (
++    allowedStatuses.size &&
++    !allowedStatuses.has(String(record.status ?? '').trim().toLocaleLowerCase())
++  ) {
++    return false;
++  }
++
++  const excluded = new Set(
++    (readingConfig?.excludedPaths || []).map(routePath)
++  );
++  if (excluded.has(path)) return false;
++
++  if ((readingConfig?.eligibleExactPaths || []).map(routePath).includes(path)) {
++    return true;
++  }
++
++  return (readingConfig?.eligiblePathPrefixes || [])
++    .map(routePath)
++    .some(prefix => path.startsWith(prefix));
++};
++
++export const loadNotesModel = async (
++  fetcher = globalThis.fetch,
++  storage = undefined
++) => {
++  const [config, readingConfig, routesPayload] = await Promise.all([
++    fetchJson(CONFIG_PATH, fetcher),
++    fetchJson(READING_CONFIG_PATH, fetcher),
++    fetchJson(ROUTES_PATH, fetcher)
++  ]);
++
++  const routes = (Array.isArray(routesPayload?.routes) ? routesPayload.routes : [])
++    .filter(record => routeIsEligible(record, readingConfig))
++    .map(record => ({
++      path: routePath(record.path),
++      titleTa: String(record.titleTa ?? '').trim(),
++      titleEn: String(record.titleEn ?? record.path).trim() || record.path,
++      category: String(record.category ?? 'Reading').trim() || 'Reading',
++      status: String(record.status ?? 'published').trim().toLocaleLowerCase(),
++      summary: String(record.summary ?? '').trim()
++    }));
++
++  const allowedKinds = (config.allowedKinds || []).map(item => item.id);
++  return {
++    config,
++    readingConfig,
++    routes,
++    routeMap: new Map(routes.map(route => [route.path, route])),
++    notes: loadNotes(
++      storage,
++      config.maximumItems,
++      {
++        maximumNoteLength: config.maximumNoteLength,
++        allowedKinds
++      }
++    )
++  };
++};
++
++const createText = (parent, tag, text, className) => {
++  const element = document.createElement(tag);
++  if (className) element.className = className;
++  element.textContent = String(text);
++  parent.appendChild(element);
++  return element;
++};
++
++const displayTitle = record =>
++  record.titleTa && record.titleEn
++    ? `${record.titleTa} · ${record.titleEn}`
++    : record.titleTa || record.titleEn || record.route;
++
++const formatDate = value => {
++  try {
++    return new Date(value).toLocaleString();
++  } catch {
++    return String(value);
++  }
++};
++
++const downloadJson = (filename, value) => {
++  const blob = new Blob(
++    [JSON.stringify(value, null, 2)],
++    {type: 'application/json'}
++  );
++  const url = URL.createObjectURL(blob);
++  const link = document.createElement('a');
++  link.href = url;
++  link.download = filename;
++  document.body.appendChild(link);
++  link.click();
++  link.remove();
++  URL.revokeObjectURL(url);
++};
++
++const ensureDialog = model => {
++  let dialog = document.getElementById('readingNotesDialog');
++  if (dialog) return dialog;
++
++  dialog = document.createElement('dialog');
++  dialog.id = 'readingNotesDialog';
++  dialog.className = 'reading-notes-dialog';
++  dialog.innerHTML = `
++    <form method="dialog" id="readingNotesForm">
++      <div class="reading-notes-dialog-heading">
++        <div>
++          <span class="pill">Browser-local</span>
++          <h2 id="readingNotesDialogTitle">Add reading note</h2>
++        </div>
++        <button type="button" class="btn secondary" id="readingNotesClose">Close</button>
++      </div>
++      <input type="hidden" id="readingNotesId">
++      <input type="hidden" id="readingNotesRoute">
++      <label for="readingNotesSection">Section bookmark
++        <select id="readingNotesSection"></select>
++      </label>
++      <label for="readingNotesKind">Note kind
++        <select id="readingNotesKind"></select>
++      </label>
++      <label for="readingNotesText">Your note
++        <textarea id="readingNotesText" rows="7" maxlength="${Number(model.config.maximumNoteLength) || DEFAULT_MAX_LENGTH}" placeholder="Add your own reflection, question or practice note. Leave blank to save only the section bookmark."></textarea>
++      </label>
++      <p id="readingNotesCounter">0/${Number(model.config.maximumNoteLength) || DEFAULT_MAX_LENGTH}</p>
++      <div class="reading-notes-dialog-actions">
++        <button type="submit" class="btn" id="readingNotesSave">Save locally</button>
++        <button type="button" class="btn secondary" id="readingNotesCancel">Cancel</button>
++      </div>
++      <p class="reading-notes-boundary">Selected devotional text is not stored. Only your note, route metadata and optional heading label are saved in this browser.</p>
++    </form>
++  `;
++  document.body.appendChild(dialog);
++
++  const kindSelect = dialog.querySelector('#readingNotesKind');
++  (model.config.allowedKinds || []).forEach(kind => {
++    const option = document.createElement('option');
++    option.value = kind.id;
++    option.textContent = kind.label;
++    kindSelect.appendChild(option);
++  });
++
++  const textarea = dialog.querySelector('#readingNotesText');
++  const counter = dialog.querySelector('#readingNotesCounter');
++  textarea.addEventListener('input', () => {
++    counter.textContent =
++      `${textarea.value.length}/${Number(model.config.maximumNoteLength) || DEFAULT_MAX_LENGTH}`;
++  });
++
++  const close = () => dialog.close();
++  dialog.querySelector('#readingNotesClose').addEventListener('click', close);
++  dialog.querySelector('#readingNotesCancel').addEventListener('click', close);
++
++  return dialog;
++};
++
++const saveDialogRecord = (dialog, model, rerender) => {
++  const id = dialog.querySelector('#readingNotesId').value;
++  const route = routePath(dialog.querySelector('#readingNotesRoute').value);
++  const section = dialog.querySelector('#readingNotesSection');
++  const option = section.selectedOptions[0];
++  const headingId = option?.value || '';
++  const headingLabel = option?.dataset.label || '';
++  const kind = dialog.querySelector('#readingNotesKind').value;
++  const note = dialog.querySelector('#readingNotesText').value;
++  const routeRecord = model.routeMap.get(route);
++
++  const timestamp = new Date().toISOString();
++  const allowedKinds = (model.config.allowedKinds || []).map(item => item.id);
++  const notes = upsertNote(
++    loadNotes(undefined, model.config.maximumItems, {
++      maximumNoteLength: model.config.maximumNoteLength,
++      allowedKinds
++    }),
++    {
++      id,
++      route,
++      titleTa: routeRecord?.titleTa || '',
++      titleEn: routeRecord?.titleEn || document.title,
++      category: routeRecord?.category || 'Reading',
++      status: routeRecord?.status || 'published',
++      headingId,
++      headingLabel,
++      kind,
++      note
++    },
++    {
++      maximumItems: model.config.maximumItems,
++      maximumNoteLength: model.config.maximumNoteLength,
++      allowedKinds,
++      timestamp
++    }
++  );
++
++  const saved = saveNotes(
++    notes,
++    undefined,
++    model.config.maximumItems,
++    {
++      maximumNoteLength: model.config.maximumNoteLength,
++      allowedKinds
++    }
++  );
++  if (!saved) throw new Error('Browser storage is unavailable.');
++  dialog.close();
++  rerender?.();
++  window.dispatchEvent(new CustomEvent('osb:reading-notes-updated'));
++};
++
++const openDialog = ({
++  model,
++  route,
++  sections,
++  existing = null,
++  rerender = null
++}) => {
++  const dialog = ensureDialog(model);
++  const form = dialog.querySelector('#readingNotesForm');
++  const idInput = dialog.querySelector('#readingNotesId');
++  const routeInput = dialog.querySelector('#readingNotesRoute');
++  const sectionSelect = dialog.querySelector('#readingNotesSection');
++  const kindSelect = dialog.querySelector('#readingNotesKind');
++  const textarea = dialog.querySelector('#readingNotesText');
++  const counter = dialog.querySelector('#readingNotesCounter');
++  const title = dialog.querySelector('#readingNotesDialogTitle');
++
++  idInput.value = existing?.id || '';
++  routeInput.value = routePath(existing?.route || route);
++  kindSelect.value = existing?.kind || model.config.allowedKinds?.[0]?.id || 'reflection';
++  textarea.value = existing?.note || '';
++  counter.textContent =
++    `${textarea.value.length}/${Number(model.config.maximumNoteLength) || DEFAULT_MAX_LENGTH}`;
++  title.textContent = existing ? 'Edit reading note' : 'Add reading note';
++
++  sectionSelect.replaceChildren();
++  const pageOption = document.createElement('option');
++  pageOption.value = '';
++  pageOption.dataset.label = '';
++  pageOption.textContent = 'Page overview';
++  sectionSelect.appendChild(pageOption);
++
++  (Array.isArray(sections) ? sections : []).forEach(section => {
++    const option = document.createElement('option');
++    option.value = section.id;
++    option.dataset.label = section.label;
++    option.textContent = section.label;
++    sectionSelect.appendChild(option);
++  });
++  sectionSelect.value = existing?.headingId || '';
++
++  form.onsubmit = event => {
++    event.preventDefault();
++    try {
++      saveDialogRecord(dialog, model, rerender);
++    } catch (error) {
++      console.warn('[OmSaravanaBhava] Reading note save failed', error);
++      dialog.querySelector('#readingNotesSave').textContent = 'Storage unavailable';
++    }
++  };
++
++  dialog.showModal();
++  textarea.focus();
++};
++
++const createNoteCard = (note, model, rerender) => {
++  const article = document.createElement('article');
++  article.className = 'card reading-note-card';
++
++  const labels = document.createElement('div');
++  labels.className = 'reading-note-labels';
++  createText(labels, 'span', note.kind, 'pill');
++  createText(labels, 'span', note.status, 'pill');
++  article.appendChild(labels);
++
++  createText(article, 'h2', displayTitle(note));
++  if (note.headingLabel) {
++    createText(article, 'p', `Section: ${note.headingLabel}`, 'reading-note-section');
++  }
++  if (note.note) {
++    createText(article, 'p', note.note, 'reading-note-text');
++  } else {
++    createText(article, 'p', 'Section bookmark only.', 'reading-note-text');
++  }
++  createText(
++    article,
++    'p',
++    `Updated ${formatDate(note.updatedAt)}`,
++    'reading-note-meta'
++  );
++
++  const actions = document.createElement('div');
++  actions.className = 'reading-note-actions';
++
++  const open = document.createElement('a');
++  open.className = 'btn';
++  open.href = buildNoteHref(note);
++  open.textContent = note.headingId ? 'Open section' : 'Open page';
++  actions.appendChild(open);
++
++  const edit = document.createElement('button');
++  edit.type = 'button';
++  edit.className = 'btn secondary';
++  edit.textContent = 'Edit';
++  edit.addEventListener('click', () => {
++    openDialog({
++      model,
++      route: note.route,
++      sections: note.headingId && note.headingLabel
++        ? [{id: note.headingId, label: note.headingLabel}]
++        : [],
++      existing: note,
++      rerender
++    });
++  });
++  actions.appendChild(edit);
++
++  const remove = document.createElement('button');
++  remove.type = 'button';
++  remove.className = 'btn secondary';
++  remove.textContent = 'Delete';
++  remove.addEventListener('click', () => {
++    const allowedKinds = (model.config.allowedKinds || []).map(item => item.id);
++    removeNote(
++      note.id,
++      undefined,
++      model.config.maximumItems,
++      {
++        maximumNoteLength: model.config.maximumNoteLength,
++        allowedKinds
++      }
++    );
++    rerender();
++  });
++  actions.appendChild(remove);
++
++  article.appendChild(actions);
++  return article;
++};
++
++const initialiseNotesCentre = async model => {
++  const host = document.getElementById('readingNotesItems');
++  const status = document.getElementById('readingNotesStatus');
++  const search = document.getElementById('readingNotesSearch');
++  const kind = document.getElementById('readingNotesKindFilter');
++  const route = document.getElementById('readingNotesRouteFilter');
++  const reset = document.getElementById('readingNotesReset');
++  const exportButton = document.getElementById('readingNotesExport');
++  const clearButton = document.getElementById('readingNotesClear');
++
++  if (
++    !host || !status || !search || !kind || !route ||
++    !reset || !exportButton || !clearButton
++  ) {
++    return;
++  }
++
++  (model.config.allowedKinds || []).forEach(item => {
++    const option = document.createElement('option');
++    option.value = item.id;
++    option.textContent = item.label;
++    kind.appendChild(option);
++  });
++
++  const render = () => {
++    const allowedKinds = (model.config.allowedKinds || []).map(item => item.id);
++    const notes = loadNotes(
++      undefined,
++      model.config.maximumItems,
++      {
++        maximumNoteLength: model.config.maximumNoteLength,
++        allowedKinds
++      }
++    );
++
++    const routeValues = [...new Map(
++      notes.map(note => [
++        routePath(note.route),
++        displayTitle(note)
++      ])
++    ).entries()].sort((left, right) => left[1].localeCompare(right[1]));
++
++    const selectedRoute = route.value;
++    route.replaceChildren();
++    const allRoute = document.createElement('option');
++    allRoute.value = 'all';
++    allRoute.textContent = 'All reading routes';
++    route.appendChild(allRoute);
++    routeValues.forEach(([value, label]) => {
++      const option = document.createElement('option');
++      option.value = value;
++      option.textContent = label;
++      route.appendChild(option);
++    });
++    route.value = routeValues.some(([value]) => value === selectedRoute)
++      ? selectedRoute
++      : 'all';
++
++    const filtered = filterNotes(notes, {
++      query: search.value,
++      kind: kind.value,
++      route: route.value
++    });
++    const metrics = buildNotesMetrics(notes);
++    const metricMap = {
++      readingNotesTotal: metrics.total,
++      readingNotesRoutes: metrics.routes,
++      readingNotesBookmarks: metrics.sectionBookmarks,
++      readingNotesWritten: metrics.writtenNotes
++    };
++    Object.entries(metricMap).forEach(([id, value]) => {
++      const element = document.getElementById(id);
++      if (element) element.textContent = String(value);
++    });
++
++    host.replaceChildren();
++    if (!filtered.length) {
++      const empty = document.createElement('article');
++      empty.className = 'card reading-note-empty';
++      createText(empty, 'h2', notes.length ? 'No notes match' : 'No local reading notes');
++      createText(
++        empty,
++        'p',
++        notes.length
++          ? 'Change the search, note kind or route filter.'
++          : 'Open an eligible reading route and use “Add section note”.'
++      );
++      const link = document.createElement('a');
++      link.className = 'btn';
++      link.href = '/reading-workspace.html';
++      link.textContent = 'Open Reading Workspace';
++      empty.appendChild(link);
++      host.appendChild(empty);
++    } else {
++      filtered.forEach(note =>
++        host.appendChild(createNoteCard(note, model, render))
++      );
++    }
++
++    status.textContent =
++      `${filtered.length} local note or bookmark record${filtered.length === 1 ? '' : 's'} match.`;
++    exportButton.disabled = notes.length === 0;
++    clearButton.disabled = notes.length === 0;
++  };
++
++  [search, kind, route].forEach(control => {
++    control.addEventListener(
++      control === search ? 'input' : 'change',
++      render
++    );
++  });
++
++  reset.addEventListener('click', () => {
++    search.value = '';
++    kind.value = 'all';
++    route.value = 'all';
++    render();
++    search.focus();
++  });
++
++  exportButton.addEventListener('click', () => {
++    const allowedKinds = (model.config.allowedKinds || []).map(item => item.id);
++    downloadJson(
++      'omsaravanabhava-reading-notes.json',
++      {
++        schema: 'osb-reading-notes-v1',
++        exportedAt: new Date().toISOString(),
++        notes: loadNotes(
++          undefined,
++          model.config.maximumItems,
++          {
++            maximumNoteLength: model.config.maximumNoteLength,
++            allowedKinds
++          }
++        )
++      }
++    );
++  });
++
++  clearButton.addEventListener('click', () => {
++    if (
++      !confirm(
++        'Clear browser-local reading notes and section bookmarks? Reading progress, reading list, accessibility preferences and audio history will be preserved.'
++      )
++    ) {
++      return;
++    }
++    clearNotes();
++    render();
++  });
++
++  window.addEventListener('storage', event => {
++    if (event.key === STORAGE_KEY) render();
++  });
++  window.addEventListener('osb:reading-notes-updated', render);
++  render();
++};
++
++const mountReaderNoteButton = (model, detail = {}) => {
++  const toolbar = document.getElementById('osb-reader-toolbar');
++  if (!toolbar || toolbar.dataset.notesMounted === 'true') return false;
++
++  const path = routePath(detail.path || globalThis.location?.pathname);
++  const routeRecord =
++    detail.routeRecord ||
++    model.routeMap.get(path);
++  if (!routeRecord || !model.routeMap.has(path)) return false;
++
++  const actions = toolbar.querySelector('.osb-reader-actions');
++  if (!actions) return false;
++
++  const sections = collectSectionOptions(document);
++  const add = document.createElement('button');
++  add.type = 'button';
++  add.className = 'btn secondary';
++  add.textContent = 'Add section note';
++  add.addEventListener('click', () => {
++    openDialog({
++      model,
++      route: path,
++      sections,
++      rerender: null
++    });
++  });
++  actions.appendChild(add);
++
++  const centre = document.createElement('a');
++  centre.className = 'btn secondary';
++  centre.href = '/reading-notes.html';
++  centre.textContent = 'Notes centre';
++  actions.appendChild(centre);
++
++  toolbar.dataset.notesMounted = 'true';
++  return true;
++};
++
++export const initialiseReadingNotes = async () => {
++  if (typeof document === 'undefined') return false;
++  if (globalThis.__osbReadingNotesInitialised) return true;
++  globalThis.__osbReadingNotesInitialised = true;
++
++  try {
++    const model = await loadNotesModel();
++
++    if (document.getElementById('readingNotesItems')) {
++      await initialiseNotesCentre(model);
++    }
++
++    document.addEventListener('osb:reader-ready', event => {
++      mountReaderNoteButton(model, event.detail || {});
++    });
++
++    mountReaderNoteButton(model);
++    return true;
++  } catch (error) {
++    console.warn('[OmSaravanaBhava] Reading notes unavailable', error);
++    const status = document.getElementById('readingNotesStatus');
++    if (status) {
++      status.textContent = 'The local reading-note registries could not be loaded.';
++    }
++    return false;
++  }
++};
++
++if (typeof document !== 'undefined') {
++  if (document.readyState === 'loading') {
++    document.addEventListener(
++      'DOMContentLoaded',
++      () => initialiseReadingNotes(),
++      {once: true}
++    );
++  } else {
++    initialiseReadingNotes();
++  }
++}
+diff --git a/data/reading-notes.json b/data/reading-notes.json
+new file mode 100644
+--- /dev/null
++++ b/data/reading-notes.json
+@@ -0,0 +1,41 @@
++{
++  "release": 224,
++  "generated": "2026-07-14",
++  "builtAgainstCommit": "03f8c23e50aea1323211d2ca44cf4cddcf0deec4",
++  "title": "OmSaravanaBhava Reading Notes and Section Bookmarks",
++  "scope": "Browser-local user-authored notes and heading bookmarks for routes eligible in the existing Premium Reading Workspace.",
++  "storageKey": "osb-reading-notes-v1",
++  "maximumItems": 100,
++  "maximumNoteLength": 500,
++  "allowedKinds": [
++    {
++      "id": "reflection",
++      "label": "Reflection"
++    },
++    {
++      "id": "question",
++      "label": "Question"
++    },
++    {
++      "id": "practice",
++      "label": "Practice"
++    },
++    {
++      "id": "reference",
++      "label": "Reference"
++    }
++  ],
++  "protectedStorageKeys": [
++    "osb-reading-progress-v1",
++    "osb-reading-list-v1",
++    "osb-accessibility-preferences-v1",
++    "osb-audio-listening-history-v1"
++  ],
++  "limitations": [
++    "Selected devotional text and page body content are not stored.",
++    "A heading label may be stored only as navigation metadata.",
++    "Notes remain in the current browser profile.",
++    "No account, analytics, cloud synchronization or collaborative editing is provided.",
++    "Notes do not change source, publication, copyright or completeness status."
++  ]
++}
+diff --git a/data/reading-workspace.json b/data/reading-workspace.json
+--- a/data/reading-workspace.json
++++ b/data/reading-workspace.json
+@@ -1,7 +1,7 @@
+ {
+-  "release": 223,
++  "release": 224,
+   "generated": "2026-07-14",
+-  "builtAgainstCommit": "131e51863ef4f1512b77a32025b249f45ee9834a",
++  "builtAgainstCommit": "03f8c23e50aea1323211d2ca44cf4cddcf0deec4",
+   "title": "OmSaravanaBhava Premium Reading Workspace",
+   "scope": "Browser-local reading progress and focus tools for existing published or clearly bounded devotional reading routes.",
+   "storageKey": "osb-reading-progress-v1",
+@@ -38,5 +38,11 @@
+     "Scroll percentage is an approximate reading position, not proof of completion.",
+     "The workspace does not alter publication, source or copyright status.",
+     "No account, analytics or cross-device synchronization is provided."
+-  ]
++  ],
++  "notesIntegration": {
++    "enabled": true,
++    "storageKey": "osb-reading-notes-v1",
++    "maximumItems": 100,
++    "storesSelectedDevotionalText": false
++  }
+ }
+diff --git a/assets/js/pwa-register.js b/assets/js/pwa-register.js
+--- a/assets/js/pwa-register.js
++++ b/assets/js/pwa-register.js
+@@ -8,6 +8,9 @@
+ 
+   import('/assets/js/reader-experience.js')
+     .catch(error => console.warn('[OmSaravanaBhava] Reader experience unavailable', error));
++
++  import('/assets/js/reading-notes.mjs')
++    .catch(error => console.warn('[OmSaravanaBhava] Reading notes unavailable', error));
+ 
+   if (!('serviceWorker' in navigator)) return;
+ 
+diff --git a/assets/js/reader-experience.js b/assets/js/reader-experience.js
+--- a/assets/js/reader-experience.js
++++ b/assets/js/reader-experience.js
+@@ -1,4 +1,4 @@
+-export const RELEASE = 223;
++export const RELEASE = 224;
+ export const CONFIG_PATH = '/data/reading-workspace.json';
+ export const ROUTES_PATH = '/data/site-routes.json';
+ export const STORAGE_KEY = 'osb-reading-progress-v1';
+@@ -918,6 +918,13 @@
+     main.prepend(toolbar);
+   }
+ 
++  document.dispatchEvent(new CustomEvent('osb:reader-ready', {
++    detail: {
++      path,
++      routeRecord
++    }
++  }));
++
+   let pending = false;
+   let lastSavedAt = 0;
+ 
+diff --git a/index.html b/index.html
+--- a/index.html
++++ b/index.html
+@@ -15,6 +15,7 @@
+ <meta name="twitter:card" content="summary">
+ <link rel="stylesheet" href="assets/css/osb44.css">
+ <link rel="stylesheet" href="assets/css/discovery-workspace.css">
++<link rel="stylesheet" href="assets/css/reading-notes.css">
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+ <meta name="theme-color" content="#a51d17">
+ <meta name="mobile-web-app-capable" content="yes">
+@@ -29,22 +30,33 @@
+ <script type="module" src="assets/js/discovery-workspace.mjs"></script>
+ <script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body data-release="223">
++<body data-release="224">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Verified Murugan digital heritage platform</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Read</a><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div>
++<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Read</a><a href="reading-notes.html">Notes</a><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">OmSaravanaBhava Home</span></p></nav>
+ <section class="home-stage">
+-<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 223</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="discovery.html">Open discovery workspace</a><a class="btn secondary" href="explore.html">Explore all modules</a><a class="btn secondary" href="ai-search.html">Search knowledge</a><a class="btn secondary" href="search-facets.html">Browse by content type</a><a class="btn secondary" href="reading-list.html">Reading list</a><a class="btn secondary" href="accessibility.html">Accessibility</a><a class="btn secondary" href="print-pdf.html">Print &amp; PDF</a><a class="btn secondary" href="audio-history.html">Audio history</a><a class="btn secondary" href="knowledge-graph-explorer.html">Knowledge graph</a><a class="btn secondary" href="maintenance.html">Maintenance</a></div></div>
++<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 224</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="discovery.html">Open discovery workspace</a><a class="btn secondary" href="explore.html">Explore all modules</a><a class="btn secondary" href="ai-search.html">Search knowledge</a><a class="btn secondary" href="search-facets.html">Browse by content type</a><a class="btn secondary" href="reading-list.html">Reading list</a><a class="btn secondary" href="accessibility.html">Accessibility</a><a class="btn secondary" href="print-pdf.html">Print &amp; PDF</a><a class="btn secondary" href="audio-history.html">Audio history</a><a class="btn secondary" href="knowledge-graph-explorer.html">Knowledge graph</a><a class="btn secondary" href="maintenance.html">Maintenance</a></div></div>
+ <div class="home-stage-panel" aria-label="Published platform data">
+ <div class="home-metric"><span>Search records</span><strong data-count-source="data/search-index.json" aria-live="polite">…</strong></div>
+ <div class="home-metric"><span>Source records</span><strong data-count-source="data/sources.json" aria-live="polite">…</strong></div>
+ <div class="home-metric"><span>Device read-aloud entries</span><strong data-count-source="data/read-aloud-playlist.json" aria-live="polite">…</strong></div>
+ </div></section>
++<section class="card home-reading-notes-224">
++<div>
++<span class="pill">Release 224 · Personal reading notes</span>
++<h2>Remember sections without copying source text</h2>
++<p>Add your own reflection, question, practice note or section bookmark while reading eligible literature routes. Everything remains in this browser.</p>
++</div>
++<div class="home-reading-notes-actions">
++<a class="btn" href="reading-notes.html">Open Reading Notes</a>
++<a class="btn secondary" href="reading-workspace.html">Open Reading Workspace</a>
++</div>
++</section>
+ <section class="card home-reading-workspace-223">
+ <div>
+ <span class="pill">Release 223 · Reading continuity</span>
+@@ -77,6 +89,6 @@
+ <section class="card" aria-labelledby="integrity-heading"><h2 id="integrity-heading">Publication integrity</h2><p>Repository releases, deployed pages and runtime behaviour are separate evidence layers. Content and feature claims remain bounded until automated checks and production observation confirm them.</p><p><a class="btn secondary" href="production-audit.html">Open production audit</a> <a class="btn secondary" href="content-status.html">Open content status</a></p></section>
+ <noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>All primary modules remain available through the navigation links. Live data counts are unavailable without JavaScript.</p></section></noscript>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="reading-workspace.html">Reading Workspace</a> · <a href="discovery.html">Discover</a> · <a href="maintenance.html">Maintenance</a> · <a href="knowledge-graph-explorer.html">Knowledge graph</a> · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
++<footer>© Om Saravana Bhava · <a href="reading-notes.html">Reading Notes</a> · <a href="reading-workspace.html">Reading Workspace</a> · <a href="discovery.html">Discover</a> · <a href="maintenance.html">Maintenance</a> · <a href="knowledge-graph-explorer.html">Knowledge graph</a> · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
+ </body>
+ </html>
+diff --git a/platform.html b/platform.html
+--- a/platform.html
++++ b/platform.html
+@@ -10,10 +10,10 @@
+ <meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
+ <script defer src="assets/js/pwa-register.js"></script><script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body data-release="223">
++<body data-release="224">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Digital Murugan knowledge platform</div>
+-<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Read</a><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div></div></nav>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Read</a><a href="reading-notes.html">Notes</a><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div></div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">OmSaravanaBhava Platform Hub</span></p></nav>
+ <section class="card"><h1 class="section-title" lang="ta">ஓம் சரவணபவ தளம்</h1><h2>OmSaravanaBhava Platform Hub</h2><p>Unified gateway to the source-aware devotional, literature, temple, search, graph and reading modules.</p></section>
+@@ -34,6 +34,7 @@
+ <article class="card"><h2>Audio Listening History</h2><p>Review actual device read-aloud starts stored locally in this browser.</p><a class="btn" href="audio-history.html">Open audio history</a></article>
+ <article class="card"><h2>Knowledge Graph Explorer</h2><p>Inspect existing graph registers, explicit nodes and published relationship totals without inferred theological edges.</p><a class="btn" href="knowledge-graph-explorer.html">Open graph explorer</a></article>
+ <article class="card"><h2>Premium Reading Workspace</h2><p>Resume eligible literature routes with browser-local progress, focus mode and reading-list integration.</p><a class="btn" href="reading-workspace.html">Open reading workspace</a></article>
++<article class="card"><h2>Reading Notes &amp; Section Bookmarks</h2><p>Manage browser-local user-authored notes and heading bookmarks without storing selected devotional text.</p><a class="btn" href="reading-notes.html">Open reading notes</a></article>
+ <article class="card"><h2>Maintenance Centre</h2><p>Run same-origin release checks, route audits, required-file checks and safe transient-cache cleanup.</p><a class="btn" href="maintenance.html">Open maintenance tools</a></article>
+ <article class="card"><h2>Knowledge Graph</h2><a class="btn" href="knowledge-graph-phase-4.html">Open module</a></article>
+ <article class="card"><h2>Panchangam Framework</h2><p>Verified-data contract only; no live calendar calculation.</p><a class="btn" href="panchangam-framework.html">Open framework</a></article>
+@@ -41,6 +42,6 @@
+ <section class="card"><h2>Milestone boundary</h2><p>The platform hub connects published modules. It does not certify complete Murugan literature, licensed human audio, live Panchangam computation or server-side accounts.</p></section>
+ <section class="card"><h2>Version 3 milestone</h2><a class="btn" href="version-3.html">Open milestone dashboard</a></section>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="reading-workspace.html">Reading Workspace</a> · <a href="discovery.html">Discover</a> · <a href="maintenance.html">Maintenance</a> · <a href="knowledge-graph-explorer.html">Knowledge graph</a> · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
++<footer>© Om Saravana Bhava · <a href="reading-notes.html">Reading Notes</a> · <a href="reading-workspace.html">Reading Workspace</a> · <a href="discovery.html">Discover</a> · <a href="maintenance.html">Maintenance</a> · <a href="knowledge-graph-explorer.html">Knowledge graph</a> · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
+ </body>
+ </html>
+diff --git a/discovery.html b/discovery.html
+--- a/discovery.html
++++ b/discovery.html
+@@ -15,12 +15,12 @@
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script type="module" src="assets/js/discovery-workspace.mjs"></script>
+ </head>
+-<body data-release="223">
++<body data-release="224">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Local published-route discovery workspace</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="discovery.html" aria-current="page">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="explore.html">Explore</a><a href="search-facets.html">Facets</a><a href="site-directory.html">Directory</a><a href="platform.html">Platform</a></div>
++<div class="links"><a href="discovery.html" aria-current="page">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="reading-notes.html">Notes</a><a href="explore.html">Explore</a><a href="search-facets.html">Facets</a><a href="site-directory.html">Directory</a><a href="platform.html">Platform</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Discovery Workspace</span></p></nav>
+@@ -66,6 +66,8 @@
+ 
+ <section class="card"><h2>Continue reading</h2><p>The Reading Workspace adds browser-local progress, focus mode and reading-list integration to eligible literature routes.</p><a class="btn" href="reading-workspace.html">Open Reading Workspace</a></section>
+ 
++<section class="card"><h2>Personal reading notes</h2><p>Eligible reading pages can save your own notes and heading bookmarks locally without storing selected devotional text.</p><a class="btn" href="reading-notes.html">Open Reading Notes</a></section>
++
+ <section class="card discovery-boundary">
+ <h2>Publication and recommendation boundary</h2>
+ <ul>
+@@ -79,6 +81,6 @@
+ 
+ <noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>The dynamic discovery workspace requires JavaScript. Use the <a href="explore.html">structured Explore page</a> or <a href="site-directory.html">site directory</a>.</p></section></noscript>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="reading-workspace.html">Reading Workspace</a> · <a href="discovery.html">Discover</a> · <a href="explore.html">Explore</a> · <a href="site-directory.html">Directory</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
++<footer>© Om Saravana Bhava · <a href="reading-notes.html">Reading Notes</a> · <a href="reading-workspace.html">Reading Workspace</a> · <a href="discovery.html">Discover</a> · <a href="explore.html">Explore</a> · <a href="site-directory.html">Directory</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+ </html>
+diff --git a/reading-workspace.html b/reading-workspace.html
+--- a/reading-workspace.html
++++ b/reading-workspace.html
+@@ -14,12 +14,12 @@
+ <link rel="manifest" href="manifest.json">
+ <script defer src="assets/js/pwa-register.js"></script>
+ </head>
+-<body data-release="223">
++<body data-release="224">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Browser-local premium literature reading workspace</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html" aria-current="page">Reading Workspace</a><a href="reading-list.html">Reading List</a><a href="print-pdf.html">Print &amp; PDF</a><a href="accessibility.html">Accessibility</a></div>
++<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html" aria-current="page">Reading Workspace</a><a href="reading-notes.html">Notes</a><a href="reading-list.html">Reading List</a><a href="print-pdf.html">Print &amp; PDF</a><a href="accessibility.html">Accessibility</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Reading Workspace</span></p></nav>
+@@ -63,6 +63,8 @@
+ <article class="card">Loading reading workspace…</article>
+ </section>
+ 
++<section class="card"><h2>Notes and section bookmarks</h2><p>Add your own note from the reading toolbar on eligible routes, then review it in the browser-local Notes Centre.</p><a class="btn" href="reading-notes.html">Open Reading Notes</a></section>
++
+ <section class="card reading-workspace-boundary">
+ <h2>Reading and evidence boundary</h2>
+ <ul>
+@@ -77,6 +79,6 @@
+ 
+ <noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>Reading progress requires JavaScript. Existing literature remains available through <a href="discovery.html?lens=literature">Discovery</a> and the <a href="reading-list.html">Reading List</a>.</p></section></noscript>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="reading-workspace.html">Reading Workspace</a> · <a href="reading-list.html">Reading List</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
++<footer>© Om Saravana Bhava · <a href="reading-notes.html">Reading Notes</a> · <a href="reading-workspace.html">Reading Workspace</a> · <a href="reading-list.html">Reading List</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+ </html>
+diff --git a/maintenance.html b/maintenance.html
+--- a/maintenance.html
++++ b/maintenance.html
+@@ -15,19 +15,19 @@
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script type="module" src="assets/js/maintenance-centre.mjs"></script>
+ </head>
+-<body data-release="223">
++<body data-release="224">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Static-platform maintenance and local diagnostics</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="explore.html">Explore</a><a href="platform.html">Platform</a><a href="knowledge-graph-explorer.html">Graph Explorer</a><a href="maintenance.html" aria-current="page">Maintenance</a></div>
++<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="reading-notes.html">Notes</a><a href="explore.html">Explore</a><a href="platform.html">Platform</a><a href="knowledge-graph-explorer.html">Graph Explorer</a><a href="maintenance.html" aria-current="page">Maintenance</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Maintenance Centre</span></p></nav>
+ 
+ <section class="card maintenance-hero">
+ <div>
+-<span class="pill">Release 223 · Reading workspace and maintenance continuity</span>
++<span class="pill">Release 224 · Reading notes and maintenance continuity</span>
+ <h1 class="section-title" lang="ta">பராமரிப்பு மையம்</h1>
+ <h2>Maintenance Centre</h2>
+ <p>Inspect deployed static resources and browser state without a server account, remote analytics or destructive repository actions.</p>
+diff --git a/assets/js/maintenance-centre.mjs b/assets/js/maintenance-centre.mjs
+--- a/assets/js/maintenance-centre.mjs
++++ b/assets/js/maintenance-centre.mjs
+@@ -1,4 +1,4 @@
+-export const RELEASE = 223;
++export const RELEASE = 224;
+ export const CONFIG_PATH = '/data/maintenance-checks.json';
+ export const DEFAULT_TRANSIENT_CACHE_PREFIXES = Object.freeze([
+   'osb-runtime-v',
+diff --git a/data/maintenance-checks.json b/data/maintenance-checks.json
+--- a/data/maintenance-checks.json
++++ b/data/maintenance-checks.json
+@@ -1,25 +1,25 @@
+ {
+-  "release": 223,
++  "release": 224,
+   "generated": "2026-07-14",
+-  "builtAgainstCommit": "131e51863ef4f1512b77a32025b249f45ee9834a",
++  "builtAgainstCommit": "03f8c23e50aea1323211d2ca44cf4cddcf0deec4",
+   "title": "OmSaravanaBhava Browser Maintenance Check Registry",
+-  "scope": "Same-origin Release 223 reading-workspace, route, audit and maintenance continuity checks. This registry does not prove GitHub Actions status or repository certification.",
++  "scope": "Same-origin Release 224 reading-notes, reading-workspace, route, audit and maintenance continuity checks. This registry does not prove GitHub Actions status or repository certification.",
+   "checks": [
+     {
+       "id": "service-worker-release",
+       "label": "Service-worker release identity",
+       "path": "/service-worker.js",
+       "mode": "textIncludes",
+-      "expected": "const RELEASE = '223';",
++      "expected": "const RELEASE = '224';",
+       "severity": "critical"
+     },
+     {
+       "id": "release-manifest",
+       "label": "Release manifest identity",
+-      "path": "/manifest-release-223.json",
++      "path": "/manifest-release-224.json",
+       "mode": "jsonEquals",
+       "jsonPath": "release",
+-      "expected": 223,
++      "expected": 224,
+       "severity": "critical"
+     },
+     {
+@@ -27,8 +27,8 @@
+       "label": "Route directory integrity",
+       "path": "/data/site-routes.json",
+       "mode": "routeRegistry",
+-      "expectedRelease": 223,
+-      "requiredRoute": "/reading-workspace.html",
++      "expectedRelease": 224,
++      "requiredRoute": "/reading-notes.html",
+       "severity": "critical"
+     },
+     {
+@@ -36,47 +36,47 @@
+       "label": "Static-audit configuration",
+       "path": "/quality/site-audit-config.json",
+       "mode": "auditConfig",
+-      "expectedRelease": "223",
++      "expectedRelease": "224",
+       "requiredFiles": [
+-        "reading-workspace.html",
+-        "assets/css/reading-workspace.css",
+-        "assets/js/reader-experience.js",
+-        "data/reading-workspace.json",
+-        "manifest-release-223.json"
++        "reading-notes.html",
++        "assets/css/reading-notes.css",
++        "assets/js/reading-notes.mjs",
++        "data/reading-notes.json",
++        "manifest-release-224.json"
+       ],
+       "severity": "critical"
+     },
+     {
+       "id": "sitemap-route",
+-      "label": "Reading Workspace sitemap registration",
++      "label": "Reading Notes sitemap registration",
+       "path": "/sitemap.xml",
+       "mode": "textCount",
+-      "expected": "https://omsaravanabhava.org/reading-workspace.html",
++      "expected": "https://omsaravanabhava.org/reading-notes.html",
+       "expectedCount": 1,
+       "severity": "important"
+     },
+     {
+-      "id": "reading-workspace-page",
+-      "label": "Reading Workspace page",
+-      "path": "/reading-workspace.html",
++      "id": "reading-notes-page",
++      "label": "Reading Notes page",
++      "path": "/reading-notes.html",
+       "mode": "textIncludes",
+-      "expected": "data-release=\"223\"",
++      "expected": "data-release=\"224\"",
+       "severity": "critical"
+     },
+     {
+-      "id": "reader-module",
+-      "label": "Reader experience browser module",
+-      "path": "/assets/js/reader-experience.js",
++      "id": "reading-notes-module",
++      "label": "Reading Notes browser module",
++      "path": "/assets/js/reading-notes.mjs",
+       "mode": "textIncludes",
+-      "expected": "export const RELEASE = 223;",
++      "expected": "export const RELEASE = 224;",
+       "severity": "critical"
+     },
+     {
+-      "id": "bootstrap-continuity",
+-      "label": "Shared reader bootstrap",
++      "id": "reader-bootstrap",
++      "label": "Shared notes bootstrap",
+       "path": "/assets/js/pwa-register.js",
+       "mode": "textIncludes",
+-      "expected": "reader-experience.js",
++      "expected": "reading-notes.mjs",
+       "severity": "important"
+     }
+   ],
+@@ -90,6 +90,7 @@
+     "/explore.html",
+     "/search-facets.html",
+     "/reading-workspace.html",
++    "/reading-notes.html",
+     "/reading-list.html",
+     "/accessibility.html",
+     "/print-pdf.html",
+diff --git a/data/site-routes.json b/data/site-routes.json
+--- a/data/site-routes.json
++++ b/data/site-routes.json
+@@ -1,5 +1,5 @@
+ {
+-  "release": 223,
++  "release": 224,
+   "generated": "2026-07-14",
+   "scope": "Public HTML routes represented by the Release 215 sitemap and route directory.",
+   "statusMeaning": {
+@@ -582,6 +582,14 @@
+       "summary": "Browser-local progress, resume, focus mode and reading-list integration for existing eligible literature routes."
+     },
+     {
++      "path": "/reading-notes.html",
++      "titleTa": "வாசிப்பு குறிப்புகள்",
++      "titleEn": "Reading Notes and Section Bookmarks",
++      "category": "Platform",
++      "status": "utility",
++      "summary": "Browser-local user-authored notes and heading bookmarks for eligible reading routes without storing selected devotional text."
++    },
++    {
+       "path": "/accessibility.html",
+       "titleTa": "அணுகல்தன்மை மையம்",
+       "titleEn": "Accessibility Centre",
+diff --git a/sitemap.xml b/sitemap.xml
+--- a/sitemap.xml
++++ b/sitemap.xml
+@@ -570,4 +570,10 @@
+     <changefreq>weekly</changefreq>
+     <priority>0.8</priority>
+   </url>
++  <url>
++    <loc>https://omsaravanabhava.org/reading-notes.html</loc>
++    <lastmod>2026-07-14</lastmod>
++    <changefreq>monthly</changefreq>
++    <priority>0.7</priority>
++  </url>
+ </urlset>
+diff --git a/service-worker.js b/service-worker.js
+--- a/service-worker.js
++++ b/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '223';
++const RELEASE = '224';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -226,7 +226,12 @@
+   "/reading-workspace.html",
+   "/assets/css/reading-workspace.css",
+   "/data/reading-workspace.json",
+-  "/manifest-release-223.json"
++  "/manifest-release-223.json",
++  "/reading-notes.html",
++  "/assets/css/reading-notes.css",
++  "/assets/js/reading-notes.mjs",
++  "/data/reading-notes.json",
++  "/manifest-release-224.json"
+ ];
+ 
+ const cacheOptionalAssets = async cache => {
+diff --git a/quality/site-audit-config.json b/quality/site-audit-config.json
+--- a/quality/site-audit-config.json
++++ b/quality/site-audit-config.json
+@@ -1,5 +1,5 @@
+ {
+-  "expectedRelease": "223",
++  "expectedRelease": "224",
+   "canonicalOrigin": "https://omsaravanabhava.org",
+   "requiredFiles": [
+     "index.html",
+@@ -57,7 +57,12 @@
+     "assets/css/reading-workspace.css",
+     "assets/js/reader-experience.js",
+     "data/reading-workspace.json",
+-    "manifest-release-223.json"
++    "manifest-release-223.json",
++    "reading-notes.html",
++    "assets/css/reading-notes.css",
++    "assets/js/reading-notes.mjs",
++    "data/reading-notes.json",
++    "manifest-release-224.json"
+   ],
+   "canonicalOptional": [
+     "404.html",
+diff --git a/tools/production_smoke.py b/tools/production_smoke.py
+--- a/tools/production_smoke.py
++++ b/tools/production_smoke.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Observe the deployed custom domain and fail when Release 223 is not live."""
++"""Observe the deployed custom domain and fail when Release 224 is not live."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -10,8 +10,8 @@
+ from pathlib import Path
+ 
+ CHECKS = [
+-    ("/", 'data-release="223"'),
+-    ("/service-worker.js", "const RELEASE = '223';"),
++    ("/", 'data-release="224"'),
++    ("/service-worker.js", "const RELEASE = '224';"),
+     ("/search-facets.html", "Published-Content Search Facets"),
+     ("/assets/js/search-facets.mjs", "export const RELEASE = 216;"),
+     ("/data/site-routes.json", '"/search-facets.html"'),
+@@ -39,9 +39,9 @@
+     ("/data/knowledge-graph-explorer.json", "\"release\": 220"),
+     ("/sitemap.xml", "https://omsaravanabhava.org/knowledge-graph-explorer.html"),
+     ("/maintenance.html", "data-release=\"222\""),
+-    ("/assets/js/maintenance-centre.mjs", "export const RELEASE = 223"),
+-    ("/data/maintenance-checks.json", "\"release\": 223"),
+-    ("/manifest-release-223.json", "\"release\": 223"),
++    ("/assets/js/maintenance-centre.mjs", "export const RELEASE = 224"),
++    ("/data/maintenance-checks.json", "\"release\": 224"),
++    ("/manifest-release-224.json", "\"release\": 224"),
+     ("/data/site-routes.json", "\"/maintenance.html\""),
+     ("/sitemap.xml", "https://omsaravanabhava.org/maintenance.html"),
+     ("/discovery.html", "data-release=\"222\""),
+@@ -50,11 +50,17 @@
+     ("/data/site-routes.json", "\"/discovery.html\""),
+     ("/sitemap.xml", "https://omsaravanabhava.org/discovery.html"),
+     ("/reading-workspace.html", "data-release=\"223\""),
+-    ("/assets/js/reader-experience.js", "export const RELEASE = 223"),
++    ("/assets/js/reader-experience.js", "export const RELEASE = 224"),
+     ("/assets/js/pwa-register.js", "reader-experience.js"),
+-    ("/data/reading-workspace.json", "\"release\": 223"),
++    ("/data/reading-workspace.json", "\"release\": 224"),
+     ("/data/site-routes.json", "\"/reading-workspace.html\""),
+-    ("/sitemap.xml", "https://omsaravanabhava.org/reading-workspace.html")
++    ("/sitemap.xml", "https://omsaravanabhava.org/reading-workspace.html"),
++    ("/reading-notes.html", "data-release=\"224\""),
++    ("/assets/js/reading-notes.mjs", "export const RELEASE = 224"),
++    ("/assets/js/pwa-register.js", "reading-notes.mjs"),
++    ("/data/reading-notes.json", "\"release\": 224"),
++    ("/data/site-routes.json", "\"/reading-notes.html\""),
++    ("/sitemap.xml", "https://omsaravanabhava.org/reading-notes.html")
+ ]
+ 
+ 
+@@ -62,7 +68,7 @@
+     request = urllib.request.Request(
+         url,
+         headers={
+-            "User-Agent": "OmSaravanaBhava-Production-Smoke/223",
++            "User-Agent": "OmSaravanaBhava-Production-Smoke/224",
+             "Cache-Control": "no-cache"
+         }
+     )
+@@ -102,7 +108,7 @@
+     parser.add_argument("--retries", type=int, default=18)
+     parser.add_argument("--delay", type=int, default=20)
+     parser.add_argument("--timeout", type=int, default=20)
+-    parser.add_argument("--report", type=Path, default=Path("artifacts/release-223-production-smoke.json"))
++    parser.add_argument("--report", type=Path, default=Path("artifacts/release-224-production-smoke.json"))
+     args = parser.parse_args()
+     report = run(args.origin, args.retries, args.delay, args.timeout)
+     args.report.parent.mkdir(parents=True, exist_ok=True)
+diff --git a/tests/reading-notes.test.mjs b/tests/reading-notes.test.mjs
+new file mode 100644
+--- /dev/null
++++ b/tests/reading-notes.test.mjs
+@@ -0,0 +1,221 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import fs from 'node:fs';
++
++import {
++  RELEASE,
++  STORAGE_KEY,
++  buildNoteHref,
++  buildNotesMetrics,
++  filterNotes,
++  loadNotes,
++  normaliseNoteRoute,
++  removeNote,
++  saveNotes,
++  sanitiseNoteRecord,
++  slugifyHeading,
++  upsertNote
++} from '../assets/js/reading-notes.mjs';
++
++class MemoryStorage {
++  constructor() { this.values = new Map(); }
++  getItem(key) {
++    return this.values.has(key) ? this.values.get(key) : null;
++  }
++  setItem(key, value) {
++    this.values.set(key, String(value));
++  }
++  removeItem(key) {
++    this.values.delete(key);
++  }
++}
++
++const config = JSON.parse(
++  fs.readFileSync(
++    new URL('../data/reading-notes.json', import.meta.url),
++    'utf8'
++  )
++);
++const allowedKinds = config.allowedKinds.map(item => item.id);
++
++test('release and storage identities are stable', () => {
++  assert.equal(RELEASE, 224);
++  assert.equal(config.release, 224);
++  assert.equal(STORAGE_KEY, 'osb-reading-notes-v1');
++  assert.equal(config.maximumItems, 100);
++  assert.equal(config.maximumNoteLength, 500);
++});
++
++test('same-origin note routes are accepted and external URLs rejected', () => {
++  assert.equal(
++    normaliseNoteRoute('/literature/kandar-anubhuti.html'),
++    '/literature/kandar-anubhuti.html'
++  );
++  assert.equal(
++    normaliseNoteRoute('https://example.com/page.html'),
++    ''
++  );
++});
++
++test('heading ids are deterministic and bounded', () => {
++  assert.equal(
++    slugifyHeading('கந்தர் அனுபூதி', 0),
++    'osb-section-கந-தர-அன-ப-த-1'
++  );
++  assert.equal(slugifyHeading('', 2), 'osb-section-section-3');
++});
++
++test('records require a note or section bookmark', () => {
++  const empty = sanitiseNoteRecord({
++    route: '/literature/kandar-anubhuti.html',
++    titleEn: 'Kandar Anubhuti'
++  }, {
++    allowedKinds,
++    timestamp: '2026-07-14T10:00:00Z'
++  });
++  assert.equal(empty, null);
++
++  const bookmark = sanitiseNoteRecord({
++    route: '/literature/kandar-anubhuti.html',
++    headingId: 'section-1',
++    headingLabel: 'Section 1'
++  }, {
++    allowedKinds,
++    timestamp: '2026-07-14T10:00:00Z'
++  });
++  assert.equal(bookmark.headingId, 'section-1');
++  assert.equal(bookmark.note, '');
++});
++
++test('selected devotional text and page content fields are discarded', () => {
++  const note = sanitiseNoteRecord({
++    route: '/literature/kandar-anubhuti.html',
++    headingId: 'section-1',
++    headingLabel: 'Section 1',
++    note: 'My own reflection',
++    selectedText: 'Must not be stored',
++    content: 'Must not be stored',
++    pageBody: 'Must not be stored'
++  }, {
++    allowedKinds,
++    timestamp: '2026-07-14T10:00:00Z'
++  });
++  assert.equal(note.note, 'My own reflection');
++  assert.equal('selectedText' in note, false);
++  assert.equal('content' in note, false);
++  assert.equal('pageBody' in note, false);
++});
++
++test('note length and kind are bounded by configuration', () => {
++  const note = sanitiseNoteRecord({
++    route: '/slokas/kanda-sashti-kavasam.html',
++    note: 'x'.repeat(700),
++    kind: 'unknown'
++  }, {
++    maximumNoteLength: 500,
++    allowedKinds,
++    timestamp: '2026-07-14T10:00:00Z'
++  });
++  assert.equal(note.note.length, 500);
++  assert.equal(note.kind, 'reflection');
++});
++
++test('upsert edits one id without duplicating it', () => {
++  const first = upsertNote([], {
++    id: 'note-1',
++    route: '/literature/kandar-anubhuti.html',
++    headingId: 'section-1',
++    headingLabel: 'Section 1',
++    kind: 'question',
++    note: 'First'
++  }, {
++    maximumItems: 100,
++    maximumNoteLength: 500,
++    allowedKinds,
++    timestamp: '2026-07-14T10:00:00Z'
++  });
++  const second = upsertNote(first, {
++    id: 'note-1',
++    route: '/literature/kandar-anubhuti.html',
++    headingId: 'section-1',
++    headingLabel: 'Section 1',
++    kind: 'reflection',
++    note: 'Updated'
++  }, {
++    maximumItems: 100,
++    maximumNoteLength: 500,
++    allowedKinds,
++    timestamp: '2026-07-14T11:00:00Z'
++  });
++  assert.equal(second.length, 1);
++  assert.equal(second[0].note, 'Updated');
++  assert.equal(second[0].createdAt, '2026-07-14T10:00:00Z');
++  assert.equal(second[0].updatedAt, '2026-07-14T11:00:00Z');
++});
++
++test('storage roundtrip applies capacity and removal', () => {
++  const storage = new MemoryStorage();
++  let notes = [];
++  for (let index = 0; index < 105; index += 1) {
++    notes = upsertNote(notes, {
++      id: `note-${index}`,
++      route: `/literature/item-${index}.html`,
++      note: `Note ${index}`,
++      kind: 'reference'
++    }, {
++      maximumItems: 100,
++      maximumNoteLength: 500,
++      allowedKinds,
++      timestamp: `2026-07-14T10:${String(index % 60).padStart(2, '0')}:00Z`
++    });
++  }
++  assert.equal(saveNotes(notes, storage, 100, {
++    maximumNoteLength: 500,
++    allowedKinds
++  }), true);
++  assert.equal(loadNotes(storage, 100, {
++    maximumNoteLength: 500,
++    allowedKinds
++  }).length, 100);
++
++  const remaining = removeNote('note-104', storage, 100, {
++    maximumNoteLength: 500,
++    allowedKinds
++  });
++  assert.equal(remaining.some(note => note.id === 'note-104'), false);
++});
++
++test('filters, metrics and section href use local records', () => {
++  const notes = [
++    sanitiseNoteRecord({
++      id: 'a',
++      route: '/literature/kandar-anubhuti.html',
++      titleTa: 'கந்தர் அனுபூதி',
++      titleEn: 'Kandar Anubhuti',
++      headingId: 'section-1',
++      headingLabel: 'Section 1',
++      kind: 'reflection',
++      note: 'அருள் reflection'
++    }, {allowedKinds, timestamp: '2026-07-14T11:00:00Z'}),
++    sanitiseNoteRecord({
++      id: 'b',
++      route: '/slokas/kanda-sashti-kavasam.html',
++      titleEn: 'Kanda Sashti Kavasam',
++      kind: 'question',
++      note: 'Question'
++    }, {allowedKinds, timestamp: '2026-07-14T10:00:00Z'})
++  ];
++
++  assert.equal(filterNotes(notes, {kind: 'question'}).length, 1);
++  assert.equal(filterNotes(notes, {query: 'அருள்'})[0].id, 'a');
++  assert.deepEqual(buildNotesMetrics(notes), {
++    total: 2,
++    routes: 2,
++    sectionBookmarks: 1,
++    writtenNotes: 2
++  });
++  assert.equal(
++    buildNoteHref(notes[0]),
++    '/literature/kandar-anubhuti.html#section-1'
++  );
++});
+diff --git a/tests/reader-experience.test.mjs b/tests/reader-experience.test.mjs
+--- a/tests/reader-experience.test.mjs
++++ b/tests/reader-experience.test.mjs
+@@ -42,7 +42,7 @@
+ );
+ 
+ const routePayload = {
+-  release: 223,
++  release: 224,
+   routes: [
+     {
+       path: '/literature/kandar-anubhuti.html',
+@@ -78,8 +78,8 @@
+ };
+ 
+ test('release and storage identities are stable', () => {
+-  assert.equal(RELEASE, 223);
+-  assert.equal(config.release, 223);
++  assert.equal(RELEASE, 224);
++  assert.equal(config.release, 224);
+   assert.equal(STORAGE_KEY, 'osb-reading-progress-v1');
+   assert.equal(config.maximumProgressItems, 50);
+ });
+diff --git a/tests/maintenance-centre.test.mjs b/tests/maintenance-centre.test.mjs
+--- a/tests/maintenance-centre.test.mjs
++++ b/tests/maintenance-centre.test.mjs
+@@ -25,8 +25,8 @@
+ );
+ 
+ test('release and registry identities are stable', () => {
+-  assert.equal(RELEASE, 223);
+-  assert.equal(registry.release, 223);
++  assert.equal(RELEASE, 224);
++  assert.equal(registry.release, 224);
+   assert.equal(registry.builtAgainstCommit.length, 40);
+   assert.equal(registry.checks.length, 8);
+ });
+@@ -49,51 +49,51 @@
+ });
+ 
+ test('JSON path lookup and equality checks are deterministic', () => {
+-  const value = {release: 223, nested: {state: 'ready'}};
++  const value = {release: 224, nested: {state: 'ready'}};
+   assert.equal(readJsonPath(value, 'nested.state'), 'ready');
+   assert.equal(readJsonPath(value, 'nested.missing'), undefined);
+   assert.deepEqual(
+-    evaluateJsonEquals(value, 'release', 223),
+-    {ok: true, actual: 223}
++    evaluateJsonEquals(value, 'release', 224),
++    {ok: true, actual: 224}
+   );
+ });
+ 
+ test('route registry requires one maintenance route and no duplicates', () => {
+   const valid = evaluateRouteRegistry({
+-    release: 223,
++    release: 224,
+     routes: [
+       {path: '/index.html'},
+-      {path: '/reading-workspace.html'}
++      {path: '/reading-notes.html'}
+     ]
+-  }, 223, '/reading-workspace.html');
++  }, 224, '/reading-notes.html');
+   assert.equal(valid.ok, true);
+ 
+   const duplicate = evaluateRouteRegistry({
+-    release: 223,
++    release: 224,
+     routes: [
+-      {path: '/reading-workspace.html'},
+-      {path: '/reading-workspace.html'}
++      {path: '/reading-notes.html'},
++      {path: '/reading-notes.html'}
+     ]
+-  }, 223, '/reading-workspace.html');
++  }, 224, '/reading-notes.html');
+   assert.equal(duplicate.ok, false);
+   assert.equal(duplicate.actual.duplicateCount, 1);
+ });
+ 
+ test('audit configuration requires the current release and files', () => {
+   const result = evaluateAuditConfig({
+-    expectedRelease: '223',
+-    requiredFiles: ['reading-workspace.html', 'manifest-release-223.json']
+-  }, '223', ['reading-workspace.html', 'manifest-release-223.json']);
++    expectedRelease: '224',
++    requiredFiles: ['reading-notes.html', 'manifest-release-224.json']
++  }, '224', ['reading-notes.html', 'manifest-release-224.json']);
+   assert.equal(result.ok, true);
+ 
+   const missing = evaluateAuditConfig({
+-    expectedRelease: '223',
+-    requiredFiles: ['reading-workspace.html']
+-  }, '223', ['reading-workspace.html', 'manifest-release-223.json']);
++    expectedRelease: '224',
++    requiredFiles: ['reading-notes.html']
++  }, '224', ['reading-notes.html', 'manifest-release-224.json']);
+   assert.equal(missing.ok, false);
+   assert.deepEqual(
+     missing.actual.missing,
+-    ['manifest-release-223.json']
++    ['manifest-release-224.json']
+   );
+ });
+ 
+@@ -123,8 +123,8 @@
+   const result = evaluateCheckPayload(
+     routeCheck,
+     JSON.stringify({
+-      release: 223,
+-      routes: [{path: '/reading-workspace.html'}]
++      release: 224,
++      routes: [{path: '/reading-notes.html'}]
+     })
+   );
+   assert.equal(result.ok, true);
+@@ -136,14 +136,14 @@
+     status: 200,
+     async text() {
+       return path === '/service-worker.js'
+-        ? "const RELEASE = '223';"
++        ? "const RELEASE = '224';"
+         : '';
+     }
+   });
+   const result = await runResourceCheck({
+     path: '/service-worker.js',
+     mode: 'textIncludes',
+-    expected: "const RELEASE = '223';"
++    expected: "const RELEASE = '224';"
+   }, fetcher);
+   assert.equal(result.ok, true);
+   assert.equal(result.status, 200);
+@@ -174,7 +174,7 @@
+ 
+ test('transient cache cleanup preserves static and user caches', async () => {
+   const names = [
+-    'osb-static-v223',
++    'osb-static-v224',
+     'osb-runtime-v220',
+     'osb-data-v219',
+     'osb-user-reading-v1'
+diff --git a/tools/release_224_validate.py b/tools/release_224_validate.py
+new file mode 100644
+--- /dev/null
++++ b/tools/release_224_validate.py
+@@ -0,0 +1,323 @@
++#!/usr/bin/env python3
++"""Validate Release 224 without claiming remote CI or deployment results."""
++from __future__ import annotations
++
++import argparse
++import json
++import re
++import sys
++import xml.etree.ElementTree as ET
++from pathlib import Path
++
++RELEASE = "224"
++BASE_COMMIT = "03f8c23e50aea1323211d2ca44cf4cddcf0deec4"
++ROUTE = "/reading-notes.html"
++REQUIRED = [
++    "reading-notes.html",
++    "assets/css/reading-notes.css",
++    "assets/js/reading-notes.mjs",
++    "data/reading-notes.json",
++    "data/reading-workspace.json",
++    "assets/js/pwa-register.js",
++    "assets/js/reader-experience.js",
++    "index.html",
++    "platform.html",
++    "discovery.html",
++    "reading-workspace.html",
++    "maintenance.html",
++    "assets/js/maintenance-centre.mjs",
++    "data/maintenance-checks.json",
++    "data/site-routes.json",
++    "sitemap.xml",
++    "service-worker.js",
++    "quality/site-audit-config.json",
++    "tools/production_smoke.py",
++    "tests/test_site_audit.py",
++    "tests/reading-notes.test.mjs",
++    "tests/reader-experience.test.mjs",
++    "tests/maintenance-centre.test.mjs",
++    ".github/workflows/static-site-integrity.yml",
++    ".github/workflows/production-smoke.yml",
++    "manifest-release-224.json",
++]
++
++def read(root: Path, relative: str) -> str:
++    return (root / relative).read_text(encoding="utf-8")
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", type=Path, default=Path.cwd())
++    parser.add_argument("--package-mode", action="store_true")
++    parser.add_argument(
++        "--report",
++        type=Path,
++        default=Path("artifacts/release-224-validation.json")
++    )
++    args = parser.parse_args()
++    root = args.root.resolve()
++    errors: list[str] = []
++    checks: list[str] = []
++
++    for relative in REQUIRED:
++        if not (root / relative).is_file():
++            errors.append(f"missing required file: {relative}")
++        else:
++            checks.append(f"exists: {relative}")
++
++    if not errors:
++        manifest = json.loads(read(root, "manifest-release-224.json"))
++        notes = json.loads(read(root, "data/reading-notes.json"))
++        reading = json.loads(read(root, "data/reading-workspace.json"))
++        routes = json.loads(read(root, "data/site-routes.json"))
++        maintenance = json.loads(read(root, "data/maintenance-checks.json"))
++        config = json.loads(read(root, "quality/site-audit-config.json"))
++        ET.fromstring(read(root, "sitemap.xml"))
++
++        if manifest.get("release") != 224:
++            errors.append("manifest release is not 224")
++        if manifest.get("base_commit") != BASE_COMMIT:
++            errors.append("manifest base commit does not match Release 223 head")
++        if notes.get("release") != 224:
++            errors.append("reading notes config release is not 224")
++        if notes.get("builtAgainstCommit") != BASE_COMMIT:
++            errors.append("reading notes base commit is incorrect")
++        if reading.get("release") != 224:
++            errors.append("reading workspace continuity release is not 224")
++        if reading.get("builtAgainstCommit") != BASE_COMMIT:
++            errors.append("reading workspace continuity base commit is incorrect")
++        if routes.get("release") != 224:
++            errors.append("route directory release is not 224")
++        if maintenance.get("release") != 224:
++            errors.append("maintenance registry release is not 224")
++        if maintenance.get("builtAgainstCommit") != BASE_COMMIT:
++            errors.append("maintenance registry base commit is incorrect")
++
++        if notes.get("storageKey") != "osb-reading-notes-v1":
++            errors.append("reading note storage key changed unexpectedly")
++        if notes.get("maximumItems") != 100:
++            errors.append("reading notes maximumItems must remain 100")
++        if notes.get("maximumNoteLength") != 500:
++            errors.append("reading note length must remain 500")
++        kinds = [
++            item.get("id")
++            for item in notes.get("allowedKinds", [])
++            if isinstance(item, dict)
++        ]
++        if kinds != ["reflection", "question", "practice", "reference"]:
++            errors.append("reading note kinds are incorrect")
++        protected = set(notes.get("protectedStorageKeys", []))
++        if not {
++            "osb-reading-progress-v1",
++            "osb-reading-list-v1",
++            "osb-accessibility-preferences-v1",
++            "osb-audio-listening-history-v1",
++        }.issubset(protected):
++            errors.append("protected storage keys are incomplete")
++
++        route_records = routes.get("routes", [])
++        route_paths = [
++            item.get("path")
++            for item in route_records
++            if isinstance(item, dict)
++        ]
++        if route_paths.count(ROUTE) != 1:
++            errors.append("reading notes route must appear exactly once")
++        if len(route_paths) != len(set(route_paths)):
++            errors.append("duplicate route directory paths detected")
++        route = next(
++            (item for item in route_records if item.get("path") == ROUTE),
++            None
++        )
++        if route and route.get("status") != "utility":
++            errors.append("reading notes route must remain utility")
++
++        if config.get("expectedRelease") != RELEASE:
++            errors.append("site audit expectedRelease is not 224")
++        for relative in (
++            "reading-notes.html",
++            "assets/css/reading-notes.css",
++            "assets/js/reading-notes.mjs",
++            "data/reading-notes.json",
++            "manifest-release-224.json",
++        ):
++            if relative not in config.get("requiredFiles", []):
++                errors.append(f"site audit does not require {relative}")
++
++        sitemap = read(root, "sitemap.xml")
++        if sitemap.count(
++            "https://omsaravanabhava.org/reading-notes.html"
++        ) != 1:
++            errors.append("sitemap must contain reading notes once")
++
++        worker = read(root, "service-worker.js")
++        if "const RELEASE = '224';" not in worker:
++            errors.append("service-worker identity is not 224")
++        core = re.search(
++            r"const CORE_PRECACHE_URLS = \[(.*?)\];",
++            worker,
++            re.S
++        )
++        optional = re.search(
++            r"const PRECACHE_URLS = \[(.*?)\];",
++            worker,
++            re.S
++        )
++        core_text = core.group(1) if core else ""
++        optional_text = optional.group(1) if optional else ""
++        for asset in (
++            "/reading-notes.html",
++            "/assets/css/reading-notes.css",
++            "/assets/js/reading-notes.mjs",
++            "/data/reading-notes.json",
++            "/manifest-release-224.json",
++        ):
++            if f'"{asset}"' not in optional_text:
++                errors.append(f"optional precache missing {asset}")
++            if f'"{asset}"' in core_text:
++                errors.append(
++                    f"reading-notes asset incorrectly blocks installation: {asset}"
++                )
++        if "cacheOptionalAssets" not in worker:
++            errors.append("resilient optional caching is missing")
++
++        bootstrap = read(root, "assets/js/pwa-register.js")
++        for marker in ("reader-experience.js", "reading-notes.mjs"):
++            if marker not in bootstrap:
++                errors.append(f"shared bootstrap missing {marker}")
++
++        reader = read(root, "assets/js/reader-experience.js")
++        if "export const RELEASE = 224;" not in reader:
++            errors.append("reader experience did not advance to 224")
++        if "osb:reader-ready" not in reader:
++            errors.append("reader experience does not announce toolbar readiness")
++
++        module = read(root, "assets/js/reading-notes.mjs")
++        for marker in (
++            "export const RELEASE = 224;",
++            "osb-reading-notes-v1",
++            "sanitiseNoteRecord",
++            "collectSectionOptions",
++            "buildNotesMetrics",
++            "readingNotesDialog",
++            "osb:reader-ready",
++            "Selected devotional text is not stored.",
++        ):
++            if marker not in module:
++                errors.append(f"reading notes module missing marker: {marker}")
++        for prohibited in (
++            "navigator.sendBeacon",
++            "gtag(",
++            "google-analytics",
++            "api.openai.com",
++            "localStorage.clear(",
++            "selectedText:",
++            "pageBody:",
++            "document.body.innerText",
++            "document.body.textContent",
++        ):
++            if prohibited in module:
++                errors.append(
++                    f"prohibited remote or source-text storage marker found: {prohibited}"
++                )
++
++        page = read(root, "reading-notes.html")
++        for marker in (
++            'data-release="224"',
++            "Reading Notes &amp; Section Bookmarks",
++            "Selected devotional text and page body content are not stored",
++            "No account, analytics, cloud synchronization",
++        ):
++            if marker not in page:
++                errors.append(f"reading notes page missing marker: {marker}")
++
++        for html in (
++            "index.html",
++            "platform.html",
++            "discovery.html",
++            "reading-workspace.html",
++            "maintenance.html",
++        ):
++            body = read(root, html)
++            if 'data-release="224"' not in body:
++                errors.append(f"{html} does not expose data-release 224")
++            if "reading-notes.html" not in body:
++                errors.append(f"{html} does not link to reading notes")
++
++        maintenance_module = read(root, "assets/js/maintenance-centre.mjs")
++        if "export const RELEASE = 224;" not in maintenance_module:
++            errors.append("maintenance module did not advance to 224")
++
++        checks_registry = maintenance.get("checks", [])
++        if len(checks_registry) != 8:
++            errors.append("maintenance registry must contain eight checks")
++        if not any(
++            item.get("path") == "/reading-notes.html"
++            for item in checks_registry
++        ):
++            errors.append("maintenance registry does not check reading notes")
++
++        smoke = read(root, "tools/production_smoke.py")
++        for marker in (
++            'data-release="224"',
++            "const RELEASE = '224';",
++            "/reading-notes.html",
++            "export const RELEASE = 224",
++            "reading-notes.mjs",
++            "reading-notes.json",
++            "manifest-release-224.json",
++            "release-224-production-smoke.json",
++        ):
++            if marker not in smoke:
++                errors.append(f"production smoke missing marker: {marker}")
++
++        for workflow in (
++            ".github/workflows/static-site-integrity.yml",
++            ".github/workflows/production-smoke.yml",
++        ):
++            text = read(root, workflow)
++            if "224" not in text or "release-224-" not in text:
++                errors.append(f"{workflow} has stale release identity")
++
++        if not args.package_mode:
++            for relative in (
++                "assets/js/reading-list.mjs",
++                "reading-list.html",
++                "print-pdf.html",
++                "accessibility.html",
++                "data/navigation-sections.json",
++                "tools/site_audit.py",
++                "tests/discovery-workspace.test.mjs",
++                "tests/knowledge-graph-explorer.test.mjs",
++                "tests/audio-history.test.mjs",
++                "tests/print-support.test.mjs",
++                "tests/accessibility-preferences.test.mjs",
++                "tests/reading-list.test.mjs",
++                "tests/search-facets.test.mjs",
++            ):
++                if not (root / relative).is_file():
++                    errors.append(f"repository mode requires {relative}")
++
++    report = {
++        "release": 224,
++        "base_commit": BASE_COMMIT,
++        "mode": "package" if args.package_mode else "repository",
++        "status": "FAIL" if errors else "PASS",
++        "errors": errors,
++        "checks": checks,
++        "github_actions": "NOT_RUN",
++        "deployed_production": "NOT_RUN",
++    }
++    report_path = (
++        args.report if args.report.is_absolute()
++        else root / args.report
++    )
++    report_path.parent.mkdir(parents=True, exist_ok=True)
++    report_path.write_text(
++        json.dumps(report, ensure_ascii=False, indent=2) + "\n",
++        encoding="utf-8"
++    )
++    print(json.dumps(report, ensure_ascii=False, indent=2))
++    return 1 if errors else 0
++
++if __name__ == "__main__":
++    sys.exit(main())
+diff --git a/.github/workflows/static-site-integrity.yml b/.github/workflows/static-site-integrity.yml
+--- a/.github/workflows/static-site-integrity.yml
++++ b/.github/workflows/static-site-integrity.yml
+@@ -1,4 +1,4 @@
+-name: Release 223 Static Site Integrity
++name: Release 224 Static Site Integrity
+ 
+ on:
+   push:
+@@ -12,7 +12,7 @@
+ 
+ jobs:
+   integrity:
+-    name: Release 223 repository validation
++    name: Release 224 repository validation
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repository
+@@ -28,11 +28,12 @@
+         with:
+           node-version: "20"
+ 
+-      - name: Validate Release 223 identities and reading boundaries
+-        run: python tools/release_223_validate.py --root . --report artifacts/release-223-overlay-validation.json
++      - name: Validate Release 224 identities and note-storage boundaries
++        run: python tools/release_224_validate.py --root . --report artifacts/release-224-overlay-validation.json
+ 
+       - name: Check browser modules
+         run: |
++          node --check assets/js/reading-notes.mjs
+           node --check assets/js/reader-experience.js
+           node --check assets/js/pwa-register.js
+           node --check assets/js/maintenance-centre.mjs
+@@ -45,18 +46,18 @@
+           node --check assets/js/search-facets.mjs
+ 
+       - name: Run browser-local feature unit tests
+-        run: node --test tests/reader-experience.test.mjs tests/maintenance-centre.test.mjs tests/discovery-workspace.test.mjs tests/knowledge-graph-explorer.test.mjs tests/audio-history.test.mjs tests/print-support.test.mjs tests/accessibility-preferences.test.mjs tests/reading-list.test.mjs tests/search-facets.test.mjs
++        run: node --test tests/reading-notes.test.mjs tests/reader-experience.test.mjs tests/maintenance-centre.test.mjs tests/discovery-workspace.test.mjs tests/knowledge-graph-explorer.test.mjs tests/audio-history.test.mjs tests/print-support.test.mjs tests/accessibility-preferences.test.mjs tests/reading-list.test.mjs tests/search-facets.test.mjs
+ 
+       - name: Run site-audit unit tests
+         run: python -m unittest discover -s tests -p 'test_site_audit.py'
+ 
+       - name: Run repository-wide static audit
+-        run: python tools/site_audit.py --root . --json-report artifacts/release-223-site-audit.json --markdown-report artifacts/release-223-site-audit.md
++        run: python tools/site_audit.py --root . --json-report artifacts/release-224-site-audit.json --markdown-report artifacts/release-224-site-audit.md
+ 
+-      - name: Upload Release 223 integrity evidence
++      - name: Upload Release 224 integrity evidence
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+-          name: release-223-static-integrity-${{ github.sha }}
++          name: release-224-static-integrity-${{ github.sha }}
+           path: artifacts/
+           if-no-files-found: error
+diff --git a/.github/workflows/production-smoke.yml b/.github/workflows/production-smoke.yml
+--- a/.github/workflows/production-smoke.yml
++++ b/.github/workflows/production-smoke.yml
+@@ -1,4 +1,4 @@
+-name: Release 223 Production Smoke
++name: Release 224 Production Smoke
+ 
+ on:
+   push:
+@@ -11,12 +11,12 @@
+   contents: read
+ 
+ concurrency:
+-  group: release-223-production-smoke
++  group: release-224-production-smoke
+   cancel-in-progress: true
+ 
+ jobs:
+   smoke:
+-    name: Observe deployed Release 223
++    name: Observe deployed Release 224
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repository
+@@ -32,12 +32,12 @@
+         run: sleep 90
+ 
+       - name: Run deployed production smoke checks
+-        run: python tools/production_smoke.py --retries 18 --delay 20 --report artifacts/release-223-production-smoke.json
++        run: python tools/production_smoke.py --retries 18 --delay 20 --report artifacts/release-224-production-smoke.json
+ 
+-      - name: Upload Release 223 production evidence
++      - name: Upload Release 224 production evidence
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+-          name: release-223-production-smoke-${{ github.sha }}
+-          path: artifacts/release-223-production-smoke.json
++          name: release-224-production-smoke-${{ github.sha }}
++          path: artifacts/release-224-production-smoke.json
+           if-no-files-found: error
+diff --git a/manifest-release-224.json b/manifest-release-224.json
+new file mode 100644
+--- /dev/null
++++ b/manifest-release-224.json
+@@ -0,0 +1,73 @@
++{
++  "project": "OmSaravanaBhava",
++  "release": 224,
++  "name": "Browser-Local Reading Notes and Section Bookmarks",
++  "base_commit": "03f8c23e50aea1323211d2ca44cf4cddcf0deec4",
++  "generated": "2026-07-14",
++  "required_commit_title": "Release 224: add browser-local reading notes centre",
++  "validation_status": "LOCAL_PACKAGE_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
++  "production_files": [
++    "reading-notes.html",
++    "assets/css/reading-notes.css",
++    "assets/js/reading-notes.mjs",
++    "data/reading-notes.json",
++    "data/reading-workspace.json",
++    "assets/js/pwa-register.js",
++    "assets/js/reader-experience.js",
++    "index.html",
++    "platform.html",
++    "discovery.html",
++    "reading-workspace.html",
++    "maintenance.html",
++    "assets/js/maintenance-centre.mjs",
++    "data/maintenance-checks.json",
++    "data/site-routes.json",
++    "sitemap.xml",
++    "service-worker.js"
++  ],
++  "ci_alignment_files": [
++    "quality/site-audit-config.json",
++    "tools/production_smoke.py",
++    "tests/test_site_audit.py",
++    "tests/reading-notes.test.mjs",
++    "tests/reader-experience.test.mjs",
++    "tests/maintenance-centre.test.mjs",
++    "tools/release_224_validate.py",
++    ".github/workflows/static-site-integrity.yml",
++    ".github/workflows/production-smoke.yml"
++  ],
++  "claims": {
++    "storage_key": "osb-reading-notes-v1",
++    "maximum_items": 100,
++    "maximum_note_length": 500,
++    "note_kinds": [
++      "reflection",
++      "question",
++      "practice",
++      "reference"
++    ],
++    "section_bookmarks": true,
++    "selected_devotional_text_stored": false,
++    "page_body_stored": false,
++    "browser_local_only": true,
++    "cloud_sync": false,
++    "server_account": false,
++    "analytics": false,
++    "export_json": true,
++    "protected_storage_preserved": [
++      "osb-reading-progress-v1",
++      "osb-reading-list-v1",
++      "osb-accessibility-preferences-v1",
++      "osb-audio-listening-history-v1"
++    ],
++    "service_worker_release": 224,
++    "new_optional_cache_assets": 5
++  },
++  "limitations": [
++    "Heading labels are stored only as navigation metadata.",
++    "Notes remain in the current browser profile.",
++    "Notes do not modify source, publication, copyright or completeness status.",
++    "No collaborative editing or cross-device synchronization is provided.",
++    "GitHub Actions and deployed production checks remain pending."
++  ]
++}

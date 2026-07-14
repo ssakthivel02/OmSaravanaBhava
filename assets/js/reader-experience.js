@@ -1,4 +1,4 @@
-export const RELEASE = 223;
+export const RELEASE = 224;
 export const CONFIG_PATH = '/data/reading-workspace.json';
 export const ROUTES_PATH = '/data/site-routes.json';
 export const STORAGE_KEY = 'osb-reading-progress-v1';
@@ -917,6 +917,13 @@ const initialiseEligibleReadingPage = (
   } else {
     main.prepend(toolbar);
   }
+
+  document.dispatchEvent(new CustomEvent('osb:reader-ready', {
+    detail: {
+      path,
+      routeRecord
+    }
+  }));
 
   let pending = false;
   let lastSavedAt = 0;
