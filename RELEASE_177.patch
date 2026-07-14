@@ -1,0 +1,57 @@
+--- before/festival-intelligence.html
++++ release177/festival-intelligence.html
+@@ -0,0 +1,24 @@
++<!doctype html><html lang="ta"><head>
++<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Festival Intelligence Framework | Om Saravana Bhava</title>
++<meta name="description" content="Festival knowledge framework with explicit Panchangam verification boundaries.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/festival-intelligence.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++</head><body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Digital Murugan knowledge platform</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Festival Intelligence Framework</span></p></nav>
++<section class="card"><h1 class="section-title" lang="ta">திருவிழா அறிவு மையம்</h1><h2>Festival Intelligence Framework</h2><p>Festival knowledge framework with explicit Panchangam verification boundaries.</p></section>
++<section class="card"><p>Festival names and traditional Tamil months are published. Exact Gregorian dates are not generated without a verified year-specific Panchangam.</p></section><section class="grid"></section>
++</main>
++<footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body></html>--- before/data/festival-intelligence.json
++++ release177/data/festival-intelligence.json
+@@ -0,0 +1 @@
++[]
+--- before/service-worker.js
++++ release177/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '176';
++const RELEASE = '177';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -109,7 +109,9 @@
+   "/siddhar-knowledge-graph.html",
+   "/data/siddhar-knowledge-graph.json",
+   "/murugan-map.html",
+-  "/data/murugan-map.json"
++  "/data/murugan-map.json",
++  "/festival-intelligence.html",
++  "/data/festival-intelligence.json"
+ ];
+ 
+ self.addEventListener('install', event => {
+--- before/sitemap.xml
++++ release177/sitemap.xml
+@@ -214,4 +214,5 @@
+   <url><loc>https://omsaravanabhava.org/temple-encyclopedia.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+   <url><loc>https://omsaravanabhava.org/siddhar-knowledge-graph.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+   <url><loc>https://omsaravanabhava.org/murugan-map.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
++  <url><loc>https://omsaravanabhava.org/festival-intelligence.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+ </urlset>
