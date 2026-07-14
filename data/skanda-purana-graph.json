@@ -1,0 +1,49 @@
+{
+  "release": 193,
+  "status": "source-register",
+  "nodes": [
+    {
+      "id": "skanda",
+      "type": "Deity"
+    },
+    {
+      "id": "siva",
+      "type": "Deity"
+    },
+    {
+      "id": "parvati",
+      "type": "Deity"
+    },
+    {
+      "id": "surapadman",
+      "type": "Character"
+    },
+    {
+      "id": "vel",
+      "type": "Weapon"
+    }
+  ],
+  "edges": [
+    {
+      "from": "siva",
+      "to": "skanda",
+      "relation": "father-of"
+    },
+    {
+      "from": "parvati",
+      "to": "skanda",
+      "relation": "mother-of"
+    },
+    {
+      "from": "skanda",
+      "to": "vel",
+      "relation": "bears"
+    },
+    {
+      "from": "skanda",
+      "to": "surapadman",
+      "relation": "defeats-in-traditional-narrative"
+    }
+  ],
+  "note": "High-level traditional relationships only; chapter-level claims require source verification."
+}

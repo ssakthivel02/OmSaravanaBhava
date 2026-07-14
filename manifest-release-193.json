@@ -1,0 +1,22 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 193,
+  "name": "Skanda Purana Knowledge Graph Phase 2",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 4,
+  "modified": [
+    "service-worker.js",
+    "sitemap.xml"
+  ],
+  "added": [
+    "skanda-purana-graph.html",
+    "data/skanda-purana-graph.json"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Chapter-level verification": "Pending",
+    "Traditional relations labelled": "Yes"
+  }
+}
