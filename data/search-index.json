@@ -660,5 +660,18 @@
       "Vel"
     ],
     "status": "source-register"
+  },
+  {
+    "kind": "Literature",
+    "id": "shanmuga-kavasam",
+    "titleTa": "சண்முக கவசம்",
+    "titleEn": "Shanmuga Kavasam",
+    "summary": "Source register for the 30-verse protective work attributed to Pamban Swamigal.",
+    "route": "literature/shanmuga-kavasam.html",
+    "tags": [
+      "Pamban Swamigal",
+      "Kavasam"
+    ],
+    "status": "source-register"
   }
 ]

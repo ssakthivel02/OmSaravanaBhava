@@ -1,0 +1,4 @@
+data/search-index.json
+data/shanmuga-kavasam.json
+literature/shanmuga-kavasam.html
+service-worker.js

@@ -1,0 +1,81 @@
+--- before/data/shanmuga-kavasam.json
++++ release164/data/shanmuga-kavasam.json
+@@ -0,0 +1,9 @@
++{
++  "id": "shanmuga-kavasam",
++  "titleTa": "சண்முக கவசம்",
++  "titleEn": "Shanmuga Kavasam",
++  "author": "Pamban Kumara Guru Dasa Swamigal",
++  "traditionalVerseCount": 30,
++  "publicationStatus": "source-register",
++  "fullTextPublished": false
++}
+--- before/literature/shanmuga-kavasam.html
++++ release164/literature/shanmuga-kavasam.html
+@@ -0,0 +1,27 @@
++<!doctype html>
++<html lang="ta"><head>
++<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Shanmuga Kavasam | Om Saravana Bhava</title>
++<meta name="description" content="Source-controlled register for Pamban Swamigal&#x27;s Shanmuga Kavasam.">
++<meta name="robots" content="noindex,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/literature/shanmuga-kavasam.html">
++<link rel="stylesheet" href="../assets/css/osb44.css">
++<link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<link rel="manifest" href="../manifest.json">
++<script defer src="../assets/js/pwa-register.js"></script>
++</head><body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Source-controlled devotional edition</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="../index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="../temples.html">Temples</a><a href="../sloka-library.html">Slokas</a><a href="../thiruppugazh.html">Thiruppugazh</a><a href="../festivals.html">Festivals</a><a href="../ai-search.html">AI Search</a><a href="../audio-library.html">Audio</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="../index.html">Home</a> › <span aria-current="page">Shanmuga Kavasam</span></p></nav>
++<section class="card"><span class="pill">Source-controlled publication</span><h1 class="section-title" lang="ta">சண்முக கவசம்</h1><h2>Shanmuga Kavasam</h2><p>Source-controlled register for Pamban Swamigal&#x27;s Shanmuga Kavasam.</p></section>
++<section class="card"><h2>Publication boundary</h2><p>This register records the work, attributed author and traditional 30-verse structure. The complete text is not published until a verified source is available for redistribution.</p></section>
++</main>
++<div class="tools"><button type="button" class="tool" data-text aria-pressed="false">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false">☾ Night</button><button type="button" class="tool" data-share>↗ Share</button></div>
++<footer>© Om Saravana Bhava · <a href="../sources.html">Sources &amp; publication policy</a></footer>
++</body></html>--- before/data/search-index.json
++++ release164/data/search-index.json
+@@ -660,5 +660,18 @@
+       "Vel"
+     ],
+     "status": "source-register"
++  },
++  {
++    "kind": "Literature",
++    "id": "shanmuga-kavasam",
++    "titleTa": "சண்முக கவசம்",
++    "titleEn": "Shanmuga Kavasam",
++    "summary": "Source register for the 30-verse protective work attributed to Pamban Swamigal.",
++    "route": "literature/shanmuga-kavasam.html",
++    "tags": [
++      "Pamban Swamigal",
++      "Kavasam"
++    ],
++    "status": "source-register"
+   }
+ ]
+--- before/service-worker.js
++++ release164/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '163';
++const RELEASE = '164';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -82,7 +82,9 @@
+   "/literature/kanda-sashti-kavasam-edition.html",
+   "/data/kanda-sashti-kavasam-structure.json",
+   "/literature/vel-maaral.html",
+-  "/data/vel-maaral.json"
++  "/data/vel-maaral.json",
++  "/literature/shanmuga-kavasam.html",
++  "/data/shanmuga-kavasam.json"
+ ];
+ 
+ self.addEventListener('install', event => {
