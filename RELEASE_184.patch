@@ -1,0 +1,118 @@
+--- before/publication-history.html
++++ release184/publication-history.html
+@@ -0,0 +1,24 @@
++<!doctype html><html lang="ta"><head>
++<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Publication History | Om Saravana Bhava</title>
++<meta name="description" content="Selected production history showing how the platform evolved from SEO repair to a connected knowledge system.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/publication-history.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++</head><body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Digital Murugan heritage platform</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Publication History</span></p></nav>
++<section class="card"><h1 class="section-title" lang="ta">வெளியீட்டு வரலாறு</h1><h2>Publication History</h2><p>Selected production history showing how the platform evolved from SEO repair to a connected knowledge system.</p></section>
++<section class="timeline"><article class="card"><span class="pill">Release 145</span><h2>SEO consolidation</h2></article><article class="card"><span class="pill">Release 146</span><h2>PWA repair</h2></article><article class="card"><span class="pill">Release 147</span><h2>Verified content publication</h2></article><article class="card"><span class="pill">Release 148</span><h2>Production QA</h2></article><article class="card"><span class="pill">Release 149</span><h2>Thiruppugazh volume 1</h2></article><article class="card"><span class="pill">Release 150</span><h2>Typography and read-aloud</h2></article><article class="card"><span class="pill">Release 151</span><h2>Skanda Guru Kavasam</h2></article><article class="card"><span class="pill">Release 152</span><h2>Persistent player</h2></article><article class="card"><span class="pill">Release 154</span><h2>Local search</h2></article><article class="card"><span class="pill">Release 155</span><h2>Thiruppugazh volume 2</h2></article><article class="card"><span class="pill">Release 157</span><h2>Arupadai Veedu</h2></article><article class="card"><span class="pill">Release 160</span><h2>Murugan mantras</h2></article><article class="card"><span class="pill">Release 169</span><h2>Knowledge graph</h2></article><article class="card"><span class="pill">Release 170</span><h2>Premium UX</h2></article><article class="card"><span class="pill">Release 180</span><h2>Platform hub</h2></article></section>
++</main>
++<footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body></html>--- before/data/publication-history.json
++++ release184/data/publication-history.json
+@@ -0,0 +1,62 @@
++[
++  {
++    "release": 145,
++    "scope": "SEO consolidation"
++  },
++  {
++    "release": 146,
++    "scope": "PWA repair"
++  },
++  {
++    "release": 147,
++    "scope": "Verified content publication"
++  },
++  {
++    "release": 148,
++    "scope": "Production QA"
++  },
++  {
++    "release": 149,
++    "scope": "Thiruppugazh volume 1"
++  },
++  {
++    "release": 150,
++    "scope": "Typography and read-aloud"
++  },
++  {
++    "release": 151,
++    "scope": "Skanda Guru Kavasam"
++  },
++  {
++    "release": 152,
++    "scope": "Persistent player"
++  },
++  {
++    "release": 154,
++    "scope": "Local search"
++  },
++  {
++    "release": 155,
++    "scope": "Thiruppugazh volume 2"
++  },
++  {
++    "release": 157,
++    "scope": "Arupadai Veedu"
++  },
++  {
++    "release": 160,
++    "scope": "Murugan mantras"
++  },
++  {
++    "release": 169,
++    "scope": "Knowledge graph"
++  },
++  {
++    "release": 170,
++    "scope": "Premium UX"
++  },
++  {
++    "release": 180,
++    "scope": "Platform hub"
++  }
++]
+--- before/service-worker.js
++++ release184/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '183';
++const RELEASE = '184';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -121,7 +121,9 @@
+   "/content-status.html",
+   "/data/content-status.json",
+   "/source-catalog.html",
+-  "/data/source-catalog.json"
++  "/data/source-catalog.json",
++  "/publication-history.html",
++  "/data/publication-history.json"
+ ];
+ 
+ self.addEventListener('install', event => {
+--- before/sitemap.xml
++++ release184/sitemap.xml
+@@ -218,4 +218,5 @@
+   <url><loc>https://omsaravanabhava.org/platform.html</loc><lastmod>2026-07-13</lastmod><priority>0.9</priority></url>
+   <url><loc>https://omsaravanabhava.org/content-status.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+   <url><loc>https://omsaravanabhava.org/source-catalog.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
++  <url><loc>https://omsaravanabhava.org/publication-history.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+ </urlset>
