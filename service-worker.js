@@ -1,4 +1,4 @@
-const RELEASE = '189';
+const RELEASE = '190';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
@@ -136,7 +136,9 @@ const PRECACHE_URLS = [
   "/assets/js/daily-devotional.js",
   "/privacy.html",
   "/data/privacy-preferences.json",
-  "/assets/js/privacy-preferences.js"
+  "/assets/js/privacy-preferences.js",
+  "/production-audit.html",
+  "/data/production-audit.json"
 ];
 
 self.addEventListener('install', event => {
