@@ -711,5 +711,19 @@
       "Kalivenba"
     ],
     "status": "source-register"
+  },
+  {
+    "kind": "Literature",
+    "id": "vel-mayil-virutham",
+    "titleTa": "வேல் விருத்தம் · மயில் விருத்தம்",
+    "titleEn": "Vel Virutham and Mayil Virutham",
+    "summary": "Companion literary register for the Vel and peacock works.",
+    "route": "literature/vel-mayil-virutham.html",
+    "tags": [
+      "Arunagirinathar",
+      "Vel",
+      "Mayil"
+    ],
+    "status": "source-register"
   }
 ]
