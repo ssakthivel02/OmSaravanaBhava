@@ -1,0 +1,5 @@
+assets/js/daily-devotional.js
+daily-devotional.html
+data/daily-devotional.json
+service-worker.js
+sitemap.xml

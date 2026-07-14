@@ -1,0 +1,105 @@
+--- before/daily-devotional.html
++++ release188/daily-devotional.html
+@@ -0,0 +1,25 @@
++<!doctype html><html lang="ta"><head>
++<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Daily Devotional Rotation | Om Saravana Bhava</title>
++<meta name="description" content="A deterministic daily rotation of already verified short Murugan mantra texts.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/daily-devotional.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++<script defer src="assets/js/daily-devotional.js"></script>
++</head><body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Digital Murugan heritage platform</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Daily Devotional Rotation</span></p></nav>
++<section class="card"><h1 class="section-title" lang="ta">இன்றைய பக்திப் பதிவு</h1><h2>Daily Devotional Rotation</h2><p>A deterministic daily rotation of already verified short Murugan mantra texts.</p></section>
++<section id="dailyDevotional" class="card"></section>
++</main>
++<footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body></html>--- before/data/daily-devotional.json
++++ release188/data/daily-devotional.json
+@@ -0,0 +1,44 @@
++[
++  {
++    "dayIndex": 0,
++    "id": "om-saravanabhava",
++    "titleTa": "ஓம் சரவணபவ",
++    "titleEn": "Om Saravanabhava",
++    "textTa": "ஓம் சரவணபவ"
++  },
++  {
++    "dayIndex": 1,
++    "id": "kanda-gayatri",
++    "titleTa": "கந்த காயத்ரி",
++    "titleEn": "Kanda Gayatri",
++    "textTa": "ஓம் தத் புருஷாய வித்மஹே மஹாசேனாய தீமஹி தந்நோ ஷண்முக ப்ரசோதயாத்"
++  },
++  {
++    "dayIndex": 2,
++    "id": "vel-vel",
++    "titleTa": "வேல் வேல் முருகா",
++    "titleEn": "Vel Vel Muruga",
++    "textTa": "வேல் வேல் முருகா, வெற்றி வேல் முருகா"
++  },
++  {
++    "dayIndex": 3,
++    "id": "skanda-sharanam",
++    "titleTa": "ஸ்கந்தா சரணம்",
++    "titleEn": "Skanda Sharanam",
++    "textTa": "ஸ்கந்தா சரணம், சரவணபவ குகா சரணம்"
++  },
++  {
++    "dayIndex": 4,
++    "id": "shanmuga-sharanam",
++    "titleTa": "ஷண்முகா சரணம்",
++    "titleEn": "Shanmuga Sharanam",
++    "textTa": "ஷண்முகா சரணம் சரணம், ஸ்கந்த குரோ சரணம்"
++  },
++  {
++    "dayIndex": 5,
++    "id": "muruga-sharanam",
++    "titleTa": "முருகா சரணம்",
++    "titleEn": "Muruga Sharanam",
++    "textTa": "முருகா சரணம், கந்தா சரணம்"
++  }
++]
+--- before/assets/js/daily-devotional.js
++++ release188/assets/js/daily-devotional.js
+@@ -0,0 +1 @@
++(()=>{'use strict';document.addEventListener('DOMContentLoaded',async()=>{const root=document.getElementById('dailyDevotional');if(!root)return;const data=await fetch('data/daily-devotional.json').then(r=>r.json());const day=Math.floor(Date.now()/86400000);const item=data[day%data.length];root.innerHTML=`<span class="pill">Daily rotation</span><h2 lang="ta">${item.titleTa}</h2><h3>${item.titleEn}</h3><div class="verse" lang="ta">${item.textTa}</div><p>The rotation is deterministic and is not a Panchangam calculation.</p>`})})();--- before/service-worker.js
++++ release188/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '187';
++const RELEASE = '188';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -130,7 +130,10 @@
+   "/data/learning-quiz.json",
+   "/assets/js/learning-quiz.js",
+   "/pilgrimage-planner.html",
+-  "/data/pilgrimage-planner.json"
++  "/data/pilgrimage-planner.json",
++  "/daily-devotional.html",
++  "/data/daily-devotional.json",
++  "/assets/js/daily-devotional.js"
+ ];
+ 
+ self.addEventListener('install', event => {
+--- before/sitemap.xml
++++ release188/sitemap.xml
+@@ -222,4 +222,5 @@
+   <url><loc>https://omsaravanabhava.org/learning-center.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+   <url><loc>https://omsaravanabhava.org/learning-quiz.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+   <url><loc>https://omsaravanabhava.org/pilgrimage-planner.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
++  <url><loc>https://omsaravanabhava.org/daily-devotional.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+ </urlset>

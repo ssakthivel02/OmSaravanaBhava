@@ -1,0 +1,44 @@
+[
+  {
+    "dayIndex": 0,
+    "id": "om-saravanabhava",
+    "titleTa": "ஓம் சரவணபவ",
+    "titleEn": "Om Saravanabhava",
+    "textTa": "ஓம் சரவணபவ"
+  },
+  {
+    "dayIndex": 1,
+    "id": "kanda-gayatri",
+    "titleTa": "கந்த காயத்ரி",
+    "titleEn": "Kanda Gayatri",
+    "textTa": "ஓம் தத் புருஷாய வித்மஹே மஹாசேனாய தீமஹி தந்நோ ஷண்முக ப்ரசோதயாத்"
+  },
+  {
+    "dayIndex": 2,
+    "id": "vel-vel",
+    "titleTa": "வேல் வேல் முருகா",
+    "titleEn": "Vel Vel Muruga",
+    "textTa": "வேல் வேல் முருகா, வெற்றி வேல் முருகா"
+  },
+  {
+    "dayIndex": 3,
+    "id": "skanda-sharanam",
+    "titleTa": "ஸ்கந்தா சரணம்",
+    "titleEn": "Skanda Sharanam",
+    "textTa": "ஸ்கந்தா சரணம், சரவணபவ குகா சரணம்"
+  },
+  {
+    "dayIndex": 4,
+    "id": "shanmuga-sharanam",
+    "titleTa": "ஷண்முகா சரணம்",
+    "titleEn": "Shanmuga Sharanam",
+    "textTa": "ஷண்முகா சரணம் சரணம், ஸ்கந்த குரோ சரணம்"
+  },
+  {
+    "dayIndex": 5,
+    "id": "muruga-sharanam",
+    "titleTa": "முருகா சரணம்",
+    "titleEn": "Muruga Sharanam",
+    "textTa": "முருகா சரணம், கந்தா சரணம்"
+  }
+]
