@@ -1,5 +1,5 @@
 {
-  "expectedRelease": "211",
+  "expectedRelease": "212",
   "canonicalOrigin": "https://omsaravanabhava.org",
   "requiredFiles": [
     "index.html",
@@ -14,7 +14,13 @@
     "icons/icon-192.png",
     "icons/icon-512.png",
     "panchangam-framework.html",
-    "data/panchangam-framework.json"
+    "data/panchangam-framework.json",
+    "site-directory.html",
+    "data/site-routes.json",
+    "assets/js/site-directory.js",
+    "assets/css/site-directory.css",
+    ".github/workflows/static-site-integrity.yml",
+    ".github/workflows/production-smoke.yml"
   ],
   "canonicalOptional": [
     "404.html",
@@ -25,5 +31,6 @@
     ".github",
     "node_modules",
     "vendor"
-  ]
+  ],
+  "routeDirectoryFile": "data/site-routes.json"
 }

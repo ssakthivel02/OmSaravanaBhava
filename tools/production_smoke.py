@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Observe the deployed custom domain and fail when Release 211 is not live."""
+"""Observe the deployed custom domain and fail when Release 212 is not live."""
 from __future__ import annotations
 
 import argparse
@@ -21,7 +21,7 @@ CHECKS = [
 
 
 def fetch(url: str, timeout: int) -> tuple[int, str]:
-    request = urllib.request.Request(url, headers={"User-Agent": "OmSaravanaBhava-Production-Smoke/211", "Cache-Control": "no-cache"})
+    request = urllib.request.Request(url, headers={"User-Agent": "OmSaravanaBhava-Production-Smoke/212", "Cache-Control": "no-cache"})
     with urllib.request.urlopen(request, timeout=timeout) as response:
         return response.status, response.read().decode("utf-8", errors="replace")
 

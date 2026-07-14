@@ -127,6 +127,7 @@ class SiteAudit:
         self.check_sitemap()
         self.check_manifest()
         self.check_service_worker()
+        self.check_route_directory()
         counts = Counter(item.severity for item in self.findings)
         return {
             "release": self.config.get("expectedRelease"),
@@ -294,6 +295,54 @@ class SiteAudit:
             target = self.root / (url.lstrip("/") or "index.html")
             if not target.is_file():
                 self.add("error", "precache-target-missing", worker, f"{url} maps to missing {self.display(target)}.")
+
+    def check_route_directory(self) -> None:
+        relative = self.config.get("routeDirectoryFile")
+        if not relative:
+            return
+        directory = self.root / relative
+        if not directory.is_file():
+            self.add("error", "route-directory-missing", relative, "Configured route directory is missing.")
+            return
+        try:
+            payload = json.loads(directory.read_text(encoding="utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError):
+            return
+        records = payload.get("routes") if isinstance(payload, dict) else None
+        if not isinstance(records, list):
+            self.add("error", "route-directory-shape", directory, "Expected an object containing a routes array.")
+            return
+        paths: list[str] = []
+        for index, record in enumerate(records):
+            if not isinstance(record, dict):
+                self.add("error", "route-directory-record", directory, f"Record {index} is not an object.")
+                continue
+            route = record.get("path")
+            if not isinstance(route, str) or not route.startswith("/"):
+                self.add("error", "route-directory-path", directory, f"Record {index} has an invalid path.")
+                continue
+            paths.append(route)
+            for field in ("titleEn", "category", "status", "summary"):
+                if not isinstance(record.get(field), str) or not record[field].strip():
+                    self.add("error", "route-directory-field", directory, f"{route} has no valid {field}.")
+            target = self.root / (route.lstrip("/") or "index.html")
+            if not target.is_file():
+                self.add("error", "route-directory-target-missing", directory, f"{route} maps to missing {self.display(target)}.")
+        for value, count in Counter(paths).items():
+            if count > 1:
+                self.add("error", "duplicate-route-directory-path", directory, value)
+        sitemap = self.root / "sitemap.xml"
+        if sitemap.is_file():
+            try:
+                tree = ET.parse(sitemap)
+                namespace = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+                origin = self.config.get("canonicalOrigin", "").rstrip("/")
+                sitemap_paths = {urlsplit(node.text.strip()).path for node in tree.findall(".//sm:loc", namespace) if node.text and node.text.strip().startswith(origin)}
+                missing = sorted(sitemap_paths - set(paths))
+                for route in missing:
+                    self.add("error", "sitemap-route-not-in-directory", directory, route)
+            except ET.ParseError:
+                pass
 
 
 def write_markdown(report: dict[str, object], path: Path) -> None:

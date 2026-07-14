@@ -1,4 +1,4 @@
-const RELEASE = '211';
+const RELEASE = '212';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
@@ -184,7 +184,11 @@ const PRECACHE_URLS = [
   "/data/panchangam-framework.json",
   "/data/search-concepts.json",
   "/assets/js/search-concepts.js",
-  "/assets/js/premium-home.js"
+  "/assets/js/premium-home.js",
+  "/site-directory.html",
+  "/data/site-routes.json",
+  "/assets/js/site-directory.js",
+  "/assets/css/site-directory.css"
 ];
 
 const cacheOptionalAssets = async cache => {
