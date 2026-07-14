@@ -1,4 +1,4 @@
-const RELEASE = '172';
+const RELEASE = '173';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
@@ -101,7 +101,9 @@ const PRECACHE_URLS = [
   "/assets/js/audio-collections.js",
   "/cross-references.html",
   "/data/cross-reference-aliases.json",
-  "/assets/js/cross-reference-aliases.js"
+  "/assets/js/cross-reference-aliases.js",
+  "/murugan-timeline.html",
+  "/data/murugan-timeline.json"
 ];
 
 self.addEventListener('install', event => {
