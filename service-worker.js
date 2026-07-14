@@ -1,4 +1,4 @@
-const RELEASE = '194';
+const RELEASE = '195';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
@@ -143,7 +143,9 @@ const PRECACHE_URLS = [
   "/thiruppugazh-volume-5.html",
   "/skanda-purana-graph.html",
   "/data/skanda-purana-graph.json",
-  "/temple-research-dashboard.html"
+  "/temple-research-dashboard.html",
+  "/siddhar-literature.html",
+  "/data/siddhar-literature-index.json"
 ];
 
 self.addEventListener('install', event => {

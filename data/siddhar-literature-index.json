@@ -1,0 +1,38 @@
+[
+  {
+    "id": "agastiyar",
+    "nameEn": "Agastiyar",
+    "literatureStatus": "source-collection-required",
+    "muruganAssociation": "traditional-association-review"
+  },
+  {
+    "id": "bogar",
+    "nameEn": "Bogar",
+    "literatureStatus": "source-collection-required",
+    "muruganAssociation": "traditional-association-review"
+  },
+  {
+    "id": "pulipani",
+    "nameEn": "Pulipani",
+    "literatureStatus": "source-collection-required",
+    "muruganAssociation": "traditional-association-review"
+  },
+  {
+    "id": "konganar",
+    "nameEn": "Konganar",
+    "literatureStatus": "source-collection-required",
+    "muruganAssociation": "traditional-association-review"
+  },
+  {
+    "id": "karuvoorar",
+    "nameEn": "Karuvoorar",
+    "literatureStatus": "source-collection-required",
+    "muruganAssociation": "traditional-association-review"
+  },
+  {
+    "id": "pambatti-siddhar",
+    "nameEn": "Pambatti Siddhar",
+    "literatureStatus": "source-collection-required",
+    "muruganAssociation": "traditional-association-review"
+  }
+]

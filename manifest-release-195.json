@@ -1,0 +1,22 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 195,
+  "name": "Siddhar Literature Index",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 4,
+  "modified": [
+    "service-worker.js",
+    "sitemap.xml"
+  ],
+  "added": [
+    "siddhar-literature.html",
+    "data/siddhar-literature-index.json"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Siddhars indexed": 6,
+    "Unverified verses published": "No"
+  }
+}
