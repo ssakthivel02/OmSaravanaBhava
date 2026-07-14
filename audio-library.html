@@ -18,6 +18,7 @@
 <script defer src="assets/js/osb44.js"></script>
 <script defer src="assets/js/audio-library.js"></script>
 <script defer src="assets/js/media-session-player.js"></script>
+<script type="module" src="assets/js/audio-history.mjs"></script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#a51d17">
 <meta name="mobile-web-app-capable" content="yes">
@@ -30,19 +31,19 @@
 <script defer src="assets/js/premium-interactions.js"></script>
 <script defer src="assets/js/desktop-layout.js"></script>
 </head>
-<body>
+<body data-release="219">
 <a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="top">🛕 ஓம் சரவணபவ · Verified Tamil read-aloud player</div>
-<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html" aria-current="page">Audio</a></div></div></nav>
+<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html" aria-current="page">Audio</a><a href="audio-history.html">History</a></div></div></nav>
 <main id="main-content" class="wrap">
 <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Audio Library</span></p></nav>
 <section class="audio-hero">
 <div>
-<span class="eyebrow">Release 152 · Verified queue and device controls</span>
+<span class="eyebrow">Release 219 · Verified queue and browser-local listening history</span>
 <h1 class="section-title">தமிழ் வாசிப்பு இயக்கி</h1>
 <h2>Tamil Devotional Read-Aloud Player</h2>
 <p class="lead">Choose a verified text, select an installed voice and reading speed, then control playback from the persistent player. Compatible browsers may also expose play, pause, previous and next controls through system media surfaces.</p>
-<div class="audio-hero-actions"><a class="btn" href="#readAloudQueueGrid">Open verified queue</a><a class="btn secondary" href="#audioCatalogGrid">Review requested works</a><a class="btn secondary" href="sources.html">Source policy</a></div>
+<div class="audio-hero-actions"><a class="btn" href="#readAloudQueueGrid">Open verified queue</a><a class="btn secondary" href="#audioCatalogGrid">Review requested works</a><a class="btn secondary" href="audio-history.html">Listening history</a><a class="btn secondary" href="sources.html">Source policy</a></div>
 </div>
 <div class="audio-hero-mark" aria-hidden="true">வேல்</div>
 </section>
@@ -50,6 +51,7 @@
 <h2>Real functionality—no simulated audio</h2>
 <p>This player reads verified Tamil text through the speech voice installed on the visitor’s device. It does not display a fake duration, fake waveform, false “Hi-Fi” badge or pretend that a modern studio recording is available.</p>
 <p><strong>Current verified queue:</strong> four mantra or Kavasam records plus ten Thiruppugazh songs. No playback starts automatically.</p>
+<p><strong>Listening history:</strong> recorded only after device speech actually begins the first section; stored in this browser only.</p>
 </section>
 <section class="card">
 <span class="pill">Verified text queue</span>
@@ -120,6 +122,6 @@
 </section>
 
 <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
-<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="sources.html">Sources &amp; publication policy</a></footer>
+<footer>© Om Saravana Bhava · <a href="audio-history.html">Listening history</a> · Static GitHub Pages safe platform · <a href="sources.html">Sources &amp; publication policy</a></footer>
 </body>
 </html>

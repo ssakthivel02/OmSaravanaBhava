@@ -1,5 +1,5 @@
 {
-  "expectedRelease": "218",
+  "expectedRelease": "219",
   "canonicalOrigin": "https://omsaravanabhava.org",
   "requiredFiles": [
     "index.html",
@@ -35,7 +35,10 @@
     "assets/js/accessibility-preferences.mjs",
     "print-pdf.html",
     "assets/css/print-support.css",
-    "assets/js/print-support.mjs"
+    "assets/js/print-support.mjs",
+    "audio-history.html",
+    "assets/css/audio-history.css",
+    "assets/js/audio-history.mjs"
   ],
   "canonicalOptional": [
     "404.html",

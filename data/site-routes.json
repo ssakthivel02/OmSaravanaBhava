@@ -1,5 +1,5 @@
 {
-  "release": 218,
+  "release": 219,
   "generated": "2026-07-14",
   "scope": "Public HTML routes represented by the Release 215 sitemap and route directory.",
   "statusMeaning": {
@@ -36,6 +36,14 @@
       "category": "Audio",
       "status": "published",
       "summary": "Published audio route in the OmSaravanaBhava static platform."
+    },
+    {
+      "path": "/audio-history.html",
+      "titleTa": "கேட்பு வரலாறு",
+      "titleEn": "Audio Listening History",
+      "category": "Audio",
+      "status": "utility",
+      "summary": "Browser-local history of actual device read-aloud starts from the verified Tamil text queue."
     },
     {
       "path": "/daily-devotional.html",

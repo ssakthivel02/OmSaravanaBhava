@@ -1,0 +1,1211 @@
+diff --git a/audio-library.html b/audio-library.html
+--- a/audio-library.html
++++ b/audio-library.html
+@@ -18,6 +18,7 @@
+ <script defer src="assets/js/osb44.js"></script>
+ <script defer src="assets/js/audio-library.js"></script>
+ <script defer src="assets/js/media-session-player.js"></script>
++<script type="module" src="assets/js/audio-history.mjs"></script>
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+ <meta name="theme-color" content="#a51d17">
+ <meta name="mobile-web-app-capable" content="yes">
+@@ -30,19 +31,19 @@
+ <script defer src="assets/js/premium-interactions.js"></script>
+ <script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body>
++<body data-release="219">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Verified Tamil read-aloud player</div>
+-<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html" aria-current="page">Audio</a></div></div></nav>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html" aria-current="page">Audio</a><a href="audio-history.html">History</a></div></div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Audio Library</span></p></nav>
+ <section class="audio-hero">
+ <div>
+-<span class="eyebrow">Release 152 · Verified queue and device controls</span>
++<span class="eyebrow">Release 219 · Verified queue and browser-local listening history</span>
+ <h1 class="section-title">தமிழ் வாசிப்பு இயக்கி</h1>
+ <h2>Tamil Devotional Read-Aloud Player</h2>
+ <p class="lead">Choose a verified text, select an installed voice and reading speed, then control playback from the persistent player. Compatible browsers may also expose play, pause, previous and next controls through system media surfaces.</p>
+-<div class="audio-hero-actions"><a class="btn" href="#readAloudQueueGrid">Open verified queue</a><a class="btn secondary" href="#audioCatalogGrid">Review requested works</a><a class="btn secondary" href="sources.html">Source policy</a></div>
++<div class="audio-hero-actions"><a class="btn" href="#readAloudQueueGrid">Open verified queue</a><a class="btn secondary" href="#audioCatalogGrid">Review requested works</a><a class="btn secondary" href="audio-history.html">Listening history</a><a class="btn secondary" href="sources.html">Source policy</a></div>
+ </div>
+ <div class="audio-hero-mark" aria-hidden="true">வேல்</div>
+ </section>
+@@ -50,6 +51,7 @@
+ <h2>Real functionality—no simulated audio</h2>
+ <p>This player reads verified Tamil text through the speech voice installed on the visitor’s device. It does not display a fake duration, fake waveform, false “Hi-Fi” badge or pretend that a modern studio recording is available.</p>
+ <p><strong>Current verified queue:</strong> four mantra or Kavasam records plus ten Thiruppugazh songs. No playback starts automatically.</p>
++<p><strong>Listening history:</strong> recorded only after device speech actually begins the first section; stored in this browser only.</p>
+ </section>
+ <section class="card">
+ <span class="pill">Verified text queue</span>
+@@ -120,6 +122,6 @@
+ </section>
+ 
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+-<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="sources.html">Sources &amp; publication policy</a></footer>
++<footer>© Om Saravana Bhava · <a href="audio-history.html">Listening history</a> · Static GitHub Pages safe platform · <a href="sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+ </html>
+diff --git a/audio-history.html b/audio-history.html
+new file mode 100644
+--- /dev/null
++++ b/audio-history.html
+@@ -0,0 +1,74 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Audio Listening History | Om Saravana Bhava</title>
++<meta name="description" content="Browser-local history of actual device read-aloud starts from the verified OmSaravanaBhava Tamil text queue.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/audio-history.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="stylesheet" href="assets/css/audio-history.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++<script type="module" src="assets/js/audio-history.mjs"></script>
++</head>
++<body data-release="219">
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Browser-local device read-aloud history</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="explore.html">Explore</a><a href="audio-library.html">Audio</a><a href="audio-history.html" aria-current="page">History</a><a href="reading-list.html">Reading List</a><a href="accessibility.html">Accessibility</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="audio-library.html">Audio Library</a> › <span aria-current="page">Listening History</span></p></nav>
++
++<section class="card audio-history-summary">
++<div>
++<span class="pill">Release 219 · Local playback evidence</span>
++<h1 class="section-title" lang="ta">கேட்பு வரலாறு</h1>
++<h2>Audio Listening History</h2>
++<p>Review recent verified-text read-aloud items that actually started through your device’s speech engine. Nothing is uploaded or synchronized.</p>
++</div>
++<div class="audio-history-metric">
++<strong id="audioHistoryUnique">0</strong>
++<span>unique items</span>
++</div>
++<div class="audio-history-metric">
++<strong id="audioHistoryStarts">0</strong>
++<span>actual starts</span>
++</div>
++</section>
++
++<section class="card">
++<h2>Local history controls</h2>
++<div class="audio-history-toolbar">
++<a class="btn" href="audio-library.html">Open verified read-aloud queue</a>
++<button class="btn secondary" id="audioHistoryExport" type="button">Export JSON</button>
++<button class="btn secondary" id="audioHistoryClear" type="button">Clear history</button>
++</div>
++<p id="audioHistoryStatus" role="status" aria-live="polite">Loading browser-local history…</p>
++</section>
++
++<section id="audioHistoryItems" class="grid audio-history-grid" aria-label="Recent device read-aloud items">
++<article class="card">Loading listening history…</article>
++</section>
++
++<section class="card audio-history-boundary">
++<h2>Evidence boundary</h2>
++<ul>
++<li>A history record is added only when the browser reports that the first speech section has started.</li>
++<li>Selecting a track without starting device speech does not create a history record.</li>
++<li>No synthetic duration, completion percentage or human-performance claim is stored.</li>
++<li>The list contains at most 20 unique recent items and remains in this browser profile.</li>
++<li>Each item retains its publication status, playback mode and recording-rights statement.</li>
++</ul>
++</section>
++
++<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>Browser-local listening history requires JavaScript. The verified source texts remain accessible from the <a href="audio-library.html">Audio Library</a>.</p></section></noscript>
++</main>
++<footer>© Om Saravana Bhava · <a href="audio-library.html">Audio</a> · <a href="audio-history.html">History</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>
+diff --git a/assets/css/audio-history.css b/assets/css/audio-history.css
+new file mode 100644
+--- /dev/null
++++ b/assets/css/audio-history.css
+@@ -0,0 +1 @@
++.audio-history-summary{display:grid;grid-template-columns:minmax(0,1fr) repeat(2,minmax(130px,.35fr));gap:18px;align-items:center}.audio-history-metric{display:grid;place-items:center;min-height:120px;border:1px solid var(--line);border-radius:22px;background:var(--surface-strong,#fff);text-align:center}.audio-history-metric strong{font-size:clamp(2.2rem,6vw,4.4rem);line-height:1;color:var(--red)}.audio-history-metric span{font-weight:850}.audio-history-toolbar{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}.audio-history-toolbar button:disabled{opacity:.55;cursor:not-allowed}.audio-history-grid{align-items:stretch}.audio-history-item{display:flex;flex-direction:column;gap:10px}.audio-history-item h2{margin:0}.audio-history-labels,.audio-history-actions{display:flex;flex-wrap:wrap;gap:9px}.audio-history-actions{margin-top:auto;padding-top:8px}.audio-history-meta{font-size:.9rem;color:#6a4638}.audio-history-rights{border-left:4px solid var(--orange);padding-left:10px}.audio-history-empty{grid-column:1/-1}.audio-history-boundary{border-left:5px solid var(--orange)}body.dark .audio-history-meta{color:#f4d9c8}@media(max-width:820px){.audio-history-summary{grid-template-columns:1fr}.audio-history-metric{justify-self:stretch}.audio-history-toolbar .btn{width:100%}}@media print{.audio-history-toolbar,.audio-history-actions,#audioHistoryStatus{display:none!important}.audio-history-item{break-inside:avoid}}
+diff --git a/assets/js/audio-history.mjs b/assets/js/audio-history.mjs
+new file mode 100644
+--- /dev/null
++++ b/assets/js/audio-history.mjs
+@@ -0,0 +1,379 @@
++export const RELEASE = 219;
++export const STORAGE_KEY = 'osb-audio-listening-history-v1';
++export const PLAYER_TRACK_KEY = 'osb-player-track';
++export const MAX_HISTORY_ITEMS = 20;
++export const PLAYLIST_PATH = '/data/read-aloud-playlist.json';
++export const CANONICAL_ORIGIN = 'https://omsaravanabhava.org';
++
++const safeStorage = storage => {
++  if (storage) return storage;
++  try {
++    return globalThis.localStorage;
++  } catch {
++    return null;
++  }
++};
++
++export const normaliseTrackRoute = route => {
++  const value = String(route ?? '').trim();
++  if (!value) return '';
++  try {
++    const url = new URL(value, `${CANONICAL_ORIGIN}/`);
++    if (url.origin !== CANONICAL_ORIGIN) return '';
++    return `${url.pathname}${url.search}${url.hash}`;
++  } catch {
++    return '';
++  }
++};
++
++export const normaliseHistoryItem = (
++  track,
++  playedAt = new Date().toISOString()
++) => {
++  if (!track || typeof track !== 'object') return null;
++  const id = String(track.id ?? '').trim();
++  const route = normaliseTrackRoute(track.route);
++  if (!id || !route) return null;
++
++  const playCount = Number(track.playCount);
++  return {
++    id,
++    titleTa: String(track.titleTa ?? '').trim(),
++    titleEn: String(track.titleEn ?? id).trim() || id,
++    artist: String(track.artist ?? 'Text attribution not stated').trim(),
++    album: String(track.album ?? 'Om Saravana Bhava read-aloud').trim(),
++    kind: String(track.kind ?? 'Read-aloud').trim(),
++    route,
++    playbackMode: String(track.playbackMode ?? 'device-tts').trim(),
++    publicationStatus: String(track.publicationStatus ?? 'published').trim(),
++    recordingRights: String(
++      track.recordingRights ??
++      'Device speech only; no third-party performance recording bundled'
++    ).trim(),
++    lastPlayedAt: String(track.lastPlayedAt ?? playedAt),
++    playCount: Number.isInteger(playCount) && playCount > 0 ? playCount : 1
++  };
++};
++
++export const loadHistory = storage => {
++  const target = safeStorage(storage);
++  if (!target) return [];
++  try {
++    const parsed = JSON.parse(target.getItem(STORAGE_KEY) || '[]');
++    if (!Array.isArray(parsed)) return [];
++    const seen = new Set();
++    const items = [];
++    parsed.forEach(record => {
++      const item = normaliseHistoryItem(record, record?.lastPlayedAt);
++      if (!item || seen.has(item.id)) return;
++      seen.add(item.id);
++      items.push(item);
++    });
++    return items
++      .sort((left, right) =>
++        String(right.lastPlayedAt).localeCompare(String(left.lastPlayedAt))
++      )
++      .slice(0, MAX_HISTORY_ITEMS);
++  } catch {
++    return [];
++  }
++};
++
++export const saveHistory = (items, storage) => {
++  const target = safeStorage(storage);
++  if (!target) return false;
++  try {
++    const clean = [];
++    const seen = new Set();
++    (Array.isArray(items) ? items : []).forEach(record => {
++      const item = normaliseHistoryItem(record, record?.lastPlayedAt);
++      if (!item || seen.has(item.id)) return;
++      seen.add(item.id);
++      clean.push(item);
++    });
++    target.setItem(
++      STORAGE_KEY,
++      JSON.stringify(clean.slice(0, MAX_HISTORY_ITEMS))
++    );
++    return true;
++  } catch {
++    return false;
++  }
++};
++
++export const upsertHistory = (
++  items,
++  track,
++  playedAt = new Date().toISOString()
++) => {
++  const incoming = normaliseHistoryItem(track, playedAt);
++  if (!incoming) return Array.isArray(items) ? [...items] : [];
++
++  const previous = (Array.isArray(items) ? items : [])
++    .map(record => normaliseHistoryItem(record, record?.lastPlayedAt))
++    .filter(Boolean);
++  const existing = previous.find(record => record.id === incoming.id);
++  incoming.playCount = (existing?.playCount || 0) + 1;
++  incoming.lastPlayedAt = playedAt;
++
++  return [
++    incoming,
++    ...previous.filter(record => record.id !== incoming.id)
++  ].slice(0, MAX_HISTORY_ITEMS);
++};
++
++export const recordPlaybackStart = (
++  track,
++  storage,
++  playedAt = new Date().toISOString()
++) => {
++  const history = upsertHistory(loadHistory(storage), track, playedAt);
++  if (!saveHistory(history, storage)) {
++    throw new Error('Browser storage is unavailable.');
++  }
++  return history;
++};
++
++export const removeHistoryItem = (id, storage) => {
++  const targetId = String(id ?? '').trim();
++  const history = loadHistory(storage).filter(item => item.id !== targetId);
++  saveHistory(history, storage);
++  return history;
++};
++
++export const clearHistory = storage => {
++  const target = safeStorage(storage);
++  if (!target) return false;
++  try {
++    target.removeItem(STORAGE_KEY);
++    return true;
++  } catch {
++    return saveHistory([], target);
++  }
++};
++
++export const isPlaybackStartStatus = status => {
++  const value = String(status ?? '').trim();
++  return /^Reading section 1 of \d+/i.test(value);
++};
++
++export const buildHistorySummary = items => {
++  const history = Array.isArray(items) ? items : [];
++  return {
++    uniqueTracks: history.length,
++    recordedStarts: history.reduce(
++      (total, item) => total + (Number(item?.playCount) || 0),
++      0
++    ),
++    latestPlayedAt: history[0]?.lastPlayedAt || ''
++  };
++};
++
++const loadPlaylist = async (fetcher = globalThis.fetch) => {
++  if (typeof fetcher !== 'function') return [];
++  const response = await fetcher(PLAYLIST_PATH, {
++    cache: 'default',
++    credentials: 'same-origin',
++    headers: {'Accept': 'application/json'}
++  });
++  if (!response.ok) throw new Error(`Playlist returned HTTP ${response.status}`);
++  const payload = await response.json();
++  return Array.isArray(payload) ? payload : [];
++};
++
++const createText = (parent, tag, text, className) => {
++  const element = document.createElement(tag);
++  if (className) element.className = className;
++  element.textContent = text;
++  parent.appendChild(element);
++  return element;
++};
++
++const displayTitle = item =>
++  item.titleTa && item.titleEn
++    ? `${item.titleTa} · ${item.titleEn}`
++    : item.titleTa || item.titleEn || item.id;
++
++const createHistoryCard = item => {
++  const article = document.createElement('article');
++  article.className = 'card audio-history-item';
++
++  const labels = document.createElement('div');
++  labels.className = 'audio-history-labels';
++  createText(labels, 'span', item.kind, 'pill');
++  createText(labels, 'span', item.playbackMode, 'pill');
++  createText(labels, 'span', item.publicationStatus, 'pill');
++  article.appendChild(labels);
++
++  createText(article, 'h2', displayTitle(item));
++  createText(article, 'p', `${item.artist} · ${item.album}`);
++  createText(
++    article,
++    'p',
++    `Actual read-aloud starts in this browser: ${item.playCount}`,
++    'audio-history-meta'
++  );
++  createText(
++    article,
++    'p',
++    `Last started: ${new Date(item.lastPlayedAt).toLocaleString()}`,
++    'audio-history-meta'
++  );
++  createText(article, 'p', item.recordingRights, 'audio-history-rights');
++
++  const actions = document.createElement('div');
++  actions.className = 'audio-history-actions';
++
++  const player = document.createElement('a');
++  player.className = 'btn';
++  player.href = `audio-library.html?track=${encodeURIComponent(item.id)}`;
++  player.textContent = 'Open in read-aloud player';
++  actions.appendChild(player);
++
++  const text = document.createElement('a');
++  text.className = 'btn secondary';
++  text.href = item.route;
++  text.textContent = 'Open source text';
++  actions.appendChild(text);
++
++  const remove = document.createElement('button');
++  remove.type = 'button';
++  remove.className = 'btn secondary';
++  remove.textContent = 'Remove';
++  remove.addEventListener('click', () => {
++    removeHistoryItem(item.id);
++    renderHistoryPage();
++  });
++  actions.appendChild(remove);
++
++  article.appendChild(actions);
++  return article;
++};
++
++const renderHistoryPage = () => {
++  const host = document.getElementById('audioHistoryItems');
++  const unique = document.getElementById('audioHistoryUnique');
++  const starts = document.getElementById('audioHistoryStarts');
++  const status = document.getElementById('audioHistoryStatus');
++  const clearButton = document.getElementById('audioHistoryClear');
++  const exportButton = document.getElementById('audioHistoryExport');
++  if (!host || !unique || !starts || !status || !clearButton || !exportButton) {
++    return;
++  }
++
++  const history = loadHistory();
++  const summary = buildHistorySummary(history);
++  unique.textContent = String(summary.uniqueTracks);
++  starts.textContent = String(summary.recordedStarts);
++  clearButton.disabled = history.length === 0;
++  exportButton.disabled = history.length === 0;
++  host.replaceChildren();
++
++  if (!history.length) {
++    const empty = document.createElement('article');
++    empty.className = 'card audio-history-empty';
++    createText(empty, 'h2', 'No listening history yet');
++    createText(
++      empty,
++      'p',
++      'History is added only after device speech actually begins reading the first section.'
++    );
++    const link = document.createElement('a');
++    link.className = 'btn';
++    link.href = 'audio-library.html';
++    link.textContent = 'Open verified read-aloud queue';
++    empty.appendChild(link);
++    host.appendChild(empty);
++    status.textContent = 'No actual read-aloud starts are stored in this browser.';
++    return;
++  }
++
++  history.forEach(item => host.appendChild(createHistoryCard(item)));
++  status.textContent =
++    `${summary.uniqueTracks} unique item${summary.uniqueTracks === 1 ? '' : 's'} ` +
++    `and ${summary.recordedStarts} actual read-aloud start${summary.recordedStarts === 1 ? '' : 's'} stored locally.`;
++};
++
++const bindHistoryPageControls = () => {
++  const clearButton = document.getElementById('audioHistoryClear');
++  const exportButton = document.getElementById('audioHistoryExport');
++  if (!clearButton || !exportButton) return;
++
++  clearButton.addEventListener('click', () => {
++    if (!confirm('Clear the browser-local audio listening history?')) return;
++    clearHistory();
++    renderHistoryPage();
++  });
++
++  exportButton.addEventListener('click', () => {
++    const items = loadHistory();
++    const blob = new Blob([
++      JSON.stringify({
++        version: 1,
++        exportedAt: new Date().toISOString(),
++        items
++      }, null, 2)
++    ], {type: 'application/json'});
++    const url = URL.createObjectURL(blob);
++    const link = document.createElement('a');
++    link.href = url;
++    link.download = 'omsaravanabhava-audio-history.json';
++    document.body.appendChild(link);
++    link.click();
++    link.remove();
++    URL.revokeObjectURL(url);
++  });
++};
++
++const initialisePlaybackRecorder = async () => {
++  const status = document.getElementById('playerStatus');
++  if (!status || typeof MutationObserver === 'undefined') return;
++
++  try {
++    const playlist = await loadPlaylist();
++    const tracks = new Map(playlist.map(track => [String(track.id), track]));
++    let lastRecordedId = '';
++    let lastRecordedAt = 0;
++
++    const inspect = () => {
++      const message = status.textContent || '';
++      if (!isPlaybackStartStatus(message)) return;
++
++      const id = localStorage.getItem(PLAYER_TRACK_KEY) || '';
++      const track = tracks.get(id);
++      if (!track) return;
++
++      const now = Date.now();
++      if (id === lastRecordedId && now - lastRecordedAt < 5000) return;
++
++      recordPlaybackStart(track);
++      lastRecordedId = id;
++      lastRecordedAt = now;
++    };
++
++    const observer = new MutationObserver(inspect);
++    observer.observe(status, {
++      childList: true,
++      characterData: true,
++      subtree: true
++    });
++    inspect();
++  } catch (error) {
++    console.warn('[OmSaravanaBhava] Audio history recorder unavailable', error);
++  }
++};
++
++const initialise = () => {
++  if (document.getElementById('audioHistoryItems')) {
++    bindHistoryPageControls();
++    renderHistoryPage();
++    window.addEventListener('storage', event => {
++      if (event.key === STORAGE_KEY) renderHistoryPage();
++    });
++  }
++  initialisePlaybackRecorder();
++};
++
++if (typeof document !== 'undefined') {
++  document.addEventListener('DOMContentLoaded', initialise);
++}
+diff --git a/index.html b/index.html
+--- a/index.html
++++ b/index.html
+@@ -27,7 +27,7 @@
+ <script defer src="assets/js/premium-home.js"></script>
+ <script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body data-release="218">
++<body data-release="219">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Verified Murugan digital heritage platform</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+@@ -37,7 +37,7 @@
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">OmSaravanaBhava Home</span></p></nav>
+ <section class="home-stage">
+-<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 218</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="explore.html">Explore all modules</a><a class="btn secondary" href="ai-search.html">Search knowledge</a><a class="btn secondary" href="search-facets.html">Browse by content type</a><a class="btn secondary" href="reading-list.html">Reading list</a><a class="btn secondary" href="accessibility.html">Accessibility</a><a class="btn secondary" href="print-pdf.html">Print &amp; PDF</a></div></div>
++<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 219</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="explore.html">Explore all modules</a><a class="btn secondary" href="ai-search.html">Search knowledge</a><a class="btn secondary" href="search-facets.html">Browse by content type</a><a class="btn secondary" href="reading-list.html">Reading list</a><a class="btn secondary" href="accessibility.html">Accessibility</a><a class="btn secondary" href="print-pdf.html">Print &amp; PDF</a><a class="btn secondary" href="audio-history.html">Audio history</a></div></div>
+ <div class="home-stage-panel" aria-label="Published platform data">
+ <div class="home-metric"><span>Search records</span><strong data-count-source="data/search-index.json" aria-live="polite">…</strong></div>
+ <div class="home-metric"><span>Source records</span><strong data-count-source="data/sources.json" aria-live="polite">…</strong></div>
+@@ -52,6 +52,6 @@
+ <section class="card" aria-labelledby="integrity-heading"><h2 id="integrity-heading">Publication integrity</h2><p>Repository releases, deployed pages and runtime behaviour are separate evidence layers. Content and feature claims remain bounded until automated checks and production observation confirm them.</p><p><a class="btn secondary" href="production-audit.html">Open production audit</a> <a class="btn secondary" href="content-status.html">Open content status</a></p></section>
+ <noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>All primary modules remain available through the navigation links. Live data counts are unavailable without JavaScript.</p></section></noscript>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
++<footer>© Om Saravana Bhava · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
+ </body>
+ </html>
+diff --git a/platform.html b/platform.html
+--- a/platform.html
++++ b/platform.html
+@@ -10,7 +10,7 @@
+ <meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
+ <script defer src="assets/js/pwa-register.js"></script><script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body data-release="218">
++<body data-release="219">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Digital Murugan knowledge platform</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div></div></nav>
+@@ -31,12 +31,13 @@
+ <article class="card"><h2>Offline Reading List</h2><p>Save published routes locally and cache selected pages independently for offline reading.</p><a class="btn" href="reading-list.html">Open reading list</a></article>
+ <article class="card"><h2>Accessibility Centre</h2><p>Set large text, high contrast, reduced motion and underlined links in this browser.</p><a class="btn" href="accessibility.html">Open accessibility controls</a></article>
+ <article class="card"><h2>Print and PDF Support</h2><p>Print clean reading copies or use the browser to save a displayed route as PDF.</p><a class="btn" href="print-pdf.html">Open print guidance</a></article>
++<article class="card"><h2>Audio Listening History</h2><p>Review actual device read-aloud starts stored locally in this browser.</p><a class="btn" href="audio-history.html">Open audio history</a></article>
+ <article class="card"><h2>Knowledge Graph</h2><a class="btn" href="knowledge-graph-phase-4.html">Open module</a></article>
+ <article class="card"><h2>Panchangam Framework</h2><p>Verified-data contract only; no live calendar calculation.</p><a class="btn" href="panchangam-framework.html">Open framework</a></article>
+ </section>
+ <section class="card"><h2>Milestone boundary</h2><p>The platform hub connects published modules. It does not certify complete Murugan literature, licensed human audio, live Panchangam computation or server-side accounts.</p></section>
+ <section class="card"><h2>Version 3 milestone</h2><a class="btn" href="version-3.html">Open milestone dashboard</a></section>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
++<footer>© Om Saravana Bhava · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
+ </body>
+ </html>
+diff --git a/data/site-routes.json b/data/site-routes.json
+--- a/data/site-routes.json
++++ b/data/site-routes.json
+@@ -1,5 +1,5 @@
+ {
+-  "release": 218,
++  "release": 219,
+   "generated": "2026-07-14",
+   "scope": "Public HTML routes represented by the Release 215 sitemap and route directory.",
+   "statusMeaning": {
+@@ -38,6 +38,14 @@
+       "summary": "Published audio route in the OmSaravanaBhava static platform."
+     },
+     {
++      "path": "/audio-history.html",
++      "titleTa": "கேட்பு வரலாறு",
++      "titleEn": "Audio Listening History",
++      "category": "Audio",
++      "status": "utility",
++      "summary": "Browser-local history of actual device read-aloud starts from the verified Tamil text queue."
++    },
++    {
+       "path": "/daily-devotional.html",
+       "titleTa": "தினசரி பக்தி",
+       "titleEn": "Daily Devotional",
+diff --git a/sitemap.xml b/sitemap.xml
+--- a/sitemap.xml
++++ b/sitemap.xml
+@@ -540,4 +540,10 @@
+     <changefreq>monthly</changefreq>
+     <priority>0.8</priority>
+   </url>
++  <url>
++    <loc>https://omsaravanabhava.org/audio-history.html</loc>
++    <lastmod>2026-07-14</lastmod>
++    <changefreq>monthly</changefreq>
++    <priority>0.8</priority>
++  </url>
+ </urlset>
+diff --git a/service-worker.js b/service-worker.js
+--- a/service-worker.js
++++ b/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '218';
++const RELEASE = '219';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -205,7 +205,10 @@
+   "/assets/js/accessibility-preferences.mjs",
+   "/print-pdf.html",
+   "/assets/css/print-support.css",
+-  "/assets/js/print-support.mjs"
++  "/assets/js/print-support.mjs",
++  "/audio-history.html",
++  "/assets/css/audio-history.css",
++  "/assets/js/audio-history.mjs"
+ ];
+ 
+ const cacheOptionalAssets = async cache => {
+diff --git a/quality/site-audit-config.json b/quality/site-audit-config.json
+--- a/quality/site-audit-config.json
++++ b/quality/site-audit-config.json
+@@ -1,5 +1,5 @@
+ {
+-  "expectedRelease": "218",
++  "expectedRelease": "219",
+   "canonicalOrigin": "https://omsaravanabhava.org",
+   "requiredFiles": [
+     "index.html",
+@@ -35,7 +35,10 @@
+     "assets/js/accessibility-preferences.mjs",
+     "print-pdf.html",
+     "assets/css/print-support.css",
+-    "assets/js/print-support.mjs"
++    "assets/js/print-support.mjs",
++    "audio-history.html",
++    "assets/css/audio-history.css",
++    "assets/js/audio-history.mjs"
+   ],
+   "canonicalOptional": [
+     "404.html",
+diff --git a/tools/production_smoke.py b/tools/production_smoke.py
+--- a/tools/production_smoke.py
++++ b/tools/production_smoke.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Observe the deployed custom domain and fail when Release 218 is not live."""
++"""Observe the deployed custom domain and fail when Release 219 is not live."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -10,8 +10,8 @@
+ from pathlib import Path
+ 
+ CHECKS = [
+-    ("/", 'data-release="218"'),
+-    ("/service-worker.js", "const RELEASE = '218';"),
++    ("/", 'data-release="219"'),
++    ("/service-worker.js", "const RELEASE = '219';"),
+     ("/search-facets.html", "Published-Content Search Facets"),
+     ("/assets/js/search-facets.mjs", "export const RELEASE = 216;"),
+     ("/data/site-routes.json", '"/search-facets.html"'),
+@@ -27,7 +27,12 @@
+     ("/print-pdf.html", "Print and PDF Support"),
+     ("/assets/js/print-support.mjs", "export const RELEASE = 218"),
+     ("/assets/js/pwa-register.js", "print-support.mjs"),
+-    ("/sitemap.xml", "https://omsaravanabhava.org/print-pdf.html")
++    ("/sitemap.xml", "https://omsaravanabhava.org/print-pdf.html"),
++    ("/audio-library.html", "data-release=\"219\""),
++    ("/audio-library.html", "audio-history.mjs"),
++    ("/audio-history.html", "Audio Listening History"),
++    ("/assets/js/audio-history.mjs", "export const RELEASE = 219"),
++    ("/sitemap.xml", "https://omsaravanabhava.org/audio-history.html")
+ ]
+ 
+ 
+@@ -35,7 +40,7 @@
+     request = urllib.request.Request(
+         url,
+         headers={
+-            "User-Agent": "OmSaravanaBhava-Production-Smoke/218",
++            "User-Agent": "OmSaravanaBhava-Production-Smoke/219",
+             "Cache-Control": "no-cache"
+         }
+     )
+@@ -75,7 +80,7 @@
+     parser.add_argument("--retries", type=int, default=18)
+     parser.add_argument("--delay", type=int, default=20)
+     parser.add_argument("--timeout", type=int, default=20)
+-    parser.add_argument("--report", type=Path, default=Path("artifacts/release-218-production-smoke.json"))
++    parser.add_argument("--report", type=Path, default=Path("artifacts/release-219-production-smoke.json"))
+     args = parser.parse_args()
+     report = run(args.origin, args.retries, args.delay, args.timeout)
+     args.report.parent.mkdir(parents=True, exist_ok=True)
+diff --git a/tests/audio-history.test.mjs b/tests/audio-history.test.mjs
+new file mode 100644
+--- /dev/null
++++ b/tests/audio-history.test.mjs
+@@ -0,0 +1,118 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++
++import {
++  RELEASE,
++  STORAGE_KEY,
++  MAX_HISTORY_ITEMS,
++  buildHistorySummary,
++  clearHistory,
++  isPlaybackStartStatus,
++  loadHistory,
++  normaliseHistoryItem,
++  normaliseTrackRoute,
++  recordPlaybackStart,
++  removeHistoryItem,
++  saveHistory,
++  upsertHistory
++} from '../assets/js/audio-history.mjs';
++
++class MemoryStorage {
++  constructor() { this.values = new Map(); }
++  getItem(key) { return this.values.has(key) ? this.values.get(key) : null; }
++  setItem(key, value) { this.values.set(key, String(value)); }
++  removeItem(key) { this.values.delete(key); }
++}
++
++const track = {
++  id: 'saravanabhava-mantra',
++  titleTa: 'சரவணபவ மந்திரம்',
++  titleEn: 'Saravanabhava Mantra',
++  artist: 'Traditional devotional text',
++  album: 'Murugan Mantras',
++  kind: 'Mantra',
++  route: 'slokas/om-saravana-bhava.html',
++  playbackMode: 'device-tts',
++  publicationStatus: 'published',
++  recordingRights: 'No third-party performance recording bundled'
++};
++
++test('release, storage and capacity identities are stable', () => {
++  assert.equal(RELEASE, 219);
++  assert.equal(STORAGE_KEY, 'osb-audio-listening-history-v1');
++  assert.equal(MAX_HISTORY_ITEMS, 20);
++});
++
++test('track routes are same-origin and normalised', () => {
++  assert.equal(
++    normaliseTrackRoute('slokas/om-saravana-bhava.html'),
++    '/slokas/om-saravana-bhava.html'
++  );
++  assert.equal(normaliseTrackRoute('https://example.com/audio.html'), '');
++});
++
++test('history items retain rights and publication boundaries', () => {
++  const item = normaliseHistoryItem(track, '2026-07-14T10:00:00Z');
++  assert.equal(item.playbackMode, 'device-tts');
++  assert.equal(item.publicationStatus, 'published');
++  assert.equal(item.recordingRights, 'No third-party performance recording bundled');
++  assert.equal(item.playCount, 1);
++});
++
++test('only first-section start messages qualify as actual starts', () => {
++  assert.equal(isPlaybackStartStatus('Reading section 1 of 4 with Tamil.'), true);
++  assert.equal(isPlaybackStartStatus('Reading section 2 of 4 with Tamil.'), false);
++  assert.equal(isPlaybackStartStatus('Selected item. Press Play to begin.'), false);
++  assert.equal(isPlaybackStartStatus('Read-aloud resumed.'), false);
++});
++
++test('upsert increments a unique track and moves it to the front', () => {
++  const first = upsertHistory([], track, '2026-07-14T10:00:00Z');
++  const second = upsertHistory([
++    {
++      ...first[0],
++      id: 'another',
++      route: '/another.html',
++      titleEn: 'Another'
++    },
++    ...first
++  ], track, '2026-07-14T11:00:00Z');
++  assert.equal(second[0].id, track.id);
++  assert.equal(second[0].playCount, 2);
++  assert.equal(second[0].lastPlayedAt, '2026-07-14T11:00:00Z');
++  assert.equal(second.filter(item => item.id === track.id).length, 1);
++});
++
++test('history is capped at twenty unique items', () => {
++  let items = [];
++  for (let index = 0; index < 25; index += 1) {
++    items = upsertHistory(items, {
++      ...track,
++      id: `track-${index}`,
++      route: `/track-${index}.html`,
++      titleEn: `Track ${index}`
++    }, `2026-07-14T10:${String(index).padStart(2, '0')}:00Z`);
++  }
++  assert.equal(items.length, 20);
++  assert.equal(items[0].id, 'track-24');
++  assert.equal(items.at(-1).id, 'track-5');
++});
++
++test('record, summary, remove and clear remain browser-local', () => {
++  const storage = new MemoryStorage();
++  recordPlaybackStart(track, storage, '2026-07-14T10:00:00Z');
++  recordPlaybackStart(track, storage, '2026-07-14T11:00:00Z');
++  const loaded = loadHistory(storage);
++  assert.equal(loaded.length, 1);
++  assert.equal(loaded[0].playCount, 2);
++  assert.deepEqual(buildHistorySummary(loaded), {
++    uniqueTracks: 1,
++    recordedStarts: 2,
++    latestPlayedAt: '2026-07-14T11:00:00Z'
++  });
++  removeHistoryItem(track.id, storage);
++  assert.equal(loadHistory(storage).length, 0);
++  saveHistory([normaliseHistoryItem(track)], storage);
++  assert.equal(clearHistory(storage), true);
++  assert.equal(loadHistory(storage).length, 0);
++});
+diff --git a/tools/release_219_validate.py b/tools/release_219_validate.py
+new file mode 100644
+--- /dev/null
++++ b/tools/release_219_validate.py
+@@ -0,0 +1,211 @@
++#!/usr/bin/env python3
++"""Validate Release 219 without claiming GitHub Actions or production results."""
++from __future__ import annotations
++
++import argparse
++import json
++import re
++import sys
++import xml.etree.ElementTree as ET
++from pathlib import Path
++
++RELEASE = "219"
++BASE_COMMIT = "c21007e2038823990f8858ab299f0865de4b78ce"
++ROUTE = "/audio-history.html"
++REQUIRED = [
++    "audio-library.html",
++    "audio-history.html",
++    "assets/css/audio-history.css",
++    "assets/js/audio-history.mjs",
++    "index.html",
++    "platform.html",
++    "data/site-routes.json",
++    "sitemap.xml",
++    "service-worker.js",
++    "quality/site-audit-config.json",
++    "tools/production_smoke.py",
++    "tests/test_site_audit.py",
++    "tests/audio-history.test.mjs",
++    ".github/workflows/static-site-integrity.yml",
++    ".github/workflows/production-smoke.yml",
++    "manifest-release-219.json",
++]
++
++def read(root: Path, relative: str) -> str:
++    return (root / relative).read_text(encoding="utf-8")
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", type=Path, default=Path.cwd())
++    parser.add_argument("--package-mode", action="store_true")
++    parser.add_argument("--report", type=Path, default=Path("artifacts/release-219-validation.json"))
++    args = parser.parse_args()
++    root = args.root.resolve()
++    errors: list[str] = []
++    checks: list[str] = []
++
++    for relative in REQUIRED:
++        if not (root / relative).is_file():
++            errors.append(f"missing required file: {relative}")
++        else:
++            checks.append(f"exists: {relative}")
++
++    if not errors:
++        manifest = json.loads(read(root, "manifest-release-219.json"))
++        routes = json.loads(read(root, "data/site-routes.json"))
++        config = json.loads(read(root, "quality/site-audit-config.json"))
++        ET.fromstring(read(root, "sitemap.xml"))
++
++        if manifest.get("release") != 219:
++            errors.append("manifest release is not 219")
++        if manifest.get("base_commit") != BASE_COMMIT:
++            errors.append("manifest base commit does not match Release 218 head")
++        if routes.get("release") != 219:
++            errors.append("route directory release is not 219")
++
++        records = routes.get("routes", [])
++        paths = [item.get("path") for item in records if isinstance(item, dict)]
++        if paths.count(ROUTE) != 1:
++            errors.append("audio history route must appear exactly once")
++        if len(paths) != len(set(paths)):
++            errors.append("duplicate route directory paths detected")
++        route = next((item for item in records if item.get("path") == ROUTE), None)
++        if route and route.get("status") != "utility":
++            errors.append("audio history route status must remain utility")
++
++        if config.get("expectedRelease") != RELEASE:
++            errors.append("site audit expectedRelease is not 219")
++        for relative in (
++            "audio-history.html",
++            "assets/css/audio-history.css",
++            "assets/js/audio-history.mjs",
++        ):
++            if relative not in config.get("requiredFiles", []):
++                errors.append(f"site audit does not require {relative}")
++
++        sitemap = read(root, "sitemap.xml")
++        if sitemap.count("https://omsaravanabhava.org/audio-history.html") != 1:
++            errors.append("sitemap must contain audio history route exactly once")
++
++        worker = read(root, "service-worker.js")
++        if "const RELEASE = '219';" not in worker:
++            errors.append("service-worker identity is not 219")
++        core = re.search(r"const CORE_PRECACHE_URLS = \[(.*?)\];", worker, re.S)
++        optional = re.search(r"const PRECACHE_URLS = \[(.*?)\];", worker, re.S)
++        core_text = core.group(1) if core else ""
++        optional_text = optional.group(1) if optional else ""
++        for asset in (
++            "/audio-history.html",
++            "/assets/css/audio-history.css",
++            "/assets/js/audio-history.mjs",
++        ):
++            if f'"{asset}"' not in optional_text:
++                errors.append(f"optional precache missing {asset}")
++            if f'"{asset}"' in core_text:
++                errors.append(f"audio history asset incorrectly blocks installation: {asset}")
++        if "cacheOptionalAssets" not in worker:
++            errors.append("resilient optional caching is missing")
++
++        module = read(root, "assets/js/audio-history.mjs")
++        for marker in (
++            "export const RELEASE = 219;",
++            "osb-audio-listening-history-v1",
++            "MAX_HISTORY_ITEMS = 20",
++            "Reading section 1 of",
++            "MutationObserver",
++            "recordingRights",
++            "publicationStatus",
++            "playbackMode",
++        ):
++            if marker not in module:
++                errors.append(f"audio history module missing marker: {marker}")
++        for prohibited in (
++            "durationSeconds",
++            "completionPercentage",
++            "navigator.sendBeacon",
++            "gtag(",
++            "google-analytics",
++            "api.openai.com",
++        ):
++            if prohibited in module:
++                errors.append(f"prohibited or fabricated marker found: {prohibited}")
++
++        audio_page = read(root, "audio-library.html")
++        for marker in (
++            'data-release="219"',
++            "audio-history.mjs",
++            "audio-history.html",
++            "device speech actually begins",
++        ):
++            if marker not in audio_page:
++                errors.append(f"audio library missing history marker: {marker}")
++
++        history_page = read(root, "audio-history.html")
++        for marker in (
++            'data-release="219"',
++            "Audio Listening History",
++            "No synthetic duration",
++            "at most 20 unique recent items",
++        ):
++            if marker not in history_page:
++                errors.append(f"audio history page missing boundary marker: {marker}")
++
++        for html in ("index.html", "platform.html"):
++            body = read(root, html)
++            if 'data-release="219"' not in body:
++                errors.append(f"{html} does not expose data-release 219")
++            if "audio-history.html" not in body:
++                errors.append(f"{html} does not link to audio history")
++
++        smoke = read(root, "tools/production_smoke.py")
++        for marker in (
++            'data-release="219"',
++            "const RELEASE = '219';",
++            "/audio-history.html",
++            "export const RELEASE = 219",
++            "audio-history.mjs",
++            "release-219-production-smoke.json",
++        ):
++            if marker not in smoke:
++                errors.append(f"production smoke missing marker: {marker}")
++
++        for workflow in (
++            ".github/workflows/static-site-integrity.yml",
++            ".github/workflows/production-smoke.yml",
++        ):
++            text = read(root, workflow)
++            if "219" not in text or "release-219-" not in text:
++                errors.append(f"{workflow} has stale release identity")
++
++        if not args.package_mode:
++            for relative in (
++                "data/read-aloud-playlist.json",
++                "assets/js/media-session-player.js",
++                "assets/css/osb44.css",
++                "tools/site_audit.py",
++                "tests/print-support.test.mjs",
++                "tests/accessibility-preferences.test.mjs",
++                "tests/reading-list.test.mjs",
++                "tests/search-facets.test.mjs",
++            ):
++                if not (root / relative).is_file():
++                    errors.append(f"repository mode requires {relative}")
++
++    report = {
++        "release": 219,
++        "base_commit": BASE_COMMIT,
++        "mode": "package" if args.package_mode else "repository",
++        "status": "FAIL" if errors else "PASS",
++        "errors": errors,
++        "checks": checks,
++        "github_actions": "NOT_RUN",
++        "deployed_production": "NOT_RUN",
++    }
++    report_path = args.report if args.report.is_absolute() else root / args.report
++    report_path.parent.mkdir(parents=True, exist_ok=True)
++    report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
++    print(json.dumps(report, ensure_ascii=False, indent=2))
++    return 1 if errors else 0
++
++if __name__ == "__main__":
++    sys.exit(main())
+diff --git a/.github/workflows/static-site-integrity.yml b/.github/workflows/static-site-integrity.yml
+--- a/.github/workflows/static-site-integrity.yml
++++ b/.github/workflows/static-site-integrity.yml
+@@ -1,4 +1,4 @@
+-name: Release 218 Static Site Integrity
++name: Release 219 Static Site Integrity
+ 
+ on:
+   push:
+@@ -12,7 +12,7 @@
+ 
+ jobs:
+   integrity:
+-    name: Release 218 repository validation
++    name: Release 219 repository validation
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repository
+@@ -28,30 +28,32 @@
+         with:
+           node-version: "20"
+ 
+-      - name: Validate Release 218 identities and routes
+-        run: python tools/release_218_validate.py --root . --report artifacts/release-218-overlay-validation.json
++      - name: Validate Release 219 identities and routes
++        run: python tools/release_219_validate.py --root . --report artifacts/release-219-overlay-validation.json
+ 
+       - name: Check browser modules
+         run: |
++          node --check assets/js/audio-history.mjs
+           node --check assets/js/print-support.mjs
+           node --check assets/js/accessibility-preferences.mjs
+           node --check assets/js/reading-list.mjs
+           node --check assets/js/search-facets.mjs
+           node --check assets/js/pwa-register.js
++          node --check assets/js/media-session-player.js
+ 
+       - name: Run browser-local feature unit tests
+-        run: node --test tests/print-support.test.mjs tests/accessibility-preferences.test.mjs tests/reading-list.test.mjs tests/search-facets.test.mjs
++        run: node --test tests/audio-history.test.mjs tests/print-support.test.mjs tests/accessibility-preferences.test.mjs tests/reading-list.test.mjs tests/search-facets.test.mjs
+ 
+       - name: Run site-audit unit tests
+         run: python -m unittest discover -s tests -p 'test_site_audit.py'
+ 
+       - name: Run repository-wide static audit
+-        run: python tools/site_audit.py --root . --json-report artifacts/release-218-site-audit.json --markdown-report artifacts/release-218-site-audit.md
++        run: python tools/site_audit.py --root . --json-report artifacts/release-219-site-audit.json --markdown-report artifacts/release-219-site-audit.md
+ 
+-      - name: Upload Release 218 integrity evidence
++      - name: Upload Release 219 integrity evidence
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+-          name: release-218-static-integrity-${{ github.sha }}
++          name: release-219-static-integrity-${{ github.sha }}
+           path: artifacts/
+           if-no-files-found: error
+diff --git a/.github/workflows/production-smoke.yml b/.github/workflows/production-smoke.yml
+--- a/.github/workflows/production-smoke.yml
++++ b/.github/workflows/production-smoke.yml
+@@ -1,4 +1,4 @@
+-name: Release 218 Production Smoke
++name: Release 219 Production Smoke
+ 
+ on:
+   push:
+@@ -11,12 +11,12 @@
+   contents: read
+ 
+ concurrency:
+-  group: release-218-production-smoke
++  group: release-219-production-smoke
+   cancel-in-progress: true
+ 
+ jobs:
+   smoke:
+-    name: Observe deployed Release 218
++    name: Observe deployed Release 219
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repository
+@@ -32,12 +32,12 @@
+         run: sleep 90
+ 
+       - name: Run deployed production smoke checks
+-        run: python tools/production_smoke.py --retries 18 --delay 20 --report artifacts/release-218-production-smoke.json
++        run: python tools/production_smoke.py --retries 18 --delay 20 --report artifacts/release-219-production-smoke.json
+ 
+-      - name: Upload Release 218 production evidence
++      - name: Upload Release 219 production evidence
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+-          name: release-218-production-smoke-${{ github.sha }}
+-          path: artifacts/release-218-production-smoke.json
++          name: release-219-production-smoke-${{ github.sha }}
++          path: artifacts/release-219-production-smoke.json
+           if-no-files-found: error
+diff --git a/manifest-release-219.json b/manifest-release-219.json
+new file mode 100644
+--- /dev/null
++++ b/manifest-release-219.json
+@@ -0,0 +1,58 @@
++{
++  "project": "OmSaravanaBhava",
++  "release": 219,
++  "name": "Browser-Local Audio Listening History",
++  "base_commit": "c21007e2038823990f8858ab299f0865de4b78ce",
++  "generated": "2026-07-14",
++  "required_commit_title": "Release 219: add browser-local audio listening history",
++  "validation_status": "LOCAL_PACKAGE_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
++  "production_files": [
++    "audio-library.html",
++    "audio-history.html",
++    "assets/css/audio-history.css",
++    "assets/js/audio-history.mjs",
++    "index.html",
++    "platform.html",
++    "data/site-routes.json",
++    "sitemap.xml",
++    "service-worker.js"
++  ],
++  "ci_alignment_files": [
++    "quality/site-audit-config.json",
++    "tools/production_smoke.py",
++    "tests/test_site_audit.py",
++    "tests/audio-history.test.mjs",
++    "tools/release_219_validate.py",
++    ".github/workflows/static-site-integrity.yml",
++    ".github/workflows/production-smoke.yml"
++  ],
++  "source_dependencies": {
++    "data/read-aloud-playlist.json": {
++      "included_in_zip": false,
++      "reason": "Existing unmodified verified-text device read-aloud playlist."
++    },
++    "assets/js/media-session-player.js": {
++      "included_in_zip": false,
++      "reason": "Existing player emits the live status text observed after SpeechSynthesisUtterance onstart."
++    }
++  },
++  "claims": {
++    "browser_local_storage": true,
++    "maximum_unique_history_items": 20,
++    "history_trigger": "first speech section onstart status",
++    "select_without_play_does_not_record": true,
++    "synthetic_duration": false,
++    "completion_percentage": false,
++    "licensed_human_audio_claim": false,
++    "remote_sync": false,
++    "analytics": false,
++    "service_worker_release": 219,
++    "new_optional_cache_assets": 3
++  },
++  "limitations": [
++    "History remains in the current browser profile and is not synchronized.",
++    "The feature records actual starts, not trustworthy listening duration or completion.",
++    "Device speech quality depends on the installed browser and Tamil voice.",
++    "GitHub Actions and deployed production validation remain pending until commit and deployment."
++  ]
++}
