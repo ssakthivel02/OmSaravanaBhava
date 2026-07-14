@@ -1,0 +1,22 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 185,
+  "name": "Murugan Learning Center Phase 1",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 4,
+  "modified": [
+    "service-worker.js",
+    "sitemap.xml"
+  ],
+  "added": [
+    "learning-center.html",
+    "data/learning-paths.json"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Learning paths": 3,
+    "New doctrine invented": "No"
+  }
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "who-is-murugan",
+    "titleTa": "முருகன் யார்?",
+    "titleEn": "Who is Murugan?",
+    "level": "Beginner",
+    "routes": [
+      "murugan-mantras.html",
+      "arupadai-veedu.html"
+    ]
+  },
+  {
+    "id": "six-abodes",
+    "titleTa": "ஆறுபடை வீடு",
+    "titleEn": "The Six Sacred Abodes",
+    "level": "Beginner",
+    "routes": [
+      "arupadai-veedu.html",
+      "temple-encyclopedia.html"
+    ]
+  },
+  {
+    "id": "thiruppugazh-intro",
+    "titleTa": "திருப்புகழ் அறிமுகம்",
+    "titleEn": "Introduction to Thiruppugazh",
+    "level": "Intermediate",
+    "routes": [
+      "thiruppugazh.html",
+      "thiruppugazh-volume-3.html"
+    ]
+  }
+]
