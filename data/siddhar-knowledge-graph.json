@@ -1,0 +1,52 @@
+{
+  "nodes": [
+    {
+      "id": "agastiyar",
+      "type": "Siddhar",
+      "labelEn": "Agastiyar"
+    },
+    {
+      "id": "bogar",
+      "type": "Siddhar",
+      "labelEn": "Bogar"
+    },
+    {
+      "id": "pulipani",
+      "type": "Siddhar",
+      "labelEn": "Pulipani"
+    },
+    {
+      "id": "konganar",
+      "type": "Siddhar",
+      "labelEn": "Konganar"
+    },
+    {
+      "id": "karuvoorar",
+      "type": "Siddhar",
+      "labelEn": "Karuvoorar"
+    },
+    {
+      "id": "pambatti-siddhar",
+      "type": "Siddhar",
+      "labelEn": "Pambatti Siddhar"
+    }
+  ],
+  "edges": [
+    {
+      "from": "bogar",
+      "to": "palani",
+      "relation": "traditional-association"
+    },
+    {
+      "from": "pulipani",
+      "to": "palani",
+      "relation": "traditional-association"
+    },
+    {
+      "from": "agastiyar",
+      "to": "murugan",
+      "relation": "devotional-literary-association"
+    }
+  ],
+  "status": "phase-1-register"
+}
