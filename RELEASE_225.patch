@@ -1,0 +1,2329 @@
+diff --git a/personal-data.html b/personal-data.html
+new file mode 100644
+--- /dev/null
++++ b/personal-data.html
+@@ -0,0 +1,97 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Personal Data Backup &amp; Restore Centre | Om Saravana Bhava</title>
++<meta name="description" content="Export, validate, preview and restore registered OmSaravanaBhava browser-local reading, accessibility and listening data without cloud accounts or analytics.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/personal-data.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="stylesheet" href="assets/css/personal-data.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++<script type="module" src="assets/js/personal-data.mjs"></script>
++</head>
++<body data-release="225">
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Explicit browser-local data portability</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="platform.html">Platform</a><a href="reading-workspace.html">Reading</a><a href="reading-notes.html">Notes</a><a href="accessibility.html">Accessibility</a><a href="personal-data.html" aria-current="page">Personal Data</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Personal Data Centre</span></p></nav>
++
++<section class="card personal-data-hero">
++<div>
++<span class="pill">Release 225 · Browser-local portability</span>
++<h1 class="section-title" lang="ta">தனிப்பட்ட தரவு காப்பு மையம்</h1>
++<h2>Personal Data Backup &amp; Restore Centre</h2>
++<p>Export or restore only the registered reading, accessibility and listening datasets held in this browser. Import always requires validation, preview and explicit confirmation.</p>
++</div>
++<div class="personal-data-metric"><strong id="personalDataDatasetCount">0</strong><span>registered datasets</span></div>
++<div class="personal-data-metric"><strong id="personalDataPopulatedCount">0</strong><span>datasets with data</span></div>
++<div class="personal-data-metric"><strong id="personalDataRecordCount">0</strong><span>local records</span></div>
++</section>
++
++<p id="personalDataStatus" role="status" aria-live="polite">Loading the local data registry…</p>
++
++<section class="personal-data-layout">
++<article class="card personal-data-panel">
++<h2>1. Export a local backup</h2>
++<p>Choose the datasets to place in a downloadable JSON file. Cache contents and published page bodies are never exported.</p>
++<div id="personalDataInventory" class="personal-data-inventory"></div>
++<h3>Datasets to export</h3>
++<div id="personalDataExportDatasets" class="personal-data-checkboxes"></div>
++<div class="personal-data-actions">
++<button class="btn" id="personalDataExport" type="button">Download selected backup</button>
++</div>
++<p id="personalDataChecksum">SHA-256 appears here after export when supported.</p>
++</article>
++
++<article class="card personal-data-panel">
++<h2>2. Validate and restore</h2>
++<p>Select a previously exported OmSaravanaBhava JSON backup. No local data changes until you review the preview and press Apply.</p>
++<label class="personal-data-file" for="personalDataImportFile">Backup JSON file
++<input id="personalDataImportFile" type="file" accept="application/json,.json">
++</label>
++<div id="personalDataImportPreview" class="personal-data-preview-grid">
++<article class="personal-data-preview"><p>No backup loaded.</p></article>
++</div>
++<h3>Validated datasets to restore</h3>
++<div id="personalDataImportDatasets" class="personal-data-checkboxes"></div>
++<label class="personal-data-mode" for="personalDataImportMode">Restore mode
++<select id="personalDataImportMode">
++<option value="merge">Merge arrays and keep newer matching records</option>
++<option value="replace">Replace only the selected datasets</option>
++</select>
++</label>
++<div class="personal-data-actions">
++<button class="btn" id="personalDataApply" type="button" disabled>Apply validated restore</button>
++</div>
++<div id="personalDataApplyResult" class="card personal-data-result" aria-live="polite">
++<p>No restore has been applied.</p>
++</div>
++</article>
++</section>
++
++<section class="card personal-data-boundary">
++<h2>Data and safety boundary</h2>
++<ul>
++<li>Only five explicitly registered local datasets are supported: reading list, reading progress, reading notes, accessibility preferences and audio listening history.</li>
++<li>Unknown datasets and invalid or duplicate records are ignored during validation.</li>
++<li>Selected devotional text, published page bodies, offline cache contents, credentials and unrelated browser-storage keys are excluded.</li>
++<li>Merge uses each dataset’s stable identifier and newest valid timestamp. Accessibility preferences are replaced as one bounded object.</li>
++<li>No upload, cloud synchronization, analytics, server account or collaborative service is used.</li>
++<li>A successful import is local operational evidence, not production certification.</li>
++</ul>
++</section>
++
++<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>Local backup and restore requires JavaScript. Existing browser-local tools remain independently available.</p></section></noscript>
++</main>
++<footer>© Om Saravana Bhava · <a href="personal-data.html">Personal Data</a> · <a href="privacy.html">Privacy</a> · <a href="maintenance.html">Maintenance</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>
+diff --git a/assets/css/personal-data.css b/assets/css/personal-data.css
+new file mode 100644
+--- /dev/null
++++ b/assets/css/personal-data.css
+@@ -0,0 +1 @@
++.personal-data-hero{display:grid;grid-template-columns:minmax(0,1.45fr) repeat(3,minmax(115px,.3fr));gap:16px;align-items:center}.personal-data-metric{display:grid;place-items:center;min-height:112px;border:1px solid var(--line);border-radius:22px;background:var(--surface-strong,#fff);text-align:center;padding:12px}.personal-data-metric strong{font-size:clamp(2rem,5vw,3.8rem);line-height:1;color:var(--red)}.personal-data-metric span{font-size:.85rem;font-weight:850}.personal-data-layout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}.personal-data-panel{display:grid;gap:15px}.personal-data-inventory,.personal-data-preview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.personal-data-card,.personal-data-preview{display:grid;gap:6px;padding:14px;border:1px solid var(--line);border-radius:17px;background:var(--surface-strong,#fff)}.personal-data-card h3,.personal-data-preview h3{margin:0}.personal-data-count{font-size:1.8rem;color:var(--red)}.personal-data-preview.is-warning{border-left:5px solid var(--orange)}.personal-data-preview.is-error{border-left:5px solid #a51d17}.personal-data-checkboxes{display:grid;gap:8px}.personal-data-checkbox{display:flex;align-items:flex-start;gap:9px;padding:10px;border:1px solid var(--line);border-radius:13px}.personal-data-checkbox input{margin-top:.25rem}.personal-data-actions{display:flex;flex-wrap:wrap;gap:9px}.personal-data-file{display:grid;gap:7px;font-weight:850}.personal-data-mode{display:grid;gap:7px;font-weight:850}.personal-data-result{border-left:5px solid var(--orange)}.personal-data-error{color:#8b1512}.personal-data-boundary{border-left:5px solid var(--orange)}#personalDataChecksum{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.82rem;overflow-wrap:anywhere}.home-personal-data-225{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center}.home-personal-data-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:9px}@media(max-width:980px){.personal-data-hero{grid-template-columns:repeat(3,minmax(0,1fr))}.personal-data-hero>div:first-child{grid-column:1/-1}.personal-data-layout{grid-template-columns:1fr}}@media(max-width:680px){.personal-data-hero,.personal-data-inventory,.personal-data-preview-grid,.home-personal-data-225{grid-template-columns:1fr}.personal-data-hero>div:first-child{grid-column:auto}.personal-data-actions,.home-personal-data-actions{flex-direction:column;justify-content:flex-start}.personal-data-actions .btn,.home-personal-data-actions .btn{width:100%}}@media print{.personal-data-actions,.personal-data-file,.personal-data-mode,#personalDataImportDatasets,#personalDataExportDatasets{display:none!important}.personal-data-layout{display:block!important}.personal-data-panel{break-inside:avoid}}
+diff --git a/assets/js/personal-data.mjs b/assets/js/personal-data.mjs
+new file mode 100644
+--- /dev/null
++++ b/assets/js/personal-data.mjs
+@@ -0,0 +1,733 @@
++export const RELEASE = 225;
++export const REGISTRY_PATH = '/data/personal-data-registry.json';
++export const BACKUP_SCHEMA = 'osb-personal-data-backup-v1';
++export const CANONICAL_ORIGIN = 'https://omsaravanabhava.org';
++
++export const DATASET_IDS = Object.freeze([
++  'readingList',
++  'readingProgress',
++  'readingNotes',
++  'accessibility',
++  'audioHistory'
++]);
++
++const safeStorage = storage => {
++  if (storage) return storage;
++  try {
++    return globalThis.localStorage;
++  } catch {
++    return null;
++  }
++};
++
++const cleanText = (value, maximum = 240) =>
++  String(value ?? '').trim().slice(0, maximum);
++
++export const normaliseSameOriginRoute = value => {
++  const raw = String(value ?? '').trim();
++  if (!raw) return '';
++  try {
++    const url = new URL(raw, `${CANONICAL_ORIGIN}/`);
++    if (url.origin !== CANONICAL_ORIGIN) return '';
++    return `${url.pathname}${url.search}${url.hash}`;
++  } catch {
++    return '';
++  }
++};
++
++export const normaliseIsoDate = value => {
++  const raw = String(value ?? '').trim();
++  if (!raw) return '';
++  const date = new Date(raw);
++  return Number.isNaN(date.getTime()) ? '' : date.toISOString();
++};
++
++export const sanitiseReadingList = (value, maximumItems = 100) => {
++  const seen = new Set();
++  const items = [];
++  (Array.isArray(value) ? value : []).forEach(record => {
++    if (!record || typeof record !== 'object') return;
++    const route = normaliseSameOriginRoute(record.route);
++    if (!route || seen.has(route)) return;
++    seen.add(route);
++    items.push({
++      route,
++      titleTa: cleanText(record.titleTa, 180),
++      titleEn: cleanText(record.titleEn || record.title || route, 180) || route,
++      kind: cleanText(record.kind || 'Published page', 80) || 'Published page',
++      status: cleanText(record.status || 'published', 80) || 'published',
++      summary: cleanText(record.summary, 500),
++      savedAt: normaliseIsoDate(record.savedAt) || new Date(0).toISOString()
++    });
++  });
++  return items.slice(0, Math.max(1, Number(maximumItems) || 100));
++};
++
++export const sanitiseReadingProgress = (value, maximumItems = 50) => {
++  const seen = new Set();
++  const items = [];
++  (Array.isArray(value) ? value : []).forEach(record => {
++    if (!record || typeof record !== 'object') return;
++    const route = normaliseSameOriginRoute(record.route);
++    if (!route || seen.has(route)) return;
++    seen.add(route);
++    const percent = Math.max(0, Math.min(100, Number(record.percent) || 0));
++    items.push({
++      route,
++      titleTa: cleanText(record.titleTa, 180),
++      titleEn: cleanText(record.titleEn || record.title || route, 180) || route,
++      category: cleanText(record.category || 'Reading', 80) || 'Reading',
++      status: cleanText(record.status || 'published', 80) || 'published',
++      summary: cleanText(record.summary, 500),
++      percent: Math.round(percent * 10) / 10,
++      lastVisitedAt:
++        normaliseIsoDate(record.lastVisitedAt) || new Date(0).toISOString(),
++      completedAt: normaliseIsoDate(record.completedAt)
++    });
++  });
++  return items.slice(0, Math.max(1, Number(maximumItems) || 50));
++};
++
++export const sanitiseReadingNotes = (value, maximumItems = 100) => {
++  const seen = new Set();
++  const items = [];
++  (Array.isArray(value) ? value : []).forEach(record => {
++    if (!record || typeof record !== 'object') return;
++    const id = cleanText(record.id, 180);
++    const route = normaliseSameOriginRoute(record.route);
++    if (!id || !route || seen.has(id)) return;
++    const headingId = cleanText(record.headingId, 120).replace(/^#/, '');
++    const note = cleanText(record.note, 500);
++    if (!headingId && !note) return;
++    seen.add(id);
++    const kind = ['reflection', 'question', 'practice', 'reference']
++      .includes(String(record.kind ?? '').toLocaleLowerCase())
++      ? String(record.kind).toLocaleLowerCase()
++      : 'reflection';
++    items.push({
++      id,
++      route,
++      titleTa: cleanText(record.titleTa, 180),
++      titleEn: cleanText(record.titleEn || record.title || route, 180) || route,
++      category: cleanText(record.category || 'Reading', 80) || 'Reading',
++      status: cleanText(record.status || 'published', 80) || 'published',
++      headingId,
++      headingLabel: cleanText(record.headingLabel, 160),
++      kind,
++      note,
++      createdAt: normaliseIsoDate(record.createdAt) || new Date(0).toISOString(),
++      updatedAt:
++        normaliseIsoDate(record.updatedAt) ||
++        normaliseIsoDate(record.createdAt) ||
++        new Date(0).toISOString()
++    });
++  });
++  return items.slice(0, Math.max(1, Number(maximumItems) || 100));
++};
++
++export const sanitiseAccessibility = value => {
++  const source = value && typeof value === 'object' ? value : {};
++  return {
++    largeText: source.largeText === true,
++    highContrast: source.highContrast === true,
++    reducedMotion: source.reducedMotion === true,
++    underlinedLinks: source.underlinedLinks === true
++  };
++};
++
++export const sanitiseAudioHistory = (value, maximumItems = 20) => {
++  const seen = new Set();
++  const items = [];
++  (Array.isArray(value) ? value : []).forEach(record => {
++    if (!record || typeof record !== 'object') return;
++    const id = cleanText(record.id, 180);
++    const route = normaliseSameOriginRoute(record.route);
++    if (!id || !route || seen.has(id)) return;
++    seen.add(id);
++    const playCount = Number(record.playCount);
++    items.push({
++      id,
++      titleTa: cleanText(record.titleTa, 180),
++      titleEn: cleanText(record.titleEn || id, 180) || id,
++      artist: cleanText(record.artist || 'Text attribution not stated', 180),
++      album: cleanText(record.album || 'Om Saravana Bhava read-aloud', 180),
++      kind: cleanText(record.kind || 'Read-aloud', 80),
++      route,
++      playbackMode: cleanText(record.playbackMode || 'device-tts', 80),
++      publicationStatus: cleanText(record.publicationStatus || 'published', 80),
++      recordingRights: cleanText(
++        record.recordingRights ||
++        'Device speech only; no third-party performance recording bundled',
++        300
++      ),
++      lastPlayedAt:
++        normaliseIsoDate(record.lastPlayedAt) || new Date(0).toISOString(),
++      playCount: Number.isInteger(playCount) && playCount > 0 ? playCount : 1
++    });
++  });
++  return items.slice(0, Math.max(1, Number(maximumItems) || 20));
++};
++
++export const registryMap = registry =>
++  new Map(
++    (Array.isArray(registry?.datasets) ? registry.datasets : [])
++      .filter(item => DATASET_IDS.includes(item?.id))
++      .map(item => [item.id, item])
++  );
++
++export const sanitiseDataset = (id, value, registry) => {
++  const definition = registryMap(registry).get(id);
++  if (!definition) return undefined;
++  if (id === 'readingList') {
++    return sanitiseReadingList(value, definition.maximumItems);
++  }
++  if (id === 'readingProgress') {
++    return sanitiseReadingProgress(value, definition.maximumItems);
++  }
++  if (id === 'readingNotes') {
++    return sanitiseReadingNotes(value, definition.maximumItems);
++  }
++  if (id === 'accessibility') {
++    return sanitiseAccessibility(value);
++  }
++  if (id === 'audioHistory') {
++    return sanitiseAudioHistory(value, definition.maximumItems);
++  }
++  return undefined;
++};
++
++export const readRegisteredDatasets = (
++  registry,
++  storage = undefined
++) => {
++  const target = safeStorage(storage);
++  const result = {};
++  const errors = [];
++  if (!target) {
++    return {datasets: result, errors: ['Browser local storage is unavailable.']};
++  }
++
++  registryMap(registry).forEach((definition, id) => {
++    const raw = target.getItem(definition.storageKey);
++    if (raw === null) {
++      result[id] = definition.shape === 'object'
++        ? sanitiseAccessibility({})
++        : [];
++      return;
++    }
++    try {
++      result[id] = sanitiseDataset(id, JSON.parse(raw), registry);
++    } catch {
++      errors.push(`${definition.label}: invalid stored JSON was ignored.`);
++      result[id] = definition.shape === 'object'
++        ? sanitiseAccessibility({})
++        : [];
++    }
++  });
++  return {datasets: result, errors};
++};
++
++export const datasetCount = value => {
++  if (Array.isArray(value)) return value.length;
++  if (value && typeof value === 'object') {
++    return Object.values(value).some(Boolean) ? 1 : 0;
++  }
++  return 0;
++};
++
++export const buildInventory = (registry, storage = undefined) => {
++  const {datasets, errors} = readRegisteredDatasets(registry, storage);
++  const definitions = registryMap(registry);
++  const items = DATASET_IDS
++    .filter(id => definitions.has(id))
++    .map(id => ({
++      ...definitions.get(id),
++      count: datasetCount(datasets[id]),
++      value: datasets[id]
++    }));
++  return {
++    datasets,
++    errors,
++    items,
++    populatedDatasets: items.filter(item => item.count > 0).length,
++    totalRecords: items.reduce((total, item) => total + item.count, 0)
++  };
++};
++
++export const createBackup = (
++  registry,
++  selectedIds = DATASET_IDS,
++  storage = undefined,
++  exportedAt = new Date().toISOString()
++) => {
++  const inventory = buildInventory(registry, storage);
++  const selected = new Set(selectedIds);
++  const datasets = {};
++  inventory.items.forEach(item => {
++    if (selected.has(item.id)) datasets[item.id] = item.value;
++  });
++  return {
++    schema: registry.schema || BACKUP_SCHEMA,
++    release: RELEASE,
++    exportedAt,
++    origin: registry.canonicalOrigin || CANONICAL_ORIGIN,
++    datasets
++  };
++};
++
++export const validateBackup = (value, registry) => {
++  const errors = [];
++  const warnings = [];
++  const source = value && typeof value === 'object' ? value : {};
++
++  if (source.schema !== (registry.schema || BACKUP_SCHEMA)) {
++    errors.push('Unsupported backup schema.');
++  }
++  if (source.origin && source.origin !== (registry.canonicalOrigin || CANONICAL_ORIGIN)) {
++    errors.push('Backup origin does not match OmSaravanaBhava.');
++  }
++  if (!source.datasets || typeof source.datasets !== 'object' || Array.isArray(source.datasets)) {
++    errors.push('Backup datasets object is missing.');
++  }
++
++  const clean = {};
++  const definitions = registryMap(registry);
++  if (!errors.length) {
++    Object.entries(source.datasets).forEach(([id, data]) => {
++      if (!definitions.has(id)) {
++        warnings.push(`Unknown dataset ignored: ${id}`);
++        return;
++      }
++      clean[id] = sanitiseDataset(id, data, registry);
++      const inputCount = Array.isArray(data) ? data.length : datasetCount(data);
++      const outputCount = datasetCount(clean[id]);
++      if (outputCount < inputCount) {
++        warnings.push(
++          `${definitions.get(id).label}: ${inputCount - outputCount} invalid or duplicate record(s) removed.`
++        );
++      }
++    });
++  }
++
++  if (!Object.keys(clean).length && !errors.length) {
++    errors.push('Backup contains no supported datasets.');
++  }
++
++  return {
++    ok: errors.length === 0,
++    errors,
++    warnings,
++    backup: {
++      schema: registry.schema || BACKUP_SCHEMA,
++      release: Number(source.release) || 0,
++      exportedAt: normaliseIsoDate(source.exportedAt),
++      origin: source.origin || registry.canonicalOrigin || CANONICAL_ORIGIN,
++      datasets: clean
++    }
++  };
++};
++
++const timestampValue = (record, field) => {
++  const value = normaliseIsoDate(record?.[field]);
++  return value ? new Date(value).getTime() : 0;
++};
++
++export const mergeArrayDataset = (
++  existing,
++  incoming,
++  {
++    uniqueBy,
++    timestampField,
++    maximumItems
++  }
++) => {
++  const map = new Map();
++  [...(Array.isArray(existing) ? existing : []),
++   ...(Array.isArray(incoming) ? incoming : [])]
++    .forEach(record => {
++      const key = cleanText(record?.[uniqueBy], 240);
++      if (!key) return;
++      const current = map.get(key);
++      if (
++        !current ||
++        timestampValue(record, timestampField) >=
++          timestampValue(current, timestampField)
++      ) {
++        map.set(key, record);
++      }
++    });
++
++  return [...map.values()]
++    .sort((left, right) =>
++      timestampValue(right, timestampField) -
++      timestampValue(left, timestampField)
++    )
++    .slice(0, Math.max(1, Number(maximumItems) || 100));
++};
++
++export const applyValidatedBackup = (
++  validation,
++  registry,
++  {
++    selectedIds = DATASET_IDS,
++    mode = 'merge',
++    storage = undefined
++  } = {}
++) => {
++  if (!validation?.ok) {
++    return {ok: false, applied: [], errors: ['Backup validation failed.']};
++  }
++
++  const target = safeStorage(storage);
++  if (!target) {
++    return {ok: false, applied: [], errors: ['Browser local storage is unavailable.']};
++  }
++
++  const definitions = registryMap(registry);
++  const selected = new Set(selectedIds);
++  const applied = [];
++  const errors = [];
++
++  Object.entries(validation.backup.datasets).forEach(([id, incoming]) => {
++    if (!selected.has(id) || !definitions.has(id)) return;
++    const definition = definitions.get(id);
++    try {
++      let output = incoming;
++      if (
++        mode === 'merge' &&
++        definition.shape === 'array' &&
++        definition.mergeSupported
++      ) {
++        let existing = [];
++        const raw = target.getItem(definition.storageKey);
++        if (raw !== null) {
++          try {
++            existing = sanitiseDataset(id, JSON.parse(raw), registry);
++          } catch {
++            existing = [];
++          }
++        }
++        output = mergeArrayDataset(existing, incoming, definition);
++      } else {
++        output = sanitiseDataset(id, incoming, registry);
++      }
++      target.setItem(definition.storageKey, JSON.stringify(output));
++      applied.push({
++        id,
++        label: definition.label,
++        count: datasetCount(output),
++        mode:
++          mode === 'merge' && definition.shape === 'array'
++            ? 'merged'
++            : 'replaced'
++      });
++    } catch (error) {
++      errors.push(`${definition.label}: ${String(error?.message || error)}`);
++    }
++  });
++
++  return {
++    ok: errors.length === 0 && applied.length > 0,
++    applied,
++    errors
++  };
++};
++
++export const sha256Hex = async text => {
++  if (!globalThis.crypto?.subtle || typeof TextEncoder === 'undefined') {
++    return '';
++  }
++  const digest = await globalThis.crypto.subtle.digest(
++    'SHA-256',
++    new TextEncoder().encode(String(text))
++  );
++  return [...new Uint8Array(digest)]
++    .map(byte => byte.toString(16).padStart(2, '0'))
++    .join('');
++};
++
++const fetchRegistry = async (fetcher = globalThis.fetch) => {
++  if (typeof fetcher !== 'function') throw new Error('Fetch API unavailable');
++  const response = await fetcher(REGISTRY_PATH, {
++    cache: 'no-store',
++    credentials: 'same-origin',
++    headers: {'Accept': 'application/json'}
++  });
++  if (!response.ok) throw new Error(`Registry returned HTTP ${response.status}`);
++  return response.json();
++};
++
++const createText = (parent, tag, text, className) => {
++  const element = document.createElement(tag);
++  if (className) element.className = className;
++  element.textContent = String(text);
++  parent.appendChild(element);
++  return element;
++};
++
++const downloadJson = (filename, value) => {
++  const text = JSON.stringify(value, null, 2);
++  const blob = new Blob([text], {type: 'application/json'});
++  const url = URL.createObjectURL(blob);
++  const link = document.createElement('a');
++  link.href = url;
++  link.download = filename;
++  document.body.appendChild(link);
++  link.click();
++  link.remove();
++  URL.revokeObjectURL(url);
++  return text;
++};
++
++const renderInventory = (registry, host, checkboxHost) => {
++  const inventory = buildInventory(registry);
++  host.replaceChildren();
++  checkboxHost.replaceChildren();
++
++  inventory.items.forEach(item => {
++    const card = document.createElement('article');
++    card.className = 'personal-data-card';
++    createText(card, 'h3', item.label);
++    createText(
++      card,
++      'strong',
++      String(item.count),
++      'personal-data-count'
++    );
++    createText(
++      card,
++      'p',
++      `${item.count} local record${item.count === 1 ? '' : 's'} · ${item.storageKey}`
++    );
++    host.appendChild(card);
++
++    const label = document.createElement('label');
++    label.className = 'personal-data-checkbox';
++    const input = document.createElement('input');
++    input.type = 'checkbox';
++    input.value = item.id;
++    input.checked = true;
++    label.appendChild(input);
++    createText(label, 'span', `${item.label} (${item.count})`);
++    checkboxHost.appendChild(label);
++  });
++
++  const values = {
++    personalDataDatasetCount: inventory.items.length,
++    personalDataPopulatedCount: inventory.populatedDatasets,
++    personalDataRecordCount: inventory.totalRecords
++  };
++  Object.entries(values).forEach(([id, value]) => {
++    const element = document.getElementById(id);
++    if (element) element.textContent = String(value);
++  });
++
++  return inventory;
++};
++
++const renderImportPreview = (
++  registry,
++  validation,
++  host,
++  checkboxHost
++) => {
++  host.replaceChildren();
++  checkboxHost.replaceChildren();
++  const definitions = registryMap(registry);
++
++  if (!validation.ok) {
++    const card = document.createElement('article');
++    card.className = 'personal-data-preview is-error';
++    createText(card, 'h3', 'Import blocked');
++    validation.errors.forEach(error => createText(card, 'p', error));
++    host.appendChild(card);
++    return;
++  }
++
++  Object.entries(validation.backup.datasets).forEach(([id, value]) => {
++    const definition = definitions.get(id);
++    if (!definition) return;
++    const count = datasetCount(value);
++
++    const card = document.createElement('article');
++    card.className = 'personal-data-preview';
++    createText(card, 'h3', definition.label);
++    createText(card, 'strong', String(count), 'personal-data-count');
++    createText(card, 'p', `${count} validated record${count === 1 ? '' : 's'}`);
++    host.appendChild(card);
++
++    const label = document.createElement('label');
++    label.className = 'personal-data-checkbox';
++    const input = document.createElement('input');
++    input.type = 'checkbox';
++    input.value = id;
++    input.checked = true;
++    label.appendChild(input);
++    createText(label, 'span', `${definition.label} (${count})`);
++    checkboxHost.appendChild(label);
++  });
++
++  validation.warnings.forEach(warning => {
++    const warningCard = document.createElement('article');
++    warningCard.className = 'personal-data-preview is-warning';
++    createText(warningCard, 'p', warning);
++    host.appendChild(warningCard);
++  });
++};
++
++const checkedValues = host =>
++  [...host.querySelectorAll('input[type="checkbox"]:checked')]
++    .map(input => input.value);
++
++const initialise = async () => {
++  const status = document.getElementById('personalDataStatus');
++  const inventoryHost = document.getElementById('personalDataInventory');
++  const exportChecks = document.getElementById('personalDataExportDatasets');
++  const exportButton = document.getElementById('personalDataExport');
++  const checksum = document.getElementById('personalDataChecksum');
++  const fileInput = document.getElementById('personalDataImportFile');
++  const previewHost = document.getElementById('personalDataImportPreview');
++  const importChecks = document.getElementById('personalDataImportDatasets');
++  const applyButton = document.getElementById('personalDataApply');
++  const mode = document.getElementById('personalDataImportMode');
++  const applyResult = document.getElementById('personalDataApplyResult');
++
++  if (
++    !status || !inventoryHost || !exportChecks || !exportButton ||
++    !checksum || !fileInput || !previewHost || !importChecks ||
++    !applyButton || !mode || !applyResult
++  ) return;
++
++  let registry;
++  let currentValidation = null;
++
++  try {
++    registry = await fetchRegistry();
++    renderInventory(registry, inventoryHost, exportChecks);
++    status.textContent =
++      'Registered browser-local datasets are ready for explicit export or restore.';
++  } catch (error) {
++    status.textContent =
++      `Personal data registry unavailable: ${String(error?.message || error)}`;
++    exportButton.disabled = true;
++    fileInput.disabled = true;
++    return;
++  }
++
++  exportButton.addEventListener('click', async () => {
++    const selected = checkedValues(exportChecks);
++    if (!selected.length) {
++      status.textContent = 'Select at least one dataset to export.';
++      return;
++    }
++    const backup = createBackup(registry, selected);
++    const text = downloadJson(
++      `omsaravanabhava-personal-data-${new Date().toISOString().slice(0, 10)}.json`,
++      backup
++    );
++    const digest = await sha256Hex(text);
++    checksum.textContent = digest
++      ? `SHA-256: ${digest}`
++      : 'SHA-256 unavailable in this browser.';
++    status.textContent =
++      `${selected.length} selected dataset${selected.length === 1 ? '' : 's'} exported locally.`;
++  });
++
++  fileInput.addEventListener('change', async () => {
++    currentValidation = null;
++    applyButton.disabled = true;
++    previewHost.replaceChildren();
++    importChecks.replaceChildren();
++    applyResult.textContent = '';
++
++    const file = fileInput.files?.[0];
++    if (!file) {
++      status.textContent = 'No import file selected.';
++      return;
++    }
++    if (file.size > Number(registry.maximumImportBytes || 1048576)) {
++      status.textContent = 'Import blocked: file exceeds the 1 MB safety limit.';
++      return;
++    }
++
++    try {
++      const parsed = JSON.parse(await file.text());
++      currentValidation = validateBackup(parsed, registry);
++      renderImportPreview(
++        registry,
++        currentValidation,
++        previewHost,
++        importChecks
++      );
++      applyButton.disabled = !currentValidation.ok;
++      status.textContent = currentValidation.ok
++        ? 'Backup validated. Review datasets and choose merge or replace before applying.'
++        : 'Backup validation failed. Nothing has been changed.';
++    } catch (error) {
++      status.textContent =
++        `Import blocked: ${String(error?.message || error)}`;
++    }
++  });
++
++  applyButton.addEventListener('click', async () => {
++    if (!currentValidation?.ok) {
++      status.textContent = 'Validate a supported backup before applying it.';
++      return;
++    }
++    const selected = checkedValues(importChecks);
++    if (!selected.length) {
++      status.textContent = 'Select at least one validated dataset to restore.';
++      return;
++    }
++
++    const action = mode.value === 'replace' ? 'replace' : 'merge';
++    if (
++      !confirm(
++        action === 'replace'
++          ? 'Replace the selected local datasets with the validated backup? Other registered datasets will remain unchanged.'
++          : 'Merge the validated backup into the selected local datasets?'
++      )
++    ) {
++      return;
++    }
++
++    const result = applyValidatedBackup(
++      currentValidation,
++      registry,
++      {
++        selectedIds: selected,
++        mode: action
++      }
++    );
++
++    applyResult.replaceChildren();
++    result.applied.forEach(item => {
++      createText(
++        applyResult,
++        'p',
++        `${item.label}: ${item.count} record${item.count === 1 ? '' : 's'} ${item.mode}.`
++      );
++    });
++    result.errors.forEach(error =>
++      createText(applyResult, 'p', error, 'personal-data-error')
++    );
++
++    if (selected.includes('accessibility')) {
++      import('/assets/js/accessibility-preferences.mjs')
++        .then(module => module.applyStoredPreferences())
++        .catch(() => {});
++    }
++    window.dispatchEvent(new CustomEvent('osb:personal-data-restored', {
++      detail: {datasets: result.applied.map(item => item.id)}
++    }));
++
++    renderInventory(registry, inventoryHost, exportChecks);
++    status.textContent = result.ok
++      ? 'Selected browser-local datasets restored successfully.'
++      : 'Restore completed with errors. Review the results below.';
++  });
++};
++
++if (typeof document !== 'undefined') {
++  document.addEventListener('DOMContentLoaded', initialise);
++}
+diff --git a/data/personal-data-registry.json b/data/personal-data-registry.json
+new file mode 100644
+--- /dev/null
++++ b/data/personal-data-registry.json
+@@ -0,0 +1,73 @@
++{
++  "release": 225,
++  "generated": "2026-07-14",
++  "builtAgainstCommit": "3600bf1b301d2240f3bdb7f8edbcbe8e552e916c",
++  "schema": "osb-personal-data-backup-v1",
++  "canonicalOrigin": "https://omsaravanabhava.org",
++  "maximumImportBytes": 1048576,
++  "title": "OmSaravanaBhava Browser-Local Personal Data Registry",
++  "scope": "Explicitly registered browser-local datasets only. Cache contents, devotional page bodies, selected source text, credentials and unrelated localStorage keys are excluded.",
++  "datasets": [
++    {
++      "id": "readingList",
++      "label": "Offline Reading List",
++      "storageKey": "osb-reading-list-v1",
++      "shape": "array",
++      "maximumItems": 100,
++      "uniqueBy": "route",
++      "timestampField": "savedAt",
++      "mergeSupported": true
++    },
++    {
++      "id": "readingProgress",
++      "label": "Reading Progress",
++      "storageKey": "osb-reading-progress-v1",
++      "shape": "array",
++      "maximumItems": 50,
++      "uniqueBy": "route",
++      "timestampField": "lastVisitedAt",
++      "mergeSupported": true
++    },
++    {
++      "id": "readingNotes",
++      "label": "Reading Notes and Section Bookmarks",
++      "storageKey": "osb-reading-notes-v1",
++      "shape": "array",
++      "maximumItems": 100,
++      "uniqueBy": "id",
++      "timestampField": "updatedAt",
++      "mergeSupported": true
++    },
++    {
++      "id": "accessibility",
++      "label": "Accessibility Preferences",
++      "storageKey": "osb-accessibility-preferences-v1",
++      "shape": "object",
++      "maximumItems": 1,
++      "mergeSupported": false
++    },
++    {
++      "id": "audioHistory",
++      "label": "Audio Listening History",
++      "storageKey": "osb-audio-listening-history-v1",
++      "shape": "array",
++      "maximumItems": 20,
++      "uniqueBy": "id",
++      "timestampField": "lastPlayedAt",
++      "mergeSupported": true
++    }
++  ],
++  "excluded": [
++    "Cache API content and offline page bodies",
++    "Selected devotional text and published page body content",
++    "Service-worker caches and GitHub credentials",
++    "Unregistered localStorage or sessionStorage keys",
++    "Analytics identifiers, because no analytics dataset is defined"
++  ],
++  "limitations": [
++    "Backup and restore remain inside the current browser unless the user downloads or imports a JSON file.",
++    "Import requires an explicit preview and apply action.",
++    "Restore does not provide cloud synchronization or user accounts.",
++    "A successful local restore is not production certification."
++  ]
++}
+diff --git a/index.html b/index.html
+--- a/index.html
++++ b/index.html
+@@ -16,6 +16,7 @@
+ <link rel="stylesheet" href="assets/css/osb44.css">
+ <link rel="stylesheet" href="assets/css/discovery-workspace.css">
+ <link rel="stylesheet" href="assets/css/reading-notes.css">
++<link rel="stylesheet" href="assets/css/personal-data.css">
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+ <meta name="theme-color" content="#a51d17">
+ <meta name="mobile-web-app-capable" content="yes">
+@@ -30,25 +31,36 @@
+ <script type="module" src="assets/js/discovery-workspace.mjs"></script>
+ <script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body data-release="224">
++<body data-release="225">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Verified Murugan digital heritage platform</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Read</a><a href="reading-notes.html">Notes</a><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div>
++<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Read</a><a href="reading-notes.html">Notes</a><a href="personal-data.html">Data</a><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">OmSaravanaBhava Home</span></p></nav>
+ <section class="home-stage">
+-<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 224</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="discovery.html">Open discovery workspace</a><a class="btn secondary" href="explore.html">Explore all modules</a><a class="btn secondary" href="ai-search.html">Search knowledge</a><a class="btn secondary" href="search-facets.html">Browse by content type</a><a class="btn secondary" href="reading-list.html">Reading list</a><a class="btn secondary" href="accessibility.html">Accessibility</a><a class="btn secondary" href="print-pdf.html">Print &amp; PDF</a><a class="btn secondary" href="audio-history.html">Audio history</a><a class="btn secondary" href="knowledge-graph-explorer.html">Knowledge graph</a><a class="btn secondary" href="maintenance.html">Maintenance</a></div></div>
++<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 225</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="discovery.html">Open discovery workspace</a><a class="btn secondary" href="explore.html">Explore all modules</a><a class="btn secondary" href="ai-search.html">Search knowledge</a><a class="btn secondary" href="search-facets.html">Browse by content type</a><a class="btn secondary" href="reading-list.html">Reading list</a><a class="btn secondary" href="accessibility.html">Accessibility</a><a class="btn secondary" href="print-pdf.html">Print &amp; PDF</a><a class="btn secondary" href="audio-history.html">Audio history</a><a class="btn secondary" href="knowledge-graph-explorer.html">Knowledge graph</a><a class="btn secondary" href="maintenance.html">Maintenance</a></div></div>
+ <div class="home-stage-panel" aria-label="Published platform data">
+ <div class="home-metric"><span>Search records</span><strong data-count-source="data/search-index.json" aria-live="polite">…</strong></div>
+ <div class="home-metric"><span>Source records</span><strong data-count-source="data/sources.json" aria-live="polite">…</strong></div>
+ <div class="home-metric"><span>Device read-aloud entries</span><strong data-count-source="data/read-aloud-playlist.json" aria-live="polite">…</strong></div>
+ </div></section>
++<section class="card home-personal-data-225">
++<div>
++<span class="pill">Release 225 · Local data portability</span>
++<h2>Back up your browser-local activity</h2>
++<p>Export or restore registered reading, accessibility and listening data through a validated JSON file. No account or cloud upload is used.</p>
++</div>
++<div class="home-personal-data-actions">
++<a class="btn" href="personal-data.html">Open Personal Data Centre</a>
++<a class="btn secondary" href="maintenance.html">Open Maintenance</a>
++</div>
++</section>
+ <section class="card home-reading-notes-224">
+ <div>
+-<span class="pill">Release 224 · Personal reading notes</span>
++<span class="pill">Release 225 · Personal reading notes</span>
+ <h2>Remember sections without copying source text</h2>
+ <p>Add your own reflection, question, practice note or section bookmark while reading eligible literature routes. Everything remains in this browser.</p>
+ </div>
+@@ -59,7 +71,7 @@
+ </section>
+ <section class="card home-reading-workspace-223">
+ <div>
+-<span class="pill">Release 223 · Reading continuity</span>
++<span class="pill">Release 225 · Reading continuity</span>
+ <h2>Continue devotional reading</h2>
+ <p>Use focus mode, browser-local progress, resume controls, the reading list and clean print support without copying source texts into a new edition.</p>
+ </div>
+@@ -71,7 +83,7 @@
+ </section>
+ <section class="card home-discovery-222" aria-labelledby="home-discovery-title">
+ <div class="home-discovery-copy">
+-<span class="pill">Release 222 · Desktop discovery</span>
++<span class="pill">Release 225 · Desktop discovery</span>
+ <h2 id="home-discovery-title">Choose a trusted path</h2>
+ <p>Start with a purpose rather than a long route list. <span class="home-discovery-number" id="homeDiscoveryRouteCount">0</span> curated routes are calculated from the local publication registry.</p>
+ <p><a class="btn" href="discovery.html">Open full discovery workspace</a></p>
+@@ -89,6 +101,6 @@
+ <section class="card" aria-labelledby="integrity-heading"><h2 id="integrity-heading">Publication integrity</h2><p>Repository releases, deployed pages and runtime behaviour are separate evidence layers. Content and feature claims remain bounded until automated checks and production observation confirm them.</p><p><a class="btn secondary" href="production-audit.html">Open production audit</a> <a class="btn secondary" href="content-status.html">Open content status</a></p></section>
+ <noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>All primary modules remain available through the navigation links. Live data counts are unavailable without JavaScript.</p></section></noscript>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="reading-notes.html">Reading Notes</a> · <a href="reading-workspace.html">Reading Workspace</a> · <a href="discovery.html">Discover</a> · <a href="maintenance.html">Maintenance</a> · <a href="knowledge-graph-explorer.html">Knowledge graph</a> · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
++<footer>© Om Saravana Bhava · <a href="personal-data.html">Personal Data</a> · <a href="reading-notes.html">Reading Notes</a> · <a href="reading-workspace.html">Reading Workspace</a> · <a href="discovery.html">Discover</a> · <a href="maintenance.html">Maintenance</a> · <a href="knowledge-graph-explorer.html">Knowledge graph</a> · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
+ </body>
+ </html>
+diff --git a/platform.html b/platform.html
+--- a/platform.html
++++ b/platform.html
+@@ -10,10 +10,10 @@
+ <meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
+ <script defer src="assets/js/pwa-register.js"></script><script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body data-release="224">
++<body data-release="225">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Digital Murugan knowledge platform</div>
+-<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Read</a><a href="reading-notes.html">Notes</a><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div></div></nav>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Read</a><a href="reading-notes.html">Notes</a><a href="personal-data.html">Data</a><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div></div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">OmSaravanaBhava Platform Hub</span></p></nav>
+ <section class="card"><h1 class="section-title" lang="ta">ஓம் சரவணபவ தளம்</h1><h2>OmSaravanaBhava Platform Hub</h2><p>Unified gateway to the source-aware devotional, literature, temple, search, graph and reading modules.</p></section>
+@@ -35,6 +35,7 @@
+ <article class="card"><h2>Knowledge Graph Explorer</h2><p>Inspect existing graph registers, explicit nodes and published relationship totals without inferred theological edges.</p><a class="btn" href="knowledge-graph-explorer.html">Open graph explorer</a></article>
+ <article class="card"><h2>Premium Reading Workspace</h2><p>Resume eligible literature routes with browser-local progress, focus mode and reading-list integration.</p><a class="btn" href="reading-workspace.html">Open reading workspace</a></article>
+ <article class="card"><h2>Reading Notes &amp; Section Bookmarks</h2><p>Manage browser-local user-authored notes and heading bookmarks without storing selected devotional text.</p><a class="btn" href="reading-notes.html">Open reading notes</a></article>
++<article class="card"><h2>Personal Data Backup &amp; Restore</h2><p>Export, validate, preview and restore the five registered browser-local datasets without cloud accounts.</p><a class="btn" href="personal-data.html">Open personal data centre</a></article>
+ <article class="card"><h2>Maintenance Centre</h2><p>Run same-origin release checks, route audits, required-file checks and safe transient-cache cleanup.</p><a class="btn" href="maintenance.html">Open maintenance tools</a></article>
+ <article class="card"><h2>Knowledge Graph</h2><a class="btn" href="knowledge-graph-phase-4.html">Open module</a></article>
+ <article class="card"><h2>Panchangam Framework</h2><p>Verified-data contract only; no live calendar calculation.</p><a class="btn" href="panchangam-framework.html">Open framework</a></article>
+@@ -42,6 +43,6 @@
+ <section class="card"><h2>Milestone boundary</h2><p>The platform hub connects published modules. It does not certify complete Murugan literature, licensed human audio, live Panchangam computation or server-side accounts.</p></section>
+ <section class="card"><h2>Version 3 milestone</h2><a class="btn" href="version-3.html">Open milestone dashboard</a></section>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="reading-notes.html">Reading Notes</a> · <a href="reading-workspace.html">Reading Workspace</a> · <a href="discovery.html">Discover</a> · <a href="maintenance.html">Maintenance</a> · <a href="knowledge-graph-explorer.html">Knowledge graph</a> · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
++<footer>© Om Saravana Bhava · <a href="personal-data.html">Personal Data</a> · <a href="reading-notes.html">Reading Notes</a> · <a href="reading-workspace.html">Reading Workspace</a> · <a href="discovery.html">Discover</a> · <a href="maintenance.html">Maintenance</a> · <a href="knowledge-graph-explorer.html">Knowledge graph</a> · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
+ </body>
+ </html>
+diff --git a/discovery.html b/discovery.html
+--- a/discovery.html
++++ b/discovery.html
+@@ -15,19 +15,19 @@
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script type="module" src="assets/js/discovery-workspace.mjs"></script>
+ </head>
+-<body data-release="224">
++<body data-release="225">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Local published-route discovery workspace</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="discovery.html" aria-current="page">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="reading-notes.html">Notes</a><a href="explore.html">Explore</a><a href="search-facets.html">Facets</a><a href="site-directory.html">Directory</a><a href="platform.html">Platform</a></div>
++<div class="links"><a href="discovery.html" aria-current="page">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="reading-notes.html">Notes</a><a href="personal-data.html">Data</a><a href="explore.html">Explore</a><a href="search-facets.html">Facets</a><a href="site-directory.html">Directory</a><a href="platform.html">Platform</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Discovery Workspace</span></p></nav>
+ 
+ <section class="card discovery-hero">
+ <div>
+-<span class="pill">Release 222 · Local route composition</span>
++<span class="pill">Release 225 · Local route composition</span>
+ <h1 class="section-title" lang="ta">கண்டறியும் பணிமனை</h1>
+ <h2>Discovery Workspace</h2>
+ <p>Choose a purpose, audience or publication boundary. Every displayed count and route is derived from the local structured-navigation and route-directory JSON.</p>
+@@ -68,6 +68,8 @@
+ 
+ <section class="card"><h2>Personal reading notes</h2><p>Eligible reading pages can save your own notes and heading bookmarks locally without storing selected devotional text.</p><a class="btn" href="reading-notes.html">Open Reading Notes</a></section>
+ 
++<section class="card"><h2>Browser-local data portability</h2><p>Back up or restore registered reading, accessibility and listening data without a server account.</p><a class="btn" href="personal-data.html">Open Personal Data Centre</a></section>
++
+ <section class="card discovery-boundary">
+ <h2>Publication and recommendation boundary</h2>
+ <ul>
+diff --git a/reading-workspace.html b/reading-workspace.html
+--- a/reading-workspace.html
++++ b/reading-workspace.html
+@@ -14,19 +14,19 @@
+ <link rel="manifest" href="manifest.json">
+ <script defer src="assets/js/pwa-register.js"></script>
+ </head>
+-<body data-release="224">
++<body data-release="225">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Browser-local premium literature reading workspace</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html" aria-current="page">Reading Workspace</a><a href="reading-notes.html">Notes</a><a href="reading-list.html">Reading List</a><a href="print-pdf.html">Print &amp; PDF</a><a href="accessibility.html">Accessibility</a></div>
++<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html" aria-current="page">Reading Workspace</a><a href="reading-notes.html">Notes</a><a href="personal-data.html">Data Backup</a><a href="reading-list.html">Reading List</a><a href="print-pdf.html">Print &amp; PDF</a><a href="accessibility.html">Accessibility</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Reading Workspace</span></p></nav>
+ 
+ <section class="card reading-workspace-hero">
+ <div>
+-<span class="pill">Release 223 · Local reading continuity</span>
++<span class="pill">Release 225 · Local reading continuity</span>
+ <h1 class="section-title" lang="ta">வாசிப்பு பணிமனை</h1>
+ <h2>Premium Reading Workspace</h2>
+ <p>Resume existing published or clearly bounded devotional reading routes. Progress is calculated from page position and stored only in this browser.</p>
+@@ -65,6 +65,8 @@
+ 
+ <section class="card"><h2>Notes and section bookmarks</h2><p>Add your own note from the reading toolbar on eligible routes, then review it in the browser-local Notes Centre.</p><a class="btn" href="reading-notes.html">Open Reading Notes</a></section>
+ 
++<section class="card"><h2>Back up local reading activity</h2><p>Export or restore reading progress, reading-list entries and notes through the validated Personal Data Centre.</p><a class="btn" href="personal-data.html">Open Personal Data Centre</a></section>
++
+ <section class="card reading-workspace-boundary">
+ <h2>Reading and evidence boundary</h2>
+ <ul>
+diff --git a/reading-notes.html b/reading-notes.html
+--- a/reading-notes.html
++++ b/reading-notes.html
+@@ -14,19 +14,19 @@
+ <link rel="manifest" href="manifest.json">
+ <script defer src="assets/js/pwa-register.js"></script>
+ </head>
+-<body data-release="224">
++<body data-release="225">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Browser-local reading notes and section bookmarks</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="reading-notes.html" aria-current="page">Notes</a><a href="reading-list.html">Reading List</a><a href="print-pdf.html">Print &amp; PDF</a></div>
++<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="reading-notes.html" aria-current="page">Notes</a><a href="personal-data.html">Data Backup</a><a href="reading-list.html">Reading List</a><a href="print-pdf.html">Print &amp; PDF</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="reading-workspace.html">Reading Workspace</a> › <span aria-current="page">Reading Notes</span></p></nav>
+ 
+ <section class="card reading-notes-hero">
+ <div>
+-<span class="pill">Release 224 · Local notes and bookmarks</span>
++<span class="pill">Release 225 · Local notes and bookmarks</span>
+ <h1 class="section-title" lang="ta">வாசிப்பு குறிப்புகள்</h1>
+ <h2>Reading Notes &amp; Section Bookmarks</h2>
+ <p>Review your own reflections, questions, practice notes and section bookmarks. Records remain in this browser and do not copy selected devotional text.</p>
+@@ -61,6 +61,8 @@
+ <article class="card">Loading notes…</article>
+ </section>
+ 
++<section class="card"><h2>Portable local notes</h2><p>Export or restore reading notes together with other registered browser-local datasets.</p><a class="btn" href="personal-data.html">Open Personal Data Centre</a></section>
++
+ <section class="card reading-notes-boundary-card">
+ <h2>Privacy and publication boundary</h2>
+ <ul>
+diff --git a/maintenance.html b/maintenance.html
+--- a/maintenance.html
++++ b/maintenance.html
+@@ -15,19 +15,19 @@
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script type="module" src="assets/js/maintenance-centre.mjs"></script>
+ </head>
+-<body data-release="224">
++<body data-release="225">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Static-platform maintenance and local diagnostics</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="reading-notes.html">Notes</a><a href="explore.html">Explore</a><a href="platform.html">Platform</a><a href="knowledge-graph-explorer.html">Graph Explorer</a><a href="maintenance.html" aria-current="page">Maintenance</a></div>
++<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="reading-notes.html">Notes</a><a href="personal-data.html">Data</a><a href="explore.html">Explore</a><a href="platform.html">Platform</a><a href="knowledge-graph-explorer.html">Graph Explorer</a><a href="maintenance.html" aria-current="page">Maintenance</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Maintenance Centre</span></p></nav>
+ 
+ <section class="card maintenance-hero">
+ <div>
+-<span class="pill">Release 224 · Reading notes and maintenance continuity</span>
++<span class="pill">Release 225 · Reading notes and maintenance continuity</span>
+ <h1 class="section-title" lang="ta">பராமரிப்பு மையம்</h1>
+ <h2>Maintenance Centre</h2>
+ <p>Inspect deployed static resources and browser state without a server account, remote analytics or destructive repository actions.</p>
+@@ -75,6 +75,8 @@
+ </aside>
+ </section>
+ 
++<section class="card"><h2>Personal data portability</h2><p>Export or restore only the explicitly registered browser-local datasets through validation and preview.</p><a class="btn" href="personal-data.html">Open Personal Data Centre</a></section>
++
+ <section class="card maintenance-boundary">
+ <h2>Evidence and safety boundary</h2>
+ <ul>
+diff --git a/assets/js/maintenance-centre.mjs b/assets/js/maintenance-centre.mjs
+--- a/assets/js/maintenance-centre.mjs
++++ b/assets/js/maintenance-centre.mjs
+@@ -1,4 +1,4 @@
+-export const RELEASE = 224;
++export const RELEASE = 225;
+ export const CONFIG_PATH = '/data/maintenance-checks.json';
+ export const DEFAULT_TRANSIENT_CACHE_PREFIXES = Object.freeze([
+   'osb-runtime-v',
+diff --git a/data/maintenance-checks.json b/data/maintenance-checks.json
+--- a/data/maintenance-checks.json
++++ b/data/maintenance-checks.json
+@@ -1,25 +1,25 @@
+ {
+-  "release": 224,
++  "release": 225,
+   "generated": "2026-07-14",
+-  "builtAgainstCommit": "03f8c23e50aea1323211d2ca44cf4cddcf0deec4",
++  "builtAgainstCommit": "3600bf1b301d2240f3bdb7f8edbcbe8e552e916c",
+   "title": "OmSaravanaBhava Browser Maintenance Check Registry",
+-  "scope": "Same-origin Release 224 reading-notes, reading-workspace, route, audit and maintenance continuity checks. This registry does not prove GitHub Actions status or repository certification.",
++  "scope": "Same-origin Release 225 personal-data, route, audit and maintenance continuity checks. This registry does not prove GitHub Actions status or repository certification.",
+   "checks": [
+     {
+       "id": "service-worker-release",
+       "label": "Service-worker release identity",
+       "path": "/service-worker.js",
+       "mode": "textIncludes",
+-      "expected": "const RELEASE = '224';",
++      "expected": "const RELEASE = '225';",
+       "severity": "critical"
+     },
+     {
+       "id": "release-manifest",
+       "label": "Release manifest identity",
+-      "path": "/manifest-release-224.json",
++      "path": "/manifest-release-225.json",
+       "mode": "jsonEquals",
+       "jsonPath": "release",
+-      "expected": 224,
++      "expected": 225,
+       "severity": "critical"
+     },
+     {
+@@ -27,8 +27,8 @@
+       "label": "Route directory integrity",
+       "path": "/data/site-routes.json",
+       "mode": "routeRegistry",
+-      "expectedRelease": 224,
+-      "requiredRoute": "/reading-notes.html",
++      "expectedRelease": 225,
++      "requiredRoute": "/personal-data.html",
+       "severity": "critical"
+     },
+     {
+@@ -36,47 +36,48 @@
+       "label": "Static-audit configuration",
+       "path": "/quality/site-audit-config.json",
+       "mode": "auditConfig",
+-      "expectedRelease": "224",
++      "expectedRelease": "225",
+       "requiredFiles": [
+-        "reading-notes.html",
+-        "assets/css/reading-notes.css",
+-        "assets/js/reading-notes.mjs",
+-        "data/reading-notes.json",
+-        "manifest-release-224.json"
++        "personal-data.html",
++        "assets/css/personal-data.css",
++        "assets/js/personal-data.mjs",
++        "data/personal-data-registry.json",
++        "manifest-release-225.json"
+       ],
+       "severity": "critical"
+     },
+     {
+       "id": "sitemap-route",
+-      "label": "Reading Notes sitemap registration",
++      "label": "Personal Data sitemap registration",
+       "path": "/sitemap.xml",
+       "mode": "textCount",
+-      "expected": "https://omsaravanabhava.org/reading-notes.html",
++      "expected": "https://omsaravanabhava.org/personal-data.html",
+       "expectedCount": 1,
+       "severity": "important"
+     },
+     {
+-      "id": "reading-notes-page",
+-      "label": "Reading Notes page",
+-      "path": "/reading-notes.html",
++      "id": "personal-data-page",
++      "label": "Personal Data Centre page",
++      "path": "/personal-data.html",
+       "mode": "textIncludes",
+-      "expected": "data-release=\"224\"",
++      "expected": "data-release=\"225\"",
+       "severity": "critical"
+     },
+     {
+-      "id": "reading-notes-module",
+-      "label": "Reading Notes browser module",
+-      "path": "/assets/js/reading-notes.mjs",
++      "id": "personal-data-module",
++      "label": "Personal Data browser module",
++      "path": "/assets/js/personal-data.mjs",
+       "mode": "textIncludes",
+-      "expected": "export const RELEASE = 224;",
++      "expected": "export const RELEASE = 225;",
+       "severity": "critical"
+     },
+     {
+-      "id": "reader-bootstrap",
+-      "label": "Shared notes bootstrap",
+-      "path": "/assets/js/pwa-register.js",
+-      "mode": "textIncludes",
+-      "expected": "reading-notes.mjs",
++      "id": "personal-data-registry",
++      "label": "Personal Data registry",
++      "path": "/data/personal-data-registry.json",
++      "mode": "jsonEquals",
++      "jsonPath": "release",
++      "expected": 225,
+       "severity": "important"
+     }
+   ],
+@@ -97,7 +98,8 @@
+     "/audio-library.html",
+     "/audio-history.html",
+     "/knowledge-graph-explorer.html",
+-    "/maintenance.html"
++    "/maintenance.html",
++    "/personal-data.html"
+   ],
+   "transientCachePrefixes": [
+     "osb-runtime-v",
+diff --git a/data/site-routes.json b/data/site-routes.json
+--- a/data/site-routes.json
++++ b/data/site-routes.json
+@@ -1,5 +1,5 @@
+ {
+-  "release": 224,
++  "release": 225,
+   "generated": "2026-07-14",
+   "scope": "Public HTML routes represented by the Release 215 sitemap and route directory.",
+   "statusMeaning": {
+@@ -590,6 +590,14 @@
+       "summary": "Browser-local user-authored notes and heading bookmarks for eligible reading routes without storing selected devotional text."
+     },
+     {
++      "path": "/personal-data.html",
++      "titleTa": "தனிப்பட்ட தரவு காப்பு மையம்",
++      "titleEn": "Personal Data Backup and Restore Centre",
++      "category": "Platform",
++      "status": "utility",
++      "summary": "Validated browser-local export and restore for reading list, progress, notes, accessibility preferences and audio listening history."
++    },
++    {
+       "path": "/accessibility.html",
+       "titleTa": "அணுகல்தன்மை மையம்",
+       "titleEn": "Accessibility Centre",
+diff --git a/sitemap.xml b/sitemap.xml
+--- a/sitemap.xml
++++ b/sitemap.xml
+@@ -576,4 +576,10 @@
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
++  <url>
++    <loc>https://omsaravanabhava.org/personal-data.html</loc>
++    <lastmod>2026-07-14</lastmod>
++    <changefreq>monthly</changefreq>
++    <priority>0.7</priority>
++  </url>
+ </urlset>
+diff --git a/service-worker.js b/service-worker.js
+--- a/service-worker.js
++++ b/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '224';
++const RELEASE = '225';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -231,7 +231,12 @@
+   "/assets/css/reading-notes.css",
+   "/assets/js/reading-notes.mjs",
+   "/data/reading-notes.json",
+-  "/manifest-release-224.json"
++  "/manifest-release-224.json",
++  "/personal-data.html",
++  "/assets/css/personal-data.css",
++  "/assets/js/personal-data.mjs",
++  "/data/personal-data-registry.json",
++  "/manifest-release-225.json"
+ ];
+ 
+ const cacheOptionalAssets = async cache => {
+diff --git a/quality/site-audit-config.json b/quality/site-audit-config.json
+--- a/quality/site-audit-config.json
++++ b/quality/site-audit-config.json
+@@ -1,5 +1,5 @@
+ {
+-  "expectedRelease": "224",
++  "expectedRelease": "225",
+   "canonicalOrigin": "https://omsaravanabhava.org",
+   "requiredFiles": [
+     "index.html",
+@@ -62,7 +62,12 @@
+     "assets/css/reading-notes.css",
+     "assets/js/reading-notes.mjs",
+     "data/reading-notes.json",
+-    "manifest-release-224.json"
++    "manifest-release-224.json",
++    "personal-data.html",
++    "assets/css/personal-data.css",
++    "assets/js/personal-data.mjs",
++    "data/personal-data-registry.json",
++    "manifest-release-225.json"
+   ],
+   "canonicalOptional": [
+     "404.html",
+diff --git a/tools/production_smoke.py b/tools/production_smoke.py
+--- a/tools/production_smoke.py
++++ b/tools/production_smoke.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Observe the deployed custom domain and fail when Release 224 is not live."""
++"""Observe the deployed custom domain and fail when Release 225 is not live."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -10,8 +10,8 @@
+ from pathlib import Path
+ 
+ CHECKS = [
+-    ("/", 'data-release="224"'),
+-    ("/service-worker.js", "const RELEASE = '224';"),
++    ("/", 'data-release="225"'),
++    ("/service-worker.js", "const RELEASE = '225';"),
+     ("/search-facets.html", "Published-Content Search Facets"),
+     ("/assets/js/search-facets.mjs", "export const RELEASE = 216;"),
+     ("/data/site-routes.json", '"/search-facets.html"'),
+@@ -39,9 +39,9 @@
+     ("/data/knowledge-graph-explorer.json", "\"release\": 220"),
+     ("/sitemap.xml", "https://omsaravanabhava.org/knowledge-graph-explorer.html"),
+     ("/maintenance.html", "data-release=\"222\""),
+-    ("/assets/js/maintenance-centre.mjs", "export const RELEASE = 224"),
+-    ("/data/maintenance-checks.json", "\"release\": 224"),
+-    ("/manifest-release-224.json", "\"release\": 224"),
++    ("/assets/js/maintenance-centre.mjs", "export const RELEASE = 225"),
++    ("/data/maintenance-checks.json", "\"release\": 225"),
++    ("/manifest-release-225.json", "\"release\": 225"),
+     ("/data/site-routes.json", "\"/maintenance.html\""),
+     ("/sitemap.xml", "https://omsaravanabhava.org/maintenance.html"),
+     ("/discovery.html", "data-release=\"222\""),
+@@ -60,7 +60,13 @@
+     ("/assets/js/pwa-register.js", "reading-notes.mjs"),
+     ("/data/reading-notes.json", "\"release\": 224"),
+     ("/data/site-routes.json", "\"/reading-notes.html\""),
+-    ("/sitemap.xml", "https://omsaravanabhava.org/reading-notes.html")
++    ("/sitemap.xml", "https://omsaravanabhava.org/reading-notes.html"),
++    ("/personal-data.html", "data-release=\"225\""),
++    ("/assets/js/personal-data.mjs", "export const RELEASE = 225"),
++    ("/data/personal-data-registry.json", "\"release\": 225"),
++    ("/manifest-release-225.json", "\"release\": 225"),
++    ("/data/site-routes.json", "\"/personal-data.html\""),
++    ("/sitemap.xml", "https://omsaravanabhava.org/personal-data.html")
+ ]
+ 
+ 
+@@ -68,7 +74,7 @@
+     request = urllib.request.Request(
+         url,
+         headers={
+-            "User-Agent": "OmSaravanaBhava-Production-Smoke/224",
++            "User-Agent": "OmSaravanaBhava-Production-Smoke/225",
+             "Cache-Control": "no-cache"
+         }
+     )
+@@ -108,7 +114,7 @@
+     parser.add_argument("--retries", type=int, default=18)
+     parser.add_argument("--delay", type=int, default=20)
+     parser.add_argument("--timeout", type=int, default=20)
+-    parser.add_argument("--report", type=Path, default=Path("artifacts/release-224-production-smoke.json"))
++    parser.add_argument("--report", type=Path, default=Path("artifacts/release-225-production-smoke.json"))
+     args = parser.parse_args()
+     report = run(args.origin, args.retries, args.delay, args.timeout)
+     args.report.parent.mkdir(parents=True, exist_ok=True)
+diff --git a/tests/personal-data.test.mjs b/tests/personal-data.test.mjs
+new file mode 100644
+--- /dev/null
++++ b/tests/personal-data.test.mjs
+@@ -0,0 +1,239 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import fs from 'node:fs';
++
++import {
++  RELEASE,
++  BACKUP_SCHEMA,
++  DATASET_IDS,
++  applyValidatedBackup,
++  buildInventory,
++  createBackup,
++  datasetCount,
++  mergeArrayDataset,
++  normaliseSameOriginRoute,
++  sanitiseAccessibility,
++  sanitiseAudioHistory,
++  sanitiseReadingList,
++  sanitiseReadingNotes,
++  sanitiseReadingProgress,
++  validateBackup
++} from '../assets/js/personal-data.mjs';
++
++class MemoryStorage {
++  constructor(initial = {}) {
++    this.values = new Map(Object.entries(initial));
++  }
++  getItem(key) {
++    return this.values.has(key) ? this.values.get(key) : null;
++  }
++  setItem(key, value) {
++    this.values.set(key, String(value));
++  }
++  removeItem(key) {
++    this.values.delete(key);
++  }
++}
++
++const registry = JSON.parse(
++  fs.readFileSync(
++    new URL('../data/personal-data-registry.json', import.meta.url),
++    'utf8'
++  )
++);
++
++test('release, schema and registered datasets are stable', () => {
++  assert.equal(RELEASE, 225);
++  assert.equal(registry.release, 225);
++  assert.equal(BACKUP_SCHEMA, 'osb-personal-data-backup-v1');
++  assert.deepEqual(
++    registry.datasets.map(item => item.id),
++    DATASET_IDS
++  );
++});
++
++test('same-origin routes are accepted and external routes rejected', () => {
++  assert.equal(
++    normaliseSameOriginRoute('/literature/kandar-anubhuti.html'),
++    '/literature/kandar-anubhuti.html'
++  );
++  assert.equal(
++    normaliseSameOriginRoute('https://example.com/page.html'),
++    ''
++  );
++});
++
++test('reading list sanitiser deduplicates and excludes external routes', () => {
++  const items = sanitiseReadingList([
++    {route: '/a.html', titleEn: 'A', savedAt: '2026-07-14T10:00:00Z'},
++    {route: '/a.html', titleEn: 'Duplicate'},
++    {route: 'https://example.com/b.html', titleEn: 'External'}
++  ]);
++  assert.equal(items.length, 1);
++  assert.equal(items[0].route, '/a.html');
++});
++
++test('reading progress is bounded and source body fields are discarded', () => {
++  const items = sanitiseReadingProgress([{
++    route: '/literature/a.html',
++    titleEn: 'A',
++    percent: 150,
++    content: 'must not be stored',
++    lastVisitedAt: '2026-07-14T10:00:00Z'
++  }]);
++  assert.equal(items[0].percent, 100);
++  assert.equal('content' in items[0], false);
++});
++
++test('reading notes discard selected and page text fields', () => {
++  const notes = sanitiseReadingNotes([{
++    id: 'n1',
++    route: '/literature/a.html',
++    headingId: 'section-1',
++    headingLabel: 'Section 1',
++    note: 'My reflection',
++    selectedText: 'not allowed',
++    pageBody: 'not allowed',
++    content: 'not allowed',
++    updatedAt: '2026-07-14T10:00:00Z'
++  }]);
++  assert.equal(notes.length, 1);
++  assert.equal(notes[0].note, 'My reflection');
++  assert.equal('selectedText' in notes[0], false);
++  assert.equal('pageBody' in notes[0], false);
++  assert.equal('content' in notes[0], false);
++});
++
++test('accessibility and audio history schemas are bounded', () => {
++  assert.deepEqual(
++    sanitiseAccessibility({
++      largeText: true,
++      highContrast: 1,
++      reducedMotion: true,
++      unknown: true
++    }),
++    {
++      largeText: true,
++      highContrast: false,
++      reducedMotion: true,
++      underlinedLinks: false
++    }
++  );
++  const history = sanitiseAudioHistory([{
++    id: 'track-1',
++    route: '/slokas/a.html',
++    playCount: -3
++  }]);
++  assert.equal(history.length, 1);
++  assert.equal(history[0].playCount, 1);
++});
++
++test('inventory and export include only registered keys', () => {
++  const storage = new MemoryStorage({
++    'osb-reading-list-v1': JSON.stringify([
++      {route: '/a.html', titleEn: 'A'}
++    ]),
++    'unregistered-secret': JSON.stringify({secret: true})
++  });
++  const inventory = buildInventory(registry, storage);
++  assert.equal(inventory.totalRecords, 1);
++  const backup = createBackup(
++    registry,
++    ['readingList'],
++    storage,
++    '2026-07-14T10:00:00Z'
++  );
++  assert.deepEqual(Object.keys(backup.datasets), ['readingList']);
++  assert.equal('unregistered-secret' in backup.datasets, false);
++});
++
++test('backup validation rejects wrong schema and ignores unknown datasets', () => {
++  const wrong = validateBackup({
++    schema: 'wrong',
++    origin: registry.canonicalOrigin,
++    datasets: {}
++  }, registry);
++  assert.equal(wrong.ok, false);
++
++  const valid = validateBackup({
++    schema: registry.schema,
++    release: 225,
++    origin: registry.canonicalOrigin,
++    exportedAt: '2026-07-14T10:00:00Z',
++    datasets: {
++      accessibility: {largeText: true},
++      unknown: {secret: true}
++    }
++  }, registry);
++  assert.equal(valid.ok, true);
++  assert.deepEqual(Object.keys(valid.backup.datasets), ['accessibility']);
++  assert.equal(valid.warnings.length, 1);
++});
++
++test('merge keeps the newer matching record and applies capacity', () => {
++  const merged = mergeArrayDataset(
++    [
++      {route: '/a.html', savedAt: '2026-07-14T09:00:00Z', titleEn: 'Old'}
++    ],
++    [
++      {route: '/a.html', savedAt: '2026-07-14T10:00:00Z', titleEn: 'New'},
++      {route: '/b.html', savedAt: '2026-07-14T08:00:00Z', titleEn: 'B'}
++    ],
++    {
++      uniqueBy: 'route',
++      timestampField: 'savedAt',
++      maximumItems: 1
++    }
++  );
++  assert.equal(merged.length, 1);
++  assert.equal(merged[0].titleEn, 'New');
++});
++
++test('validated merge changes only selected registered datasets', () => {
++  const storage = new MemoryStorage({
++    'osb-reading-list-v1': JSON.stringify([
++      {route: '/a.html', titleEn: 'A', savedAt: '2026-07-14T09:00:00Z'}
++    ]),
++    'osb-accessibility-preferences-v1': JSON.stringify({
++      largeText: false,
++      highContrast: false,
++      reducedMotion: false,
++      underlinedLinks: false
++    }),
++    'unregistered-secret': 'preserve-me'
++  });
++
++  const validation = validateBackup({
++    schema: registry.schema,
++    origin: registry.canonicalOrigin,
++    datasets: {
++      readingList: [
++        {route: '/b.html', titleEn: 'B', savedAt: '2026-07-14T10:00:00Z'}
++      ],
++      accessibility: {largeText: true}
++    }
++  }, registry);
++
++  const result = applyValidatedBackup(
++    validation,
++    registry,
++    {
++      selectedIds: ['readingList'],
++      mode: 'merge',
++      storage
++    }
++  );
++  assert.equal(result.ok, true);
++  assert.equal(
++    JSON.parse(storage.getItem('osb-reading-list-v1')).length,
++    2
++  );
++  assert.equal(
++    JSON.parse(
++      storage.getItem('osb-accessibility-preferences-v1')
++    ).largeText,
++    false
++  );
++  assert.equal(storage.getItem('unregistered-secret'), 'preserve-me');
++  assert.equal(datasetCount(validation.backup.datasets.accessibility), 1);
++});
+diff --git a/tests/maintenance-centre.test.mjs b/tests/maintenance-centre.test.mjs
+--- a/tests/maintenance-centre.test.mjs
++++ b/tests/maintenance-centre.test.mjs
+@@ -25,8 +25,8 @@
+ );
+ 
+ test('release and registry identities are stable', () => {
+-  assert.equal(RELEASE, 224);
+-  assert.equal(registry.release, 224);
++  assert.equal(RELEASE, 225);
++  assert.equal(registry.release, 225);
+   assert.equal(registry.builtAgainstCommit.length, 40);
+   assert.equal(registry.checks.length, 8);
+ });
+@@ -49,51 +49,51 @@
+ });
+ 
+ test('JSON path lookup and equality checks are deterministic', () => {
+-  const value = {release: 224, nested: {state: 'ready'}};
++  const value = {release: 225, nested: {state: 'ready'}};
+   assert.equal(readJsonPath(value, 'nested.state'), 'ready');
+   assert.equal(readJsonPath(value, 'nested.missing'), undefined);
+   assert.deepEqual(
+-    evaluateJsonEquals(value, 'release', 224),
+-    {ok: true, actual: 224}
++    evaluateJsonEquals(value, 'release', 225),
++    {ok: true, actual: 225}
+   );
+ });
+ 
+ test('route registry requires one maintenance route and no duplicates', () => {
+   const valid = evaluateRouteRegistry({
+-    release: 224,
++    release: 225,
+     routes: [
+       {path: '/index.html'},
+-      {path: '/reading-notes.html'}
++      {path: '/personal-data.html'}
+     ]
+-  }, 224, '/reading-notes.html');
++  }, 225, '/personal-data.html');
+   assert.equal(valid.ok, true);
+ 
+   const duplicate = evaluateRouteRegistry({
+-    release: 224,
++    release: 225,
+     routes: [
+-      {path: '/reading-notes.html'},
+-      {path: '/reading-notes.html'}
++      {path: '/personal-data.html'},
++      {path: '/personal-data.html'}
+     ]
+-  }, 224, '/reading-notes.html');
++  }, 225, '/personal-data.html');
+   assert.equal(duplicate.ok, false);
+   assert.equal(duplicate.actual.duplicateCount, 1);
+ });
+ 
+ test('audit configuration requires the current release and files', () => {
+   const result = evaluateAuditConfig({
+-    expectedRelease: '224',
+-    requiredFiles: ['reading-notes.html', 'manifest-release-224.json']
+-  }, '224', ['reading-notes.html', 'manifest-release-224.json']);
++    expectedRelease: '225',
++    requiredFiles: ['personal-data.html', 'manifest-release-225.json']
++  }, '225', ['personal-data.html', 'manifest-release-225.json']);
+   assert.equal(result.ok, true);
+ 
+   const missing = evaluateAuditConfig({
+-    expectedRelease: '224',
+-    requiredFiles: ['reading-notes.html']
+-  }, '224', ['reading-notes.html', 'manifest-release-224.json']);
++    expectedRelease: '225',
++    requiredFiles: ['personal-data.html']
++  }, '225', ['personal-data.html', 'manifest-release-225.json']);
+   assert.equal(missing.ok, false);
+   assert.deepEqual(
+     missing.actual.missing,
+-    ['manifest-release-224.json']
++    ['manifest-release-225.json']
+   );
+ });
+ 
+@@ -123,8 +123,8 @@
+   const result = evaluateCheckPayload(
+     routeCheck,
+     JSON.stringify({
+-      release: 224,
+-      routes: [{path: '/reading-notes.html'}]
++      release: 225,
++      routes: [{path: '/personal-data.html'}]
+     })
+   );
+   assert.equal(result.ok, true);
+@@ -136,14 +136,14 @@
+     status: 200,
+     async text() {
+       return path === '/service-worker.js'
+-        ? "const RELEASE = '224';"
++        ? "const RELEASE = '225';"
+         : '';
+     }
+   });
+   const result = await runResourceCheck({
+     path: '/service-worker.js',
+     mode: 'textIncludes',
+-    expected: "const RELEASE = '224';"
++    expected: "const RELEASE = '225';"
+   }, fetcher);
+   assert.equal(result.ok, true);
+   assert.equal(result.status, 200);
+@@ -174,7 +174,7 @@
+ 
+ test('transient cache cleanup preserves static and user caches', async () => {
+   const names = [
+-    'osb-static-v224',
++    'osb-static-v225',
+     'osb-runtime-v220',
+     'osb-data-v219',
+     'osb-user-reading-v1'
+diff --git a/tools/release_225_validate.py b/tools/release_225_validate.py
+new file mode 100644
+--- /dev/null
++++ b/tools/release_225_validate.py
+@@ -0,0 +1,329 @@
++#!/usr/bin/env python3
++"""Validate Release 225 without claiming remote CI or deployment results."""
++from __future__ import annotations
++
++import argparse
++import json
++import re
++import sys
++import xml.etree.ElementTree as ET
++from pathlib import Path
++
++RELEASE = "225"
++BASE_COMMIT = "3600bf1b301d2240f3bdb7f8edbcbe8e552e916c"
++ROUTE = "/personal-data.html"
++REQUIRED = [
++    "personal-data.html",
++    "assets/css/personal-data.css",
++    "assets/js/personal-data.mjs",
++    "data/personal-data-registry.json",
++    "index.html",
++    "platform.html",
++    "discovery.html",
++    "reading-workspace.html",
++    "reading-notes.html",
++    "maintenance.html",
++    "assets/js/maintenance-centre.mjs",
++    "data/maintenance-checks.json",
++    "data/site-routes.json",
++    "sitemap.xml",
++    "service-worker.js",
++    "quality/site-audit-config.json",
++    "tools/production_smoke.py",
++    "tests/test_site_audit.py",
++    "tests/personal-data.test.mjs",
++    "tests/maintenance-centre.test.mjs",
++    ".github/workflows/static-site-integrity.yml",
++    ".github/workflows/production-smoke.yml",
++    "manifest-release-225.json",
++]
++
++def read(root: Path, relative: str) -> str:
++    return (root / relative).read_text(encoding="utf-8")
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", type=Path, default=Path.cwd())
++    parser.add_argument("--package-mode", action="store_true")
++    parser.add_argument(
++        "--report",
++        type=Path,
++        default=Path("artifacts/release-225-validation.json")
++    )
++    args = parser.parse_args()
++    root = args.root.resolve()
++    errors: list[str] = []
++    checks: list[str] = []
++
++    for relative in REQUIRED:
++        if not (root / relative).is_file():
++            errors.append(f"missing required file: {relative}")
++        else:
++            checks.append(f"exists: {relative}")
++
++    if not errors:
++        manifest = json.loads(read(root, "manifest-release-225.json"))
++        registry = json.loads(read(root, "data/personal-data-registry.json"))
++        routes = json.loads(read(root, "data/site-routes.json"))
++        maintenance = json.loads(read(root, "data/maintenance-checks.json"))
++        config = json.loads(read(root, "quality/site-audit-config.json"))
++        ET.fromstring(read(root, "sitemap.xml"))
++
++        if manifest.get("release") != 225:
++            errors.append("manifest release is not 225")
++        if manifest.get("base_commit") != BASE_COMMIT:
++            errors.append("manifest base commit does not match Release 224 head")
++        if registry.get("release") != 225:
++            errors.append("personal-data registry release is not 225")
++        if registry.get("builtAgainstCommit") != BASE_COMMIT:
++            errors.append("personal-data registry base commit is incorrect")
++        if registry.get("schema") != "osb-personal-data-backup-v1":
++            errors.append("personal-data backup schema is incorrect")
++        if routes.get("release") != 225:
++            errors.append("route directory release is not 225")
++        if maintenance.get("release") != 225:
++            errors.append("maintenance registry release is not 225")
++        if maintenance.get("builtAgainstCommit") != BASE_COMMIT:
++            errors.append("maintenance registry base commit is incorrect")
++
++        datasets = registry.get("datasets", [])
++        ids = [
++            item.get("id")
++            for item in datasets
++            if isinstance(item, dict)
++        ]
++        expected_ids = [
++            "readingList",
++            "readingProgress",
++            "readingNotes",
++            "accessibility",
++            "audioHistory",
++        ]
++        if ids != expected_ids:
++            errors.append(f"registered dataset order differs: {ids}")
++        if len(ids) != len(set(ids)):
++            errors.append("duplicate personal-data dataset ids")
++        if registry.get("maximumImportBytes") != 1048576:
++            errors.append("maximum import size must remain 1 MB")
++
++        storage_keys = [
++            item.get("storageKey")
++            for item in datasets
++            if isinstance(item, dict)
++        ]
++        expected_keys = {
++            "osb-reading-list-v1",
++            "osb-reading-progress-v1",
++            "osb-reading-notes-v1",
++            "osb-accessibility-preferences-v1",
++            "osb-audio-listening-history-v1",
++        }
++        if set(storage_keys) != expected_keys:
++            errors.append("registered storage keys differ from bounded set")
++
++        route_records = routes.get("routes", [])
++        route_paths = [
++            item.get("path")
++            for item in route_records
++            if isinstance(item, dict)
++        ]
++        if route_paths.count(ROUTE) != 1:
++            errors.append("personal-data route must appear exactly once")
++        if len(route_paths) != len(set(route_paths)):
++            errors.append("duplicate route-directory paths detected")
++        route = next(
++            (item for item in route_records if item.get("path") == ROUTE),
++            None
++        )
++        if route and route.get("status") != "utility":
++            errors.append("personal-data route must remain utility")
++
++        if config.get("expectedRelease") != RELEASE:
++            errors.append("site-audit expectedRelease is not 225")
++        for relative in (
++            "personal-data.html",
++            "assets/css/personal-data.css",
++            "assets/js/personal-data.mjs",
++            "data/personal-data-registry.json",
++            "manifest-release-225.json",
++        ):
++            if relative not in config.get("requiredFiles", []):
++                errors.append(f"site audit does not require {relative}")
++
++        sitemap = read(root, "sitemap.xml")
++        if sitemap.count(
++            "https://omsaravanabhava.org/personal-data.html"
++        ) != 1:
++            errors.append("sitemap must contain personal-data route once")
++
++        worker = read(root, "service-worker.js")
++        if "const RELEASE = '225';" not in worker:
++            errors.append("service-worker identity is not 225")
++        core = re.search(
++            r"const CORE_PRECACHE_URLS = \[(.*?)\];",
++            worker,
++            re.S
++        )
++        optional = re.search(
++            r"const PRECACHE_URLS = \[(.*?)\];",
++            worker,
++            re.S
++        )
++        core_text = core.group(1) if core else ""
++        optional_text = optional.group(1) if optional else ""
++        for asset in (
++            "/personal-data.html",
++            "/assets/css/personal-data.css",
++            "/assets/js/personal-data.mjs",
++            "/data/personal-data-registry.json",
++            "/manifest-release-225.json",
++        ):
++            if f'"{asset}"' not in optional_text:
++                errors.append(f"optional precache missing {asset}")
++            if f'"{asset}"' in core_text:
++                errors.append(
++                    f"personal-data asset incorrectly blocks installation: {asset}"
++                )
++        if "cacheOptionalAssets" not in worker:
++            errors.append("resilient optional caching is missing")
++
++        module = read(root, "assets/js/personal-data.mjs")
++        for marker in (
++            "export const RELEASE = 225;",
++            "osb-personal-data-backup-v1",
++            "sanitiseReadingList",
++            "sanitiseReadingProgress",
++            "sanitiseReadingNotes",
++            "sanitiseAccessibility",
++            "sanitiseAudioHistory",
++            "validateBackup",
++            "applyValidatedBackup",
++            "mergeArrayDataset",
++            "sha256Hex",
++        ):
++            if marker not in module:
++                errors.append(f"personal-data module missing marker: {marker}")
++        for prohibited in (
++            "navigator.sendBeacon",
++            "gtag(",
++            "google-analytics",
++            "api.openai.com",
++            "localStorage.clear(",
++            "sessionStorage",
++            "selectedText:",
++            "pageBody:",
++            "document.body.innerText",
++            "document.body.textContent",
++            "caches.open(",
++        ):
++            if prohibited in module:
++                errors.append(
++                    f"prohibited remote or unbounded export marker found: {prohibited}"
++                )
++
++        page = read(root, "personal-data.html")
++        for marker in (
++            'data-release="225"',
++            "Personal Data Backup &amp; Restore Centre",
++            "Import always requires validation, preview and explicit confirmation",
++            "Selected devotional text, published page bodies",
++            "No upload, cloud synchronization, analytics",
++        ):
++            if marker not in page:
++                errors.append(f"personal-data page missing marker: {marker}")
++
++        for html in (
++            "index.html",
++            "platform.html",
++            "discovery.html",
++            "reading-workspace.html",
++            "reading-notes.html",
++            "maintenance.html",
++        ):
++            body = read(root, html)
++            if 'data-release="225"' not in body:
++                errors.append(f"{html} does not expose data-release 225")
++            if "personal-data.html" not in body:
++                errors.append(f"{html} does not link to Personal Data Centre")
++            if re.search(r'data-release="(222|223|224)"', body):
++                errors.append(f"{html} contains stale data-release identity")
++
++        maintenance_module = read(root, "assets/js/maintenance-centre.mjs")
++        if "export const RELEASE = 225;" not in maintenance_module:
++            errors.append("maintenance module did not advance to 225")
++
++        checks_registry = maintenance.get("checks", [])
++        if len(checks_registry) != 8:
++            errors.append("maintenance registry must contain eight checks")
++        if not any(
++            item.get("path") == "/personal-data.html"
++            for item in checks_registry
++        ):
++            errors.append("maintenance registry does not check personal data")
++
++        smoke = read(root, "tools/production_smoke.py")
++        for marker in (
++            'data-release="225"',
++            "const RELEASE = '225';",
++            "/personal-data.html",
++            "export const RELEASE = 225",
++            "personal-data-registry.json",
++            "manifest-release-225.json",
++            "release-225-production-smoke.json",
++        ):
++            if marker not in smoke:
++                errors.append(f"production smoke missing marker: {marker}")
++
++        for workflow in (
++            ".github/workflows/static-site-integrity.yml",
++            ".github/workflows/production-smoke.yml",
++        ):
++            text = read(root, workflow)
++            if "225" not in text or "release-225-" not in text:
++                errors.append(f"{workflow} has stale release identity")
++
++        if not args.package_mode:
++            for relative in (
++                "assets/js/reading-list.mjs",
++                "assets/js/accessibility-preferences.mjs",
++                "assets/js/audio-history.mjs",
++                "assets/js/reading-notes.mjs",
++                "assets/js/reader-experience.js",
++                "tools/site_audit.py",
++                "tests/reading-notes.test.mjs",
++                "tests/reader-experience.test.mjs",
++                "tests/discovery-workspace.test.mjs",
++                "tests/knowledge-graph-explorer.test.mjs",
++                "tests/audio-history.test.mjs",
++                "tests/print-support.test.mjs",
++                "tests/accessibility-preferences.test.mjs",
++                "tests/reading-list.test.mjs",
++                "tests/search-facets.test.mjs",
++            ):
++                if not (root / relative).is_file():
++                    errors.append(f"repository mode requires {relative}")
++
++    report = {
++        "release": 225,
++        "base_commit": BASE_COMMIT,
++        "mode": "package" if args.package_mode else "repository",
++        "status": "FAIL" if errors else "PASS",
++        "errors": errors,
++        "checks": checks,
++        "github_actions": "NOT_RUN",
++        "deployed_production": "NOT_RUN",
++    }
++    report_path = (
++        args.report if args.report.is_absolute()
++        else root / args.report
++    )
++    report_path.parent.mkdir(parents=True, exist_ok=True)
++    report_path.write_text(
++        json.dumps(report, ensure_ascii=False, indent=2) + "\n",
++        encoding="utf-8"
++    )
++    print(json.dumps(report, ensure_ascii=False, indent=2))
++    return 1 if errors else 0
++
++if __name__ == "__main__":
++    sys.exit(main())
+diff --git a/.github/workflows/static-site-integrity.yml b/.github/workflows/static-site-integrity.yml
+--- a/.github/workflows/static-site-integrity.yml
++++ b/.github/workflows/static-site-integrity.yml
+@@ -1,4 +1,4 @@
+-name: Release 224 Static Site Integrity
++name: Release 225 Static Site Integrity
+ 
+ on:
+   push:
+@@ -12,7 +12,7 @@
+ 
+ jobs:
+   integrity:
+-    name: Release 224 repository validation
++    name: Release 225 repository validation
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repository
+@@ -28,15 +28,16 @@
+         with:
+           node-version: "20"
+ 
+-      - name: Validate Release 224 identities and note-storage boundaries
+-        run: python tools/release_224_validate.py --root . --report artifacts/release-224-overlay-validation.json
++      - name: Validate Release 225 identities and portability boundaries
++        run: python tools/release_225_validate.py --root . --report artifacts/release-225-overlay-validation.json
+ 
+       - name: Check browser modules
+         run: |
++          node --check assets/js/personal-data.mjs
++          node --check assets/js/maintenance-centre.mjs
+           node --check assets/js/reading-notes.mjs
+           node --check assets/js/reader-experience.js
+           node --check assets/js/pwa-register.js
+-          node --check assets/js/maintenance-centre.mjs
+           node --check assets/js/discovery-workspace.mjs
+           node --check assets/js/knowledge-graph-explorer.mjs
+           node --check assets/js/audio-history.mjs
+@@ -46,18 +47,18 @@
+           node --check assets/js/search-facets.mjs
+ 
+       - name: Run browser-local feature unit tests
+-        run: node --test tests/reading-notes.test.mjs tests/reader-experience.test.mjs tests/maintenance-centre.test.mjs tests/discovery-workspace.test.mjs tests/knowledge-graph-explorer.test.mjs tests/audio-history.test.mjs tests/print-support.test.mjs tests/accessibility-preferences.test.mjs tests/reading-list.test.mjs tests/search-facets.test.mjs
++        run: node --test tests/personal-data.test.mjs tests/reading-notes.test.mjs tests/reader-experience.test.mjs tests/maintenance-centre.test.mjs tests/discovery-workspace.test.mjs tests/knowledge-graph-explorer.test.mjs tests/audio-history.test.mjs tests/print-support.test.mjs tests/accessibility-preferences.test.mjs tests/reading-list.test.mjs tests/search-facets.test.mjs
+ 
+       - name: Run site-audit unit tests
+         run: python -m unittest discover -s tests -p 'test_site_audit.py'
+ 
+       - name: Run repository-wide static audit
+-        run: python tools/site_audit.py --root . --json-report artifacts/release-224-site-audit.json --markdown-report artifacts/release-224-site-audit.md
++        run: python tools/site_audit.py --root . --json-report artifacts/release-225-site-audit.json --markdown-report artifacts/release-225-site-audit.md
+ 
+-      - name: Upload Release 224 integrity evidence
++      - name: Upload Release 225 integrity evidence
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+-          name: release-224-static-integrity-${{ github.sha }}
++          name: release-225-static-integrity-${{ github.sha }}
+           path: artifacts/
+           if-no-files-found: error
+diff --git a/.github/workflows/production-smoke.yml b/.github/workflows/production-smoke.yml
+--- a/.github/workflows/production-smoke.yml
++++ b/.github/workflows/production-smoke.yml
+@@ -1,4 +1,4 @@
+-name: Release 224 Production Smoke
++name: Release 225 Production Smoke
+ 
+ on:
+   push:
+@@ -11,12 +11,12 @@
+   contents: read
+ 
+ concurrency:
+-  group: release-224-production-smoke
++  group: release-225-production-smoke
+   cancel-in-progress: true
+ 
+ jobs:
+   smoke:
+-    name: Observe deployed Release 224
++    name: Observe deployed Release 225
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repository
+@@ -32,12 +32,12 @@
+         run: sleep 90
+ 
+       - name: Run deployed production smoke checks
+-        run: python tools/production_smoke.py --retries 18 --delay 20 --report artifacts/release-224-production-smoke.json
++        run: python tools/production_smoke.py --retries 18 --delay 20 --report artifacts/release-225-production-smoke.json
+ 
+-      - name: Upload Release 224 production evidence
++      - name: Upload Release 225 production evidence
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+-          name: release-224-production-smoke-${{ github.sha }}
+-          path: artifacts/release-224-production-smoke.json
++          name: release-225-production-smoke-${{ github.sha }}
++          path: artifacts/release-225-production-smoke.json
+           if-no-files-found: error
+diff --git a/manifest-release-225.json b/manifest-release-225.json
+new file mode 100644
+--- /dev/null
++++ b/manifest-release-225.json
+@@ -0,0 +1,62 @@
++{
++  "project": "OmSaravanaBhava",
++  "release": 225,
++  "name": "Browser-Local Personal Data Backup and Restore Centre",
++  "base_commit": "3600bf1b301d2240f3bdb7f8edbcbe8e552e916c",
++  "generated": "2026-07-14",
++  "required_commit_title": "Release 225: add browser-local data backup centre",
++  "validation_status": "LOCAL_PACKAGE_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
++  "production_files": [
++    "personal-data.html",
++    "assets/css/personal-data.css",
++    "assets/js/personal-data.mjs",
++    "data/personal-data-registry.json",
++    "index.html",
++    "platform.html",
++    "discovery.html",
++    "reading-workspace.html",
++    "reading-notes.html",
++    "maintenance.html",
++    "assets/js/maintenance-centre.mjs",
++    "data/maintenance-checks.json",
++    "data/site-routes.json",
++    "sitemap.xml",
++    "service-worker.js"
++  ],
++  "ci_alignment_files": [
++    "quality/site-audit-config.json",
++    "tools/production_smoke.py",
++    "tests/test_site_audit.py",
++    "tests/personal-data.test.mjs",
++    "tests/maintenance-centre.test.mjs",
++    "tools/release_225_validate.py",
++    ".github/workflows/static-site-integrity.yml",
++    ".github/workflows/production-smoke.yml"
++  ],
++  "claims": {
++    "backup_schema": "osb-personal-data-backup-v1",
++    "registered_datasets": 5,
++    "maximum_import_bytes": 1048576,
++    "validation_before_restore": true,
++    "preview_before_restore": true,
++    "merge_mode": true,
++    "replace_selected_mode": true,
++    "sha256_export_digest_when_supported": true,
++    "unknown_storage_keys_exported": false,
++    "selected_devotional_text_exported": false,
++    "page_body_exported": false,
++    "cache_api_content_exported": false,
++    "cloud_upload": false,
++    "server_account": false,
++    "analytics": false,
++    "service_worker_release": 225,
++    "new_optional_cache_assets": 5
++  },
++  "limitations": [
++    "Only registered datasets are portable.",
++    "Downloaded JSON files are controlled by the user after export.",
++    "Restore remains browser-local and does not synchronize across devices.",
++    "Successful restore is not production certification.",
++    "GitHub Actions and deployed production checks remain pending."
++  ]
++}

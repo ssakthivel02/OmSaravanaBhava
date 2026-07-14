@@ -1,0 +1,62 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 225,
+  "name": "Browser-Local Personal Data Backup and Restore Centre",
+  "base_commit": "3600bf1b301d2240f3bdb7f8edbcbe8e552e916c",
+  "generated": "2026-07-14",
+  "required_commit_title": "Release 225: add browser-local data backup centre",
+  "validation_status": "LOCAL_PACKAGE_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
+  "production_files": [
+    "personal-data.html",
+    "assets/css/personal-data.css",
+    "assets/js/personal-data.mjs",
+    "data/personal-data-registry.json",
+    "index.html",
+    "platform.html",
+    "discovery.html",
+    "reading-workspace.html",
+    "reading-notes.html",
+    "maintenance.html",
+    "assets/js/maintenance-centre.mjs",
+    "data/maintenance-checks.json",
+    "data/site-routes.json",
+    "sitemap.xml",
+    "service-worker.js"
+  ],
+  "ci_alignment_files": [
+    "quality/site-audit-config.json",
+    "tools/production_smoke.py",
+    "tests/test_site_audit.py",
+    "tests/personal-data.test.mjs",
+    "tests/maintenance-centre.test.mjs",
+    "tools/release_225_validate.py",
+    ".github/workflows/static-site-integrity.yml",
+    ".github/workflows/production-smoke.yml"
+  ],
+  "claims": {
+    "backup_schema": "osb-personal-data-backup-v1",
+    "registered_datasets": 5,
+    "maximum_import_bytes": 1048576,
+    "validation_before_restore": true,
+    "preview_before_restore": true,
+    "merge_mode": true,
+    "replace_selected_mode": true,
+    "sha256_export_digest_when_supported": true,
+    "unknown_storage_keys_exported": false,
+    "selected_devotional_text_exported": false,
+    "page_body_exported": false,
+    "cache_api_content_exported": false,
+    "cloud_upload": false,
+    "server_account": false,
+    "analytics": false,
+    "service_worker_release": 225,
+    "new_optional_cache_assets": 5
+  },
+  "limitations": [
+    "Only registered datasets are portable.",
+    "Downloaded JSON files are controlled by the user after export.",
+    "Restore remains browser-local and does not synchronize across devices.",
+    "Successful restore is not production certification.",
+    "GitHub Actions and deployed production checks remain pending."
+  ]
+}

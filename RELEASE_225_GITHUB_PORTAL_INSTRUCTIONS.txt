@@ -1,0 +1,62 @@
+Release 225 — GitHub browser upload instructions
+
+Repository:
+https://github.com/ssakthivel02/OmSaravanaBhava
+
+Verified Release 224 base head:
+3600bf1b301d2240f3bdb7f8edbcbe8e552e916c
+
+Required commit title — enter this in the SMALL UPPER FIELD:
+Release 225: add browser-local data backup centre
+
+Leave the large commit-description field blank.
+
+UPLOAD
+1. Download and extract OmSaravanaBhava-Release-225.zip.
+2. Enable Windows View > Show > Hidden items.
+3. Open the extracted package folder.
+4. In GitHub main, select Add file > Upload files.
+5. Drag the CONTENTS of the extracted folder, not the outer folder.
+6. Preserve every directory path.
+7. Confirm these exact paths appear before committing:
+   .github/workflows/static-site-integrity.yml
+   .github/workflows/production-smoke.yml
+   personal-data.html
+   assets/css/personal-data.css
+   assets/js/personal-data.mjs
+   data/personal-data-registry.json
+   manifest-release-225.json
+   tools/release_225_validate.py
+8. Enter the required title in the small upper field.
+9. Leave the large description field completely blank.
+10. Commit directly to main.
+
+POST-COMMIT VERIFICATION
+1. Copy the new main commit SHA.
+2. Confirm service-worker.js contains:
+   const RELEASE = '225';
+3. Open personal-data.html.
+4. Confirm five registered datasets and actual browser-local counts are shown.
+5. Select at least one dataset and download a JSON backup.
+6. Confirm a SHA-256 value appears when the browser supports Web Crypto.
+7. Select the downloaded file for import.
+8. Confirm validation and preview occur before Apply becomes available.
+9. Test Merge with one selected dataset.
+10. Test Replace only after creating a fresh backup and selecting one safe dataset.
+11. Confirm unrelated browser keys and unselected datasets remain unchanged.
+12. Confirm selected devotional text, page bodies and Cache API content are absent from the backup.
+13. Confirm data/site-routes.json and sitemap.xml contain personal-data.html once.
+14. Open maintenance.html and run Release 225 checks.
+15. Wait for:
+    Release 225 Static Site Integrity
+    Release 225 Production Smoke
+16. Do not proceed to Release 226 until Release 225 is verified.
+
+DO NOT
+- Do not upload only personal-data.html.
+- Do not omit hidden .github workflow files.
+- Do not rename an older ZIP.
+- Do not import a JSON file from an unknown source.
+- Do not claim cloud backup, user accounts or cross-device synchronization.
+- Do not place the release title in the large description field.
+- Do not mark GitHub Actions or production as passed before they run.

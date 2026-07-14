@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ta">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Personal Data Backup &amp; Restore Centre | Om Saravana Bhava</title>
+<meta name="description" content="Export, validate, preview and restore registered OmSaravanaBhava browser-local reading, accessibility and listening data without cloud accounts or analytics.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://omsaravanabhava.org/personal-data.html">
+<link rel="stylesheet" href="assets/css/osb44.css">
+<link rel="stylesheet" href="assets/css/personal-data.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#a51d17">
+<link rel="manifest" href="manifest.json">
+<script defer src="assets/js/pwa-register.js"></script>
+<script type="module" src="assets/js/personal-data.mjs"></script>
+</head>
+<body data-release="225">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="top">🛕 ஓம் சரவணபவ · Explicit browser-local data portability</div>
+<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+<div class="links"><a href="platform.html">Platform</a><a href="reading-workspace.html">Reading</a><a href="reading-notes.html">Notes</a><a href="accessibility.html">Accessibility</a><a href="personal-data.html" aria-current="page">Personal Data</a></div>
+</div></nav>
+<main id="main-content" class="wrap">
+<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Personal Data Centre</span></p></nav>
+
+<section class="card personal-data-hero">
+<div>
+<span class="pill">Release 225 · Browser-local portability</span>
+<h1 class="section-title" lang="ta">தனிப்பட்ட தரவு காப்பு மையம்</h1>
+<h2>Personal Data Backup &amp; Restore Centre</h2>
+<p>Export or restore only the registered reading, accessibility and listening datasets held in this browser. Import always requires validation, preview and explicit confirmation.</p>
+</div>
+<div class="personal-data-metric"><strong id="personalDataDatasetCount">0</strong><span>registered datasets</span></div>
+<div class="personal-data-metric"><strong id="personalDataPopulatedCount">0</strong><span>datasets with data</span></div>
+<div class="personal-data-metric"><strong id="personalDataRecordCount">0</strong><span>local records</span></div>
+</section>
+
+<p id="personalDataStatus" role="status" aria-live="polite">Loading the local data registry…</p>
+
+<section class="personal-data-layout">
+<article class="card personal-data-panel">
+<h2>1. Export a local backup</h2>
+<p>Choose the datasets to place in a downloadable JSON file. Cache contents and published page bodies are never exported.</p>
+<div id="personalDataInventory" class="personal-data-inventory"></div>
+<h3>Datasets to export</h3>
+<div id="personalDataExportDatasets" class="personal-data-checkboxes"></div>
+<div class="personal-data-actions">
+<button class="btn" id="personalDataExport" type="button">Download selected backup</button>
+</div>
+<p id="personalDataChecksum">SHA-256 appears here after export when supported.</p>
+</article>
+
+<article class="card personal-data-panel">
+<h2>2. Validate and restore</h2>
+<p>Select a previously exported OmSaravanaBhava JSON backup. No local data changes until you review the preview and press Apply.</p>
+<label class="personal-data-file" for="personalDataImportFile">Backup JSON file
+<input id="personalDataImportFile" type="file" accept="application/json,.json">
+</label>
+<div id="personalDataImportPreview" class="personal-data-preview-grid">
+<article class="personal-data-preview"><p>No backup loaded.</p></article>
+</div>
+<h3>Validated datasets to restore</h3>
+<div id="personalDataImportDatasets" class="personal-data-checkboxes"></div>
+<label class="personal-data-mode" for="personalDataImportMode">Restore mode
+<select id="personalDataImportMode">
+<option value="merge">Merge arrays and keep newer matching records</option>
+<option value="replace">Replace only the selected datasets</option>
+</select>
+</label>
+<div class="personal-data-actions">
+<button class="btn" id="personalDataApply" type="button" disabled>Apply validated restore</button>
+</div>
+<div id="personalDataApplyResult" class="card personal-data-result" aria-live="polite">
+<p>No restore has been applied.</p>
+</div>
+</article>
+</section>
+
+<section class="card personal-data-boundary">
+<h2>Data and safety boundary</h2>
+<ul>
+<li>Only five explicitly registered local datasets are supported: reading list, reading progress, reading notes, accessibility preferences and audio listening history.</li>
+<li>Unknown datasets and invalid or duplicate records are ignored during validation.</li>
+<li>Selected devotional text, published page bodies, offline cache contents, credentials and unrelated browser-storage keys are excluded.</li>
+<li>Merge uses each dataset’s stable identifier and newest valid timestamp. Accessibility preferences are replaced as one bounded object.</li>
+<li>No upload, cloud synchronization, analytics, server account or collaborative service is used.</li>
+<li>A successful import is local operational evidence, not production certification.</li>
+</ul>
+</section>
+
+<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>Local backup and restore requires JavaScript. Existing browser-local tools remain independently available.</p></section></noscript>
+</main>
+<footer>© Om Saravana Bhava · <a href="personal-data.html">Personal Data</a> · <a href="privacy.html">Privacy</a> · <a href="maintenance.html">Maintenance</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
+</body>
+</html>

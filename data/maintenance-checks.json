@@ -1,25 +1,25 @@
 {
-  "release": 224,
+  "release": 225,
   "generated": "2026-07-14",
-  "builtAgainstCommit": "03f8c23e50aea1323211d2ca44cf4cddcf0deec4",
+  "builtAgainstCommit": "3600bf1b301d2240f3bdb7f8edbcbe8e552e916c",
   "title": "OmSaravanaBhava Browser Maintenance Check Registry",
-  "scope": "Same-origin Release 224 reading-notes, reading-workspace, route, audit and maintenance continuity checks. This registry does not prove GitHub Actions status or repository certification.",
+  "scope": "Same-origin Release 225 personal-data, route, audit and maintenance continuity checks. This registry does not prove GitHub Actions status or repository certification.",
   "checks": [
     {
       "id": "service-worker-release",
       "label": "Service-worker release identity",
       "path": "/service-worker.js",
       "mode": "textIncludes",
-      "expected": "const RELEASE = '224';",
+      "expected": "const RELEASE = '225';",
       "severity": "critical"
     },
     {
       "id": "release-manifest",
       "label": "Release manifest identity",
-      "path": "/manifest-release-224.json",
+      "path": "/manifest-release-225.json",
       "mode": "jsonEquals",
       "jsonPath": "release",
-      "expected": 224,
+      "expected": 225,
       "severity": "critical"
     },
     {
@@ -27,8 +27,8 @@
       "label": "Route directory integrity",
       "path": "/data/site-routes.json",
       "mode": "routeRegistry",
-      "expectedRelease": 224,
-      "requiredRoute": "/reading-notes.html",
+      "expectedRelease": 225,
+      "requiredRoute": "/personal-data.html",
       "severity": "critical"
     },
     {
@@ -36,47 +36,48 @@
       "label": "Static-audit configuration",
       "path": "/quality/site-audit-config.json",
       "mode": "auditConfig",
-      "expectedRelease": "224",
+      "expectedRelease": "225",
       "requiredFiles": [
-        "reading-notes.html",
-        "assets/css/reading-notes.css",
-        "assets/js/reading-notes.mjs",
-        "data/reading-notes.json",
-        "manifest-release-224.json"
+        "personal-data.html",
+        "assets/css/personal-data.css",
+        "assets/js/personal-data.mjs",
+        "data/personal-data-registry.json",
+        "manifest-release-225.json"
       ],
       "severity": "critical"
     },
     {
       "id": "sitemap-route",
-      "label": "Reading Notes sitemap registration",
+      "label": "Personal Data sitemap registration",
       "path": "/sitemap.xml",
       "mode": "textCount",
-      "expected": "https://omsaravanabhava.org/reading-notes.html",
+      "expected": "https://omsaravanabhava.org/personal-data.html",
       "expectedCount": 1,
       "severity": "important"
     },
     {
-      "id": "reading-notes-page",
-      "label": "Reading Notes page",
-      "path": "/reading-notes.html",
+      "id": "personal-data-page",
+      "label": "Personal Data Centre page",
+      "path": "/personal-data.html",
       "mode": "textIncludes",
-      "expected": "data-release=\"224\"",
+      "expected": "data-release=\"225\"",
       "severity": "critical"
     },
     {
-      "id": "reading-notes-module",
-      "label": "Reading Notes browser module",
-      "path": "/assets/js/reading-notes.mjs",
+      "id": "personal-data-module",
+      "label": "Personal Data browser module",
+      "path": "/assets/js/personal-data.mjs",
       "mode": "textIncludes",
-      "expected": "export const RELEASE = 224;",
+      "expected": "export const RELEASE = 225;",
       "severity": "critical"
     },
     {
-      "id": "reader-bootstrap",
-      "label": "Shared notes bootstrap",
-      "path": "/assets/js/pwa-register.js",
-      "mode": "textIncludes",
-      "expected": "reading-notes.mjs",
+      "id": "personal-data-registry",
+      "label": "Personal Data registry",
+      "path": "/data/personal-data-registry.json",
+      "mode": "jsonEquals",
+      "jsonPath": "release",
+      "expected": 225,
       "severity": "important"
     }
   ],
@@ -97,7 +98,8 @@
     "/audio-library.html",
     "/audio-history.html",
     "/knowledge-graph-explorer.html",
-    "/maintenance.html"
+    "/maintenance.html",
+    "/personal-data.html"
   ],
   "transientCachePrefixes": [
     "osb-runtime-v",

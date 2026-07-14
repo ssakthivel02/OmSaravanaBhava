@@ -1,0 +1,73 @@
+{
+  "release": 225,
+  "generated": "2026-07-14",
+  "builtAgainstCommit": "3600bf1b301d2240f3bdb7f8edbcbe8e552e916c",
+  "schema": "osb-personal-data-backup-v1",
+  "canonicalOrigin": "https://omsaravanabhava.org",
+  "maximumImportBytes": 1048576,
+  "title": "OmSaravanaBhava Browser-Local Personal Data Registry",
+  "scope": "Explicitly registered browser-local datasets only. Cache contents, devotional page bodies, selected source text, credentials and unrelated localStorage keys are excluded.",
+  "datasets": [
+    {
+      "id": "readingList",
+      "label": "Offline Reading List",
+      "storageKey": "osb-reading-list-v1",
+      "shape": "array",
+      "maximumItems": 100,
+      "uniqueBy": "route",
+      "timestampField": "savedAt",
+      "mergeSupported": true
+    },
+    {
+      "id": "readingProgress",
+      "label": "Reading Progress",
+      "storageKey": "osb-reading-progress-v1",
+      "shape": "array",
+      "maximumItems": 50,
+      "uniqueBy": "route",
+      "timestampField": "lastVisitedAt",
+      "mergeSupported": true
+    },
+    {
+      "id": "readingNotes",
+      "label": "Reading Notes and Section Bookmarks",
+      "storageKey": "osb-reading-notes-v1",
+      "shape": "array",
+      "maximumItems": 100,
+      "uniqueBy": "id",
+      "timestampField": "updatedAt",
+      "mergeSupported": true
+    },
+    {
+      "id": "accessibility",
+      "label": "Accessibility Preferences",
+      "storageKey": "osb-accessibility-preferences-v1",
+      "shape": "object",
+      "maximumItems": 1,
+      "mergeSupported": false
+    },
+    {
+      "id": "audioHistory",
+      "label": "Audio Listening History",
+      "storageKey": "osb-audio-listening-history-v1",
+      "shape": "array",
+      "maximumItems": 20,
+      "uniqueBy": "id",
+      "timestampField": "lastPlayedAt",
+      "mergeSupported": true
+    }
+  ],
+  "excluded": [
+    "Cache API content and offline page bodies",
+    "Selected devotional text and published page body content",
+    "Service-worker caches and GitHub credentials",
+    "Unregistered localStorage or sessionStorage keys",
+    "Analytics identifiers, because no analytics dataset is defined"
+  ],
+  "limitations": [
+    "Backup and restore remain inside the current browser unless the user downloads or imports a JSON file.",
+    "Import requires an explicit preview and apply action.",
+    "Restore does not provide cloud synchronization or user accounts.",
+    "A successful local restore is not production certification."
+  ]
+}
