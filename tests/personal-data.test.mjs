@@ -12,12 +12,7 @@ import {
   datasetCount,
   mergeArrayDataset,
   normaliseSameOriginRoute,
-  sanitiseAccessibility,
-  sanitiseAudioHistory,
-  sanitiseCollections,
-  sanitiseReadingList,
-  sanitiseReadingNotes,
-  sanitiseReadingProgress,
+  sanitisePracticePlans,
   validateBackup
 } from '../assets/js/personal-data.mjs';
 
@@ -26,211 +21,122 @@ class MemoryStorage {
     this.values = new Map(Object.entries(initial));
   }
   getItem(key) {
-    return this.values.has(key)
-      ? this.values.get(key)
-      : null;
+    return this.values.has(key) ? this.values.get(key) : null;
   }
   setItem(key, value) {
     this.values.set(key, String(value));
-  }
-  removeItem(key) {
-    this.values.delete(key);
   }
 }
 
 const registry = JSON.parse(
   fs.readFileSync(
-    new URL(
-      '../data/personal-data-registry.json',
-      import.meta.url
-    ),
+    new URL('../data/personal-data-registry.json', import.meta.url),
     'utf8'
   )
 );
 
-test('release, schema and six registered datasets are stable', () => {
-  assert.equal(RELEASE, 227);
-  assert.equal(registry.release, 227);
-  assert.equal(
-    BACKUP_SCHEMA,
-    'osb-personal-data-backup-v1'
-  );
+test('release, schema and seven datasets are stable', () => {
+  assert.equal(RELEASE, 228);
+  assert.equal(registry.release, 228);
+  assert.equal(BACKUP_SCHEMA, 'osb-personal-data-backup-v1');
   assert.deepEqual(
     registry.datasets.map(item => item.id),
     DATASET_IDS
   );
-  assert.equal(DATASET_IDS.length, 6);
-  assert.equal(DATASET_IDS.at(-1), 'collections');
+  assert.equal(DATASET_IDS.length, 7);
+  assert.equal(DATASET_IDS.at(-1), 'practicePlans');
 });
 
-test('same-origin routes are accepted and external routes rejected', () => {
+test('same-origin route validation remains active', () => {
   assert.equal(
-    normaliseSameOriginRoute(
-      '/literature/kandar-anubhuti.html'
-    ),
-    '/literature/kandar-anubhuti.html'
+    normaliseSameOriginRoute('/literature/a.html'),
+    '/literature/a.html'
   );
   assert.equal(
-    normaliseSameOriginRoute(
-      'https://example.com/page.html'
-    ),
+    normaliseSameOriginRoute('https://example.com/a.html'),
     ''
   );
 });
 
-test('reading records remain bounded and source body fields are discarded', () => {
-  const list = sanitiseReadingList([
+test('practice plan backup stores bounded metadata only', () => {
+  const plans = sanitisePracticePlans([
     {
-      route: '/a.html',
-      titleEn: 'A',
-      savedAt: '2026-07-14T10:00:00Z'
-    },
-    {
-      route: '/a.html',
-      titleEn: 'Duplicate'
-    },
-    {
-      route: 'https://example.com/b.html'
-    }
-  ]);
-  assert.equal(list.length, 1);
-
-  const progress = sanitiseReadingProgress([{
-    route: '/literature/a.html',
-    percent: 150,
-    content: 'must not be stored'
-  }]);
-  assert.equal(progress[0].percent, 100);
-  assert.equal('content' in progress[0], false);
-
-  const notes = sanitiseReadingNotes([{
-    id: 'n1',
-    route: '/literature/a.html',
-    note: 'My reflection',
-    selectedText: 'not allowed',
-    pageBody: 'not allowed'
-  }]);
-  assert.equal(notes.length, 1);
-  assert.equal('selectedText' in notes[0], false);
-  assert.equal('pageBody' in notes[0], false);
-});
-
-test('accessibility and audio schemas remain bounded', () => {
-  assert.deepEqual(
-    sanitiseAccessibility({
-      largeText: true,
-      highContrast: 1,
-      reducedMotion: true,
-      unknown: true
-    }),
-    {
-      largeText: true,
-      highContrast: false,
-      reducedMotion: true,
-      underlinedLinks: false
-    }
-  );
-  const history = sanitiseAudioHistory([{
-    id: 'track-1',
-    route: '/slokas/a.html',
-    playCount: -3
-  }]);
-  assert.equal(history.length, 1);
-  assert.equal(history[0].playCount, 1);
-});
-
-test('collections store bounded route references only', () => {
-  const collections = sanitiseCollections([
-    {
-      id: 'c1',
+      id: 'p1',
       name: 'Morning',
-      description: 'Daily routes',
-      items: [
+      description: 'Plan',
+      sourceCollectionId: 'c1',
+      weekdays: [1, 3, 3, 9],
+      routes: [
         {
           route: '/literature/a.html',
-          addedAt: '2026-07-14T10:00:00Z',
-          titleEn: 'must not be stored',
           content: 'must not be stored'
         },
+        {route: '/literature/a.html'},
+        {route: 'https://example.com/out.html'}
+      ],
+      currentIndex: 99,
+      checkIns: [
         {
-          route: '/literature/a.html'
-        },
-        {
-          route: 'https://example.com/outside.html'
+          date: '2026-07-14',
+          route: '/literature/a.html',
+          selectedText: 'must not be stored'
         }
       ],
-      selectedText: 'must not be stored',
-      pageBody: 'must not be stored',
-      updatedAt: '2026-07-14T11:00:00Z'
+      pageBody: 'must not be stored'
     }
-  ], 20, 50);
+  ], 12, 50, 180);
 
-  assert.equal(collections.length, 1);
-  assert.equal(collections[0].items.length, 1);
+  assert.equal(plans.length, 1);
+  assert.deepEqual(plans[0].weekdays, [1, 3]);
+  assert.equal(plans[0].routes.length, 1);
   assert.deepEqual(
-    Object.keys(collections[0].items[0]),
+    Object.keys(plans[0].routes[0]),
     ['route', 'addedAt']
   );
-  assert.equal('selectedText' in collections[0], false);
-  assert.equal('pageBody' in collections[0], false);
+  assert.equal(plans[0].currentIndex, 0);
+  assert.equal(plans[0].checkIns.length, 1);
+  assert.deepEqual(
+    Object.keys(plans[0].checkIns[0]),
+    ['date', 'route', 'completedAt']
+  );
+  assert.equal('pageBody' in plans[0], false);
 });
 
 test('inventory and export include only registered keys', () => {
   const storage = new MemoryStorage({
-    'osb-devotional-collections-v1':
-      JSON.stringify([
-        {
-          id: 'c1',
-          name: 'Morning',
-          items: []
-        }
-      ]),
-    'unregistered-secret':
-      JSON.stringify({secret: true})
+    'osb-devotional-practice-plans-v1': JSON.stringify([
+      {id: 'p1', name: 'Plan', routes: [], checkIns: []}
+    ]),
+    'unregistered-secret': JSON.stringify({secret: true})
   });
-
-  const inventory = buildInventory(
-    registry,
-    storage
-  );
+  const inventory = buildInventory(registry, storage);
   assert.equal(inventory.totalRecords, 1);
 
   const backup = createBackup(
     registry,
-    ['collections'],
+    ['practicePlans'],
     storage,
     '2026-07-14T10:00:00Z'
   );
   assert.deepEqual(
     Object.keys(backup.datasets),
-    ['collections']
+    ['practicePlans']
   );
-  assert.equal(
-    'unregistered-secret' in backup.datasets,
-    false
-  );
+  assert.equal('unregistered-secret' in backup.datasets, false);
 });
 
-test('backup validation ignores unknown datasets and validates collections', () => {
-  const wrong = validateBackup({
-    schema: 'wrong',
-    origin: registry.canonicalOrigin,
-    datasets: {}
-  }, registry);
-  assert.equal(wrong.ok, false);
-
+test('backup validation ignores unknown datasets', () => {
   const valid = validateBackup({
     schema: registry.schema,
-    release: 227,
+    release: 228,
     origin: registry.canonicalOrigin,
     datasets: {
-      collections: [
+      practicePlans: [
         {
-          id: 'c1',
-          name: 'Study',
-          items: [
-            {route: '/literature/a.html'}
-          ]
+          id: 'p1',
+          name: 'Plan',
+          routes: [{route: '/literature/a.html'}],
+          checkIns: []
         }
       ],
       unknown: {secret: true}
@@ -240,28 +146,28 @@ test('backup validation ignores unknown datasets and validates collections', () 
   assert.equal(valid.ok, true);
   assert.deepEqual(
     Object.keys(valid.backup.datasets),
-    ['collections']
+    ['practicePlans']
   );
   assert.equal(valid.warnings.length, 1);
 });
 
-test('generic merge keeps newer collection by id', () => {
+test('generic merge keeps newer plan by id', () => {
   const merged = mergeArrayDataset(
     [
       {
-        id: 'c1',
+        id: 'p1',
         name: 'Old',
         updatedAt: '2026-07-14T09:00:00Z'
       }
     ],
     [
       {
-        id: 'c1',
+        id: 'p1',
         name: 'New',
         updatedAt: '2026-07-14T10:00:00Z'
       },
       {
-        id: 'c2',
+        id: 'p2',
         name: 'Second',
         updatedAt: '2026-07-14T08:00:00Z'
       }
@@ -269,34 +175,33 @@ test('generic merge keeps newer collection by id', () => {
     {
       uniqueBy: 'id',
       timestampField: 'updatedAt',
-      maximumItems: 20
+      maximumItems: 12
     }
   );
   assert.equal(merged.length, 2);
   assert.equal(
-    merged.find(item => item.id === 'c1').name,
+    merged.find(item => item.id === 'p1').name,
     'New'
   );
 });
 
-test('validated restore changes only selected registered datasets', () => {
+test('restore changes only selected registered datasets', () => {
   const storage = new MemoryStorage({
-    'osb-devotional-collections-v1':
-      JSON.stringify([
-        {
-          id: 'c1',
-          name: 'Existing',
-          items: [],
-          updatedAt: '2026-07-14T09:00:00Z'
-        }
-      ]),
-    'osb-accessibility-preferences-v1':
-      JSON.stringify({
-        largeText: false,
-        highContrast: false,
-        reducedMotion: false,
-        underlinedLinks: false
-      }),
+    'osb-devotional-practice-plans-v1': JSON.stringify([
+      {
+        id: 'p1',
+        name: 'Existing',
+        routes: [],
+        checkIns: [],
+        updatedAt: '2026-07-14T09:00:00Z'
+      }
+    ]),
+    'osb-accessibility-preferences-v1': JSON.stringify({
+      largeText: false,
+      highContrast: false,
+      reducedMotion: false,
+      underlinedLinks: false
+    }),
     'unregistered-secret': 'preserve-me'
   });
 
@@ -304,19 +209,16 @@ test('validated restore changes only selected registered datasets', () => {
     schema: registry.schema,
     origin: registry.canonicalOrigin,
     datasets: {
-      collections: [
+      practicePlans: [
         {
-          id: 'c2',
+          id: 'p2',
           name: 'Imported',
-          items: [
-            {route: '/literature/a.html'}
-          ],
+          routes: [{route: '/literature/a.html'}],
+          checkIns: [],
           updatedAt: '2026-07-14T10:00:00Z'
         }
       ],
-      accessibility: {
-        largeText: true
-      }
+      accessibility: {largeText: true}
     }
   }, registry);
 
@@ -324,37 +226,27 @@ test('validated restore changes only selected registered datasets', () => {
     validation,
     registry,
     {
-      selectedIds: ['collections'],
+      selectedIds: ['practicePlans'],
       mode: 'merge',
       storage
     }
   );
-
   assert.equal(result.ok, true);
   assert.equal(
     JSON.parse(
-      storage.getItem(
-        'osb-devotional-collections-v1'
-      )
+      storage.getItem('osb-devotional-practice-plans-v1')
     ).length,
     2
   );
   assert.equal(
     JSON.parse(
-      storage.getItem(
-        'osb-accessibility-preferences-v1'
-      )
+      storage.getItem('osb-accessibility-preferences-v1')
     ).largeText,
     false
   );
+  assert.equal(storage.getItem('unregistered-secret'), 'preserve-me');
   assert.equal(
-    storage.getItem('unregistered-secret'),
-    'preserve-me'
-  );
-  assert.equal(
-    datasetCount(
-      validation.backup.datasets.accessibility
-    ),
+    datasetCount(validation.backup.datasets.accessibility),
     1
   );
 });

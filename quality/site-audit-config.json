@@ -1,5 +1,5 @@
 {
-  "expectedRelease": "227",
+  "expectedRelease": "228",
   "canonicalOrigin": "https://omsaravanabhava.org",
   "requiredFiles": [
     "index.html",
@@ -77,7 +77,12 @@
     "assets/css/devotional-collections.css",
     "assets/js/devotional-collections.mjs",
     "data/devotional-collections.json",
-    "manifest-release-227.json"
+    "manifest-release-227.json",
+    "devotional-practice-planner.html",
+    "assets/css/devotional-practice-planner.css",
+    "assets/js/devotional-practice-planner.mjs",
+    "data/devotional-practice-planner.json",
+    "manifest-release-228.json"
   ],
   "canonicalOptional": [
     "404.html",

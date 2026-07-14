@@ -25,8 +25,8 @@ const registry = JSON.parse(
 );
 
 test('release and registry identities are stable', () => {
-  assert.equal(RELEASE, 227);
-  assert.equal(registry.release, 227);
+  assert.equal(RELEASE, 228);
+  assert.equal(registry.release, 228);
   assert.equal(registry.builtAgainstCommit.length, 40);
   assert.equal(registry.checks.length, 8);
 });
@@ -49,51 +49,51 @@ test('same-origin path normalisation rejects external resources', () => {
 });
 
 test('JSON path lookup and equality checks are deterministic', () => {
-  const value = {release: 227, nested: {state: 'ready'}};
+  const value = {release: 228, nested: {state: 'ready'}};
   assert.equal(readJsonPath(value, 'nested.state'), 'ready');
   assert.equal(readJsonPath(value, 'nested.missing'), undefined);
   assert.deepEqual(
-    evaluateJsonEquals(value, 'release', 227),
-    {ok: true, actual: 227}
+    evaluateJsonEquals(value, 'release', 228),
+    {ok: true, actual: 228}
   );
 });
 
 test('route registry requires one maintenance route and no duplicates', () => {
   const valid = evaluateRouteRegistry({
-    release: 227,
+    release: 228,
     routes: [
       {path: '/index.html'},
-      {path: '/devotional-collections.html'}
+      {path: '/devotional-practice-planner.html'}
     ]
-  }, 227, '/devotional-collections.html');
+  }, 228, '/devotional-practice-planner.html');
   assert.equal(valid.ok, true);
 
   const duplicate = evaluateRouteRegistry({
-    release: 227,
+    release: 228,
     routes: [
-      {path: '/devotional-collections.html'},
-      {path: '/devotional-collections.html'}
+      {path: '/devotional-practice-planner.html'},
+      {path: '/devotional-practice-planner.html'}
     ]
-  }, 227, '/devotional-collections.html');
+  }, 228, '/devotional-practice-planner.html');
   assert.equal(duplicate.ok, false);
   assert.equal(duplicate.actual.duplicateCount, 1);
 });
 
 test('audit configuration requires the current release and files', () => {
   const result = evaluateAuditConfig({
-    expectedRelease: '227',
-    requiredFiles: ['devotional-collections.html', 'manifest-release-227.json']
-  }, '227', ['devotional-collections.html', 'manifest-release-227.json']);
+    expectedRelease: '228',
+    requiredFiles: ['devotional-practice-planner.html', 'manifest-release-228.json']
+  }, '228', ['devotional-practice-planner.html', 'manifest-release-228.json']);
   assert.equal(result.ok, true);
 
   const missing = evaluateAuditConfig({
-    expectedRelease: '227',
-    requiredFiles: ['devotional-collections.html']
-  }, '227', ['devotional-collections.html', 'manifest-release-227.json']);
+    expectedRelease: '228',
+    requiredFiles: ['devotional-practice-planner.html']
+  }, '228', ['devotional-practice-planner.html', 'manifest-release-228.json']);
   assert.equal(missing.ok, false);
   assert.deepEqual(
     missing.actual.missing,
-    ['manifest-release-227.json']
+    ['manifest-release-228.json']
   );
 });
 
@@ -123,8 +123,8 @@ test('check payload supports all configured check modes', () => {
   const result = evaluateCheckPayload(
     routeCheck,
     JSON.stringify({
-      release: 227,
-      routes: [{path: '/devotional-collections.html'}]
+      release: 228,
+      routes: [{path: '/devotional-practice-planner.html'}]
     })
   );
   assert.equal(result.ok, true);
@@ -136,14 +136,14 @@ test('resource checks record HTTP and marker results', async () => {
     status: 200,
     async text() {
       return path === '/service-worker.js'
-        ? "const RELEASE = '227';"
+        ? "const RELEASE = '228';"
         : '';
     }
   });
   const result = await runResourceCheck({
     path: '/service-worker.js',
     mode: 'textIncludes',
-    expected: "const RELEASE = '227';"
+    expected: "const RELEASE = '228';"
   }, fetcher);
   assert.equal(result.ok, true);
   assert.equal(result.status, 200);
@@ -174,7 +174,7 @@ test('path auditing preserves independent failures', async () => {
 
 test('transient cache cleanup preserves static and user caches', async () => {
   const names = [
-    'osb-static-v227',
+    'osb-static-v228',
     'osb-runtime-v220',
     'osb-data-v219',
     'osb-user-reading-v1'

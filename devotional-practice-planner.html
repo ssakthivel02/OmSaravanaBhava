@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ta">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Devotional Practice Planner | Om Saravana Bhava</title>
+<meta name="description" content="Create bounded browser-local devotional practice plans from current published routes and collections, with local organisational check-ins and no reminders or analytics.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://omsaravanabhava.org/devotional-practice-planner.html">
+<link rel="stylesheet" href="assets/css/osb44.css">
+<link rel="stylesheet" href="assets/css/devotional-practice-planner.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#a51d17">
+<link rel="manifest" href="manifest.json">
+<script defer src="assets/js/pwa-register.js"></script>
+<script type="module" src="assets/js/devotional-practice-planner.mjs"></script>
+</head>
+<body data-release="228">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="top">🛕 ஓம் சரவணபவ · Browser-local devotional practice organisation</div>
+<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+<div class="links"><a href="personal-library.html">My Library</a><a href="devotional-collections.html">Collections</a><a href="devotional-practice-planner.html" aria-current="page">Practice Planner</a><a href="reading-workspace.html">Reading</a><a href="personal-data.html">Backup</a></div>
+</div></nav>
+<main id="main-content" class="wrap">
+<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="devotional-collections.html">Collections</a> › <span aria-current="page">Practice Planner</span></p></nav>
+
+<section class="card planner-hero">
+<div>
+<span class="pill">Release 228 · Local planning and check-ins</span>
+<h1 class="section-title" lang="ta">பக்தி பயிற்சி திட்டம்</h1>
+<h2>Devotional Practice Planner</h2>
+<p>Create bounded plans from existing collections or eligible published routes. Weekdays are planning guidance only; local check-ins are organisational markers and do not claim spiritual completion.</p>
+</div>
+<div class="planner-metric"><strong id="plannerPlanCount">0</strong><span>plans</span></div>
+<div class="planner-metric"><strong id="plannerRouteCount">0</strong><span>valid routes</span></div>
+<div class="planner-metric"><strong id="plannerDueCount">0</strong><span>planned today</span></div>
+<div class="planner-metric"><strong id="plannerCheckedCount">0</strong><span>checked in today</span></div>
+<div class="planner-metric"><strong id="plannerIgnoredCount">0</strong><span>stale routes</span></div>
+</section>
+
+<p id="plannerStatus" role="status" aria-live="polite">Loading local practice plans…</p>
+
+<section class="planner-layout">
+<aside class="planner-sidebar">
+<article class="card">
+<h2>Create a plan</h2>
+<form id="plannerCreateForm">
+<label for="plannerName">Plan name
+<input id="plannerName" required maxlength="60" placeholder="Morning literature, Friday temple study…">
+</label>
+<label for="plannerDescription">Description
+<textarea id="plannerDescription" rows="4" maxlength="240" placeholder="Optional organisational purpose"></textarea>
+</label>
+<label for="plannerSourceCollection">Start from collection
+<select id="plannerSourceCollection"><option value="">Start with an empty plan</option></select>
+</label>
+<fieldset>
+<legend>Planned weekdays</legend>
+<div id="plannerWeekdays" class="planner-weekdays"></div>
+<p>Leave every day unchecked to make the plan available on any day.</p>
+</fieldset>
+<button class="btn" type="submit">Create plan locally</button>
+</form>
+</article>
+<article class="card">
+<h2>Find a plan</h2>
+<label for="plannerSearch">Search plans
+<input id="plannerSearch" type="search" placeholder="Tamil, English, route or category…" autocomplete="off">
+</label>
+</article>
+<article class="card">
+<h2>Capacity</h2>
+<p>Maximum 12 plans, 50 routes per plan and 180 dated check-ins per plan.</p>
+<p><a class="btn secondary" href="personal-data.html">Back up practice plans</a></p>
+</article>
+</aside>
+<div id="plannerPlans" class="planner-plans" aria-label="Devotional practice plans">
+<article class="card">Loading plans…</article>
+</div>
+</section>
+
+<section class="card planner-route-browser">
+<div>
+<span class="pill">Current published route directory</span>
+<h2>Add routes to a plan</h2>
+<p>Utility, draft, private, unpublished, archived, navigation, directory and milestone routes are excluded.</p>
+</div>
+<div class="planner-route-controls">
+<label for="plannerRouteSearch">Search eligible routes
+<input id="plannerRouteSearch" type="search" placeholder="Thiruppugazh, temple, festival, கந்தர்…" autocomplete="off">
+</label>
+<label for="plannerRouteTarget">Target plan
+<select id="plannerRouteTarget"><option value="">Create a plan first</option></select>
+</label>
+<button class="btn secondary" id="plannerRouteReset" type="button">Reset route search</button>
+</div>
+<div id="plannerRouteResults" class="grid planner-route-results" aria-label="Eligible route results">
+<article class="card">Loading eligible routes…</article>
+</div>
+</section>
+
+<section class="card planner-boundary">
+<h2>Interpretation and privacy boundary</h2>
+<ul>
+<li>Plan storage contains only identifiers, names, descriptions, weekday numbers, same-origin route references, bounded check-ins and timestamps.</li>
+<li>A local check-in records a date and route reference; it does not prove that the route was completely read, recited or spiritually completed.</li>
+<li>Weekdays do not create notifications, calendar events, alarms or background monitoring.</li>
+<li>Devotional text, selected passages, page bodies, images and audio files are not copied into plan storage.</li>
+<li>Practice plans are registered as the seventh bounded dataset in the Personal Data Centre.</li>
+<li>No streaks, scores, spiritual-outcome claims, analytics, recommendations, cloud synchronization or accounts are used.</li>
+</ul>
+</section>
+
+<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>Browser-local practice planning requires JavaScript. Published routes remain available through <a href="discovery.html">Discovery</a>.</p></section></noscript>
+</main>
+<footer>© Om Saravana Bhava · <a href="devotional-practice-planner.html">Practice Planner</a> · <a href="devotional-collections.html">Collections</a> · <a href="personal-library.html">My Library</a> · <a href="personal-data.html">Backup</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
+</body>
+</html>

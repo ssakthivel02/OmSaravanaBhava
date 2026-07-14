@@ -1,5 +1,5 @@
 {
-  "release": 227,
+  "release": 228,
   "generated": "2026-07-14",
   "scope": "Public HTML routes represented by the Release 215 sitemap and route directory.",
   "statusMeaning": {
@@ -612,6 +612,14 @@
       "category": "Platform",
       "status": "utility",
       "summary": "Browser-local named collections containing bounded same-origin route references only, with explicit stale-route reporting and backup support."
+    },
+    {
+      "path": "/devotional-practice-planner.html",
+      "titleTa": "பக்தி பயிற்சி திட்டம்",
+      "titleEn": "Devotional Practice Planner",
+      "category": "Platform",
+      "status": "utility",
+      "summary": "Browser-local bounded practice plans using current same-origin route references, weekday guidance and organisational dated check-ins."
     },
     {
       "path": "/accessibility.html",

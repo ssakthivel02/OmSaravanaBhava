@@ -1,12 +1,12 @@
 {
-  "release": 227,
+  "release": 228,
   "generated": "2026-07-14",
-  "builtAgainstCommit": "a241ba10ff7fc319a4347d616e2f0c6bb816cbd7",
+  "builtAgainstCommit": "25598978c0fc330e15da527b54ac51594a204435",
   "schema": "osb-personal-data-backup-v1",
   "canonicalOrigin": "https://omsaravanabhava.org",
   "maximumImportBytes": 1048576,
   "title": "OmSaravanaBhava Browser-Local Personal Data Registry",
-  "scope": "Six explicitly registered browser-local datasets only. Cache contents, devotional page bodies, selected source text, credentials and unrelated localStorage keys are excluded.",
+  "scope": "Seven explicitly registered browser-local datasets only. Cache contents, devotional page bodies, selected source text, credentials and unrelated localStorage keys are excluded.",
   "datasets": [
     {
       "id": "readingList",
@@ -63,6 +63,18 @@
       "shape": "array",
       "maximumItems": 20,
       "maximumRoutesPerCollection": 50,
+      "uniqueBy": "id",
+      "timestampField": "updatedAt",
+      "mergeSupported": true
+    },
+    {
+      "id": "practicePlans",
+      "label": "Devotional Practice Plans",
+      "storageKey": "osb-devotional-practice-plans-v1",
+      "shape": "array",
+      "maximumItems": 12,
+      "maximumRoutesPerPlan": 50,
+      "maximumCheckInsPerPlan": 180,
       "uniqueBy": "id",
       "timestampField": "updatedAt",
       "mergeSupported": true

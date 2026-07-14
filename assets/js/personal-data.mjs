@@ -1,8 +1,9 @@
-export const RELEASE = 227;
+export const RELEASE = 228;
 export const REGISTRY_PATH = '/data/personal-data-registry.json';
 export const BACKUP_SCHEMA = 'osb-personal-data-backup-v1';
 export const CANONICAL_ORIGIN = 'https://omsaravanabhava.org';
 export const COLLECTIONS_STORAGE_KEY = 'osb-devotional-collections-v1';
+export const PRACTICE_PLANS_STORAGE_KEY = 'osb-devotional-practice-plans-v1';
 
 export const DATASET_IDS = Object.freeze([
   'readingList',
@@ -10,7 +11,8 @@ export const DATASET_IDS = Object.freeze([
   'readingNotes',
   'accessibility',
   'audioHistory',
-  'collections'
+  'collections',
+  'practicePlans'
 ]);
 
 const safeStorage = storage => {
@@ -233,6 +235,127 @@ export const sanitiseCollections = (
   );
 };
 
+
+export const sanitisePracticePlans = (
+  value,
+  maximumItems = 12,
+  maximumRoutesPerPlan = 50,
+  maximumCheckInsPerPlan = 180
+) => {
+  const seenPlans = new Set();
+  const plans = [];
+
+  (Array.isArray(value) ? value : []).forEach(record => {
+    if (!record || typeof record !== 'object') return;
+    const id = cleanText(record.id, 180);
+    const name = cleanText(record.name, 60);
+    if (!id || !name || seenPlans.has(id)) return;
+
+    const routeSeen = new Set();
+    const routes = [];
+    (Array.isArray(record.routes) ? record.routes : []).forEach(item => {
+      if (!item || typeof item !== 'object') return;
+      const route = normaliseSameOriginRoute(item.route);
+      const path = route
+        ? new URL(route, CANONICAL_ORIGIN).pathname
+        : '';
+      if (!route || !path || routeSeen.has(path)) return;
+      routeSeen.add(path);
+      routes.push({
+        route,
+        addedAt:
+          normaliseIsoDate(item.addedAt) ||
+          new Date(0).toISOString()
+      });
+    });
+
+    const validRoutes = routes.slice(
+      0,
+      Math.max(1, Number(maximumRoutesPerPlan) || 50)
+    );
+    const validPaths = new Set(
+      validRoutes.map(item =>
+        new URL(item.route, CANONICAL_ORIGIN).pathname
+      )
+    );
+
+    const checkInByDate = new Map();
+    (Array.isArray(record.checkIns) ? record.checkIns : []).forEach(item => {
+      if (!item || typeof item !== 'object') return;
+      const date = /^\d{4}-\d{2}-\d{2}$/.test(
+        String(item.date ?? '').trim()
+      ) ? String(item.date).trim() : '';
+      const route = normaliseSameOriginRoute(item.route);
+      const path = route
+        ? new URL(route, CANONICAL_ORIGIN).pathname
+        : '';
+      if (!date || !route || !validPaths.has(path)) return;
+      const checkIn = {
+        date,
+        route,
+        completedAt:
+          normaliseIsoDate(item.completedAt) ||
+          new Date(0).toISOString()
+      };
+      const previous = checkInByDate.get(date);
+      if (!previous || checkIn.completedAt >= previous.completedAt) {
+        checkInByDate.set(date, checkIn);
+      }
+    });
+
+    const rawIndex = Number(record.currentIndex);
+    const currentIndex = validRoutes.length
+      ? Math.max(
+          0,
+          Math.min(
+            validRoutes.length - 1,
+            Number.isInteger(rawIndex) ? rawIndex : 0
+          )
+        )
+      : 0;
+
+    seenPlans.add(id);
+    plans.push({
+      id,
+      name,
+      description: cleanText(record.description, 240),
+      sourceCollectionId: cleanText(record.sourceCollectionId, 180),
+      weekdays: [...new Set(
+        (Array.isArray(record.weekdays) ? record.weekdays : [])
+          .map(Number)
+          .filter(value =>
+            Number.isInteger(value) &&
+            value >= 0 &&
+            value <= 6
+          )
+      )].sort((a, b) => a - b),
+      routes: validRoutes,
+      currentIndex,
+      checkIns: [...checkInByDate.values()]
+        .sort((a, b) =>
+          String(b.date).localeCompare(String(a.date)) ||
+          String(b.completedAt).localeCompare(String(a.completedAt))
+        )
+        .slice(
+          0,
+          Math.max(1, Number(maximumCheckInsPerPlan) || 180)
+        ),
+      createdAt:
+        normaliseIsoDate(record.createdAt) ||
+        new Date(0).toISOString(),
+      updatedAt:
+        normaliseIsoDate(record.updatedAt) ||
+        normaliseIsoDate(record.createdAt) ||
+        new Date(0).toISOString()
+    });
+  });
+
+  return plans.slice(
+    0,
+    Math.max(1, Number(maximumItems) || 12)
+  );
+};
+
 export const registryMap = registry =>
   new Map(
     (Array.isArray(registry?.datasets) ? registry.datasets : [])
@@ -263,6 +386,14 @@ export const sanitiseDataset = (id, value, registry) => {
       value,
       definition.maximumItems,
       definition.maximumRoutesPerCollection
+    );
+  }
+  if (id === 'practicePlans') {
+    return sanitisePracticePlans(
+      value,
+      definition.maximumItems,
+      definition.maximumRoutesPerPlan,
+      definition.maximumCheckInsPerPlan
     );
   }
   return undefined;
