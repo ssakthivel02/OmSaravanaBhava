@@ -1,0 +1,50 @@
+[
+  {
+    "id": "agastiyar",
+    "nameEn": "Agastiyar",
+    "literatureStatus": "source-collection-required",
+    "muruganAssociation": "traditional-association-review",
+    "profileStatus": "source-review-register",
+    "biographyStatus": "not-published-without-verified-source"
+  },
+  {
+    "id": "bogar",
+    "nameEn": "Bogar",
+    "literatureStatus": "source-collection-required",
+    "muruganAssociation": "traditional-association-review",
+    "profileStatus": "source-review-register",
+    "biographyStatus": "not-published-without-verified-source"
+  },
+  {
+    "id": "pulipani",
+    "nameEn": "Pulipani",
+    "literatureStatus": "source-collection-required",
+    "muruganAssociation": "traditional-association-review",
+    "profileStatus": "source-review-register",
+    "biographyStatus": "not-published-without-verified-source"
+  },
+  {
+    "id": "konganar",
+    "nameEn": "Konganar",
+    "literatureStatus": "source-collection-required",
+    "muruganAssociation": "traditional-association-review",
+    "profileStatus": "source-review-register",
+    "biographyStatus": "not-published-without-verified-source"
+  },
+  {
+    "id": "karuvoorar",
+    "nameEn": "Karuvoorar",
+    "literatureStatus": "source-collection-required",
+    "muruganAssociation": "traditional-association-review",
+    "profileStatus": "source-review-register",
+    "biographyStatus": "not-published-without-verified-source"
+  },
+  {
+    "id": "pambatti-siddhar",
+    "nameEn": "Pambatti Siddhar",
+    "literatureStatus": "source-collection-required",
+    "muruganAssociation": "traditional-association-review",
+    "profileStatus": "source-review-register",
+    "biographyStatus": "not-published-without-verified-source"
+  }
+]

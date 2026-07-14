@@ -1,0 +1,22 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 207,
+  "name": "Siddhar Encyclopedia",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 4,
+  "modified": [
+    "service-worker.js",
+    "sitemap.xml"
+  ],
+  "added": [
+    "siddhar-encyclopedia.html",
+    "data/siddhar-encyclopedia.json"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Profiles": 6,
+    "Unverified biographies": "Not published"
+  }
+}
