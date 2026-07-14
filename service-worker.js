@@ -1,8 +1,9 @@
-const RELEASE = '215';
+const RELEASE = '216';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
 const CACHE_PREFIX = 'osb-';
+const USER_READING_CACHE = 'osb-user-reading-v1';
 const OFFLINE_URL = '/offline.html';
 const MAX_RUNTIME_ENTRIES = 60;
 const MAX_DATA_ENTRIES = 20;
@@ -195,7 +196,10 @@ const PRECACHE_URLS = [
   "/assets/js/explore-navigation.js",
   "/search-facets.html",
   "/assets/css/search-facets.css",
-  "/assets/js/search-facets.mjs"
+  "/assets/js/search-facets.mjs",
+  "/reading-list.html",
+  "/assets/css/reading-list.css",
+  "/assets/js/reading-list.mjs"
 ];
 
 const cacheOptionalAssets = async cache => {
@@ -229,7 +233,7 @@ self.addEventListener('activate', event => {
     caches.keys()
       .then(keys => Promise.all(
         keys
-          .filter(key => key.startsWith(CACHE_PREFIX) && ![STATIC_CACHE, RUNTIME_CACHE, DATA_CACHE].includes(key))
+          .filter(key => key.startsWith(CACHE_PREFIX) && ![STATIC_CACHE, RUNTIME_CACHE, DATA_CACHE, USER_READING_CACHE].includes(key))
           .map(key => caches.delete(key))
       ))
       .then(() => self.clients.claim())

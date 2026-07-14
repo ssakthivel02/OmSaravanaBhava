@@ -72,8 +72,8 @@ const records = [
   }
 ];
 
-test('release identity is 215', () => {
-  assert.equal(RELEASE, 215);
+test('release identity is 216', () => {
+  assert.equal(RELEASE, 216);
 });
 
 test('route normalisation removes query and fragment', () => {

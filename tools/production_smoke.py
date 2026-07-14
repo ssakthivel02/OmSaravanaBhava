@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Observe the deployed custom domain and fail when Release 215 is not live."""
+"""Observe the deployed custom domain and fail when Release 216 is not live."""
 from __future__ import annotations
 
 import argparse
@@ -10,13 +10,16 @@ import urllib.request
 from pathlib import Path
 
 CHECKS = [
-    ("/", 'data-release="215"'),
-    ("/service-worker.js", "const RELEASE = '215';"),
+    ("/", 'data-release="216"'),
+    ("/service-worker.js", "const RELEASE = '216';"),
     ("/search-facets.html", "Published-Content Search Facets"),
     ("/assets/js/search-facets.mjs", "export const RELEASE = 215;"),
     ("/data/site-routes.json", '"/search-facets.html"'),
     ("/platform.html", 'href="search-facets.html"'),
-    ("/sitemap.xml", "https://omsaravanabhava.org/search-facets.html")
+    ("/sitemap.xml", "https://omsaravanabhava.org/search-facets.html"),
+    ("/reading-list.html", "Offline Reading List"),
+    ("/assets/js/reading-list.mjs", "export const RELEASE = 216"),
+    ("/sitemap.xml", "https://omsaravanabhava.org/reading-list.html")
 ]
 
 
@@ -24,7 +27,7 @@ def fetch(url: str, timeout: int) -> tuple[int, str]:
     request = urllib.request.Request(
         url,
         headers={
-            "User-Agent": "OmSaravanaBhava-Production-Smoke/215",
+            "User-Agent": "OmSaravanaBhava-Production-Smoke/216",
             "Cache-Control": "no-cache"
         }
     )

@@ -1,5 +1,5 @@
 {
-  "release": 215,
+  "release": 216,
   "generated": "2026-07-14",
   "scope": "Public HTML routes represented by the Release 215 sitemap and route directory.",
   "statusMeaning": {
@@ -9,7 +9,8 @@
     "framework": "Architecture or data contract only; no live computation is claimed.",
     "milestone": "Checkpoint or audit page, not independent production certification.",
     "directory": "Navigation and route-discovery utility.",
-    "navigation": "Information-architecture gateway to existing published routes."
+    "navigation": "Information-architecture gateway to existing published routes.",
+    "utility": "Browser-local utility route; stored preferences or lists remain on the current device."
   },
   "routes": [
     {
@@ -539,6 +540,14 @@
       "category": "Platform",
       "status": "published",
       "summary": "Browser-local dashboard that groups published search records by genuine content type and publication boundary."
+    },
+    {
+      "path": "/reading-list.html",
+      "titleTa": "இணையமில்லா வாசிப்பு பட்டியல்",
+      "titleEn": "Offline Reading List",
+      "category": "Platform",
+      "status": "utility",
+      "summary": "Browser-local list for saving published routes and explicitly caching selected pages for offline reading."
     },
     {
       "path": "/pilgrimage-planner.html",

@@ -1,4 +1,6 @@
-export const RELEASE = 215;
+import {isRouteSaved, saveReadingRecord} from './reading-list.mjs';
+
+export const RELEASE = 216;
 
 export const PUBLISHED_STATUSES = new Set([
   'published',
@@ -140,11 +142,37 @@ const resultCard = record => {
     article.appendChild(tags);
   }
 
+  const actions = document.createElement('div');
+  actions.className = 'facet-actions';
+
   const link = document.createElement('a');
   link.className = 'btn secondary';
   link.href = record.route;
   link.textContent = 'Open published route';
-  article.appendChild(link);
+  actions.appendChild(link);
+
+  const save = document.createElement('button');
+  save.type = 'button';
+  save.className = 'btn secondary facet-save';
+  const updateSaveState = () => {
+    const saved = isRouteSaved(record.route);
+    save.setAttribute('aria-pressed', String(saved));
+    save.textContent = saved ? 'Saved to reading list' : 'Save to reading list';
+  };
+  save.addEventListener('click', () => {
+    try {
+      saveReadingRecord(record);
+      updateSaveState();
+    } catch (error) {
+      console.error('[OmSaravanaBhava] Reading-list save failed', error);
+      save.textContent = 'Browser storage unavailable';
+      save.disabled = true;
+    }
+  });
+  updateSaveState();
+  actions.appendChild(save);
+
+  article.appendChild(actions);
   return article;
 };
 

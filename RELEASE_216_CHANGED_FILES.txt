@@ -1,0 +1,31 @@
+Release 216 — Browser-Local Offline Reading List
+Base commit: 61875883f928169df44143f9d8582ece43128138
+
+M  .github/workflows/production-smoke.yml
+M  .github/workflows/static-site-integrity.yml
+A  assets/css/reading-list.css
+M  assets/css/search-facets.css
+A  assets/js/reading-list.mjs
+M  assets/js/search-facets.mjs
+M  data/site-routes.json
+M  index.html
+A  manifest-release-216.json
+M  platform.html
+M  quality/site-audit-config.json
+A  reading-list.html
+M  search-facets.html
+M  service-worker.js
+M  sitemap.xml
+A  tests/reading-list.test.mjs
+M  tests/search-facets.test.mjs
+M  tests/test_site_audit.py
+M  tools/production_smoke.py
+A  tools/release_216_validate.py
+
+Evidence files included:
+A  RELEASE_216_CHANGED_FILES.txt
+A  RELEASE_216_GITHUB_PORTAL_INSTRUCTIONS.txt
+A  RELEASE_216_LOCAL_TEST_EVIDENCE.txt
+A  RELEASE_216_SHA256SUMS.txt
+A  RELEASE_216_VALIDATION_REPORT.md
+A  RELEASE_216.patch
