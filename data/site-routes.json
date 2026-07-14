@@ -1,5 +1,5 @@
 {
-  "release": 217,
+  "release": 218,
   "generated": "2026-07-14",
   "scope": "Public HTML routes represented by the Release 215 sitemap and route directory.",
   "statusMeaning": {
@@ -556,6 +556,14 @@
       "category": "Platform",
       "status": "utility",
       "summary": "Browser-local controls for large text, high contrast, reduced motion and underlined links."
+    },
+    {
+      "path": "/print-pdf.html",
+      "titleTa": "அச்சு மற்றும் PDF ஆதரவு",
+      "titleEn": "Print and PDF Support",
+      "category": "Platform",
+      "status": "utility",
+      "summary": "Clean browser printing and Save-as-PDF guidance without server-side document generation."
     },
     {
       "path": "/pilgrimage-planner.html",

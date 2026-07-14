@@ -1,0 +1,52 @@
+Release 218 — GitHub browser upload instructions
+
+Repository:
+https://github.com/ssakthivel02/OmSaravanaBhava
+
+Verified base head:
+512a2ecccb15c0ef79c5a22fa3afe0c624cb349b
+
+Required commit title — enter this in the SMALL UPPER FIELD:
+Release 218: add clean print and PDF support
+
+Leave the large commit-description field blank.
+
+UPLOAD
+1. Download and extract OmSaravanaBhava-Release-218.zip.
+2. Enable Windows View > Show > Hidden items.
+3. Open the extracted folder.
+4. In GitHub main, select Add file > Upload files.
+5. Drag the CONTENTS of the extracted folder, not the outer folder.
+6. Preserve directory paths.
+7. Before committing, confirm GitHub shows:
+   .github/workflows/static-site-integrity.yml
+   .github/workflows/production-smoke.yml
+   print-pdf.html
+   assets/css/print-support.css
+   assets/js/print-support.mjs
+   assets/js/pwa-register.js
+   tools/release_218_validate.py
+8. Enter the required title in the small upper field.
+9. Leave the large description field blank.
+10. Commit directly to main.
+
+POST-COMMIT VERIFICATION
+1. Copy the new main commit SHA.
+2. Confirm service-worker.js contains:
+   const RELEASE = '218';
+3. Open print-pdf.html.
+4. Open a literature or temple page and confirm the “Print / Save PDF” control appears.
+5. Open the print dialog and verify navigation, buttons and media controls are absent.
+6. Confirm data/site-routes.json contains /print-pdf.html exactly once.
+7. Confirm sitemap.xml contains the print route exactly once.
+8. Wait for:
+   Release 218 Static Site Integrity
+   Release 218 Production Smoke
+9. Do not proceed to Release 219 until Release 218 is verified.
+
+DO NOT
+- Do not add copied HTML pages merely to increase file count.
+- Do not rename an older ZIP.
+- Do not upload the outer package directory.
+- Do not omit hidden workflow files.
+- Do not mark remote validation as passed before it runs.

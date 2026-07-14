@@ -3,6 +3,9 @@
     .then(module => module.applyStoredPreferences())
     .catch(error => console.warn('[OmSaravanaBhava] Accessibility preferences unavailable', error));
 
+  import('/assets/js/print-support.mjs')
+    .catch(error => console.warn('[OmSaravanaBhava] Print support unavailable', error));
+
   if (!('serviceWorker' in navigator)) return;
 
   let refreshing = false;
