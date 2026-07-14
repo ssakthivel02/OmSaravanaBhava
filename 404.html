@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Page not found | Om Saravana Bhava</title>
-<meta name="description" content="The requested Om Saravana Bhava page could not be found.">
+<title>Page not found — Smart Route Recovery | Om Saravana Bhava</title>
+<meta name="description" content="Local route suggestions for a missing OmSaravanaBhava page.">
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#a51d17">
 <meta name="mobile-web-app-capable" content="yes">
@@ -16,24 +16,38 @@
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <link rel="stylesheet" href="assets/css/osb44.css">
 <script defer src="assets/js/pwa-register.js"></script>
+<script defer src="assets/js/404-suggestions.js"></script>
 </head>
-<body>
+<body data-release="213">
 <a href="#main-content" class="skip-link">Skip to main content</a>
-<div class="top">🛕 ஓம் சரவணபவ · Page not found</div>
-<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav>
+<div class="top">🛕 ஓம் சரவணபவ · Local route recovery</div>
+<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="site-directory.html">Directory</a></div></div></nav>
 <main id="main-content" class="wrap">
+<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Page not found</span></p></nav>
 <section class="card">
-<span class="pill">404</span>
+<span class="pill">404 · Release 213</span>
 <h1 class="section-title">Page not found</h1>
-<p>The requested page does not exist or its address has changed. Use one of the verified routes below.</p>
-<div class="grid">
-<article class="card"><h2>Temples</h2><p>Explore source-linked Murugan temple pages.</p><a class="btn secondary" href="temples.html">Open Temples</a></article>
-<article class="card"><h2>Slokas</h2><p>Read published mantras and reviewed devotional extracts.</p><a class="btn secondary" href="sloka-library.html">Open Slokas</a></article>
-<article class="card"><h2>Search</h2><p>Search temples, slokas, festivals and literature.</p><a class="btn secondary" href="ai-search.html">Open Search</a></article>
+<p>The requested address does not match a published route. Suggestions below are calculated entirely in your browser from the local Release 212 route directory.</p>
+<p><strong>Requested path:</strong> <code id="requestedPath">Loading…</code></p>
+<form action="ai-search.html" method="get" role="search">
+<label for="recoverySearch"><strong>Search published knowledge</strong></label>
+<div class="searchbar">
+<input id="recoverySearch" name="q" type="search" autocomplete="off" placeholder="Palani, Vel, Sashti, Thiruppugazh…">
+<button class="btn" type="submit">Search</button>
 </div>
-<p style="margin-top:22px"><a class="btn" href="index.html">Return Home</a> <a class="btn secondary" href="sources.html">Sources &amp; publication policy</a></p>
+</form>
 </section>
+<section aria-labelledby="suggested-heading">
+<h2 id="suggested-heading" class="section-title">Suggested routes</h2>
+<p id="suggestionStatus" role="status" aria-live="polite">Finding related local routes…</p>
+<div id="suggestionGrid" class="grid" aria-busy="true"><div class="card">Loading route suggestions…</div></div>
+</section>
+<section class="card">
+<h2>Direct recovery options</h2>
+<p><a class="btn" href="index.html">Return home</a> <a class="btn secondary" href="site-directory.html">Open complete site directory</a> <a class="btn secondary" href="platform.html">Open platform hub</a></p>
+</section>
+<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>Smart suggestions require JavaScript, but the <a href="site-directory.html">complete site directory</a> and <a href="sitemap.xml">sitemap</a> remain available.</p></section></noscript>
 </main>
-<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="sources.html">Sources &amp; publication policy</a></footer>
+<footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
 </body>
 </html>

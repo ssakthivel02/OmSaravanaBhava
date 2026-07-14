@@ -1,0 +1,28 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 213,
+  "name": "Smart 404 Recovery",
+  "base_commit": "96f169cd8aa539d4f679243c5f3a2a0b9a7a3b6e",
+  "generated": "2026-07-14",
+  "validation_status": "LOCAL_PACKAGE_PASS_REPOSITORY_CI_PENDING",
+  "production_file_count": 3,
+  "modified": [
+    "404.html",
+    "service-worker.js"
+  ],
+  "added": [
+    "assets/js/404-suggestions.js"
+  ],
+  "deleted": [],
+  "claims": {
+    "route_source": "data/site-routes.json from Release 212",
+    "remote_search_service": false,
+    "server_tracking": false,
+    "maximum_suggestions": 6,
+    "pwa_cache_strategy": "existing resilient core-plus-optional strategy preserved"
+  },
+  "limitations": [
+    "Suggestions are lexical route matches, not semantic AI results.",
+    "Repository-wide CI and deployed production behaviour must be verified after upload."
+  ]
+}

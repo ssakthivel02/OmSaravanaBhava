@@ -1,0 +1,21 @@
+Release 213 — Smart 404 Recovery
+
+BASELINE
+- Upload only after Release 212 is committed.
+- Expected Release 212 base commit: 96f169cd8aa539d4f679243c5f3a2a0b9a7a3b6e
+
+UPLOAD
+1. Extract this ZIP into a new folder.
+2. Upload everything inside the extracted folder to the repository root.
+3. Do not upload the ZIP itself.
+4. Preserve the assets/js directory path.
+5. In the SMALL UPPER commit-title field replace "Add files via upload" with:
+   Release 213: add local 404 route recovery
+6. Leave the large description field blank.
+7. Commit directly to main.
+8. Wait for Static site integrity and production deployment checks before Release 214.
+
+DO NOT
+- Do not call this Release 212-A.
+- Do not upload any RELEASE_212_* or manifest-release-212.json file.
+- Do not reuse the obsolete Release 212 Smart 404 package.

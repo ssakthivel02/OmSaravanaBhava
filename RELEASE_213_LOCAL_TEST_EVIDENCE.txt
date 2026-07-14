@@ -1,0 +1,19 @@
+Release 213 local package evidence
+Base commit: 96f169cd8aa539d4f679243c5f3a2a0b9a7a3b6e
+
+PASS — 404 release identity
+PASS — 404 noindex retained
+PASS — Tamil root language
+PASS — Recovery script linked
+PASS — Local route directory used
+PASS — No remote URL in recovery JS
+PASS — Service worker release
+PASS — Recovery JS precached
+PASS — Precache unique — 167 total / 167 unique
+PASS — Manifest release
+PASS — Balanced JS braces
+PASS — Balanced JS parentheses
+
+Precache URLs: 167 total / 167 unique
+Repository-wide CI: pending
+Production deployment: pending
