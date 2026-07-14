@@ -1,5 +1,5 @@
 {
-  "release": 216,
+  "release": 217,
   "generated": "2026-07-14",
   "scope": "Public HTML routes represented by the Release 215 sitemap and route directory.",
   "statusMeaning": {
@@ -548,6 +548,14 @@
       "category": "Platform",
       "status": "utility",
       "summary": "Browser-local list for saving published routes and explicitly caching selected pages for offline reading."
+    },
+    {
+      "path": "/accessibility.html",
+      "titleTa": "அணுகல்தன்மை மையம்",
+      "titleEn": "Accessibility Centre",
+      "category": "Platform",
+      "status": "utility",
+      "summary": "Browser-local controls for large text, high contrast, reduced motion and underlined links."
     },
     {
       "path": "/pilgrimage-planner.html",

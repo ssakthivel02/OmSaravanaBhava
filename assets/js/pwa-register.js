@@ -1,4 +1,8 @@
 (() => {
+  import('/assets/js/accessibility-preferences.mjs')
+    .then(module => module.applyStoredPreferences())
+    .catch(error => console.warn('[OmSaravanaBhava] Accessibility preferences unavailable', error));
+
   if (!('serviceWorker' in navigator)) return;
 
   let refreshing = false;

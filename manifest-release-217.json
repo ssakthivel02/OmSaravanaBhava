@@ -1,0 +1,52 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 217,
+  "name": "Accessibility Centre",
+  "base_commit": "6d5df24f611e0f8164834544a9e92521e4cf5c27",
+  "generated": "2026-07-14",
+  "required_commit_title": "Release 217: add accessibility preference centre",
+  "validation_status": "LOCAL_PACKAGE_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
+  "production_files": [
+    "accessibility.html",
+    "assets/css/accessibility-preferences.css",
+    "assets/js/accessibility-preferences.mjs",
+    "assets/js/pwa-register.js",
+    "index.html",
+    "platform.html",
+    "data/site-routes.json",
+    "sitemap.xml",
+    "service-worker.js"
+  ],
+  "ci_alignment_files": [
+    "quality/site-audit-config.json",
+    "tools/production_smoke.py",
+    "tests/test_site_audit.py",
+    "tests/accessibility-preferences.test.mjs",
+    "tools/release_217_validate.py",
+    ".github/workflows/static-site-integrity.yml",
+    ".github/workflows/production-smoke.yml"
+  ],
+  "claims": {
+    "browser_local_preferences": true,
+    "preferences": [
+      "largeText",
+      "highContrast",
+      "reducedMotion",
+      "underlinedLinks"
+    ],
+    "site_wide_bootstrap": "assets/js/pwa-register.js",
+    "remote_sync": false,
+    "analytics": false,
+    "formal_accessibility_certification": false,
+    "service_worker_release": 217,
+    "new_optional_cache_assets": 3,
+    "release_216_smoke_marker_corrected": true,
+    "release_216_stale_artifact_default_corrected": true
+  },
+  "limitations": [
+    "Preferences remain in the current browser profile.",
+    "The feature provides presentation controls and does not claim WCAG certification.",
+    "Operating-system and assistive-technology settings remain independent.",
+    "GitHub Actions and deployed production checks remain pending until the commit runs."
+  ]
+}

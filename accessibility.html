@@ -1,23 +1,90 @@
 <!doctype html>
-<html lang="en">
+<html lang="ta">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Accessibility | Om Saravana Bhava</title>
-  <meta name="description" content="Om Saravana Bhava - Murugan devotion, Arupadai Veedu, festivals, slokas and spiritual learning.">
-  <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Accessibility Centre | Om Saravana Bhava</title>
+<meta name="description" content="Browser-local controls for larger text, stronger contrast, reduced motion and underlined links across OmSaravanaBhava.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://omsaravanabhava.org/accessibility.html">
+<link rel="stylesheet" href="assets/css/osb44.css">
+<link rel="stylesheet" href="assets/css/accessibility-preferences.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#a51d17">
+<link rel="manifest" href="manifest.json">
+<script defer src="assets/js/pwa-register.js"></script>
+<script type="module" src="assets/js/accessibility-preferences.mjs"></script>
 </head>
-<body class="">
-<a class="skip-link" href="#main">Skip to main content</a>
-<header class="site-header">
-  <div class="topbar">🛕 ஓம் சரவணபவ · May Lord Murugan bless you with wisdom, courage and divine protection.</div>
-  <div class="nav-wrap"><a class="brand" href="index.html">ஓம் சரவணபவ</a><button class="menu-toggle" aria-label="Toggle navigation">☰</button><nav class="main-nav"><a href="index.html">Home</a><a href="temples.html">Temples</a><a href="slokas.html">Slokas</a><a href="festivals.html">Festivals</a><a href="gallery.html">Gallery</a><a href="ai.html">AI Guide</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav></div>
-</header>
-<main id="main">
-<section class="hero small-hero"><div class="container"><h1>Accessibility</h1><p>Om Saravana Bhava</p></div></section>
-<section class="section"><div class="container narrow"><article class="info-card"><p>The site aims to support readable text, keyboard navigation and responsive layout.</p></article></div></section>
+<body data-release="217">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="top">🛕 ஓம் சரவணபவ · Browser-local accessibility preferences</div>
+<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+<div class="links"><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="search-facets.html">Facets</a><a href="reading-list.html">Reading List</a><a href="accessibility.html" aria-current="page">Accessibility</a></div>
+</div></nav>
+<main id="main-content" class="wrap">
+<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Accessibility Centre</span></p></nav>
+
+<section class="card accessibility-intro">
+<div>
+<span class="pill">Release 217 · Local accessibility preferences</span>
+<h1 class="section-title" lang="ta">அணுகல்தன்மை மையம்</h1>
+<h2>Accessibility Centre</h2>
+<p>Adjust presentation across pages that load the shared platform bootstrap. Preferences stay in this browser and can be reset at any time.</p>
+</div>
+<div class="accessibility-current">
+<span>Current presentation</span>
+<strong id="accessibilityActive">Default presentation</strong>
+</div>
+</section>
+
+<form id="accessibilityPreferences" class="card" aria-describedby="accessibilityStatus">
+<fieldset>
+<legend><strong>Presentation preferences</strong></legend>
+<div class="accessibility-grid">
+<label class="accessibility-option">
+<input type="checkbox" name="largeText">
+<span><strong>பெரிய எழுத்து · Large text</strong>Increase the base text size and reading line height.</span>
+</label>
+<label class="accessibility-option">
+<input type="checkbox" name="highContrast">
+<span><strong>உயர் மாறுபாடு · High contrast</strong>Use stronger foreground, background and border contrast.</span>
+</label>
+<label class="accessibility-option">
+<input type="checkbox" name="reducedMotion">
+<span><strong>குறைந்த இயக்கம் · Reduced motion</strong>Minimise animation, transitions and smooth scrolling.</span>
+</label>
+<label class="accessibility-option">
+<input type="checkbox" name="underlinedLinks">
+<span><strong>அடிக்கோடிட்ட இணைப்புகள் · Underlined links</strong>Underline ordinary text links so they do not rely on colour alone.</span>
+</label>
+</div>
+</fieldset>
+<div class="accessibility-actions">
+<button class="btn secondary" id="accessibilityReset" type="button">Reset to defaults</button>
+<a class="btn secondary" href="platform.html">Return to Platform Hub</a>
+</div>
+<p id="accessibilityStatus" role="status" aria-live="polite">Loading accessibility preferences…</p>
+</form>
+
+<section class="card accessibility-preview">
+<h2>Reading preview</h2>
+<p lang="ta">வேலும் மயிலும் துணை. இந்த மாதிரி உரை உங்கள் தேர்வுகளை உடனடியாகக் காட்டுகிறது.</p>
+<p>This sample paragraph and <a href="sources.html">ordinary text link</a> update immediately. Buttons remain visually distinct: <a class="btn secondary" href="explore.html">Open Explore</a></p>
+</section>
+
+<section class="card">
+<h2>Scope and limitations</h2>
+<ul>
+<li>Preferences are stored locally and are not synchronized between browsers or devices.</li>
+<li>This centre improves presentation options; it does not claim formal accessibility certification.</li>
+<li>Content accuracy, source status and completeness remain governed by each destination page.</li>
+<li>Browser, operating-system and assistive-technology settings continue to apply independently.</li>
+</ul>
+</section>
+
+<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>The preference controls require JavaScript. Browser zoom, reader mode and operating-system accessibility controls remain available.</p></section></noscript>
 </main>
-<footer class="site-footer"><div class="container footer-grid"><div><h2>ஓம் சரவணபவ</h2><p>A devotional platform dedicated to Lord Murugan, Arupadai Veedu, slokas, festivals and spiritual learning.</p></div><div><h3>Quick Links</h3><a href="temples.html">Temples</a><a href="slokas.html">Slokas</a><a href="festivals.html">Festivals</a><a href="gallery.html">Gallery</a></div><div><h3>Support</h3><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="accessibility.html">Accessibility</a><a href="support.html">Support</a></div></div><p class="copyright">© 2026 Om Saravana Bhava. All rights reserved.</p></footer>
-<script src="script.js"></script>
-</body></html>
+<footer>© Om Saravana Bhava · <a href="accessibility.html">Accessibility</a> · <a href="privacy.html">Privacy</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
+</body>
+</html>
