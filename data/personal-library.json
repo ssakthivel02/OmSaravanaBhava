@@ -1,0 +1,64 @@
+{
+  "release": 226,
+  "generated": "2026-07-14",
+  "builtAgainstCommit": "2fac2649e2e721e9b4249c6e3651f598bf34191c",
+  "title": "OmSaravanaBhava Browser-Local Personal Library",
+  "scope": "Read-only aggregation of registered browser-local reading, notes, accessibility and listening data against the current published route directory.",
+  "storageKeys": {
+    "readingList": "osb-reading-list-v1",
+    "readingProgress": "osb-reading-progress-v1",
+    "readingNotes": "osb-reading-notes-v1",
+    "accessibility": "osb-accessibility-preferences-v1",
+    "audioHistory": "osb-audio-listening-history-v1"
+  },
+  "allowedRouteStatuses": [
+    "published",
+    "partial-reviewed",
+    "source-register",
+    "framework",
+    "milestone",
+    "directory",
+    "navigation",
+    "utility"
+  ],
+  "excludedRouteStatuses": [
+    "draft",
+    "private",
+    "unpublished",
+    "archived"
+  ],
+  "completedThreshold": 95,
+  "minimumStartedProgress": 1,
+  "limits": {
+    "continueReading": 8,
+    "savedRoutes": 12,
+    "recentNotes": 8,
+    "recentAudio": 8,
+    "activityEvents": 30
+  },
+  "activityTypes": [
+    {
+      "id": "reading",
+      "label": "Reading activity"
+    },
+    {
+      "id": "saved",
+      "label": "Saved routes"
+    },
+    {
+      "id": "note",
+      "label": "Notes and bookmarks"
+    },
+    {
+      "id": "audio",
+      "label": "Listening activity"
+    }
+  ],
+  "limitations": [
+    "The dashboard writes no new browser data.",
+    "Counts reflect only valid local records linked to the current route directory.",
+    "Ignored records may represent removed, renamed or invalid routes.",
+    "This is not a recommendation engine, user profile or analytics service.",
+    "No account, cloud synchronization or cross-device history is provided."
+  ]
+}

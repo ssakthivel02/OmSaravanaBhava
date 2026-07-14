@@ -1,4 +1,4 @@
-const RELEASE = '225';
+const RELEASE = '226';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
@@ -236,7 +236,12 @@ const PRECACHE_URLS = [
   "/assets/css/personal-data.css",
   "/assets/js/personal-data.mjs",
   "/data/personal-data-registry.json",
-  "/manifest-release-225.json"
+  "/manifest-release-225.json",
+  "/personal-library.html",
+  "/assets/css/personal-library.css",
+  "/assets/js/personal-library.mjs",
+  "/data/personal-library.json",
+  "/manifest-release-226.json"
 ];
 
 const cacheOptionalAssets = async cache => {

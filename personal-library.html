@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ta">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Personal Library Dashboard | Om Saravana Bhava</title>
+<meta name="description" content="A browser-local dashboard for actual saved routes, reading progress, notes, accessibility preferences and listening activity from OmSaravanaBhava.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://omsaravanabhava.org/personal-library.html">
+<link rel="stylesheet" href="assets/css/osb44.css">
+<link rel="stylesheet" href="assets/css/personal-library.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#a51d17">
+<link rel="manifest" href="manifest.json">
+<script defer src="assets/js/pwa-register.js"></script>
+<script type="module" src="assets/js/personal-library.mjs"></script>
+</head>
+<body data-release="226">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="top">🛕 ஓம் சரவணபவ · Read-only browser-local personal library</div>
+<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+<div class="links"><a href="discovery.html">Discover</a><a href="personal-library.html" aria-current="page">My Library</a><a href="reading-workspace.html">Reading</a><a href="reading-notes.html">Notes</a><a href="audio-history.html">Listening</a><a href="personal-data.html">Backup</a></div>
+</div></nav>
+<main id="main-content" class="wrap">
+<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Personal Library</span></p></nav>
+
+<section class="card personal-library-hero">
+<div>
+<span class="pill">Release 226 · Read-only local dashboard</span>
+<h1 class="section-title" lang="ta">தனிப்பட்ட பக்தி நூலகம்</h1>
+<h2>Personal Library Dashboard</h2>
+<p>Review actual browser-local reading, notes, accessibility and listening activity against the current published route directory. The dashboard does not write a profile or analytics record.</p>
+</div>
+<div class="personal-library-metric"><strong id="personalLibrarySavedCount">0</strong><span>saved routes</span></div>
+<div class="personal-library-metric"><strong id="personalLibraryProgressCount">0</strong><span>in progress</span></div>
+<div class="personal-library-metric"><strong id="personalLibraryCompletedCount">0</strong><span>completed locally</span></div>
+</section>
+
+<section class="personal-library-secondary-metrics" aria-label="Additional local library totals">
+<article class="card"><strong id="personalLibraryNotesCount">0</strong><span>notes and bookmarks</span></article>
+<article class="card"><strong id="personalLibraryAudioCount">0</strong><span>recorded listening starts</span></article>
+<article class="card"><strong id="personalLibraryPreferenceCount">0</strong><span>active accessibility preferences</span></article>
+</section>
+
+<p id="personalLibraryStatus" role="status" aria-live="polite">Loading browser-local library data…</p>
+
+<section aria-labelledby="continue-reading-title">
+<div class="personal-library-section-heading">
+<div><span class="pill">Resume</span><h2 id="continue-reading-title">Continue reading</h2></div>
+<a class="btn secondary" href="reading-workspace.html">Open Reading Workspace</a>
+</div>
+<div id="personalLibraryContinue" class="grid personal-library-grid">
+<article class="card">Loading reading progress…</article>
+</div>
+</section>
+
+<section aria-labelledby="saved-library-title">
+<div class="personal-library-section-heading">
+<div><span class="pill">Saved locally</span><h2 id="saved-library-title">Saved library routes</h2></div>
+<a class="btn secondary" href="reading-list.html">Open Reading List</a>
+</div>
+<div id="personalLibrarySaved" class="grid personal-library-grid">
+<article class="card">Loading saved routes…</article>
+</div>
+</section>
+
+<section aria-labelledby="notes-snapshot-title">
+<div class="personal-library-section-heading">
+<div><span class="pill">Your notes</span><h2 id="notes-snapshot-title">Recent notes and section bookmarks</h2></div>
+<a class="btn secondary" href="reading-notes.html">Open Notes Centre</a>
+</div>
+<div id="personalLibraryNotes" class="grid personal-library-grid">
+<article class="card">Loading reading notes…</article>
+</div>
+</section>
+
+<section aria-labelledby="listening-snapshot-title">
+<div class="personal-library-section-heading">
+<div><span class="pill">Device read-aloud</span><h2 id="listening-snapshot-title">Recent listening activity</h2></div>
+<a class="btn secondary" href="audio-history.html">Open Listening History</a>
+</div>
+<div id="personalLibraryAudio" class="grid personal-library-grid">
+<article class="card">Loading listening activity…</article>
+</div>
+</section>
+
+<section aria-labelledby="activity-title">
+<div class="personal-library-section-heading">
+<div><span class="pill">Unified timeline</span><h2 id="activity-title">Recent local activity</h2></div>
+</div>
+<div class="personal-library-activity-shell">
+<aside class="card personal-library-activity-controls">
+<label for="personalLibraryActivitySearch">Search local activity
+<input id="personalLibraryActivitySearch" type="search" placeholder="Tamil, English, route or note…" autocomplete="off">
+</label>
+<label for="personalLibraryActivityType">Activity type
+<select id="personalLibraryActivityType">
+<option value="all">All activity types</option>
+<option value="reading">Reading activity</option>
+<option value="saved">Saved routes</option>
+<option value="note">Notes and bookmarks</option>
+<option value="audio">Listening activity</option>
+</select>
+</label>
+<button class="btn secondary" id="personalLibraryActivityReset" type="button">Reset activity filters</button>
+<p id="personalLibraryActivityStatus" role="status" aria-live="polite">Preparing local activity…</p>
+</aside>
+<div id="personalLibraryActivity" class="personal-library-activity-list">
+<article class="personal-library-activity-card"><p>Loading local activity…</p></article>
+</div>
+</div>
+</section>
+
+<section class="personal-library-status-grid">
+<article class="card">
+<h2>Accessibility snapshot</h2>
+<div id="personalLibraryPreferences" class="personal-library-preferences">
+<p>Loading preferences…</p>
+</div>
+<p><a class="btn secondary" href="accessibility.html">Open Accessibility Centre</a></p>
+</article>
+<article class="card">
+<h2>Route-registry integrity</h2>
+<p id="personalLibraryIgnored">Checking local records against current published routes…</p>
+<p><a class="btn secondary" href="personal-data.html">Back up registered local data</a></p>
+</article>
+</section>
+
+<section class="card personal-library-boundary">
+<h2>Privacy and interpretation boundary</h2>
+<ul>
+<li>The dashboard reads five existing browser-local datasets and writes no new browser data.</li>
+<li>Counts are actual valid local records, not claims of complete Murugan literature or audio coverage.</li>
+<li>Local records whose routes are invalid, duplicated, removed or not currently published are excluded.</li>
+<li>Reading percentage is an approximate position, and local completion is not proof that a work was fully read.</li>
+<li>This is not a recommendation engine, behavioural profile or analytics service.</li>
+<li>No account, cloud synchronization or cross-device history is provided.</li>
+</ul>
+</section>
+
+<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>The Personal Library requires JavaScript. Individual browser-local tools remain available separately.</p></section></noscript>
+</main>
+<footer>© Om Saravana Bhava · <a href="personal-library.html">My Library</a> · <a href="reading-workspace.html">Reading</a> · <a href="reading-notes.html">Notes</a> · <a href="personal-data.html">Backup</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
+</body>
+</html>

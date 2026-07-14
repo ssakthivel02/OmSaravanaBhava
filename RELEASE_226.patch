@@ -1,0 +1,2562 @@
+diff --git a/personal-library.html b/personal-library.html
+new file mode 100644
+--- /dev/null
++++ b/personal-library.html
+@@ -0,0 +1,146 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Personal Library Dashboard | Om Saravana Bhava</title>
++<meta name="description" content="A browser-local dashboard for actual saved routes, reading progress, notes, accessibility preferences and listening activity from OmSaravanaBhava.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/personal-library.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="stylesheet" href="assets/css/personal-library.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++<script type="module" src="assets/js/personal-library.mjs"></script>
++</head>
++<body data-release="226">
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Read-only browser-local personal library</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="discovery.html">Discover</a><a href="personal-library.html" aria-current="page">My Library</a><a href="reading-workspace.html">Reading</a><a href="reading-notes.html">Notes</a><a href="audio-history.html">Listening</a><a href="personal-data.html">Backup</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Personal Library</span></p></nav>
++
++<section class="card personal-library-hero">
++<div>
++<span class="pill">Release 226 · Read-only local dashboard</span>
++<h1 class="section-title" lang="ta">தனிப்பட்ட பக்தி நூலகம்</h1>
++<h2>Personal Library Dashboard</h2>
++<p>Review actual browser-local reading, notes, accessibility and listening activity against the current published route directory. The dashboard does not write a profile or analytics record.</p>
++</div>
++<div class="personal-library-metric"><strong id="personalLibrarySavedCount">0</strong><span>saved routes</span></div>
++<div class="personal-library-metric"><strong id="personalLibraryProgressCount">0</strong><span>in progress</span></div>
++<div class="personal-library-metric"><strong id="personalLibraryCompletedCount">0</strong><span>completed locally</span></div>
++</section>
++
++<section class="personal-library-secondary-metrics" aria-label="Additional local library totals">
++<article class="card"><strong id="personalLibraryNotesCount">0</strong><span>notes and bookmarks</span></article>
++<article class="card"><strong id="personalLibraryAudioCount">0</strong><span>recorded listening starts</span></article>
++<article class="card"><strong id="personalLibraryPreferenceCount">0</strong><span>active accessibility preferences</span></article>
++</section>
++
++<p id="personalLibraryStatus" role="status" aria-live="polite">Loading browser-local library data…</p>
++
++<section aria-labelledby="continue-reading-title">
++<div class="personal-library-section-heading">
++<div><span class="pill">Resume</span><h2 id="continue-reading-title">Continue reading</h2></div>
++<a class="btn secondary" href="reading-workspace.html">Open Reading Workspace</a>
++</div>
++<div id="personalLibraryContinue" class="grid personal-library-grid">
++<article class="card">Loading reading progress…</article>
++</div>
++</section>
++
++<section aria-labelledby="saved-library-title">
++<div class="personal-library-section-heading">
++<div><span class="pill">Saved locally</span><h2 id="saved-library-title">Saved library routes</h2></div>
++<a class="btn secondary" href="reading-list.html">Open Reading List</a>
++</div>
++<div id="personalLibrarySaved" class="grid personal-library-grid">
++<article class="card">Loading saved routes…</article>
++</div>
++</section>
++
++<section aria-labelledby="notes-snapshot-title">
++<div class="personal-library-section-heading">
++<div><span class="pill">Your notes</span><h2 id="notes-snapshot-title">Recent notes and section bookmarks</h2></div>
++<a class="btn secondary" href="reading-notes.html">Open Notes Centre</a>
++</div>
++<div id="personalLibraryNotes" class="grid personal-library-grid">
++<article class="card">Loading reading notes…</article>
++</div>
++</section>
++
++<section aria-labelledby="listening-snapshot-title">
++<div class="personal-library-section-heading">
++<div><span class="pill">Device read-aloud</span><h2 id="listening-snapshot-title">Recent listening activity</h2></div>
++<a class="btn secondary" href="audio-history.html">Open Listening History</a>
++</div>
++<div id="personalLibraryAudio" class="grid personal-library-grid">
++<article class="card">Loading listening activity…</article>
++</div>
++</section>
++
++<section aria-labelledby="activity-title">
++<div class="personal-library-section-heading">
++<div><span class="pill">Unified timeline</span><h2 id="activity-title">Recent local activity</h2></div>
++</div>
++<div class="personal-library-activity-shell">
++<aside class="card personal-library-activity-controls">
++<label for="personalLibraryActivitySearch">Search local activity
++<input id="personalLibraryActivitySearch" type="search" placeholder="Tamil, English, route or note…" autocomplete="off">
++</label>
++<label for="personalLibraryActivityType">Activity type
++<select id="personalLibraryActivityType">
++<option value="all">All activity types</option>
++<option value="reading">Reading activity</option>
++<option value="saved">Saved routes</option>
++<option value="note">Notes and bookmarks</option>
++<option value="audio">Listening activity</option>
++</select>
++</label>
++<button class="btn secondary" id="personalLibraryActivityReset" type="button">Reset activity filters</button>
++<p id="personalLibraryActivityStatus" role="status" aria-live="polite">Preparing local activity…</p>
++</aside>
++<div id="personalLibraryActivity" class="personal-library-activity-list">
++<article class="personal-library-activity-card"><p>Loading local activity…</p></article>
++</div>
++</div>
++</section>
++
++<section class="personal-library-status-grid">
++<article class="card">
++<h2>Accessibility snapshot</h2>
++<div id="personalLibraryPreferences" class="personal-library-preferences">
++<p>Loading preferences…</p>
++</div>
++<p><a class="btn secondary" href="accessibility.html">Open Accessibility Centre</a></p>
++</article>
++<article class="card">
++<h2>Route-registry integrity</h2>
++<p id="personalLibraryIgnored">Checking local records against current published routes…</p>
++<p><a class="btn secondary" href="personal-data.html">Back up registered local data</a></p>
++</article>
++</section>
++
++<section class="card personal-library-boundary">
++<h2>Privacy and interpretation boundary</h2>
++<ul>
++<li>The dashboard reads five existing browser-local datasets and writes no new browser data.</li>
++<li>Counts are actual valid local records, not claims of complete Murugan literature or audio coverage.</li>
++<li>Local records whose routes are invalid, duplicated, removed or not currently published are excluded.</li>
++<li>Reading percentage is an approximate position, and local completion is not proof that a work was fully read.</li>
++<li>This is not a recommendation engine, behavioural profile or analytics service.</li>
++<li>No account, cloud synchronization or cross-device history is provided.</li>
++</ul>
++</section>
++
++<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>The Personal Library requires JavaScript. Individual browser-local tools remain available separately.</p></section></noscript>
++</main>
++<footer>© Om Saravana Bhava · <a href="personal-library.html">My Library</a> · <a href="reading-workspace.html">Reading</a> · <a href="reading-notes.html">Notes</a> · <a href="personal-data.html">Backup</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>
+diff --git a/assets/css/personal-library.css b/assets/css/personal-library.css
+new file mode 100644
+--- /dev/null
++++ b/assets/css/personal-library.css
+@@ -0,0 +1 @@
++.personal-library-hero{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(100px,.28fr));gap:14px;align-items:center}.personal-library-metric{display:grid;place-items:center;min-height:108px;border:1px solid var(--line);border-radius:22px;background:var(--surface-strong,#fff);padding:12px;text-align:center}.personal-library-metric strong{font-size:clamp(2rem,5vw,3.7rem);line-height:1;color:var(--red)}.personal-library-metric span{font-size:.82rem;font-weight:850}.personal-library-secondary-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.personal-library-secondary-metrics .card{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center}.personal-library-secondary-metrics strong{font-size:2.2rem;color:var(--red)}.personal-library-section-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}.personal-library-section-heading h2{margin-bottom:.2rem}.personal-library-grid{grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch}.personal-library-card{display:flex;flex-direction:column;gap:9px}.personal-library-card h3{margin:0}.personal-library-card progress{width:100%;height:13px;accent-color:var(--red)}.personal-library-labels,.personal-library-preferences{display:flex;flex-wrap:wrap;gap:8px}.personal-library-card .btn{margin-top:auto;align-self:flex-start}.personal-library-meta{font-size:.84rem;color:#6a4638}.personal-library-section{font-weight:850;color:var(--red)}.personal-library-empty{grid-column:1/-1}.personal-library-activity-shell{display:grid;grid-template-columns:minmax(250px,.65fr) minmax(0,1.7fr);gap:18px;align-items:start}.personal-library-activity-controls{position:sticky;top:86px;display:grid;gap:12px}.personal-library-activity-controls label{display:grid;gap:6px;font-weight:850}.personal-library-activity-list{display:grid;gap:10px}.personal-library-activity-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 14px;padding:15px;border:1px solid var(--line);border-radius:18px;background:var(--surface-strong,#fff)}.personal-library-activity-card h3,.personal-library-activity-card p{grid-column:1/-1;margin:0}.personal-library-activity-card .btn{align-self:start}.personal-library-activity-header{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:10px}.personal-library-status-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.personal-library-boundary{border-left:5px solid var(--orange)}.home-personal-library-226{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center}.home-personal-library-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:9px}body.dark .personal-library-meta{color:#f4d9c8}@media(max-width:1200px){.personal-library-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:980px){.personal-library-hero{grid-template-columns:repeat(3,minmax(0,1fr))}.personal-library-hero>div:first-child{grid-column:1/-1}.personal-library-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.personal-library-activity-shell{grid-template-columns:1fr}.personal-library-activity-controls{position:static}.home-personal-library-226{grid-template-columns:1fr}.home-personal-library-actions{justify-content:flex-start}}@media(max-width:680px){.personal-library-hero,.personal-library-secondary-metrics,.personal-library-grid,.personal-library-status-grid{grid-template-columns:1fr}.personal-library-hero>div:first-child{grid-column:auto}.personal-library-section-heading{align-items:flex-start;flex-direction:column}.home-personal-library-actions,.personal-library-labels{flex-direction:column}.home-personal-library-actions .btn,.personal-library-activity-controls .btn{width:100%}.personal-library-activity-header{align-items:flex-start;flex-direction:column}}@media print{.personal-library-activity-controls,.personal-library-card .btn,.personal-library-activity-card .btn,#personalLibraryActivityStatus{display:none!important}.personal-library-grid{display:block!important}.personal-library-card,.personal-library-activity-card{break-inside:avoid}}
+diff --git a/assets/js/personal-library.mjs b/assets/js/personal-library.mjs
+new file mode 100644
+--- /dev/null
++++ b/assets/js/personal-library.mjs
+@@ -0,0 +1,920 @@
++export const RELEASE = 226;
++export const CONFIG_PATH = '/data/personal-library.json';
++export const ROUTES_PATH = '/data/site-routes.json';
++export const CANONICAL_ORIGIN = 'https://omsaravanabhava.org';
++
++export const DEFAULT_STORAGE_KEYS = Object.freeze({
++  readingList: 'osb-reading-list-v1',
++  readingProgress: 'osb-reading-progress-v1',
++  readingNotes: 'osb-reading-notes-v1',
++  accessibility: 'osb-accessibility-preferences-v1',
++  audioHistory: 'osb-audio-listening-history-v1'
++});
++
++const safeStorage = storage => {
++  if (storage) return storage;
++  try {
++    return globalThis.localStorage;
++  } catch {
++    return null;
++  }
++};
++
++const cleanText = (value, maximum = 400) =>
++  String(value ?? '').trim().slice(0, maximum);
++
++export const normaliseLibraryRoute = value => {
++  const raw = String(value ?? '').trim();
++  if (!raw) return '';
++  try {
++    const url = new URL(raw, `${CANONICAL_ORIGIN}/`);
++    if (url.origin !== CANONICAL_ORIGIN) return '';
++    return `${url.pathname}${url.search}${url.hash}`;
++  } catch {
++    return '';
++  }
++};
++
++export const routePath = value => {
++  const route = normaliseLibraryRoute(value);
++  if (!route) return '';
++  try {
++    return new URL(route, CANONICAL_ORIGIN).pathname;
++  } catch {
++    return '';
++  }
++};
++
++export const normaliseIsoDate = value => {
++  const raw = String(value ?? '').trim();
++  if (!raw) return '';
++  const date = new Date(raw);
++  return Number.isNaN(date.getTime()) ? '' : date.toISOString();
++};
++
++export const readLocalJson = (storage, key, fallback) => {
++  const target = safeStorage(storage);
++  if (!target) return fallback;
++  try {
++    const raw = target.getItem(key);
++    return raw === null ? fallback : JSON.parse(raw);
++  } catch {
++    return fallback;
++  }
++};
++
++export const readLocalDatasets = (
++  storage = undefined,
++  keys = DEFAULT_STORAGE_KEYS
++) => ({
++  readingList: readLocalJson(storage, keys.readingList, []),
++  readingProgress: readLocalJson(storage, keys.readingProgress, []),
++  readingNotes: readLocalJson(storage, keys.readingNotes, []),
++  accessibility: readLocalJson(storage, keys.accessibility, {}),
++  audioHistory: readLocalJson(storage, keys.audioHistory, [])
++});
++
++export const normaliseRouteRegistry = (
++  routesPayload,
++  config
++) => {
++  const allowed = new Set(
++    (Array.isArray(config?.allowedRouteStatuses)
++      ? config.allowedRouteStatuses
++      : []
++    ).map(value => String(value).trim().toLocaleLowerCase())
++  );
++  const excluded = new Set(
++    (Array.isArray(config?.excludedRouteStatuses)
++      ? config.excludedRouteStatuses
++      : []
++    ).map(value => String(value).trim().toLocaleLowerCase())
++  );
++  const map = new Map();
++
++  (Array.isArray(routesPayload?.routes) ? routesPayload.routes : [])
++    .forEach(record => {
++      const path = routePath(record?.path);
++      const status = String(record?.status ?? '')
++        .trim()
++        .toLocaleLowerCase();
++      if (!path || map.has(path) || excluded.has(status)) return;
++      if (allowed.size > 0 && !allowed.has(status)) return;
++      map.set(path, {
++        path,
++        titleTa: cleanText(record.titleTa, 180),
++        titleEn: cleanText(record.titleEn || path, 180) || path,
++        category: cleanText(record.category || 'Published route', 100),
++        status: status || 'published',
++        summary: cleanText(record.summary, 500)
++      });
++    });
++
++  return map;
++};
++
++const routeRecordFor = (record, routeMap) =>
++  routeMap.get(routePath(record?.route || record?.path));
++
++const displayTitle = record =>
++  record?.titleTa && record?.titleEn
++    ? `${record.titleTa} · ${record.titleEn}`
++    : record?.titleTa || record?.titleEn || record?.path || record?.route || '';
++
++export const normaliseAccessibility = value => {
++  const source = value && typeof value === 'object' ? value : {};
++  return {
++    largeText: source.largeText === true,
++    highContrast: source.highContrast === true,
++    reducedMotion: source.reducedMotion === true,
++    underlinedLinks: source.underlinedLinks === true
++  };
++};
++
++export const accessibilityLabels = preferences => {
++  const clean = normaliseAccessibility(preferences);
++  const labels = [];
++  if (clean.largeText) labels.push('Large text');
++  if (clean.highContrast) labels.push('High contrast');
++  if (clean.reducedMotion) labels.push('Reduced motion');
++  if (clean.underlinedLinks) labels.push('Underlined links');
++  return labels;
++};
++
++const normaliseReadingList = (value, routeMap) => {
++  const seen = new Set();
++  const records = [];
++  let ignored = 0;
++
++  (Array.isArray(value) ? value : []).forEach(item => {
++    const routeRecord = routeRecordFor(item, routeMap);
++    const path = routePath(item?.route);
++    if (!path || !routeRecord || seen.has(path)) {
++      ignored += 1;
++      return;
++    }
++    seen.add(path);
++    records.push({
++      ...routeRecord,
++      route: normaliseLibraryRoute(item.route),
++      savedAt: normaliseIsoDate(item.savedAt),
++      kind: cleanText(item.kind || routeRecord.category, 100)
++    });
++  });
++
++  return {records, ignored};
++};
++
++const normaliseProgress = (value, routeMap) => {
++  const seen = new Set();
++  const records = [];
++  let ignored = 0;
++
++  (Array.isArray(value) ? value : []).forEach(item => {
++    const routeRecord = routeRecordFor(item, routeMap);
++    const path = routePath(item?.route);
++    if (!path || !routeRecord || seen.has(path)) {
++      ignored += 1;
++      return;
++    }
++    seen.add(path);
++    const percent = Math.max(0, Math.min(100, Number(item.percent) || 0));
++    records.push({
++      ...routeRecord,
++      route: normaliseLibraryRoute(item.route),
++      percent: Math.round(percent * 10) / 10,
++      lastVisitedAt: normaliseIsoDate(item.lastVisitedAt),
++      completedAt: normaliseIsoDate(item.completedAt)
++    });
++  });
++
++  return {records, ignored};
++};
++
++const normaliseNotes = (value, routeMap) => {
++  const seen = new Set();
++  const records = [];
++  let ignored = 0;
++
++  (Array.isArray(value) ? value : []).forEach(item => {
++    const id = cleanText(item?.id, 180);
++    const routeRecord = routeRecordFor(item, routeMap);
++    if (!id || !routeRecord || seen.has(id)) {
++      ignored += 1;
++      return;
++    }
++    const headingId = cleanText(item.headingId, 120).replace(/^#/, '');
++    const note = cleanText(item.note, 500);
++    if (!headingId && !note) {
++      ignored += 1;
++      return;
++    }
++    seen.add(id);
++    records.push({
++      ...routeRecord,
++      id,
++      route: normaliseLibraryRoute(item.route),
++      headingId,
++      headingLabel: cleanText(item.headingLabel, 160),
++      kind: ['reflection', 'question', 'practice', 'reference']
++        .includes(String(item.kind ?? '').toLocaleLowerCase())
++        ? String(item.kind).toLocaleLowerCase()
++        : 'reflection',
++      note,
++      updatedAt:
++        normaliseIsoDate(item.updatedAt) ||
++        normaliseIsoDate(item.createdAt)
++    });
++  });
++
++  return {records, ignored};
++};
++
++const normaliseAudio = (value, routeMap) => {
++  const seen = new Set();
++  const records = [];
++  let ignored = 0;
++
++  (Array.isArray(value) ? value : []).forEach(item => {
++    const id = cleanText(item?.id, 180);
++    const routeRecord = routeRecordFor(item, routeMap);
++    if (!id || !routeRecord || seen.has(id)) {
++      ignored += 1;
++      return;
++    }
++    seen.add(id);
++    const playCount = Number(item.playCount);
++    records.push({
++      ...routeRecord,
++      id,
++      route: normaliseLibraryRoute(item.route),
++      titleTa: cleanText(item.titleTa || routeRecord.titleTa, 180),
++      titleEn:
++        cleanText(item.titleEn || routeRecord.titleEn || id, 180) || id,
++      artist: cleanText(item.artist || 'Text attribution not stated', 180),
++      kind: cleanText(item.kind || 'Read-aloud', 100),
++      playbackMode: cleanText(item.playbackMode || 'device-tts', 100),
++      lastPlayedAt: normaliseIsoDate(item.lastPlayedAt),
++      playCount:
++        Number.isInteger(playCount) && playCount > 0
++          ? playCount
++          : 1
++    });
++  });
++
++  return {records, ignored};
++};
++
++const eventTimestamp = event =>
++  normaliseIsoDate(event?.timestamp);
++
++export const buildActivityEvents = (
++  {
++    readingList = [],
++    progress = [],
++    notes = [],
++    audio = []
++  },
++  maximumEvents = 30
++) => {
++  const events = [];
++
++  readingList.forEach(item => {
++    if (!item.savedAt) return;
++    events.push({
++      id: `saved:${item.path}:${item.savedAt}`,
++      type: 'saved',
++      timestamp: item.savedAt,
++      route: item.path,
++      titleTa: item.titleTa,
++      titleEn: item.titleEn,
++      category: item.category,
++      status: item.status,
++      summary: 'Saved to the browser-local reading list.'
++    });
++  });
++
++  progress.forEach(item => {
++    if (!item.lastVisitedAt || item.percent <= 0) return;
++    events.push({
++      id: `reading:${item.path}:${item.lastVisitedAt}`,
++      type: 'reading',
++      timestamp: item.lastVisitedAt,
++      route: item.path,
++      titleTa: item.titleTa,
++      titleEn: item.titleEn,
++      category: item.category,
++      status: item.status,
++      summary:
++        item.percent >= 95
++          ? 'Reached the local completion threshold.'
++          : `${Math.round(item.percent)}% reading position stored locally.`
++    });
++  });
++
++  notes.forEach(item => {
++    if (!item.updatedAt) return;
++    events.push({
++      id: `note:${item.id}:${item.updatedAt}`,
++      type: 'note',
++      timestamp: item.updatedAt,
++      route:
++        item.headingId
++          ? `${item.path}#${encodeURIComponent(item.headingId)}`
++          : item.path,
++      titleTa: item.titleTa,
++      titleEn: item.titleEn,
++      category: item.category,
++      status: item.status,
++      summary:
++        item.note
++          ? `${item.kind}: ${item.note}`
++          : `Section bookmark: ${item.headingLabel || item.headingId}`
++    });
++  });
++
++  audio.forEach(item => {
++    if (!item.lastPlayedAt) return;
++    events.push({
++      id: `audio:${item.id}:${item.lastPlayedAt}`,
++      type: 'audio',
++      timestamp: item.lastPlayedAt,
++      route: item.path,
++      titleTa: item.titleTa,
++      titleEn: item.titleEn,
++      category: item.category,
++      status: item.status,
++      summary:
++        `${item.kind} · ${item.playCount} local start${item.playCount === 1 ? '' : 's'}`
++    });
++  });
++
++  return events
++    .filter(event => eventTimestamp(event))
++    .sort((left, right) =>
++      String(right.timestamp).localeCompare(String(left.timestamp)) ||
++      left.type.localeCompare(right.type) ||
++      left.id.localeCompare(right.id)
++    )
++    .slice(0, Math.max(1, Number(maximumEvents) || 30));
++};
++
++export const filterActivityEvents = (
++  events,
++  {
++    type = 'all',
++    query = ''
++  } = {}
++) => {
++  const needle = String(query).trim().toLocaleLowerCase();
++  return (Array.isArray(events) ? events : [])
++    .filter(event => {
++      if (type !== 'all' && event.type !== type) return false;
++      if (!needle) return true;
++      const haystack = [
++        event.titleTa,
++        event.titleEn,
++        event.category,
++        event.status,
++        event.summary,
++        event.type
++      ].join(' ').toLocaleLowerCase();
++      return haystack.includes(needle);
++    });
++};
++
++export const buildPersonalLibraryModel = (
++  config,
++  routesPayload,
++  datasets
++) => {
++  const routeMap = normaliseRouteRegistry(routesPayload, config);
++  const readingListResult = normaliseReadingList(
++    datasets?.readingList,
++    routeMap
++  );
++  const progressResult = normaliseProgress(
++    datasets?.readingProgress,
++    routeMap
++  );
++  const notesResult = normaliseNotes(
++    datasets?.readingNotes,
++    routeMap
++  );
++  const audioResult = normaliseAudio(
++    datasets?.audioHistory,
++    routeMap
++  );
++  const preferences = normaliseAccessibility(
++    datasets?.accessibility
++  );
++
++  const completedThreshold =
++    Number(config?.completedThreshold) || 95;
++  const minimumStarted =
++    Number(config?.minimumStartedProgress) || 1;
++  const limits = config?.limits || {};
++
++  const continueReading = progressResult.records
++    .filter(item =>
++      item.percent >= minimumStarted &&
++      item.percent < completedThreshold
++    )
++    .sort((left, right) =>
++      String(right.lastVisitedAt).localeCompare(
++        String(left.lastVisitedAt)
++      )
++    )
++    .slice(0, Number(limits.continueReading) || 8);
++
++  const completed = progressResult.records
++    .filter(item => item.percent >= completedThreshold);
++
++  const savedRoutes = readingListResult.records
++    .sort((left, right) =>
++      String(right.savedAt).localeCompare(String(left.savedAt))
++    )
++    .slice(0, Number(limits.savedRoutes) || 12);
++
++  const recentNotes = notesResult.records
++    .sort((left, right) =>
++      String(right.updatedAt).localeCompare(String(left.updatedAt))
++    )
++    .slice(0, Number(limits.recentNotes) || 8);
++
++  const recentAudio = audioResult.records
++    .sort((left, right) =>
++      String(right.lastPlayedAt).localeCompare(String(left.lastPlayedAt))
++    )
++    .slice(0, Number(limits.recentAudio) || 8);
++
++  const activity = buildActivityEvents(
++    {
++      readingList: readingListResult.records,
++      progress: progressResult.records,
++      notes: notesResult.records,
++      audio: audioResult.records
++    },
++    Number(limits.activityEvents) || 30
++  );
++
++  const ignoredRecords =
++    readingListResult.ignored +
++    progressResult.ignored +
++    notesResult.ignored +
++    audioResult.ignored;
++
++  return {
++    release: Number(config?.release) || 0,
++    routeRelease: Number(routesPayload?.release) || 0,
++    routeMap,
++    readingList: readingListResult.records,
++    progress: progressResult.records,
++    notes: notesResult.records,
++    audio: audioResult.records,
++    preferences,
++    activePreferences: accessibilityLabels(preferences),
++    continueReading,
++    completed,
++    savedRoutes,
++    recentNotes,
++    recentAudio,
++    activity,
++    ignoredRecords,
++    metrics: {
++      savedRoutes: readingListResult.records.length,
++      inProgress: progressResult.records.filter(
++        item =>
++          item.percent >= minimumStarted &&
++          item.percent < completedThreshold
++      ).length,
++      completed: completed.length,
++      notes: notesResult.records.length,
++      sectionBookmarks: notesResult.records.filter(
++        item => Boolean(item.headingId)
++      ).length,
++      audioTracks: audioResult.records.length,
++      audioStarts: audioResult.records.reduce(
++        (total, item) => total + item.playCount,
++        0
++      ),
++      activePreferences: accessibilityLabels(preferences).length,
++      activityEvents: activity.length,
++      ignoredRecords
++    }
++  };
++};
++
++const fetchJson = async (
++  path,
++  fetcher = globalThis.fetch
++) => {
++  if (typeof fetcher !== 'function') {
++    throw new Error('Fetch API unavailable');
++  }
++  const response = await fetcher(path, {
++    cache: 'default',
++    credentials: 'same-origin',
++    headers: {'Accept': 'application/json'}
++  });
++  if (!response.ok) {
++    throw new Error(`${path} returned HTTP ${response.status}`);
++  }
++  return response.json();
++};
++
++export const loadPersonalLibraryModel = async (
++  fetcher = globalThis.fetch,
++  storage = undefined
++) => {
++  const [config, routesPayload] = await Promise.all([
++    fetchJson(CONFIG_PATH, fetcher),
++    fetchJson(ROUTES_PATH, fetcher)
++  ]);
++  const datasets = readLocalDatasets(
++    storage,
++    config.storageKeys || DEFAULT_STORAGE_KEYS
++  );
++  return buildPersonalLibraryModel(
++    config,
++    routesPayload,
++    datasets
++  );
++};
++
++const createText = (
++  parent,
++  tag,
++  text,
++  className
++) => {
++  const element = document.createElement(tag);
++  if (className) element.className = className;
++  element.textContent = String(text);
++  parent.appendChild(element);
++  return element;
++};
++
++const createRouteLink = (
++  parent,
++  route,
++  label,
++  className = 'btn'
++) => {
++  const link = document.createElement('a');
++  link.className = className;
++  link.href = route;
++  link.textContent = label;
++  parent.appendChild(link);
++  return link;
++};
++
++const routeTitle = record =>
++  record.titleTa && record.titleEn
++    ? `${record.titleTa} · ${record.titleEn}`
++    : record.titleTa || record.titleEn || record.path;
++
++const formatDate = value => {
++  if (!value) return 'Date unavailable';
++  try {
++    return new Date(value).toLocaleString();
++  } catch {
++    return value;
++  }
++};
++
++const renderMetric = (id, value) => {
++  const element = document.getElementById(id);
++  if (element) element.textContent = String(value);
++};
++
++const createReadingCard = item => {
++  const card = document.createElement('article');
++  card.className = 'card personal-library-card';
++
++  const labels = document.createElement('div');
++  labels.className = 'personal-library-labels';
++  createText(labels, 'span', item.category, 'pill');
++  createText(labels, 'span', item.status, 'pill');
++  card.appendChild(labels);
++
++  createText(card, 'h3', routeTitle(item));
++  const progress = document.createElement('progress');
++  progress.max = 100;
++  progress.value = item.percent;
++  progress.setAttribute(
++    'aria-label',
++    `${routeTitle(item)} reading progress`
++  );
++  card.appendChild(progress);
++  createText(
++    card,
++    'p',
++    `${Math.round(item.percent)}% stored locally · ${formatDate(item.lastVisitedAt)}`,
++    'personal-library-meta'
++  );
++  createRouteLink(
++    card,
++    `${item.path}?resume=1`,
++    'Resume reading'
++  );
++  return card;
++};
++
++const createSavedCard = item => {
++  const card = document.createElement('article');
++  card.className = 'card personal-library-card';
++
++  const labels = document.createElement('div');
++  labels.className = 'personal-library-labels';
++  createText(labels, 'span', item.category, 'pill');
++  createText(labels, 'span', item.status, 'pill');
++  card.appendChild(labels);
++
++  createText(card, 'h3', routeTitle(item));
++  if (item.summary) createText(card, 'p', item.summary);
++  createText(
++    card,
++    'p',
++    item.savedAt
++      ? `Saved ${formatDate(item.savedAt)}`
++      : 'Saved locally',
++    'personal-library-meta'
++  );
++  createRouteLink(card, item.path, 'Open saved route');
++  return card;
++};
++
++const createNoteCard = item => {
++  const card = document.createElement('article');
++  card.className = 'card personal-library-card';
++
++  const labels = document.createElement('div');
++  labels.className = 'personal-library-labels';
++  createText(labels, 'span', item.kind, 'pill');
++  createText(labels, 'span', item.status, 'pill');
++  card.appendChild(labels);
++
++  createText(card, 'h3', routeTitle(item));
++  if (item.headingLabel) {
++    createText(
++      card,
++      'p',
++      `Section: ${item.headingLabel}`,
++      'personal-library-section'
++    );
++  }
++  createText(
++    card,
++    'p',
++    item.note || 'Section bookmark only.'
++  );
++  createText(
++    card,
++    'p',
++    `Updated ${formatDate(item.updatedAt)}`,
++    'personal-library-meta'
++  );
++  createRouteLink(
++    card,
++    item.headingId
++      ? `${item.path}#${encodeURIComponent(item.headingId)}`
++      : item.path,
++    item.headingId ? 'Open section' : 'Open page'
++  );
++  return card;
++};
++
++const createAudioCard = item => {
++  const card = document.createElement('article');
++  card.className = 'card personal-library-card';
++
++  const labels = document.createElement('div');
++  labels.className = 'personal-library-labels';
++  createText(labels, 'span', item.kind, 'pill');
++  createText(labels, 'span', item.playbackMode, 'pill');
++  card.appendChild(labels);
++
++  createText(card, 'h3', routeTitle(item));
++  createText(
++    card,
++    'p',
++    `${item.playCount} browser-local start${item.playCount === 1 ? '' : 's'}`
++  );
++  createText(
++    card,
++    'p',
++    `Last started ${formatDate(item.lastPlayedAt)}`,
++    'personal-library-meta'
++  );
++  createRouteLink(card, item.path, 'Open audio route');
++  return card;
++};
++
++const createActivityCard = event => {
++  const card = document.createElement('article');
++  card.className = 'personal-library-activity-card';
++
++  const header = document.createElement('div');
++  header.className = 'personal-library-activity-header';
++  createText(header, 'span', event.type, 'pill');
++  createText(
++    header,
++    'time',
++    formatDate(event.timestamp),
++    'personal-library-meta'
++  );
++  card.appendChild(header);
++
++  createText(card, 'h3', routeTitle(event));
++  createText(card, 'p', event.summary);
++  createRouteLink(
++    card,
++    event.route,
++    'Open',
++    'btn secondary'
++  );
++  return card;
++};
++
++const renderCards = (
++  host,
++  records,
++  creator,
++  emptyTitle,
++  emptyText
++) => {
++  host.replaceChildren();
++  if (!records.length) {
++    const empty = document.createElement('article');
++    empty.className = 'card personal-library-empty';
++    createText(empty, 'h3', emptyTitle);
++    createText(empty, 'p', emptyText);
++    host.appendChild(empty);
++    return;
++  }
++  records.forEach(record =>
++    host.appendChild(creator(record))
++  );
++};
++
++const initialise = async () => {
++  const status =
++    document.getElementById('personalLibraryStatus');
++  const continueHost =
++    document.getElementById('personalLibraryContinue');
++  const savedHost =
++    document.getElementById('personalLibrarySaved');
++  const notesHost =
++    document.getElementById('personalLibraryNotes');
++  const audioHost =
++    document.getElementById('personalLibraryAudio');
++  const activityHost =
++    document.getElementById('personalLibraryActivity');
++  const activitySearch =
++    document.getElementById('personalLibraryActivitySearch');
++  const activityType =
++    document.getElementById('personalLibraryActivityType');
++  const activityReset =
++    document.getElementById('personalLibraryActivityReset');
++  const preferencesHost =
++    document.getElementById('personalLibraryPreferences');
++  const ignoredHost =
++    document.getElementById('personalLibraryIgnored');
++
++  if (
++    !status || !continueHost || !savedHost || !notesHost ||
++    !audioHost || !activityHost || !activitySearch ||
++    !activityType || !activityReset || !preferencesHost ||
++    !ignoredHost
++  ) {
++    return;
++  }
++
++  try {
++    const model = await loadPersonalLibraryModel();
++
++    const metricMap = {
++      personalLibrarySavedCount: model.metrics.savedRoutes,
++      personalLibraryProgressCount: model.metrics.inProgress,
++      personalLibraryCompletedCount: model.metrics.completed,
++      personalLibraryNotesCount: model.metrics.notes,
++      personalLibraryAudioCount: model.metrics.audioStarts,
++      personalLibraryPreferenceCount:
++        model.metrics.activePreferences
++    };
++    Object.entries(metricMap).forEach(([id, value]) =>
++      renderMetric(id, value)
++    );
++
++    renderCards(
++      continueHost,
++      model.continueReading,
++      createReadingCard,
++      'No reading in progress',
++      'Open an eligible literature route and begin reading to create a local resume point.'
++    );
++    renderCards(
++      savedHost,
++      model.savedRoutes,
++      createSavedCard,
++      'No saved routes',
++      'Use the Reading Workspace or Search Facets to save published routes locally.'
++    );
++    renderCards(
++      notesHost,
++      model.recentNotes,
++      createNoteCard,
++      'No reading notes',
++      'Add a reflection, question, practice note or section bookmark from an eligible reading page.'
++    );
++    renderCards(
++      audioHost,
++      model.recentAudio,
++      createAudioCard,
++      'No listening history',
++      'Start device read-aloud from a supported audio route to create local history.'
++    );
++
++    preferencesHost.replaceChildren();
++    if (!model.activePreferences.length) {
++      createText(
++        preferencesHost,
++        'p',
++        'Default presentation preferences are active.'
++      );
++    } else {
++      model.activePreferences.forEach(label =>
++        createText(
++          preferencesHost,
++          'span',
++          label,
++          'pill'
++        )
++      );
++    }
++
++    ignoredHost.textContent =
++      model.ignoredRecords > 0
++        ? `${model.ignoredRecords} invalid, duplicate or no-longer-published local record${model.ignoredRecords === 1 ? '' : 's'} were excluded.`
++        : 'No invalid or stale local route records were detected.';
++
++    const renderActivity = () => {
++      const records = filterActivityEvents(
++        model.activity,
++        {
++          type: activityType.value,
++          query: activitySearch.value
++        }
++      );
++      renderCards(
++        activityHost,
++        records,
++        createActivityCard,
++        'No activity matches',
++        'Change the activity type or search text.'
++      );
++      const activityStatus =
++        document.getElementById(
++          'personalLibraryActivityStatus'
++        );
++      if (activityStatus) {
++        activityStatus.textContent =
++          `${records.length} local activity event${records.length === 1 ? '' : 's'} match.`;
++      }
++    };
++
++    activitySearch.addEventListener(
++      'input',
++      renderActivity
++    );
++    activityType.addEventListener(
++      'change',
++      renderActivity
++    );
++    activityReset.addEventListener('click', () => {
++      activitySearch.value = '';
++      activityType.value = 'all';
++      renderActivity();
++      activitySearch.focus();
++    });
++
++    renderActivity();
++    status.textContent =
++      `Personal Library loaded from route release ${model.routeRelease}. No new browser data was written.`;
++  } catch (error) {
++    console.warn(
++      '[OmSaravanaBhava] Personal Library unavailable',
++      error
++    );
++    status.textContent =
++      `Personal Library unavailable: ${String(error?.message || error)}`;
++  }
++};
++
++if (typeof document !== 'undefined') {
++  document.addEventListener(
++    'DOMContentLoaded',
++    initialise
++  );
++}
+diff --git a/data/personal-library.json b/data/personal-library.json
+new file mode 100644
+--- /dev/null
++++ b/data/personal-library.json
+@@ -0,0 +1,64 @@
++{
++  "release": 226,
++  "generated": "2026-07-14",
++  "builtAgainstCommit": "2fac2649e2e721e9b4249c6e3651f598bf34191c",
++  "title": "OmSaravanaBhava Browser-Local Personal Library",
++  "scope": "Read-only aggregation of registered browser-local reading, notes, accessibility and listening data against the current published route directory.",
++  "storageKeys": {
++    "readingList": "osb-reading-list-v1",
++    "readingProgress": "osb-reading-progress-v1",
++    "readingNotes": "osb-reading-notes-v1",
++    "accessibility": "osb-accessibility-preferences-v1",
++    "audioHistory": "osb-audio-listening-history-v1"
++  },
++  "allowedRouteStatuses": [
++    "published",
++    "partial-reviewed",
++    "source-register",
++    "framework",
++    "milestone",
++    "directory",
++    "navigation",
++    "utility"
++  ],
++  "excludedRouteStatuses": [
++    "draft",
++    "private",
++    "unpublished",
++    "archived"
++  ],
++  "completedThreshold": 95,
++  "minimumStartedProgress": 1,
++  "limits": {
++    "continueReading": 8,
++    "savedRoutes": 12,
++    "recentNotes": 8,
++    "recentAudio": 8,
++    "activityEvents": 30
++  },
++  "activityTypes": [
++    {
++      "id": "reading",
++      "label": "Reading activity"
++    },
++    {
++      "id": "saved",
++      "label": "Saved routes"
++    },
++    {
++      "id": "note",
++      "label": "Notes and bookmarks"
++    },
++    {
++      "id": "audio",
++      "label": "Listening activity"
++    }
++  ],
++  "limitations": [
++    "The dashboard writes no new browser data.",
++    "Counts reflect only valid local records linked to the current route directory.",
++    "Ignored records may represent removed, renamed or invalid routes.",
++    "This is not a recommendation engine, user profile or analytics service.",
++    "No account, cloud synchronization or cross-device history is provided."
++  ]
++}
+diff --git a/index.html b/index.html
+--- a/index.html
++++ b/index.html
+@@ -17,6 +17,7 @@
+ <link rel="stylesheet" href="assets/css/discovery-workspace.css">
+ <link rel="stylesheet" href="assets/css/reading-notes.css">
+ <link rel="stylesheet" href="assets/css/personal-data.css">
++<link rel="stylesheet" href="assets/css/personal-library.css">
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+ <meta name="theme-color" content="#a51d17">
+ <meta name="mobile-web-app-capable" content="yes">
+@@ -31,22 +32,33 @@
+ <script type="module" src="assets/js/discovery-workspace.mjs"></script>
+ <script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body data-release="225">
++<body data-release="226">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Verified Murugan digital heritage platform</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Read</a><a href="reading-notes.html">Notes</a><a href="personal-data.html">Data</a><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div>
++<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Read</a><a href="reading-notes.html">Notes</a><a href="personal-library.html">My Library</a><a href="personal-data.html">Data</a><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">OmSaravanaBhava Home</span></p></nav>
+ <section class="home-stage">
+-<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 225</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="discovery.html">Open discovery workspace</a><a class="btn secondary" href="explore.html">Explore all modules</a><a class="btn secondary" href="ai-search.html">Search knowledge</a><a class="btn secondary" href="search-facets.html">Browse by content type</a><a class="btn secondary" href="reading-list.html">Reading list</a><a class="btn secondary" href="accessibility.html">Accessibility</a><a class="btn secondary" href="print-pdf.html">Print &amp; PDF</a><a class="btn secondary" href="audio-history.html">Audio history</a><a class="btn secondary" href="knowledge-graph-explorer.html">Knowledge graph</a><a class="btn secondary" href="maintenance.html">Maintenance</a></div></div>
++<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 226</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="discovery.html">Open discovery workspace</a><a class="btn secondary" href="explore.html">Explore all modules</a><a class="btn secondary" href="ai-search.html">Search knowledge</a><a class="btn secondary" href="search-facets.html">Browse by content type</a><a class="btn secondary" href="reading-list.html">Reading list</a><a class="btn secondary" href="accessibility.html">Accessibility</a><a class="btn secondary" href="print-pdf.html">Print &amp; PDF</a><a class="btn secondary" href="audio-history.html">Audio history</a><a class="btn secondary" href="knowledge-graph-explorer.html">Knowledge graph</a><a class="btn secondary" href="maintenance.html">Maintenance</a></div></div>
+ <div class="home-stage-panel" aria-label="Published platform data">
+ <div class="home-metric"><span>Search records</span><strong data-count-source="data/search-index.json" aria-live="polite">…</strong></div>
+ <div class="home-metric"><span>Source records</span><strong data-count-source="data/sources.json" aria-live="polite">…</strong></div>
+ <div class="home-metric"><span>Device read-aloud entries</span><strong data-count-source="data/read-aloud-playlist.json" aria-live="polite">…</strong></div>
+ </div></section>
++<section class="card home-personal-library-226">
++<div>
++<span class="pill">Release 226 · Personal Library</span>
++<h2>See your local devotional activity in one place</h2>
++<p>Resume reading, review saved routes, notes, accessibility preferences and device read-aloud history through actual browser-local data.</p>
++</div>
++<div class="home-personal-library-actions">
++<a class="btn" href="personal-library.html">Open My Library</a>
++<a class="btn secondary" href="personal-data.html">Back up local data</a>
++</div>
++</section>
+ <section class="card home-personal-data-225">
+ <div>
+ <span class="pill">Release 225 · Local data portability</span>
+@@ -101,6 +113,6 @@
+ <section class="card" aria-labelledby="integrity-heading"><h2 id="integrity-heading">Publication integrity</h2><p>Repository releases, deployed pages and runtime behaviour are separate evidence layers. Content and feature claims remain bounded until automated checks and production observation confirm them.</p><p><a class="btn secondary" href="production-audit.html">Open production audit</a> <a class="btn secondary" href="content-status.html">Open content status</a></p></section>
+ <noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>All primary modules remain available through the navigation links. Live data counts are unavailable without JavaScript.</p></section></noscript>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="personal-data.html">Personal Data</a> · <a href="reading-notes.html">Reading Notes</a> · <a href="reading-workspace.html">Reading Workspace</a> · <a href="discovery.html">Discover</a> · <a href="maintenance.html">Maintenance</a> · <a href="knowledge-graph-explorer.html">Knowledge graph</a> · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
++<footer>© Om Saravana Bhava · <a href="personal-library.html">My Library</a> · <a href="personal-data.html">Personal Data</a> · <a href="reading-notes.html">Reading Notes</a> · <a href="reading-workspace.html">Reading Workspace</a> · <a href="discovery.html">Discover</a> · <a href="maintenance.html">Maintenance</a> · <a href="knowledge-graph-explorer.html">Knowledge graph</a> · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
+ </body>
+ </html>
+diff --git a/platform.html b/platform.html
+--- a/platform.html
++++ b/platform.html
+@@ -10,10 +10,10 @@
+ <meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
+ <script defer src="assets/js/pwa-register.js"></script><script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body data-release="225">
++<body data-release="226">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Digital Murugan knowledge platform</div>
+-<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Read</a><a href="reading-notes.html">Notes</a><a href="personal-data.html">Data</a><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div></div></nav>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Read</a><a href="reading-notes.html">Notes</a><a href="personal-library.html">My Library</a><a href="personal-data.html">Data</a><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div></div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">OmSaravanaBhava Platform Hub</span></p></nav>
+ <section class="card"><h1 class="section-title" lang="ta">ஓம் சரவணபவ தளம்</h1><h2>OmSaravanaBhava Platform Hub</h2><p>Unified gateway to the source-aware devotional, literature, temple, search, graph and reading modules.</p></section>
+@@ -35,6 +35,7 @@
+ <article class="card"><h2>Knowledge Graph Explorer</h2><p>Inspect existing graph registers, explicit nodes and published relationship totals without inferred theological edges.</p><a class="btn" href="knowledge-graph-explorer.html">Open graph explorer</a></article>
+ <article class="card"><h2>Premium Reading Workspace</h2><p>Resume eligible literature routes with browser-local progress, focus mode and reading-list integration.</p><a class="btn" href="reading-workspace.html">Open reading workspace</a></article>
+ <article class="card"><h2>Reading Notes &amp; Section Bookmarks</h2><p>Manage browser-local user-authored notes and heading bookmarks without storing selected devotional text.</p><a class="btn" href="reading-notes.html">Open reading notes</a></article>
++<article class="card"><h2>Personal Library Dashboard</h2><p>Aggregate actual browser-local reading, notes, accessibility and listening activity without writing analytics.</p><a class="btn" href="personal-library.html">Open personal library</a></article>
+ <article class="card"><h2>Personal Data Backup &amp; Restore</h2><p>Export, validate, preview and restore the five registered browser-local datasets without cloud accounts.</p><a class="btn" href="personal-data.html">Open personal data centre</a></article>
+ <article class="card"><h2>Maintenance Centre</h2><p>Run same-origin release checks, route audits, required-file checks and safe transient-cache cleanup.</p><a class="btn" href="maintenance.html">Open maintenance tools</a></article>
+ <article class="card"><h2>Knowledge Graph</h2><a class="btn" href="knowledge-graph-phase-4.html">Open module</a></article>
+@@ -43,6 +44,6 @@
+ <section class="card"><h2>Milestone boundary</h2><p>The platform hub connects published modules. It does not certify complete Murugan literature, licensed human audio, live Panchangam computation or server-side accounts.</p></section>
+ <section class="card"><h2>Version 3 milestone</h2><a class="btn" href="version-3.html">Open milestone dashboard</a></section>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="personal-data.html">Personal Data</a> · <a href="reading-notes.html">Reading Notes</a> · <a href="reading-workspace.html">Reading Workspace</a> · <a href="discovery.html">Discover</a> · <a href="maintenance.html">Maintenance</a> · <a href="knowledge-graph-explorer.html">Knowledge graph</a> · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
++<footer>© Om Saravana Bhava · <a href="personal-library.html">My Library</a> · <a href="personal-data.html">Personal Data</a> · <a href="reading-notes.html">Reading Notes</a> · <a href="reading-workspace.html">Reading Workspace</a> · <a href="discovery.html">Discover</a> · <a href="maintenance.html">Maintenance</a> · <a href="knowledge-graph-explorer.html">Knowledge graph</a> · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
+ </body>
+ </html>
+diff --git a/discovery.html b/discovery.html
+--- a/discovery.html
++++ b/discovery.html
+@@ -15,12 +15,12 @@
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script type="module" src="assets/js/discovery-workspace.mjs"></script>
+ </head>
+-<body data-release="225">
++<body data-release="226">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Local published-route discovery workspace</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="discovery.html" aria-current="page">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="reading-notes.html">Notes</a><a href="personal-data.html">Data</a><a href="explore.html">Explore</a><a href="search-facets.html">Facets</a><a href="site-directory.html">Directory</a><a href="platform.html">Platform</a></div>
++<div class="links"><a href="discovery.html" aria-current="page">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="reading-notes.html">Notes</a><a href="personal-library.html">My Library</a><a href="personal-data.html">Data</a><a href="explore.html">Explore</a><a href="search-facets.html">Facets</a><a href="site-directory.html">Directory</a><a href="platform.html">Platform</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Discovery Workspace</span></p></nav>
+@@ -70,6 +70,8 @@
+ 
+ <section class="card"><h2>Browser-local data portability</h2><p>Back up or restore registered reading, accessibility and listening data without a server account.</p><a class="btn" href="personal-data.html">Open Personal Data Centre</a></section>
+ 
++<section class="card"><h2>Personal Library Dashboard</h2><p>Bring together valid saved routes, reading progress, notes and listening history from this browser.</p><a class="btn" href="personal-library.html">Open My Library</a></section>
++
+ <section class="card discovery-boundary">
+ <h2>Publication and recommendation boundary</h2>
+ <ul>
+@@ -83,6 +85,6 @@
+ 
+ <noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>The dynamic discovery workspace requires JavaScript. Use the <a href="explore.html">structured Explore page</a> or <a href="site-directory.html">site directory</a>.</p></section></noscript>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="reading-notes.html">Reading Notes</a> · <a href="reading-workspace.html">Reading Workspace</a> · <a href="discovery.html">Discover</a> · <a href="explore.html">Explore</a> · <a href="site-directory.html">Directory</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
++<footer>© Om Saravana Bhava · <a href="personal-library.html">My Library</a> · <a href="reading-notes.html">Reading Notes</a> · <a href="reading-workspace.html">Reading Workspace</a> · <a href="discovery.html">Discover</a> · <a href="explore.html">Explore</a> · <a href="site-directory.html">Directory</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+ </html>
+diff --git a/reading-workspace.html b/reading-workspace.html
+--- a/reading-workspace.html
++++ b/reading-workspace.html
+@@ -14,12 +14,12 @@
+ <link rel="manifest" href="manifest.json">
+ <script defer src="assets/js/pwa-register.js"></script>
+ </head>
+-<body data-release="225">
++<body data-release="226">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Browser-local premium literature reading workspace</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html" aria-current="page">Reading Workspace</a><a href="reading-notes.html">Notes</a><a href="personal-data.html">Data Backup</a><a href="reading-list.html">Reading List</a><a href="print-pdf.html">Print &amp; PDF</a><a href="accessibility.html">Accessibility</a></div>
++<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html" aria-current="page">Reading Workspace</a><a href="reading-notes.html">Notes</a><a href="personal-library.html">My Library</a><a href="personal-data.html">Data Backup</a><a href="reading-list.html">Reading List</a><a href="print-pdf.html">Print &amp; PDF</a><a href="accessibility.html">Accessibility</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Reading Workspace</span></p></nav>
+@@ -67,6 +67,8 @@
+ 
+ <section class="card"><h2>Back up local reading activity</h2><p>Export or restore reading progress, reading-list entries and notes through the validated Personal Data Centre.</p><a class="btn" href="personal-data.html">Open Personal Data Centre</a></section>
+ 
++<section class="card"><h2>Your personal library</h2><p>Review current reading positions, completed routes, saved pages, notes and listening history in one read-only dashboard.</p><a class="btn" href="personal-library.html">Open My Library</a></section>
++
+ <section class="card reading-workspace-boundary">
+ <h2>Reading and evidence boundary</h2>
+ <ul>
+@@ -81,6 +83,6 @@
+ 
+ <noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>Reading progress requires JavaScript. Existing literature remains available through <a href="discovery.html?lens=literature">Discovery</a> and the <a href="reading-list.html">Reading List</a>.</p></section></noscript>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="reading-notes.html">Reading Notes</a> · <a href="reading-workspace.html">Reading Workspace</a> · <a href="reading-list.html">Reading List</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
++<footer>© Om Saravana Bhava · <a href="personal-library.html">My Library</a> · <a href="reading-notes.html">Reading Notes</a> · <a href="reading-workspace.html">Reading Workspace</a> · <a href="reading-list.html">Reading List</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+ </html>
+diff --git a/reading-notes.html b/reading-notes.html
+--- a/reading-notes.html
++++ b/reading-notes.html
+@@ -14,12 +14,12 @@
+ <link rel="manifest" href="manifest.json">
+ <script defer src="assets/js/pwa-register.js"></script>
+ </head>
+-<body data-release="225">
++<body data-release="226">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Browser-local reading notes and section bookmarks</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="reading-notes.html" aria-current="page">Notes</a><a href="personal-data.html">Data Backup</a><a href="reading-list.html">Reading List</a><a href="print-pdf.html">Print &amp; PDF</a></div>
++<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="reading-notes.html" aria-current="page">Notes</a><a href="personal-library.html">My Library</a><a href="personal-data.html">Data Backup</a><a href="reading-list.html">Reading List</a><a href="print-pdf.html">Print &amp; PDF</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="reading-workspace.html">Reading Workspace</a> › <span aria-current="page">Reading Notes</span></p></nav>
+@@ -63,6 +63,8 @@
+ 
+ <section class="card"><h2>Portable local notes</h2><p>Export or restore reading notes together with other registered browser-local datasets.</p><a class="btn" href="personal-data.html">Open Personal Data Centre</a></section>
+ 
++<section class="card"><h2>Notes in your personal library</h2><p>See recent notes and bookmarks alongside reading and listening activity.</p><a class="btn" href="personal-library.html">Open My Library</a></section>
++
+ <section class="card reading-notes-boundary-card">
+ <h2>Privacy and publication boundary</h2>
+ <ul>
+@@ -77,6 +79,6 @@
+ 
+ <noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>Browser-local notes require JavaScript. Existing literature remains available through the <a href="reading-workspace.html">Reading Workspace</a>.</p></section></noscript>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="reading-notes.html">Reading Notes</a> · <a href="reading-workspace.html">Reading Workspace</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
++<footer>© Om Saravana Bhava · <a href="personal-library.html">My Library</a> · <a href="reading-notes.html">Reading Notes</a> · <a href="reading-workspace.html">Reading Workspace</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+ </html>
+diff --git a/personal-data.html b/personal-data.html
+--- a/personal-data.html
++++ b/personal-data.html
+@@ -15,12 +15,12 @@
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script type="module" src="assets/js/personal-data.mjs"></script>
+ </head>
+-<body data-release="225">
++<body data-release="226">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Explicit browser-local data portability</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="platform.html">Platform</a><a href="reading-workspace.html">Reading</a><a href="reading-notes.html">Notes</a><a href="accessibility.html">Accessibility</a><a href="personal-data.html" aria-current="page">Personal Data</a></div>
++<div class="links"><a href="platform.html">Platform</a><a href="reading-workspace.html">Reading</a><a href="reading-notes.html">Notes</a><a href="accessibility.html">Accessibility</a><a href="personal-library.html">My Library</a><a href="personal-data.html" aria-current="page">Personal Data</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Personal Data Centre</span></p></nav>
+@@ -78,6 +78,8 @@
+ </article>
+ </section>
+ 
++<section class="card"><h2>Review before backup</h2><p>The Personal Library provides a read-only view of valid local reading, notes, accessibility and listening records.</p><a class="btn" href="personal-library.html">Open My Library</a></section>
++
+ <section class="card personal-data-boundary">
+ <h2>Data and safety boundary</h2>
+ <ul>
+@@ -92,6 +94,6 @@
+ 
+ <noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>Local backup and restore requires JavaScript. Existing browser-local tools remain independently available.</p></section></noscript>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="personal-data.html">Personal Data</a> · <a href="privacy.html">Privacy</a> · <a href="maintenance.html">Maintenance</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
++<footer>© Om Saravana Bhava · <a href="personal-library.html">My Library</a> · <a href="personal-data.html">Personal Data</a> · <a href="privacy.html">Privacy</a> · <a href="maintenance.html">Maintenance</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+ </html>
+diff --git a/maintenance.html b/maintenance.html
+--- a/maintenance.html
++++ b/maintenance.html
+@@ -15,12 +15,12 @@
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script type="module" src="assets/js/maintenance-centre.mjs"></script>
+ </head>
+-<body data-release="225">
++<body data-release="226">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Static-platform maintenance and local diagnostics</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="reading-notes.html">Notes</a><a href="personal-data.html">Data</a><a href="explore.html">Explore</a><a href="platform.html">Platform</a><a href="knowledge-graph-explorer.html">Graph Explorer</a><a href="maintenance.html" aria-current="page">Maintenance</a></div>
++<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="reading-notes.html">Notes</a><a href="personal-library.html">My Library</a><a href="personal-data.html">Data</a><a href="explore.html">Explore</a><a href="platform.html">Platform</a><a href="knowledge-graph-explorer.html">Graph Explorer</a><a href="maintenance.html" aria-current="page">Maintenance</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Maintenance Centre</span></p></nav>
+@@ -77,6 +77,8 @@
+ 
+ <section class="card"><h2>Personal data portability</h2><p>Export or restore only the explicitly registered browser-local datasets through validation and preview.</p><a class="btn" href="personal-data.html">Open Personal Data Centre</a></section>
+ 
++<section class="card"><h2>Personal Library integrity</h2><p>Review valid browser-local activity linked to the current published route directory.</p><a class="btn" href="personal-library.html">Open My Library</a></section>
++
+ <section class="card maintenance-boundary">
+ <h2>Evidence and safety boundary</h2>
+ <ul>
+diff --git a/assets/js/maintenance-centre.mjs b/assets/js/maintenance-centre.mjs
+--- a/assets/js/maintenance-centre.mjs
++++ b/assets/js/maintenance-centre.mjs
+@@ -1,4 +1,4 @@
+-export const RELEASE = 225;
++export const RELEASE = 226;
+ export const CONFIG_PATH = '/data/maintenance-checks.json';
+ export const DEFAULT_TRANSIENT_CACHE_PREFIXES = Object.freeze([
+   'osb-runtime-v',
+diff --git a/data/maintenance-checks.json b/data/maintenance-checks.json
+--- a/data/maintenance-checks.json
++++ b/data/maintenance-checks.json
+@@ -1,25 +1,25 @@
+ {
+-  "release": 225,
++  "release": 226,
+   "generated": "2026-07-14",
+-  "builtAgainstCommit": "3600bf1b301d2240f3bdb7f8edbcbe8e552e916c",
++  "builtAgainstCommit": "2fac2649e2e721e9b4249c6e3651f598bf34191c",
+   "title": "OmSaravanaBhava Browser Maintenance Check Registry",
+-  "scope": "Same-origin Release 225 personal-data, route, audit and maintenance continuity checks. This registry does not prove GitHub Actions status or repository certification.",
++  "scope": "Same-origin Release 226 personal-library, route, audit and maintenance continuity checks. This registry does not prove GitHub Actions status or repository certification.",
+   "checks": [
+     {
+       "id": "service-worker-release",
+       "label": "Service-worker release identity",
+       "path": "/service-worker.js",
+       "mode": "textIncludes",
+-      "expected": "const RELEASE = '225';",
++      "expected": "const RELEASE = '226';",
+       "severity": "critical"
+     },
+     {
+       "id": "release-manifest",
+       "label": "Release manifest identity",
+-      "path": "/manifest-release-225.json",
++      "path": "/manifest-release-226.json",
+       "mode": "jsonEquals",
+       "jsonPath": "release",
+-      "expected": 225,
++      "expected": 226,
+       "severity": "critical"
+     },
+     {
+@@ -27,8 +27,8 @@
+       "label": "Route directory integrity",
+       "path": "/data/site-routes.json",
+       "mode": "routeRegistry",
+-      "expectedRelease": 225,
+-      "requiredRoute": "/personal-data.html",
++      "expectedRelease": 226,
++      "requiredRoute": "/personal-library.html",
+       "severity": "critical"
+     },
+     {
+@@ -36,48 +36,48 @@
+       "label": "Static-audit configuration",
+       "path": "/quality/site-audit-config.json",
+       "mode": "auditConfig",
+-      "expectedRelease": "225",
++      "expectedRelease": "226",
+       "requiredFiles": [
+-        "personal-data.html",
+-        "assets/css/personal-data.css",
+-        "assets/js/personal-data.mjs",
+-        "data/personal-data-registry.json",
+-        "manifest-release-225.json"
++        "personal-library.html",
++        "assets/css/personal-library.css",
++        "assets/js/personal-library.mjs",
++        "data/personal-library.json",
++        "manifest-release-226.json"
+       ],
+       "severity": "critical"
+     },
+     {
+       "id": "sitemap-route",
+-      "label": "Personal Data sitemap registration",
++      "label": "Personal Library sitemap registration",
+       "path": "/sitemap.xml",
+       "mode": "textCount",
+-      "expected": "https://omsaravanabhava.org/personal-data.html",
++      "expected": "https://omsaravanabhava.org/personal-library.html",
+       "expectedCount": 1,
+       "severity": "important"
+     },
+     {
+-      "id": "personal-data-page",
+-      "label": "Personal Data Centre page",
+-      "path": "/personal-data.html",
++      "id": "personal-library-page",
++      "label": "Personal Library page",
++      "path": "/personal-library.html",
+       "mode": "textIncludes",
+-      "expected": "data-release=\"225\"",
++      "expected": "data-release=\"226\"",
+       "severity": "critical"
+     },
+     {
+-      "id": "personal-data-module",
+-      "label": "Personal Data browser module",
+-      "path": "/assets/js/personal-data.mjs",
++      "id": "personal-library-module",
++      "label": "Personal Library browser module",
++      "path": "/assets/js/personal-library.mjs",
+       "mode": "textIncludes",
+-      "expected": "export const RELEASE = 225;",
++      "expected": "export const RELEASE = 226;",
+       "severity": "critical"
+     },
+     {
+-      "id": "personal-data-registry",
+-      "label": "Personal Data registry",
+-      "path": "/data/personal-data-registry.json",
++      "id": "personal-library-config",
++      "label": "Personal Library configuration",
++      "path": "/data/personal-library.json",
+       "mode": "jsonEquals",
+       "jsonPath": "release",
+-      "expected": 225,
++      "expected": 226,
+       "severity": "important"
+     }
+   ],
+@@ -99,7 +99,8 @@
+     "/audio-history.html",
+     "/knowledge-graph-explorer.html",
+     "/maintenance.html",
+-    "/personal-data.html"
++    "/personal-data.html",
++    "/personal-library.html"
+   ],
+   "transientCachePrefixes": [
+     "osb-runtime-v",
+diff --git a/data/site-routes.json b/data/site-routes.json
+--- a/data/site-routes.json
++++ b/data/site-routes.json
+@@ -1,5 +1,5 @@
+ {
+-  "release": 225,
++  "release": 226,
+   "generated": "2026-07-14",
+   "scope": "Public HTML routes represented by the Release 215 sitemap and route directory.",
+   "statusMeaning": {
+@@ -598,6 +598,14 @@
+       "summary": "Validated browser-local export and restore for reading list, progress, notes, accessibility preferences and audio listening history."
+     },
+     {
++      "path": "/personal-library.html",
++      "titleTa": "தனிப்பட்ட பக்தி நூலகம்",
++      "titleEn": "Personal Library Dashboard",
++      "category": "Platform",
++      "status": "utility",
++      "summary": "Read-only aggregation of valid browser-local saved routes, reading progress, notes, accessibility preferences and listening activity."
++    },
++    {
+       "path": "/accessibility.html",
+       "titleTa": "அணுகல்தன்மை மையம்",
+       "titleEn": "Accessibility Centre",
+diff --git a/sitemap.xml b/sitemap.xml
+--- a/sitemap.xml
++++ b/sitemap.xml
+@@ -582,4 +582,10 @@
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
++  <url>
++    <loc>https://omsaravanabhava.org/personal-library.html</loc>
++    <lastmod>2026-07-14</lastmod>
++    <changefreq>weekly</changefreq>
++    <priority>0.8</priority>
++  </url>
+ </urlset>
+diff --git a/service-worker.js b/service-worker.js
+--- a/service-worker.js
++++ b/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '225';
++const RELEASE = '226';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -236,7 +236,12 @@
+   "/assets/css/personal-data.css",
+   "/assets/js/personal-data.mjs",
+   "/data/personal-data-registry.json",
+-  "/manifest-release-225.json"
++  "/manifest-release-225.json",
++  "/personal-library.html",
++  "/assets/css/personal-library.css",
++  "/assets/js/personal-library.mjs",
++  "/data/personal-library.json",
++  "/manifest-release-226.json"
+ ];
+ 
+ const cacheOptionalAssets = async cache => {
+diff --git a/quality/site-audit-config.json b/quality/site-audit-config.json
+--- a/quality/site-audit-config.json
++++ b/quality/site-audit-config.json
+@@ -1,5 +1,5 @@
+ {
+-  "expectedRelease": "225",
++  "expectedRelease": "226",
+   "canonicalOrigin": "https://omsaravanabhava.org",
+   "requiredFiles": [
+     "index.html",
+@@ -67,7 +67,12 @@
+     "assets/css/personal-data.css",
+     "assets/js/personal-data.mjs",
+     "data/personal-data-registry.json",
+-    "manifest-release-225.json"
++    "manifest-release-225.json",
++    "personal-library.html",
++    "assets/css/personal-library.css",
++    "assets/js/personal-library.mjs",
++    "data/personal-library.json",
++    "manifest-release-226.json"
+   ],
+   "canonicalOptional": [
+     "404.html",
+diff --git a/tools/production_smoke.py b/tools/production_smoke.py
+--- a/tools/production_smoke.py
++++ b/tools/production_smoke.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Observe the deployed custom domain and fail when Release 225 is not live."""
++"""Observe the deployed custom domain and fail when Release 226 is not live."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -10,8 +10,8 @@
+ from pathlib import Path
+ 
+ CHECKS = [
+-    ("/", 'data-release="225"'),
+-    ("/service-worker.js", "const RELEASE = '225';"),
++    ("/", 'data-release="226"'),
++    ("/service-worker.js", "const RELEASE = '226';"),
+     ("/search-facets.html", "Published-Content Search Facets"),
+     ("/assets/js/search-facets.mjs", "export const RELEASE = 216;"),
+     ("/data/site-routes.json", '"/search-facets.html"'),
+@@ -38,35 +38,41 @@
+     ("/assets/js/knowledge-graph-explorer.mjs", "export const RELEASE = 220"),
+     ("/data/knowledge-graph-explorer.json", "\"release\": 220"),
+     ("/sitemap.xml", "https://omsaravanabhava.org/knowledge-graph-explorer.html"),
+-    ("/maintenance.html", "data-release=\"222\""),
+-    ("/assets/js/maintenance-centre.mjs", "export const RELEASE = 225"),
+-    ("/data/maintenance-checks.json", "\"release\": 225"),
+-    ("/manifest-release-225.json", "\"release\": 225"),
++    ("/maintenance.html", "data-release=\"226\""),
++    ("/assets/js/maintenance-centre.mjs", "export const RELEASE = 226"),
++    ("/data/maintenance-checks.json", "\"release\": 226"),
++    ("/manifest-release-226.json", "\"release\": 226"),
+     ("/data/site-routes.json", "\"/maintenance.html\""),
+     ("/sitemap.xml", "https://omsaravanabhava.org/maintenance.html"),
+-    ("/discovery.html", "data-release=\"222\""),
++    ("/discovery.html", "data-release=\"226\""),
+     ("/assets/js/discovery-workspace.mjs", "export const RELEASE = 222"),
+     ("/data/discovery-lenses.json", "\"release\": 222"),
+     ("/data/site-routes.json", "\"/discovery.html\""),
+     ("/sitemap.xml", "https://omsaravanabhava.org/discovery.html"),
+-    ("/reading-workspace.html", "data-release=\"223\""),
++    ("/reading-workspace.html", "data-release=\"226\""),
+     ("/assets/js/reader-experience.js", "export const RELEASE = 224"),
+     ("/assets/js/pwa-register.js", "reader-experience.js"),
+     ("/data/reading-workspace.json", "\"release\": 224"),
+     ("/data/site-routes.json", "\"/reading-workspace.html\""),
+     ("/sitemap.xml", "https://omsaravanabhava.org/reading-workspace.html"),
+-    ("/reading-notes.html", "data-release=\"224\""),
++    ("/reading-notes.html", "data-release=\"226\""),
+     ("/assets/js/reading-notes.mjs", "export const RELEASE = 224"),
+     ("/assets/js/pwa-register.js", "reading-notes.mjs"),
+     ("/data/reading-notes.json", "\"release\": 224"),
+     ("/data/site-routes.json", "\"/reading-notes.html\""),
+     ("/sitemap.xml", "https://omsaravanabhava.org/reading-notes.html"),
+-    ("/personal-data.html", "data-release=\"225\""),
++    ("/personal-data.html", "data-release=\"226\""),
+     ("/assets/js/personal-data.mjs", "export const RELEASE = 225"),
+     ("/data/personal-data-registry.json", "\"release\": 225"),
+     ("/manifest-release-225.json", "\"release\": 225"),
+     ("/data/site-routes.json", "\"/personal-data.html\""),
+-    ("/sitemap.xml", "https://omsaravanabhava.org/personal-data.html")
++    ("/sitemap.xml", "https://omsaravanabhava.org/personal-data.html"),
++    ("/personal-library.html", "data-release=\"226\""),
++    ("/assets/js/personal-library.mjs", "export const RELEASE = 226"),
++    ("/data/personal-library.json", "\"release\": 226"),
++    ("/manifest-release-226.json", "\"release\": 226"),
++    ("/data/site-routes.json", "\"/personal-library.html\""),
++    ("/sitemap.xml", "https://omsaravanabhava.org/personal-library.html")
+ ]
+ 
+ 
+@@ -74,7 +80,7 @@
+     request = urllib.request.Request(
+         url,
+         headers={
+-            "User-Agent": "OmSaravanaBhava-Production-Smoke/225",
++            "User-Agent": "OmSaravanaBhava-Production-Smoke/226",
+             "Cache-Control": "no-cache"
+         }
+     )
+@@ -114,7 +120,7 @@
+     parser.add_argument("--retries", type=int, default=18)
+     parser.add_argument("--delay", type=int, default=20)
+     parser.add_argument("--timeout", type=int, default=20)
+-    parser.add_argument("--report", type=Path, default=Path("artifacts/release-225-production-smoke.json"))
++    parser.add_argument("--report", type=Path, default=Path("artifacts/release-226-production-smoke.json"))
+     args = parser.parse_args()
+     report = run(args.origin, args.retries, args.delay, args.timeout)
+     args.report.parent.mkdir(parents=True, exist_ok=True)
+diff --git a/tests/personal-library.test.mjs b/tests/personal-library.test.mjs
+new file mode 100644
+--- /dev/null
++++ b/tests/personal-library.test.mjs
+@@ -0,0 +1,240 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import fs from 'node:fs';
++
++import {
++  RELEASE,
++  accessibilityLabels,
++  buildActivityEvents,
++  buildPersonalLibraryModel,
++  filterActivityEvents,
++  normaliseLibraryRoute,
++  normaliseRouteRegistry,
++  readLocalDatasets
++} from '../assets/js/personal-library.mjs';
++
++class MemoryStorage {
++  constructor(initial = {}) {
++    this.values = new Map(Object.entries(initial));
++  }
++  getItem(key) {
++    return this.values.has(key)
++      ? this.values.get(key)
++      : null;
++  }
++}
++
++const config = JSON.parse(
++  fs.readFileSync(
++    new URL('../data/personal-library.json', import.meta.url),
++    'utf8'
++  )
++);
++
++const routesPayload = {
++  release: 226,
++  routes: [
++    {
++      path: '/literature/kandar-anubhuti.html',
++      titleTa: 'கந்தர் அனுபூதி',
++      titleEn: 'Kandar Anubhuti',
++      category: 'Literature',
++      status: 'published',
++      summary: 'Published route'
++    },
++    {
++      path: '/slokas/kanda-sashti-kavasam.html',
++      titleTa: 'கந்த சஷ்டி கவசம்',
++      titleEn: 'Kanda Sashti Kavasam',
++      category: 'Sloka',
++      status: 'partial-reviewed',
++      summary: 'Bounded route'
++    },
++    {
++      path: '/draft.html',
++      titleEn: 'Draft',
++      category: 'Internal',
++      status: 'draft',
++      summary: 'Excluded'
++    }
++  ]
++};
++
++const datasets = {
++  readingList: [
++    {
++      route: '/literature/kandar-anubhuti.html',
++      savedAt: '2026-07-14T09:00:00Z'
++    },
++    {
++      route: '/removed.html',
++      savedAt: '2026-07-14T08:00:00Z'
++    }
++  ],
++  readingProgress: [
++    {
++      route: '/literature/kandar-anubhuti.html',
++      percent: 42,
++      lastVisitedAt: '2026-07-14T11:00:00Z'
++    },
++    {
++      route: '/slokas/kanda-sashti-kavasam.html',
++      percent: 96,
++      lastVisitedAt: '2026-07-14T10:00:00Z'
++    }
++  ],
++  readingNotes: [
++    {
++      id: 'note-1',
++      route: '/literature/kandar-anubhuti.html',
++      headingId: 'section-1',
++      headingLabel: 'Section 1',
++      kind: 'reflection',
++      note: 'அருள் reflection',
++      updatedAt: '2026-07-14T12:00:00Z'
++    }
++  ],
++  accessibility: {
++    largeText: true,
++    highContrast: false,
++    reducedMotion: true,
++    underlinedLinks: false
++  },
++  audioHistory: [
++    {
++      id: 'audio-1',
++      route: '/slokas/kanda-sashti-kavasam.html',
++      titleEn: 'Kanda Sashti Kavasam',
++      playCount: 3,
++      lastPlayedAt: '2026-07-14T13:00:00Z'
++    }
++  ]
++};
++
++test('release and read-only configuration identity are stable', () => {
++  assert.equal(RELEASE, 226);
++  assert.equal(config.release, 226);
++  assert.equal(config.completedThreshold, 95);
++  assert.equal(config.storageKeys.readingNotes, 'osb-reading-notes-v1');
++});
++
++test('same-origin routes are accepted and external routes rejected', () => {
++  assert.equal(
++    normaliseLibraryRoute('/literature/kandar-anubhuti.html'),
++    '/literature/kandar-anubhuti.html'
++  );
++  assert.equal(
++    normaliseLibraryRoute('https://example.com/page.html'),
++    ''
++  );
++});
++
++test('route registry excludes drafts and preserves bounded states', () => {
++  const map = normaliseRouteRegistry(routesPayload, config);
++  assert.equal(map.size, 2);
++  assert.equal(map.has('/draft.html'), false);
++  assert.equal(
++    map.get('/slokas/kanda-sashti-kavasam.html').status,
++    'partial-reviewed'
++  );
++});
++
++test('local dataset reader uses only configured keys', () => {
++  const storage = new MemoryStorage({
++    'osb-reading-list-v1': JSON.stringify([{route: '/a.html'}]),
++    'unregistered-secret': JSON.stringify({secret: true})
++  });
++  const result = readLocalDatasets(storage, config.storageKeys);
++  assert.equal(result.readingList.length, 1);
++  assert.equal('unregistered-secret' in result, false);
++});
++
++test('personal library model derives actual local metrics', () => {
++  const model = buildPersonalLibraryModel(
++    config,
++    routesPayload,
++    datasets
++  );
++  assert.equal(model.metrics.savedRoutes, 1);
++  assert.equal(model.metrics.inProgress, 1);
++  assert.equal(model.metrics.completed, 1);
++  assert.equal(model.metrics.notes, 1);
++  assert.equal(model.metrics.sectionBookmarks, 1);
++  assert.equal(model.metrics.audioTracks, 1);
++  assert.equal(model.metrics.audioStarts, 3);
++  assert.equal(model.metrics.activePreferences, 2);
++  assert.equal(model.ignoredRecords, 1);
++  assert.equal(model.continueReading[0].percent, 42);
++  assert.equal(model.completed[0].percent, 96);
++});
++
++test('activity timeline is deterministic and newest first', () => {
++  const model = buildPersonalLibraryModel(
++    config,
++    routesPayload,
++    datasets
++  );
++  assert.equal(model.activity[0].type, 'audio');
++  assert.equal(model.activity[1].type, 'note');
++  assert.equal(model.activity.length, 5);
++});
++
++test('activity filtering supports type and Tamil search', () => {
++  const events = buildActivityEvents({
++    readingList: [],
++    progress: [],
++    notes: [{
++      id: 'note-1',
++      path: '/literature/kandar-anubhuti.html',
++      titleTa: 'கந்தர் அனுபூதி',
++      titleEn: 'Kandar Anubhuti',
++      category: 'Literature',
++      status: 'published',
++      kind: 'reflection',
++      note: 'அருள்',
++      updatedAt: '2026-07-14T12:00:00Z'
++    }],
++    audio: [{
++      id: 'audio-1',
++      path: '/slokas/kanda-sashti-kavasam.html',
++      titleEn: 'Kanda Sashti Kavasam',
++      category: 'Sloka',
++      status: 'published',
++      kind: 'Read-aloud',
++      playCount: 1,
++      lastPlayedAt: '2026-07-14T13:00:00Z'
++    }]
++  }, 30);
++
++  assert.equal(
++    filterActivityEvents(events, {type: 'note'}).length,
++    1
++  );
++  assert.equal(
++    filterActivityEvents(events, {query: 'அருள்'})[0].type,
++    'note'
++  );
++});
++
++test('accessibility labels use bounded boolean preferences', () => {
++  assert.deepEqual(
++    accessibilityLabels({
++      largeText: true,
++      highContrast: 1,
++      reducedMotion: true,
++      underlinedLinks: false
++    }),
++    ['Large text', 'Reduced motion']
++  );
++});
++
++test('module contains no browser-data write operations', () => {
++  const source = fs.readFileSync(
++    new URL('../assets/js/personal-library.mjs', import.meta.url),
++    'utf8'
++  );
++  assert.equal(source.includes('.setItem('), false);
++  assert.equal(source.includes('.removeItem('), false);
++  assert.equal(source.includes('localStorage.clear('), false);
++  assert.equal(source.includes('navigator.sendBeacon'), false);
++});
+diff --git a/tests/maintenance-centre.test.mjs b/tests/maintenance-centre.test.mjs
+--- a/tests/maintenance-centre.test.mjs
++++ b/tests/maintenance-centre.test.mjs
+@@ -25,8 +25,8 @@
+ );
+ 
+ test('release and registry identities are stable', () => {
+-  assert.equal(RELEASE, 225);
+-  assert.equal(registry.release, 225);
++  assert.equal(RELEASE, 226);
++  assert.equal(registry.release, 226);
+   assert.equal(registry.builtAgainstCommit.length, 40);
+   assert.equal(registry.checks.length, 8);
+ });
+@@ -49,51 +49,51 @@
+ });
+ 
+ test('JSON path lookup and equality checks are deterministic', () => {
+-  const value = {release: 225, nested: {state: 'ready'}};
++  const value = {release: 226, nested: {state: 'ready'}};
+   assert.equal(readJsonPath(value, 'nested.state'), 'ready');
+   assert.equal(readJsonPath(value, 'nested.missing'), undefined);
+   assert.deepEqual(
+-    evaluateJsonEquals(value, 'release', 225),
+-    {ok: true, actual: 225}
++    evaluateJsonEquals(value, 'release', 226),
++    {ok: true, actual: 226}
+   );
+ });
+ 
+ test('route registry requires one maintenance route and no duplicates', () => {
+   const valid = evaluateRouteRegistry({
+-    release: 225,
++    release: 226,
+     routes: [
+       {path: '/index.html'},
+-      {path: '/personal-data.html'}
++      {path: '/personal-library.html'}
+     ]
+-  }, 225, '/personal-data.html');
++  }, 226, '/personal-library.html');
+   assert.equal(valid.ok, true);
+ 
+   const duplicate = evaluateRouteRegistry({
+-    release: 225,
++    release: 226,
+     routes: [
+-      {path: '/personal-data.html'},
+-      {path: '/personal-data.html'}
++      {path: '/personal-library.html'},
++      {path: '/personal-library.html'}
+     ]
+-  }, 225, '/personal-data.html');
++  }, 226, '/personal-library.html');
+   assert.equal(duplicate.ok, false);
+   assert.equal(duplicate.actual.duplicateCount, 1);
+ });
+ 
+ test('audit configuration requires the current release and files', () => {
+   const result = evaluateAuditConfig({
+-    expectedRelease: '225',
+-    requiredFiles: ['personal-data.html', 'manifest-release-225.json']
+-  }, '225', ['personal-data.html', 'manifest-release-225.json']);
++    expectedRelease: '226',
++    requiredFiles: ['personal-library.html', 'manifest-release-226.json']
++  }, '226', ['personal-library.html', 'manifest-release-226.json']);
+   assert.equal(result.ok, true);
+ 
+   const missing = evaluateAuditConfig({
+-    expectedRelease: '225',
+-    requiredFiles: ['personal-data.html']
+-  }, '225', ['personal-data.html', 'manifest-release-225.json']);
++    expectedRelease: '226',
++    requiredFiles: ['personal-library.html']
++  }, '226', ['personal-library.html', 'manifest-release-226.json']);
+   assert.equal(missing.ok, false);
+   assert.deepEqual(
+     missing.actual.missing,
+-    ['manifest-release-225.json']
++    ['manifest-release-226.json']
+   );
+ });
+ 
+@@ -123,8 +123,8 @@
+   const result = evaluateCheckPayload(
+     routeCheck,
+     JSON.stringify({
+-      release: 225,
+-      routes: [{path: '/personal-data.html'}]
++      release: 226,
++      routes: [{path: '/personal-library.html'}]
+     })
+   );
+   assert.equal(result.ok, true);
+@@ -136,14 +136,14 @@
+     status: 200,
+     async text() {
+       return path === '/service-worker.js'
+-        ? "const RELEASE = '225';"
++        ? "const RELEASE = '226';"
+         : '';
+     }
+   });
+   const result = await runResourceCheck({
+     path: '/service-worker.js',
+     mode: 'textIncludes',
+-    expected: "const RELEASE = '225';"
++    expected: "const RELEASE = '226';"
+   }, fetcher);
+   assert.equal(result.ok, true);
+   assert.equal(result.status, 200);
+@@ -174,7 +174,7 @@
+ 
+ test('transient cache cleanup preserves static and user caches', async () => {
+   const names = [
+-    'osb-static-v225',
++    'osb-static-v226',
+     'osb-runtime-v220',
+     'osb-data-v219',
+     'osb-user-reading-v1'
+diff --git a/tools/release_226_validate.py b/tools/release_226_validate.py
+new file mode 100644
+--- /dev/null
++++ b/tools/release_226_validate.py
+@@ -0,0 +1,309 @@
++#!/usr/bin/env python3
++"""Validate Release 226 without claiming remote CI or deployment results."""
++from __future__ import annotations
++
++import argparse
++import json
++import re
++import sys
++import xml.etree.ElementTree as ET
++from pathlib import Path
++
++RELEASE = "226"
++BASE_COMMIT = "2fac2649e2e721e9b4249c6e3651f598bf34191c"
++ROUTE = "/personal-library.html"
++REQUIRED = [
++    "personal-library.html",
++    "assets/css/personal-library.css",
++    "assets/js/personal-library.mjs",
++    "data/personal-library.json",
++    "index.html",
++    "platform.html",
++    "discovery.html",
++    "reading-workspace.html",
++    "reading-notes.html",
++    "personal-data.html",
++    "maintenance.html",
++    "assets/js/maintenance-centre.mjs",
++    "data/maintenance-checks.json",
++    "data/site-routes.json",
++    "sitemap.xml",
++    "service-worker.js",
++    "quality/site-audit-config.json",
++    "tools/production_smoke.py",
++    "tests/test_site_audit.py",
++    "tests/personal-library.test.mjs",
++    "tests/maintenance-centre.test.mjs",
++    ".github/workflows/static-site-integrity.yml",
++    ".github/workflows/production-smoke.yml",
++    "manifest-release-226.json",
++]
++
++def read(root: Path, relative: str) -> str:
++    return (root / relative).read_text(encoding="utf-8")
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", type=Path, default=Path.cwd())
++    parser.add_argument("--package-mode", action="store_true")
++    parser.add_argument(
++        "--report",
++        type=Path,
++        default=Path("artifacts/release-226-validation.json")
++    )
++    args = parser.parse_args()
++    root = args.root.resolve()
++    errors: list[str] = []
++    checks: list[str] = []
++
++    for relative in REQUIRED:
++        if not (root / relative).is_file():
++            errors.append(f"missing required file: {relative}")
++        else:
++            checks.append(f"exists: {relative}")
++
++    if not errors:
++        manifest = json.loads(read(root, "manifest-release-226.json"))
++        library = json.loads(read(root, "data/personal-library.json"))
++        routes = json.loads(read(root, "data/site-routes.json"))
++        maintenance = json.loads(read(root, "data/maintenance-checks.json"))
++        audit = json.loads(read(root, "quality/site-audit-config.json"))
++        ET.fromstring(read(root, "sitemap.xml"))
++
++        if manifest.get("release") != 226:
++            errors.append("manifest release is not 226")
++        if manifest.get("base_commit") != BASE_COMMIT:
++            errors.append("manifest base commit does not match Release 225 head")
++        if library.get("release") != 226:
++            errors.append("personal-library config release is not 226")
++        if library.get("builtAgainstCommit") != BASE_COMMIT:
++            errors.append("personal-library base commit is incorrect")
++        if routes.get("release") != 226:
++            errors.append("route directory release is not 226")
++        if maintenance.get("release") != 226:
++            errors.append("maintenance registry release is not 226")
++        if maintenance.get("builtAgainstCommit") != BASE_COMMIT:
++            errors.append("maintenance registry base commit is incorrect")
++
++        expected_keys = {
++            "readingList": "osb-reading-list-v1",
++            "readingProgress": "osb-reading-progress-v1",
++            "readingNotes": "osb-reading-notes-v1",
++            "accessibility": "osb-accessibility-preferences-v1",
++            "audioHistory": "osb-audio-listening-history-v1",
++        }
++        if library.get("storageKeys") != expected_keys:
++            errors.append("personal-library storage keys differ from registered set")
++        if library.get("completedThreshold") != 95:
++            errors.append("personal-library completion threshold must remain 95")
++        if library.get("minimumStartedProgress") != 1:
++            errors.append("personal-library minimum started progress must remain 1")
++
++        route_records = routes.get("routes", [])
++        route_paths = [
++            item.get("path")
++            for item in route_records
++            if isinstance(item, dict)
++        ]
++        if route_paths.count(ROUTE) != 1:
++            errors.append("personal-library route must appear exactly once")
++        if len(route_paths) != len(set(route_paths)):
++            errors.append("duplicate route-directory paths detected")
++        route = next(
++            (item for item in route_records if item.get("path") == ROUTE),
++            None
++        )
++        if route and route.get("status") != "utility":
++            errors.append("personal-library route must remain utility")
++
++        if audit.get("expectedRelease") != RELEASE:
++            errors.append("site-audit expectedRelease is not 226")
++        for relative in (
++            "personal-library.html",
++            "assets/css/personal-library.css",
++            "assets/js/personal-library.mjs",
++            "data/personal-library.json",
++            "manifest-release-226.json",
++        ):
++            if relative not in audit.get("requiredFiles", []):
++                errors.append(f"site audit does not require {relative}")
++
++        sitemap = read(root, "sitemap.xml")
++        if sitemap.count(
++            "https://omsaravanabhava.org/personal-library.html"
++        ) != 1:
++            errors.append("sitemap must contain personal-library route once")
++
++        worker = read(root, "service-worker.js")
++        if "const RELEASE = '226';" not in worker:
++            errors.append("service-worker identity is not 226")
++        core = re.search(
++            r"const CORE_PRECACHE_URLS = \[(.*?)\];",
++            worker,
++            re.S
++        )
++        optional = re.search(
++            r"const PRECACHE_URLS = \[(.*?)\];",
++            worker,
++            re.S
++        )
++        core_text = core.group(1) if core else ""
++        optional_text = optional.group(1) if optional else ""
++        for asset in (
++            "/personal-library.html",
++            "/assets/css/personal-library.css",
++            "/assets/js/personal-library.mjs",
++            "/data/personal-library.json",
++            "/manifest-release-226.json",
++        ):
++            if f'"{asset}"' not in optional_text:
++                errors.append(f"optional precache missing {asset}")
++            if f'"{asset}"' in core_text:
++                errors.append(
++                    f"personal-library asset incorrectly blocks installation: {asset}"
++                )
++        if "cacheOptionalAssets" not in worker:
++            errors.append("resilient optional caching is missing")
++
++        module = read(root, "assets/js/personal-library.mjs")
++        for marker in (
++            "export const RELEASE = 226;",
++            "readLocalDatasets",
++            "normaliseRouteRegistry",
++            "buildPersonalLibraryModel",
++            "buildActivityEvents",
++            "filterActivityEvents",
++            "accessibilityLabels",
++            "No new browser data was written",
++        ):
++            if marker not in module:
++                errors.append(f"personal-library module missing marker: {marker}")
++        for prohibited in (
++            ".setItem(",
++            ".removeItem(",
++            "localStorage.clear(",
++            "navigator.sendBeacon",
++            "gtag(",
++            "google-analytics",
++            "api.openai.com",
++            "recommendation-api",
++            "selectedText:",
++            "pageBody:",
++            "document.body.innerText",
++            "document.body.textContent",
++        ):
++            if prohibited in module:
++                errors.append(
++                    f"prohibited write, tracking or source-text marker found: {prohibited}"
++                )
++
++        page = read(root, "personal-library.html")
++        for marker in (
++            'data-release="226"',
++            "Personal Library Dashboard",
++            "writes no new browser data",
++            "actual valid local records",
++            "not a recommendation engine",
++            "No account, cloud synchronization",
++        ):
++            if marker not in page:
++                errors.append(f"personal-library page missing marker: {marker}")
++
++        for html in (
++            "index.html",
++            "platform.html",
++            "discovery.html",
++            "reading-workspace.html",
++            "reading-notes.html",
++            "personal-data.html",
++            "maintenance.html",
++        ):
++            body = read(root, html)
++            if 'data-release="226"' not in body:
++                errors.append(f"{html} does not expose data-release 226")
++            if "personal-library.html" not in body:
++                errors.append(f"{html} does not link to Personal Library")
++            if re.search(r'data-release="(222|223|224|225)"', body):
++                errors.append(f"{html} contains stale data-release identity")
++
++        maintenance_module = read(root, "assets/js/maintenance-centre.mjs")
++        if "export const RELEASE = 226;" not in maintenance_module:
++            errors.append("maintenance module did not advance to 226")
++
++        checks_registry = maintenance.get("checks", [])
++        if len(checks_registry) != 8:
++            errors.append("maintenance registry must contain eight checks")
++        if not any(
++            item.get("path") == "/personal-library.html"
++            for item in checks_registry
++        ):
++            errors.append("maintenance registry does not check Personal Library")
++
++        smoke = read(root, "tools/production_smoke.py")
++        for marker in (
++            'data-release="226"',
++            "const RELEASE = '226';",
++            "/personal-library.html",
++            "export const RELEASE = 226",
++            "personal-library.json",
++            "manifest-release-226.json",
++            "release-226-production-smoke.json",
++        ):
++            if marker not in smoke:
++                errors.append(f"production smoke missing marker: {marker}")
++
++        for workflow in (
++            ".github/workflows/static-site-integrity.yml",
++            ".github/workflows/production-smoke.yml",
++        ):
++            text = read(root, workflow)
++            if "226" not in text or "release-226-" not in text:
++                errors.append(f"{workflow} has stale release identity")
++
++        if not args.package_mode:
++            for relative in (
++                "assets/js/personal-data.mjs",
++                "assets/js/reading-notes.mjs",
++                "assets/js/reader-experience.js",
++                "assets/js/reading-list.mjs",
++                "assets/js/accessibility-preferences.mjs",
++                "assets/js/audio-history.mjs",
++                "tools/site_audit.py",
++                "tests/personal-data.test.mjs",
++                "tests/reading-notes.test.mjs",
++                "tests/reader-experience.test.mjs",
++                "tests/discovery-workspace.test.mjs",
++                "tests/knowledge-graph-explorer.test.mjs",
++                "tests/audio-history.test.mjs",
++                "tests/print-support.test.mjs",
++                "tests/accessibility-preferences.test.mjs",
++                "tests/reading-list.test.mjs",
++                "tests/search-facets.test.mjs",
++            ):
++                if not (root / relative).is_file():
++                    errors.append(f"repository mode requires {relative}")
++
++    report = {
++        "release": 226,
++        "base_commit": BASE_COMMIT,
++        "mode": "package" if args.package_mode else "repository",
++        "status": "FAIL" if errors else "PASS",
++        "errors": errors,
++        "checks": checks,
++        "github_actions": "NOT_RUN",
++        "deployed_production": "NOT_RUN",
++    }
++    report_path = (
++        args.report if args.report.is_absolute()
++        else root / args.report
++    )
++    report_path.parent.mkdir(parents=True, exist_ok=True)
++    report_path.write_text(
++        json.dumps(report, ensure_ascii=False, indent=2) + "\n",
++        encoding="utf-8"
++    )
++    print(json.dumps(report, ensure_ascii=False, indent=2))
++    return 1 if errors else 0
++
++if __name__ == "__main__":
++    sys.exit(main())
+diff --git a/.github/workflows/static-site-integrity.yml b/.github/workflows/static-site-integrity.yml
+--- a/.github/workflows/static-site-integrity.yml
++++ b/.github/workflows/static-site-integrity.yml
+@@ -1,4 +1,4 @@
+-name: Release 225 Static Site Integrity
++name: Release 226 Static Site Integrity
+ 
+ on:
+   push:
+@@ -12,7 +12,7 @@
+ 
+ jobs:
+   integrity:
+-    name: Release 225 repository validation
++    name: Release 226 repository validation
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repository
+@@ -28,11 +28,12 @@
+         with:
+           node-version: "20"
+ 
+-      - name: Validate Release 225 identities and portability boundaries
+-        run: python tools/release_225_validate.py --root . --report artifacts/release-225-overlay-validation.json
++      - name: Validate Release 226 identities and read-only boundaries
++        run: python tools/release_226_validate.py --root . --report artifacts/release-226-overlay-validation.json
+ 
+       - name: Check browser modules
+         run: |
++          node --check assets/js/personal-library.mjs
+           node --check assets/js/personal-data.mjs
+           node --check assets/js/maintenance-centre.mjs
+           node --check assets/js/reading-notes.mjs
+@@ -47,18 +48,18 @@
+           node --check assets/js/search-facets.mjs
+ 
+       - name: Run browser-local feature unit tests
+-        run: node --test tests/personal-data.test.mjs tests/reading-notes.test.mjs tests/reader-experience.test.mjs tests/maintenance-centre.test.mjs tests/discovery-workspace.test.mjs tests/knowledge-graph-explorer.test.mjs tests/audio-history.test.mjs tests/print-support.test.mjs tests/accessibility-preferences.test.mjs tests/reading-list.test.mjs tests/search-facets.test.mjs
++        run: node --test tests/personal-library.test.mjs tests/personal-data.test.mjs tests/reading-notes.test.mjs tests/reader-experience.test.mjs tests/maintenance-centre.test.mjs tests/discovery-workspace.test.mjs tests/knowledge-graph-explorer.test.mjs tests/audio-history.test.mjs tests/print-support.test.mjs tests/accessibility-preferences.test.mjs tests/reading-list.test.mjs tests/search-facets.test.mjs
+ 
+       - name: Run site-audit unit tests
+         run: python -m unittest discover -s tests -p 'test_site_audit.py'
+ 
+       - name: Run repository-wide static audit
+-        run: python tools/site_audit.py --root . --json-report artifacts/release-225-site-audit.json --markdown-report artifacts/release-225-site-audit.md
++        run: python tools/site_audit.py --root . --json-report artifacts/release-226-site-audit.json --markdown-report artifacts/release-226-site-audit.md
+ 
+-      - name: Upload Release 225 integrity evidence
++      - name: Upload Release 226 integrity evidence
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+-          name: release-225-static-integrity-${{ github.sha }}
++          name: release-226-static-integrity-${{ github.sha }}
+           path: artifacts/
+           if-no-files-found: error
+diff --git a/.github/workflows/production-smoke.yml b/.github/workflows/production-smoke.yml
+--- a/.github/workflows/production-smoke.yml
++++ b/.github/workflows/production-smoke.yml
+@@ -1,4 +1,4 @@
+-name: Release 225 Production Smoke
++name: Release 226 Production Smoke
+ 
+ on:
+   push:
+@@ -11,12 +11,12 @@
+   contents: read
+ 
+ concurrency:
+-  group: release-225-production-smoke
++  group: release-226-production-smoke
+   cancel-in-progress: true
+ 
+ jobs:
+   smoke:
+-    name: Observe deployed Release 225
++    name: Observe deployed Release 226
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repository
+@@ -32,12 +32,12 @@
+         run: sleep 90
+ 
+       - name: Run deployed production smoke checks
+-        run: python tools/production_smoke.py --retries 18 --delay 20 --report artifacts/release-225-production-smoke.json
++        run: python tools/production_smoke.py --retries 18 --delay 20 --report artifacts/release-226-production-smoke.json
+ 
+-      - name: Upload Release 225 production evidence
++      - name: Upload Release 226 production evidence
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+-          name: release-225-production-smoke-${{ github.sha }}
+-          path: artifacts/release-225-production-smoke.json
++          name: release-226-production-smoke-${{ github.sha }}
++          path: artifacts/release-226-production-smoke.json
+           if-no-files-found: error
+diff --git a/manifest-release-226.json b/manifest-release-226.json
+new file mode 100644
+--- /dev/null
++++ b/manifest-release-226.json
+@@ -0,0 +1,65 @@
++{
++  "project": "OmSaravanaBhava",
++  "release": 226,
++  "name": "Browser-Local Personal Library Dashboard",
++  "base_commit": "2fac2649e2e721e9b4249c6e3651f598bf34191c",
++  "generated": "2026-07-14",
++  "required_commit_title": "Release 226: add browser-local personal library dashboard",
++  "validation_status": "LOCAL_PACKAGE_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
++  "production_files": [
++    "personal-library.html",
++    "assets/css/personal-library.css",
++    "assets/js/personal-library.mjs",
++    "data/personal-library.json",
++    "index.html",
++    "platform.html",
++    "discovery.html",
++    "reading-workspace.html",
++    "reading-notes.html",
++    "personal-data.html",
++    "maintenance.html",
++    "assets/js/maintenance-centre.mjs",
++    "data/maintenance-checks.json",
++    "data/site-routes.json",
++    "sitemap.xml",
++    "service-worker.js"
++  ],
++  "ci_alignment_files": [
++    "quality/site-audit-config.json",
++    "tools/production_smoke.py",
++    "tests/test_site_audit.py",
++    "tests/personal-library.test.mjs",
++    "tests/maintenance-centre.test.mjs",
++    "tools/release_226_validate.py",
++    ".github/workflows/static-site-integrity.yml",
++    ".github/workflows/production-smoke.yml"
++  ],
++  "claims": {
++    "registered_local_datasets_read": 5,
++    "new_storage_key_created": false,
++    "browser_data_written": false,
++    "route_registry_validation": true,
++    "invalid_or_stale_records_excluded": true,
++    "actual_counts_only": true,
++    "continue_reading": true,
++    "saved_route_dashboard": true,
++    "notes_snapshot": true,
++    "listening_snapshot": true,
++    "accessibility_snapshot": true,
++    "unified_activity_timeline": true,
++    "recommendation_engine": false,
++    "analytics": false,
++    "user_profile": false,
++    "cloud_sync": false,
++    "server_account": false,
++    "service_worker_release": 226,
++    "new_optional_cache_assets": 5
++  },
++  "limitations": [
++    "The dashboard reflects only valid records stored in the current browser.",
++    "Reading completion remains an approximate local threshold.",
++    "Ignored records may represent removed, renamed, duplicate or invalid routes.",
++    "The dashboard is not a recommendation or analytics service.",
++    "GitHub Actions and deployed production checks remain pending."
++  ]
++}

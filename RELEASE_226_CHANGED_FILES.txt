@@ -1,0 +1,36 @@
+Release 226 — Browser-Local Personal Library Dashboard
+Base commit: 2fac2649e2e721e9b4249c6e3651f598bf34191c
+
+M  .github/workflows/production-smoke.yml
+M  .github/workflows/static-site-integrity.yml
+A  assets/css/personal-library.css
+M  assets/js/maintenance-centre.mjs
+A  assets/js/personal-library.mjs
+M  data/maintenance-checks.json
+A  data/personal-library.json
+M  data/site-routes.json
+M  discovery.html
+M  index.html
+M  maintenance.html
+A  manifest-release-226.json
+M  personal-data.html
+A  personal-library.html
+M  platform.html
+M  quality/site-audit-config.json
+M  reading-notes.html
+M  reading-workspace.html
+M  service-worker.js
+M  sitemap.xml
+M  tests/maintenance-centre.test.mjs
+A  tests/personal-library.test.mjs
+M  tests/test_site_audit.py
+M  tools/production_smoke.py
+A  tools/release_226_validate.py
+
+Evidence files included:
+A  RELEASE_226_CHANGED_FILES.txt
+A  RELEASE_226_GITHUB_PORTAL_INSTRUCTIONS.txt
+A  RELEASE_226_LOCAL_TEST_EVIDENCE.txt
+A  RELEASE_226_SHA256SUMS.txt
+A  RELEASE_226_VALIDATION_REPORT.md
+A  RELEASE_226.patch

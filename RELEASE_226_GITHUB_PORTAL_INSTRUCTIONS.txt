@@ -1,0 +1,60 @@
+Release 226 — GitHub browser upload instructions
+
+Repository:
+https://github.com/ssakthivel02/OmSaravanaBhava
+
+Verified Release 225 base head:
+2fac2649e2e721e9b4249c6e3651f598bf34191c
+
+Required commit title — enter this in the SMALL UPPER FIELD:
+Release 226: add browser-local personal library dashboard
+
+Leave the large commit-description field blank.
+
+UPLOAD
+1. Download and extract OmSaravanaBhava-Release-226.zip.
+2. Enable Windows View > Show > Hidden items.
+3. Open the extracted package folder.
+4. In GitHub main, select Add file > Upload files.
+5. Drag the CONTENTS of the extracted folder, not the outer folder.
+6. Preserve every directory path.
+7. Confirm these exact paths appear before committing:
+   .github/workflows/static-site-integrity.yml
+   .github/workflows/production-smoke.yml
+   personal-library.html
+   assets/css/personal-library.css
+   assets/js/personal-library.mjs
+   data/personal-library.json
+   manifest-release-226.json
+   tools/release_226_validate.py
+8. Enter the required title in the small upper field.
+9. Leave the large description field completely blank.
+10. Commit directly to main.
+
+POST-COMMIT VERIFICATION
+1. Copy the new main commit SHA.
+2. Confirm service-worker.js contains:
+   const RELEASE = '226';
+3. Open personal-library.html.
+4. Confirm actual local counts load for saved routes, in-progress reading, completed reading, notes, listening starts and accessibility preferences.
+5. Test Continue Reading links and resume behavior.
+6. Test Saved Library, Notes and Listening snapshot links.
+7. Test activity search and each activity-type filter.
+8. Confirm stale or invalid local routes are excluded and reported.
+9. Confirm opening and filtering the dashboard does not create a new localStorage key.
+10. Confirm data/site-routes.json contains /personal-library.html once.
+11. Confirm sitemap.xml contains the Personal Library URL once.
+12. Open maintenance.html and run Release 226 checks.
+13. Wait for:
+    Release 226 Static Site Integrity
+    Release 226 Production Smoke
+14. Do not proceed to Release 227 until Release 226 is verified.
+
+DO NOT
+- Do not upload only personal-library.html.
+- Do not omit hidden .github workflow files.
+- Do not rename an older ZIP.
+- Do not claim recommendations, behavioural profiling or analytics.
+- Do not claim cross-device synchronization or server accounts.
+- Do not place the release title in the large description field.
+- Do not mark GitHub Actions or production as passed before they run.

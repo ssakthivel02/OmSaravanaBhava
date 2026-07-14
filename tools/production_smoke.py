@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Observe the deployed custom domain and fail when Release 225 is not live."""
+"""Observe the deployed custom domain and fail when Release 226 is not live."""
 from __future__ import annotations
 
 import argparse
@@ -10,8 +10,8 @@ import urllib.request
 from pathlib import Path
 
 CHECKS = [
-    ("/", 'data-release="225"'),
-    ("/service-worker.js", "const RELEASE = '225';"),
+    ("/", 'data-release="226"'),
+    ("/service-worker.js", "const RELEASE = '226';"),
     ("/search-facets.html", "Published-Content Search Facets"),
     ("/assets/js/search-facets.mjs", "export const RELEASE = 216;"),
     ("/data/site-routes.json", '"/search-facets.html"'),
@@ -38,35 +38,41 @@ CHECKS = [
     ("/assets/js/knowledge-graph-explorer.mjs", "export const RELEASE = 220"),
     ("/data/knowledge-graph-explorer.json", "\"release\": 220"),
     ("/sitemap.xml", "https://omsaravanabhava.org/knowledge-graph-explorer.html"),
-    ("/maintenance.html", "data-release=\"222\""),
-    ("/assets/js/maintenance-centre.mjs", "export const RELEASE = 225"),
-    ("/data/maintenance-checks.json", "\"release\": 225"),
-    ("/manifest-release-225.json", "\"release\": 225"),
+    ("/maintenance.html", "data-release=\"226\""),
+    ("/assets/js/maintenance-centre.mjs", "export const RELEASE = 226"),
+    ("/data/maintenance-checks.json", "\"release\": 226"),
+    ("/manifest-release-226.json", "\"release\": 226"),
     ("/data/site-routes.json", "\"/maintenance.html\""),
     ("/sitemap.xml", "https://omsaravanabhava.org/maintenance.html"),
-    ("/discovery.html", "data-release=\"222\""),
+    ("/discovery.html", "data-release=\"226\""),
     ("/assets/js/discovery-workspace.mjs", "export const RELEASE = 222"),
     ("/data/discovery-lenses.json", "\"release\": 222"),
     ("/data/site-routes.json", "\"/discovery.html\""),
     ("/sitemap.xml", "https://omsaravanabhava.org/discovery.html"),
-    ("/reading-workspace.html", "data-release=\"223\""),
+    ("/reading-workspace.html", "data-release=\"226\""),
     ("/assets/js/reader-experience.js", "export const RELEASE = 224"),
     ("/assets/js/pwa-register.js", "reader-experience.js"),
     ("/data/reading-workspace.json", "\"release\": 224"),
     ("/data/site-routes.json", "\"/reading-workspace.html\""),
     ("/sitemap.xml", "https://omsaravanabhava.org/reading-workspace.html"),
-    ("/reading-notes.html", "data-release=\"224\""),
+    ("/reading-notes.html", "data-release=\"226\""),
     ("/assets/js/reading-notes.mjs", "export const RELEASE = 224"),
     ("/assets/js/pwa-register.js", "reading-notes.mjs"),
     ("/data/reading-notes.json", "\"release\": 224"),
     ("/data/site-routes.json", "\"/reading-notes.html\""),
     ("/sitemap.xml", "https://omsaravanabhava.org/reading-notes.html"),
-    ("/personal-data.html", "data-release=\"225\""),
+    ("/personal-data.html", "data-release=\"226\""),
     ("/assets/js/personal-data.mjs", "export const RELEASE = 225"),
     ("/data/personal-data-registry.json", "\"release\": 225"),
     ("/manifest-release-225.json", "\"release\": 225"),
     ("/data/site-routes.json", "\"/personal-data.html\""),
-    ("/sitemap.xml", "https://omsaravanabhava.org/personal-data.html")
+    ("/sitemap.xml", "https://omsaravanabhava.org/personal-data.html"),
+    ("/personal-library.html", "data-release=\"226\""),
+    ("/assets/js/personal-library.mjs", "export const RELEASE = 226"),
+    ("/data/personal-library.json", "\"release\": 226"),
+    ("/manifest-release-226.json", "\"release\": 226"),
+    ("/data/site-routes.json", "\"/personal-library.html\""),
+    ("/sitemap.xml", "https://omsaravanabhava.org/personal-library.html")
 ]
 
 
@@ -74,7 +80,7 @@ def fetch(url: str, timeout: int) -> tuple[int, str]:
     request = urllib.request.Request(
         url,
         headers={
-            "User-Agent": "OmSaravanaBhava-Production-Smoke/225",
+            "User-Agent": "OmSaravanaBhava-Production-Smoke/226",
             "Cache-Control": "no-cache"
         }
     )
@@ -114,7 +120,7 @@ def main() -> int:
     parser.add_argument("--retries", type=int, default=18)
     parser.add_argument("--delay", type=int, default=20)
     parser.add_argument("--timeout", type=int, default=20)
-    parser.add_argument("--report", type=Path, default=Path("artifacts/release-225-production-smoke.json"))
+    parser.add_argument("--report", type=Path, default=Path("artifacts/release-226-production-smoke.json"))
     args = parser.parse_args()
     report = run(args.origin, args.retries, args.delay, args.timeout)
     args.report.parent.mkdir(parents=True, exist_ok=True)

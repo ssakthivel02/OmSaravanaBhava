@@ -1,5 +1,5 @@
 {
-  "release": 225,
+  "release": 226,
   "generated": "2026-07-14",
   "scope": "Public HTML routes represented by the Release 215 sitemap and route directory.",
   "statusMeaning": {
@@ -596,6 +596,14 @@
       "category": "Platform",
       "status": "utility",
       "summary": "Validated browser-local export and restore for reading list, progress, notes, accessibility preferences and audio listening history."
+    },
+    {
+      "path": "/personal-library.html",
+      "titleTa": "தனிப்பட்ட பக்தி நூலகம்",
+      "titleEn": "Personal Library Dashboard",
+      "category": "Platform",
+      "status": "utility",
+      "summary": "Read-only aggregation of valid browser-local saved routes, reading progress, notes, accessibility preferences and listening activity."
     },
     {
       "path": "/accessibility.html",
