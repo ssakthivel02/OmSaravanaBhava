@@ -1,0 +1,35 @@
+--- before/data/skanda-guru-kavasam.json
++++ release163/data/skanda-guru-kavasam.json
+@@ -44,5 +44,12 @@
+     }
+   ],
+   "editorialNoteEn": "This release publishes only a source-checked opening extract. It does not claim to be the complete work.",
+-  "rightsNoteEn": "The uploaded compilation is used as the source witness. Full republication and any human performance recording require separate rights review."
++  "rightsNoteEn": "The uploaded compilation is used as the source witness. Full republication and any human performance recording require separate rights review.",
++  "release": 163,
++  "editionFeatures": [
++    "section anchors",
++    "read-aloud",
++    "source-container clarification",
++    "related works"
++  ]
+ }
+--- before/slokas/skanda-guru-kavasam.html
++++ release163/slokas/skanda-guru-kavasam.html
+@@ -34,7 +34,7 @@
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="../index.html">Home</a> › <a href="../sloka-library.html">Slokas</a> › <span aria-current="page">Skanda Guru Kavasam</span></p></nav>
+ <article class="card">
+-<span class="pill">Partial reviewed publication</span>
++<span class="pill">Premium partial edition</span><span class="pill">Opening lines 1–20</span>
+ <h1 class="section-title">ஸ்கந்த குரு கவசம்</h1>
+ <h2>Skanda Guru Kavasam</h2>
+ <p><strong>Attributed author in the uploaded source:</strong> ஸ்ரீமத் சத்குரு சாந்தானந்த சுவாமிகள்</p>
+--- before/service-worker.js
++++ release163/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '162';
++const RELEASE = '163';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;

@@ -44,5 +44,12 @@
     }
   ],
   "editorialNoteEn": "This release publishes only a source-checked opening extract. It does not claim to be the complete work.",
-  "rightsNoteEn": "The uploaded compilation is used as the source witness. Full republication and any human performance recording require separate rights review."
+  "rightsNoteEn": "The uploaded compilation is used as the source witness. Full republication and any human performance recording require separate rights review.",
+  "release": 163,
+  "editionFeatures": [
+    "section anchors",
+    "read-aloud",
+    "source-container clarification",
+    "related works"
+  ]
 }
