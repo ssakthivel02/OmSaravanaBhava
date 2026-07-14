@@ -1,0 +1,46 @@
+[
+  {
+    "id": "reviewed-kavasam-extracts",
+    "title": "Reviewed Kavasam Extracts",
+    "trackIds": [
+      "kanda-sashti-kavasam",
+      "skanda-guru-kavasam"
+    ],
+    "playbackMode": "device-tts"
+  },
+  {
+    "id": "murugan-mantras",
+    "title": "Murugan Mantras",
+    "trackIds": [
+      "kanda-gayatri",
+      "saravanabhava-mantra"
+    ],
+    "playbackMode": "device-tts"
+  },
+  {
+    "id": "thiruppugazh-digital-library-volume-1",
+    "title": "Thiruppugazh Digital Library — Volume 1",
+    "trackIds": [
+      "thiruppugazh-0006",
+      "thiruppugazh-0007",
+      "thiruppugazh-0008",
+      "thiruppugazh-0009",
+      "thiruppugazh-0010",
+      "thiruppugazh-0012",
+      "thiruppugazh-0013",
+      "thiruppugazh-0015",
+      "thiruppugazh-0016",
+      "thiruppugazh-0017"
+    ],
+    "playbackMode": "device-tts"
+  },
+  {
+    "id": "thiruppugazh-digital-library-volumes-1-2",
+    "title": "Thiruppugazh Digital Library — Volumes 1–2",
+    "trackIds": [
+      "thiruppugazh-0011",
+      "thiruppugazh-0014"
+    ],
+    "playbackMode": "device-tts"
+  }
+]
