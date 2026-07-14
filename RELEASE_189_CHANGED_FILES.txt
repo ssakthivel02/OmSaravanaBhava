@@ -1,0 +1,5 @@
+assets/js/privacy-preferences.js
+data/privacy-preferences.json
+privacy.html
+service-worker.js
+sitemap.xml

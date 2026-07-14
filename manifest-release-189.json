@@ -1,0 +1,23 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 189,
+  "name": "Privacy and Local Preferences Center",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 5,
+  "modified": [
+    "service-worker.js",
+    "sitemap.xml"
+  ],
+  "added": [
+    "privacy.html",
+    "data/privacy-preferences.json",
+    "assets/js/privacy-preferences.js"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Server-side profile": "None",
+    "Clear controls": 5
+  }
+}

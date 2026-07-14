@@ -1,0 +1,27 @@
+[
+  {
+    "id": "theme",
+    "label": "Dark mode",
+    "storage": "osb-dark"
+  },
+  {
+    "id": "text-size",
+    "label": "Large text",
+    "storage": "osb-text-large"
+  },
+  {
+    "id": "bookmarks",
+    "label": "Bookmarks",
+    "storage": "osb-bookmarks"
+  },
+  {
+    "id": "audio-favourites",
+    "label": "Audio favourites",
+    "storage": "osb-audio-favourites"
+  },
+  {
+    "id": "search-history",
+    "label": "Search history",
+    "storage": "osb-search-history"
+  }
+]
