@@ -1,0 +1,92 @@
+[
+  {
+    "id": "palani",
+    "nameTa": "பழனி முருகன் கோவில்",
+    "nameEn": "Palani Murugan Temple",
+    "place": "Palani, Dindigul",
+    "publicationStatus": "published-source-linked",
+    "timingsStatus": "not-maintained-unless-officially-verified",
+    "mapStatus": "external-navigation-link-not-embedded"
+  },
+  {
+    "id": "thiruchendur",
+    "nameTa": "திருச்செந்தூர் முருகன் கோவில்",
+    "nameEn": "Thiruchendur Murugan Temple",
+    "place": "Thiruchendur, Thoothukudi",
+    "publicationStatus": "published-source-linked",
+    "timingsStatus": "not-maintained-unless-officially-verified",
+    "mapStatus": "external-navigation-link-not-embedded"
+  },
+  {
+    "id": "thirupparamkundram",
+    "nameTa": "திருப்பரங்குன்றம் முருகன் கோவில்",
+    "nameEn": "Thirupparamkundram Murugan Temple",
+    "place": "Madurai",
+    "publicationStatus": "published-source-linked",
+    "timingsStatus": "not-maintained-unless-officially-verified",
+    "mapStatus": "external-navigation-link-not-embedded"
+  },
+  {
+    "id": "swamimalai",
+    "nameTa": "சுவாமிமலை முருகன் கோவில்",
+    "nameEn": "Swamimalai Murugan Temple",
+    "place": "Kumbakonam",
+    "publicationStatus": "published-source-linked",
+    "timingsStatus": "not-maintained-unless-officially-verified",
+    "mapStatus": "external-navigation-link-not-embedded"
+  },
+  {
+    "id": "thiruthani",
+    "nameTa": "திருத்தணி முருகன் கோவில்",
+    "nameEn": "Thiruthani Murugan Temple",
+    "place": "Tiruttani",
+    "publicationStatus": "published-source-linked",
+    "timingsStatus": "not-maintained-unless-officially-verified",
+    "mapStatus": "external-navigation-link-not-embedded"
+  },
+  {
+    "id": "pazhamudircholai",
+    "nameTa": "பழமுதிர்சோலை முருகன் கோவில்",
+    "nameEn": "Pazhamudircholai Murugan Temple",
+    "place": "Madurai",
+    "publicationStatus": "published-source-linked",
+    "timingsStatus": "not-maintained-unless-officially-verified",
+    "mapStatus": "external-navigation-link-not-embedded"
+  },
+  {
+    "id": "vadapalani",
+    "nameTa": "வடபழனி முருகன் கோவில்",
+    "nameEn": "Vadapalani Murugan Temple",
+    "place": "Chennai",
+    "publicationStatus": "directory-review",
+    "timingsStatus": "not-maintained-unless-officially-verified",
+    "mapStatus": "external-navigation-link-not-embedded"
+  },
+  {
+    "id": "marudhamalai",
+    "nameTa": "மருதமலை முருகன் கோவில்",
+    "nameEn": "Marudhamalai Murugan Temple",
+    "place": "Coimbatore",
+    "publicationStatus": "directory-review",
+    "timingsStatus": "not-maintained-unless-officially-verified",
+    "mapStatus": "external-navigation-link-not-embedded"
+  },
+  {
+    "id": "vayalur",
+    "nameTa": "வயலூர் முருகன் கோவில்",
+    "nameEn": "Vayalur Murugan Temple",
+    "place": "Kumaravayalur",
+    "publicationStatus": "directory-review",
+    "timingsStatus": "not-maintained-unless-officially-verified",
+    "mapStatus": "external-navigation-link-not-embedded"
+  },
+  {
+    "id": "sikkal",
+    "nameTa": "சிக்கல் சிங்காரவேலவர் கோவில்",
+    "nameEn": "Sikkal Singaravelavar Temple",
+    "place": "Nagapattinam",
+    "publicationStatus": "directory-review",
+    "timingsStatus": "not-maintained-unless-officially-verified",
+    "mapStatus": "external-navigation-link-not-embedded"
+  }
+]
