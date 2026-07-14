@@ -52,5 +52,12 @@
     "songs": [],
     "status": "source-review-register",
     "note": "Reserved for manually verified songs only."
+  },
+  {
+    "volume": 7,
+    "release": 202,
+    "songs": [],
+    "status": "source-review-register",
+    "note": "Reserved for manually verified songs only."
   }
 ]
