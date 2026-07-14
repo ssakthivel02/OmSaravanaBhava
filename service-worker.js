@@ -1,4 +1,4 @@
-const RELEASE = '207';
+const RELEASE = '208';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
@@ -163,7 +163,9 @@ const PRECACHE_URLS = [
   "/murugan-timeline-v2.html",
   "/assets/js/timeline-filter.js",
   "/siddhar-encyclopedia.html",
-  "/data/siddhar-encyclopedia.json"
+  "/data/siddhar-encyclopedia.json",
+  "/panchangam-framework.html",
+  "/data/panchangam-framework.json"
 ];
 
 self.addEventListener('install', event => {
