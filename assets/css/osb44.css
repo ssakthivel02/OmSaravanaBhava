@@ -194,3 +194,24 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;ba
 .card:hover{transform:translateY(-3px);box-shadow:0 24px 65px rgba(104,45,18,.15);border-color:rgba(176,141,87,.45)}
 .reading-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#a51d17,#b08d57);width:0;z-index:200}
 @media(prefers-reduced-motion:reduce){body::before{display:none}.card{transition:none}.card:hover{transform:none}}
+/* Release 181 — true desktop wide-screen composition */
+@media (min-width: 1180px){
+  .nav-inner,.wrap,.hero-grid{max-width:1480px}
+  .wrap{padding-left:48px;padding-right:48px}
+  .grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:26px}
+  .grid.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .grid.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero-grid{grid-template-columns:minmax(0,1.25fr) minmax(420px,.75fr);gap:72px}
+  .hero-card{min-height:420px}
+  .card{padding:30px}
+}
+@media (min-width: 1600px){
+  .nav-inner,.wrap,.hero-grid{max-width:1680px}
+  .wrap{padding-left:64px;padding-right:64px}
+  .grid{grid-template-columns:repeat(4,minmax(260px,1fr));gap:30px}
+  .hero h1{font-size:clamp(96px,8vw,150px)}
+}
+@media (min-width: 1180px){
+  .desktop-split{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(320px,.5fr);gap:32px;align-items:start}
+  .desktop-sidebar{position:sticky;top:110px}
+}
