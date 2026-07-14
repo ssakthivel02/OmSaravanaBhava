@@ -1,0 +1,45 @@
+[
+  {
+    "ta": "முருகன்",
+    "en": "Murugan",
+    "meaning": "Tamil deity associated with wisdom, courage and grace.",
+    "related": [
+      "knowledge-graph.html",
+      "arupadai-veedu.html"
+    ]
+  },
+  {
+    "ta": "வேல்",
+    "en": "Vel",
+    "meaning": "The divine spear associated with Murugan.",
+    "related": [
+      "literature/vel-maaral.html",
+      "literature/vel-mayil-virutham.html"
+    ]
+  },
+  {
+    "ta": "மயில்",
+    "en": "Peacock",
+    "meaning": "Murugan's traditional mount.",
+    "related": [
+      "knowledge-graph.html"
+    ]
+  },
+  {
+    "ta": "கவசம்",
+    "en": "Kavasam",
+    "meaning": "A protective devotional hymn or armour-text.",
+    "related": [
+      "literature/kanda-sashti-kavasam-edition.html",
+      "literature/shanmuga-kavasam.html"
+    ]
+  },
+  {
+    "ta": "திருப்புகழ்",
+    "en": "Thiruppugazh",
+    "meaning": "Arunagirinathar's celebrated Murugan hymn corpus.",
+    "related": [
+      "thiruppugazh.html"
+    ]
+  }
+]

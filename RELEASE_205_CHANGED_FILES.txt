@@ -1,0 +1,4 @@
+data/devotional-dictionary.json
+devotional-dictionary.html
+service-worker.js
+sitemap.xml
