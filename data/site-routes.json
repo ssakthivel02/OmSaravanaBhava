@@ -1,5 +1,5 @@
 {
-  "release": 222,
+  "release": 223,
   "generated": "2026-07-14",
   "scope": "Public HTML routes represented by the Release 215 sitemap and route directory.",
   "statusMeaning": {
@@ -572,6 +572,14 @@
       "category": "Platform",
       "status": "utility",
       "summary": "Browser-local list for saving published routes and explicitly caching selected pages for offline reading."
+    },
+    {
+      "path": "/reading-workspace.html",
+      "titleTa": "வாசிப்பு பணிமனை",
+      "titleEn": "Premium Reading Workspace",
+      "category": "Platform",
+      "status": "utility",
+      "summary": "Browser-local progress, resume, focus mode and reading-list integration for existing eligible literature routes."
     },
     {
       "path": "/accessibility.html",

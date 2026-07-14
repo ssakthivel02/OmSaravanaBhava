@@ -1,0 +1,42 @@
+{
+  "release": 223,
+  "generated": "2026-07-14",
+  "builtAgainstCommit": "131e51863ef4f1512b77a32025b249f45ee9834a",
+  "title": "OmSaravanaBhava Premium Reading Workspace",
+  "scope": "Browser-local reading progress and focus tools for existing published or clearly bounded devotional reading routes.",
+  "storageKey": "osb-reading-progress-v1",
+  "maximumProgressItems": 50,
+  "completedThreshold": 95,
+  "minimumStoredProgress": 1,
+  "allowedStatuses": [
+    "published",
+    "partial-reviewed"
+  ],
+  "eligiblePathPrefixes": [
+    "/literature/",
+    "/thiruppugazh/",
+    "/slokas/"
+  ],
+  "eligibleExactPaths": [
+    "/thiruppugazh.html",
+    "/murugan-mantras.html",
+    "/siddhar-literature.html"
+  ],
+  "excludedPaths": [
+    "/reading-workspace.html",
+    "/reading-list.html",
+    "/print-pdf.html"
+  ],
+  "protectedStorageKeys": [
+    "osb-reading-list-v1",
+    "osb-accessibility-preferences-v1",
+    "osb-audio-listening-history-v1"
+  ],
+  "limitations": [
+    "No devotional text is copied into progress storage.",
+    "Progress remains in the current browser profile.",
+    "Scroll percentage is an approximate reading position, not proof of completion.",
+    "The workspace does not alter publication, source or copyright status.",
+    "No account, analytics or cross-device synchronization is provided."
+  ]
+}

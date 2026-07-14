@@ -1,4 +1,4 @@
-const RELEASE = '222';
+const RELEASE = '223';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
@@ -222,7 +222,11 @@ const PRECACHE_URLS = [
   "/assets/css/discovery-workspace.css",
   "/assets/js/discovery-workspace.mjs",
   "/data/discovery-lenses.json",
-  "/manifest-release-222.json"
+  "/manifest-release-222.json",
+  "/reading-workspace.html",
+  "/assets/css/reading-workspace.css",
+  "/data/reading-workspace.json",
+  "/manifest-release-223.json"
 ];
 
 const cacheOptionalAssets = async cache => {

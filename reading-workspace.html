@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ta">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Premium Reading Workspace | Om Saravana Bhava</title>
+<meta name="description" content="Browser-local reading progress, resume controls, focus mode and reading-list integration for existing published OmSaravanaBhava literature routes.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://omsaravanabhava.org/reading-workspace.html">
+<link rel="stylesheet" href="assets/css/osb44.css">
+<link rel="stylesheet" href="assets/css/reading-workspace.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#a51d17">
+<link rel="manifest" href="manifest.json">
+<script defer src="assets/js/pwa-register.js"></script>
+</head>
+<body data-release="223">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="top">🛕 ஓம் சரவணபவ · Browser-local premium literature reading workspace</div>
+<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html" aria-current="page">Reading Workspace</a><a href="reading-list.html">Reading List</a><a href="print-pdf.html">Print &amp; PDF</a><a href="accessibility.html">Accessibility</a></div>
+</div></nav>
+<main id="main-content" class="wrap">
+<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Reading Workspace</span></p></nav>
+
+<section class="card reading-workspace-hero">
+<div>
+<span class="pill">Release 223 · Local reading continuity</span>
+<h1 class="section-title" lang="ta">வாசிப்பு பணிமனை</h1>
+<h2>Premium Reading Workspace</h2>
+<p>Resume existing published or clearly bounded devotional reading routes. Progress is calculated from page position and stored only in this browser.</p>
+</div>
+<div class="reading-workspace-metric"><strong id="readingWorkspaceEligible">0</strong><span>eligible routes</span></div>
+<div class="reading-workspace-metric"><strong id="readingWorkspaceStarted">0</strong><span>started locally</span></div>
+<div class="reading-workspace-metric"><strong id="readingWorkspaceCompleted">0</strong><span>completed locally</span></div>
+<div class="reading-workspace-metric"><strong id="readingWorkspaceSaved">0</strong><span>saved in reading list</span></div>
+</section>
+
+<section class="card reading-workspace-controls" aria-label="Reading workspace filters">
+<label for="readingWorkspaceSearch">Tamil or English search
+<input id="readingWorkspaceSearch" type="search" placeholder="Thiruppugazh, Kavasam, Vel Maaral…" autocomplete="off">
+</label>
+<label for="readingWorkspaceState">Progress
+<select id="readingWorkspaceState">
+<option value="all">All progress states</option>
+<option value="not-started">Not started</option>
+<option value="in-progress">In progress</option>
+<option value="completed">Completed locally</option>
+</select>
+</label>
+<label for="readingWorkspacePublication">Publication state
+<select id="readingWorkspacePublication">
+<option value="all">All allowed states</option>
+</select>
+</label>
+<button class="btn secondary" id="readingWorkspaceResetFilters" type="button">Reset filters</button>
+<button class="btn secondary" id="readingWorkspaceClearProgress" type="button">Clear progress</button>
+</section>
+
+<p id="readingWorkspaceStatus" role="status" aria-live="polite">Loading local reading routes…</p>
+<section id="readingWorkspaceItems" class="grid reading-workspace-grid" aria-label="Eligible literature reading routes">
+<article class="card">Loading reading workspace…</article>
+</section>
+
+<section class="card reading-workspace-boundary">
+<h2>Reading and evidence boundary</h2>
+<ul>
+<li>No devotional text is copied into local progress storage.</li>
+<li>Progress is an approximate scroll position, not proof that a work has been read or completed.</li>
+<li>Each destination retains its existing publication, source-review, completeness and copyright statements.</li>
+<li>Focus mode changes presentation only; it does not alter the source text.</li>
+<li>Reading-list data, accessibility preferences and audio history remain separate and are not deleted by clearing progress.</li>
+<li>No account, analytics or cross-device synchronization is used.</li>
+</ul>
+</section>
+
+<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>Reading progress requires JavaScript. Existing literature remains available through <a href="discovery.html?lens=literature">Discovery</a> and the <a href="reading-list.html">Reading List</a>.</p></section></noscript>
+</main>
+<footer>© Om Saravana Bhava · <a href="reading-workspace.html">Reading Workspace</a> · <a href="reading-list.html">Reading List</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
+</body>
+</html>

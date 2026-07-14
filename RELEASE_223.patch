@@ -1,0 +1,2489 @@
+diff --git a/reading-workspace.html b/reading-workspace.html
+new file mode 100644
+--- /dev/null
++++ b/reading-workspace.html
+@@ -0,0 +1,82 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Premium Reading Workspace | Om Saravana Bhava</title>
++<meta name="description" content="Browser-local reading progress, resume controls, focus mode and reading-list integration for existing published OmSaravanaBhava literature routes.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/reading-workspace.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="stylesheet" href="assets/css/reading-workspace.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++</head>
++<body data-release="223">
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Browser-local premium literature reading workspace</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html" aria-current="page">Reading Workspace</a><a href="reading-list.html">Reading List</a><a href="print-pdf.html">Print &amp; PDF</a><a href="accessibility.html">Accessibility</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Reading Workspace</span></p></nav>
++
++<section class="card reading-workspace-hero">
++<div>
++<span class="pill">Release 223 · Local reading continuity</span>
++<h1 class="section-title" lang="ta">வாசிப்பு பணிமனை</h1>
++<h2>Premium Reading Workspace</h2>
++<p>Resume existing published or clearly bounded devotional reading routes. Progress is calculated from page position and stored only in this browser.</p>
++</div>
++<div class="reading-workspace-metric"><strong id="readingWorkspaceEligible">0</strong><span>eligible routes</span></div>
++<div class="reading-workspace-metric"><strong id="readingWorkspaceStarted">0</strong><span>started locally</span></div>
++<div class="reading-workspace-metric"><strong id="readingWorkspaceCompleted">0</strong><span>completed locally</span></div>
++<div class="reading-workspace-metric"><strong id="readingWorkspaceSaved">0</strong><span>saved in reading list</span></div>
++</section>
++
++<section class="card reading-workspace-controls" aria-label="Reading workspace filters">
++<label for="readingWorkspaceSearch">Tamil or English search
++<input id="readingWorkspaceSearch" type="search" placeholder="Thiruppugazh, Kavasam, Vel Maaral…" autocomplete="off">
++</label>
++<label for="readingWorkspaceState">Progress
++<select id="readingWorkspaceState">
++<option value="all">All progress states</option>
++<option value="not-started">Not started</option>
++<option value="in-progress">In progress</option>
++<option value="completed">Completed locally</option>
++</select>
++</label>
++<label for="readingWorkspacePublication">Publication state
++<select id="readingWorkspacePublication">
++<option value="all">All allowed states</option>
++</select>
++</label>
++<button class="btn secondary" id="readingWorkspaceResetFilters" type="button">Reset filters</button>
++<button class="btn secondary" id="readingWorkspaceClearProgress" type="button">Clear progress</button>
++</section>
++
++<p id="readingWorkspaceStatus" role="status" aria-live="polite">Loading local reading routes…</p>
++<section id="readingWorkspaceItems" class="grid reading-workspace-grid" aria-label="Eligible literature reading routes">
++<article class="card">Loading reading workspace…</article>
++</section>
++
++<section class="card reading-workspace-boundary">
++<h2>Reading and evidence boundary</h2>
++<ul>
++<li>No devotional text is copied into local progress storage.</li>
++<li>Progress is an approximate scroll position, not proof that a work has been read or completed.</li>
++<li>Each destination retains its existing publication, source-review, completeness and copyright statements.</li>
++<li>Focus mode changes presentation only; it does not alter the source text.</li>
++<li>Reading-list data, accessibility preferences and audio history remain separate and are not deleted by clearing progress.</li>
++<li>No account, analytics or cross-device synchronization is used.</li>
++</ul>
++</section>
++
++<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>Reading progress requires JavaScript. Existing literature remains available through <a href="discovery.html?lens=literature">Discovery</a> and the <a href="reading-list.html">Reading List</a>.</p></section></noscript>
++</main>
++<footer>© Om Saravana Bhava · <a href="reading-workspace.html">Reading Workspace</a> · <a href="reading-list.html">Reading List</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>
+diff --git a/assets/css/reading-workspace.css b/assets/css/reading-workspace.css
+new file mode 100644
+--- /dev/null
++++ b/assets/css/reading-workspace.css
+@@ -0,0 +1 @@
++.reading-workspace-hero{display:grid;grid-template-columns:minmax(0,1.45fr) repeat(4,minmax(105px,.28fr));gap:16px;align-items:center}.reading-workspace-metric{display:grid;place-items:center;min-height:112px;border:1px solid var(--line);border-radius:22px;background:var(--surface-strong,#fff);text-align:center;padding:12px}.reading-workspace-metric strong{font-size:clamp(2rem,5vw,3.8rem);line-height:1;color:var(--red)}.reading-workspace-metric span{font-size:.84rem;font-weight:850}.reading-workspace-controls{display:grid;grid-template-columns:minmax(220px,1.4fr) repeat(2,minmax(170px,.65fr)) auto auto;gap:12px;align-items:end}.reading-workspace-controls label{display:grid;gap:6px;font-weight:850}.reading-workspace-controls input,.reading-workspace-controls select{width:100%}.reading-workspace-grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}.reading-workspace-card{display:flex;flex-direction:column;gap:10px}.reading-workspace-card h2{margin:0}.reading-workspace-card progress{width:100%;height:14px;accent-color:var(--red)}.reading-workspace-labels,.reading-workspace-actions{display:flex;flex-wrap:wrap;gap:8px}.reading-workspace-actions{margin-top:auto;padding-top:8px}.reading-workspace-progress-label{font-weight:900;color:var(--red)}.reading-workspace-meta{font-size:.86rem;color:#6a4638}.reading-workspace-empty{grid-column:1/-1}.reading-workspace-boundary{border-left:5px solid var(--orange)}.osb-reader-toolbar{display:grid;grid-template-columns:minmax(180px,.65fr) minmax(0,1.6fr);gap:14px;align-items:center;margin:0 0 18px;padding:14px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(135deg,rgba(165,29,23,.05),rgba(244,156,44,.08))}.osb-reader-progress-wrap{display:grid;gap:6px}.osb-reader-progress-wrap progress{width:100%;height:12px;accent-color:var(--red)}.osb-reader-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px}body.osb-reader-focus .top,body.osb-reader-focus .nav,body.osb-reader-focus footer,body.osb-reader-focus .tools,body.osb-reader-focus #osb-pwa-update{display:none!important}body.osb-reader-focus main{max-width:900px!important;padding-top:26px!important}body.osb-reader-focus main>nav[aria-label="Breadcrumb"]{display:none!important}body.osb-reader-focus .osb-reader-toolbar{position:sticky;top:10px;z-index:20;background:var(--surface-strong,#fff);box-shadow:0 12px 32px rgba(104,45,18,.14)}body.osb-reader-focus article,body.osb-reader-focus .reader,body.osb-reader-focus .literature-reader{font-size:1.08rem;line-height:1.9}body.dark .reading-workspace-meta{color:#f4d9c8}@media(max-width:1120px){.reading-workspace-hero{grid-template-columns:repeat(2,minmax(0,1fr))}.reading-workspace-hero>div:first-child{grid-column:1/-1}.reading-workspace-controls{grid-template-columns:repeat(2,minmax(0,1fr))}.reading-workspace-controls>label:first-child{grid-column:1/-1}.reading-workspace-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:760px){.reading-workspace-controls,.reading-workspace-grid,.osb-reader-toolbar{grid-template-columns:1fr}.reading-workspace-controls>label:first-child{grid-column:auto}.osb-reader-actions{justify-content:flex-start}.reading-workspace-controls .btn,.osb-reader-actions .btn{width:100%}}@media(max-width:560px){.reading-workspace-hero{grid-template-columns:1fr}.reading-workspace-hero>div:first-child{grid-column:auto}}@media print{.reading-workspace-controls,.reading-workspace-actions,.osb-reader-toolbar,#readingWorkspaceStatus{display:none!important}.reading-workspace-grid{display:block!important}.reading-workspace-card{break-inside:avoid}}
+diff --git a/assets/js/reader-experience.js b/assets/js/reader-experience.js
+new file mode 100644
+--- /dev/null
++++ b/assets/js/reader-experience.js
+@@ -0,0 +1,1062 @@
++export const RELEASE = 223;
++export const CONFIG_PATH = '/data/reading-workspace.json';
++export const ROUTES_PATH = '/data/site-routes.json';
++export const STORAGE_KEY = 'osb-reading-progress-v1';
++export const DEFAULT_MAX_ITEMS = 50;
++export const CANONICAL_ORIGIN = 'https://omsaravanabhava.org';
++
++const safeStorage = storage => {
++  if (storage) return storage;
++  try {
++    return globalThis.localStorage;
++  } catch {
++    return null;
++  }
++};
++
++export const normaliseReadingRoute = value => {
++  const raw = String(value ?? '').trim();
++  if (!raw) return '';
++  try {
++    const url = new URL(raw, `${CANONICAL_ORIGIN}/`);
++    if (url.origin !== CANONICAL_ORIGIN) return '';
++    return `${url.pathname}${url.search}${url.hash}`;
++  } catch {
++    return '';
++  }
++};
++
++export const routePath = value => {
++  const route = normaliseReadingRoute(value);
++  if (!route) return '';
++  try {
++    return new URL(route, CANONICAL_ORIGIN).pathname;
++  } catch {
++    return '';
++  }
++};
++
++export const normaliseStatus = value =>
++  String(value ?? '').trim().toLocaleLowerCase();
++
++export const sanitiseProgressRecord = (
++  record,
++  visitedAt = new Date().toISOString()
++) => {
++  if (!record || typeof record !== 'object') return null;
++  const route = normaliseReadingRoute(record.route);
++  if (!route) return null;
++  const percent = Math.max(
++    0,
++    Math.min(100, Number(record.percent) || 0)
++  );
++  return {
++    route,
++    titleTa: String(record.titleTa ?? '').trim(),
++    titleEn:
++      String(record.titleEn ?? record.title ?? route).trim() ||
++      route,
++    category:
++      String(record.category ?? 'Reading').trim() ||
++      'Reading',
++    status:
++      normaliseStatus(record.status) || 'published',
++    summary: String(record.summary ?? '').trim(),
++    percent: Math.round(percent * 10) / 10,
++    lastVisitedAt: String(record.lastVisitedAt ?? visitedAt),
++    completedAt:
++      record.completedAt
++        ? String(record.completedAt)
++        : ''
++  };
++};
++
++export const loadProgress = (
++  storage,
++  maximumItems = DEFAULT_MAX_ITEMS
++) => {
++  const target = safeStorage(storage);
++  if (!target) return [];
++  try {
++    const parsed = JSON.parse(
++      target.getItem(STORAGE_KEY) || '[]'
++    );
++    if (!Array.isArray(parsed)) return [];
++    const seen = new Set();
++    const items = [];
++    parsed.forEach(record => {
++      const item = sanitiseProgressRecord(
++        record,
++        record?.lastVisitedAt
++      );
++      if (!item || seen.has(item.route)) return;
++      seen.add(item.route);
++      items.push(item);
++    });
++    return items
++      .sort((left, right) =>
++        String(right.lastVisitedAt)
++          .localeCompare(String(left.lastVisitedAt))
++      )
++      .slice(0, Math.max(1, Number(maximumItems) || DEFAULT_MAX_ITEMS));
++  } catch {
++    return [];
++  }
++};
++
++export const saveProgress = (
++  items,
++  storage,
++  maximumItems = DEFAULT_MAX_ITEMS
++) => {
++  const target = safeStorage(storage);
++  if (!target) return false;
++  try {
++    const clean = [];
++    const seen = new Set();
++    (Array.isArray(items) ? items : [])
++      .forEach(record => {
++        const item = sanitiseProgressRecord(
++          record,
++          record?.lastVisitedAt
++        );
++        if (!item || seen.has(item.route)) return;
++        seen.add(item.route);
++        clean.push(item);
++      });
++    target.setItem(
++      STORAGE_KEY,
++      JSON.stringify(
++        clean.slice(
++          0,
++          Math.max(1, Number(maximumItems) || DEFAULT_MAX_ITEMS)
++        )
++      )
++    );
++    return true;
++  } catch {
++    return false;
++  }
++};
++
++export const upsertProgress = (
++  items,
++  record,
++  {
++    maximumItems = DEFAULT_MAX_ITEMS,
++    completedThreshold = 95,
++    visitedAt = new Date().toISOString()
++  } = {}
++) => {
++  const incoming = sanitiseProgressRecord(record, visitedAt);
++  if (!incoming) {
++    return Array.isArray(items) ? [...items] : [];
++  }
++
++  const previous = (Array.isArray(items) ? items : [])
++    .map(item =>
++      sanitiseProgressRecord(item, item?.lastVisitedAt)
++    )
++    .filter(Boolean);
++  const existing = previous.find(
++    item => item.route === incoming.route
++  );
++
++  incoming.lastVisitedAt = visitedAt;
++  if (
++    incoming.percent >= Number(completedThreshold) &&
++    !incoming.completedAt
++  ) {
++    incoming.completedAt =
++      existing?.completedAt || visitedAt;
++  }
++  if (
++    incoming.percent < Number(completedThreshold)
++  ) {
++    incoming.completedAt = '';
++  }
++
++  return [
++    incoming,
++    ...previous.filter(
++      item => item.route !== incoming.route
++    )
++  ].slice(
++    0,
++    Math.max(1, Number(maximumItems) || DEFAULT_MAX_ITEMS)
++  );
++};
++
++export const removeProgressRoute = (
++  route,
++  storage,
++  maximumItems = DEFAULT_MAX_ITEMS
++) => {
++  const target = normaliseReadingRoute(route);
++  const items = loadProgress(storage, maximumItems)
++    .filter(item => item.route !== target);
++  saveProgress(items, storage, maximumItems);
++  return items;
++};
++
++export const clearProgress = storage => {
++  const target = safeStorage(storage);
++  if (!target) return false;
++  try {
++    target.removeItem(STORAGE_KEY);
++    return true;
++  } catch {
++    return false;
++  }
++};
++
++export const calculateProgress = (
++  scrollY,
++  documentHeight,
++  viewportHeight
++) => {
++  const scrollable = Math.max(
++    0,
++    Number(documentHeight) - Number(viewportHeight)
++  );
++  if (scrollable <= 0) return 100;
++  const percent =
++    (Math.max(0, Number(scrollY) || 0) / scrollable) * 100;
++  return Math.max(0, Math.min(100, percent));
++};
++
++export const progressToScrollY = (
++  percent,
++  documentHeight,
++  viewportHeight
++) => {
++  const scrollable = Math.max(
++    0,
++    Number(documentHeight) - Number(viewportHeight)
++  );
++  return Math.round(
++    scrollable *
++    (Math.max(0, Math.min(100, Number(percent) || 0)) / 100)
++  );
++};
++
++export const routeIsEligible = (
++  routeRecord,
++  config
++) => {
++  if (!routeRecord || typeof routeRecord !== 'object') {
++    return false;
++  }
++  const path = routePath(routeRecord.path);
++  if (!path) return false;
++
++  const excluded = new Set(
++    (Array.isArray(config?.excludedPaths)
++      ? config.excludedPaths
++      : []
++    ).map(routePath)
++  );
++  if (excluded.has(path)) return false;
++
++  const allowedStatuses = new Set(
++    (Array.isArray(config?.allowedStatuses)
++      ? config.allowedStatuses
++      : []
++    ).map(normaliseStatus)
++  );
++  const status = normaliseStatus(routeRecord.status);
++  if (
++    allowedStatuses.size > 0 &&
++    !allowedStatuses.has(status)
++  ) {
++    return false;
++  }
++
++  const exactPaths = new Set(
++    (Array.isArray(config?.eligibleExactPaths)
++      ? config.eligibleExactPaths
++      : []
++    ).map(routePath)
++  );
++  if (exactPaths.has(path)) return true;
++
++  return (Array.isArray(config?.eligiblePathPrefixes)
++    ? config.eligiblePathPrefixes
++    : []
++  ).some(prefix =>
++    path.startsWith(routePath(prefix))
++  );
++};
++
++export const normaliseEligibleRoutes = (
++  routesPayload,
++  config
++) => {
++  const seen = new Set();
++  const routes = [];
++  (Array.isArray(routesPayload?.routes)
++    ? routesPayload.routes
++    : []
++  ).forEach(record => {
++    if (!routeIsEligible(record, config)) return;
++    const path = routePath(record.path);
++    if (!path || seen.has(path)) return;
++    seen.add(path);
++    routes.push({
++      path,
++      route: path,
++      titleTa: String(record.titleTa ?? '').trim(),
++      titleEn:
++        String(record.titleEn ?? path).trim() || path,
++      category:
++        String(record.category ?? 'Reading').trim() ||
++        'Reading',
++      status:
++        normaliseStatus(record.status) || 'published',
++      summary: String(record.summary ?? '').trim()
++    });
++  });
++  return routes.sort((left, right) =>
++    left.category.localeCompare(right.category) ||
++    left.titleEn.localeCompare(right.titleEn)
++  );
++};
++
++export const mergeRoutesWithProgress = (
++  routes,
++  progress
++) => {
++  const progressMap = new Map(
++    (Array.isArray(progress) ? progress : [])
++      .map(item => [
++        routePath(item.route),
++        sanitiseProgressRecord(
++          item,
++          item?.lastVisitedAt
++        )
++      ])
++      .filter(([, item]) => item)
++  );
++  return (Array.isArray(routes) ? routes : [])
++    .map(route => ({
++      ...route,
++      progress: progressMap.get(route.path) || null
++    }));
++};
++
++export const filterWorkspaceRoutes = (
++  records,
++  {
++    query = '',
++    status = 'all',
++    progressState = 'all',
++    completedThreshold = 95
++  } = {}
++) => {
++  const needle = String(query)
++    .trim()
++    .toLocaleLowerCase();
++
++  return (Array.isArray(records) ? records : [])
++    .filter(record => {
++      if (
++        status !== 'all' &&
++        record.status !== status
++      ) {
++        return false;
++      }
++
++      const percent = record.progress?.percent || 0;
++      if (
++        progressState === 'not-started' &&
++        percent > 0
++      ) {
++        return false;
++      }
++      if (
++        progressState === 'in-progress' &&
++        (
++          percent <= 0 ||
++          percent >= Number(completedThreshold)
++        )
++      ) {
++        return false;
++      }
++      if (
++        progressState === 'completed' &&
++        percent < Number(completedThreshold)
++      ) {
++        return false;
++      }
++
++      if (!needle) return true;
++      const haystack = [
++        record.titleTa,
++        record.titleEn,
++        record.category,
++        record.status,
++        record.summary
++      ].join(' ').toLocaleLowerCase();
++      return haystack.includes(needle);
++    })
++    .sort((left, right) => {
++      const leftDate =
++        left.progress?.lastVisitedAt || '';
++      const rightDate =
++        right.progress?.lastVisitedAt || '';
++      if (leftDate || rightDate) {
++        return rightDate.localeCompare(leftDate);
++      }
++      return (
++        left.category.localeCompare(right.category) ||
++        left.titleEn.localeCompare(right.titleEn)
++      );
++    });
++};
++
++export const buildWorkspaceMetrics = (
++  records,
++  readingListItems = [],
++  completedThreshold = 95
++) => {
++  const items = Array.isArray(records) ? records : [];
++  const started = items.filter(
++    item => (item.progress?.percent || 0) > 0
++  ).length;
++  const completed = items.filter(
++    item =>
++      (item.progress?.percent || 0) >=
++      Number(completedThreshold)
++  ).length;
++  const eligiblePaths = new Set(
++    items.map(item => item.path)
++  );
++  const saved = (Array.isArray(readingListItems)
++    ? readingListItems
++    : []
++  ).filter(item =>
++    eligiblePaths.has(routePath(item.route))
++  ).length;
++
++  return {
++    eligible: items.length,
++    started,
++    completed,
++    saved
++  };
++};
++
++const fetchJson = async (
++  path,
++  fetcher = globalThis.fetch
++) => {
++  if (typeof fetcher !== 'function') {
++    throw new Error('Fetch API unavailable');
++  }
++  const response = await fetcher(path, {
++    cache: 'default',
++    credentials: 'same-origin',
++    headers: {'Accept': 'application/json'}
++  });
++  if (!response.ok) {
++    throw new Error(`${path} returned HTTP ${response.status}`);
++  }
++  return response.json();
++};
++
++export const loadReadingModel = async (
++  fetcher = globalThis.fetch,
++  storage = undefined
++) => {
++  const [config, routesPayload] =
++    await Promise.all([
++      fetchJson(CONFIG_PATH, fetcher),
++      fetchJson(ROUTES_PATH, fetcher)
++    ]);
++  const routes = normaliseEligibleRoutes(
++    routesPayload,
++    config
++  );
++  const progress = loadProgress(
++    storage,
++    config.maximumProgressItems
++  );
++  return {
++    config,
++    routes,
++    records: mergeRoutesWithProgress(
++      routes,
++      progress
++    )
++  };
++};
++
++const createText = (
++  parent,
++  tag,
++  text,
++  className
++) => {
++  const element = document.createElement(tag);
++  if (className) element.className = className;
++  element.textContent = String(text);
++  parent.appendChild(element);
++  return element;
++};
++
++const displayTitle = record =>
++  record.titleTa && record.titleEn
++    ? `${record.titleTa} · ${record.titleEn}`
++    : record.titleTa || record.titleEn || record.path;
++
++const progressLabel = (
++  percent,
++  completedThreshold
++) => {
++  if (percent <= 0) return 'Not started';
++  if (percent >= completedThreshold) {
++    return 'Completed locally';
++  }
++  return `${Math.round(percent)}% read`;
++};
++
++const loadReadingListModule = () =>
++  import('/assets/js/reading-list.mjs');
++
++const createWorkspaceCard = (
++  record,
++  config,
++  rerender
++) => {
++  const article = document.createElement('article');
++  article.className = 'card reading-workspace-card';
++
++  const labels = document.createElement('div');
++  labels.className = 'reading-workspace-labels';
++  createText(labels, 'span', record.category, 'pill');
++  createText(labels, 'span', record.status, 'pill');
++  article.appendChild(labels);
++
++  createText(article, 'h2', displayTitle(record));
++  if (record.summary) {
++    createText(article, 'p', record.summary);
++  }
++
++  const percent = record.progress?.percent || 0;
++  const progress = document.createElement('progress');
++  progress.max = 100;
++  progress.value = percent;
++  progress.setAttribute(
++    'aria-label',
++    `${displayTitle(record)} reading progress`
++  );
++  article.appendChild(progress);
++
++  createText(
++    article,
++    'p',
++    progressLabel(
++      percent,
++      config.completedThreshold
++    ),
++    'reading-workspace-progress-label'
++  );
++
++  if (record.progress?.lastVisitedAt) {
++    createText(
++      article,
++      'p',
++      `Last opened ${new Date(
++        record.progress.lastVisitedAt
++      ).toLocaleString()}`,
++      'reading-workspace-meta'
++    );
++  }
++
++  const actions = document.createElement('div');
++  actions.className = 'reading-workspace-actions';
++
++  const open = document.createElement('a');
++  open.className = 'btn';
++  open.href =
++    percent > 0 && percent < config.completedThreshold
++      ? `${record.path}?resume=1`
++      : record.path;
++  open.textContent =
++    percent > 0 && percent < config.completedThreshold
++      ? 'Resume reading'
++      : 'Open reading';
++  actions.appendChild(open);
++
++  const save = document.createElement('button');
++  save.type = 'button';
++  save.className = 'btn secondary';
++  save.textContent = 'Save to reading list';
++  save.addEventListener('click', async () => {
++    try {
++      const module = await loadReadingListModule();
++      module.saveReadingRecord({
++        route: record.path,
++        titleTa: record.titleTa,
++        titleEn: record.titleEn,
++        kind: record.category,
++        status: record.status,
++        summary: record.summary
++      });
++      save.textContent = 'Saved locally';
++      save.disabled = true;
++    } catch (error) {
++      console.warn(
++        '[OmSaravanaBhava] Reading list save failed',
++        error
++      );
++      save.textContent = 'Storage unavailable';
++    }
++  });
++  actions.appendChild(save);
++
++  if (record.progress) {
++    const reset = document.createElement('button');
++    reset.type = 'button';
++    reset.className = 'btn secondary';
++    reset.textContent = 'Reset progress';
++    reset.addEventListener('click', () => {
++      removeProgressRoute(
++        record.path,
++        undefined,
++        config.maximumProgressItems
++      );
++      rerender();
++    });
++    actions.appendChild(reset);
++  }
++
++  article.appendChild(actions);
++  return article;
++};
++
++const initialiseWorkspacePage = async model => {
++  const host =
++    document.getElementById('readingWorkspaceItems');
++  const status =
++    document.getElementById('readingWorkspaceStatus');
++  const search =
++    document.getElementById('readingWorkspaceSearch');
++  const state =
++    document.getElementById('readingWorkspaceState');
++  const publication =
++    document.getElementById('readingWorkspacePublication');
++  const resetFilters =
++    document.getElementById('readingWorkspaceResetFilters');
++  const clearAll =
++    document.getElementById('readingWorkspaceClearProgress');
++
++  if (
++    !host ||
++    !status ||
++    !search ||
++    !state ||
++    !publication ||
++    !resetFilters ||
++    !clearAll
++  ) {
++    return;
++  }
++
++  let readingListItems = [];
++  try {
++    const module = await loadReadingListModule();
++    readingListItems = module.loadReadingList();
++  } catch {
++    readingListItems = [];
++  }
++
++  const statuses = [
++    ...new Set(model.routes.map(route => route.status))
++  ].sort();
++  statuses.forEach(value => {
++    const option = document.createElement('option');
++    option.value = value;
++    option.textContent = value;
++    publication.appendChild(option);
++  });
++
++  const render = () => {
++    const records = mergeRoutesWithProgress(
++      model.routes,
++      loadProgress(
++        undefined,
++        model.config.maximumProgressItems
++      )
++    );
++    const metrics = buildWorkspaceMetrics(
++      records,
++      readingListItems,
++      model.config.completedThreshold
++    );
++
++    const metricMap = {
++      readingWorkspaceEligible: metrics.eligible,
++      readingWorkspaceStarted: metrics.started,
++      readingWorkspaceCompleted: metrics.completed,
++      readingWorkspaceSaved: metrics.saved
++    };
++    Object.entries(metricMap).forEach(([id, value]) => {
++      const element = document.getElementById(id);
++      if (element) element.textContent = String(value);
++    });
++
++    const filtered = filterWorkspaceRoutes(
++      records,
++      {
++        query: search.value,
++        status: publication.value,
++        progressState: state.value,
++        completedThreshold:
++          model.config.completedThreshold
++      }
++    );
++
++    host.replaceChildren();
++    if (!filtered.length) {
++      const empty = document.createElement('article');
++      empty.className = 'card reading-workspace-empty';
++      createText(empty, 'h2', 'No reading routes match');
++      createText(
++        empty,
++        'p',
++        'Change the search, progress state or publication filter.'
++      );
++      host.appendChild(empty);
++    } else {
++      filtered.forEach(record =>
++        host.appendChild(
++          createWorkspaceCard(
++            record,
++            model.config,
++            render
++          )
++        )
++      );
++    }
++
++    status.textContent =
++      `${filtered.length} eligible reading route${filtered.length === 1 ? '' : 's'} match. Progress remains in this browser.`;
++    clearAll.disabled = metrics.started === 0;
++  };
++
++  [search, state, publication].forEach(control => {
++    control.addEventListener(
++      control === search ? 'input' : 'change',
++      render
++    );
++  });
++
++  resetFilters.addEventListener('click', () => {
++    search.value = '';
++    state.value = 'all';
++    publication.value = 'all';
++    render();
++    search.focus();
++  });
++
++  clearAll.addEventListener('click', () => {
++    if (
++      !confirm(
++        'Clear browser-local reading progress? Your reading list, accessibility preferences and audio history will be preserved.'
++      )
++    ) {
++      return;
++    }
++    clearProgress();
++    render();
++  });
++
++  window.addEventListener('storage', event => {
++    if (event.key === STORAGE_KEY) render();
++  });
++
++  render();
++};
++
++const initialiseEligibleReadingPage = (
++  model,
++  routeRecord
++) => {
++  const main = document.querySelector('main');
++  if (!main) return;
++
++  const path = routePath(globalThis.location?.pathname);
++  if (!path || path === '/reading-workspace.html') return;
++
++  const existing =
++    document.getElementById('osb-reader-toolbar');
++  if (existing) return;
++
++  const previous = loadProgress(
++    undefined,
++    model.config.maximumProgressItems
++  ).find(item => routePath(item.route) === path);
++
++  const toolbar = document.createElement('aside');
++  toolbar.id = 'osb-reader-toolbar';
++  toolbar.className = 'osb-reader-toolbar';
++  toolbar.setAttribute(
++    'aria-label',
++    'Browser-local reading tools'
++  );
++  toolbar.setAttribute('data-print-exclude', 'true');
++
++  const progressWrap = document.createElement('div');
++  progressWrap.className = 'osb-reader-progress-wrap';
++  createText(
++    progressWrap,
++    'strong',
++    'Reading progress'
++  );
++
++  const progress = document.createElement('progress');
++  progress.max = 100;
++  progress.value = previous?.percent || 0;
++  progress.id = 'osb-reader-progress';
++  progressWrap.appendChild(progress);
++
++  const progressText = createText(
++    progressWrap,
++    'span',
++    progressLabel(
++      previous?.percent || 0,
++      model.config.completedThreshold
++    )
++  );
++  toolbar.appendChild(progressWrap);
++
++  const actions = document.createElement('div');
++  actions.className = 'osb-reader-actions';
++
++  const focus = document.createElement('button');
++  focus.type = 'button';
++  focus.className = 'btn secondary';
++  focus.textContent = 'Focus reading';
++  focus.setAttribute('aria-pressed', 'false');
++  focus.addEventListener('click', () => {
++    const active =
++      document.body.classList.toggle(
++        'osb-reader-focus'
++      );
++    focus.setAttribute(
++      'aria-pressed',
++      active ? 'true' : 'false'
++    );
++    focus.textContent =
++      active ? 'Exit focus' : 'Focus reading';
++  });
++  actions.appendChild(focus);
++
++  const save = document.createElement('button');
++  save.type = 'button';
++  save.className = 'btn secondary';
++  save.textContent = 'Save to reading list';
++  save.addEventListener('click', async () => {
++    try {
++      const module = await loadReadingListModule();
++      module.saveReadingRecord({
++        route: path,
++        titleTa: routeRecord.titleTa,
++        titleEn: routeRecord.titleEn,
++        kind: routeRecord.category,
++        status: routeRecord.status,
++        summary: routeRecord.summary
++      });
++      save.textContent = 'Saved locally';
++      save.disabled = true;
++    } catch {
++      save.textContent = 'Storage unavailable';
++    }
++  });
++  actions.appendChild(save);
++
++  if (
++    previous?.percent > 1 &&
++    previous.percent < model.config.completedThreshold
++  ) {
++    const resume = document.createElement('button');
++    resume.type = 'button';
++    resume.className = 'btn';
++    resume.textContent =
++      `Resume at ${Math.round(previous.percent)}%`;
++    resume.addEventListener('click', () => {
++      const target = progressToScrollY(
++        previous.percent,
++        document.documentElement.scrollHeight,
++        window.innerHeight
++      );
++      window.scrollTo({
++        top: target,
++        behavior:
++          matchMedia('(prefers-reduced-motion: reduce)').matches
++            ? 'auto'
++            : 'smooth'
++      });
++    });
++    actions.appendChild(resume);
++  }
++
++  const workspace = document.createElement('a');
++  workspace.className = 'btn secondary';
++  workspace.href = '/reading-workspace.html';
++  workspace.textContent = 'Reading workspace';
++  actions.appendChild(workspace);
++
++  toolbar.appendChild(actions);
++
++  const breadcrumb =
++    main.querySelector('nav[aria-label="Breadcrumb"]');
++  if (breadcrumb?.after) {
++    breadcrumb.after(toolbar);
++  } else {
++    main.prepend(toolbar);
++  }
++
++  let pending = false;
++  let lastSavedAt = 0;
++
++  const saveCurrentProgress = () => {
++    pending = false;
++    const now = Date.now();
++    if (now - lastSavedAt < 600) return;
++    lastSavedAt = now;
++
++    const percent = calculateProgress(
++      window.scrollY,
++      document.documentElement.scrollHeight,
++      window.innerHeight
++    );
++    progress.value = percent;
++    progressText.textContent = progressLabel(
++      percent,
++      model.config.completedThreshold
++    );
++
++    if (
++      percent < Number(model.config.minimumStoredProgress)
++    ) {
++      return;
++    }
++
++    const items = upsertProgress(
++      loadProgress(
++        undefined,
++        model.config.maximumProgressItems
++      ),
++      {
++        route: path,
++        titleTa: routeRecord.titleTa,
++        titleEn: routeRecord.titleEn,
++        category: routeRecord.category,
++        status: routeRecord.status,
++        summary: routeRecord.summary,
++        percent
++      },
++      {
++        maximumItems:
++          model.config.maximumProgressItems,
++        completedThreshold:
++          model.config.completedThreshold
++      }
++    );
++    saveProgress(
++      items,
++      undefined,
++      model.config.maximumProgressItems
++    );
++  };
++
++  window.addEventListener(
++    'scroll',
++    () => {
++      if (pending) return;
++      pending = true;
++      requestAnimationFrame(saveCurrentProgress);
++    },
++    {passive: true}
++  );
++  window.addEventListener(
++    'pagehide',
++    saveCurrentProgress
++  );
++
++  const params = new URLSearchParams(
++    globalThis.location?.search || ''
++  );
++  if (
++    params.get('resume') === '1' &&
++    previous?.percent > 1
++  ) {
++    requestAnimationFrame(() => {
++      window.scrollTo({
++        top: progressToScrollY(
++          previous.percent,
++          document.documentElement.scrollHeight,
++          window.innerHeight
++        ),
++        behavior: 'auto'
++      });
++    });
++  }
++};
++
++export const initialiseReaderExperience = async () => {
++  if (typeof document === 'undefined') return false;
++  if (globalThis.__osbReaderExperienceInitialised) {
++    return true;
++  }
++  globalThis.__osbReaderExperienceInitialised = true;
++
++  try {
++    const model = await loadReadingModel();
++    if (
++      document.getElementById('readingWorkspaceItems')
++    ) {
++      await initialiseWorkspacePage(model);
++    }
++
++    const currentPath = routePath(
++      globalThis.location?.pathname
++    );
++    const routeRecord = model.routes.find(
++      record => record.path === currentPath
++    );
++    if (routeRecord) {
++      initialiseEligibleReadingPage(
++        model,
++        routeRecord
++      );
++    }
++    return true;
++  } catch (error) {
++    console.warn(
++      '[OmSaravanaBhava] Reader experience unavailable',
++      error
++    );
++    const status =
++      document.getElementById('readingWorkspaceStatus');
++    if (status) {
++      status.textContent =
++        'The local reading registries could not be loaded.';
++    }
++    return false;
++  }
++};
++
++if (typeof document !== 'undefined') {
++  if (document.readyState === 'loading') {
++    document.addEventListener(
++      'DOMContentLoaded',
++      () => initialiseReaderExperience(),
++      {once: true}
++    );
++  } else {
++    initialiseReaderExperience();
++  }
++}
+diff --git a/data/reading-workspace.json b/data/reading-workspace.json
+new file mode 100644
+--- /dev/null
++++ b/data/reading-workspace.json
+@@ -0,0 +1,42 @@
++{
++  "release": 223,
++  "generated": "2026-07-14",
++  "builtAgainstCommit": "131e51863ef4f1512b77a32025b249f45ee9834a",
++  "title": "OmSaravanaBhava Premium Reading Workspace",
++  "scope": "Browser-local reading progress and focus tools for existing published or clearly bounded devotional reading routes.",
++  "storageKey": "osb-reading-progress-v1",
++  "maximumProgressItems": 50,
++  "completedThreshold": 95,
++  "minimumStoredProgress": 1,
++  "allowedStatuses": [
++    "published",
++    "partial-reviewed"
++  ],
++  "eligiblePathPrefixes": [
++    "/literature/",
++    "/thiruppugazh/",
++    "/slokas/"
++  ],
++  "eligibleExactPaths": [
++    "/thiruppugazh.html",
++    "/murugan-mantras.html",
++    "/siddhar-literature.html"
++  ],
++  "excludedPaths": [
++    "/reading-workspace.html",
++    "/reading-list.html",
++    "/print-pdf.html"
++  ],
++  "protectedStorageKeys": [
++    "osb-reading-list-v1",
++    "osb-accessibility-preferences-v1",
++    "osb-audio-listening-history-v1"
++  ],
++  "limitations": [
++    "No devotional text is copied into progress storage.",
++    "Progress remains in the current browser profile.",
++    "Scroll percentage is an approximate reading position, not proof of completion.",
++    "The workspace does not alter publication, source or copyright status.",
++    "No account, analytics or cross-device synchronization is provided."
++  ]
++}
+diff --git a/assets/js/pwa-register.js b/assets/js/pwa-register.js
+--- a/assets/js/pwa-register.js
++++ b/assets/js/pwa-register.js
+@@ -5,6 +5,9 @@
+ 
+   import('/assets/js/print-support.mjs')
+     .catch(error => console.warn('[OmSaravanaBhava] Print support unavailable', error));
++
++  import('/assets/js/reader-experience.js')
++    .catch(error => console.warn('[OmSaravanaBhava] Reader experience unavailable', error));
+ 
+   if (!('serviceWorker' in navigator)) return;
+ 
+diff --git a/index.html b/index.html
+--- a/index.html
++++ b/index.html
+@@ -29,22 +29,34 @@
+ <script type="module" src="assets/js/discovery-workspace.mjs"></script>
+ <script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body data-release="222">
++<body data-release="223">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Verified Murugan digital heritage platform</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="discovery.html">Discover</a><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div>
++<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Read</a><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">OmSaravanaBhava Home</span></p></nav>
+ <section class="home-stage">
+-<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 222</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="discovery.html">Open discovery workspace</a><a class="btn secondary" href="explore.html">Explore all modules</a><a class="btn secondary" href="ai-search.html">Search knowledge</a><a class="btn secondary" href="search-facets.html">Browse by content type</a><a class="btn secondary" href="reading-list.html">Reading list</a><a class="btn secondary" href="accessibility.html">Accessibility</a><a class="btn secondary" href="print-pdf.html">Print &amp; PDF</a><a class="btn secondary" href="audio-history.html">Audio history</a><a class="btn secondary" href="knowledge-graph-explorer.html">Knowledge graph</a><a class="btn secondary" href="maintenance.html">Maintenance</a></div></div>
++<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 223</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="discovery.html">Open discovery workspace</a><a class="btn secondary" href="explore.html">Explore all modules</a><a class="btn secondary" href="ai-search.html">Search knowledge</a><a class="btn secondary" href="search-facets.html">Browse by content type</a><a class="btn secondary" href="reading-list.html">Reading list</a><a class="btn secondary" href="accessibility.html">Accessibility</a><a class="btn secondary" href="print-pdf.html">Print &amp; PDF</a><a class="btn secondary" href="audio-history.html">Audio history</a><a class="btn secondary" href="knowledge-graph-explorer.html">Knowledge graph</a><a class="btn secondary" href="maintenance.html">Maintenance</a></div></div>
+ <div class="home-stage-panel" aria-label="Published platform data">
+ <div class="home-metric"><span>Search records</span><strong data-count-source="data/search-index.json" aria-live="polite">…</strong></div>
+ <div class="home-metric"><span>Source records</span><strong data-count-source="data/sources.json" aria-live="polite">…</strong></div>
+ <div class="home-metric"><span>Device read-aloud entries</span><strong data-count-source="data/read-aloud-playlist.json" aria-live="polite">…</strong></div>
+ </div></section>
++<section class="card home-reading-workspace-223">
++<div>
++<span class="pill">Release 223 · Reading continuity</span>
++<h2>Continue devotional reading</h2>
++<p>Use focus mode, browser-local progress, resume controls, the reading list and clean print support without copying source texts into a new edition.</p>
++</div>
++<div class="home-stage-actions">
++<a class="btn" href="reading-workspace.html">Open Reading Workspace</a>
++<a class="btn secondary" href="reading-list.html">Open Reading List</a>
++<a class="btn secondary" href="print-pdf.html">Print &amp; PDF</a>
++</div>
++</section>
+ <section class="card home-discovery-222" aria-labelledby="home-discovery-title">
+ <div class="home-discovery-copy">
+ <span class="pill">Release 222 · Desktop discovery</span>
+@@ -65,6 +77,6 @@
+ <section class="card" aria-labelledby="integrity-heading"><h2 id="integrity-heading">Publication integrity</h2><p>Repository releases, deployed pages and runtime behaviour are separate evidence layers. Content and feature claims remain bounded until automated checks and production observation confirm them.</p><p><a class="btn secondary" href="production-audit.html">Open production audit</a> <a class="btn secondary" href="content-status.html">Open content status</a></p></section>
+ <noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>All primary modules remain available through the navigation links. Live data counts are unavailable without JavaScript.</p></section></noscript>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="discovery.html">Discover</a> · <a href="maintenance.html">Maintenance</a> · <a href="knowledge-graph-explorer.html">Knowledge graph</a> · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
++<footer>© Om Saravana Bhava · <a href="reading-workspace.html">Reading Workspace</a> · <a href="discovery.html">Discover</a> · <a href="maintenance.html">Maintenance</a> · <a href="knowledge-graph-explorer.html">Knowledge graph</a> · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
+ </body>
+ </html>
+diff --git a/platform.html b/platform.html
+--- a/platform.html
++++ b/platform.html
+@@ -10,10 +10,10 @@
+ <meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
+ <script defer src="assets/js/pwa-register.js"></script><script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body data-release="222">
++<body data-release="223">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Digital Murugan knowledge platform</div>
+-<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="discovery.html">Discover</a><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div></div></nav>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Read</a><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div></div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">OmSaravanaBhava Platform Hub</span></p></nav>
+ <section class="card"><h1 class="section-title" lang="ta">ஓம் சரவணபவ தளம்</h1><h2>OmSaravanaBhava Platform Hub</h2><p>Unified gateway to the source-aware devotional, literature, temple, search, graph and reading modules.</p></section>
+@@ -33,6 +33,7 @@
+ <article class="card"><h2>Print and PDF Support</h2><p>Print clean reading copies or use the browser to save a displayed route as PDF.</p><a class="btn" href="print-pdf.html">Open print guidance</a></article>
+ <article class="card"><h2>Audio Listening History</h2><p>Review actual device read-aloud starts stored locally in this browser.</p><a class="btn" href="audio-history.html">Open audio history</a></article>
+ <article class="card"><h2>Knowledge Graph Explorer</h2><p>Inspect existing graph registers, explicit nodes and published relationship totals without inferred theological edges.</p><a class="btn" href="knowledge-graph-explorer.html">Open graph explorer</a></article>
++<article class="card"><h2>Premium Reading Workspace</h2><p>Resume eligible literature routes with browser-local progress, focus mode and reading-list integration.</p><a class="btn" href="reading-workspace.html">Open reading workspace</a></article>
+ <article class="card"><h2>Maintenance Centre</h2><p>Run same-origin release checks, route audits, required-file checks and safe transient-cache cleanup.</p><a class="btn" href="maintenance.html">Open maintenance tools</a></article>
+ <article class="card"><h2>Knowledge Graph</h2><a class="btn" href="knowledge-graph-phase-4.html">Open module</a></article>
+ <article class="card"><h2>Panchangam Framework</h2><p>Verified-data contract only; no live calendar calculation.</p><a class="btn" href="panchangam-framework.html">Open framework</a></article>
+@@ -40,6 +41,6 @@
+ <section class="card"><h2>Milestone boundary</h2><p>The platform hub connects published modules. It does not certify complete Murugan literature, licensed human audio, live Panchangam computation or server-side accounts.</p></section>
+ <section class="card"><h2>Version 3 milestone</h2><a class="btn" href="version-3.html">Open milestone dashboard</a></section>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="discovery.html">Discover</a> · <a href="maintenance.html">Maintenance</a> · <a href="knowledge-graph-explorer.html">Knowledge graph</a> · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
++<footer>© Om Saravana Bhava · <a href="reading-workspace.html">Reading Workspace</a> · <a href="discovery.html">Discover</a> · <a href="maintenance.html">Maintenance</a> · <a href="knowledge-graph-explorer.html">Knowledge graph</a> · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
+ </body>
+ </html>
+diff --git a/discovery.html b/discovery.html
+--- a/discovery.html
++++ b/discovery.html
+@@ -15,12 +15,12 @@
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script type="module" src="assets/js/discovery-workspace.mjs"></script>
+ </head>
+-<body data-release="222">
++<body data-release="223">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Local published-route discovery workspace</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="discovery.html" aria-current="page">Discover</a><a href="explore.html">Explore</a><a href="search-facets.html">Facets</a><a href="site-directory.html">Directory</a><a href="platform.html">Platform</a></div>
++<div class="links"><a href="discovery.html" aria-current="page">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="explore.html">Explore</a><a href="search-facets.html">Facets</a><a href="site-directory.html">Directory</a><a href="platform.html">Platform</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Discovery Workspace</span></p></nav>
+@@ -64,6 +64,8 @@
+ </div>
+ </section>
+ 
++<section class="card"><h2>Continue reading</h2><p>The Reading Workspace adds browser-local progress, focus mode and reading-list integration to eligible literature routes.</p><a class="btn" href="reading-workspace.html">Open Reading Workspace</a></section>
++
+ <section class="card discovery-boundary">
+ <h2>Publication and recommendation boundary</h2>
+ <ul>
+@@ -77,6 +79,6 @@
+ 
+ <noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>The dynamic discovery workspace requires JavaScript. Use the <a href="explore.html">structured Explore page</a> or <a href="site-directory.html">site directory</a>.</p></section></noscript>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="discovery.html">Discover</a> · <a href="explore.html">Explore</a> · <a href="site-directory.html">Directory</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
++<footer>© Om Saravana Bhava · <a href="reading-workspace.html">Reading Workspace</a> · <a href="discovery.html">Discover</a> · <a href="explore.html">Explore</a> · <a href="site-directory.html">Directory</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+ </html>
+diff --git a/maintenance.html b/maintenance.html
+--- a/maintenance.html
++++ b/maintenance.html
+@@ -15,19 +15,19 @@
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script type="module" src="assets/js/maintenance-centre.mjs"></script>
+ </head>
+-<body data-release="222">
++<body data-release="223">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Static-platform maintenance and local diagnostics</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="discovery.html">Discover</a><a href="explore.html">Explore</a><a href="platform.html">Platform</a><a href="knowledge-graph-explorer.html">Graph Explorer</a><a href="maintenance.html" aria-current="page">Maintenance</a></div>
++<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="explore.html">Explore</a><a href="platform.html">Platform</a><a href="knowledge-graph-explorer.html">Graph Explorer</a><a href="maintenance.html" aria-current="page">Maintenance</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Maintenance Centre</span></p></nav>
+ 
+ <section class="card maintenance-hero">
+ <div>
+-<span class="pill">Release 222 · Discovery and maintenance continuity</span>
++<span class="pill">Release 223 · Reading workspace and maintenance continuity</span>
+ <h1 class="section-title" lang="ta">பராமரிப்பு மையம்</h1>
+ <h2>Maintenance Centre</h2>
+ <p>Inspect deployed static resources and browser state without a server account, remote analytics or destructive repository actions.</p>
+diff --git a/assets/js/maintenance-centre.mjs b/assets/js/maintenance-centre.mjs
+--- a/assets/js/maintenance-centre.mjs
++++ b/assets/js/maintenance-centre.mjs
+@@ -1,4 +1,4 @@
+-export const RELEASE = 222;
++export const RELEASE = 223;
+ export const CONFIG_PATH = '/data/maintenance-checks.json';
+ export const DEFAULT_TRANSIENT_CACHE_PREFIXES = Object.freeze([
+   'osb-runtime-v',
+diff --git a/data/maintenance-checks.json b/data/maintenance-checks.json
+--- a/data/maintenance-checks.json
++++ b/data/maintenance-checks.json
+@@ -1,25 +1,25 @@
+ {
+-  "release": 222,
++  "release": 223,
+   "generated": "2026-07-14",
+-  "builtAgainstCommit": "99d62afcdd8ea5ccc8dd9170b98f9d0e4942e8f4",
++  "builtAgainstCommit": "131e51863ef4f1512b77a32025b249f45ee9834a",
+   "title": "OmSaravanaBhava Browser Maintenance Check Registry",
+-  "scope": "Same-origin Release 222 discovery, route, audit and maintenance continuity checks. This registry does not prove GitHub Actions status or repository certification.",
++  "scope": "Same-origin Release 223 reading-workspace, route, audit and maintenance continuity checks. This registry does not prove GitHub Actions status or repository certification.",
+   "checks": [
+     {
+       "id": "service-worker-release",
+       "label": "Service-worker release identity",
+       "path": "/service-worker.js",
+       "mode": "textIncludes",
+-      "expected": "const RELEASE = '222';",
++      "expected": "const RELEASE = '223';",
+       "severity": "critical"
+     },
+     {
+       "id": "release-manifest",
+       "label": "Release manifest identity",
+-      "path": "/manifest-release-222.json",
++      "path": "/manifest-release-223.json",
+       "mode": "jsonEquals",
+       "jsonPath": "release",
+-      "expected": 222,
++      "expected": 223,
+       "severity": "critical"
+     },
+     {
+@@ -27,8 +27,8 @@
+       "label": "Route directory integrity",
+       "path": "/data/site-routes.json",
+       "mode": "routeRegistry",
+-      "expectedRelease": 222,
+-      "requiredRoute": "/discovery.html",
++      "expectedRelease": 223,
++      "requiredRoute": "/reading-workspace.html",
+       "severity": "critical"
+     },
+     {
+@@ -36,47 +36,47 @@
+       "label": "Static-audit configuration",
+       "path": "/quality/site-audit-config.json",
+       "mode": "auditConfig",
+-      "expectedRelease": "222",
++      "expectedRelease": "223",
+       "requiredFiles": [
+-        "discovery.html",
+-        "assets/css/discovery-workspace.css",
+-        "assets/js/discovery-workspace.mjs",
+-        "data/discovery-lenses.json",
+-        "manifest-release-222.json"
++        "reading-workspace.html",
++        "assets/css/reading-workspace.css",
++        "assets/js/reader-experience.js",
++        "data/reading-workspace.json",
++        "manifest-release-223.json"
+       ],
+       "severity": "critical"
+     },
+     {
+       "id": "sitemap-route",
+-      "label": "Discovery sitemap registration",
++      "label": "Reading Workspace sitemap registration",
+       "path": "/sitemap.xml",
+       "mode": "textCount",
+-      "expected": "https://omsaravanabhava.org/discovery.html",
++      "expected": "https://omsaravanabhava.org/reading-workspace.html",
+       "expectedCount": 1,
+       "severity": "important"
+     },
+     {
+-      "id": "discovery-page",
+-      "label": "Discovery Workspace page",
+-      "path": "/discovery.html",
++      "id": "reading-workspace-page",
++      "label": "Reading Workspace page",
++      "path": "/reading-workspace.html",
+       "mode": "textIncludes",
+-      "expected": "data-release=\"222\"",
++      "expected": "data-release=\"223\"",
+       "severity": "critical"
+     },
+     {
+-      "id": "discovery-module",
+-      "label": "Discovery browser module",
+-      "path": "/assets/js/discovery-workspace.mjs",
++      "id": "reader-module",
++      "label": "Reader experience browser module",
++      "path": "/assets/js/reader-experience.js",
+       "mode": "textIncludes",
+-      "expected": "export const RELEASE = 222;",
++      "expected": "export const RELEASE = 223;",
+       "severity": "critical"
+     },
+     {
+-      "id": "maintenance-continuity",
+-      "label": "Maintenance Centre continuity",
+-      "path": "/assets/js/maintenance-centre.mjs",
++      "id": "bootstrap-continuity",
++      "label": "Shared reader bootstrap",
++      "path": "/assets/js/pwa-register.js",
+       "mode": "textIncludes",
+-      "expected": "export const RELEASE = 222;",
++      "expected": "reader-experience.js",
+       "severity": "important"
+     }
+   ],
+@@ -89,6 +89,7 @@
+     "/discovery.html",
+     "/explore.html",
+     "/search-facets.html",
++    "/reading-workspace.html",
+     "/reading-list.html",
+     "/accessibility.html",
+     "/print-pdf.html",
+diff --git a/data/site-routes.json b/data/site-routes.json
+--- a/data/site-routes.json
++++ b/data/site-routes.json
+@@ -1,5 +1,5 @@
+ {
+-  "release": 222,
++  "release": 223,
+   "generated": "2026-07-14",
+   "scope": "Public HTML routes represented by the Release 215 sitemap and route directory.",
+   "statusMeaning": {
+@@ -574,6 +574,14 @@
+       "summary": "Browser-local list for saving published routes and explicitly caching selected pages for offline reading."
+     },
+     {
++      "path": "/reading-workspace.html",
++      "titleTa": "வாசிப்பு பணிமனை",
++      "titleEn": "Premium Reading Workspace",
++      "category": "Platform",
++      "status": "utility",
++      "summary": "Browser-local progress, resume, focus mode and reading-list integration for existing eligible literature routes."
++    },
++    {
+       "path": "/accessibility.html",
+       "titleTa": "அணுகல்தன்மை மையம்",
+       "titleEn": "Accessibility Centre",
+diff --git a/sitemap.xml b/sitemap.xml
+--- a/sitemap.xml
++++ b/sitemap.xml
+@@ -564,4 +564,10 @@
+     <changefreq>weekly</changefreq>
+     <priority>0.9</priority>
+   </url>
++  <url>
++    <loc>https://omsaravanabhava.org/reading-workspace.html</loc>
++    <lastmod>2026-07-14</lastmod>
++    <changefreq>weekly</changefreq>
++    <priority>0.8</priority>
++  </url>
+ </urlset>
+diff --git a/service-worker.js b/service-worker.js
+--- a/service-worker.js
++++ b/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '222';
++const RELEASE = '223';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -222,7 +222,11 @@
+   "/assets/css/discovery-workspace.css",
+   "/assets/js/discovery-workspace.mjs",
+   "/data/discovery-lenses.json",
+-  "/manifest-release-222.json"
++  "/manifest-release-222.json",
++  "/reading-workspace.html",
++  "/assets/css/reading-workspace.css",
++  "/data/reading-workspace.json",
++  "/manifest-release-223.json"
+ ];
+ 
+ const cacheOptionalAssets = async cache => {
+diff --git a/quality/site-audit-config.json b/quality/site-audit-config.json
+--- a/quality/site-audit-config.json
++++ b/quality/site-audit-config.json
+@@ -1,5 +1,5 @@
+ {
+-  "expectedRelease": "222",
++  "expectedRelease": "223",
+   "canonicalOrigin": "https://omsaravanabhava.org",
+   "requiredFiles": [
+     "index.html",
+@@ -52,7 +52,12 @@
+     "assets/css/discovery-workspace.css",
+     "assets/js/discovery-workspace.mjs",
+     "data/discovery-lenses.json",
+-    "manifest-release-222.json"
++    "manifest-release-222.json",
++    "reading-workspace.html",
++    "assets/css/reading-workspace.css",
++    "assets/js/reader-experience.js",
++    "data/reading-workspace.json",
++    "manifest-release-223.json"
+   ],
+   "canonicalOptional": [
+     "404.html",
+diff --git a/tools/production_smoke.py b/tools/production_smoke.py
+--- a/tools/production_smoke.py
++++ b/tools/production_smoke.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Observe the deployed custom domain and fail when Release 222 is not live."""
++"""Observe the deployed custom domain and fail when Release 223 is not live."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -10,8 +10,8 @@
+ from pathlib import Path
+ 
+ CHECKS = [
+-    ("/", 'data-release="222"'),
+-    ("/service-worker.js", "const RELEASE = '222';"),
++    ("/", 'data-release="223"'),
++    ("/service-worker.js", "const RELEASE = '223';"),
+     ("/search-facets.html", "Published-Content Search Facets"),
+     ("/assets/js/search-facets.mjs", "export const RELEASE = 216;"),
+     ("/data/site-routes.json", '"/search-facets.html"'),
+@@ -39,16 +39,22 @@
+     ("/data/knowledge-graph-explorer.json", "\"release\": 220"),
+     ("/sitemap.xml", "https://omsaravanabhava.org/knowledge-graph-explorer.html"),
+     ("/maintenance.html", "data-release=\"222\""),
+-    ("/assets/js/maintenance-centre.mjs", "export const RELEASE = 222"),
+-    ("/data/maintenance-checks.json", "\"release\": 222"),
+-    ("/manifest-release-222.json", "\"release\": 222"),
++    ("/assets/js/maintenance-centre.mjs", "export const RELEASE = 223"),
++    ("/data/maintenance-checks.json", "\"release\": 223"),
++    ("/manifest-release-223.json", "\"release\": 223"),
+     ("/data/site-routes.json", "\"/maintenance.html\""),
+     ("/sitemap.xml", "https://omsaravanabhava.org/maintenance.html"),
+     ("/discovery.html", "data-release=\"222\""),
+     ("/assets/js/discovery-workspace.mjs", "export const RELEASE = 222"),
+     ("/data/discovery-lenses.json", "\"release\": 222"),
+     ("/data/site-routes.json", "\"/discovery.html\""),
+-    ("/sitemap.xml", "https://omsaravanabhava.org/discovery.html")
++    ("/sitemap.xml", "https://omsaravanabhava.org/discovery.html"),
++    ("/reading-workspace.html", "data-release=\"223\""),
++    ("/assets/js/reader-experience.js", "export const RELEASE = 223"),
++    ("/assets/js/pwa-register.js", "reader-experience.js"),
++    ("/data/reading-workspace.json", "\"release\": 223"),
++    ("/data/site-routes.json", "\"/reading-workspace.html\""),
++    ("/sitemap.xml", "https://omsaravanabhava.org/reading-workspace.html")
+ ]
+ 
+ 
+@@ -56,7 +62,7 @@
+     request = urllib.request.Request(
+         url,
+         headers={
+-            "User-Agent": "OmSaravanaBhava-Production-Smoke/222",
++            "User-Agent": "OmSaravanaBhava-Production-Smoke/223",
+             "Cache-Control": "no-cache"
+         }
+     )
+@@ -96,7 +102,7 @@
+     parser.add_argument("--retries", type=int, default=18)
+     parser.add_argument("--delay", type=int, default=20)
+     parser.add_argument("--timeout", type=int, default=20)
+-    parser.add_argument("--report", type=Path, default=Path("artifacts/release-222-production-smoke.json"))
++    parser.add_argument("--report", type=Path, default=Path("artifacts/release-223-production-smoke.json"))
+     args = parser.parse_args()
+     report = run(args.origin, args.retries, args.delay, args.timeout)
+     args.report.parent.mkdir(parents=True, exist_ok=True)
+diff --git a/tests/reader-experience.test.mjs b/tests/reader-experience.test.mjs
+new file mode 100644
+--- /dev/null
++++ b/tests/reader-experience.test.mjs
+@@ -0,0 +1,224 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import fs from 'node:fs';
++
++import {
++  RELEASE,
++  STORAGE_KEY,
++  buildWorkspaceMetrics,
++  calculateProgress,
++  filterWorkspaceRoutes,
++  loadProgress,
++  mergeRoutesWithProgress,
++  normaliseEligibleRoutes,
++  normaliseReadingRoute,
++  progressToScrollY,
++  routeIsEligible,
++  saveProgress,
++  sanitiseProgressRecord,
++  upsertProgress
++} from '../assets/js/reader-experience.js';
++
++class MemoryStorage {
++  constructor() { this.values = new Map(); }
++  getItem(key) {
++    return this.values.has(key)
++      ? this.values.get(key)
++      : null;
++  }
++  setItem(key, value) {
++    this.values.set(key, String(value));
++  }
++  removeItem(key) {
++    this.values.delete(key);
++  }
++}
++
++const config = JSON.parse(
++  fs.readFileSync(
++    new URL('../data/reading-workspace.json', import.meta.url),
++    'utf8'
++  )
++);
++
++const routePayload = {
++  release: 223,
++  routes: [
++    {
++      path: '/literature/kandar-anubhuti.html',
++      titleTa: 'கந்தர் அனுபூதி',
++      titleEn: 'Kandar Anubhuti',
++      category: 'Literature',
++      status: 'published',
++      summary: 'Published literature route'
++    },
++    {
++      path: '/slokas/kanda-sashti-kavasam.html',
++      titleTa: 'கந்த சஷ்டி கவசம்',
++      titleEn: 'Kanda Sashti Kavasam',
++      category: 'Sloka',
++      status: 'partial-reviewed',
++      summary: 'Bounded route'
++    },
++    {
++      path: '/literature/draft.html',
++      titleEn: 'Draft',
++      category: 'Literature',
++      status: 'draft',
++      summary: 'Excluded'
++    },
++    {
++      path: '/temples.html',
++      titleEn: 'Temples',
++      category: 'Temple',
++      status: 'published',
++      summary: 'Not a reading route'
++    }
++  ]
++};
++
++test('release and storage identities are stable', () => {
++  assert.equal(RELEASE, 223);
++  assert.equal(config.release, 223);
++  assert.equal(STORAGE_KEY, 'osb-reading-progress-v1');
++  assert.equal(config.maximumProgressItems, 50);
++});
++
++test('same-origin route normalisation rejects external URLs', () => {
++  assert.equal(
++    normaliseReadingRoute('literature/kandar-anubhuti.html'),
++    '/literature/kandar-anubhuti.html'
++  );
++  assert.equal(
++    normaliseReadingRoute('https://example.com/page.html'),
++    ''
++  );
++});
++
++test('eligible routes require allowed status and configured path', () => {
++  assert.equal(routeIsEligible(routePayload.routes[0], config), true);
++  assert.equal(routeIsEligible(routePayload.routes[1], config), true);
++  assert.equal(routeIsEligible(routePayload.routes[2], config), false);
++  assert.equal(routeIsEligible(routePayload.routes[3], config), false);
++});
++
++test('eligible route normalisation excludes drafts and unrelated pages', () => {
++  const routes = normaliseEligibleRoutes(
++    routePayload,
++    config
++  );
++  assert.deepEqual(
++    routes.map(route => route.path).sort(),
++    [
++      '/literature/kandar-anubhuti.html',
++      '/slokas/kanda-sashti-kavasam.html'
++    ]
++  );
++});
++
++test('progress calculation and restoration are bounded', () => {
++  assert.equal(calculateProgress(0, 2000, 1000), 0);
++  assert.equal(calculateProgress(500, 2000, 1000), 50);
++  assert.equal(calculateProgress(2000, 2000, 1000), 100);
++  assert.equal(calculateProgress(0, 500, 1000), 100);
++  assert.equal(progressToScrollY(50, 2000, 1000), 500);
++  assert.equal(progressToScrollY(120, 2000, 1000), 1000);
++});
++
++test('progress storage keeps no devotional text field', () => {
++  const item = sanitiseProgressRecord({
++    route: '/literature/kandar-anubhuti.html',
++    titleEn: 'Kandar Anubhuti',
++    category: 'Literature',
++    status: 'published',
++    percent: 42,
++    content: 'This must not be stored'
++  }, '2026-07-14T10:00:00Z');
++  assert.equal(item.percent, 42);
++  assert.equal('content' in item, false);
++});
++
++test('upsert deduplicates routes and marks completion at threshold', () => {
++  const first = upsertProgress([], {
++    route: '/literature/kandar-anubhuti.html',
++    titleEn: 'Kandar Anubhuti',
++    percent: 50
++  }, {
++    completedThreshold: 95,
++    visitedAt: '2026-07-14T10:00:00Z'
++  });
++  const second = upsertProgress(first, {
++    route: '/literature/kandar-anubhuti.html',
++    titleEn: 'Kandar Anubhuti',
++    percent: 96
++  }, {
++    completedThreshold: 95,
++    visitedAt: '2026-07-14T11:00:00Z'
++  });
++  assert.equal(second.length, 1);
++  assert.equal(second[0].percent, 96);
++  assert.equal(second[0].completedAt, '2026-07-14T11:00:00Z');
++});
++
++test('storage roundtrip respects capacity and recency', () => {
++  const storage = new MemoryStorage();
++  let items = [];
++  for (let index = 0; index < 55; index += 1) {
++    items = upsertProgress(items, {
++      route: `/literature/item-${index}.html`,
++      titleEn: `Item ${index}`,
++      percent: index
++    }, {
++      maximumItems: 50,
++      visitedAt: `2026-07-14T10:${String(index).padStart(2, '0')}:00Z`
++    });
++  }
++  assert.equal(saveProgress(items, storage, 50), true);
++  const loaded = loadProgress(storage, 50);
++  assert.equal(loaded.length, 50);
++  assert.equal(loaded[0].route, '/literature/item-54.html');
++});
++
++test('workspace filters and metrics use route and local progress data', () => {
++  const routes = normaliseEligibleRoutes(
++    routePayload,
++    config
++  );
++  const records = mergeRoutesWithProgress(
++    routes,
++    [
++      {
++        route: '/literature/kandar-anubhuti.html',
++        titleEn: 'Kandar Anubhuti',
++        percent: 96,
++        lastVisitedAt: '2026-07-14T11:00:00Z'
++      }
++    ]
++  );
++  assert.equal(
++    filterWorkspaceRoutes(records, {
++      progressState: 'completed',
++      completedThreshold: 95
++    }).length,
++    1
++  );
++  assert.equal(
++    filterWorkspaceRoutes(records, {
++      query: 'சஷ்டி'
++    })[0].path,
++    '/slokas/kanda-sashti-kavasam.html'
++  );
++  assert.deepEqual(
++    buildWorkspaceMetrics(
++      records,
++      [{route: '/literature/kandar-anubhuti.html'}],
++      95
++    ),
++    {
++      eligible: 2,
++      started: 1,
++      completed: 1,
++      saved: 1
++    }
++  );
++});
+diff --git a/tests/maintenance-centre.test.mjs b/tests/maintenance-centre.test.mjs
+--- a/tests/maintenance-centre.test.mjs
++++ b/tests/maintenance-centre.test.mjs
+@@ -25,8 +25,8 @@
+ );
+ 
+ test('release and registry identities are stable', () => {
+-  assert.equal(RELEASE, 222);
+-  assert.equal(registry.release, 222);
++  assert.equal(RELEASE, 223);
++  assert.equal(registry.release, 223);
+   assert.equal(registry.builtAgainstCommit.length, 40);
+   assert.equal(registry.checks.length, 8);
+ });
+@@ -49,51 +49,51 @@
+ });
+ 
+ test('JSON path lookup and equality checks are deterministic', () => {
+-  const value = {release: 222, nested: {state: 'ready'}};
++  const value = {release: 223, nested: {state: 'ready'}};
+   assert.equal(readJsonPath(value, 'nested.state'), 'ready');
+   assert.equal(readJsonPath(value, 'nested.missing'), undefined);
+   assert.deepEqual(
+-    evaluateJsonEquals(value, 'release', 222),
+-    {ok: true, actual: 222}
++    evaluateJsonEquals(value, 'release', 223),
++    {ok: true, actual: 223}
+   );
+ });
+ 
+ test('route registry requires one maintenance route and no duplicates', () => {
+   const valid = evaluateRouteRegistry({
+-    release: 222,
++    release: 223,
+     routes: [
+       {path: '/index.html'},
+-      {path: '/discovery.html'}
++      {path: '/reading-workspace.html'}
+     ]
+-  }, 222, '/discovery.html');
++  }, 223, '/reading-workspace.html');
+   assert.equal(valid.ok, true);
+ 
+   const duplicate = evaluateRouteRegistry({
+-    release: 222,
++    release: 223,
+     routes: [
+-      {path: '/discovery.html'},
+-      {path: '/discovery.html'}
++      {path: '/reading-workspace.html'},
++      {path: '/reading-workspace.html'}
+     ]
+-  }, 222, '/discovery.html');
++  }, 223, '/reading-workspace.html');
+   assert.equal(duplicate.ok, false);
+   assert.equal(duplicate.actual.duplicateCount, 1);
+ });
+ 
+ test('audit configuration requires the current release and files', () => {
+   const result = evaluateAuditConfig({
+-    expectedRelease: '222',
+-    requiredFiles: ['discovery.html', 'manifest-release-222.json']
+-  }, '222', ['discovery.html', 'manifest-release-222.json']);
++    expectedRelease: '223',
++    requiredFiles: ['reading-workspace.html', 'manifest-release-223.json']
++  }, '223', ['reading-workspace.html', 'manifest-release-223.json']);
+   assert.equal(result.ok, true);
+ 
+   const missing = evaluateAuditConfig({
+-    expectedRelease: '222',
+-    requiredFiles: ['discovery.html']
+-  }, '222', ['discovery.html', 'manifest-release-222.json']);
++    expectedRelease: '223',
++    requiredFiles: ['reading-workspace.html']
++  }, '223', ['reading-workspace.html', 'manifest-release-223.json']);
+   assert.equal(missing.ok, false);
+   assert.deepEqual(
+     missing.actual.missing,
+-    ['manifest-release-222.json']
++    ['manifest-release-223.json']
+   );
+ });
+ 
+@@ -123,8 +123,8 @@
+   const result = evaluateCheckPayload(
+     routeCheck,
+     JSON.stringify({
+-      release: 222,
+-      routes: [{path: '/discovery.html'}]
++      release: 223,
++      routes: [{path: '/reading-workspace.html'}]
+     })
+   );
+   assert.equal(result.ok, true);
+@@ -136,14 +136,14 @@
+     status: 200,
+     async text() {
+       return path === '/service-worker.js'
+-        ? "const RELEASE = '222';"
++        ? "const RELEASE = '223';"
+         : '';
+     }
+   });
+   const result = await runResourceCheck({
+     path: '/service-worker.js',
+     mode: 'textIncludes',
+-    expected: "const RELEASE = '222';"
++    expected: "const RELEASE = '223';"
+   }, fetcher);
+   assert.equal(result.ok, true);
+   assert.equal(result.status, 200);
+@@ -174,7 +174,7 @@
+ 
+ test('transient cache cleanup preserves static and user caches', async () => {
+   const names = [
+-    'osb-static-v222',
++    'osb-static-v223',
+     'osb-runtime-v220',
+     'osb-data-v219',
+     'osb-user-reading-v1'
+diff --git a/tools/release_223_validate.py b/tools/release_223_validate.py
+new file mode 100644
+--- /dev/null
++++ b/tools/release_223_validate.py
+@@ -0,0 +1,319 @@
++#!/usr/bin/env python3
++"""Validate Release 223 without claiming remote CI or deployment results."""
++from __future__ import annotations
++
++import argparse
++import json
++import re
++import sys
++import xml.etree.ElementTree as ET
++from pathlib import Path
++
++RELEASE = "223"
++BASE_COMMIT = "131e51863ef4f1512b77a32025b249f45ee9834a"
++ROUTE = "/reading-workspace.html"
++REQUIRED = [
++    "reading-workspace.html",
++    "assets/css/reading-workspace.css",
++    "assets/js/reader-experience.js",
++    "data/reading-workspace.json",
++    "assets/js/pwa-register.js",
++    "index.html",
++    "platform.html",
++    "discovery.html",
++    "maintenance.html",
++    "assets/js/maintenance-centre.mjs",
++    "data/maintenance-checks.json",
++    "data/site-routes.json",
++    "sitemap.xml",
++    "service-worker.js",
++    "quality/site-audit-config.json",
++    "tools/production_smoke.py",
++    "tests/test_site_audit.py",
++    "tests/reader-experience.test.mjs",
++    "tests/maintenance-centre.test.mjs",
++    ".github/workflows/static-site-integrity.yml",
++    ".github/workflows/production-smoke.yml",
++    "manifest-release-223.json",
++]
++
++def read(root: Path, relative: str) -> str:
++    return (root / relative).read_text(encoding="utf-8")
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", type=Path, default=Path.cwd())
++    parser.add_argument("--package-mode", action="store_true")
++    parser.add_argument(
++        "--report",
++        type=Path,
++        default=Path("artifacts/release-223-validation.json")
++    )
++    args = parser.parse_args()
++    root = args.root.resolve()
++    errors: list[str] = []
++    checks: list[str] = []
++
++    for relative in REQUIRED:
++        if not (root / relative).is_file():
++            errors.append(f"missing required file: {relative}")
++        else:
++            checks.append(f"exists: {relative}")
++
++    if not errors:
++        manifest = json.loads(
++            read(root, "manifest-release-223.json")
++        )
++        reading = json.loads(
++            read(root, "data/reading-workspace.json")
++        )
++        routes = json.loads(
++            read(root, "data/site-routes.json")
++        )
++        maintenance = json.loads(
++            read(root, "data/maintenance-checks.json")
++        )
++        config = json.loads(
++            read(root, "quality/site-audit-config.json")
++        )
++        ET.fromstring(read(root, "sitemap.xml"))
++
++        if manifest.get("release") != 223:
++            errors.append("manifest release is not 223")
++        if manifest.get("base_commit") != BASE_COMMIT:
++            errors.append(
++                "manifest base commit does not match Release 222 head"
++            )
++        if reading.get("release") != 223:
++            errors.append("reading workspace config release is not 223")
++        if reading.get("builtAgainstCommit") != BASE_COMMIT:
++            errors.append("reading workspace base commit is incorrect")
++        if routes.get("release") != 223:
++            errors.append("route directory release is not 223")
++        if maintenance.get("release") != 223:
++            errors.append("maintenance registry release is not 223")
++        if maintenance.get("builtAgainstCommit") != BASE_COMMIT:
++            errors.append("maintenance registry base commit is incorrect")
++
++        if reading.get("storageKey") != "osb-reading-progress-v1":
++            errors.append("reading progress storage key changed unexpectedly")
++        if reading.get("maximumProgressItems") != 50:
++            errors.append("maximum reading progress items must remain 50")
++        if reading.get("completedThreshold") != 95:
++            errors.append("completed threshold must remain 95")
++        if not {
++            "osb-reading-list-v1",
++            "osb-accessibility-preferences-v1",
++            "osb-audio-listening-history-v1",
++        }.issubset(set(reading.get("protectedStorageKeys", []))):
++            errors.append("protected browser storage keys are incomplete")
++
++        route_records = routes.get("routes", [])
++        route_paths = [
++            item.get("path")
++            for item in route_records
++            if isinstance(item, dict)
++        ]
++        if route_paths.count(ROUTE) != 1:
++            errors.append("reading workspace route must appear exactly once")
++        if len(route_paths) != len(set(route_paths)):
++            errors.append("duplicate route directory paths detected")
++        route = next(
++            (
++                item for item in route_records
++                if item.get("path") == ROUTE
++            ),
++            None
++        )
++        if route and route.get("status") != "utility":
++            errors.append("reading workspace route must remain utility")
++
++        if config.get("expectedRelease") != RELEASE:
++            errors.append("site audit expectedRelease is not 223")
++        for relative in (
++            "reading-workspace.html",
++            "assets/css/reading-workspace.css",
++            "assets/js/reader-experience.js",
++            "data/reading-workspace.json",
++            "manifest-release-223.json",
++        ):
++            if relative not in config.get("requiredFiles", []):
++                errors.append(f"site audit does not require {relative}")
++
++        sitemap = read(root, "sitemap.xml")
++        if sitemap.count(
++            "https://omsaravanabhava.org/reading-workspace.html"
++        ) != 1:
++            errors.append("sitemap must contain reading workspace once")
++
++        worker = read(root, "service-worker.js")
++        if "const RELEASE = '223';" not in worker:
++            errors.append("service-worker identity is not 223")
++        core = re.search(
++            r"const CORE_PRECACHE_URLS = \[(.*?)\];",
++            worker,
++            re.S
++        )
++        optional = re.search(
++            r"const PRECACHE_URLS = \[(.*?)\];",
++            worker,
++            re.S
++        )
++        core_text = core.group(1) if core else ""
++        optional_text = optional.group(1) if optional else ""
++        for asset in (
++            "/reading-workspace.html",
++            "/assets/css/reading-workspace.css",
++            "/assets/js/reader-experience.js",
++            "/data/reading-workspace.json",
++            "/manifest-release-223.json",
++        ):
++            if f'"{asset}"' not in optional_text:
++                errors.append(f"optional precache missing {asset}")
++            if f'"{asset}"' in core_text:
++                errors.append(
++                    f"reading asset incorrectly blocks installation: {asset}"
++                )
++        if "cacheOptionalAssets" not in worker:
++            errors.append("resilient optional caching is missing")
++
++        bootstrap = read(root, "assets/js/pwa-register.js")
++        if "reader-experience.js" not in bootstrap:
++            errors.append("shared bootstrap does not load reader experience")
++
++        module = read(root, "assets/js/reader-experience.js")
++        for marker in (
++            "export const RELEASE = 223;",
++            "osb-reading-progress-v1",
++            "calculateProgress",
++            "progressToScrollY",
++            "routeIsEligible",
++            "filterWorkspaceRoutes",
++            "buildWorkspaceMetrics",
++            "reading-list.mjs",
++            "osb-reader-focus",
++        ):
++            if marker not in module:
++                errors.append(f"reader module missing marker: {marker}")
++        for prohibited in (
++            "navigator.sendBeacon",
++            "gtag(",
++            "google-analytics",
++            "api.openai.com",
++            "localStorage.clear(",
++            "textContent: record.content",
++            "content: document.body",
++        ):
++            if prohibited in module:
++                errors.append(
++                    f"prohibited remote or content-storage marker found: {prohibited}"
++                )
++
++        page = read(root, "reading-workspace.html")
++        for marker in (
++            'data-release="223"',
++            "Premium Reading Workspace",
++            "No devotional text is copied",
++            "not proof that a work has been read",
++            "No account, analytics or cross-device synchronization",
++        ):
++            if marker not in page:
++                errors.append(
++                    f"reading workspace page missing marker: {marker}"
++                )
++
++        for html in (
++            "index.html",
++            "platform.html",
++            "discovery.html",
++            "maintenance.html",
++        ):
++            body = read(root, html)
++            if 'data-release="223"' not in body:
++                errors.append(f"{html} does not expose data-release 223")
++            if "reading-workspace.html" not in body:
++                errors.append(f"{html} does not link to reading workspace")
++
++        maintenance_module = read(
++            root,
++            "assets/js/maintenance-centre.mjs"
++        )
++        if "export const RELEASE = 223;" not in maintenance_module:
++            errors.append("maintenance module did not advance to 223")
++
++        checks_registry = maintenance.get("checks", [])
++        if len(checks_registry) != 8:
++            errors.append("maintenance registry must contain eight checks")
++        if not any(
++            item.get("path") == "/reading-workspace.html"
++            for item in checks_registry
++        ):
++            errors.append(
++                "maintenance registry does not check reading workspace"
++            )
++
++        smoke = read(root, "tools/production_smoke.py")
++        for marker in (
++            'data-release="223"',
++            "const RELEASE = '223';",
++            "/reading-workspace.html",
++            "export const RELEASE = 223",
++            "reader-experience.js",
++            "reading-workspace.json",
++            "manifest-release-223.json",
++            "release-223-production-smoke.json",
++        ):
++            if marker not in smoke:
++                errors.append(f"production smoke missing marker: {marker}")
++
++        for workflow in (
++            ".github/workflows/static-site-integrity.yml",
++            ".github/workflows/production-smoke.yml",
++        ):
++            text = read(root, workflow)
++            if "223" not in text or "release-223-" not in text:
++                errors.append(f"{workflow} has stale release identity")
++
++        if not args.package_mode:
++            for relative in (
++                "assets/js/reading-list.mjs",
++                "reading-list.html",
++                "print-pdf.html",
++                "accessibility.html",
++                "data/navigation-sections.json",
++                "tools/site_audit.py",
++                "tests/discovery-workspace.test.mjs",
++                "tests/knowledge-graph-explorer.test.mjs",
++                "tests/audio-history.test.mjs",
++                "tests/print-support.test.mjs",
++                "tests/accessibility-preferences.test.mjs",
++                "tests/reading-list.test.mjs",
++                "tests/search-facets.test.mjs",
++            ):
++                if not (root / relative).is_file():
++                    errors.append(f"repository mode requires {relative}")
++
++    report = {
++        "release": 223,
++        "base_commit": BASE_COMMIT,
++        "mode": "package" if args.package_mode else "repository",
++        "status": "FAIL" if errors else "PASS",
++        "errors": errors,
++        "checks": checks,
++        "github_actions": "NOT_RUN",
++        "deployed_production": "NOT_RUN",
++    }
++    report_path = (
++        args.report if args.report.is_absolute()
++        else root / args.report
++    )
++    report_path.parent.mkdir(parents=True, exist_ok=True)
++    report_path.write_text(
++        json.dumps(report, ensure_ascii=False, indent=2) + "\n",
++        encoding="utf-8"
++    )
++    print(json.dumps(report, ensure_ascii=False, indent=2))
++    return 1 if errors else 0
++
++if __name__ == "__main__":
++    sys.exit(main())
+diff --git a/.github/workflows/static-site-integrity.yml b/.github/workflows/static-site-integrity.yml
+--- a/.github/workflows/static-site-integrity.yml
++++ b/.github/workflows/static-site-integrity.yml
+@@ -1,4 +1,4 @@
+-name: Release 222 Static Site Integrity
++name: Release 223 Static Site Integrity
+ 
+ on:
+   push:
+@@ -12,7 +12,7 @@
+ 
+ jobs:
+   integrity:
+-    name: Release 222 repository validation
++    name: Release 223 repository validation
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repository
+@@ -28,34 +28,35 @@
+         with:
+           node-version: "20"
+ 
+-      - name: Validate Release 222 identities and discovery boundaries
+-        run: python tools/release_222_validate.py --root . --report artifacts/release-222-overlay-validation.json
++      - name: Validate Release 223 identities and reading boundaries
++        run: python tools/release_223_validate.py --root . --report artifacts/release-223-overlay-validation.json
+ 
+       - name: Check browser modules
+         run: |
++          node --check assets/js/reader-experience.js
++          node --check assets/js/pwa-register.js
++          node --check assets/js/maintenance-centre.mjs
+           node --check assets/js/discovery-workspace.mjs
+-          node --check assets/js/maintenance-centre.mjs
+           node --check assets/js/knowledge-graph-explorer.mjs
+           node --check assets/js/audio-history.mjs
+           node --check assets/js/print-support.mjs
+           node --check assets/js/accessibility-preferences.mjs
+           node --check assets/js/reading-list.mjs
+           node --check assets/js/search-facets.mjs
+-          node --check assets/js/pwa-register.js
+ 
+       - name: Run browser-local feature unit tests
+-        run: node --test tests/discovery-workspace.test.mjs tests/maintenance-centre.test.mjs tests/knowledge-graph-explorer.test.mjs tests/audio-history.test.mjs tests/print-support.test.mjs tests/accessibility-preferences.test.mjs tests/reading-list.test.mjs tests/search-facets.test.mjs
++        run: node --test tests/reader-experience.test.mjs tests/maintenance-centre.test.mjs tests/discovery-workspace.test.mjs tests/knowledge-graph-explorer.test.mjs tests/audio-history.test.mjs tests/print-support.test.mjs tests/accessibility-preferences.test.mjs tests/reading-list.test.mjs tests/search-facets.test.mjs
+ 
+       - name: Run site-audit unit tests
+         run: python -m unittest discover -s tests -p 'test_site_audit.py'
+ 
+       - name: Run repository-wide static audit
+-        run: python tools/site_audit.py --root . --json-report artifacts/release-222-site-audit.json --markdown-report artifacts/release-222-site-audit.md
++        run: python tools/site_audit.py --root . --json-report artifacts/release-223-site-audit.json --markdown-report artifacts/release-223-site-audit.md
+ 
+-      - name: Upload Release 222 integrity evidence
++      - name: Upload Release 223 integrity evidence
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+-          name: release-222-static-integrity-${{ github.sha }}
++          name: release-223-static-integrity-${{ github.sha }}
+           path: artifacts/
+           if-no-files-found: error
+diff --git a/.github/workflows/production-smoke.yml b/.github/workflows/production-smoke.yml
+--- a/.github/workflows/production-smoke.yml
++++ b/.github/workflows/production-smoke.yml
+@@ -1,4 +1,4 @@
+-name: Release 222 Production Smoke
++name: Release 223 Production Smoke
+ 
+ on:
+   push:
+@@ -11,12 +11,12 @@
+   contents: read
+ 
+ concurrency:
+-  group: release-222-production-smoke
++  group: release-223-production-smoke
+   cancel-in-progress: true
+ 
+ jobs:
+   smoke:
+-    name: Observe deployed Release 222
++    name: Observe deployed Release 223
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repository
+@@ -32,12 +32,12 @@
+         run: sleep 90
+ 
+       - name: Run deployed production smoke checks
+-        run: python tools/production_smoke.py --retries 18 --delay 20 --report artifacts/release-222-production-smoke.json
++        run: python tools/production_smoke.py --retries 18 --delay 20 --report artifacts/release-223-production-smoke.json
+ 
+-      - name: Upload Release 222 production evidence
++      - name: Upload Release 223 production evidence
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+-          name: release-222-production-smoke-${{ github.sha }}
+-          path: artifacts/release-222-production-smoke.json
++          name: release-223-production-smoke-${{ github.sha }}
++          path: artifacts/release-223-production-smoke.json
+           if-no-files-found: error
+diff --git a/manifest-release-223.json b/manifest-release-223.json
+new file mode 100644
+--- /dev/null
++++ b/manifest-release-223.json
+@@ -0,0 +1,64 @@
++{
++  "project": "OmSaravanaBhava",
++  "release": 223,
++  "name": "Premium Literature Reading Workspace",
++  "base_commit": "131e51863ef4f1512b77a32025b249f45ee9834a",
++  "generated": "2026-07-14",
++  "required_commit_title": "Release 223: add premium literature reading workspace",
++  "validation_status": "LOCAL_PACKAGE_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
++  "production_files": [
++    "reading-workspace.html",
++    "assets/css/reading-workspace.css",
++    "assets/js/reader-experience.js",
++    "data/reading-workspace.json",
++    "assets/js/pwa-register.js",
++    "index.html",
++    "platform.html",
++    "discovery.html",
++    "maintenance.html",
++    "assets/js/maintenance-centre.mjs",
++    "data/maintenance-checks.json",
++    "data/site-routes.json",
++    "sitemap.xml",
++    "service-worker.js"
++  ],
++  "ci_alignment_files": [
++    "quality/site-audit-config.json",
++    "tools/production_smoke.py",
++    "tests/test_site_audit.py",
++    "tests/reader-experience.test.mjs",
++    "tests/maintenance-centre.test.mjs",
++    "tools/release_223_validate.py",
++    ".github/workflows/static-site-integrity.yml",
++    ".github/workflows/production-smoke.yml"
++  ],
++  "source_dependencies": {
++    "assets/js/reading-list.mjs": {
++      "included_in_zip": false,
++      "reason": "Existing Release 216 reading-list module is imported without modification."
++    }
++  },
++  "claims": {
++    "progress_storage_key": "osb-reading-progress-v1",
++    "maximum_progress_items": 50,
++    "completed_threshold_percent": 95,
++    "devotional_text_stored_in_progress": false,
++    "browser_local_progress": true,
++    "automatic_cross_device_sync": false,
++    "server_account": false,
++    "analytics": false,
++    "focus_mode": true,
++    "reading_list_integration": true,
++    "resume_controls": true,
++    "existing_missing_optional_asset_repaired": "/assets/js/reader-experience.js",
++    "service_worker_release": 223,
++    "new_optional_cache_assets": 4
++  },
++  "limitations": [
++    "Scroll percentage is approximate and is not proof of reading completion.",
++    "Only routes allowed by the local reading configuration and route directory are eligible.",
++    "Progress remains in the current browser profile.",
++    "Each destination retains its source, publication, completeness and copyright boundaries.",
++    "GitHub Actions and deployed production checks remain pending."
++  ]
++}

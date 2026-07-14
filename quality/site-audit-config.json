@@ -1,5 +1,5 @@
 {
-  "expectedRelease": "222",
+  "expectedRelease": "223",
   "canonicalOrigin": "https://omsaravanabhava.org",
   "requiredFiles": [
     "index.html",
@@ -52,7 +52,12 @@
     "assets/css/discovery-workspace.css",
     "assets/js/discovery-workspace.mjs",
     "data/discovery-lenses.json",
-    "manifest-release-222.json"
+    "manifest-release-222.json",
+    "reading-workspace.html",
+    "assets/css/reading-workspace.css",
+    "assets/js/reader-experience.js",
+    "data/reading-workspace.json",
+    "manifest-release-223.json"
   ],
   "canonicalOptional": [
     "404.html",

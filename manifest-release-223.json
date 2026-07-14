@@ -1,0 +1,64 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 223,
+  "name": "Premium Literature Reading Workspace",
+  "base_commit": "131e51863ef4f1512b77a32025b249f45ee9834a",
+  "generated": "2026-07-14",
+  "required_commit_title": "Release 223: add premium literature reading workspace",
+  "validation_status": "LOCAL_PACKAGE_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
+  "production_files": [
+    "reading-workspace.html",
+    "assets/css/reading-workspace.css",
+    "assets/js/reader-experience.js",
+    "data/reading-workspace.json",
+    "assets/js/pwa-register.js",
+    "index.html",
+    "platform.html",
+    "discovery.html",
+    "maintenance.html",
+    "assets/js/maintenance-centre.mjs",
+    "data/maintenance-checks.json",
+    "data/site-routes.json",
+    "sitemap.xml",
+    "service-worker.js"
+  ],
+  "ci_alignment_files": [
+    "quality/site-audit-config.json",
+    "tools/production_smoke.py",
+    "tests/test_site_audit.py",
+    "tests/reader-experience.test.mjs",
+    "tests/maintenance-centre.test.mjs",
+    "tools/release_223_validate.py",
+    ".github/workflows/static-site-integrity.yml",
+    ".github/workflows/production-smoke.yml"
+  ],
+  "source_dependencies": {
+    "assets/js/reading-list.mjs": {
+      "included_in_zip": false,
+      "reason": "Existing Release 216 reading-list module is imported without modification."
+    }
+  },
+  "claims": {
+    "progress_storage_key": "osb-reading-progress-v1",
+    "maximum_progress_items": 50,
+    "completed_threshold_percent": 95,
+    "devotional_text_stored_in_progress": false,
+    "browser_local_progress": true,
+    "automatic_cross_device_sync": false,
+    "server_account": false,
+    "analytics": false,
+    "focus_mode": true,
+    "reading_list_integration": true,
+    "resume_controls": true,
+    "existing_missing_optional_asset_repaired": "/assets/js/reader-experience.js",
+    "service_worker_release": 223,
+    "new_optional_cache_assets": 4
+  },
+  "limitations": [
+    "Scroll percentage is approximate and is not proof of reading completion.",
+    "Only routes allowed by the local reading configuration and route directory are eligible.",
+    "Progress remains in the current browser profile.",
+    "Each destination retains its source, publication, completeness and copyright boundaries.",
+    "GitHub Actions and deployed production checks remain pending."
+  ]
+}

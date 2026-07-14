@@ -6,6 +6,9 @@
   import('/assets/js/print-support.mjs')
     .catch(error => console.warn('[OmSaravanaBhava] Print support unavailable', error));
 
+  import('/assets/js/reader-experience.js')
+    .catch(error => console.warn('[OmSaravanaBhava] Reader experience unavailable', error));
+
   if (!('serviceWorker' in navigator)) return;
 
   let refreshing = false;

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Observe the deployed custom domain and fail when Release 222 is not live."""
+"""Observe the deployed custom domain and fail when Release 223 is not live."""
 from __future__ import annotations
 
 import argparse
@@ -10,8 +10,8 @@ import urllib.request
 from pathlib import Path
 
 CHECKS = [
-    ("/", 'data-release="222"'),
-    ("/service-worker.js", "const RELEASE = '222';"),
+    ("/", 'data-release="223"'),
+    ("/service-worker.js", "const RELEASE = '223';"),
     ("/search-facets.html", "Published-Content Search Facets"),
     ("/assets/js/search-facets.mjs", "export const RELEASE = 216;"),
     ("/data/site-routes.json", '"/search-facets.html"'),
@@ -39,16 +39,22 @@ CHECKS = [
     ("/data/knowledge-graph-explorer.json", "\"release\": 220"),
     ("/sitemap.xml", "https://omsaravanabhava.org/knowledge-graph-explorer.html"),
     ("/maintenance.html", "data-release=\"222\""),
-    ("/assets/js/maintenance-centre.mjs", "export const RELEASE = 222"),
-    ("/data/maintenance-checks.json", "\"release\": 222"),
-    ("/manifest-release-222.json", "\"release\": 222"),
+    ("/assets/js/maintenance-centre.mjs", "export const RELEASE = 223"),
+    ("/data/maintenance-checks.json", "\"release\": 223"),
+    ("/manifest-release-223.json", "\"release\": 223"),
     ("/data/site-routes.json", "\"/maintenance.html\""),
     ("/sitemap.xml", "https://omsaravanabhava.org/maintenance.html"),
     ("/discovery.html", "data-release=\"222\""),
     ("/assets/js/discovery-workspace.mjs", "export const RELEASE = 222"),
     ("/data/discovery-lenses.json", "\"release\": 222"),
     ("/data/site-routes.json", "\"/discovery.html\""),
-    ("/sitemap.xml", "https://omsaravanabhava.org/discovery.html")
+    ("/sitemap.xml", "https://omsaravanabhava.org/discovery.html"),
+    ("/reading-workspace.html", "data-release=\"223\""),
+    ("/assets/js/reader-experience.js", "export const RELEASE = 223"),
+    ("/assets/js/pwa-register.js", "reader-experience.js"),
+    ("/data/reading-workspace.json", "\"release\": 223"),
+    ("/data/site-routes.json", "\"/reading-workspace.html\""),
+    ("/sitemap.xml", "https://omsaravanabhava.org/reading-workspace.html")
 ]
 
 
@@ -56,7 +62,7 @@ def fetch(url: str, timeout: int) -> tuple[int, str]:
     request = urllib.request.Request(
         url,
         headers={
-            "User-Agent": "OmSaravanaBhava-Production-Smoke/222",
+            "User-Agent": "OmSaravanaBhava-Production-Smoke/223",
             "Cache-Control": "no-cache"
         }
     )
@@ -96,7 +102,7 @@ def main() -> int:
     parser.add_argument("--retries", type=int, default=18)
     parser.add_argument("--delay", type=int, default=20)
     parser.add_argument("--timeout", type=int, default=20)
-    parser.add_argument("--report", type=Path, default=Path("artifacts/release-222-production-smoke.json"))
+    parser.add_argument("--report", type=Path, default=Path("artifacts/release-223-production-smoke.json"))
     args = parser.parse_args()
     report = run(args.origin, args.retries, args.delay, args.timeout)
     args.report.parent.mkdir(parents=True, exist_ok=True)
