@@ -1,0 +1,30 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 170,
+  "name": "Premium Progressive UX Enhancement",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 11,
+  "modified": [
+    "assets/css/osb44.css",
+    "service-worker.js",
+    "index.html",
+    "temples.html",
+    "sloka-library.html",
+    "thiruppugazh.html",
+    "festivals.html",
+    "ai-search.html",
+    "audio-library.html",
+    "knowledge-graph.html"
+  ],
+  "added": [
+    "assets/js/premium-interactions.js"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Mouse lighting": "Subtle and optional",
+    "Reduced-motion support": "Yes",
+    "Reading progress": "Yes"
+  }
+}

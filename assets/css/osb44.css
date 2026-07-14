@@ -187,3 +187,10 @@ body.dark .osb-media-player{background:rgba(36,18,12,.96)}
 .advanced-search-form input,.advanced-search-form select{min-height:46px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surface-strong);color:var(--ink);font:inherit}
 .search-suggestions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.search-suggestion{cursor:pointer}
 @media(max-width:760px){.advanced-search-form{grid-template-columns:1fr}}
+/* Release 170 — premium progressive interaction */
+:root{--mouse-x:50%;--mouse-y:20%}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(600px circle at var(--mouse-x) var(--mouse-y),rgba(176,141,87,.12),transparent 55%);transition:opacity .25s ease}
+.card{transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 24px 65px rgba(104,45,18,.15);border-color:rgba(176,141,87,.45)}
+.reading-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#a51d17,#b08d57);width:0;z-index:200}
+@media(prefers-reduced-motion:reduce){body::before{display:none}.card{transition:none}.card:hover{transform:none}}
