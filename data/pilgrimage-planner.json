@@ -1,0 +1,40 @@
+{
+  "mode": "static-planning",
+  "stops": [
+    {
+      "id": "thirupparamkundram",
+      "name": "Thirupparankundram",
+      "region": "Tamil Nadu"
+    },
+    {
+      "id": "thiruchendur",
+      "name": "Thiruchendur",
+      "region": "Tamil Nadu"
+    },
+    {
+      "id": "palani",
+      "name": "Palani",
+      "region": "Tamil Nadu"
+    },
+    {
+      "id": "swamimalai",
+      "name": "Swamimalai",
+      "region": "Tamil Nadu"
+    },
+    {
+      "id": "thiruthani",
+      "name": "Thiruthani",
+      "region": "Tamil Nadu"
+    },
+    {
+      "id": "pazhamudircholai",
+      "name": "Pazhamudircholai",
+      "region": "Tamil Nadu"
+    }
+  ],
+  "warnings": [
+    "Verify temple opening times before travel",
+    "Check transport and accommodation independently",
+    "No live traffic or route optimisation"
+  ]
+}

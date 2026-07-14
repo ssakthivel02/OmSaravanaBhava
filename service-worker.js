@@ -1,4 +1,4 @@
-const RELEASE = '186';
+const RELEASE = '187';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
@@ -128,7 +128,9 @@ const PRECACHE_URLS = [
   "/data/learning-paths.json",
   "/learning-quiz.html",
   "/data/learning-quiz.json",
-  "/assets/js/learning-quiz.js"
+  "/assets/js/learning-quiz.js",
+  "/pilgrimage-planner.html",
+  "/data/pilgrimage-planner.json"
 ];
 
 self.addEventListener('install', event => {

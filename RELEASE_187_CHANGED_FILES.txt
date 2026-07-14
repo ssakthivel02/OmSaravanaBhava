@@ -1,0 +1,4 @@
+data/pilgrimage-planner.json
+pilgrimage-planner.html
+service-worker.js
+sitemap.xml
