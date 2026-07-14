@@ -1,5 +1,5 @@
 {
-  "expectedRelease": "214",
+  "expectedRelease": "215",
   "canonicalOrigin": "https://omsaravanabhava.org",
   "requiredFiles": [
     "index.html",
@@ -23,7 +23,10 @@
     ".github/workflows/production-smoke.yml",
     "explore.html",
     "data/navigation-sections.json",
-    "assets/js/explore-navigation.js"
+    "assets/js/explore-navigation.js",
+    "search-facets.html",
+    "assets/css/search-facets.css",
+    "assets/js/search-facets.mjs"
   ],
   "canonicalOptional": [
     "404.html",

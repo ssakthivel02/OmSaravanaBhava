@@ -1,0 +1,55 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 215,
+  "name": "Published-Content Search Facets",
+  "base_commit": "17bd5228f38f6520e8c496fc9cd3924f562de6e2",
+  "generated": "2026-07-14",
+  "required_commit_title": "Release 215: add published-content search facets",
+  "validation_status": "LOCAL_PACKAGE_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
+  "production_files": [
+    "search-facets.html",
+    "assets/css/search-facets.css",
+    "assets/js/search-facets.mjs",
+    "index.html",
+    "platform.html",
+    "data/site-routes.json",
+    "sitemap.xml",
+    "service-worker.js"
+  ],
+  "ci_alignment_files": [
+    "quality/site-audit-config.json",
+    "tools/production_smoke.py",
+    "tests/test_site_audit.py",
+    "tools/release_215_validate.py",
+    "tests/search-facets.test.mjs",
+    ".github/workflows/static-site-integrity.yml",
+    ".github/workflows/production-smoke.yml"
+  ],
+  "source_dependencies": {
+    "data/search-index.json": {
+      "base_blob_sha": "04c02b6c1495f54b061d016e1486aa7c342c19f4",
+      "included_in_zip": false,
+      "reason": "Existing unmodified published local search data."
+    },
+    "data/site-routes.json": {
+      "base_blob_sha": "4efe1f51e7177896147f2635a70b0678b96b49ba",
+      "included_in_zip": true
+    }
+  },
+  "claims": {
+    "counts": "Derived at runtime from local JSON; no hard-coded production totals.",
+    "grouping": "Uses genuine search-index kind values.",
+    "drafts_excluded": true,
+    "route_registry_enforced": true,
+    "remote_ai": false,
+    "remote_analytics": false,
+    "server_storage": false,
+    "service_worker_release": 215,
+    "new_optional_cache_assets": 3
+  },
+  "limitations": [
+    "Search facets reflect only records already present in data/search-index.json.",
+    "Source registers and bounded reviewed extracts remain visibly labelled; they are not represented as complete editions.",
+    "GitHub Actions and deployed production validation remain pending until the commit and deployment run."
+  ]
+}

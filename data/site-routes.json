@@ -1,7 +1,7 @@
 {
-  "release": 214,
+  "release": 215,
   "generated": "2026-07-14",
-  "scope": "Public HTML routes represented by the Release 214 sitemap and route directory.",
+  "scope": "Public HTML routes represented by the Release 215 sitemap and route directory.",
   "statusMeaning": {
     "published": "Route exists; content-specific verification remains governed by the page and source records.",
     "partial-reviewed": "Only a bounded reviewed extract is published.",
@@ -531,6 +531,14 @@
       "category": "Platform",
       "status": "published",
       "summary": "Published platform route in the OmSaravanaBhava static platform."
+    },
+    {
+      "path": "/search-facets.html",
+      "titleTa": "வெளியிடப்பட்ட தேடல் வடிகட்டிகள்",
+      "titleEn": "Published-Content Search Facets",
+      "category": "Platform",
+      "status": "published",
+      "summary": "Browser-local dashboard that groups published search records by genuine content type and publication boundary."
     },
     {
       "path": "/pilgrimage-planner.html",

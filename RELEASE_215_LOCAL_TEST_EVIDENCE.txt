@@ -1,0 +1,101 @@
+RELEASE 215 — LOCAL TEST EVIDENCE
+=================================
+
+Base commit:
+17bd5228f38f6520e8c496fc9cd3924f562de6e2
+
+TEST 1 — JavaScript syntax
+Command:
+node --check assets/js/search-facets.mjs
+
+Result:
+PASS — no syntax errors.
+
+TEST 2 — Search facets unit tests
+Command:
+node --test tests/search-facets.test.mjs
+
+Result:
+PASS
+Tests: 6
+Passed: 6
+Failed: 0
+Cancelled: 0
+Skipped: 0
+
+Covered:
+- Release 215 module identity
+- route normalisation for query and fragment links
+- publication-boundary grouping
+- draft/not-published exclusion
+- missing-route exclusion
+- runtime-derived facet counts
+- Tamil query filtering
+- content-type and status filtering
+
+TEST 3 — Release overlay validator
+Command:
+python tools/release_215_validate.py --root . --package-mode --report artifacts/release-215-package-validation.json
+
+Result:
+PASS
+Errors: 0
+GitHub Actions: NOT_RUN
+Deployed production: NOT_RUN
+
+TEST 4 — JSON parsing
+Commands:
+python -m json.tool data/site-routes.json
+python -m json.tool manifest-release-215.json
+python -m json.tool quality/site-audit-config.json
+
+Result:
+PASS — all JSON documents parsed successfully.
+
+TEST 5 — Sitemap XML parsing
+Command:
+Python xml.etree.ElementTree parse of sitemap.xml
+
+Result:
+PASS — sitemap is well-formed XML.
+
+TEST 6 — Python syntax compilation
+Command:
+python -m py_compile tools/production_smoke.py tools/release_215_validate.py tests/test_site_audit.py
+
+Result:
+PASS — all three Python files compiled.
+
+TEST 7 — Patch verification
+Commands:
+git apply --check RELEASE_215.patch
+git apply RELEASE_215.patch
+byte comparison against package payload
+
+Result:
+PASS
+Patched payload files compared: 16
+Mismatches: 0
+
+BASE FILE IDENTITY CHECK
+------------------------
+index.html                    5bf18df37c4415849b0b50b639c057e4d0ff6758
+platform.html                 d7ca75c4b53d1134a25d53eb3e146e24199e423e
+data/site-routes.json         4efe1f51e7177896147f2635a70b0678b96b49ba
+sitemap.xml                   e881ffe9bd9bd01555e4913db6b7c04148ab922a
+service-worker.js             855e810d628e2c52c7135c703ed2ac9b0983e892
+quality/site-audit-config.json
+                              40832862248fafefee1a03a8c48f220d89c20b54
+tools/production_smoke.py     03d1352aa14cadaa2e4f1b4052a21c45bfd87505
+tests/test_site_audit.py      c6c4d3a56d24c180d8966951a99c971595263156
+
+These identifiers matched the committed Release 214 repository files used as
+the package base.
+
+NOT EXECUTED
+------------
+GitHub Actions validation: NOT RUN
+GitHub Pages deployment validation: NOT RUN
+Custom-domain production smoke: NOT RUN
+
+Those checks can run only after Release 215 is committed and deployed.

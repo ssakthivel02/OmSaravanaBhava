@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ta">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Published-Content Search Facets | Om Saravana Bhava</title>
+<meta name="description" content="Browse published OmSaravanaBhava search records by genuine content type and publication boundary using browser-local data.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://omsaravanabhava.org/search-facets.html">
+<link rel="stylesheet" href="assets/css/osb44.css">
+<link rel="stylesheet" href="assets/css/search-facets.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#a51d17">
+<link rel="manifest" href="manifest.json">
+<script defer src="assets/js/pwa-register.js"></script>
+<script type="module" src="assets/js/search-facets.mjs"></script>
+</head>
+<body data-release="215">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="top">🛕 ஓம் சரவணபவ · Published local search facets</div>
+<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+<div class="links"><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="ai-search.html">AI Search</a><a href="search-facets.html" aria-current="page">Facets</a><a href="site-directory.html">Directory</a></div>
+</div></nav>
+<main id="main-content" class="wrap">
+<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Search Facets</span></p></nav>
+<section class="card">
+<span class="pill">Release 215 · Browser-local discovery</span>
+<h1 class="section-title" lang="ta">வெளியிடப்பட்ட உள்ளடக்கத் தேடல் வடிகட்டிகள்</h1>
+<h2>Published-Content Search Facets</h2>
+<p>Browse the existing local search index by genuine content type. Counts are calculated in your browser from published JSON records and the public route directory.</p>
+<p>No query, preference or interaction is sent to a remote AI, analytics service or account system.</p>
+</section>
+
+<section class="facet-summary-grid" aria-label="Published search summary">
+<article class="card facet-summary"><span>Published searchable records</span><strong id="facetTotal">…</strong></article>
+<article class="card facet-summary"><span>Content types</span><strong id="facetTypeTotal">…</strong></article>
+<article class="card facet-summary"><span>Bounded extracts and registers</span><strong id="facetBoundedTotal">…</strong></article>
+</section>
+
+<section class="card" aria-labelledby="facet-controls-heading">
+<h2 id="facet-controls-heading">Filter published records</h2>
+<form id="facetForm" class="facet-control-grid" role="search">
+<label for="facetQuery">Search words
+<input id="facetQuery" name="q" type="search" autocomplete="off" placeholder="பழனி, Vel, Sashti, literature…">
+</label>
+<label for="facetStatus">Publication boundary
+<select id="facetStatus" name="status">
+<option value="all">All published boundaries</option>
+<option value="published">Published or source-linked</option>
+<option value="bounded">Reviewed extract or bounded section</option>
+<option value="register">Source register</option>
+</select>
+</label>
+<button class="btn secondary" id="facetReset" type="button">Reset filters</button>
+</form>
+<div>
+<h3>Content type</h3>
+<div id="facetKinds" class="facet-kind-list" aria-label="Content type filters"></div>
+</div>
+<p id="facetResultStatus" role="status" aria-live="polite">Loading published records…</p>
+</section>
+
+<section id="facetResults" class="grid facet-results" aria-busy="true" aria-label="Published search results">
+<article class="card">Loading the local search index…</article>
+</section>
+
+<section class="card">
+<h2>Publication boundary</h2>
+<p>Drafts, records marked not published, and records requiring source review are excluded. Source registers and reviewed extracts remain visible with their status clearly labelled because their routes are already public.</p>
+<p><a class="btn secondary" href="ai-search.html">Open full local search</a> <a class="btn secondary" href="content-status.html">Review content status</a></p>
+</section>
+<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>Use the <a href="ai-search.html">local knowledge search</a> or <a href="site-directory.html">site directory</a>.</p></section></noscript>
+</main>
+<footer>© Om Saravana Bhava · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
+</body>
+</html>

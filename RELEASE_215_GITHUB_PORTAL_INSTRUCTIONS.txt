@@ -1,0 +1,96 @@
+RELEASE 215 — GITHUB PORTAL UPLOAD INSTRUCTIONS
+================================================
+
+Repository:
+https://github.com/ssakthivel02/OmSaravanaBhava
+
+Verified base:
+17bd5228f38f6520e8c496fc9cd3924f562de6e2
+
+Required commit title — enter this in the SMALL UPPER FIELD:
+Release 215: add published-content search facets
+
+Leave the LARGE COMMIT-DESCRIPTION FIELD BLANK.
+
+BEFORE UPLOAD
+-------------
+1. Confirm the repository head still begins with:
+   17bd5228f38f
+
+2. Extract OmSaravanaBhava-Release-215.zip.
+
+3. Open the extracted folder itself. Upload its CONTENTS, not the parent
+   OmSaravanaBhava-Release-215 folder.
+
+4. Do not upload any older Release 214/215 ZIP or rename an older package.
+
+UPLOAD
+------
+1. In GitHub, open the repository Code page.
+2. Select Add file > Upload files.
+3. Drag every extracted item into the upload area.
+4. Wait until GitHub finishes listing the files.
+
+CRITICAL HIDDEN WORKFLOW CHECK
+------------------------------
+Before committing, GitHub's pending-file list MUST show both exact paths:
+
+.github/workflows/static-site-integrity.yml
+.github/workflows/production-smoke.yml
+
+It must NOT show flattened names such as:
+.githubworkflowsstatic-site-integrity.yml
+.githubworkflowsproduction-smoke.yml
+
+The existing malformed root file .githubworkflowsmaster-audit.yml is not part
+of Release 215. Do not rename it into a workflow during this upload.
+
+Also confirm these production paths are shown:
+search-facets.html
+assets/css/search-facets.css
+assets/js/search-facets.mjs
+data/site-routes.json
+service-worker.js
+sitemap.xml
+index.html
+platform.html
+
+COMMIT
+------
+Small upper field:
+Release 215: add published-content search facets
+
+Large description field:
+LEAVE BLANK
+
+Select Commit changes.
+
+AFTER COMMIT
+------------
+1. Copy the new commit SHA.
+2. Open Actions.
+3. Confirm these workflows appear:
+   - Release 215 Static Site Integrity
+   - Release 215 Production Smoke
+   - pages-build-deployment
+
+4. Do not call GitHub Actions or production checks successful until their
+   actual runs complete.
+
+5. Verify after deployment:
+   https://omsaravanabhava.org/search-facets.html
+   https://omsaravanabhava.org/service-worker.js
+   https://omsaravanabhava.org/data/site-routes.json
+   https://omsaravanabhava.org/sitemap.xml
+
+Expected deployed markers:
+- search-facets.html contains: Published-Content Search Facets
+- service-worker.js contains: const RELEASE = '215';
+- site-routes.json contains: "/search-facets.html"
+- sitemap.xml contains:
+  https://omsaravanabhava.org/search-facets.html
+
+STOP CONDITION
+--------------
+Do not upload or generate Release 216 until Release 215 is committed and the
+new repository head has been verified.
