@@ -1,0 +1,22 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 167,
+  "name": "Kandar Kalivenba Source Register",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 4,
+  "modified": [
+    "data/search-index.json",
+    "service-worker.js"
+  ],
+  "added": [
+    "data/kandar-kalivenba.json",
+    "literature/kandar-kalivenba.html"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Authorship separated": "Yes",
+    "Full text published": "No"
+  }
+}

@@ -698,5 +698,18 @@
       "Andhadhi"
     ],
     "status": "source-register"
+  },
+  {
+    "kind": "Literature",
+    "id": "kandar-kalivenba",
+    "titleTa": "கந்தர் கலிவெண்பா",
+    "titleEn": "Kandar Kalivenba",
+    "summary": "Kalivenba work registered under Kumara Gurupara Swamigal.",
+    "route": "literature/kandar-kalivenba.html",
+    "tags": [
+      "Kumara Gurupara Swamigal",
+      "Kalivenba"
+    ],
+    "status": "source-register"
   }
 ]
