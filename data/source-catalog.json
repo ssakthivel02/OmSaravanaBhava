@@ -1,0 +1,34 @@
+[
+  {
+    "id": "src-thirumurugatruppadai",
+    "titleTa": "திருமுருகாற்றுப்படை",
+    "titleEn": "Thirumurugatruppadai",
+    "sourceType": "Primary Tamil literary text",
+    "fileName": "திருமுருகாற்றுப்படை.docx",
+    "qualityNote": "This uploaded file is treated as a transcription/compilation, not as a critical scholarly edition. Release 147 cites precise internal headings and verse ranges and avoids unsupported historical claims."
+  },
+  {
+    "id": "src-kandar-kavasangal-aaru",
+    "titleTa": "கந்தர் கவசங்கள் ஆறு",
+    "titleEn": "Six Kandar Kavasams",
+    "sourceType": "Section inside a mixed user-uploaded Murugan devotional compilation",
+    "fileName": "திருமுருகாற்றுப்படை.docx",
+    "qualityNote": "The filename identifies the uploaded container, not the literary identity or authorship of every work inside it. This record does not attribute Kavasam literature to Nakkirar or to Thirumurugatruppadai."
+  },
+  {
+    "id": "src-thiruppugazh-valluvar-vallalar-vattam",
+    "titleTa": "அருணகிரிநாதர் அருளிய திருப்புகழ்",
+    "titleEn": "Thiruppugazh — Digital Compilation",
+    "sourceType": "Primary Tamil devotional text",
+    "fileName": "697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf",
+    "qualityNote": "Release 149 publishes only manually checked song texts. OCR-only text and unverified commentary are not published."
+  },
+  {
+    "id": "src-skanda-guru-kavasam-uploaded-compilation",
+    "titleTa": "ஸ்கந்த குரு கவசம்",
+    "titleEn": "Skanda Guru Kavasam",
+    "sourceType": "Skanda Guru Kavasam section inside a mixed user-uploaded Murugan devotional compilation",
+    "fileName": "திருமுருகாற்றுப்படை.docx",
+    "qualityNote": "The container filename does not define this work's authorship. The internal heading attributes Skanda Guru Kavasam to Srimath Sadguru Santhananda Swamigal. Release 151 publishes only the verified opening extract."
+  }
+]
