@@ -6,7 +6,14 @@
     "place": "Palani, Dindigul",
     "publicationStatus": "published-source-linked",
     "timingsStatus": "not-maintained-unless-officially-verified",
-    "mapStatus": "external-navigation-link-not-embedded"
+    "mapStatus": "external-navigation-link-not-embedded",
+    "researchFields": {
+      "architecture": "source-review-required",
+      "sacredTree": "source-review-required",
+      "sacredWater": "source-review-required",
+      "festivals": "linked-where-published",
+      "literature": "linked-where-published"
+    }
   },
   {
     "id": "thiruchendur",
@@ -15,7 +22,14 @@
     "place": "Thiruchendur, Thoothukudi",
     "publicationStatus": "published-source-linked",
     "timingsStatus": "not-maintained-unless-officially-verified",
-    "mapStatus": "external-navigation-link-not-embedded"
+    "mapStatus": "external-navigation-link-not-embedded",
+    "researchFields": {
+      "architecture": "source-review-required",
+      "sacredTree": "source-review-required",
+      "sacredWater": "source-review-required",
+      "festivals": "linked-where-published",
+      "literature": "linked-where-published"
+    }
   },
   {
     "id": "thirupparamkundram",
@@ -24,7 +38,14 @@
     "place": "Madurai",
     "publicationStatus": "published-source-linked",
     "timingsStatus": "not-maintained-unless-officially-verified",
-    "mapStatus": "external-navigation-link-not-embedded"
+    "mapStatus": "external-navigation-link-not-embedded",
+    "researchFields": {
+      "architecture": "source-review-required",
+      "sacredTree": "source-review-required",
+      "sacredWater": "source-review-required",
+      "festivals": "linked-where-published",
+      "literature": "linked-where-published"
+    }
   },
   {
     "id": "swamimalai",
@@ -33,7 +54,14 @@
     "place": "Kumbakonam",
     "publicationStatus": "published-source-linked",
     "timingsStatus": "not-maintained-unless-officially-verified",
-    "mapStatus": "external-navigation-link-not-embedded"
+    "mapStatus": "external-navigation-link-not-embedded",
+    "researchFields": {
+      "architecture": "source-review-required",
+      "sacredTree": "source-review-required",
+      "sacredWater": "source-review-required",
+      "festivals": "linked-where-published",
+      "literature": "linked-where-published"
+    }
   },
   {
     "id": "thiruthani",
@@ -42,7 +70,14 @@
     "place": "Tiruttani",
     "publicationStatus": "published-source-linked",
     "timingsStatus": "not-maintained-unless-officially-verified",
-    "mapStatus": "external-navigation-link-not-embedded"
+    "mapStatus": "external-navigation-link-not-embedded",
+    "researchFields": {
+      "architecture": "source-review-required",
+      "sacredTree": "source-review-required",
+      "sacredWater": "source-review-required",
+      "festivals": "linked-where-published",
+      "literature": "linked-where-published"
+    }
   },
   {
     "id": "pazhamudircholai",
@@ -51,7 +86,14 @@
     "place": "Madurai",
     "publicationStatus": "published-source-linked",
     "timingsStatus": "not-maintained-unless-officially-verified",
-    "mapStatus": "external-navigation-link-not-embedded"
+    "mapStatus": "external-navigation-link-not-embedded",
+    "researchFields": {
+      "architecture": "source-review-required",
+      "sacredTree": "source-review-required",
+      "sacredWater": "source-review-required",
+      "festivals": "linked-where-published",
+      "literature": "linked-where-published"
+    }
   },
   {
     "id": "vadapalani",
@@ -60,7 +102,14 @@
     "place": "Chennai",
     "publicationStatus": "directory-review",
     "timingsStatus": "not-maintained-unless-officially-verified",
-    "mapStatus": "external-navigation-link-not-embedded"
+    "mapStatus": "external-navigation-link-not-embedded",
+    "researchFields": {
+      "architecture": "source-review-required",
+      "sacredTree": "source-review-required",
+      "sacredWater": "source-review-required",
+      "festivals": "linked-where-published",
+      "literature": "linked-where-published"
+    }
   },
   {
     "id": "marudhamalai",
@@ -69,7 +118,14 @@
     "place": "Coimbatore",
     "publicationStatus": "directory-review",
     "timingsStatus": "not-maintained-unless-officially-verified",
-    "mapStatus": "external-navigation-link-not-embedded"
+    "mapStatus": "external-navigation-link-not-embedded",
+    "researchFields": {
+      "architecture": "source-review-required",
+      "sacredTree": "source-review-required",
+      "sacredWater": "source-review-required",
+      "festivals": "linked-where-published",
+      "literature": "linked-where-published"
+    }
   },
   {
     "id": "vayalur",
@@ -78,7 +134,14 @@
     "place": "Kumaravayalur",
     "publicationStatus": "directory-review",
     "timingsStatus": "not-maintained-unless-officially-verified",
-    "mapStatus": "external-navigation-link-not-embedded"
+    "mapStatus": "external-navigation-link-not-embedded",
+    "researchFields": {
+      "architecture": "source-review-required",
+      "sacredTree": "source-review-required",
+      "sacredWater": "source-review-required",
+      "festivals": "linked-where-published",
+      "literature": "linked-where-published"
+    }
   },
   {
     "id": "sikkal",
@@ -87,6 +150,13 @@
     "place": "Nagapattinam",
     "publicationStatus": "directory-review",
     "timingsStatus": "not-maintained-unless-officially-verified",
-    "mapStatus": "external-navigation-link-not-embedded"
+    "mapStatus": "external-navigation-link-not-embedded",
+    "researchFields": {
+      "architecture": "source-review-required",
+      "sacredTree": "source-review-required",
+      "sacredWater": "source-review-required",
+      "festivals": "linked-where-published",
+      "literature": "linked-where-published"
+    }
   }
 ]
