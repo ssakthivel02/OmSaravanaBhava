@@ -1,0 +1,4 @@
+content-status.html
+data/content-status.json
+service-worker.js
+sitemap.xml
