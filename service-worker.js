@@ -1,4 +1,4 @@
-const RELEASE = '179';
+const RELEASE = '180';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
@@ -114,7 +114,9 @@ const PRECACHE_URLS = [
   "/data/festival-intelligence.json",
   "/assets/js/search-recommendations.js",
   "/data/search-recommendations.json",
-  "/assets/js/reader-experience.js"
+  "/assets/js/reader-experience.js",
+  "/platform.html",
+  "/data/platform-status.json"
 ];
 
 self.addEventListener('install', event => {

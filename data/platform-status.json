@@ -1,0 +1,49 @@
+{
+  "milestone": "2.0-preparation",
+  "release": 180,
+  "modules": [
+    {
+      "name": "Audio Platform",
+      "route": "audio-collections.html"
+    },
+    {
+      "name": "Cross References",
+      "route": "cross-references.html"
+    },
+    {
+      "name": "Timeline",
+      "route": "murugan-timeline.html"
+    },
+    {
+      "name": "Temple Encyclopedia",
+      "route": "temple-encyclopedia.html"
+    },
+    {
+      "name": "Siddhar Graph",
+      "route": "siddhar-knowledge-graph.html"
+    },
+    {
+      "name": "Map Index",
+      "route": "murugan-map.html"
+    },
+    {
+      "name": "Festival Intelligence",
+      "route": "festival-intelligence.html"
+    },
+    {
+      "name": "Search",
+      "route": "ai-search.html"
+    },
+    {
+      "name": "Knowledge Graph",
+      "route": "knowledge-graph.html"
+    }
+  ],
+  "contentPolicy": "verified-first",
+  "audioPolicy": "no-unlicensed-recordings",
+  "currentLimitations": [
+    "incomplete primary-text digitisation",
+    "no server-side accounts",
+    "no live Panchangam engine"
+  ]
+}
