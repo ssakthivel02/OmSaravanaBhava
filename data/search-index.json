@@ -673,5 +673,17 @@
       "Kavasam"
     ],
     "status": "source-register"
+  },
+  {
+    "kind": "Literature",
+    "id": "kandar-alangaram",
+    "titleTa": "கந்தர் அலங்காரம்",
+    "titleEn": "Kandar Alangaram",
+    "summary": "Arunagirinathar literary register; complete verse text awaits verification.",
+    "route": "literature/kandar-alangaram.html",
+    "tags": [
+      "Arunagirinathar"
+    ],
+    "status": "source-register"
   }
 ]
