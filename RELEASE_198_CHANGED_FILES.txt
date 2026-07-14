@@ -1,0 +1,4 @@
+data/learning-paths.json
+learning-paths.html
+service-worker.js
+sitemap.xml

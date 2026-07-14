@@ -28,5 +28,27 @@
       "thiruppugazh.html",
       "thiruppugazh-volume-3.html"
     ]
+  },
+  {
+    "id": "kavasam-study",
+    "titleTa": "கவசம் அறிமுகம்",
+    "titleEn": "Introduction to Kavasam Literature",
+    "level": "Intermediate",
+    "routes": [
+      "literature/kanda-sashti-kavasam-edition.html",
+      "slokas/skanda-guru-kavasam.html",
+      "literature/shanmuga-kavasam.html"
+    ]
+  },
+  {
+    "id": "knowledge-graph-study",
+    "titleTa": "அறிவுக் கோப்பு பயணம்",
+    "titleEn": "Knowledge Graph Study Path",
+    "level": "Advanced",
+    "routes": [
+      "knowledge-graph.html",
+      "knowledge-graph-phase-3.html",
+      "cross-references.html"
+    ]
   }
 ]

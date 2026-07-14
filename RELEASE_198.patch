@@ -1,0 +1,82 @@
+--- before/learning-paths.html
++++ release198/learning-paths.html
+@@ -0,0 +1,24 @@
++<!doctype html><html lang="ta"><head>
++<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Murugan Learning Paths | Om Saravana Bhava</title>
++<meta name="description" content="Expanded beginner, intermediate and advanced paths through the published knowledge platform.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/learning-paths.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++</head><body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Digital Murugan heritage platform</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Murugan Learning Paths</span></p></nav>
++<section class="card"><h1 class="section-title" lang="ta">கற்றல் பாதைகள்</h1><h2>Murugan Learning Paths</h2><p>Expanded beginner, intermediate and advanced paths through the published knowledge platform.</p></section>
++<section class="grid"><article class="card"><span class="pill">Beginner</span><h2 lang="ta">முருகன் யார்?</h2><h3>Who is Murugan?</h3></article><article class="card"><span class="pill">Beginner</span><h2 lang="ta">ஆறுபடை வீடு</h2><h3>The Six Sacred Abodes</h3></article><article class="card"><span class="pill">Intermediate</span><h2 lang="ta">திருப்புகழ் அறிமுகம்</h2><h3>Introduction to Thiruppugazh</h3></article><article class="card"><span class="pill">Intermediate</span><h2 lang="ta">கவசம் அறிமுகம்</h2><h3>Introduction to Kavasam Literature</h3></article><article class="card"><span class="pill">Advanced</span><h2 lang="ta">அறிவுக் கோப்பு பயணம்</h2><h3>Knowledge Graph Study Path</h3></article></section>
++</main>
++<footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body></html>--- before/data/learning-paths.json
++++ release198/data/learning-paths.json
+@@ -28,5 +28,27 @@
+       "thiruppugazh.html",
+       "thiruppugazh-volume-3.html"
+     ]
++  },
++  {
++    "id": "kavasam-study",
++    "titleTa": "கவசம் அறிமுகம்",
++    "titleEn": "Introduction to Kavasam Literature",
++    "level": "Intermediate",
++    "routes": [
++      "literature/kanda-sashti-kavasam-edition.html",
++      "slokas/skanda-guru-kavasam.html",
++      "literature/shanmuga-kavasam.html"
++    ]
++  },
++  {
++    "id": "knowledge-graph-study",
++    "titleTa": "அறிவுக் கோப்பு பயணம்",
++    "titleEn": "Knowledge Graph Study Path",
++    "level": "Advanced",
++    "routes": [
++      "knowledge-graph.html",
++      "knowledge-graph-phase-3.html",
++      "cross-references.html"
++    ]
+   }
+ ]
+--- before/service-worker.js
++++ release198/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '197';
++const RELEASE = '198';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -148,7 +148,8 @@
+   "/data/siddhar-literature-index.json",
+   "/audio-albums.html",
+   "/data/audio-albums.json",
+-  "/knowledge-graph-phase-3.html"
++  "/knowledge-graph-phase-3.html",
++  "/learning-paths.html"
+ ];
+ 
+ self.addEventListener('install', event => {
+--- before/sitemap.xml
++++ release198/sitemap.xml
+@@ -232,4 +232,5 @@
+   <url><loc>https://omsaravanabhava.org/siddhar-literature.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+   <url><loc>https://omsaravanabhava.org/audio-albums.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+   <url><loc>https://omsaravanabhava.org/knowledge-graph-phase-3.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
++  <url><loc>https://omsaravanabhava.org/learning-paths.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+ </urlset>
