@@ -1,0 +1,58 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 220,
+  "name": "Source-Controlled Knowledge Graph Explorer",
+  "base_commit": "76414c2834dd291d2432832cdc81f5f954137eac",
+  "generated": "2026-07-14",
+  "required_commit_title": "Release 220: add local knowledge graph explorer",
+  "validation_status": "LOCAL_PACKAGE_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
+  "production_files": [
+    "knowledge-graph.html",
+    "knowledge-graph-explorer.html",
+    "assets/css/knowledge-graph-explorer.css",
+    "assets/js/knowledge-graph-explorer.mjs",
+    "data/knowledge-graph-explorer.json",
+    "index.html",
+    "platform.html",
+    "data/site-routes.json",
+    "sitemap.xml",
+    "service-worker.js"
+  ],
+  "ci_alignment_files": [
+    "quality/site-audit-config.json",
+    "tools/production_smoke.py",
+    "tests/test_site_audit.py",
+    "tests/knowledge-graph-explorer.test.mjs",
+    "tools/release_220_validate.py",
+    ".github/workflows/static-site-integrity.yml",
+    ".github/workflows/production-smoke.yml"
+  ],
+  "source_pages": [
+    "/knowledge-graph.html",
+    "/knowledge-graph-phase-3.html",
+    "/knowledge-graph-phase-4.html",
+    "/siddhar-knowledge-graph.html",
+    "/skanda-purana-graph.html"
+  ],
+  "claims": {
+    "graph_registers": 5,
+    "explicit_source_page_entities": 18,
+    "explorer_nodes": 23,
+    "explorer_metadata_relationships": 20,
+    "known_reported_domain_relationships": 27,
+    "registers_without_published_relationship_count": 2,
+    "inferred_theological_relationships": false,
+    "remote_graph_service": false,
+    "external_graph_library": false,
+    "analytics": false,
+    "service_worker_release": 220,
+    "new_optional_cache_assets": 4
+  },
+  "limitations": [
+    "Phase 3 and Phase 4 provide summary totals without node-level records.",
+    "Siddhar nodes retain source-review status.",
+    "Skanda Purana nodes retain pending chapter-level verification status.",
+    "Explorer metadata edges are not substitutes for theological domain relationships.",
+    "GitHub Actions and deployed production validation remain pending."
+  ]
+}

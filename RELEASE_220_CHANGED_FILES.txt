@@ -1,0 +1,29 @@
+Release 220 — Source-Controlled Knowledge Graph Explorer
+Base commit: 76414c2834dd291d2432832cdc81f5f954137eac
+
+M  .github/workflows/production-smoke.yml
+M  .github/workflows/static-site-integrity.yml
+A  assets/css/knowledge-graph-explorer.css
+A  assets/js/knowledge-graph-explorer.mjs
+A  data/knowledge-graph-explorer.json
+M  data/site-routes.json
+M  index.html
+M  knowledge-graph.html
+A  knowledge-graph-explorer.html
+A  manifest-release-220.json
+M  platform.html
+M  quality/site-audit-config.json
+M  service-worker.js
+M  sitemap.xml
+A  tests/knowledge-graph-explorer.test.mjs
+M  tests/test_site_audit.py
+M  tools/production_smoke.py
+A  tools/release_220_validate.py
+
+Evidence files included:
+A  RELEASE_220_CHANGED_FILES.txt
+A  RELEASE_220_GITHUB_PORTAL_INSTRUCTIONS.txt
+A  RELEASE_220_LOCAL_TEST_EVIDENCE.txt
+A  RELEASE_220_SHA256SUMS.txt
+A  RELEASE_220_VALIDATION_REPORT.md
+A  RELEASE_220.patch

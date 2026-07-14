@@ -1,0 +1,59 @@
+Release 220 — GitHub browser upload instructions
+
+Repository:
+https://github.com/ssakthivel02/OmSaravanaBhava
+
+Verified base head:
+76414c2834dd291d2432832cdc81f5f954137eac
+
+Required commit title — enter this in the SMALL UPPER FIELD:
+Release 220: add local knowledge graph explorer
+
+Leave the large commit-description field blank.
+
+UPLOAD
+1. Download and extract OmSaravanaBhava-Release-220.zip.
+2. Enable Windows View > Show > Hidden items.
+3. Open the extracted package folder.
+4. In GitHub main, select Add file > Upload files.
+5. Drag the CONTENTS of the extracted folder, not the outer folder.
+6. Preserve every directory path.
+7. Before committing, confirm GitHub displays:
+   .github/workflows/static-site-integrity.yml
+   .github/workflows/production-smoke.yml
+   knowledge-graph-explorer.html
+   knowledge-graph.html
+   assets/css/knowledge-graph-explorer.css
+   assets/js/knowledge-graph-explorer.mjs
+   data/knowledge-graph-explorer.json
+   tools/release_220_validate.py
+8. Enter the required title in the small upper field.
+9. Leave the large description field blank.
+10. Commit directly to main.
+
+POST-COMMIT VERIFICATION
+1. Copy the new main commit SHA.
+2. Confirm service-worker.js contains:
+   const RELEASE = '220';
+3. Open knowledge-graph-explorer.html.
+4. Confirm the summary displays values calculated from JSON:
+   5 graph registers
+   18 explicit entities
+   27 known reported domain relationships
+   2 registers without a published relationship count
+5. Test Tamil/English search and all three filters.
+6. Select visual SVG nodes and accessible result cards.
+7. Confirm Phase 3 and Phase 4 do not show invented entity nodes.
+8. Confirm data/site-routes.json and sitemap.xml contain the explorer route once.
+9. Wait for:
+   Release 220 Static Site Integrity
+   Release 220 Production Smoke
+10. Do not proceed to Release 221 until Release 220 is verified.
+
+DO NOT
+- Do not describe explorer metadata edges as theological relationships.
+- Do not invent missing Phase 3 or Phase 4 nodes.
+- Do not remove Siddhar source-review or Skanda pending-verification labels.
+- Do not rename an older ZIP.
+- Do not omit hidden workflow files.
+- Do not mark GitHub Actions or production checks as passed before they run.

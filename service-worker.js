@@ -1,4 +1,4 @@
-const RELEASE = '219';
+const RELEASE = '220';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
@@ -208,7 +208,11 @@ const PRECACHE_URLS = [
   "/assets/js/print-support.mjs",
   "/audio-history.html",
   "/assets/css/audio-history.css",
-  "/assets/js/audio-history.mjs"
+  "/assets/js/audio-history.mjs",
+  "/knowledge-graph-explorer.html",
+  "/assets/css/knowledge-graph-explorer.css",
+  "/assets/js/knowledge-graph-explorer.mjs",
+  "/data/knowledge-graph-explorer.json"
 ];
 
 const cacheOptionalAssets = async cache => {

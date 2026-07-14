@@ -1,0 +1,146 @@
+Release 220 — Local Test Evidence
+Generated: 2026-07-14
+Base commit: 76414c2834dd291d2432832cdc81f5f954137eac
+
+LOCAL PACKAGE RESULT: PASS
+GITHUB ACTIONS RESULT: NOT RUN
+DEPLOYED PRODUCTION RESULT: NOT RUN
+
+$ node --check assets/js/knowledge-graph-explorer.mjs
+Exit code: 0
+
+
+$ node --test tests/knowledge-graph-explorer.test.mjs
+Exit code: 0
+TAP version 13
+# Subtest: release and source-controlled data identity are stable
+ok 1 - release and source-controlled data identity are stable
+  ---
+  duration_ms: 1.035741
+  type: 'test'
+  ...
+# Subtest: same-origin routes are retained and external routes are rejected
+ok 2 - same-origin routes are retained and external routes are rejected
+  ---
+  duration_ms: 0.14603
+  type: 'test'
+  ...
+# Subtest: all explorer nodes and relationships are unique and valid
+ok 3 - all explorer nodes and relationships are unique and valid
+  ---
+  duration_ms: 0.231379
+  type: 'test'
+  ...
+# Subtest: metrics separate reported domain relationships from metadata edges
+ok 4 - metrics separate reported domain relationships from metadata edges
+  ---
+  duration_ms: 0.616579
+  type: 'test'
+  ...
+# Subtest: explicit source-card counts match the three detailed registers
+ok 5 - explicit source-card counts match the three detailed registers
+  ---
+  duration_ms: 0.22588
+  type: 'test'
+  ...
+# Subtest: summary-only phases do not fabricate explicit nodes
+ok 6 - summary-only phases do not fabricate explicit nodes
+  ---
+  duration_ms: 0.134843
+  type: 'test'
+  ...
+# Subtest: filtering supports dataset, kind, boundary and text search
+ok 7 - filtering supports dataset, kind, boundary and text search
+  ---
+  duration_ms: 0.394805
+  type: 'test'
+  ...
+# Subtest: neighbours and relationship counts are computed from local JSON
+ok 8 - neighbours and relationship counts are computed from local JSON
+  ---
+  duration_ms: 0.322997
+  type: 'test'
+  ...
+# Subtest: layout is deterministic and keeps all nodes inside the canvas
+ok 9 - layout is deterministic and keeps all nodes inside the canvas
+  ---
+  duration_ms: 0.57776
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 117.59719
+
+$ python -m py_compile tools/production_smoke.py tools/release_220_validate.py tests/test_site_audit.py
+Exit code: 0
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/generated/interface/models.py", line 30820, in hydrate_crdt_from_proto
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/remote.py", line 749, in __call__
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/client.py", line 150, in call
+artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
+
+$ python tools/release_220_validate.py --root . --package-mode --report artifacts/release-220-package-validation.json
+Exit code: 0
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/generated/interface/models.py", line 30820, in hydrate_crdt_from_proto
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/remote.py", line 749, in __call__
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/client.py", line 150, in call
+artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
+{
+  "release": 220,
+  "base_commit": "76414c2834dd291d2432832cdc81f5f954137eac",
+  "mode": "package",
+  "status": "PASS",
+  "errors": [],
+  "checks": [
+    "exists: knowledge-graph.html",
+    "exists: knowledge-graph-explorer.html",
+    "exists: assets/css/knowledge-graph-explorer.css",
+    "exists: assets/js/knowledge-graph-explorer.mjs",
+    "exists: data/knowledge-graph-explorer.json",
+    "exists: index.html",
+    "exists: platform.html",
+    "exists: data/site-routes.json",
+    "exists: sitemap.xml",
+    "exists: service-worker.js",
+    "exists: quality/site-audit-config.json",
+    "exists: tools/production_smoke.py",
+    "exists: tests/test_site_audit.py",
+    "exists: tests/knowledge-graph-explorer.test.mjs",
+    "exists: .github/workflows/static-site-integrity.yml",
+    "exists: .github/workflows/production-smoke.yml",
+    "exists: manifest-release-220.json"
+  ],
+  "github_actions": "NOT_RUN",
+  "deployed_production": "NOT_RUN"
+}
+
+$ git apply --check RELEASE_220.patch
+Exit code: 0
+
+
+JSON files parsed: 5
+Sitemap XML parsed: PASS
+Five source graph registers retained: PASS
+Eighteen explicit source-page entity nodes retained: PASS
+Twenty-seven known reported relationships retained: PASS
+Two unpublished relationship totals remain unspecified: PASS
+Phase 3 and Phase 4 fabricated entity nodes: ZERO
+Explorer metadata/domain count separation: PASS
+Optional service-worker caching: PASS

@@ -1,5 +1,5 @@
 {
-  "release": 219,
+  "release": 220,
   "generated": "2026-07-14",
   "scope": "Public HTML routes represented by the Release 215 sitemap and route directory.",
   "statusMeaning": {
@@ -228,6 +228,14 @@
       "category": "Knowledge",
       "status": "published",
       "summary": "Published knowledge route in the OmSaravanaBhava static platform."
+    },
+    {
+      "path": "/knowledge-graph-explorer.html",
+      "titleTa": "அறிவு தொடர்பு ஆராய்வி",
+      "titleEn": "Knowledge Graph Explorer",
+      "category": "Knowledge",
+      "status": "published",
+      "summary": "Local explorer for existing graph registers, explicit source-page nodes and published relationship totals."
     },
     {
       "path": "/murugan-timeline-v2.html",

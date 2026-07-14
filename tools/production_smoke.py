@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Observe the deployed custom domain and fail when Release 219 is not live."""
+"""Observe the deployed custom domain and fail when Release 220 is not live."""
 from __future__ import annotations
 
 import argparse
@@ -10,8 +10,8 @@ import urllib.request
 from pathlib import Path
 
 CHECKS = [
-    ("/", 'data-release="219"'),
-    ("/service-worker.js", "const RELEASE = '219';"),
+    ("/", 'data-release="220"'),
+    ("/service-worker.js", "const RELEASE = '220';"),
     ("/search-facets.html", "Published-Content Search Facets"),
     ("/assets/js/search-facets.mjs", "export const RELEASE = 216;"),
     ("/data/site-routes.json", '"/search-facets.html"'),
@@ -32,7 +32,12 @@ CHECKS = [
     ("/audio-library.html", "audio-history.mjs"),
     ("/audio-history.html", "Audio Listening History"),
     ("/assets/js/audio-history.mjs", "export const RELEASE = 219"),
-    ("/sitemap.xml", "https://omsaravanabhava.org/audio-history.html")
+    ("/sitemap.xml", "https://omsaravanabhava.org/audio-history.html"),
+    ("/knowledge-graph.html", "knowledge-graph-explorer.html"),
+    ("/knowledge-graph-explorer.html", "data-release=\"220\""),
+    ("/assets/js/knowledge-graph-explorer.mjs", "export const RELEASE = 220"),
+    ("/data/knowledge-graph-explorer.json", "\"release\": 220"),
+    ("/sitemap.xml", "https://omsaravanabhava.org/knowledge-graph-explorer.html")
 ]
 
 
@@ -40,7 +45,7 @@ def fetch(url: str, timeout: int) -> tuple[int, str]:
     request = urllib.request.Request(
         url,
         headers={
-            "User-Agent": "OmSaravanaBhava-Production-Smoke/219",
+            "User-Agent": "OmSaravanaBhava-Production-Smoke/220",
             "Cache-Control": "no-cache"
         }
     )
@@ -80,7 +85,7 @@ def main() -> int:
     parser.add_argument("--retries", type=int, default=18)
     parser.add_argument("--delay", type=int, default=20)
     parser.add_argument("--timeout", type=int, default=20)
-    parser.add_argument("--report", type=Path, default=Path("artifacts/release-219-production-smoke.json"))
+    parser.add_argument("--report", type=Path, default=Path("artifacts/release-220-production-smoke.json"))
     args = parser.parse_args()
     report = run(args.origin, args.retries, args.delay, args.timeout)
     args.report.parent.mkdir(parents=True, exist_ok=True)

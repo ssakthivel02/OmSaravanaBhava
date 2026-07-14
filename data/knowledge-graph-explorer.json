@@ -1,0 +1,491 @@
+{
+  "release": 220,
+  "generated": "2026-07-14",
+  "title": "OmSaravanaBhava Source-Controlled Knowledge Graph Register",
+  "scope": "Existing local graph pages and their explicitly visible nodes or published summary counts.",
+  "notClaims": [
+    "This dataset is not a complete Murugan theology graph.",
+    "It does not infer missing theological relationships.",
+    "Reported relationship totals are preserved separately from explorer metadata edges.",
+    "Source-review and pending-verification boundaries remain visible."
+  ],
+  "datasets": [
+    {
+      "id": "murugan-phase-1",
+      "titleTa": "முருகன் அறிவுக் கோப்பு",
+      "titleEn": "Murugan Knowledge Graph Phase 1",
+      "route": "/knowledge-graph.html",
+      "publicationBoundary": "source-controlled",
+      "detailLevel": "explicit-node-cards",
+      "reportedNodeCount": 7,
+      "reportedRelationshipCount": 6,
+      "relationshipCountStatus": "reported",
+      "evidence": "Seven explicit entity cards and a page statement reporting six relationships."
+    },
+    {
+      "id": "murugan-phase-3",
+      "titleTa": "முருகன் அறிவுக் கோப்பு கட்டம் 3",
+      "titleEn": "Murugan Knowledge Graph Phase 3",
+      "route": "/knowledge-graph-phase-3.html",
+      "publicationBoundary": "published-summary",
+      "detailLevel": "summary-only",
+      "reportedNodeCount": 10,
+      "reportedRelationshipCount": 9,
+      "relationshipCountStatus": "reported",
+      "evidence": "The source page reports ten nodes and nine relationships but does not expose node-level records."
+    },
+    {
+      "id": "murugan-phase-4",
+      "titleTa": "முருகன் அறிவுக் கோப்பு கட்டம் 4",
+      "titleEn": "Murugan Knowledge Graph Phase 4",
+      "route": "/knowledge-graph-phase-4.html",
+      "publicationBoundary": "published-summary",
+      "detailLevel": "summary-only",
+      "reportedNodeCount": 13,
+      "reportedRelationshipCount": 12,
+      "relationshipCountStatus": "reported",
+      "evidence": "The source page reports thirteen nodes and twelve relationships but does not expose node-level records."
+    },
+    {
+      "id": "siddhar-phase-1",
+      "titleTa": "சித்தர் அறிவுக் கோப்பு",
+      "titleEn": "Siddhar Knowledge Graph Phase 1",
+      "route": "/siddhar-knowledge-graph.html",
+      "publicationBoundary": "source-review",
+      "detailLevel": "explicit-node-cards",
+      "reportedNodeCount": 6,
+      "reportedRelationshipCount": null,
+      "relationshipCountStatus": "not-published",
+      "evidence": "Six source-review Siddhar cards are visible; no relationship total is published."
+    },
+    {
+      "id": "skanda-purana-phase-2",
+      "titleTa": "ஸ்கந்த புராண அறிவுக் கோப்பு",
+      "titleEn": "Skanda Purana Knowledge Graph Phase 2",
+      "route": "/skanda-purana-graph.html",
+      "publicationBoundary": "pending-chapter-verification",
+      "detailLevel": "explicit-node-cards",
+      "reportedNodeCount": 5,
+      "reportedRelationshipCount": null,
+      "relationshipCountStatus": "not-published",
+      "evidence": "Five high-level entity cards are visible; chapter-level verification and a relationship total remain unpublished."
+    }
+  ],
+  "nodes": [
+    {
+      "id": "dataset-murugan-phase-1",
+      "nodeClass": "Graph register",
+      "kind": "Dataset",
+      "datasetId": "murugan-phase-1",
+      "titleTa": "முருகன் அறிவுக் கோப்பு",
+      "titleEn": "Murugan Knowledge Graph Phase 1",
+      "route": "/knowledge-graph.html",
+      "destinationRoute": "/knowledge-graph.html",
+      "claimBoundary": "source-controlled"
+    },
+    {
+      "id": "dataset-murugan-phase-3",
+      "nodeClass": "Graph register",
+      "kind": "Dataset",
+      "datasetId": "murugan-phase-3",
+      "titleTa": "முருகன் அறிவுக் கோப்பு கட்டம் 3",
+      "titleEn": "Murugan Knowledge Graph Phase 3",
+      "route": "/knowledge-graph-phase-3.html",
+      "destinationRoute": "/knowledge-graph-phase-3.html",
+      "claimBoundary": "published-summary"
+    },
+    {
+      "id": "dataset-murugan-phase-4",
+      "nodeClass": "Graph register",
+      "kind": "Dataset",
+      "datasetId": "murugan-phase-4",
+      "titleTa": "முருகன் அறிவுக் கோப்பு கட்டம் 4",
+      "titleEn": "Murugan Knowledge Graph Phase 4",
+      "route": "/knowledge-graph-phase-4.html",
+      "destinationRoute": "/knowledge-graph-phase-4.html",
+      "claimBoundary": "published-summary"
+    },
+    {
+      "id": "dataset-siddhar-phase-1",
+      "nodeClass": "Graph register",
+      "kind": "Dataset",
+      "datasetId": "siddhar-phase-1",
+      "titleTa": "சித்தர் அறிவுக் கோப்பு",
+      "titleEn": "Siddhar Knowledge Graph Phase 1",
+      "route": "/siddhar-knowledge-graph.html",
+      "destinationRoute": "/siddhar-knowledge-graph.html",
+      "claimBoundary": "source-review"
+    },
+    {
+      "id": "dataset-skanda-purana-phase-2",
+      "nodeClass": "Graph register",
+      "kind": "Dataset",
+      "datasetId": "skanda-purana-phase-2",
+      "titleTa": "ஸ்கந்த புராண அறிவுக் கோப்பு",
+      "titleEn": "Skanda Purana Knowledge Graph Phase 2",
+      "route": "/skanda-purana-graph.html",
+      "destinationRoute": "/skanda-purana-graph.html",
+      "claimBoundary": "pending-chapter-verification"
+    },
+    {
+      "id": "entity-murugan",
+      "datasetId": "murugan-phase-1",
+      "kind": "Deity",
+      "titleTa": "முருகன்",
+      "titleEn": "Murugan",
+      "route": "/knowledge-graph.html",
+      "destinationRoute": "/index.html",
+      "claimBoundary": "source-controlled",
+      "nodeClass": "Explicit entity"
+    },
+    {
+      "id": "entity-vel",
+      "datasetId": "murugan-phase-1",
+      "kind": "Symbol",
+      "titleTa": "வேல்",
+      "titleEn": "Vel",
+      "route": "/knowledge-graph.html",
+      "destinationRoute": "/knowledge-graph.html",
+      "claimBoundary": "source-controlled",
+      "nodeClass": "Explicit entity"
+    },
+    {
+      "id": "entity-peacock",
+      "datasetId": "murugan-phase-1",
+      "kind": "Symbol",
+      "titleTa": "மயில்",
+      "titleEn": "Peacock",
+      "route": "/knowledge-graph.html",
+      "destinationRoute": "/knowledge-graph.html",
+      "claimBoundary": "source-controlled",
+      "nodeClass": "Explicit entity"
+    },
+    {
+      "id": "entity-six-sacred-abodes",
+      "datasetId": "murugan-phase-1",
+      "kind": "Concept",
+      "titleTa": "ஆறுபடை வீடு",
+      "titleEn": "Six Sacred Abodes",
+      "route": "/knowledge-graph.html",
+      "destinationRoute": "/temples.html",
+      "claimBoundary": "source-controlled",
+      "nodeClass": "Explicit entity"
+    },
+    {
+      "id": "entity-thiruppugazh",
+      "datasetId": "murugan-phase-1",
+      "kind": "Literature",
+      "titleTa": "திருப்புகழ்",
+      "titleEn": "Thiruppugazh",
+      "route": "/knowledge-graph.html",
+      "destinationRoute": "/thiruppugazh.html",
+      "claimBoundary": "source-controlled",
+      "nodeClass": "Explicit entity"
+    },
+    {
+      "id": "entity-kanda-sashti-kavasam",
+      "datasetId": "murugan-phase-1",
+      "kind": "Literature",
+      "titleTa": "கந்த சஷ்டி கவசம்",
+      "titleEn": "Kanda Sashti Kavasam",
+      "route": "/knowledge-graph.html",
+      "destinationRoute": "/slokas/kanda-sashti-kavasam.html",
+      "claimBoundary": "source-controlled",
+      "nodeClass": "Explicit entity"
+    },
+    {
+      "id": "entity-skanda-guru-kavasam",
+      "datasetId": "murugan-phase-1",
+      "kind": "Literature",
+      "titleTa": "ஸ்கந்த குரு கவசம்",
+      "titleEn": "Skanda Guru Kavasam",
+      "route": "/knowledge-graph.html",
+      "destinationRoute": "/slokas/skanda-guru-kavasam.html",
+      "claimBoundary": "source-controlled",
+      "nodeClass": "Explicit entity"
+    },
+    {
+      "id": "entity-agastiyar",
+      "datasetId": "siddhar-phase-1",
+      "kind": "Siddhar",
+      "titleTa": "",
+      "titleEn": "Agastiyar",
+      "route": "/siddhar-knowledge-graph.html",
+      "destinationRoute": "/siddhar-encyclopedia.html",
+      "claimBoundary": "source-review",
+      "nodeClass": "Explicit entity"
+    },
+    {
+      "id": "entity-bogar",
+      "datasetId": "siddhar-phase-1",
+      "kind": "Siddhar",
+      "titleTa": "",
+      "titleEn": "Bogar",
+      "route": "/siddhar-knowledge-graph.html",
+      "destinationRoute": "/siddhar-encyclopedia.html",
+      "claimBoundary": "source-review",
+      "nodeClass": "Explicit entity"
+    },
+    {
+      "id": "entity-pulipani",
+      "datasetId": "siddhar-phase-1",
+      "kind": "Siddhar",
+      "titleTa": "",
+      "titleEn": "Pulipani",
+      "route": "/siddhar-knowledge-graph.html",
+      "destinationRoute": "/siddhar-encyclopedia.html",
+      "claimBoundary": "source-review",
+      "nodeClass": "Explicit entity"
+    },
+    {
+      "id": "entity-konganar",
+      "datasetId": "siddhar-phase-1",
+      "kind": "Siddhar",
+      "titleTa": "",
+      "titleEn": "Konganar",
+      "route": "/siddhar-knowledge-graph.html",
+      "destinationRoute": "/siddhar-encyclopedia.html",
+      "claimBoundary": "source-review",
+      "nodeClass": "Explicit entity"
+    },
+    {
+      "id": "entity-karuvoorar",
+      "datasetId": "siddhar-phase-1",
+      "kind": "Siddhar",
+      "titleTa": "",
+      "titleEn": "Karuvoorar",
+      "route": "/siddhar-knowledge-graph.html",
+      "destinationRoute": "/siddhar-encyclopedia.html",
+      "claimBoundary": "source-review",
+      "nodeClass": "Explicit entity"
+    },
+    {
+      "id": "entity-pambatti-siddhar",
+      "datasetId": "siddhar-phase-1",
+      "kind": "Siddhar",
+      "titleTa": "",
+      "titleEn": "Pambatti Siddhar",
+      "route": "/siddhar-knowledge-graph.html",
+      "destinationRoute": "/siddhar-encyclopedia.html",
+      "claimBoundary": "source-review",
+      "nodeClass": "Explicit entity"
+    },
+    {
+      "id": "entity-skanda",
+      "datasetId": "skanda-purana-phase-2",
+      "kind": "Deity",
+      "titleTa": "",
+      "titleEn": "Skanda",
+      "route": "/skanda-purana-graph.html",
+      "destinationRoute": "/skanda-purana-graph.html",
+      "claimBoundary": "pending-chapter-verification",
+      "nodeClass": "Explicit entity"
+    },
+    {
+      "id": "entity-siva",
+      "datasetId": "skanda-purana-phase-2",
+      "kind": "Deity",
+      "titleTa": "",
+      "titleEn": "Siva",
+      "route": "/skanda-purana-graph.html",
+      "destinationRoute": "/skanda-purana-graph.html",
+      "claimBoundary": "pending-chapter-verification",
+      "nodeClass": "Explicit entity"
+    },
+    {
+      "id": "entity-parvati",
+      "datasetId": "skanda-purana-phase-2",
+      "kind": "Deity",
+      "titleTa": "",
+      "titleEn": "Parvati",
+      "route": "/skanda-purana-graph.html",
+      "destinationRoute": "/skanda-purana-graph.html",
+      "claimBoundary": "pending-chapter-verification",
+      "nodeClass": "Explicit entity"
+    },
+    {
+      "id": "entity-surapadman",
+      "datasetId": "skanda-purana-phase-2",
+      "kind": "Character",
+      "titleTa": "",
+      "titleEn": "Surapadman",
+      "route": "/skanda-purana-graph.html",
+      "destinationRoute": "/skanda-purana-graph.html",
+      "claimBoundary": "pending-chapter-verification",
+      "nodeClass": "Explicit entity"
+    },
+    {
+      "id": "entity-skanda-vel",
+      "datasetId": "skanda-purana-phase-2",
+      "kind": "Weapon",
+      "titleTa": "",
+      "titleEn": "Vel",
+      "route": "/skanda-purana-graph.html",
+      "destinationRoute": "/skanda-purana-graph.html",
+      "claimBoundary": "pending-chapter-verification",
+      "nodeClass": "Explicit entity"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "edge-entity-murugan-declared-in",
+      "source": "entity-murugan",
+      "target": "dataset-murugan-phase-1",
+      "type": "declared-in",
+      "evidenceStatus": "explicit-node-card",
+      "description": "The entity is explicitly displayed on the cited local graph register."
+    },
+    {
+      "id": "edge-entity-vel-declared-in",
+      "source": "entity-vel",
+      "target": "dataset-murugan-phase-1",
+      "type": "declared-in",
+      "evidenceStatus": "explicit-node-card",
+      "description": "The entity is explicitly displayed on the cited local graph register."
+    },
+    {
+      "id": "edge-entity-peacock-declared-in",
+      "source": "entity-peacock",
+      "target": "dataset-murugan-phase-1",
+      "type": "declared-in",
+      "evidenceStatus": "explicit-node-card",
+      "description": "The entity is explicitly displayed on the cited local graph register."
+    },
+    {
+      "id": "edge-entity-six-sacred-abodes-declared-in",
+      "source": "entity-six-sacred-abodes",
+      "target": "dataset-murugan-phase-1",
+      "type": "declared-in",
+      "evidenceStatus": "explicit-node-card",
+      "description": "The entity is explicitly displayed on the cited local graph register."
+    },
+    {
+      "id": "edge-entity-thiruppugazh-declared-in",
+      "source": "entity-thiruppugazh",
+      "target": "dataset-murugan-phase-1",
+      "type": "declared-in",
+      "evidenceStatus": "explicit-node-card",
+      "description": "The entity is explicitly displayed on the cited local graph register."
+    },
+    {
+      "id": "edge-entity-kanda-sashti-kavasam-declared-in",
+      "source": "entity-kanda-sashti-kavasam",
+      "target": "dataset-murugan-phase-1",
+      "type": "declared-in",
+      "evidenceStatus": "explicit-node-card",
+      "description": "The entity is explicitly displayed on the cited local graph register."
+    },
+    {
+      "id": "edge-entity-skanda-guru-kavasam-declared-in",
+      "source": "entity-skanda-guru-kavasam",
+      "target": "dataset-murugan-phase-1",
+      "type": "declared-in",
+      "evidenceStatus": "explicit-node-card",
+      "description": "The entity is explicitly displayed on the cited local graph register."
+    },
+    {
+      "id": "edge-entity-agastiyar-declared-in",
+      "source": "entity-agastiyar",
+      "target": "dataset-siddhar-phase-1",
+      "type": "declared-in",
+      "evidenceStatus": "explicit-node-card",
+      "description": "The entity is explicitly displayed on the cited local graph register."
+    },
+    {
+      "id": "edge-entity-bogar-declared-in",
+      "source": "entity-bogar",
+      "target": "dataset-siddhar-phase-1",
+      "type": "declared-in",
+      "evidenceStatus": "explicit-node-card",
+      "description": "The entity is explicitly displayed on the cited local graph register."
+    },
+    {
+      "id": "edge-entity-pulipani-declared-in",
+      "source": "entity-pulipani",
+      "target": "dataset-siddhar-phase-1",
+      "type": "declared-in",
+      "evidenceStatus": "explicit-node-card",
+      "description": "The entity is explicitly displayed on the cited local graph register."
+    },
+    {
+      "id": "edge-entity-konganar-declared-in",
+      "source": "entity-konganar",
+      "target": "dataset-siddhar-phase-1",
+      "type": "declared-in",
+      "evidenceStatus": "explicit-node-card",
+      "description": "The entity is explicitly displayed on the cited local graph register."
+    },
+    {
+      "id": "edge-entity-karuvoorar-declared-in",
+      "source": "entity-karuvoorar",
+      "target": "dataset-siddhar-phase-1",
+      "type": "declared-in",
+      "evidenceStatus": "explicit-node-card",
+      "description": "The entity is explicitly displayed on the cited local graph register."
+    },
+    {
+      "id": "edge-entity-pambatti-siddhar-declared-in",
+      "source": "entity-pambatti-siddhar",
+      "target": "dataset-siddhar-phase-1",
+      "type": "declared-in",
+      "evidenceStatus": "explicit-node-card",
+      "description": "The entity is explicitly displayed on the cited local graph register."
+    },
+    {
+      "id": "edge-entity-skanda-declared-in",
+      "source": "entity-skanda",
+      "target": "dataset-skanda-purana-phase-2",
+      "type": "declared-in",
+      "evidenceStatus": "explicit-node-card",
+      "description": "The entity is explicitly displayed on the cited local graph register."
+    },
+    {
+      "id": "edge-entity-siva-declared-in",
+      "source": "entity-siva",
+      "target": "dataset-skanda-purana-phase-2",
+      "type": "declared-in",
+      "evidenceStatus": "explicit-node-card",
+      "description": "The entity is explicitly displayed on the cited local graph register."
+    },
+    {
+      "id": "edge-entity-parvati-declared-in",
+      "source": "entity-parvati",
+      "target": "dataset-skanda-purana-phase-2",
+      "type": "declared-in",
+      "evidenceStatus": "explicit-node-card",
+      "description": "The entity is explicitly displayed on the cited local graph register."
+    },
+    {
+      "id": "edge-entity-surapadman-declared-in",
+      "source": "entity-surapadman",
+      "target": "dataset-skanda-purana-phase-2",
+      "type": "declared-in",
+      "evidenceStatus": "explicit-node-card",
+      "description": "The entity is explicitly displayed on the cited local graph register."
+    },
+    {
+      "id": "edge-entity-skanda-vel-declared-in",
+      "source": "entity-skanda-vel",
+      "target": "dataset-skanda-purana-phase-2",
+      "type": "declared-in",
+      "evidenceStatus": "explicit-node-card",
+      "description": "The entity is explicitly displayed on the cited local graph register."
+    },
+    {
+      "id": "edge-murugan-phase-1-to-phase-3",
+      "source": "dataset-murugan-phase-1",
+      "target": "dataset-murugan-phase-3",
+      "type": "progresses-to",
+      "evidenceStatus": "route-phase-sequence",
+      "description": "Published route naming identifies Phase 3 as a later graph phase."
+    },
+    {
+      "id": "edge-murugan-phase-3-to-phase-4",
+      "source": "dataset-murugan-phase-3",
+      "target": "dataset-murugan-phase-4",
+      "type": "progresses-to",
+      "evidenceStatus": "route-phase-sequence",
+      "description": "Published route naming identifies Phase 4 as a later graph phase."
+    }
+  ]
+}

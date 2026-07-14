@@ -1,0 +1,2000 @@
+diff --git a/knowledge-graph.html b/knowledge-graph.html
+--- a/knowledge-graph.html
++++ b/knowledge-graph.html
+@@ -12,18 +12,18 @@
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script defer src="assets/js/premium-interactions.js"></script>
+ <script defer src="assets/js/desktop-layout.js"></script>
+-</head><body>
++</head><body data-release="220">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Source-controlled devotional edition</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div>
++<div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a><a href="knowledge-graph-explorer.html">Graph Explorer</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Murugan Knowledge Graph</span></p></nav>
+-<section class="card"><span class="pill">Source-controlled publication</span><h1 class="section-title" lang="ta">முருகன் அறிவுக் கோப்பு</h1><h2>Murugan Knowledge Graph</h2><p>Phase 1 relationship graph connecting Murugan, symbols, sacred abodes and verified literature.</p></section>
++<section class="card"><span class="pill">Source-controlled publication</span><h1 class="section-title" lang="ta">முருகன் அறிவுக் கோப்பு</h1><h2>Murugan Knowledge Graph</h2><p>Phase 1 relationship graph connecting Murugan, symbols, sacred abodes and verified literature.</p><p><a class="btn" href="knowledge-graph-explorer.html">Open the consolidated graph explorer</a></p></section>
+ <section class="grid"><article class="card"><span class="pill">Deity</span><h2 lang="ta">முருகன்</h2><h3>Murugan</h3></article><article class="card"><span class="pill">Symbol</span><h2 lang="ta">வேல்</h2><h3>Vel</h3></article><article class="card"><span class="pill">Symbol</span><h2 lang="ta">மயில்</h2><h3>Peacock</h3></article><article class="card"><span class="pill">Concept</span><h2 lang="ta">ஆறுபடை வீடு</h2><h3>Six Sacred Abodes</h3></article><article class="card"><span class="pill">Literature</span><h2 lang="ta">திருப்புகழ்</h2><h3>Thiruppugazh</h3></article><article class="card"><span class="pill">Literature</span><h2 lang="ta">கந்த சஷ்டி கவசம்</h2><h3>Kanda Sashti Kavasam</h3></article><article class="card"><span class="pill">Literature</span><h2 lang="ta">ஸ்கந்த குரு கவசம்</h2><h3>Skanda Guru Kavasam</h3></article></section><section class="card"><h2>Relationship model</h2><p>6 explicit relationships connect deity, symbols, sacred abodes and verified literature.</p></section>
+ </main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false">☾ Night</button><button type="button" class="tool" data-share>↗ Share</button></div>
+-<footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer>
++<footer>© Om Saravana Bhava · <a href="knowledge-graph-explorer.html">Graph Explorer</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
+ </body></html>
+diff --git a/knowledge-graph-explorer.html b/knowledge-graph-explorer.html
+new file mode 100644
+--- /dev/null
++++ b/knowledge-graph-explorer.html
+@@ -0,0 +1,103 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Knowledge Graph Explorer | Om Saravana Bhava</title>
++<meta name="description" content="Explore existing local OmSaravanaBhava graph registers, explicit source-page nodes and published relationship counts without inferred theological edges.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/knowledge-graph-explorer.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="stylesheet" href="assets/css/knowledge-graph-explorer.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++<script type="module" src="assets/js/knowledge-graph-explorer.mjs"></script>
++</head>
++<body data-release="220">
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Source-controlled local graph explorer</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="explore.html">Explore</a><a href="knowledge-graph.html">Phase 1 Graph</a><a href="knowledge-graph-explorer.html" aria-current="page">Graph Explorer</a><a href="search-facets.html">Facets</a><a href="platform.html">Platform</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="explore.html">Explore</a> › <span aria-current="page">Knowledge Graph Explorer</span></p></nav>
++
++<section class="card graph-hero">
++<div>
++<span class="pill">Release 220 · Existing local graph evidence</span>
++<h1 class="section-title" lang="ta">அறிவு தொடர்பு ஆராய்வி</h1>
++<h2>Knowledge Graph Explorer</h2>
++<p>Explore existing graph registers and explicitly visible source-page nodes. Reported domain-relationship totals remain separate from the metadata edges used to navigate this explorer.</p>
++</div>
++<div class="graph-metric"><strong id="graphDatasetCount">0</strong><span>graph registers</span></div>
++<div class="graph-metric"><strong id="graphExplicitNodeCount">0</strong><span>explicit entities</span></div>
++<div class="graph-metric"><strong id="graphReportedRelationshipCount">0</strong><span>reported relationships</span></div>
++<div class="graph-metric"><strong id="graphUnspecifiedCount">0</strong><span>registers without a published relationship count</span></div>
++</section>
++
++<section class="card graph-toolbar" aria-label="Knowledge graph filters">
++<label for="graphSearch">Search Tamil or English
++<input type="search" id="graphSearch" placeholder="Murugan, Vel, Bogar…" autocomplete="off">
++</label>
++<label for="graphDataset">Graph register
++<select id="graphDataset"><option>Loading…</option></select>
++</label>
++<label for="graphKind">Node kind
++<select id="graphKind"><option>Loading…</option></select>
++</label>
++<label for="graphBoundary">Publication boundary
++<select id="graphBoundary"><option>Loading…</option></select>
++</label>
++<button type="button" class="btn secondary" id="graphReset">Reset</button>
++</section>
++<p id="graphStatus" role="status" aria-live="polite">Loading local graph evidence…</p>
++
++<section class="graph-workspace">
++<article class="card graph-visual">
++<h2>Interactive metadata map</h2>
++<p id="graphVisualStatus">Preparing graph…</p>
++<div class="graph-canvas-shell">
++<svg id="knowledgeGraphSvg" role="group" aria-label="Interactive graph-register map"></svg>
++</div>
++</article>
++<aside class="card graph-details" id="graphNodeDetails">
++<h2>Select a node</h2>
++<p>Choose a visual node or an accessible result card to inspect its local source and graph-register membership.</p>
++</aside>
++</section>
++
++<section class="card">
++<h2>Explorer relationship types</h2>
++<p>These are metadata relationships used by this interface. They are not replacements for the domain-relationship totals reported by the source graph pages.</p>
++<div id="graphRelationshipTypes"></div>
++</section>
++
++<section>
++<h2>Accessible node list</h2>
++<div id="graphNodeList" class="grid graph-node-list" aria-live="polite"></div>
++</section>
++
++<section>
++<h2>Source graph register</h2>
++<div id="graphDatasetRegister" class="grid graph-dataset-register"></div>
++</section>
++
++<section class="card graph-boundary">
++<h2>Evidence boundary</h2>
++<ul>
++<li>The explorer contains only existing graph pages, their explicitly visible node cards and their published summary counts.</li>
++<li>Phase 3 and Phase 4 publish totals but do not expose node-level records on their current pages; those missing records are not fabricated.</li>
++<li>The Siddhar register remains source-review material.</li>
++<li>The Skanda Purana register remains high-level and pending chapter-level verification.</li>
++<li>This release does not claim complete Murugan literature, theology or relationship coverage.</li>
++</ul>
++</section>
++
++<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>The interactive explorer requires JavaScript. The source pages remain available through <a href="knowledge-graph.html">the Phase 1 graph</a>, <a href="knowledge-graph-phase-3.html">Phase 3</a>, <a href="knowledge-graph-phase-4.html">Phase 4</a>, <a href="siddhar-knowledge-graph.html">the Siddhar graph</a> and <a href="skanda-purana-graph.html">the Skanda Purana graph</a>.</p></section></noscript>
++</main>
++<footer>© Om Saravana Bhava · <a href="knowledge-graph-explorer.html">Graph Explorer</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>
+diff --git a/assets/css/knowledge-graph-explorer.css b/assets/css/knowledge-graph-explorer.css
+new file mode 100644
+--- /dev/null
++++ b/assets/css/knowledge-graph-explorer.css
+@@ -0,0 +1 @@
++.graph-hero{display:grid;grid-template-columns:minmax(0,1fr) repeat(4,minmax(105px,.28fr));gap:16px;align-items:center}.graph-metric{display:grid;place-items:center;min-height:110px;border:1px solid var(--line);border-radius:22px;background:var(--surface-strong,#fff);text-align:center;padding:12px}.graph-metric strong{font-size:clamp(2rem,5vw,3.8rem);line-height:1;color:var(--red)}.graph-metric span{font-size:.86rem;font-weight:850}.graph-toolbar{display:grid;grid-template-columns:minmax(220px,1.4fr) repeat(3,minmax(170px,.7fr)) auto;gap:12px;align-items:end}.graph-toolbar label{display:grid;gap:6px;font-weight:850}.graph-toolbar input,.graph-toolbar select{width:100%}.graph-workspace{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(280px,.7fr);gap:18px;align-items:start}.graph-visual{overflow:auto}.graph-canvas-shell{min-width:720px;border:1px solid var(--line);border-radius:22px;background:radial-gradient(circle at 50% 50%,rgba(244,156,44,.13),transparent 55%),var(--surface-strong,#fff)}#knowledgeGraphSvg{display:block;width:100%;min-height:560px}.graph-edge{stroke:rgba(104,45,18,.34);stroke-width:2}.graph-edge-progresses-to{stroke-dasharray:7 6;stroke-width:3}.graph-svg-node{cursor:pointer;outline:none}.graph-svg-node circle{fill:#fff4dc;stroke:#a51d17;stroke-width:3;transition:transform .18s ease,filter .18s ease}.graph-svg-node text{font-size:14px;font-weight:850;fill:var(--ink)}.graph-svg-node:hover circle,.graph-svg-node:focus circle,.graph-svg-node.is-selected circle{filter:drop-shadow(0 5px 8px rgba(104,45,18,.28));stroke-width:5}.graph-kind-dataset circle{fill:#a51d17}.graph-kind-dataset text{font-size:13px}.graph-details{position:sticky;top:86px}.graph-detail-actions,.graph-node-actions{display:flex;flex-wrap:wrap;gap:9px}.graph-relationship-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line)}.graph-node-list{grid-template-columns:repeat(3,minmax(0,1fr))}.graph-node-card{cursor:pointer;display:flex;flex-direction:column;gap:8px}.graph-node-card:hover,.graph-node-card:focus,.graph-node-card.is-selected{border-color:var(--red);box-shadow:0 14px 34px rgba(104,45,18,.14);outline:none}.graph-node-card h2{margin:0}.graph-node-boundary,.graph-evidence{font-size:.91rem;color:#6a4638}.graph-dataset-register{grid-template-columns:repeat(2,minmax(0,1fr))}.graph-dataset-card{display:flex;flex-direction:column;gap:8px}.graph-dataset-card .btn{margin-top:auto;align-self:flex-start}.graph-boundary{border-left:5px solid var(--orange)}body.dark .graph-node-boundary,body.dark .graph-evidence{color:#f4d9c8}body.dark .graph-canvas-shell{background:radial-gradient(circle at 50% 50%,rgba(244,156,44,.14),transparent 55%),#1c100d}body.dark .graph-svg-node text{fill:#fff7ed}@media(max-width:1100px){.graph-hero{grid-template-columns:repeat(2,minmax(0,1fr))}.graph-hero>div:first-child{grid-column:1/-1}.graph-toolbar{grid-template-columns:repeat(2,minmax(0,1fr))}.graph-toolbar>label:first-child{grid-column:1/-1}.graph-node-list{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:820px){.graph-workspace{grid-template-columns:1fr}.graph-details{position:static}.graph-dataset-register,.graph-node-list{grid-template-columns:1fr}}@media(max-width:620px){.graph-hero,.graph-toolbar{grid-template-columns:1fr}.graph-hero>div:first-child,.graph-toolbar>label:first-child{grid-column:auto}.graph-toolbar .btn{width:100%}}@media print{.graph-toolbar,.graph-visual,.graph-details,#graphStatus{display:none!important}.graph-node-list,.graph-dataset-register{display:block!important}.graph-node-card,.graph-dataset-card{break-inside:avoid}}
+diff --git a/assets/js/knowledge-graph-explorer.mjs b/assets/js/knowledge-graph-explorer.mjs
+new file mode 100644
+--- /dev/null
++++ b/assets/js/knowledge-graph-explorer.mjs
+@@ -0,0 +1,587 @@
++export const RELEASE = 220;
++export const DATA_PATH = '/data/knowledge-graph-explorer.json';
++export const CANONICAL_ORIGIN = 'https://omsaravanabhava.org';
++
++export const normaliseRoute = value => {
++  const route = String(value ?? '').trim();
++  if (!route) return '';
++  try {
++    const url = new URL(route, `${CANONICAL_ORIGIN}/`);
++    if (url.origin !== CANONICAL_ORIGIN) return '';
++    return `${url.pathname}${url.search}${url.hash}`;
++  } catch {
++    return '';
++  }
++};
++
++export const normaliseGraph = payload => {
++  const source = payload && typeof payload === 'object' ? payload : {};
++  const datasets = Array.isArray(source.datasets) ? source.datasets : [];
++  const rawNodes = Array.isArray(source.nodes) ? source.nodes : [];
++  const rawRelationships = Array.isArray(source.relationships)
++    ? source.relationships
++    : [];
++
++  const datasetMap = new Map();
++  datasets.forEach(dataset => {
++    const id = String(dataset?.id ?? '').trim();
++    const route = normaliseRoute(dataset?.route);
++    if (!id || !route || datasetMap.has(id)) return;
++    datasetMap.set(id, {
++      id,
++      titleTa: String(dataset.titleTa ?? '').trim(),
++      titleEn: String(dataset.titleEn ?? id).trim() || id,
++      route,
++      publicationBoundary: String(
++        dataset.publicationBoundary ?? 'unspecified'
++      ).trim(),
++      detailLevel: String(dataset.detailLevel ?? 'unspecified').trim(),
++      reportedNodeCount: Number.isInteger(dataset.reportedNodeCount)
++        ? dataset.reportedNodeCount
++        : null,
++      reportedRelationshipCount: Number.isInteger(
++        dataset.reportedRelationshipCount
++      ) ? dataset.reportedRelationshipCount : null,
++      relationshipCountStatus: String(
++        dataset.relationshipCountStatus ?? 'not-published'
++      ).trim(),
++      evidence: String(dataset.evidence ?? '').trim()
++    });
++  });
++
++  const nodeMap = new Map();
++  rawNodes.forEach(node => {
++    const id = String(node?.id ?? '').trim();
++    const route = normaliseRoute(node?.route);
++    const destinationRoute = normaliseRoute(
++      node?.destinationRoute || node?.route
++    );
++    if (!id || !route || !destinationRoute || nodeMap.has(id)) return;
++    const datasetId = String(node.datasetId ?? '').trim();
++    if (datasetId && !datasetMap.has(datasetId)) return;
++    nodeMap.set(id, {
++      id,
++      nodeClass: String(node.nodeClass ?? 'Explicit entity').trim(),
++      kind: String(node.kind ?? 'Unspecified').trim(),
++      datasetId,
++      titleTa: String(node.titleTa ?? '').trim(),
++      titleEn: String(node.titleEn ?? id).trim() || id,
++      route,
++      destinationRoute,
++      claimBoundary: String(
++        node.claimBoundary ?? 'unspecified'
++      ).trim()
++    });
++  });
++
++  const relationships = [];
++  const relationshipIds = new Set();
++  rawRelationships.forEach(edge => {
++    const id = String(edge?.id ?? '').trim();
++    const sourceId = String(edge?.source ?? '').trim();
++    const targetId = String(edge?.target ?? '').trim();
++    if (
++      !id ||
++      relationshipIds.has(id) ||
++      !nodeMap.has(sourceId) ||
++      !nodeMap.has(targetId)
++    ) return;
++    relationshipIds.add(id);
++    relationships.push({
++      id,
++      source: sourceId,
++      target: targetId,
++      type: String(edge.type ?? 'related-to').trim(),
++      evidenceStatus: String(
++        edge.evidenceStatus ?? 'unspecified'
++      ).trim(),
++      description: String(edge.description ?? '').trim()
++    });
++  });
++
++  return {
++    release: Number(source.release) || 0,
++    generated: String(source.generated ?? '').trim(),
++    title: String(source.title ?? '').trim(),
++    scope: String(source.scope ?? '').trim(),
++    notClaims: Array.isArray(source.notClaims)
++      ? source.notClaims.map(value => String(value).trim()).filter(Boolean)
++      : [],
++    datasets: [...datasetMap.values()],
++    nodes: [...nodeMap.values()],
++    relationships
++  };
++};
++
++export const graphMetrics = graph => {
++  const datasets = graph?.datasets || [];
++  const nodes = graph?.nodes || [];
++  const relationships = graph?.relationships || [];
++  const reportedRelationshipTotal = datasets.reduce(
++    (total, dataset) =>
++      total + (Number.isInteger(dataset.reportedRelationshipCount)
++        ? dataset.reportedRelationshipCount
++        : 0),
++    0
++  );
++  const unspecifiedRelationshipDatasets = datasets.filter(
++    dataset => !Number.isInteger(dataset.reportedRelationshipCount)
++  ).length;
++
++  return {
++    datasetCount: datasets.length,
++    explicitEntityCount: nodes.filter(
++      node => node.nodeClass === 'Explicit entity'
++    ).length,
++    explorerNodeCount: nodes.length,
++    explorerRelationshipCount: relationships.length,
++    reportedRelationshipTotal,
++    unspecifiedRelationshipDatasets
++  };
++};
++
++export const relationshipCounts = relationships => {
++  const counts = new Map();
++  (Array.isArray(relationships) ? relationships : []).forEach(edge => {
++    counts.set(edge.type, (counts.get(edge.type) || 0) + 1);
++  });
++  return [...counts.entries()]
++    .map(([type, count]) => ({type, count}))
++    .sort((left, right) =>
++      right.count - left.count || left.type.localeCompare(right.type)
++    );
++};
++
++export const filterGraph = (
++  graph,
++  {
++    query = '',
++    datasetId = 'All',
++    kind = 'All',
++    boundary = 'All'
++  } = {}
++) => {
++  const needle = String(query).trim().toLocaleLowerCase();
++  const visibleNodes = graph.nodes.filter(node => {
++    if (datasetId !== 'All' && node.datasetId !== datasetId) return false;
++    if (kind !== 'All' && node.kind !== kind) return false;
++    if (boundary !== 'All' && node.claimBoundary !== boundary) return false;
++    if (!needle) return true;
++    const haystack = [
++      node.titleTa,
++      node.titleEn,
++      node.kind,
++      node.nodeClass,
++      node.claimBoundary,
++      node.datasetId
++    ].join(' ').toLocaleLowerCase();
++    return haystack.includes(needle);
++  });
++  const visibleIds = new Set(visibleNodes.map(node => node.id));
++  const visibleRelationships = graph.relationships.filter(
++    edge => visibleIds.has(edge.source) && visibleIds.has(edge.target)
++  );
++  return {
++    nodes: visibleNodes,
++    relationships: visibleRelationships
++  };
++};
++
++export const nodeNeighbours = (nodeId, graph) => {
++  const nodes = new Map(graph.nodes.map(node => [node.id, node]));
++  return graph.relationships
++    .filter(edge => edge.source === nodeId || edge.target === nodeId)
++    .map(edge => ({
++      relationship: edge,
++      node: nodes.get(edge.source === nodeId ? edge.target : edge.source)
++    }))
++    .filter(item => item.node);
++};
++
++export const layoutGraph = (
++  nodes,
++  width = 1000,
++  height = 620
++) => {
++  const registers = nodes.filter(node => node.nodeClass === 'Graph register');
++  const entities = nodes.filter(node => node.nodeClass !== 'Graph register');
++  const positions = new Map();
++
++  registers.forEach((node, index) => {
++    const x = registers.length === 1
++      ? width / 2
++      : 120 + index * ((width - 240) / Math.max(1, registers.length - 1));
++    positions.set(node.id, {x, y: height / 2});
++  });
++
++  const groups = new Map();
++  entities.forEach(node => {
++    if (!groups.has(node.datasetId)) groups.set(node.datasetId, []);
++    groups.get(node.datasetId).push(node);
++  });
++
++  groups.forEach((group, datasetId) => {
++    const register = positions.get(`dataset-${datasetId}`) || {
++      x: width / 2,
++      y: height / 2
++    };
++    const radius = Math.min(170, 80 + group.length * 8);
++    group.forEach((node, index) => {
++      const angle = (Math.PI * 2 * index) / Math.max(1, group.length) -
++        Math.PI / 2;
++      positions.set(node.id, {
++        x: Math.max(50, Math.min(width - 50, register.x + Math.cos(angle) * radius)),
++        y: Math.max(50, Math.min(height - 50, register.y + Math.sin(angle) * radius))
++      });
++    });
++  });
++
++  return positions;
++};
++
++const createText = (parent, tag, text, className) => {
++  const element = document.createElement(tag);
++  if (className) element.className = className;
++  element.textContent = text;
++  parent.appendChild(element);
++  return element;
++};
++
++const displayTitle = node =>
++  node.titleTa && node.titleEn
++    ? `${node.titleTa} · ${node.titleEn}`
++    : node.titleTa || node.titleEn || node.id;
++
++const populateSelect = (select, values, label = 'All') => {
++  select.replaceChildren();
++  const all = document.createElement('option');
++  all.value = 'All';
++  all.textContent = label;
++  select.appendChild(all);
++  values.forEach(value => {
++    const option = document.createElement('option');
++    option.value = value.value ?? value;
++    option.textContent = value.label ?? value;
++    select.appendChild(option);
++  });
++};
++
++const renderMetric = (id, value) => {
++  const element = document.getElementById(id);
++  if (element) element.textContent = String(value);
++};
++
++const renderRelationshipSummary = relationships => {
++  const host = document.getElementById('graphRelationshipTypes');
++  if (!host) return;
++  host.replaceChildren();
++  const counts = relationshipCounts(relationships);
++  if (!counts.length) {
++    createText(host, 'p', 'No explorer metadata relationships match the filters.');
++    return;
++  }
++  counts.forEach(item => {
++    const row = document.createElement('div');
++    row.className = 'graph-relationship-row';
++    createText(row, 'span', item.type);
++    createText(row, 'strong', String(item.count));
++    host.appendChild(row);
++  });
++};
++
++const renderDetails = (node, graph) => {
++  const host = document.getElementById('graphNodeDetails');
++  if (!host) return;
++  host.replaceChildren();
++
++  if (!node) {
++    createText(host, 'h2', 'Select a node');
++    createText(
++      host,
++      'p',
++      'Choose a visual node or an accessible result card to inspect its local source and graph-register membership.'
++    );
++    return;
++  }
++
++  createText(host, 'span', node.kind, 'pill');
++  createText(host, 'h2', displayTitle(node));
++  createText(host, 'p', `Class: ${node.nodeClass}`);
++  createText(host, 'p', `Publication boundary: ${node.claimBoundary}`);
++
++  const links = document.createElement('div');
++  links.className = 'graph-detail-actions';
++
++  const destination = document.createElement('a');
++  destination.className = 'btn';
++  destination.href = node.destinationRoute;
++  destination.textContent = 'Open destination';
++  links.appendChild(destination);
++
++  const source = document.createElement('a');
++  source.className = 'btn secondary';
++  source.href = node.route;
++  source.textContent = 'Open source graph register';
++  links.appendChild(source);
++  host.appendChild(links);
++
++  const neighbours = nodeNeighbours(node.id, graph);
++  createText(host, 'h3', `Explorer connections (${neighbours.length})`);
++  if (!neighbours.length) {
++    createText(host, 'p', 'No visible explorer metadata edge is attached.');
++    return;
++  }
++  const list = document.createElement('ul');
++  neighbours.forEach(item => {
++    const li = document.createElement('li');
++    li.textContent = `${item.relationship.type}: ${displayTitle(item.node)}`;
++    list.appendChild(li);
++  });
++  host.appendChild(list);
++};
++
++const renderAccessibleCards = (filtered, graph, onSelect) => {
++  const host = document.getElementById('graphNodeList');
++  if (!host) return;
++  host.replaceChildren();
++
++  if (!filtered.nodes.length) {
++    const empty = document.createElement('article');
++    empty.className = 'card graph-empty';
++    createText(empty, 'h2', 'No nodes match');
++    createText(empty, 'p', 'Change the dataset, kind, boundary or search query.');
++    host.appendChild(empty);
++    return;
++  }
++
++  filtered.nodes.forEach(node => {
++    const article = document.createElement('article');
++    article.className = 'card graph-node-card';
++    article.tabIndex = 0;
++    article.dataset.nodeId = node.id;
++    createText(article, 'span', node.kind, 'pill');
++    createText(article, 'h2', displayTitle(node));
++    createText(article, 'p', node.nodeClass);
++    createText(article, 'p', node.claimBoundary, 'graph-node-boundary');
++    const count = nodeNeighbours(node.id, graph).length;
++    createText(article, 'p', `${count} explorer metadata connection${count === 1 ? '' : 's'}`);
++    article.addEventListener('click', () => onSelect(node));
++    article.addEventListener('keydown', event => {
++      if (event.key === 'Enter' || event.key === ' ') {
++        event.preventDefault();
++        onSelect(node);
++      }
++    });
++    host.appendChild(article);
++  });
++};
++
++const renderSvg = (filtered, graph, onSelect) => {
++  const svg = document.getElementById('knowledgeGraphSvg');
++  if (!svg) return;
++  svg.replaceChildren();
++  const width = 1000;
++  const height = 620;
++  svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
++
++  const positions = layoutGraph(filtered.nodes, width, height);
++  const visibleIds = new Set(filtered.nodes.map(node => node.id));
++
++  filtered.relationships.forEach(edge => {
++    const start = positions.get(edge.source);
++    const end = positions.get(edge.target);
++    if (!start || !end) return;
++    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
++    line.setAttribute('x1', start.x);
++    line.setAttribute('y1', start.y);
++    line.setAttribute('x2', end.x);
++    line.setAttribute('y2', end.y);
++    line.setAttribute('class', `graph-edge graph-edge-${edge.type}`);
++    line.setAttribute('aria-hidden', 'true');
++    svg.appendChild(line);
++  });
++
++  filtered.nodes.forEach(node => {
++    const point = positions.get(node.id);
++    if (!point) return;
++    const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
++    group.setAttribute('class', `graph-svg-node graph-kind-${node.kind.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`);
++    group.setAttribute('role', 'button');
++    group.setAttribute('tabindex', '0');
++    group.setAttribute('aria-label', displayTitle(node));
++    group.dataset.nodeId = node.id;
++
++    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
++    circle.setAttribute('cx', point.x);
++    circle.setAttribute('cy', point.y);
++    circle.setAttribute('r', node.nodeClass === 'Graph register' ? '25' : '17');
++    group.appendChild(circle);
++
++    const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
++    label.setAttribute('x', point.x);
++    label.setAttribute('y', point.y + (node.nodeClass === 'Graph register' ? 42 : 34));
++    label.setAttribute('text-anchor', 'middle');
++    label.textContent = node.titleTa || node.titleEn;
++    group.appendChild(label);
++
++    const select = () => onSelect(node);
++    group.addEventListener('click', select);
++    group.addEventListener('keydown', event => {
++      if (event.key === 'Enter' || event.key === ' ') {
++        event.preventDefault();
++        select();
++      }
++    });
++    svg.appendChild(group);
++  });
++
++  const status = document.getElementById('graphVisualStatus');
++  if (status) {
++    status.textContent =
++      `${visibleIds.size} nodes and ${filtered.relationships.length} explorer metadata relationships shown.`;
++  }
++};
++
++const renderDatasetRegister = graph => {
++  const host = document.getElementById('graphDatasetRegister');
++  if (!host) return;
++  host.replaceChildren();
++  graph.datasets.forEach(dataset => {
++    const article = document.createElement('article');
++    article.className = 'card graph-dataset-card';
++    createText(article, 'span', dataset.publicationBoundary, 'pill');
++    createText(
++      article,
++      'h2',
++      dataset.titleTa
++        ? `${dataset.titleTa} · ${dataset.titleEn}`
++        : dataset.titleEn
++    );
++    createText(article, 'p', `Detail level: ${dataset.detailLevel}`);
++    createText(
++      article,
++      'p',
++      `Reported nodes: ${dataset.reportedNodeCount ?? 'not published'}`
++    );
++    createText(
++      article,
++      'p',
++      `Reported domain relationships: ${dataset.reportedRelationshipCount ?? 'not published'}`
++    );
++    createText(article, 'p', dataset.evidence, 'graph-evidence');
++    const link = document.createElement('a');
++    link.className = 'btn secondary';
++    link.href = dataset.route;
++    link.textContent = 'Open source page';
++    article.appendChild(link);
++    host.appendChild(article);
++  });
++};
++
++const initialise = async () => {
++  const status = document.getElementById('graphStatus');
++  const search = document.getElementById('graphSearch');
++  const dataset = document.getElementById('graphDataset');
++  const kind = document.getElementById('graphKind');
++  const boundary = document.getElementById('graphBoundary');
++  const reset = document.getElementById('graphReset');
++  if (!status || !search || !dataset || !kind || !boundary || !reset) return;
++
++  try {
++    const response = await fetch(DATA_PATH, {
++      cache: 'default',
++      credentials: 'same-origin',
++      headers: {'Accept': 'application/json'}
++    });
++    if (!response.ok) throw new Error(`HTTP ${response.status}`);
++    const graph = normaliseGraph(await response.json());
++
++    const metrics = graphMetrics(graph);
++    renderMetric('graphDatasetCount', metrics.datasetCount);
++    renderMetric('graphExplicitNodeCount', metrics.explicitEntityCount);
++    renderMetric('graphReportedRelationshipCount', metrics.reportedRelationshipTotal);
++    renderMetric('graphUnspecifiedCount', metrics.unspecifiedRelationshipDatasets);
++    renderDatasetRegister(graph);
++
++    populateSelect(
++      dataset,
++      graph.datasets.map(item => ({value: item.id, label: item.titleEn})),
++      'All graph registers'
++    );
++    populateSelect(
++      kind,
++      [...new Set(graph.nodes.map(node => node.kind))].sort(),
++      'All node kinds'
++    );
++    populateSelect(
++      boundary,
++      [...new Set(graph.nodes.map(node => node.claimBoundary))].sort(),
++      'All publication boundaries'
++    );
++
++    let selectedNodeId = '';
++
++    const render = () => {
++      const filtered = filterGraph(graph, {
++        query: search.value,
++        datasetId: dataset.value,
++        kind: kind.value,
++        boundary: boundary.value
++      });
++      status.textContent =
++        `${filtered.nodes.length} explorer node${filtered.nodes.length === 1 ? '' : 's'} and ` +
++        `${filtered.relationships.length} metadata relationship${filtered.relationships.length === 1 ? '' : 's'} match.`;
++      renderRelationshipSummary(filtered.relationships);
++
++      const selectNode = node => {
++        selectedNodeId = node.id;
++        renderDetails(node, graph);
++        document.querySelectorAll('[data-node-id]').forEach(element => {
++          element.classList.toggle(
++            'is-selected',
++            element.dataset.nodeId === selectedNodeId
++          );
++        });
++      };
++
++      renderAccessibleCards(filtered, graph, selectNode);
++      renderSvg(filtered, graph, selectNode);
++
++      const selected = graph.nodes.find(node => node.id === selectedNodeId);
++      if (selected && filtered.nodes.some(node => node.id === selected.id)) {
++        renderDetails(selected, graph);
++      } else {
++        selectedNodeId = '';
++        renderDetails(null, graph);
++      }
++    };
++
++    [search, dataset, kind, boundary].forEach(control => {
++      control.addEventListener(
++        control === search ? 'input' : 'change',
++        render
++      );
++    });
++
++    reset.addEventListener('click', () => {
++      search.value = '';
++      dataset.value = 'All';
++      kind.value = 'All';
++      boundary.value = 'All';
++      render();
++      search.focus();
++    });
++
++    render();
++  } catch (error) {
++    console.error('[OmSaravanaBhava] Knowledge graph failed', error);
++    status.textContent =
++      'The source-controlled knowledge graph register could not be loaded.';
++    const visualStatus = document.getElementById('graphVisualStatus');
++    if (visualStatus) visualStatus.textContent = 'Graph unavailable.';
++  }
++};
++
++if (typeof document !== 'undefined') {
++  document.addEventListener('DOMContentLoaded', initialise);
++}
+diff --git a/data/knowledge-graph-explorer.json b/data/knowledge-graph-explorer.json
+new file mode 100644
+--- /dev/null
++++ b/data/knowledge-graph-explorer.json
+@@ -0,0 +1,491 @@
++{
++  "release": 220,
++  "generated": "2026-07-14",
++  "title": "OmSaravanaBhava Source-Controlled Knowledge Graph Register",
++  "scope": "Existing local graph pages and their explicitly visible nodes or published summary counts.",
++  "notClaims": [
++    "This dataset is not a complete Murugan theology graph.",
++    "It does not infer missing theological relationships.",
++    "Reported relationship totals are preserved separately from explorer metadata edges.",
++    "Source-review and pending-verification boundaries remain visible."
++  ],
++  "datasets": [
++    {
++      "id": "murugan-phase-1",
++      "titleTa": "முருகன் அறிவுக் கோப்பு",
++      "titleEn": "Murugan Knowledge Graph Phase 1",
++      "route": "/knowledge-graph.html",
++      "publicationBoundary": "source-controlled",
++      "detailLevel": "explicit-node-cards",
++      "reportedNodeCount": 7,
++      "reportedRelationshipCount": 6,
++      "relationshipCountStatus": "reported",
++      "evidence": "Seven explicit entity cards and a page statement reporting six relationships."
++    },
++    {
++      "id": "murugan-phase-3",
++      "titleTa": "முருகன் அறிவுக் கோப்பு கட்டம் 3",
++      "titleEn": "Murugan Knowledge Graph Phase 3",
++      "route": "/knowledge-graph-phase-3.html",
++      "publicationBoundary": "published-summary",
++      "detailLevel": "summary-only",
++      "reportedNodeCount": 10,
++      "reportedRelationshipCount": 9,
++      "relationshipCountStatus": "reported",
++      "evidence": "The source page reports ten nodes and nine relationships but does not expose node-level records."
++    },
++    {
++      "id": "murugan-phase-4",
++      "titleTa": "முருகன் அறிவுக் கோப்பு கட்டம் 4",
++      "titleEn": "Murugan Knowledge Graph Phase 4",
++      "route": "/knowledge-graph-phase-4.html",
++      "publicationBoundary": "published-summary",
++      "detailLevel": "summary-only",
++      "reportedNodeCount": 13,
++      "reportedRelationshipCount": 12,
++      "relationshipCountStatus": "reported",
++      "evidence": "The source page reports thirteen nodes and twelve relationships but does not expose node-level records."
++    },
++    {
++      "id": "siddhar-phase-1",
++      "titleTa": "சித்தர் அறிவுக் கோப்பு",
++      "titleEn": "Siddhar Knowledge Graph Phase 1",
++      "route": "/siddhar-knowledge-graph.html",
++      "publicationBoundary": "source-review",
++      "detailLevel": "explicit-node-cards",
++      "reportedNodeCount": 6,
++      "reportedRelationshipCount": null,
++      "relationshipCountStatus": "not-published",
++      "evidence": "Six source-review Siddhar cards are visible; no relationship total is published."
++    },
++    {
++      "id": "skanda-purana-phase-2",
++      "titleTa": "ஸ்கந்த புராண அறிவுக் கோப்பு",
++      "titleEn": "Skanda Purana Knowledge Graph Phase 2",
++      "route": "/skanda-purana-graph.html",
++      "publicationBoundary": "pending-chapter-verification",
++      "detailLevel": "explicit-node-cards",
++      "reportedNodeCount": 5,
++      "reportedRelationshipCount": null,
++      "relationshipCountStatus": "not-published",
++      "evidence": "Five high-level entity cards are visible; chapter-level verification and a relationship total remain unpublished."
++    }
++  ],
++  "nodes": [
++    {
++      "id": "dataset-murugan-phase-1",
++      "nodeClass": "Graph register",
++      "kind": "Dataset",
++      "datasetId": "murugan-phase-1",
++      "titleTa": "முருகன் அறிவுக் கோப்பு",
++      "titleEn": "Murugan Knowledge Graph Phase 1",
++      "route": "/knowledge-graph.html",
++      "destinationRoute": "/knowledge-graph.html",
++      "claimBoundary": "source-controlled"
++    },
++    {
++      "id": "dataset-murugan-phase-3",
++      "nodeClass": "Graph register",
++      "kind": "Dataset",
++      "datasetId": "murugan-phase-3",
++      "titleTa": "முருகன் அறிவுக் கோப்பு கட்டம் 3",
++      "titleEn": "Murugan Knowledge Graph Phase 3",
++      "route": "/knowledge-graph-phase-3.html",
++      "destinationRoute": "/knowledge-graph-phase-3.html",
++      "claimBoundary": "published-summary"
++    },
++    {
++      "id": "dataset-murugan-phase-4",
++      "nodeClass": "Graph register",
++      "kind": "Dataset",
++      "datasetId": "murugan-phase-4",
++      "titleTa": "முருகன் அறிவுக் கோப்பு கட்டம் 4",
++      "titleEn": "Murugan Knowledge Graph Phase 4",
++      "route": "/knowledge-graph-phase-4.html",
++      "destinationRoute": "/knowledge-graph-phase-4.html",
++      "claimBoundary": "published-summary"
++    },
++    {
++      "id": "dataset-siddhar-phase-1",
++      "nodeClass": "Graph register",
++      "kind": "Dataset",
++      "datasetId": "siddhar-phase-1",
++      "titleTa": "சித்தர் அறிவுக் கோப்பு",
++      "titleEn": "Siddhar Knowledge Graph Phase 1",
++      "route": "/siddhar-knowledge-graph.html",
++      "destinationRoute": "/siddhar-knowledge-graph.html",
++      "claimBoundary": "source-review"
++    },
++    {
++      "id": "dataset-skanda-purana-phase-2",
++      "nodeClass": "Graph register",
++      "kind": "Dataset",
++      "datasetId": "skanda-purana-phase-2",
++      "titleTa": "ஸ்கந்த புராண அறிவுக் கோப்பு",
++      "titleEn": "Skanda Purana Knowledge Graph Phase 2",
++      "route": "/skanda-purana-graph.html",
++      "destinationRoute": "/skanda-purana-graph.html",
++      "claimBoundary": "pending-chapter-verification"
++    },
++    {
++      "id": "entity-murugan",
++      "datasetId": "murugan-phase-1",
++      "kind": "Deity",
++      "titleTa": "முருகன்",
++      "titleEn": "Murugan",
++      "route": "/knowledge-graph.html",
++      "destinationRoute": "/index.html",
++      "claimBoundary": "source-controlled",
++      "nodeClass": "Explicit entity"
++    },
++    {
++      "id": "entity-vel",
++      "datasetId": "murugan-phase-1",
++      "kind": "Symbol",
++      "titleTa": "வேல்",
++      "titleEn": "Vel",
++      "route": "/knowledge-graph.html",
++      "destinationRoute": "/knowledge-graph.html",
++      "claimBoundary": "source-controlled",
++      "nodeClass": "Explicit entity"
++    },
++    {
++      "id": "entity-peacock",
++      "datasetId": "murugan-phase-1",
++      "kind": "Symbol",
++      "titleTa": "மயில்",
++      "titleEn": "Peacock",
++      "route": "/knowledge-graph.html",
++      "destinationRoute": "/knowledge-graph.html",
++      "claimBoundary": "source-controlled",
++      "nodeClass": "Explicit entity"
++    },
++    {
++      "id": "entity-six-sacred-abodes",
++      "datasetId": "murugan-phase-1",
++      "kind": "Concept",
++      "titleTa": "ஆறுபடை வீடு",
++      "titleEn": "Six Sacred Abodes",
++      "route": "/knowledge-graph.html",
++      "destinationRoute": "/temples.html",
++      "claimBoundary": "source-controlled",
++      "nodeClass": "Explicit entity"
++    },
++    {
++      "id": "entity-thiruppugazh",
++      "datasetId": "murugan-phase-1",
++      "kind": "Literature",
++      "titleTa": "திருப்புகழ்",
++      "titleEn": "Thiruppugazh",
++      "route": "/knowledge-graph.html",
++      "destinationRoute": "/thiruppugazh.html",
++      "claimBoundary": "source-controlled",
++      "nodeClass": "Explicit entity"
++    },
++    {
++      "id": "entity-kanda-sashti-kavasam",
++      "datasetId": "murugan-phase-1",
++      "kind": "Literature",
++      "titleTa": "கந்த சஷ்டி கவசம்",
++      "titleEn": "Kanda Sashti Kavasam",
++      "route": "/knowledge-graph.html",
++      "destinationRoute": "/slokas/kanda-sashti-kavasam.html",
++      "claimBoundary": "source-controlled",
++      "nodeClass": "Explicit entity"
++    },
++    {
++      "id": "entity-skanda-guru-kavasam",
++      "datasetId": "murugan-phase-1",
++      "kind": "Literature",
++      "titleTa": "ஸ்கந்த குரு கவசம்",
++      "titleEn": "Skanda Guru Kavasam",
++      "route": "/knowledge-graph.html",
++      "destinationRoute": "/slokas/skanda-guru-kavasam.html",
++      "claimBoundary": "source-controlled",
++      "nodeClass": "Explicit entity"
++    },
++    {
++      "id": "entity-agastiyar",
++      "datasetId": "siddhar-phase-1",
++      "kind": "Siddhar",
++      "titleTa": "",
++      "titleEn": "Agastiyar",
++      "route": "/siddhar-knowledge-graph.html",
++      "destinationRoute": "/siddhar-encyclopedia.html",
++      "claimBoundary": "source-review",
++      "nodeClass": "Explicit entity"
++    },
++    {
++      "id": "entity-bogar",
++      "datasetId": "siddhar-phase-1",
++      "kind": "Siddhar",
++      "titleTa": "",
++      "titleEn": "Bogar",
++      "route": "/siddhar-knowledge-graph.html",
++      "destinationRoute": "/siddhar-encyclopedia.html",
++      "claimBoundary": "source-review",
++      "nodeClass": "Explicit entity"
++    },
++    {
++      "id": "entity-pulipani",
++      "datasetId": "siddhar-phase-1",
++      "kind": "Siddhar",
++      "titleTa": "",
++      "titleEn": "Pulipani",
++      "route": "/siddhar-knowledge-graph.html",
++      "destinationRoute": "/siddhar-encyclopedia.html",
++      "claimBoundary": "source-review",
++      "nodeClass": "Explicit entity"
++    },
++    {
++      "id": "entity-konganar",
++      "datasetId": "siddhar-phase-1",
++      "kind": "Siddhar",
++      "titleTa": "",
++      "titleEn": "Konganar",
++      "route": "/siddhar-knowledge-graph.html",
++      "destinationRoute": "/siddhar-encyclopedia.html",
++      "claimBoundary": "source-review",
++      "nodeClass": "Explicit entity"
++    },
++    {
++      "id": "entity-karuvoorar",
++      "datasetId": "siddhar-phase-1",
++      "kind": "Siddhar",
++      "titleTa": "",
++      "titleEn": "Karuvoorar",
++      "route": "/siddhar-knowledge-graph.html",
++      "destinationRoute": "/siddhar-encyclopedia.html",
++      "claimBoundary": "source-review",
++      "nodeClass": "Explicit entity"
++    },
++    {
++      "id": "entity-pambatti-siddhar",
++      "datasetId": "siddhar-phase-1",
++      "kind": "Siddhar",
++      "titleTa": "",
++      "titleEn": "Pambatti Siddhar",
++      "route": "/siddhar-knowledge-graph.html",
++      "destinationRoute": "/siddhar-encyclopedia.html",
++      "claimBoundary": "source-review",
++      "nodeClass": "Explicit entity"
++    },
++    {
++      "id": "entity-skanda",
++      "datasetId": "skanda-purana-phase-2",
++      "kind": "Deity",
++      "titleTa": "",
++      "titleEn": "Skanda",
++      "route": "/skanda-purana-graph.html",
++      "destinationRoute": "/skanda-purana-graph.html",
++      "claimBoundary": "pending-chapter-verification",
++      "nodeClass": "Explicit entity"
++    },
++    {
++      "id": "entity-siva",
++      "datasetId": "skanda-purana-phase-2",
++      "kind": "Deity",
++      "titleTa": "",
++      "titleEn": "Siva",
++      "route": "/skanda-purana-graph.html",
++      "destinationRoute": "/skanda-purana-graph.html",
++      "claimBoundary": "pending-chapter-verification",
++      "nodeClass": "Explicit entity"
++    },
++    {
++      "id": "entity-parvati",
++      "datasetId": "skanda-purana-phase-2",
++      "kind": "Deity",
++      "titleTa": "",
++      "titleEn": "Parvati",
++      "route": "/skanda-purana-graph.html",
++      "destinationRoute": "/skanda-purana-graph.html",
++      "claimBoundary": "pending-chapter-verification",
++      "nodeClass": "Explicit entity"
++    },
++    {
++      "id": "entity-surapadman",
++      "datasetId": "skanda-purana-phase-2",
++      "kind": "Character",
++      "titleTa": "",
++      "titleEn": "Surapadman",
++      "route": "/skanda-purana-graph.html",
++      "destinationRoute": "/skanda-purana-graph.html",
++      "claimBoundary": "pending-chapter-verification",
++      "nodeClass": "Explicit entity"
++    },
++    {
++      "id": "entity-skanda-vel",
++      "datasetId": "skanda-purana-phase-2",
++      "kind": "Weapon",
++      "titleTa": "",
++      "titleEn": "Vel",
++      "route": "/skanda-purana-graph.html",
++      "destinationRoute": "/skanda-purana-graph.html",
++      "claimBoundary": "pending-chapter-verification",
++      "nodeClass": "Explicit entity"
++    }
++  ],
++  "relationships": [
++    {
++      "id": "edge-entity-murugan-declared-in",
++      "source": "entity-murugan",
++      "target": "dataset-murugan-phase-1",
++      "type": "declared-in",
++      "evidenceStatus": "explicit-node-card",
++      "description": "The entity is explicitly displayed on the cited local graph register."
++    },
++    {
++      "id": "edge-entity-vel-declared-in",
++      "source": "entity-vel",
++      "target": "dataset-murugan-phase-1",
++      "type": "declared-in",
++      "evidenceStatus": "explicit-node-card",
++      "description": "The entity is explicitly displayed on the cited local graph register."
++    },
++    {
++      "id": "edge-entity-peacock-declared-in",
++      "source": "entity-peacock",
++      "target": "dataset-murugan-phase-1",
++      "type": "declared-in",
++      "evidenceStatus": "explicit-node-card",
++      "description": "The entity is explicitly displayed on the cited local graph register."
++    },
++    {
++      "id": "edge-entity-six-sacred-abodes-declared-in",
++      "source": "entity-six-sacred-abodes",
++      "target": "dataset-murugan-phase-1",
++      "type": "declared-in",
++      "evidenceStatus": "explicit-node-card",
++      "description": "The entity is explicitly displayed on the cited local graph register."
++    },
++    {
++      "id": "edge-entity-thiruppugazh-declared-in",
++      "source": "entity-thiruppugazh",
++      "target": "dataset-murugan-phase-1",
++      "type": "declared-in",
++      "evidenceStatus": "explicit-node-card",
++      "description": "The entity is explicitly displayed on the cited local graph register."
++    },
++    {
++      "id": "edge-entity-kanda-sashti-kavasam-declared-in",
++      "source": "entity-kanda-sashti-kavasam",
++      "target": "dataset-murugan-phase-1",
++      "type": "declared-in",
++      "evidenceStatus": "explicit-node-card",
++      "description": "The entity is explicitly displayed on the cited local graph register."
++    },
++    {
++      "id": "edge-entity-skanda-guru-kavasam-declared-in",
++      "source": "entity-skanda-guru-kavasam",
++      "target": "dataset-murugan-phase-1",
++      "type": "declared-in",
++      "evidenceStatus": "explicit-node-card",
++      "description": "The entity is explicitly displayed on the cited local graph register."
++    },
++    {
++      "id": "edge-entity-agastiyar-declared-in",
++      "source": "entity-agastiyar",
++      "target": "dataset-siddhar-phase-1",
++      "type": "declared-in",
++      "evidenceStatus": "explicit-node-card",
++      "description": "The entity is explicitly displayed on the cited local graph register."
++    },
++    {
++      "id": "edge-entity-bogar-declared-in",
++      "source": "entity-bogar",
++      "target": "dataset-siddhar-phase-1",
++      "type": "declared-in",
++      "evidenceStatus": "explicit-node-card",
++      "description": "The entity is explicitly displayed on the cited local graph register."
++    },
++    {
++      "id": "edge-entity-pulipani-declared-in",
++      "source": "entity-pulipani",
++      "target": "dataset-siddhar-phase-1",
++      "type": "declared-in",
++      "evidenceStatus": "explicit-node-card",
++      "description": "The entity is explicitly displayed on the cited local graph register."
++    },
++    {
++      "id": "edge-entity-konganar-declared-in",
++      "source": "entity-konganar",
++      "target": "dataset-siddhar-phase-1",
++      "type": "declared-in",
++      "evidenceStatus": "explicit-node-card",
++      "description": "The entity is explicitly displayed on the cited local graph register."
++    },
++    {
++      "id": "edge-entity-karuvoorar-declared-in",
++      "source": "entity-karuvoorar",
++      "target": "dataset-siddhar-phase-1",
++      "type": "declared-in",
++      "evidenceStatus": "explicit-node-card",
++      "description": "The entity is explicitly displayed on the cited local graph register."
++    },
++    {
++      "id": "edge-entity-pambatti-siddhar-declared-in",
++      "source": "entity-pambatti-siddhar",
++      "target": "dataset-siddhar-phase-1",
++      "type": "declared-in",
++      "evidenceStatus": "explicit-node-card",
++      "description": "The entity is explicitly displayed on the cited local graph register."
++    },
++    {
++      "id": "edge-entity-skanda-declared-in",
++      "source": "entity-skanda",
++      "target": "dataset-skanda-purana-phase-2",
++      "type": "declared-in",
++      "evidenceStatus": "explicit-node-card",
++      "description": "The entity is explicitly displayed on the cited local graph register."
++    },
++    {
++      "id": "edge-entity-siva-declared-in",
++      "source": "entity-siva",
++      "target": "dataset-skanda-purana-phase-2",
++      "type": "declared-in",
++      "evidenceStatus": "explicit-node-card",
++      "description": "The entity is explicitly displayed on the cited local graph register."
++    },
++    {
++      "id": "edge-entity-parvati-declared-in",
++      "source": "entity-parvati",
++      "target": "dataset-skanda-purana-phase-2",
++      "type": "declared-in",
++      "evidenceStatus": "explicit-node-card",
++      "description": "The entity is explicitly displayed on the cited local graph register."
++    },
++    {
++      "id": "edge-entity-surapadman-declared-in",
++      "source": "entity-surapadman",
++      "target": "dataset-skanda-purana-phase-2",
++      "type": "declared-in",
++      "evidenceStatus": "explicit-node-card",
++      "description": "The entity is explicitly displayed on the cited local graph register."
++    },
++    {
++      "id": "edge-entity-skanda-vel-declared-in",
++      "source": "entity-skanda-vel",
++      "target": "dataset-skanda-purana-phase-2",
++      "type": "declared-in",
++      "evidenceStatus": "explicit-node-card",
++      "description": "The entity is explicitly displayed on the cited local graph register."
++    },
++    {
++      "id": "edge-murugan-phase-1-to-phase-3",
++      "source": "dataset-murugan-phase-1",
++      "target": "dataset-murugan-phase-3",
++      "type": "progresses-to",
++      "evidenceStatus": "route-phase-sequence",
++      "description": "Published route naming identifies Phase 3 as a later graph phase."
++    },
++    {
++      "id": "edge-murugan-phase-3-to-phase-4",
++      "source": "dataset-murugan-phase-3",
++      "target": "dataset-murugan-phase-4",
++      "type": "progresses-to",
++      "evidenceStatus": "route-phase-sequence",
++      "description": "Published route naming identifies Phase 4 as a later graph phase."
++    }
++  ]
++}
+diff --git a/index.html b/index.html
+--- a/index.html
++++ b/index.html
+@@ -27,7 +27,7 @@
+ <script defer src="assets/js/premium-home.js"></script>
+ <script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body data-release="219">
++<body data-release="220">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Verified Murugan digital heritage platform</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+@@ -37,7 +37,7 @@
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">OmSaravanaBhava Home</span></p></nav>
+ <section class="home-stage">
+-<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 219</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="explore.html">Explore all modules</a><a class="btn secondary" href="ai-search.html">Search knowledge</a><a class="btn secondary" href="search-facets.html">Browse by content type</a><a class="btn secondary" href="reading-list.html">Reading list</a><a class="btn secondary" href="accessibility.html">Accessibility</a><a class="btn secondary" href="print-pdf.html">Print &amp; PDF</a><a class="btn secondary" href="audio-history.html">Audio history</a></div></div>
++<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 220</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="explore.html">Explore all modules</a><a class="btn secondary" href="ai-search.html">Search knowledge</a><a class="btn secondary" href="search-facets.html">Browse by content type</a><a class="btn secondary" href="reading-list.html">Reading list</a><a class="btn secondary" href="accessibility.html">Accessibility</a><a class="btn secondary" href="print-pdf.html">Print &amp; PDF</a><a class="btn secondary" href="audio-history.html">Audio history</a><a class="btn secondary" href="knowledge-graph-explorer.html">Knowledge graph</a></div></div>
+ <div class="home-stage-panel" aria-label="Published platform data">
+ <div class="home-metric"><span>Search records</span><strong data-count-source="data/search-index.json" aria-live="polite">…</strong></div>
+ <div class="home-metric"><span>Source records</span><strong data-count-source="data/sources.json" aria-live="polite">…</strong></div>
+@@ -52,6 +52,6 @@
+ <section class="card" aria-labelledby="integrity-heading"><h2 id="integrity-heading">Publication integrity</h2><p>Repository releases, deployed pages and runtime behaviour are separate evidence layers. Content and feature claims remain bounded until automated checks and production observation confirm them.</p><p><a class="btn secondary" href="production-audit.html">Open production audit</a> <a class="btn secondary" href="content-status.html">Open content status</a></p></section>
+ <noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>All primary modules remain available through the navigation links. Live data counts are unavailable without JavaScript.</p></section></noscript>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
++<footer>© Om Saravana Bhava · <a href="knowledge-graph-explorer.html">Knowledge graph</a> · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
+ </body>
+ </html>
+diff --git a/platform.html b/platform.html
+--- a/platform.html
++++ b/platform.html
+@@ -10,7 +10,7 @@
+ <meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
+ <script defer src="assets/js/pwa-register.js"></script><script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body data-release="219">
++<body data-release="220">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Digital Murugan knowledge platform</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div></div></nav>
+@@ -32,12 +32,13 @@
+ <article class="card"><h2>Accessibility Centre</h2><p>Set large text, high contrast, reduced motion and underlined links in this browser.</p><a class="btn" href="accessibility.html">Open accessibility controls</a></article>
+ <article class="card"><h2>Print and PDF Support</h2><p>Print clean reading copies or use the browser to save a displayed route as PDF.</p><a class="btn" href="print-pdf.html">Open print guidance</a></article>
+ <article class="card"><h2>Audio Listening History</h2><p>Review actual device read-aloud starts stored locally in this browser.</p><a class="btn" href="audio-history.html">Open audio history</a></article>
++<article class="card"><h2>Knowledge Graph Explorer</h2><p>Inspect existing graph registers, explicit nodes and published relationship totals without inferred theological edges.</p><a class="btn" href="knowledge-graph-explorer.html">Open graph explorer</a></article>
+ <article class="card"><h2>Knowledge Graph</h2><a class="btn" href="knowledge-graph-phase-4.html">Open module</a></article>
+ <article class="card"><h2>Panchangam Framework</h2><p>Verified-data contract only; no live calendar calculation.</p><a class="btn" href="panchangam-framework.html">Open framework</a></article>
+ </section>
+ <section class="card"><h2>Milestone boundary</h2><p>The platform hub connects published modules. It does not certify complete Murugan literature, licensed human audio, live Panchangam computation or server-side accounts.</p></section>
+ <section class="card"><h2>Version 3 milestone</h2><a class="btn" href="version-3.html">Open milestone dashboard</a></section>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
++<footer>© Om Saravana Bhava · <a href="knowledge-graph-explorer.html">Knowledge graph</a> · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
+ </body>
+ </html>
+diff --git a/data/site-routes.json b/data/site-routes.json
+--- a/data/site-routes.json
++++ b/data/site-routes.json
+@@ -1,5 +1,5 @@
+ {
+-  "release": 219,
++  "release": 220,
+   "generated": "2026-07-14",
+   "scope": "Public HTML routes represented by the Release 215 sitemap and route directory.",
+   "statusMeaning": {
+@@ -230,6 +230,14 @@
+       "summary": "Published knowledge route in the OmSaravanaBhava static platform."
+     },
+     {
++      "path": "/knowledge-graph-explorer.html",
++      "titleTa": "அறிவு தொடர்பு ஆராய்வி",
++      "titleEn": "Knowledge Graph Explorer",
++      "category": "Knowledge",
++      "status": "published",
++      "summary": "Local explorer for existing graph registers, explicit source-page nodes and published relationship totals."
++    },
++    {
+       "path": "/murugan-timeline-v2.html",
+       "titleTa": "முருகன் காலவரிசை",
+       "titleEn": "Murugan Timeline V2",
+diff --git a/sitemap.xml b/sitemap.xml
+--- a/sitemap.xml
++++ b/sitemap.xml
+@@ -546,4 +546,10 @@
+     <changefreq>monthly</changefreq>
+     <priority>0.8</priority>
+   </url>
++  <url>
++    <loc>https://omsaravanabhava.org/knowledge-graph-explorer.html</loc>
++    <lastmod>2026-07-14</lastmod>
++    <changefreq>monthly</changefreq>
++    <priority>0.8</priority>
++  </url>
+ </urlset>
+diff --git a/service-worker.js b/service-worker.js
+--- a/service-worker.js
++++ b/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '219';
++const RELEASE = '220';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -208,7 +208,11 @@
+   "/assets/js/print-support.mjs",
+   "/audio-history.html",
+   "/assets/css/audio-history.css",
+-  "/assets/js/audio-history.mjs"
++  "/assets/js/audio-history.mjs",
++  "/knowledge-graph-explorer.html",
++  "/assets/css/knowledge-graph-explorer.css",
++  "/assets/js/knowledge-graph-explorer.mjs",
++  "/data/knowledge-graph-explorer.json"
+ ];
+ 
+ const cacheOptionalAssets = async cache => {
+diff --git a/quality/site-audit-config.json b/quality/site-audit-config.json
+--- a/quality/site-audit-config.json
++++ b/quality/site-audit-config.json
+@@ -1,5 +1,5 @@
+ {
+-  "expectedRelease": "219",
++  "expectedRelease": "220",
+   "canonicalOrigin": "https://omsaravanabhava.org",
+   "requiredFiles": [
+     "index.html",
+@@ -38,7 +38,11 @@
+     "assets/js/print-support.mjs",
+     "audio-history.html",
+     "assets/css/audio-history.css",
+-    "assets/js/audio-history.mjs"
++    "assets/js/audio-history.mjs",
++    "knowledge-graph-explorer.html",
++    "assets/css/knowledge-graph-explorer.css",
++    "assets/js/knowledge-graph-explorer.mjs",
++    "data/knowledge-graph-explorer.json"
+   ],
+   "canonicalOptional": [
+     "404.html",
+diff --git a/tools/production_smoke.py b/tools/production_smoke.py
+--- a/tools/production_smoke.py
++++ b/tools/production_smoke.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Observe the deployed custom domain and fail when Release 219 is not live."""
++"""Observe the deployed custom domain and fail when Release 220 is not live."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -10,8 +10,8 @@
+ from pathlib import Path
+ 
+ CHECKS = [
+-    ("/", 'data-release="219"'),
+-    ("/service-worker.js", "const RELEASE = '219';"),
++    ("/", 'data-release="220"'),
++    ("/service-worker.js", "const RELEASE = '220';"),
+     ("/search-facets.html", "Published-Content Search Facets"),
+     ("/assets/js/search-facets.mjs", "export const RELEASE = 216;"),
+     ("/data/site-routes.json", '"/search-facets.html"'),
+@@ -32,7 +32,12 @@
+     ("/audio-library.html", "audio-history.mjs"),
+     ("/audio-history.html", "Audio Listening History"),
+     ("/assets/js/audio-history.mjs", "export const RELEASE = 219"),
+-    ("/sitemap.xml", "https://omsaravanabhava.org/audio-history.html")
++    ("/sitemap.xml", "https://omsaravanabhava.org/audio-history.html"),
++    ("/knowledge-graph.html", "knowledge-graph-explorer.html"),
++    ("/knowledge-graph-explorer.html", "data-release=\"220\""),
++    ("/assets/js/knowledge-graph-explorer.mjs", "export const RELEASE = 220"),
++    ("/data/knowledge-graph-explorer.json", "\"release\": 220"),
++    ("/sitemap.xml", "https://omsaravanabhava.org/knowledge-graph-explorer.html")
+ ]
+ 
+ 
+@@ -40,7 +45,7 @@
+     request = urllib.request.Request(
+         url,
+         headers={
+-            "User-Agent": "OmSaravanaBhava-Production-Smoke/219",
++            "User-Agent": "OmSaravanaBhava-Production-Smoke/220",
+             "Cache-Control": "no-cache"
+         }
+     )
+@@ -80,7 +85,7 @@
+     parser.add_argument("--retries", type=int, default=18)
+     parser.add_argument("--delay", type=int, default=20)
+     parser.add_argument("--timeout", type=int, default=20)
+-    parser.add_argument("--report", type=Path, default=Path("artifacts/release-219-production-smoke.json"))
++    parser.add_argument("--report", type=Path, default=Path("artifacts/release-220-production-smoke.json"))
+     args = parser.parse_args()
+     report = run(args.origin, args.retries, args.delay, args.timeout)
+     args.report.parent.mkdir(parents=True, exist_ok=True)
+diff --git a/tests/knowledge-graph-explorer.test.mjs b/tests/knowledge-graph-explorer.test.mjs
+new file mode 100644
+--- /dev/null
++++ b/tests/knowledge-graph-explorer.test.mjs
+@@ -0,0 +1,119 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import fs from 'node:fs';
++
++import {
++  RELEASE,
++  filterGraph,
++  graphMetrics,
++  layoutGraph,
++  nodeNeighbours,
++  normaliseGraph,
++  normaliseRoute,
++  relationshipCounts
++} from '../assets/js/knowledge-graph-explorer.mjs';
++
++const payload = JSON.parse(
++  fs.readFileSync(
++    new URL('../data/knowledge-graph-explorer.json', import.meta.url),
++    'utf8'
++  )
++);
++const graph = normaliseGraph(payload);
++
++test('release and source-controlled data identity are stable', () => {
++  assert.equal(RELEASE, 220);
++  assert.equal(graph.release, 220);
++  assert.equal(graph.datasets.length, 5);
++});
++
++test('same-origin routes are retained and external routes are rejected', () => {
++  assert.equal(normaliseRoute('/knowledge-graph.html'), '/knowledge-graph.html');
++  assert.equal(normaliseRoute('https://example.com/graph.html'), '');
++});
++
++test('all explorer nodes and relationships are unique and valid', () => {
++  assert.equal(new Set(graph.nodes.map(node => node.id)).size, graph.nodes.length);
++  assert.equal(
++    new Set(graph.relationships.map(edge => edge.id)).size,
++    graph.relationships.length
++  );
++  const ids = new Set(graph.nodes.map(node => node.id));
++  graph.relationships.forEach(edge => {
++    assert.equal(ids.has(edge.source), true);
++    assert.equal(ids.has(edge.target), true);
++  });
++});
++
++test('metrics separate reported domain relationships from metadata edges', () => {
++  const metrics = graphMetrics(graph);
++  assert.deepEqual(metrics, {
++    datasetCount: 5,
++    explicitEntityCount: 18,
++    explorerNodeCount: 23,
++    explorerRelationshipCount: 20,
++    reportedRelationshipTotal: 27,
++    unspecifiedRelationshipDatasets: 2
++  });
++});
++
++test('explicit source-card counts match the three detailed registers', () => {
++  const expected = new Map([
++    ['murugan-phase-1', 7],
++    ['siddhar-phase-1', 6],
++    ['skanda-purana-phase-2', 5]
++  ]);
++  expected.forEach((count, datasetId) => {
++    const actual = graph.nodes.filter(
++      node =>
++        node.nodeClass === 'Explicit entity' &&
++        node.datasetId === datasetId
++    ).length;
++    assert.equal(actual, count);
++  });
++});
++
++test('summary-only phases do not fabricate explicit nodes', () => {
++  for (const datasetId of ['murugan-phase-3', 'murugan-phase-4']) {
++    assert.equal(
++      graph.nodes.filter(
++        node =>
++          node.nodeClass === 'Explicit entity' &&
++          node.datasetId === datasetId
++      ).length,
++      0
++    );
++  }
++});
++
++test('filtering supports dataset, kind, boundary and text search', () => {
++  assert.equal(
++    filterGraph(graph, {datasetId: 'siddhar-phase-1'}).nodes.length,
++    7
++  );
++  assert.equal(filterGraph(graph, {kind: 'Siddhar'}).nodes.length, 6);
++  assert.equal(
++    filterGraph(graph, {boundary: 'pending-chapter-verification'}).nodes.length,
++    6
++  );
++  assert.equal(filterGraph(graph, {query: 'கந்த சஷ்டி'}).nodes.length, 1);
++});
++
++test('neighbours and relationship counts are computed from local JSON', () => {
++  const neighbours = nodeNeighbours('entity-murugan', graph);
++  assert.equal(neighbours.length, 1);
++  assert.equal(neighbours[0].relationship.type, 'declared-in');
++  assert.deepEqual(relationshipCounts(graph.relationships), [
++    {type: 'declared-in', count: 18},
++    {type: 'progresses-to', count: 2}
++  ]);
++});
++
++test('layout is deterministic and keeps all nodes inside the canvas', () => {
++  const positions = layoutGraph(graph.nodes, 1000, 620);
++  assert.equal(positions.size, graph.nodes.length);
++  positions.forEach(point => {
++    assert.equal(point.x >= 50 && point.x <= 950, true);
++    assert.equal(point.y >= 50 && point.y <= 570, true);
++  });
++});
+diff --git a/tools/release_220_validate.py b/tools/release_220_validate.py
+new file mode 100644
+--- /dev/null
++++ b/tools/release_220_validate.py
+@@ -0,0 +1,288 @@
++#!/usr/bin/env python3
++"""Validate Release 220 without claiming GitHub Actions or deployed production results."""
++from __future__ import annotations
++
++import argparse
++import json
++import re
++import sys
++import xml.etree.ElementTree as ET
++from pathlib import Path
++
++RELEASE = "220"
++BASE_COMMIT = "76414c2834dd291d2432832cdc81f5f954137eac"
++ROUTE = "/knowledge-graph-explorer.html"
++REQUIRED = [
++    "knowledge-graph.html",
++    "knowledge-graph-explorer.html",
++    "assets/css/knowledge-graph-explorer.css",
++    "assets/js/knowledge-graph-explorer.mjs",
++    "data/knowledge-graph-explorer.json",
++    "index.html",
++    "platform.html",
++    "data/site-routes.json",
++    "sitemap.xml",
++    "service-worker.js",
++    "quality/site-audit-config.json",
++    "tools/production_smoke.py",
++    "tests/test_site_audit.py",
++    "tests/knowledge-graph-explorer.test.mjs",
++    ".github/workflows/static-site-integrity.yml",
++    ".github/workflows/production-smoke.yml",
++    "manifest-release-220.json",
++]
++
++def read(root: Path, relative: str) -> str:
++    return (root / relative).read_text(encoding="utf-8")
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", type=Path, default=Path.cwd())
++    parser.add_argument("--package-mode", action="store_true")
++    parser.add_argument("--report", type=Path, default=Path("artifacts/release-220-validation.json"))
++    args = parser.parse_args()
++    root = args.root.resolve()
++    errors: list[str] = []
++    checks: list[str] = []
++
++    for relative in REQUIRED:
++        if not (root / relative).is_file():
++            errors.append(f"missing required file: {relative}")
++        else:
++            checks.append(f"exists: {relative}")
++
++    if not errors:
++        manifest = json.loads(read(root, "manifest-release-220.json"))
++        routes = json.loads(read(root, "data/site-routes.json"))
++        graph = json.loads(read(root, "data/knowledge-graph-explorer.json"))
++        config = json.loads(read(root, "quality/site-audit-config.json"))
++        ET.fromstring(read(root, "sitemap.xml"))
++
++        if manifest.get("release") != 220:
++            errors.append("manifest release is not 220")
++        if manifest.get("base_commit") != BASE_COMMIT:
++            errors.append("manifest base commit does not match Release 219 head")
++        if routes.get("release") != 220:
++            errors.append("route directory release is not 220")
++        if graph.get("release") != 220:
++            errors.append("graph data release is not 220")
++
++        route_records = routes.get("routes", [])
++        route_paths = [
++            item.get("path")
++            for item in route_records
++            if isinstance(item, dict)
++        ]
++        if route_paths.count(ROUTE) != 1:
++            errors.append("graph explorer route must appear exactly once")
++        if len(route_paths) != len(set(route_paths)):
++            errors.append("duplicate route directory paths detected")
++        explorer_route = next(
++            (item for item in route_records if item.get("path") == ROUTE),
++            None
++        )
++        if explorer_route and explorer_route.get("status") != "published":
++            errors.append("graph explorer route must be published")
++
++        if config.get("expectedRelease") != RELEASE:
++            errors.append("site audit expectedRelease is not 220")
++        for relative in (
++            "knowledge-graph-explorer.html",
++            "assets/css/knowledge-graph-explorer.css",
++            "assets/js/knowledge-graph-explorer.mjs",
++            "data/knowledge-graph-explorer.json",
++        ):
++            if relative not in config.get("requiredFiles", []):
++                errors.append(f"site audit does not require {relative}")
++
++        sitemap = read(root, "sitemap.xml")
++        if sitemap.count("https://omsaravanabhava.org/knowledge-graph-explorer.html") != 1:
++            errors.append("sitemap must contain graph explorer route exactly once")
++
++        worker = read(root, "service-worker.js")
++        if "const RELEASE = '220';" not in worker:
++            errors.append("service-worker identity is not 220")
++        core = re.search(r"const CORE_PRECACHE_URLS = \[(.*?)\];", worker, re.S)
++        optional = re.search(r"const PRECACHE_URLS = \[(.*?)\];", worker, re.S)
++        core_text = core.group(1) if core else ""
++        optional_text = optional.group(1) if optional else ""
++        for asset in (
++            "/knowledge-graph-explorer.html",
++            "/assets/css/knowledge-graph-explorer.css",
++            "/assets/js/knowledge-graph-explorer.mjs",
++            "/data/knowledge-graph-explorer.json",
++        ):
++            if f'"{asset}"' not in optional_text:
++                errors.append(f"optional precache missing {asset}")
++            if f'"{asset}"' in core_text:
++                errors.append(f"graph asset incorrectly blocks installation: {asset}")
++        if "cacheOptionalAssets" not in worker:
++            errors.append("resilient optional caching is missing")
++
++        datasets = graph.get("datasets", [])
++        nodes = graph.get("nodes", [])
++        relationships = graph.get("relationships", [])
++        dataset_ids = [
++            item.get("id") for item in datasets if isinstance(item, dict)
++        ]
++        node_ids = [
++            item.get("id") for item in nodes if isinstance(item, dict)
++        ]
++        relationship_ids = [
++            item.get("id")
++            for item in relationships
++            if isinstance(item, dict)
++        ]
++        if len(dataset_ids) != len(set(dataset_ids)):
++            errors.append("duplicate graph dataset ids")
++        if len(node_ids) != len(set(node_ids)):
++            errors.append("duplicate graph node ids")
++        if len(relationship_ids) != len(set(relationship_ids)):
++            errors.append("duplicate graph relationship ids")
++        if len(datasets) != 5:
++            errors.append("expected five existing graph registers")
++        if len(nodes) != 23:
++            errors.append("expected 23 explorer nodes")
++        if len(relationships) != 20:
++            errors.append("expected 20 metadata relationships")
++
++        node_set = set(node_ids)
++        for edge in relationships:
++            if edge.get("source") not in node_set or edge.get("target") not in node_set:
++                errors.append(f"relationship references missing node: {edge.get('id')}")
++
++        explicit_counts = {
++            dataset_id: sum(
++                1
++                for node in nodes
++                if node.get("nodeClass") == "Explicit entity"
++                and node.get("datasetId") == dataset_id
++            )
++            for dataset_id in dataset_ids
++        }
++        expected_explicit = {
++            "murugan-phase-1": 7,
++            "murugan-phase-3": 0,
++            "murugan-phase-4": 0,
++            "siddhar-phase-1": 6,
++            "skanda-purana-phase-2": 5,
++        }
++        if explicit_counts != expected_explicit:
++            errors.append(
++                f"explicit source-card counts differ: {explicit_counts}"
++            )
++
++        reported_relationship_total = sum(
++            item.get("reportedRelationshipCount") or 0
++            for item in datasets
++        )
++        if reported_relationship_total != 27:
++            errors.append("reported relationship total must remain 27")
++        if sum(
++            1
++            for item in datasets
++            if item.get("reportedRelationshipCount") is None
++        ) != 2:
++            errors.append("two graph registers must retain unpublished relationship totals")
++
++        module = read(root, "assets/js/knowledge-graph-explorer.mjs")
++        for marker in (
++            "export const RELEASE = 220;",
++            "reportedRelationshipTotal",
++            "unspecifiedRelationshipDatasets",
++            "filterGraph",
++            "nodeNeighbours",
++            "layoutGraph",
++        ):
++            if marker not in module:
++                errors.append(f"graph module missing marker: {marker}")
++        for prohibited in (
++            "d3.",
++            "vis.Network",
++            "cytoscape",
++            "api.openai.com",
++            "navigator.sendBeacon",
++            "gtag(",
++        ):
++            if prohibited in module:
++                errors.append(f"prohibited remote or library marker found: {prohibited}")
++
++        for html in (
++            "index.html",
++            "platform.html",
++            "knowledge-graph.html",
++            "knowledge-graph-explorer.html",
++        ):
++            body = read(root, html)
++            if 'data-release="220"' not in body:
++                errors.append(f"{html} does not expose data-release 220")
++            if "knowledge-graph-explorer.html" not in body:
++                errors.append(f"{html} does not link to graph explorer")
++
++        explorer = read(root, "knowledge-graph-explorer.html")
++        for marker in (
++            "reported domain-relationship totals",
++            "do not expose node-level records",
++            "does not claim complete Murugan",
++        ):
++            if marker not in explorer:
++                errors.append(f"graph boundary text missing: {marker}")
++
++        smoke = read(root, "tools/production_smoke.py")
++        for marker in (
++            'data-release="220"',
++            "const RELEASE = '220';",
++            "/knowledge-graph-explorer.html",
++            "export const RELEASE = 220",
++            "knowledge-graph-explorer.json",
++            "release-220-production-smoke.json",
++        ):
++            if marker not in smoke:
++                errors.append(f"production smoke missing marker: {marker}")
++
++        for workflow in (
++            ".github/workflows/static-site-integrity.yml",
++            ".github/workflows/production-smoke.yml",
++        ):
++            text = read(root, workflow)
++            if "220" not in text or "release-220-" not in text:
++                errors.append(f"{workflow} has stale release identity")
++
++        if not args.package_mode:
++            for relative in (
++                "knowledge-graph-phase-3.html",
++                "knowledge-graph-phase-4.html",
++                "siddhar-knowledge-graph.html",
++                "skanda-purana-graph.html",
++                "assets/css/osb44.css",
++                "tools/site_audit.py",
++                "tests/audio-history.test.mjs",
++                "tests/print-support.test.mjs",
++                "tests/accessibility-preferences.test.mjs",
++                "tests/reading-list.test.mjs",
++                "tests/search-facets.test.mjs",
++            ):
++                if not (root / relative).is_file():
++                    errors.append(f"repository mode requires {relative}")
++
++    report = {
++        "release": 220,
++        "base_commit": BASE_COMMIT,
++        "mode": "package" if args.package_mode else "repository",
++        "status": "FAIL" if errors else "PASS",
++        "errors": errors,
++        "checks": checks,
++        "github_actions": "NOT_RUN",
++        "deployed_production": "NOT_RUN",
++    }
++    report_path = args.report if args.report.is_absolute() else root / args.report
++    report_path.parent.mkdir(parents=True, exist_ok=True)
++    report_path.write_text(
++        json.dumps(report, ensure_ascii=False, indent=2) + "\n",
++        encoding="utf-8"
++    )
++    print(json.dumps(report, ensure_ascii=False, indent=2))
++    return 1 if errors else 0
++
++if __name__ == "__main__":
++    sys.exit(main())
+diff --git a/.github/workflows/static-site-integrity.yml b/.github/workflows/static-site-integrity.yml
+--- a/.github/workflows/static-site-integrity.yml
++++ b/.github/workflows/static-site-integrity.yml
+@@ -1,4 +1,4 @@
+-name: Release 219 Static Site Integrity
++name: Release 220 Static Site Integrity
+ 
+ on:
+   push:
+@@ -12,7 +12,7 @@
+ 
+ jobs:
+   integrity:
+-    name: Release 219 repository validation
++    name: Release 220 repository validation
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repository
+@@ -28,32 +28,32 @@
+         with:
+           node-version: "20"
+ 
+-      - name: Validate Release 219 identities and routes
+-        run: python tools/release_219_validate.py --root . --report artifacts/release-219-overlay-validation.json
++      - name: Validate Release 220 identities and graph evidence
++        run: python tools/release_220_validate.py --root . --report artifacts/release-220-overlay-validation.json
+ 
+       - name: Check browser modules
+         run: |
++          node --check assets/js/knowledge-graph-explorer.mjs
+           node --check assets/js/audio-history.mjs
+           node --check assets/js/print-support.mjs
+           node --check assets/js/accessibility-preferences.mjs
+           node --check assets/js/reading-list.mjs
+           node --check assets/js/search-facets.mjs
+           node --check assets/js/pwa-register.js
+-          node --check assets/js/media-session-player.js
+ 
+       - name: Run browser-local feature unit tests
+-        run: node --test tests/audio-history.test.mjs tests/print-support.test.mjs tests/accessibility-preferences.test.mjs tests/reading-list.test.mjs tests/search-facets.test.mjs
++        run: node --test tests/knowledge-graph-explorer.test.mjs tests/audio-history.test.mjs tests/print-support.test.mjs tests/accessibility-preferences.test.mjs tests/reading-list.test.mjs tests/search-facets.test.mjs
+ 
+       - name: Run site-audit unit tests
+         run: python -m unittest discover -s tests -p 'test_site_audit.py'
+ 
+       - name: Run repository-wide static audit
+-        run: python tools/site_audit.py --root . --json-report artifacts/release-219-site-audit.json --markdown-report artifacts/release-219-site-audit.md
++        run: python tools/site_audit.py --root . --json-report artifacts/release-220-site-audit.json --markdown-report artifacts/release-220-site-audit.md
+ 
+-      - name: Upload Release 219 integrity evidence
++      - name: Upload Release 220 integrity evidence
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+-          name: release-219-static-integrity-${{ github.sha }}
++          name: release-220-static-integrity-${{ github.sha }}
+           path: artifacts/
+           if-no-files-found: error
+diff --git a/.github/workflows/production-smoke.yml b/.github/workflows/production-smoke.yml
+--- a/.github/workflows/production-smoke.yml
++++ b/.github/workflows/production-smoke.yml
+@@ -1,4 +1,4 @@
+-name: Release 219 Production Smoke
++name: Release 220 Production Smoke
+ 
+ on:
+   push:
+@@ -11,12 +11,12 @@
+   contents: read
+ 
+ concurrency:
+-  group: release-219-production-smoke
++  group: release-220-production-smoke
+   cancel-in-progress: true
+ 
+ jobs:
+   smoke:
+-    name: Observe deployed Release 219
++    name: Observe deployed Release 220
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repository
+@@ -32,12 +32,12 @@
+         run: sleep 90
+ 
+       - name: Run deployed production smoke checks
+-        run: python tools/production_smoke.py --retries 18 --delay 20 --report artifacts/release-219-production-smoke.json
++        run: python tools/production_smoke.py --retries 18 --delay 20 --report artifacts/release-220-production-smoke.json
+ 
+-      - name: Upload Release 219 production evidence
++      - name: Upload Release 220 production evidence
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+-          name: release-219-production-smoke-${{ github.sha }}
+-          path: artifacts/release-219-production-smoke.json
++          name: release-220-production-smoke-${{ github.sha }}
++          path: artifacts/release-220-production-smoke.json
+           if-no-files-found: error
+diff --git a/manifest-release-220.json b/manifest-release-220.json
+new file mode 100644
+--- /dev/null
++++ b/manifest-release-220.json
+@@ -0,0 +1,58 @@
++{
++  "project": "OmSaravanaBhava",
++  "release": 220,
++  "name": "Source-Controlled Knowledge Graph Explorer",
++  "base_commit": "76414c2834dd291d2432832cdc81f5f954137eac",
++  "generated": "2026-07-14",
++  "required_commit_title": "Release 220: add local knowledge graph explorer",
++  "validation_status": "LOCAL_PACKAGE_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
++  "production_files": [
++    "knowledge-graph.html",
++    "knowledge-graph-explorer.html",
++    "assets/css/knowledge-graph-explorer.css",
++    "assets/js/knowledge-graph-explorer.mjs",
++    "data/knowledge-graph-explorer.json",
++    "index.html",
++    "platform.html",
++    "data/site-routes.json",
++    "sitemap.xml",
++    "service-worker.js"
++  ],
++  "ci_alignment_files": [
++    "quality/site-audit-config.json",
++    "tools/production_smoke.py",
++    "tests/test_site_audit.py",
++    "tests/knowledge-graph-explorer.test.mjs",
++    "tools/release_220_validate.py",
++    ".github/workflows/static-site-integrity.yml",
++    ".github/workflows/production-smoke.yml"
++  ],
++  "source_pages": [
++    "/knowledge-graph.html",
++    "/knowledge-graph-phase-3.html",
++    "/knowledge-graph-phase-4.html",
++    "/siddhar-knowledge-graph.html",
++    "/skanda-purana-graph.html"
++  ],
++  "claims": {
++    "graph_registers": 5,
++    "explicit_source_page_entities": 18,
++    "explorer_nodes": 23,
++    "explorer_metadata_relationships": 20,
++    "known_reported_domain_relationships": 27,
++    "registers_without_published_relationship_count": 2,
++    "inferred_theological_relationships": false,
++    "remote_graph_service": false,
++    "external_graph_library": false,
++    "analytics": false,
++    "service_worker_release": 220,
++    "new_optional_cache_assets": 4
++  },
++  "limitations": [
++    "Phase 3 and Phase 4 provide summary totals without node-level records.",
++    "Siddhar nodes retain source-review status.",
++    "Skanda Purana nodes retain pending chapter-level verification status.",
++    "Explorer metadata edges are not substitutes for theological domain relationships.",
++    "GitHub Actions and deployed production validation remain pending."
++  ]
++}
