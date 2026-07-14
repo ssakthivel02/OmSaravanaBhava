@@ -1,4 +1,4 @@
-const RELEASE = '208';
+const RELEASE = '209';
 const STATIC_CACHE = `osb-static-v${RELEASE}`;
 const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
 const DATA_CACHE = `osb-data-v${RELEASE}`;
@@ -165,7 +165,9 @@ const PRECACHE_URLS = [
   "/siddhar-encyclopedia.html",
   "/data/siddhar-encyclopedia.json",
   "/panchangam-framework.html",
-  "/data/panchangam-framework.json"
+  "/data/panchangam-framework.json",
+  "/data/search-concepts.json",
+  "/assets/js/search-concepts.js"
 ];
 
 self.addEventListener('install', event => {

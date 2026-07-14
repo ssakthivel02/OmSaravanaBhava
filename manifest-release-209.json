@@ -1,0 +1,22 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 209,
+  "name": "Local Semantic Search Version 3",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 4,
+  "modified": [
+    "ai-search.html",
+    "service-worker.js"
+  ],
+  "added": [
+    "data/search-concepts.json",
+    "assets/js/search-concepts.js"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Concept groups": 4,
+    "Remote embeddings": "None"
+  }
+}
