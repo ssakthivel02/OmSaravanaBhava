@@ -1,0 +1,175 @@
+Release 229 — Local Test Evidence
+Generated: 2026-07-15
+Expected base commit: 513949e743a9cab67281fbea7d379bf4c0d06d66
+Release objective: Premium Desktop Literature Navigator
+
+LOCAL PACKAGE RESULT: PASS
+PATCH APPLICABILITY RESULT: PASS
+GITHUB ACTIONS RESULT: NOT RUN
+DEPLOYED RELEASE 229 RESULT: NOT RUN
+
+BASELINE EVIDENCE
+- Repository main HEAD was verified externally as 513949e743a9cab67281fbea7d379bf4c0d06d66.
+- The two modified Release 228 source files were reconstructed from GitHub and their Git blob IDs match GitHub exactly.
+- The patch therefore targets byte-identical baseline content rather than an approximate local copy.
+
+AUTOMATED COMMAND EVIDENCE
+
+$ node --check assets/js/reading-workspace-desktop.mjs
+Check: JavaScript module syntax
+Exit code: 0
+
+
+$ node --check service-worker.js
+Check: Service-worker syntax
+Exit code: 0
+
+
+$ node --test tests/reading-workspace-desktop.test.mjs
+Check: Release 229 Node tests
+Exit code: 0
+TAP version 13
+# Subtest: release and desktop breakpoint are stable
+ok 1 - release and desktop breakpoint are stable
+  ---
+  duration_ms: 2.068138
+  type: 'test'
+  ...
+# Subtest: selection index is bounded
+ok 2 - selection index is bounded
+  ---
+  duration_ms: 0.199427
+  type: 'test'
+  ...
+# Subtest: listbox keyboard movement is deterministic
+ok 3 - listbox keyboard movement is deterministic
+  ---
+  duration_ms: 0.164415
+  type: 'test'
+  ...
+# Subtest: progress labels stay factual and bounded
+ok 4 - progress labels stay factual and bounded
+  ---
+  duration_ms: 0.135972
+  type: 'test'
+  ...
+# Subtest: reading href resumes only genuine in-progress records
+ok 5 - reading href resumes only genuine in-progress records
+  ---
+  duration_ms: 0.204093
+  type: 'test'
+  ...
+# Subtest: visible selection is preserved or falls back safely
+ok 6 - visible selection is preserved or falls back safely
+  ---
+  duration_ms: 0.222712
+  type: 'test'
+  ...
+# Subtest: keyboard shortcut avoids editable controls
+ok 7 - keyboard shortcut avoids editable controls
+  ---
+  duration_ms: 0.182422
+  type: 'test'
+  ...
+# Subtest: page contains one accessible master-detail navigator
+ok 8 - page contains one accessible master-detail navigator
+  ---
+  duration_ms: 6.738954
+  type: 'test'
+  ...
+# Subtest: desktop styles include visible focus and reduced motion
+ok 9 - desktop styles include visible focus and reduced motion
+  ---
+  duration_ms: 1.268337
+  type: 'test'
+  ...
+# Subtest: module creates no new storage key or tracking surface
+ok 10 - module creates no new storage key or tracking surface
+  ---
+  duration_ms: 1.195745
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 107.432921
+
+$ python -m py_compile tools/release_229_validate.py
+Check: Python validator compile
+Exit code: 0
+
+
+$ python -c <Release 229 YAML BaseLoader audit>
+Check: Workflow YAML syntax and required keys
+Exit code: 0
+.github/workflows/release-229-integrity.yml: PASS
+.github/workflows/release-229-production-smoke.yml: PASS
+
+$ git hash-object <verified baseline files>
+Check: Verified Release 228 baseline blob identities
+Exit code: 0
+reading-workspace.html: 5a94ce2cffd204728424236124b803533ef9cac1 (expected 5a94ce2cffd204728424236124b803533ef9cac1)
+service-worker.js: 0eeacd9d3daf146a875c46f8dbb506c6507cf1ba (expected 0eeacd9d3daf146a875c46f8dbb506c6507cf1ba)
+
+$ git apply --check RELEASE_229.patch
+Check: Patch applicability against verified Release 228 baseline
+Exit code: 0
+No output; patch applies cleanly.
+
+$ internal deterministic text audit
+Check: Tamil UTF-8 and browser-data boundary
+Exit code: 0
+வாசிப்பு பணிமனை count: 1
+ஓம் சரவணபவ count: 2
+new localStorage.setItem operations: 0
+tracking beacon operations: 0
+
+$ python tools/release_229_validate.py --root . --package-mode
+Check: Release 229 package validator before final checksum ledger
+Exit code: 0
+{
+  "release": 229,
+  "base_commit": "513949e743a9cab67281fbea7d379bf4c0d06d66",
+  "mode": "package",
+  "status": "PASS",
+  "errors": [],
+  "warnings": [],
+  "checks": [
+    "required release files",
+    "release page semantics and unique IDs",
+    "desktop module, CSS and additive offline precache",
+    "release manifest identity and limitations",
+    "JSON syntax (2 file(s))",
+    "localhost, credential and tracking marker scan",
+    "final package SHA256 verification",
+    "Node syntax and Release 229 tests"
+  ],
+  "skipped": [
+    "full repository HTML scan",
+    "full route-file existence scan",
+    "deployed production smoke",
+    "GitHub Actions conclusion"
+  ],
+  "github_actions": "NOT_RUN_LOCALLY",
+  "deployed_production": "NOT_RUN_LOCALLY"
+}
+
+FINAL CHECKSUM PROCESS
+- RELEASE_229_SHA256SUMS.txt is generated only after this evidence file, the validation report and the patch are final.
+- The final package validator is rerun after the ledger is generated.
+- The checksum ledger excludes only itself to avoid self-reference.
+
+MANUAL / REMOTE CHECKS NOT EXECUTED LOCALLY
+- Real-browser viewport inspection at small mobile, large mobile, tablet, laptop, desktop and wide desktop.
+- Screen-reader announcement testing.
+- Browser zoom at 200%.
+- Offline navigation after an installed service worker updates its cache.
+- GitHub Actions conclusions.
+- GitHub Pages publication of Release 229.
+
+These checks remain mandatory after upload. Their absence is not recorded as a pass.

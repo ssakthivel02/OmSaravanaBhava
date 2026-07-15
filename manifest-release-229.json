@@ -1,0 +1,93 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 229,
+  "name": "Premium Desktop Literature Navigator",
+  "base_commit": "513949e743a9cab67281fbea7d379bf4c0d06d66",
+  "base_release": 228,
+  "generated": "2026-07-15",
+  "required_commit_title": "Release 229: add premium desktop literature navigator",
+  "validation_status": "LOCAL_PACKAGE_PASS_PATCH_CHECK_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
+  "production_objective": "Upgrade the existing Reading Workspace in place with a desktop-first, keyboard-operable master-detail literature navigator while preserving all existing browser-local data boundaries.",
+  "added_files": [
+    ".github/workflows/release-229-integrity.yml",
+    ".github/workflows/release-229-production-smoke.yml",
+    "assets/css/reading-workspace-desktop.css",
+    "assets/js/reading-workspace-desktop.mjs",
+    "tests/reading-workspace-desktop.test.mjs",
+    "tools/release_229_validate.py",
+    "manifest-release-229.json",
+    "RELEASE_229_CHANGED_FILES.txt",
+    "RELEASE_229_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_229_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_229_VALIDATION_REPORT.md",
+    "RELEASE_229_SHA256SUMS.txt",
+    "RELEASE_229.patch"
+  ],
+  "modified_files": [
+    "reading-workspace.html",
+    "service-worker.js"
+  ],
+  "deleted_files": [],
+  "merge_sensitive_files": [
+    "reading-workspace.html",
+    "service-worker.js"
+  ],
+  "service_worker_cache_generation": 228,
+  "service_worker_strategy": "Additive precache update only. Existing Release 228 cache names and migration behaviour remain unchanged.",
+  "route_registry_changed": false,
+  "sitemap_changed": false,
+  "new_public_route": false,
+  "new_browser_storage_key": false,
+  "content_changes": false,
+  "claims": {
+    "desktop_master_detail_layout": true,
+    "keyboard_listbox_navigation": true,
+    "visible_focus": true,
+    "reduced_motion_support": true,
+    "responsive_single_column_fallback": true,
+    "existing_reading_progress_reused": true,
+    "existing_reading_list_reused": true,
+    "new_storage_key": false,
+    "analytics": false,
+    "tracking": false,
+    "backend_dependency": false,
+    "devotional_text_modified": false
+  },
+  "validation_commands": [
+    "node --check assets/js/reading-workspace-desktop.mjs",
+    "node --test tests/reading-workspace-desktop.test.mjs",
+    "python tools/release_229_validate.py --root . --package-mode --report artifacts/release-229-package-validation.json",
+    "git apply --check RELEASE_229.patch"
+  ],
+  "validation_results": {
+    "local_package": "PASS",
+    "node_syntax": "PASS",
+    "node_tests": "PASS_10_OF_10",
+    "python_compile": "PASS",
+    "workflow_yaml_parse": "PASS",
+    "baseline_blob_match": "PASS",
+    "patch_check": "PASS",
+    "github_actions": "NOT_RUN",
+    "deployed_production": "NOT_RUN"
+  },
+  "known_limitations": [
+    "The desktop navigator does not add, replace or verify devotional text.",
+    "Route selection is temporary UI state and is not persisted.",
+    "Reading progress remains an approximate browser-local scroll position.",
+    "The split layout activates at wide desktop widths and falls back to one column on smaller viewports.",
+    "GitHub Actions and deployed-production checks can run only after repository upload.",
+    "The service-worker cache generation remains 228 because this release is an additive precache update, not a cache-schema migration."
+  ],
+  "patch_scope": {
+    "includes": "Production implementation, modified baseline files, release manifest, tests, validator and Release 229 workflows.",
+    "excludes": [
+      "RELEASE_229.patch",
+      "RELEASE_229_SHA256SUMS.txt",
+      "RELEASE_229_LOCAL_TEST_EVIDENCE.txt",
+      "RELEASE_229_VALIDATION_REPORT.md",
+      "RELEASE_229_CHANGED_FILES.txt",
+      "RELEASE_229_GITHUB_PORTAL_INSTRUCTIONS.txt"
+    ],
+    "reason": "Release evidence ledgers are generated after patch applicability is proven and are distributed in the ZIP overlay."
+  }
+}

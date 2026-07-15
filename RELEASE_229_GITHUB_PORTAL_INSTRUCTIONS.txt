@@ -1,0 +1,82 @@
+Release 229 — GitHub browser upload instructions
+
+Repository:
+https://github.com/ssakthivel02/OmSaravanaBhava
+
+MANDATORY BASE CHECK
+Expected current main HEAD:
+513949e743a9cab67281fbea7d379bf4c0d06d66
+
+Do not upload this overlay if main has moved. If the SHA differs, stop and compare the newer commit before merging.
+
+DOWNLOAD AND EXTRACT
+1. Download OmSaravanaBhava-Release-229.zip.
+2. Extract the ZIP completely.
+3. In Windows File Explorer, enable View > Show > Hidden items.
+4. Open the extracted folder itself.
+5. Confirm the hidden .github folder is visible.
+
+UPLOAD
+1. Open the repository main branch in GitHub.
+2. Select Add file > Upload files.
+3. Drag the CONTENTS of the extracted folder, not the outer folder.
+4. Preserve every repository-relative path.
+5. Confirm these paths appear before committing:
+   reading-workspace.html
+   service-worker.js
+   assets/css/reading-workspace-desktop.css
+   assets/js/reading-workspace-desktop.mjs
+   tests/reading-workspace-desktop.test.mjs
+   tools/release_229_validate.py
+   .github/workflows/release-229-integrity.yml
+   .github/workflows/release-229-production-smoke.yml
+   manifest-release-229.json
+6. Confirm no unexpected deletion is shown.
+7. Confirm data/site-routes.json and sitemap.xml are not part of the upload; this release creates no route.
+
+COMMIT
+Enter this exact text in the SMALL UPPER commit-title field:
+Release 229: add premium desktop literature navigator
+
+Leave the larger commit-description field completely blank.
+Do not use “Add files via upload” as the title.
+
+POST-UPLOAD REPOSITORY CHECKS
+1. Copy the new main HEAD SHA.
+2. Open reading-workspace.html and confirm data-release="229".
+3. Open service-worker.js and confirm:
+   const RELEASE = '228';
+   /assets/css/reading-workspace-desktop.css appears once.
+   /assets/js/reading-workspace-desktop.mjs appears once.
+4. Open manifest-release-229.json and confirm base_commit is the expected Release 228 SHA.
+5. Open the Actions tab.
+6. Confirm “Release 229 Static Site Integrity” completes successfully.
+7. Confirm the standard GitHub Pages deployment completes successfully.
+8. Run or wait for “Release 229 Production Smoke”.
+9. Do not call the release complete until both applicable workflows and deployed checks pass.
+
+DEPLOYED-SITE VERIFICATION
+1. Open https://omsaravanabhava.org/reading-workspace.html in a private window.
+2. Confirm the route list and detail inspector load.
+3. At a wide desktop viewport, confirm the two-column layout and sticky inspector.
+4. At tablet and mobile widths, confirm a single-column layout.
+5. Keyboard-test the route list with Up, Down, Home and End.
+6. Press / outside an input and confirm search receives focus.
+7. Confirm visible focus is present.
+8. Enable reduced motion and confirm selection does not depend on animation.
+9. Test Tamil and English search, progress filters and publication-state filters.
+10. Open and resume a route.
+11. Save one route to the existing reading list.
+12. Reset one route’s progress and confirm unrelated local data remains.
+13. Go offline after one successful online load and confirm the workspace, new CSS and new module are available.
+14. Confirm no new localStorage key is created by route selection.
+
+ROLLBACK
+If Release 229 causes a regression:
+1. In GitHub, open the Release 229 commit.
+2. Use Revert if available, or restore reading-workspace.html and service-worker.js from commit 513949e743a9cab67281fbea7d379bf4c0d06d66.
+3. Remove only the Release 229 added files listed in RELEASE_229_CHANGED_FILES.txt.
+4. Commit the rollback with a clear title.
+5. Wait for GitHub Pages deployment.
+6. In the browser Maintenance Centre, request a service-worker update and clear transient runtime/data caches only.
+7. Do not remove browser-local reading lists, notes, progress, accessibility preferences, collections or plans.

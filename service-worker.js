@@ -225,6 +225,8 @@ const PRECACHE_URLS = [
   "/manifest-release-222.json",
   "/reading-workspace.html",
   "/assets/css/reading-workspace.css",
+  "/assets/css/reading-workspace-desktop.css",
+  "/assets/js/reading-workspace-desktop.mjs",
   "/data/reading-workspace.json",
   "/manifest-release-223.json",
   "/reading-notes.html",
