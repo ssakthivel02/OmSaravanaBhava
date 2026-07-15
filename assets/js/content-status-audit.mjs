@@ -1,4 +1,4 @@
-export const RELEASE = 230;
+export const RELEASE = 231;
 export const CONFIG_PATH = '/data/content-status.json';
 export const ROUTES_PATH = '/data/site-routes.json';
 export const BOUNDARIES_PATH = '/data/publication-boundaries.json';
@@ -290,7 +290,7 @@ const renderRecord = (record, evidence) => {
   comparison.className = 'content-status-comparison';
   const declared = document.createElement('div');
   declared.className = 'content-status-state';
-  createText(declared, 'span', 'Route registry');
+  createText(declared, 'span', 'Effective route status');
   createText(declared, 'strong', record.declaredStatus);
   comparison.appendChild(declared);
   createText(comparison, 'span', '→', 'content-status-arrow');
@@ -439,7 +439,7 @@ export const initialiseContentStatusAudit = async ({
       });
 
       message.textContent =
-        `Registry loaded. ${summary.mismatches} audited route label${summary.mismatches === 1 ? '' : 's'} differ from verified page scope. Checking same-origin evidence…`;
+        `Canonical registry loaded. ${summary.mismatches} effective conflict${summary.mismatches === 1 ? '' : 's'} remain. Checking same-origin evidence…`;
       render();
 
       const evidence = await verifyAllPageEvidence(
@@ -453,7 +453,7 @@ export const initialiseContentStatusAudit = async ({
         item => item.available && item.markerFound && item.robotsFound
       ).length;
       message.textContent =
-        `Audit ready: ${summary.audited} records, ${summary.mismatches} registry mismatches, ${confirmed}/${evidence.length} page declarations confirmed in this request.`;
+        `Audit ready: ${summary.audited} records, ${summary.mismatches} effective conflicts, ${confirmed}/${evidence.length} page declarations confirmed in this request.`;
       render();
       documentRef.documentElement.dataset.contentStatusRelease =
         String(RELEASE);

@@ -1,9 +1,9 @@
 {
-  "release": 230,
+  "release": 231,
   "generated": "2026-07-15",
-  "baseCommit": "292f9f8b2a481f1aab43db2e75d31ccf0a0ffd81",
-  "title": "Audited Literature Publication Boundaries",
-  "scope": "Crosswalk between public route-directory labels, page declarations and canonical literature data. This registry does not add or replace devotional text.",
+  "baseCommit": "2cec1d02d81aa3251da131667fabd4d24a98147a",
+  "title": "Canonical Literature Publication Status Policy",
+  "scope": "Canonical publication-status overlay for audited literature routes. It preserves the historical route-directory label while propagating the verified page scope to public discovery and directory consumers.",
   "statusVocabulary": {
     "partial-reviewed": "A bounded reviewed extract is available; the complete work is not claimed.",
     "source-register": "Bibliographic, structural or authorship information is available without verified complete verse text.",
@@ -116,9 +116,24 @@
     }
   ],
   "limitations": [
-    "The route registry is not silently rewritten by this release; mismatches are displayed explicitly.",
-    "Reading eligibility is enforced through the existing Reading Workspace configuration and audited boundary overlay.",
-    "A verified status describes the current page scope, not the historical completeness of the underlying literary work.",
-    "No modern translation, commentary or copyrighted recording is introduced."
-  ]
+    "The base route registry remains a historical directory snapshot; public consumers receive a canonical same-origin overlay.",
+    "Only the eight evidence-backed literature routes in this registry are reconciled.",
+    "A canonical status describes the current page scope and does not assert completeness of the underlying literary work.",
+    "No modern translation, commentary, copyrighted recording or missing verse is introduced.",
+    "If the boundary registry cannot be loaded, consumers fall back to the unmodified route registry and expose a warning state."
+  ],
+  "propagation": {
+    "strategy": "same-origin route-registry response reconciliation",
+    "routeRegistryPath": "/data/site-routes.json",
+    "boundaryRegistryPath": "/data/publication-boundaries.json",
+    "consumerRoutes": [
+      "/content-status.html",
+      "/discovery.html",
+      "/site-directory.html"
+    ],
+    "consumerScript": "/assets/js/route-status-reconciliation.js",
+    "historicalRouteLabelsPreserved": true,
+    "effectiveStatusField": "verifiedStatus",
+    "summaryField": "contentScope"
+  }
 }

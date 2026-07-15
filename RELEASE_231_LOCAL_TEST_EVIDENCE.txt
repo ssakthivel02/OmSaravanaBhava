@@ -1,0 +1,181 @@
+Release 231 — Local Test Evidence
+Generated: 2026-07-15
+Base commit: 2cec1d02d81aa3251da131667fabd4d24a98147a
+
+LOCAL PACKAGE RESULT: PASS
+PATCH APPLICABILITY: PASS
+GITHUB ACTIONS RESULT: NOT RUN LOCALLY
+DEPLOYED PRODUCTION RESULT: NOT RUN LOCALLY
+
+Verified Release 230 Git blob baseline:
+200506da242310cefa46f52c101df9bf74e07412  content-status.html
+21e144bf059b98fd512fcba6f810c82418bc7b73  discovery.html
+f24234d9cda3a6fa4c2db14d504701ba90f21785  site-directory.html
+3c38f1861cb49b3f7d0f62b4633df5eae5c5e486  data/content-status.json
+8c23f48d820805a1cc153210edc62b54376fa880  data/publication-boundaries.json
+e68d8cab6a57ecffa36218041d4318a9c43b3fc3  assets/js/content-status-audit.mjs
+b4aa3df0bd868819c94add8c973ed14ea0352d0a  service-worker.js
+
+Workflow YAML parse:
+PASS  .github/workflows/release-231-integrity.yml
+PASS  .github/workflows/release-231-production-smoke.yml
+
+$ node --check assets/js/route-status-reconciliation.js
+Exit code: 0
+
+
+$ node --check assets/js/content-status-audit.mjs
+Exit code: 0
+
+
+$ node --check service-worker.js
+Exit code: 0
+
+
+$ node --test tests/route-status-reconciliation.test.mjs
+Exit code: 0
+TAP version 13
+# Subtest: classic bootstrap exposes Release 231 policy without patching Node fetch
+ok 1 - classic bootstrap exposes Release 231 policy without patching Node fetch
+  ---
+  duration_ms: 1.000109
+  type: 'test'
+  ...
+# Subtest: route normalisation accepts same-origin paths and rejects external URLs
+ok 2 - route normalisation accepts same-origin paths and rejects external URLs
+  ---
+  duration_ms: 0.195951
+  type: 'test'
+  ...
+# Subtest: boundary map contains unique canonical routes
+ok 3 - boundary map contains unique canonical routes
+  ---
+  duration_ms: 0.277923
+  type: 'test'
+  ...
+# Subtest: canonical overlay updates status, scope and provenance
+ok 4 - canonical overlay updates status, scope and provenance
+  ---
+  duration_ms: 0.340366
+  type: 'test'
+  ...
+# Subtest: source-register route remains visible metadata but is reading-ineligible
+ok 5 - source-register route remains visible metadata but is reading-ineligible
+  ---
+  duration_ms: 0.314257
+  type: 'test'
+  ...
+# Subtest: unregistered routes remain semantically unchanged
+ok 6 - unregistered routes remain semantically unchanged
+  ---
+  duration_ms: 0.76595
+  type: 'test'
+  ...
+# Subtest: overlay does not mutate input registries
+ok 7 - overlay does not mutate input registries
+  ---
+  duration_ms: 0.387637
+  type: 'test'
+  ...
+# Subtest: request classifier reconciles only the same-origin route registry
+ok 8 - request classifier reconciles only the same-origin route registry
+  ---
+  duration_ms: 0.196402
+  type: 'test'
+  ...
+# Subtest: transition labels preserve historical correction evidence
+ok 9 - transition labels preserve historical correction evidence
+  ---
+  duration_ms: 0.422068
+  type: 'test'
+  ...
+# Subtest: production boundary registry has eight audited records and three consumers
+ok 10 - production boundary registry has eight audited records and three consumers
+  ---
+  duration_ms: 9.037459
+  type: 'test'
+  ...
+# Subtest: seven audited routes remain reading-ineligible and one bounded extract remains eligible
+ok 11 - seven audited routes remain reading-ineligible and one bounded extract remains eligible
+  ---
+  duration_ms: 1.475746
+  type: 'test'
+  ...
+# Subtest: Content Status configuration identifies effective runtime mode
+ok 12 - Content Status configuration identifies effective runtime mode
+  ---
+  duration_ms: 2.856465
+  type: 'test'
+  ...
+# Subtest: consumer pages load reconciliation synchronously before their renderers
+ok 13 - consumer pages load reconciliation synchronously before their renderers
+  ---
+  duration_ms: 2.147976
+  type: 'test'
+  ...
+# Subtest: service worker precaches Release 231 assets exactly once without cache migration
+ok 14 - service worker precaches Release 231 assets exactly once without cache migration
+  ---
+  duration_ms: 1.020559
+  type: 'test'
+  ...
+# Subtest: new production script has no storage, tracking or content-generation operation
+ok 15 - new production script has no storage, tracking or content-generation operation
+  ---
+  duration_ms: 0.205656
+  type: 'test'
+  ...
+# Subtest: browser bootstrap intercepts the route registry and returns a reconciled Response
+ok 16 - browser bootstrap intercepts the route registry and returns a reconciled Response
+  ---
+  duration_ms: 4.907723
+  type: 'test'
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 16
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 157.232331
+
+$ python -S -m py_compile tools/release_231_validate.py
+Exit code: 0
+
+
+$ python -S tools/release_231_validate.py --root . --package-mode
+Exit code: 0
+{
+  "release": 231,
+  "base_commit": "2cec1d02d81aa3251da131667fabd4d24a98147a",
+  "mode": "package",
+  "status": "PASS",
+  "errors": [],
+  "warnings": [],
+  "checks": [
+    "required release files",
+    "JSON syntax",
+    "eight-record canonical boundary and propagation contract",
+    "effective Content Status configuration and module identity",
+    "consumer semantics and synchronous reconciliation order",
+    "narrow fetch overlay, visible provenance and safe fallback",
+    "additive precache without cache or data migration",
+    "manifest identity, strategy and limitations",
+    "production credential, localhost and analytics marker scan",
+    "Node syntax and Release 231 tests"
+  ],
+  "skipped": [
+    "historical route-registry snapshot check",
+    "real browser fetch interception",
+    "same-origin deployed page evidence",
+    "GitHub Actions conclusion",
+    "deployed-production verification"
+  ],
+  "github_actions": "NOT_RUN_LOCALLY",
+  "deployed_production": "NOT_RUN_LOCALLY"
+}
+
+$ git apply --check RELEASE_231.patch (from exact Release 230 baseline)
+Exit code: 0

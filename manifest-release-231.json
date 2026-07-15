@@ -1,0 +1,80 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 231,
+  "name": "Canonical Publication Status Propagation",
+  "base_commit": "2cec1d02d81aa3251da131667fabd4d24a98147a",
+  "base_release": 230,
+  "generated": "2026-07-15",
+  "required_commit_title": "Release 231: propagate canonical publication statuses",
+  "validation_status": "LOCAL_PACKAGE_PASS_PATCH_CHECK_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
+  "production_objective": "Apply the audited literature publication-boundary registry consistently to Content Status, Discovery and Site Directory while preserving the historical base route registry and all devotional and personal data.",
+  "added_files": [
+    ".github/workflows/release-231-integrity.yml",
+    ".github/workflows/release-231-production-smoke.yml",
+    "assets/css/route-status-reconciliation.css",
+    "assets/js/route-status-reconciliation.js",
+    "tests/route-status-reconciliation.test.mjs",
+    "tools/release_231_validate.py",
+    "manifest-release-231.json",
+    "RELEASE_231_CHANGED_FILES.txt",
+    "RELEASE_231_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_231_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_231_VALIDATION_REPORT.md",
+    "RELEASE_231_SHA256SUMS.txt",
+    "RELEASE_231.patch"
+  ],
+  "modified_files": [
+    "content-status.html",
+    "discovery.html",
+    "site-directory.html",
+    "data/content-status.json",
+    "data/publication-boundaries.json",
+    "assets/js/content-status-audit.mjs",
+    "service-worker.js"
+  ],
+  "deleted_files": [],
+  "merge_sensitive_files": [
+    "content-status.html",
+    "discovery.html",
+    "site-directory.html",
+    "data/publication-boundaries.json",
+    "service-worker.js"
+  ],
+  "route_registry_changed": false,
+  "route_registry_strategy": "Preserve data/site-routes.json as the historical directory snapshot and reconcile only same-origin consumer responses through the audited boundary registry.",
+  "sitemap_changed": false,
+  "new_public_route": false,
+  "new_browser_storage_key": false,
+  "content_changes": false,
+  "service_worker_cache_generation": 228,
+  "claims": {
+    "canonical_status_consumers": 3,
+    "audited_literature_routes": 8,
+    "historical_route_labels_preserved": true,
+    "fallback_to_base_registry": true,
+    "visible_reconciliation_badges": true,
+    "new_storage_key": false,
+    "analytics": false,
+    "tracking": false,
+    "backend_dependency": false,
+    "devotional_text_modified": false
+  },
+  "validation_results": {
+    "local_package": "PASS",
+    "node_syntax": "PASS",
+    "node_tests": "PASS_16_OF_16",
+    "python_compile": "PASS",
+    "workflow_yaml_parse": "PASS",
+    "baseline_blob_match": "PASS",
+    "patch_check": "PASS",
+    "github_actions": "NOT_RUN",
+    "deployed_production": "NOT_RUN"
+  },
+  "known_limitations": [
+    "The physical data/site-routes.json file remains unchanged; canonical values are propagated at the public-consumer boundary.",
+    "Only eight evidence-backed literature routes are reconciled.",
+    "If boundary loading fails, the base registry is returned with an explicit fallback state.",
+    "GitHub Actions and deployed-production validation remain pending until upload.",
+    "The service-worker cache generation remains 228 because no cache schema or personal-data migration is introduced."
+  ]
+}

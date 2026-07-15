@@ -13,13 +13,15 @@
 <meta property="og:url" content="https://omsaravanabhava.org/content-status.html">
 <link rel="stylesheet" href="assets/css/osb44.css">
 <link rel="stylesheet" href="assets/css/content-status-audit.css">
+<link rel="stylesheet" href="assets/css/route-status-reconciliation.css">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#a51d17">
 <link rel="manifest" href="manifest.json">
+<script src="assets/js/route-status-reconciliation.js"></script>
 <script defer src="assets/js/pwa-register.js"></script>
 <script type="module" src="assets/js/content-status-audit.mjs"></script>
 </head>
-<body data-release="230">
+<body data-release="231">
 <a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="top">🛕 ஓம் சரவணபவ · Source-responsible publication boundary audit</div>
 <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
@@ -31,14 +33,14 @@
 
 <section class="card content-status-hero">
 <div>
-<span class="pill">Release 230 · Runtime-derived editorial integrity</span>
+<span class="pill">Release 231 · Canonical publication-status propagation</span>
 <h1 class="section-title" lang="ta">உள்ளடக்க நிலை</h1>
 <h2>Content Publication Status and Boundary Audit</h2>
-<p>Compare the public route directory with explicit page and data declarations. Counts are calculated from current static registries instead of copied into this page as permanent claims.</p>
+<p>Review effective canonical publication states across the route directory, page declarations and boundary registry. Historical labels remain preserved for audit traceability.</p>
 </div>
 <div class="content-status-metric"><strong id="contentStatusRoutes">0</strong><span>registered routes</span></div>
 <div class="content-status-metric"><strong id="contentStatusAudited">0</strong><span>audited literature routes</span></div>
-<div class="content-status-metric"><strong id="contentStatusMismatch">0</strong><span>status mismatches</span></div>
+<div class="content-status-metric"><strong id="contentStatusMismatch">0</strong><span>effective conflicts</span></div>
 <div class="content-status-metric"><strong id="contentStatusExcluded">0</strong><span>source-only routes excluded</span></div>
 </section>
 
@@ -46,7 +48,7 @@
 
 <section class="card" aria-labelledby="contentStatusCountsHeading">
 <div class="content-status-heading-row">
-<div><span class="pill">Current route registry</span><h2 id="contentStatusCountsHeading">Derived status totals</h2></div>
+<div><span class="pill">Effective canonical registry</span><h2 id="contentStatusCountsHeading">Reconciled status totals</h2></div>
 <button id="contentStatusRefresh" class="btn secondary" type="button">Refresh audit</button>
 </div>
 <div id="contentStatusCounts" class="content-status-count-grid" aria-live="polite">
@@ -58,7 +60,7 @@
 <label for="contentStatusFilter">Audit state
 <select id="contentStatusFilter">
 <option value="all">All audited records</option>
-<option value="mismatch">Registry mismatches</option>
+<option value="mismatch">Effective conflicts</option>
 <option value="aligned">Aligned records</option>
 <option value="reading-excluded">Excluded from reading</option>
 </select>
@@ -81,6 +83,7 @@
 <section class="card content-status-boundary">
 <h2>Interpretation boundary</h2>
 <ul>
+<li>The Release 231 overlay converts historical generic route labels into the verified canonical status before public discovery and directory rendering.</li>
 <li><strong>Published</strong> must not be read as “complete work” when the page itself states that only a bounded extract or structural register exists.</li>
 <li><strong>Partial reviewed</strong> means only the displayed extract has been reviewed; it is not a completeness claim.</li>
 <li><strong>Source register</strong> records identity, authorship, structure or source status without presenting a verified complete text.</li>

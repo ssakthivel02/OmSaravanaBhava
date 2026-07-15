@@ -137,7 +137,9 @@ const PRECACHE_URLS = [
   "/assets/js/desktop-layout.js",
   "/content-status.html",
   "/assets/css/content-status-audit.css",
+  "/assets/css/route-status-reconciliation.css",
   "/assets/js/content-status-audit.mjs",
+  "/assets/js/route-status-reconciliation.js",
   "/data/content-status.json",
   "/data/publication-boundaries.json",
   "/source-catalog.html",
@@ -257,7 +259,8 @@ const PRECACHE_URLS = [
   "/assets/js/devotional-practice-planner.mjs",
   "/data/devotional-practice-planner.json",
   "/manifest-release-228.json",
-  "/manifest-release-230.json"
+  "/manifest-release-230.json",
+  "/manifest-release-231.json"
 ];
 
 const cacheOptionalAssets = async cache => {

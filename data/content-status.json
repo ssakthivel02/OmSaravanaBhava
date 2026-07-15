@@ -1,16 +1,20 @@
 {
-  "release": 230,
+  "release": 231,
   "generated": "2026-07-15",
-  "baseCommit": "292f9f8b2a481f1aab43db2e75d31ccf0a0ffd81",
-  "mode": "runtime-derived",
+  "baseCommit": "2cec1d02d81aa3251da131667fabd4d24a98147a",
+  "mode": "runtime-derived-effective",
   "routeRegistryPath": "/data/site-routes.json",
   "boundaryRegistryPath": "/data/publication-boundaries.json",
-  "description": "Status totals are derived from the current route registry at runtime. Audited literature mismatches are reported separately; no stale hard-coded totals are presented as current.",
+  "description": "Status totals are derived from the current route registry after the canonical publication-boundary overlay is applied. Historical labels remain visible in the boundary registry rather than being erased.",
   "hardCodedStatusCounts": false,
   "pageEvidenceChecks": true,
   "limitations": [
-    "The browser page can verify same-origin files and text markers but cannot certify editorial scholarship.",
-    "Network or cache failures may make page-evidence checks temporarily unavailable.",
+    "The browser page validates effective same-origin metadata; it cannot certify editorial scholarship.",
+    "Historical route labels are retained in the boundary registry for audit traceability.",
+    "Network or cache failures may temporarily prevent reconciliation and page-evidence checks.",
     "GitHub Actions status is not inferred from this static dashboard."
-  ]
+  ],
+  "reconciliationScript": "/assets/js/route-status-reconciliation.js",
+  "effectiveStatusSource": "/data/publication-boundaries.json",
+  "historicalRouteRegistryPreserved": true
 }

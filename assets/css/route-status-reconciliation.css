@@ -1,0 +1,35 @@
+/* Release 231 — canonical publication-status propagation. */
+.route-status-reconciled {
+  border-color: var(--orange);
+  background: rgba(244, 156, 44, 0.11);
+  color: var(--red);
+  font-weight: 900;
+}
+
+html[data-route-status-policy="fallback"] .route-status-reconciled {
+  display: none;
+}
+
+html[data-route-status-policy="fallback"] body::before {
+  content: "Publication-status reconciliation is temporarily unavailable; base route labels are shown.";
+  display: block;
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--line);
+  background: rgba(244, 156, 44, 0.14);
+  color: inherit;
+  font-weight: 800;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-status-reconciled {
+    transition: none;
+  }
+}
+
+@media print {
+  .route-status-reconciled {
+    border: 1px solid currentColor;
+    background: transparent;
+  }
+}
