@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://omsaravanabhava.org/schemas/release-manifest.schema.json",
+  "title": "OmSaravanaBhava release manifest",
+  "type": "object",
+  "required": [
+    "project",
+    "release",
+    "name",
+    "base_commit",
+    "base_release",
+    "generated",
+    "required_commit_title",
+    "validation_status",
+    "production_objective",
+    "added_files",
+    "modified_files",
+    "deleted_files",
+    "new_browser_storage_key",
+    "content_changes",
+    "validation_results",
+    "known_limitations"
+  ],
+  "properties": {
+    "project": {
+      "const": "OmSaravanaBhava"
+    },
+    "release": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 3
+    },
+    "base_commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "base_release": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "generated": {
+      "type": "string",
+      "format": "date"
+    },
+    "required_commit_title": {
+      "type": "string",
+      "minLength": 10
+    },
+    "validation_status": {
+      "type": "string",
+      "minLength": 3
+    },
+    "production_objective": {
+      "type": "string",
+      "minLength": 20
+    },
+    "added_files": {
+      "$ref": "#/$defs/pathList"
+    },
+    "modified_files": {
+      "$ref": "#/$defs/pathList"
+    },
+    "deleted_files": {
+      "$ref": "#/$defs/pathList"
+    },
+    "new_browser_storage_key": {
+      "type": "boolean"
+    },
+    "content_changes": {
+      "type": "boolean"
+    },
+    "validation_results": {
+      "type": "object"
+    },
+    "known_limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 5
+      }
+    }
+  },
+  "$defs": {
+    "pathList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+      }
+    }
+  },
+  "additionalProperties": true
+}

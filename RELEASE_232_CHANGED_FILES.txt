@@ -1,0 +1,83 @@
+Release 232 — Deterministic Release Governance Gate
+Base commit: f6c081ccf3f35c4b5960ba9932d588151bf39cd9
+Required commit title: Release 232: add deterministic release governance gate
+
+Scope: governance-only; all files are additions.
+
+Added files (60):
+A  .github/workflows/release-232-attestation.yml
+A  .github/workflows/release-232-governance.yml
+A  .release-governance.json
+A  RELEASE_232.patch
+A  RELEASE_232_CHANGED_FILES.txt
+A  RELEASE_232_GITHUB_PORTAL_INSTRUCTIONS.txt
+A  RELEASE_232_LOCAL_TEST_EVIDENCE.txt
+A  RELEASE_232_SHA256SUMS.txt
+A  RELEASE_232_VALIDATION_REPORT.md
+A  docs/github-browser-upload.md
+A  docs/no-filler-file-policy.md
+A  docs/production-verification.md
+A  docs/release-attestation.md
+A  docs/release-governance.md
+A  docs/release-numbering.md
+A  docs/release-status-language.md
+A  docs/rollback-policy.md
+A  examples/release-governance/README.md
+A  examples/release-governance/invalid-commit-title.txt
+A  examples/release-governance/valid-manifest.json
+A  manifest-release-232.json
+A  schemas/release-attestation.schema.json
+A  schemas/release-manifest.schema.json
+A  scripts/release/check-checksums.ps1
+A  scripts/release/check-checksums.sh
+A  scripts/release/check-commit-title.ps1
+A  scripts/release/check-commit-title.sh
+A  scripts/release/preflight.ps1
+A  scripts/release/preflight.sh
+A  templates/release-evidence.template.md
+A  templates/release-manifest.template.json
+A  templates/release-upload-checklist.md
+A  templates/release-validation-report.template.md
+A  tests/release_control/__init__.py
+A  tests/release_control/support.py
+A  tests/release_control/test_checksums.py
+A  tests/release_control/test_cli.py
+A  tests/release_control/test_commit.py
+A  tests/release_control/test_discovery.py
+A  tests/release_control/test_files.py
+A  tests/release_control/test_manifest.py
+A  tests/release_control/test_patch.py
+A  tests/release_control/test_release_232_package.py
+A  tests/release_control/test_report.py
+A  tools/release_232_validate.py
+A  tools/release_control/__init__.py
+A  tools/release_control/__main__.py
+A  tools/release_control/checks.py
+A  tools/release_control/checks_checksums.py
+A  tools/release_control/checks_commit.py
+A  tools/release_control/checks_files.py
+A  tools/release_control/checks_manifest.py
+A  tools/release_control/checks_patch.py
+A  tools/release_control/cli.py
+A  tools/release_control/constants.py
+A  tools/release_control/discovery.py
+A  tools/release_control/git.py
+A  tools/release_control/jsonio.py
+A  tools/release_control/models.py
+A  tools/release_control/report.py
+
+Modified files: none
+Deleted files: none
+
+Deliberately unchanged:
+- All production HTML, CSS and JavaScript routes.
+- data/site-routes.json and publication-boundary data.
+- sitemap.xml, robots.txt and structured metadata.
+- service-worker.js and cache generation.
+- Devotional text, translations, commentary, sources and rights records.
+- Browser-local personal-data schemas and storage keys.
+
+File-count decision:
+- The release contains a complete governance implementation, not 2,000 filler files.
+- Governance warns above 100 changed files and fails above 500.
+- The 60-file package remains reviewable, reversible and suitable for browser upload.

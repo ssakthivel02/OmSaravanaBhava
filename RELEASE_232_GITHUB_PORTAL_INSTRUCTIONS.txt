@@ -1,0 +1,70 @@
+Release 232 — GitHub browser upload instructions
+
+Repository:
+https://github.com/ssakthivel02/OmSaravanaBhava
+
+MANDATORY BASE CHECK
+Expected current main HEAD:
+f6c081ccf3f35c4b5960ba9932d588151bf39cd9
+
+Do not upload if main has moved. Stop and compare the newer commit first.
+
+WHY THIS RELEASE IS SMALLER THAN 2,000 FILES
+Release 232 intentionally rejects file-count-driven delivery. It contains 60 purposeful files. A 2,000-file browser upload would be difficult to inspect, easy to misplace and unsafe to roll back. The new gate warns above 100 files and fails above 500.
+
+DOWNLOAD AND EXTRACT
+1. Download OmSaravanaBhava-Release-232.zip.
+2. Verify the ZIP SHA256 supplied with the package.
+3. Extract the ZIP completely.
+4. In Windows File Explorer enable View > Show > Hidden items.
+5. Confirm the hidden .github directory is visible.
+6. Do not upload the outer extracted folder.
+
+UPLOAD
+1. Open the repository main branch.
+2. Select Add file > Upload files.
+3. Drag the CONTENTS of the extracted folder.
+4. Preserve all repository-relative directories.
+5. Confirm no existing production file is shown as modified or deleted.
+6. Confirm .github/workflows/release-232-governance.yml is included.
+7. Confirm manifest-release-232.json is included.
+8. Confirm RELEASE_232_SHA256SUMS.txt and RELEASE_232.patch are included.
+
+COMMIT — THIS IS NOW ENFORCED
+Enter this exact text in the SMALL UPPER commit-title field:
+Release 232: add deterministic release governance gate
+
+Leave the larger description field blank.
+
+The workflow will fail if GitHub records “Add files via upload”. Releases 228–231 all used the wrong field; Release 232 is designed to stop that recurring mistake.
+
+POST-UPLOAD VALIDATION
+1. Copy the new main HEAD SHA.
+2. Confirm its first parent is f6c081ccf3f35c4b5960ba9932d588151bf39cd9.
+3. Confirm the commit subject exactly equals:
+   Release 232: add deterministic release governance gate
+4. Open Actions.
+5. Confirm “Release 232 Deterministic Governance Gate” passes.
+6. Open the workflow summary and confirm every check is PASS or an explicitly allowed status.
+7. Download release-232-governance-evidence.
+8. Confirm the attestation JSON records subject_matches=true.
+9. Confirm changed-file count equals the manifest declaration.
+10. Confirm undeclared and missing arrays are empty.
+11. Confirm the reverse patch check passes.
+12. Confirm “Release 232 Independent Attestation” passes.
+13. Download and retain the independent attestation artifact.
+14. Check GitHub Pages separately; this release does not modify production site files.
+15. Do not call Release 232 complete until both governance workflows pass.
+
+FAILURE HANDLING
+- If commit-subject fails, revert the incorrect commit and upload again with the exact subject.
+- Do not create a second fix commit merely to add a note; the first-parent release identity must remain deterministic.
+- If file coverage fails, compare Git changed files with manifest added_files.
+- If checksum validation fails, stop and do not edit the ledger manually without regenerating the package.
+- If reverse patch validation fails, do not continue to Release 233.
+
+ROLLBACK
+1. Revert the entire Release 232 commit.
+2. Confirm only Release 232 governance files are removed.
+3. Do not change production pages or browser-local user data.
+4. Record the rollback commit and reason.

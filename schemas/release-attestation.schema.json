@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://omsaravanabhava.org/schemas/release-attestation.schema.json",
+  "title": "OmSaravanaBhava release attestation",
+  "type": "object",
+  "required": [
+    "release",
+    "status",
+    "commit",
+    "manifest",
+    "files",
+    "checks",
+    "generated_at_utc"
+  ],
+  "properties": {
+    "release": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "PASS",
+        "FAIL"
+      ]
+    },
+    "commit": {
+      "type": "object",
+      "required": [
+        "sha",
+        "parent",
+        "subject",
+        "subject_matches"
+      ],
+      "properties": {
+        "sha": {
+          "type": "string"
+        },
+        "parent": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "subject_matches": {
+          "type": "boolean"
+        }
+      }
+    },
+    "manifest": {
+      "type": "object",
+      "required": [
+        "path",
+        "sha256",
+        "base_commit"
+      ],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "base_commit": {
+          "type": "string"
+        }
+      }
+    },
+    "files": {
+      "type": "object",
+      "required": [
+        "changed",
+        "declared",
+        "undeclared",
+        "missing"
+      ],
+      "properties": {
+        "changed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "declared": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "undeclared": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "missing": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "generated_at_utc": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,24 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 999,
+  "name": "Example only",
+  "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "base_release": 998,
+  "generated": "2026-07-15",
+  "required_commit_title": "Release 999: demonstrate manifest structure",
+  "validation_status": "NOT_RUN",
+  "production_objective": "Demonstrate the minimum release manifest structure without creating a real release.",
+  "added_files": [
+    "example.txt"
+  ],
+  "modified_files": [],
+  "deleted_files": [],
+  "new_browser_storage_key": false,
+  "content_changes": false,
+  "validation_results": {
+    "local_package": "NOT_RUN"
+  },
+  "known_limitations": [
+    "This file is documentation and is not an actual release manifest."
+  ]
+}
