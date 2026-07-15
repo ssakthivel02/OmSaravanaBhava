@@ -1,0 +1,2141 @@
+diff --git a/.github/workflows/release-230-integrity.yml b/.github/workflows/release-230-integrity.yml
+new file mode 100644
+index 0000000000000000000000000000000000000000..ee725c7492e720b40c99a1ef3e34c98988e11c75
+--- /dev/null
++++ b/.github/workflows/release-230-integrity.yml
+@@ -0,0 +1,82 @@
++name: Release 230 Publication Boundary Integrity
++
++on:
++  push:
++    branches: [main]
++    paths:
++      - "content-status.html"
++      - "service-worker.js"
++      - "data/content-status.json"
++      - "data/reading-workspace.json"
++      - "data/publication-boundaries.json"
++      - "assets/css/content-status-audit.css"
++      - "assets/js/content-status-audit.mjs"
++      - "assets/js/reading-workspace-desktop.mjs"
++      - "tests/publication-boundaries.test.mjs"
++      - "tools/release_230_validate.py"
++      - "manifest-release-230.json"
++      - "RELEASE_230_*"
++      - ".github/workflows/release-230-integrity.yml"
++  pull_request:
++    paths:
++      - "content-status.html"
++      - "service-worker.js"
++      - "data/content-status.json"
++      - "data/reading-workspace.json"
++      - "data/publication-boundaries.json"
++      - "assets/css/content-status-audit.css"
++      - "assets/js/content-status-audit.mjs"
++      - "assets/js/reading-workspace-desktop.mjs"
++      - "tests/publication-boundaries.test.mjs"
++      - "tools/release_230_validate.py"
++      - "manifest-release-230.json"
++      - "RELEASE_230_*"
++      - ".github/workflows/release-230-integrity.yml"
++  workflow_dispatch:
++
++permissions:
++  contents: read
++
++concurrency:
++  group: release-230-boundary-integrity-${{ github.ref }}
++  cancel-in-progress: true
++
++jobs:
++  validate:
++    runs-on: ubuntu-latest
++    timeout-minutes: 15
++    steps:
++      - name: Check out repository
++        uses: actions/checkout@v4
++
++      - name: Set up Node.js
++        uses: actions/setup-node@v4
++        with:
++          node-version: "22"
++
++      - name: Set up Python
++        uses: actions/setup-python@v5
++        with:
++          python-version: "3.12"
++
++      - name: Validate browser modules
++        run: |
++          node --check assets/js/content-status-audit.mjs
++          node --check assets/js/reading-workspace-desktop.mjs
++          node --check service-worker.js
++
++      - name: Run publication-boundary tests
++        run: node --test tests/publication-boundaries.test.mjs
++
++      - name: Run repository-mode validator
++        run: |
++          python tools/release_230_validate.py             --root .             --report artifacts/release-230-repository-validation.json
++
++      - name: Upload validation evidence
++        if: always()
++        uses: actions/upload-artifact@v4
++        with:
++          name: release-230-publication-boundary-evidence
++          path: artifacts/release-230-repository-validation.json
++          if-no-files-found: warn
++          retention-days: 30
+diff --git a/.github/workflows/release-230-production-smoke.yml b/.github/workflows/release-230-production-smoke.yml
+new file mode 100644
+index 0000000000000000000000000000000000000000..d9d5a542b3b577a1339604fe8c449af21372d68f
+--- /dev/null
++++ b/.github/workflows/release-230-production-smoke.yml
+@@ -0,0 +1,81 @@
++name: Release 230 Production Boundary Smoke
++
++on:
++  workflow_dispatch:
++  schedule:
++    - cron: "31 2 * * *"
++  workflow_run:
++    workflows: ["pages-build-deployment"]
++    types: [completed]
++
++permissions:
++  contents: read
++
++concurrency:
++  group: release-230-production-boundary-smoke
++  cancel-in-progress: true
++
++jobs:
++  smoke:
++    if: >-
++      github.event_name != 'workflow_run' ||
++      github.event.workflow_run.conclusion == 'success'
++    runs-on: ubuntu-latest
++    timeout-minutes: 15
++    steps:
++      - name: Verify deployed boundary assets and declarations
++        shell: bash
++        run: |
++          python - <<'PY'
++          import json
++          import sys
++          import time
++          import urllib.request
++
++          checks = [
++              ("https://omsaravanabhava.org/content-status.html", 'data-release="230"'),
++              ("https://omsaravanabhava.org/assets/js/content-status-audit.mjs", "export const RELEASE = 230;"),
++              ("https://omsaravanabhava.org/assets/css/content-status-audit.css", "Release 230"),
++              ("https://omsaravanabhava.org/data/content-status.json", '"mode": "runtime-derived"'),
++              ("https://omsaravanabhava.org/data/publication-boundaries.json", '"release": 230'),
++              ("https://omsaravanabhava.org/data/reading-workspace.json", '"release": 230'),
++              ("https://omsaravanabhava.org/manifest-release-230.json", '"release": 230'),
++              ("https://omsaravanabhava.org/service-worker.js", '"/data/publication-boundaries.json"'),
++          ]
++
++          results = []
++          for url, marker in checks:
++              passed = False
++              status = None
++              error = ""
++              for _ in range(10):
++                  try:
++                      request = urllib.request.Request(
++                          url,
++                          headers={
++                              "User-Agent": "OmSaravanaBhava-Release-230-Smoke/1.0",
++                              "Cache-Control": "no-cache",
++                          },
++                      )
++                      with urllib.request.urlopen(request, timeout=20) as response:
++                          status = response.status
++                          text = response.read().decode("utf-8", errors="replace")
++                      if status == 200 and marker in text:
++                          passed = True
++                          break
++                      error = f"HTTP {status}; marker absent"
++                  except Exception as exc:
++                      error = str(exc)
++                  time.sleep(15)
++              results.append({
++                  "url": url,
++                  "status": status,
++                  "marker": marker,
++                  "passed": passed,
++                  "error": "" if passed else error,
++              })
++
++          print(json.dumps(results, indent=2, ensure_ascii=False))
++          if any(not item["passed"] for item in results):
++              sys.exit(1)
++          PY
+diff --git a/assets/css/content-status-audit.css b/assets/css/content-status-audit.css
+new file mode 100644
+index 0000000000000000000000000000000000000000..198222b425cd01a3c7d57859fd3b1367579dea71
+--- /dev/null
++++ b/assets/css/content-status-audit.css
+@@ -0,0 +1,281 @@
++/*
++Release 230 — Content publication status and boundary audit.
++No colour tokens are redefined; this stylesheet extends the established theme.
++*/
++.content-status-hero {
++  display: grid;
++  grid-template-columns: minmax(0, 1.45fr) repeat(4, minmax(110px, 0.28fr));
++  gap: 16px;
++  align-items: center;
++}
++
++.content-status-metric {
++  display: grid;
++  place-items: center;
++  min-height: 112px;
++  padding: 12px;
++  border: 1px solid var(--line);
++  border-radius: 22px;
++  background: var(--surface-strong, #fff);
++  text-align: center;
++}
++
++.content-status-metric strong {
++  color: var(--red);
++  font-size: clamp(2rem, 5vw, 3.5rem);
++  line-height: 1;
++}
++
++.content-status-metric span {
++  font-size: 0.84rem;
++  font-weight: 850;
++}
++
++.content-status-message {
++  margin: 14px 0;
++  font-weight: 800;
++}
++
++.content-status-heading-row {
++  display: flex;
++  align-items: flex-start;
++  justify-content: space-between;
++  gap: 16px;
++  margin-bottom: 14px;
++}
++
++.content-status-heading-row h2 {
++  margin: 8px 0 0;
++}
++
++.content-status-count-grid {
++  display: grid;
++  grid-template-columns: repeat(4, minmax(0, 1fr));
++  gap: 12px;
++}
++
++.content-status-count {
++  display: grid;
++  gap: 6px;
++  min-height: 116px;
++  padding: 14px;
++  border: 1px solid var(--line);
++  border-radius: 18px;
++  background: var(--surface-strong, #fff);
++}
++
++.content-status-count strong {
++  color: var(--red);
++  font-size: 2rem;
++}
++
++.content-status-count code {
++  overflow-wrap: anywhere;
++  white-space: normal;
++}
++
++.content-status-controls {
++  display: grid;
++  grid-template-columns: minmax(200px, 0.7fr) minmax(260px, 1.3fr);
++  gap: 14px;
++  align-items: end;
++}
++
++.content-status-controls label {
++  display: grid;
++  gap: 6px;
++  font-weight: 850;
++}
++
++.content-status-controls input,
++.content-status-controls select {
++  width: 100%;
++}
++
++.content-status-audit-list {
++  display: grid;
++  gap: 14px;
++}
++
++.content-status-record {
++  display: grid;
++  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
++  gap: 18px;
++  align-items: start;
++}
++
++.content-status-record.is-mismatch {
++  border-left: 5px solid var(--orange);
++}
++
++.content-status-record.is-aligned {
++  border-left: 5px solid var(--green, #2d7a46);
++}
++
++.content-status-labels,
++.content-status-actions {
++  display: flex;
++  flex-wrap: wrap;
++  gap: 8px;
++  align-items: center;
++}
++
++.content-status-record h3 {
++  margin: 10px 0 4px;
++}
++
++.content-status-title-en {
++  margin-top: 0;
++  color: #6a4638;
++  font-weight: 800;
++}
++
++.content-status-comparison {
++  display: grid;
++  grid-template-columns: 1fr auto 1fr;
++  gap: 10px;
++  align-items: center;
++  margin: 14px 0;
++}
++
++.content-status-state {
++  min-width: 0;
++  padding: 12px;
++  border: 1px solid var(--line);
++  border-radius: 14px;
++  background: rgba(244, 156, 44, 0.06);
++}
++
++.content-status-state span,
++.content-status-state strong {
++  display: block;
++}
++
++.content-status-state span {
++  margin-bottom: 4px;
++  font-size: 0.78rem;
++  font-weight: 850;
++  text-transform: uppercase;
++  letter-spacing: 0.04em;
++}
++
++.content-status-arrow {
++  font-size: 1.4rem;
++  font-weight: 900;
++}
++
++.content-status-facts {
++  display: grid;
++  gap: 0;
++  margin: 0;
++  border: 1px solid var(--line);
++  border-radius: 16px;
++  overflow: hidden;
++}
++
++.content-status-fact {
++  display: grid;
++  grid-template-columns: minmax(120px, 0.42fr) minmax(0, 1fr);
++  gap: 10px;
++  padding: 10px 12px;
++  border-bottom: 1px solid var(--line);
++}
++
++.content-status-fact:last-child {
++  border-bottom: 0;
++}
++
++.content-status-fact dt {
++  font-weight: 900;
++}
++
++.content-status-fact dd {
++  margin: 0;
++  overflow-wrap: anywhere;
++}
++
++.content-status-evidence {
++  margin-top: 12px;
++  padding: 12px;
++  border-radius: 12px;
++  background: rgba(165, 29, 23, 0.05);
++  font-size: 0.9rem;
++}
++
++.content-status-boundary {
++  border-left: 5px solid var(--orange);
++}
++
++body.dark .content-status-title-en {
++  color: #f4d9c8;
++}
++
++@media (max-width: 1120px) {
++  .content-status-hero {
++    grid-template-columns: repeat(2, minmax(0, 1fr));
++  }
++
++  .content-status-hero > div:first-child {
++    grid-column: 1 / -1;
++  }
++
++  .content-status-count-grid {
++    grid-template-columns: repeat(2, minmax(0, 1fr));
++  }
++
++  .content-status-record {
++    grid-template-columns: 1fr;
++  }
++}
++
++@media (max-width: 680px) {
++  .content-status-hero,
++  .content-status-count-grid,
++  .content-status-controls,
++  .content-status-comparison {
++    grid-template-columns: 1fr;
++  }
++
++  .content-status-hero > div:first-child {
++    grid-column: auto;
++  }
++
++  .content-status-arrow {
++    transform: rotate(90deg);
++    text-align: center;
++  }
++
++  .content-status-fact {
++    grid-template-columns: 1fr;
++    gap: 4px;
++  }
++
++  .content-status-heading-row {
++    align-items: stretch;
++    flex-direction: column;
++  }
++
++  .content-status-heading-row .btn {
++    width: 100%;
++  }
++}
++
++@media (prefers-reduced-motion: reduce) {
++  .content-status-record,
++  .content-status-actions .btn {
++    transition: none;
++  }
++}
++
++@media print {
++  .content-status-controls,
++  #contentStatusRefresh,
++  .content-status-actions,
++  #contentStatusMessage {
++    display: none !important;
++  }
++
++  .content-status-record {
++    break-inside: avoid;
++  }
++}
+diff --git a/assets/js/content-status-audit.mjs b/assets/js/content-status-audit.mjs
+new file mode 100644
+index 0000000000000000000000000000000000000000..e68d8cab6a57ecffa36218041d4318a9c43b3fc3
+--- /dev/null
++++ b/assets/js/content-status-audit.mjs
+@@ -0,0 +1,490 @@
++export const RELEASE = 230;
++export const CONFIG_PATH = '/data/content-status.json';
++export const ROUTES_PATH = '/data/site-routes.json';
++export const BOUNDARIES_PATH = '/data/publication-boundaries.json';
++export const CANONICAL_ORIGIN = 'https://omsaravanabhava.org';
++
++export const normaliseRoute = value => {
++  const raw = String(value ?? '').trim();
++  if (!raw) return '';
++  try {
++    const url = new URL(raw, `${CANONICAL_ORIGIN}/`);
++    return url.origin === CANONICAL_ORIGIN ? url.pathname : '';
++  } catch {
++    return '';
++  }
++};
++
++export const buildStatusCounts = routesPayload => {
++  const counts = new Map();
++  const routes = Array.isArray(routesPayload?.routes)
++    ? routesPayload.routes
++    : [];
++  routes.forEach(record => {
++    if (!record || typeof record !== 'object') return;
++    const status = String(record.status ?? 'unspecified').trim() ||
++      'unspecified';
++    counts.set(status, (counts.get(status) || 0) + 1);
++  });
++  return [...counts.entries()]
++    .map(([status, count]) => ({status, count}))
++    .sort((left, right) =>
++      right.count - left.count ||
++      left.status.localeCompare(right.status)
++    );
++};
++
++export const buildRouteMap = routesPayload => new Map(
++  (Array.isArray(routesPayload?.routes) ? routesPayload.routes : [])
++    .filter(record => record && typeof record === 'object')
++    .map(record => [normaliseRoute(record.path), record])
++    .filter(([route]) => route)
++);
++
++export const evaluateBoundary = (record, routeRecord) => {
++  const declared = String(routeRecord?.status ?? '').trim();
++  const expectedDeclared = String(
++    record?.declaredRouteStatus ?? ''
++  ).trim();
++  const verified = String(record?.verifiedStatus ?? '').trim();
++  const route = normaliseRoute(record?.route);
++  return {
++    ...record,
++    route,
++    routePresent: Boolean(routeRecord),
++    declaredStatus: declared || 'missing',
++    declaredStatusExpected: expectedDeclared,
++    verifiedStatus: verified,
++    declaredMatchesSnapshot:
++      Boolean(routeRecord) && declared === expectedDeclared,
++    aligned:
++      Boolean(routeRecord) && declared === verified,
++    mismatch:
++      !routeRecord || declared !== verified,
++    readingExcluded: record?.readingEligible === false
++  };
++};
++
++export const applyPublicationBoundaries = (
++  routes,
++  boundariesPayload
++) => {
++  const records = Array.isArray(boundariesPayload?.records)
++    ? boundariesPayload.records
++    : [];
++  const map = new Map(
++    records
++      .map(record => [normaliseRoute(record.route), record])
++      .filter(([route]) => route)
++  );
++  return (Array.isArray(routes) ? routes : [])
++    .filter(route => {
++      const boundary = map.get(normaliseRoute(route.path));
++      return boundary?.readingEligible !== false;
++    })
++    .map(route => {
++      const boundary = map.get(normaliseRoute(route.path));
++      return boundary
++        ? {
++            ...route,
++            status: boundary.verifiedStatus || route.status,
++            publicationBoundary: boundary
++          }
++        : route;
++    });
++};
++
++export const filterBoundaryRecords = (
++  records,
++  {state = 'all', query = ''} = {}
++) => {
++  const needle = String(query).trim().toLocaleLowerCase();
++  return (Array.isArray(records) ? records : []).filter(record => {
++    if (state === 'mismatch' && !record.mismatch) return false;
++    if (state === 'aligned' && !record.aligned) return false;
++    if (
++      state === 'reading-excluded' &&
++      !record.readingExcluded
++    ) {
++      return false;
++    }
++    if (!needle) return true;
++    const haystack = [
++      record.titleTa,
++      record.titleEn,
++      record.route,
++      record.declaredStatus,
++      record.verifiedStatus,
++      record.contentScope
++    ].join(' ').toLocaleLowerCase();
++    return haystack.includes(needle);
++  });
++};
++
++export const summariseAudit = (routesPayload, evaluated) => {
++  const records = Array.isArray(evaluated) ? evaluated : [];
++  return {
++    routes: Array.isArray(routesPayload?.routes)
++      ? routesPayload.routes.length
++      : 0,
++    audited: records.length,
++    mismatches: records.filter(record => record.mismatch).length,
++    aligned: records.filter(record => record.aligned).length,
++    excluded: records.filter(record => record.readingExcluded).length
++  };
++};
++
++const fetchJson = async (path, fetcher = globalThis.fetch) => {
++  if (typeof fetcher !== 'function') {
++    throw new Error('Fetch API unavailable');
++  }
++  const response = await fetcher(path, {
++    cache: 'no-store',
++    credentials: 'same-origin',
++    headers: {'Accept': 'application/json'}
++  });
++  if (!response.ok) throw new Error(`${path}: HTTP ${response.status}`);
++  return response.json();
++};
++
++export const verifyPageEvidence = async (
++  record,
++  fetcher = globalThis.fetch
++) => {
++  const route = normaliseRoute(record?.route);
++  if (!route || typeof fetcher !== 'function') {
++    return {
++      route,
++      available: false,
++      markerFound: false,
++      robotsFound: false,
++      error: 'Invalid route or Fetch API unavailable'
++    };
++  }
++  try {
++    const response = await fetcher(route, {
++      cache: 'no-store',
++      credentials: 'same-origin',
++      headers: {'Accept': 'text/html'}
++    });
++    const text = await response.text();
++    const marker = String(record?.evidenceMarker ?? '');
++    const robots = String(record?.pageRobots ?? '');
++    return {
++      route,
++      available: response.ok,
++      status: response.status,
++      markerFound: Boolean(marker) && text.includes(marker),
++      robotsFound:
++        Boolean(robots) &&
++        new RegExp(
++          `<meta\\s+name=["']robots["']\\s+content=["']${robots.replace(
++            /[.*+?^${}()|[\]\\]/g,
++            '\\$&'
++          )}["']`,
++          'i'
++        ).test(text),
++      error: response.ok ? '' : `HTTP ${response.status}`
++    };
++  } catch (error) {
++    return {
++      route,
++      available: false,
++      markerFound: false,
++      robotsFound: false,
++      error: String(error?.message || error)
++    };
++  }
++};
++
++export const verifyAllPageEvidence = async (
++  records,
++  fetcher = globalThis.fetch,
++  concurrency = 4
++) => {
++  const items = Array.isArray(records) ? records : [];
++  const results = new Array(items.length);
++  let cursor = 0;
++  const worker = async () => {
++    while (cursor < items.length) {
++      const index = cursor;
++      cursor += 1;
++      results[index] = await verifyPageEvidence(
++        items[index],
++        fetcher
++      );
++    }
++  };
++  await Promise.all(
++    Array.from(
++      {length: Math.max(1, Math.min(concurrency, items.length || 1))},
++      () => worker()
++    )
++  );
++  return results;
++};
++
++const createText = (parent, tag, text, className) => {
++  const element = document.createElement(tag);
++  if (className) element.className = className;
++  element.textContent = String(text ?? '');
++  parent.appendChild(element);
++  return element;
++};
++
++const appendPill = (parent, text) =>
++  createText(parent, 'span', text, 'pill');
++
++const appendFact = (list, term, detail) => {
++  const row = document.createElement('div');
++  row.className = 'content-status-fact';
++  createText(row, 'dt', term);
++  createText(row, 'dd', detail);
++  list.appendChild(row);
++};
++
++const renderCounts = (host, counts) => {
++  host.replaceChildren();
++  counts.forEach(item => {
++    const article = document.createElement('article');
++    article.className = 'content-status-count';
++    createText(article, 'strong', item.count);
++    createText(article, 'code', item.status);
++    host.appendChild(article);
++  });
++};
++
++const renderRecord = (record, evidence) => {
++  const article = document.createElement('article');
++  article.className =
++    `card content-status-record ${record.mismatch ? 'is-mismatch' : 'is-aligned'}`;
++
++  const primary = document.createElement('div');
++  const labels = document.createElement('div');
++  labels.className = 'content-status-labels';
++  appendPill(labels, record.mismatch ? 'Registry mismatch' : 'Aligned');
++  appendPill(
++    labels,
++    record.readingExcluded
++      ? 'Excluded from reading'
++      : 'Bounded reading eligible'
++  );
++  primary.appendChild(labels);
++
++  createText(
++    primary,
++    'h3',
++    record.titleTa || record.titleEn || record.route
++  );
++  if (record.titleTa && record.titleEn) {
++    createText(
++      primary,
++      'p',
++      record.titleEn,
++      'content-status-title-en'
++    );
++  }
++  createText(primary, 'p', record.contentScope || '');
++
++  const comparison = document.createElement('div');
++  comparison.className = 'content-status-comparison';
++  const declared = document.createElement('div');
++  declared.className = 'content-status-state';
++  createText(declared, 'span', 'Route registry');
++  createText(declared, 'strong', record.declaredStatus);
++  comparison.appendChild(declared);
++  createText(comparison, 'span', '→', 'content-status-arrow');
++  const verified = document.createElement('div');
++  verified.className = 'content-status-state';
++  createText(verified, 'span', 'Verified page scope');
++  createText(verified, 'strong', record.verifiedStatus);
++  comparison.appendChild(verified);
++  primary.appendChild(comparison);
++
++  const actions = document.createElement('div');
++  actions.className = 'content-status-actions';
++  const open = document.createElement('a');
++  open.className = 'btn';
++  open.href = record.route;
++  open.textContent = 'Open audited page';
++  actions.appendChild(open);
++  const source = document.createElement('a');
++  source.className = 'btn secondary';
++  source.href = record.sourceDataPath;
++  source.textContent = 'Open source data';
++  actions.appendChild(source);
++  primary.appendChild(actions);
++  article.appendChild(primary);
++
++  const facts = document.createElement('dl');
++  facts.className = 'content-status-facts';
++  appendFact(facts, 'Route', record.route);
++  appendFact(
++    facts,
++    'Complete text',
++    record.fullTextPublished ? 'Published' : 'Not claimed'
++  );
++  appendFact(facts, 'Robots declaration', record.pageRobots);
++  appendFact(
++    facts,
++    'Page reachable',
++    evidence?.available ? `Yes · HTTP ${evidence.status}` : 'Unavailable'
++  );
++  appendFact(
++    facts,
++    'Boundary marker',
++    evidence?.markerFound ? 'Confirmed' : 'Not confirmed'
++  );
++  appendFact(
++    facts,
++    'Robots marker',
++    evidence?.robotsFound ? 'Confirmed' : 'Not confirmed'
++  );
++  if (evidence?.error) {
++    createText(
++      facts,
++      'p',
++      evidence.error,
++      'content-status-evidence'
++    );
++  }
++  article.appendChild(facts);
++  return article;
++};
++
++export const initialiseContentStatusAudit = async ({
++  documentRef = globalThis.document,
++  fetcher = globalThis.fetch
++} = {}) => {
++  if (!documentRef) return false;
++  const message = documentRef.getElementById('contentStatusMessage');
++  const countsHost = documentRef.getElementById('contentStatusCounts');
++  const auditHost = documentRef.getElementById('contentStatusAudit');
++  const state = documentRef.getElementById('contentStatusFilter');
++  const search = documentRef.getElementById('contentStatusSearch');
++  const refresh = documentRef.getElementById('contentStatusRefresh');
++  const visible = documentRef.getElementById('contentStatusVisible');
++  if (
++    !message ||
++    !countsHost ||
++    !auditHost ||
++    !state ||
++    !search ||
++    !refresh ||
++    !visible
++  ) {
++    return false;
++  }
++
++  let routesPayload;
++  let boundaryPayload;
++  let evaluated = [];
++  let evidenceMap = new Map();
++
++  const render = () => {
++    const filtered = filterBoundaryRecords(evaluated, {
++      state: state.value,
++      query: search.value
++    });
++    auditHost.replaceChildren();
++    if (!filtered.length) {
++      const empty = documentRef.createElement('article');
++      empty.className = 'card';
++      createText(empty, 'h3', 'No audited record matches');
++      createText(empty, 'p', 'Change the audit-state filter or search.');
++      auditHost.appendChild(empty);
++    } else {
++      filtered.forEach(record => {
++        auditHost.appendChild(
++          renderRecord(record, evidenceMap.get(record.route))
++        );
++      });
++    }
++    visible.textContent = `${filtered.length} shown`;
++  };
++
++  const run = async () => {
++    refresh.disabled = true;
++    message.textContent = 'Loading route and publication-boundary registries…';
++    try {
++      const [config, routes, boundaries] = await Promise.all([
++        fetchJson(CONFIG_PATH, fetcher),
++        fetchJson(ROUTES_PATH, fetcher),
++        fetchJson(BOUNDARIES_PATH, fetcher)
++      ]);
++      if (
++        config.release !== RELEASE ||
++        boundaries.release !== RELEASE
++      ) {
++        throw new Error('Release registry identity mismatch');
++      }
++      routesPayload = routes;
++      boundaryPayload = boundaries;
++      const routeMap = buildRouteMap(routesPayload);
++      evaluated = boundaryPayload.records.map(record =>
++        evaluateBoundary(record, routeMap.get(normaliseRoute(record.route)))
++      );
++      renderCounts(countsHost, buildStatusCounts(routesPayload));
++
++      const summary = summariseAudit(routesPayload, evaluated);
++      const metrics = {
++        contentStatusRoutes: summary.routes,
++        contentStatusAudited: summary.audited,
++        contentStatusMismatch: summary.mismatches,
++        contentStatusExcluded: summary.excluded
++      };
++      Object.entries(metrics).forEach(([id, value]) => {
++        const element = documentRef.getElementById(id);
++        if (element) element.textContent = String(value);
++      });
++
++      message.textContent =
++        `Registry loaded. ${summary.mismatches} audited route label${summary.mismatches === 1 ? '' : 's'} differ from verified page scope. Checking same-origin evidence…`;
++      render();
++
++      const evidence = await verifyAllPageEvidence(
++        boundaryPayload.records,
++        fetcher
++      );
++      evidenceMap = new Map(
++        evidence.map(item => [item.route, item])
++      );
++      const confirmed = evidence.filter(
++        item => item.available && item.markerFound && item.robotsFound
++      ).length;
++      message.textContent =
++        `Audit ready: ${summary.audited} records, ${summary.mismatches} registry mismatches, ${confirmed}/${evidence.length} page declarations confirmed in this request.`;
++      render();
++      documentRef.documentElement.dataset.contentStatusRelease =
++        String(RELEASE);
++      return true;
++    } catch (error) {
++      console.warn(
++        '[OmSaravanaBhava] Content status audit unavailable',
++        error
++      );
++      message.textContent =
++        `Content status audit unavailable: ${String(error?.message || error)}`;
++      return false;
++    } finally {
++      refresh.disabled = false;
++    }
++  };
++
++  state.addEventListener('change', render);
++  search.addEventListener('input', render);
++  refresh.addEventListener('click', run);
++  return run();
++};
++
++if (typeof document !== 'undefined') {
++  if (document.readyState === 'loading') {
++    document.addEventListener(
++      'DOMContentLoaded',
++      () => initialiseContentStatusAudit(),
++      {once: true}
++    );
++  } else {
++    initialiseContentStatusAudit();
++  }
++}
+diff --git a/assets/js/reading-workspace-desktop.mjs b/assets/js/reading-workspace-desktop.mjs
+index ef997e7d583a2d66a293f90e5025385e1f0c531c..0d2b6cb842b9c25e69b694c8e9bb3b733a25837e 100644
+--- a/assets/js/reading-workspace-desktop.mjs
++++ b/assets/js/reading-workspace-desktop.mjs
+@@ -1,6 +1,33 @@
+-export const RELEASE = 229;
++export const RELEASE = 230;
+ export const DESKTOP_BREAKPOINT = 1180;
+ export const CANONICAL_ORIGIN = 'https://omsaravanabhava.org';
++export const PUBLICATION_BOUNDARIES_PATH = '/data/publication-boundaries.json';
++
++
++export const buildPublicationBoundaryMap = payload => new Map(
++  (Array.isArray(payload?.records) ? payload.records : [])
++    .map(record => [String(record?.route || '').trim(), record])
++    .filter(([route]) => route.startsWith('/'))
++);
++
++export const applyPublicationBoundaries = (routes, payload) => {
++  const boundaries = buildPublicationBoundaryMap(payload);
++  return (Array.isArray(routes) ? routes : [])
++    .filter(route => {
++      const boundary = boundaries.get(String(route?.path || ''));
++      return boundary?.readingEligible !== false;
++    })
++    .map(route => {
++      const boundary = boundaries.get(String(route?.path || ''));
++      return boundary
++        ? {
++            ...route,
++            status: String(boundary.verifiedStatus || route.status),
++            publicationBoundary: boundary
++          }
++        : route;
++    });
++};
+ 
+ export const clampSelectionIndex = (index, length) => {
+   const size = Math.max(0, Number(length) || 0);
+@@ -384,6 +411,26 @@ export const initialiseDesktopWorkspace = async ({
+   let model;
+   try {
+     model = await readerModule.loadReadingModel();
++    try {
++      const response = await globalThis.fetch(PUBLICATION_BOUNDARIES_PATH, {
++        cache: 'no-store',
++        credentials: 'same-origin',
++        headers: {'Accept': 'application/json'}
++      });
++      if (!response.ok) {
++        throw new Error(`HTTP ${response.status}`);
++      }
++      const boundaries = await response.json();
++      model.routes = applyPublicationBoundaries(
++        model.routes,
++        boundaries
++      );
++    } catch (boundaryError) {
++      console.warn(
++        '[OmSaravanaBhava] Publication boundary overlay unavailable',
++        boundaryError
++      );
++    }
+   } catch (error) {
+     console.warn(
+       '[OmSaravanaBhava] Desktop reading model unavailable',
+diff --git a/content-status.html b/content-status.html
+index 5fdfa7261778de77c08fa370cfd800a34a9a7155..200506da242310cefa46f52c101df9bf74e07412 100644
+--- a/content-status.html
++++ b/content-status.html
+@@ -1,24 +1,96 @@
+-<!doctype html><html lang="ta"><head>
+-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+-<title>Content Publication Status | Om Saravana Bhava</title>
+-<meta name="description" content="Transparent publication-status dashboard for the current static knowledge corpus.">
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Content Publication Status and Boundary Audit | Om Saravana Bhava</title>
++<meta name="description" content="Runtime-derived publication-status totals and an evidence-based literature boundary audit for the OmSaravanaBhava static knowledge platform.">
+ <meta name="robots" content="index,follow">
+ <link rel="canonical" href="https://omsaravanabhava.org/content-status.html">
++<meta property="og:type" content="website">
++<meta property="og:title" content="Content Publication Status and Boundary Audit | Om Saravana Bhava">
++<meta property="og:description" content="Transparent route-status totals and literature publication-boundary mismatches derived from current static registries.">
++<meta property="og:url" content="https://omsaravanabhava.org/content-status.html">
+ <link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="stylesheet" href="assets/css/content-status-audit.css">
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+-<meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
++<meta name="theme-color" content="#a51d17">
++<link rel="manifest" href="manifest.json">
+ <script defer src="assets/js/pwa-register.js"></script>
+-</head><body>
++<script type="module" src="assets/js/content-status-audit.mjs"></script>
++</head>
++<body data-release="230">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+-<div class="top">🛕 ஓம் சரவணபவ · Digital Murugan heritage platform</div>
++<div class="top">🛕 ஓம் சரவணபவ · Source-responsible publication boundary audit</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div>
++<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="content-status.html" aria-current="page">Content Status</a><a href="source-catalog.html">Source Catalogue</a><a href="publication-history.html">Publication History</a><a href="sources.html">Sources</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+-<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Content Publication Status</span></p></nav>
+-<section class="card"><h1 class="section-title" lang="ta">உள்ளடக்க நிலை</h1><h2>Content Publication Status</h2><p>Transparent publication-status dashboard for the current static knowledge corpus.</p></section>
+-<section class="grid"><article class="card"><h2>published-source-linked</h2><p class="section-title">19</p></article><article class="card"><h2>published</h2><p class="section-title">16</p></article><article class="card"><h2>partial-reviewed</h2><p class="section-title">3</p></article><article class="card"><h2>source-review-required</h2><p class="section-title">5</p></article><article class="card"><h2>reviewed-opening-extract</h2><p class="section-title">2</p></article><article class="card"><h2>uploaded-collection-review</h2><p class="section-title">1</p></article><article class="card"><h2>uploaded-source-identified</h2><p class="section-title">1</p></article><article class="card"><h2>uploaded-reference-identified</h2><p class="section-title">2</p></article><article class="card"><h2>source-linked-sections-available</h2><p class="section-title">1</p></article><article class="card"><h2>source-register</h2><p class="section-title">6</p></article></section><section class="card"><h2>Repository indicators</h2><p>Search records: 56</p><p>Source records: 4</p></section>
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="sources.html">Sources</a> › <span aria-current="page">Content Publication Status</span></p></nav>
++
++<section class="card content-status-hero">
++<div>
++<span class="pill">Release 230 · Runtime-derived editorial integrity</span>
++<h1 class="section-title" lang="ta">உள்ளடக்க நிலை</h1>
++<h2>Content Publication Status and Boundary Audit</h2>
++<p>Compare the public route directory with explicit page and data declarations. Counts are calculated from current static registries instead of copied into this page as permanent claims.</p>
++</div>
++<div class="content-status-metric"><strong id="contentStatusRoutes">0</strong><span>registered routes</span></div>
++<div class="content-status-metric"><strong id="contentStatusAudited">0</strong><span>audited literature routes</span></div>
++<div class="content-status-metric"><strong id="contentStatusMismatch">0</strong><span>status mismatches</span></div>
++<div class="content-status-metric"><strong id="contentStatusExcluded">0</strong><span>source-only routes excluded</span></div>
++</section>
++
++<p id="contentStatusMessage" class="content-status-message" role="status" aria-live="polite">Loading current publication registries…</p>
++
++<section class="card" aria-labelledby="contentStatusCountsHeading">
++<div class="content-status-heading-row">
++<div><span class="pill">Current route registry</span><h2 id="contentStatusCountsHeading">Derived status totals</h2></div>
++<button id="contentStatusRefresh" class="btn secondary" type="button">Refresh audit</button>
++</div>
++<div id="contentStatusCounts" class="content-status-count-grid" aria-live="polite">
++<p>Calculating route-status totals…</p>
++</div>
++</section>
++
++<section class="card content-status-controls" aria-label="Boundary audit filters">
++<label for="contentStatusFilter">Audit state
++<select id="contentStatusFilter">
++<option value="all">All audited records</option>
++<option value="mismatch">Registry mismatches</option>
++<option value="aligned">Aligned records</option>
++<option value="reading-excluded">Excluded from reading</option>
++</select>
++</label>
++<label for="contentStatusSearch">Tamil or English search
++<input id="contentStatusSearch" type="search" autocomplete="off" placeholder="Kandar, Vel, Virutham…">
++</label>
++</section>
++
++<section aria-labelledby="contentStatusAuditHeading">
++<div class="content-status-heading-row">
++<div><span class="pill">Evidence crosswalk</span><h2 id="contentStatusAuditHeading">Literature publication boundaries</h2></div>
++<strong id="contentStatusVisible">0 shown</strong>
++</div>
++<div id="contentStatusAudit" class="content-status-audit-list">
++<article class="card"><p>Loading audited literature records…</p></article>
++</div>
++</section>
++
++<section class="card content-status-boundary">
++<h2>Interpretation boundary</h2>
++<ul>
++<li><strong>Published</strong> must not be read as “complete work” when the page itself states that only a bounded extract or structural register exists.</li>
++<li><strong>Partial reviewed</strong> means only the displayed extract has been reviewed; it is not a completeness claim.</li>
++<li><strong>Source register</strong> records identity, authorship, structure or source status without presenting a verified complete text.</li>
++<li><strong>Navigation</strong> identifies a route or section guide rather than a reading edition.</li>
++<li>This audit never manufactures missing verses or silently changes page text.</li>
++</ul>
++</section>
++
++<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>The runtime-derived audit requires JavaScript. Review the <a href="source-catalog.html">Source Catalogue</a> and <a href="sources.html">publication policy</a> directly.</p></section></noscript>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer>
+-</body></html>
+\ No newline at end of file
++<footer>© Om Saravana Bhava · <a href="content-status.html">Content Status</a> · <a href="source-catalog.html">Source Catalogue</a> · <a href="publication-history.html">Publication History</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>
+diff --git a/data/content-status.json b/data/content-status.json
+index 4367aff8baf45c5b26870840d1a25137e9bb8299..3c38f1861cb49b3f7d0f62b4633df5eae5c5e486 100644
+--- a/data/content-status.json
++++ b/data/content-status.json
+@@ -1,17 +1,16 @@
+ {
+-  "generated": "2026-07-13",
+-  "searchRecordCount": 56,
+-  "sourceRecordCount": 4,
+-  "statusCounts": {
+-    "published-source-linked": 19,
+-    "published": 16,
+-    "partial-reviewed": 3,
+-    "source-review-required": 5,
+-    "reviewed-opening-extract": 2,
+-    "uploaded-collection-review": 1,
+-    "uploaded-source-identified": 1,
+-    "uploaded-reference-identified": 2,
+-    "source-linked-sections-available": 1,
+-    "source-register": 6
+-  }
++  "release": 230,
++  "generated": "2026-07-15",
++  "baseCommit": "292f9f8b2a481f1aab43db2e75d31ccf0a0ffd81",
++  "mode": "runtime-derived",
++  "routeRegistryPath": "/data/site-routes.json",
++  "boundaryRegistryPath": "/data/publication-boundaries.json",
++  "description": "Status totals are derived from the current route registry at runtime. Audited literature mismatches are reported separately; no stale hard-coded totals are presented as current.",
++  "hardCodedStatusCounts": false,
++  "pageEvidenceChecks": true,
++  "limitations": [
++    "The browser page can verify same-origin files and text markers but cannot certify editorial scholarship.",
++    "Network or cache failures may make page-evidence checks temporarily unavailable.",
++    "GitHub Actions status is not inferred from this static dashboard."
++  ]
+ }
+diff --git a/data/publication-boundaries.json b/data/publication-boundaries.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..8c23f48d820805a1cc153210edc62b54376fa880
+--- /dev/null
++++ b/data/publication-boundaries.json
+@@ -0,0 +1,124 @@
++{
++  "release": 230,
++  "generated": "2026-07-15",
++  "baseCommit": "292f9f8b2a481f1aab43db2e75d31ccf0a0ffd81",
++  "title": "Audited Literature Publication Boundaries",
++  "scope": "Crosswalk between public route-directory labels, page declarations and canonical literature data. This registry does not add or replace devotional text.",
++  "statusVocabulary": {
++    "partial-reviewed": "A bounded reviewed extract is available; the complete work is not claimed.",
++    "source-register": "Bibliographic, structural or authorship information is available without verified complete verse text.",
++    "navigation": "The page is a route or section navigator rather than a complete reading edition."
++  },
++  "records": [
++    {
++      "route": "/literature/kandar-anubhuti.html",
++      "titleTa": "கந்தர் அனுபூதி",
++      "titleEn": "Kandar Anubhuti",
++      "declaredRouteStatus": "published",
++      "verifiedStatus": "partial-reviewed",
++      "sourceDataPath": "/data/kandar-anubhuti.json",
++      "pageRobots": "noindex,follow",
++      "fullTextPublished": false,
++      "readingEligible": true,
++      "contentScope": "Opening protection verse and verse 1 only.",
++      "evidenceMarker": "only the opening protection verse and verse 1"
++    },
++    {
++      "route": "/literature/kandar-alangaram.html",
++      "titleTa": "கந்தர் அலங்காரம்",
++      "titleEn": "Kandar Alangaram",
++      "declaredRouteStatus": "published",
++      "verifiedStatus": "source-register",
++      "sourceDataPath": "/data/kandar-alangaram.json",
++      "pageRobots": "noindex,follow",
++      "fullTextPublished": false,
++      "readingEligible": false,
++      "contentScope": "Literary identity register; complete verse edition awaits a verified primary text.",
++      "evidenceMarker": "A complete verse edition awaits a verified primary text"
++    },
++    {
++      "route": "/literature/kandar-andhadhi.html",
++      "titleTa": "கந்தர் அந்தாதி",
++      "titleEn": "Kandar Andhadhi",
++      "declaredRouteStatus": "published",
++      "verifiedStatus": "source-register",
++      "sourceDataPath": "/data/kandar-andhadhi.json",
++      "pageRobots": "noindex,follow",
++      "fullTextPublished": false,
++      "readingEligible": false,
++      "contentScope": "Linked-verse form register; verse text awaits verification.",
++      "evidenceMarker": "will be published only after the original text is verified"
++    },
++    {
++      "route": "/literature/kandar-kalivenba.html",
++      "titleTa": "கந்தர் கலிவெண்பா",
++      "titleEn": "Kandar Kalivenba",
++      "declaredRouteStatus": "published",
++      "verifiedStatus": "source-register",
++      "sourceDataPath": "/data/kandar-kalivenba.json",
++      "pageRobots": "noindex,follow",
++      "fullTextPublished": false,
++      "readingEligible": false,
++      "contentScope": "Authorship and poetic-form register; no complete verified text is claimed.",
++      "evidenceMarker": "registered separately under Kumara Gurupara Swamigal"
++    },
++    {
++      "route": "/literature/shanmuga-kavasam.html",
++      "titleTa": "சண்முக கவசம்",
++      "titleEn": "Shanmuga Kavasam",
++      "declaredRouteStatus": "published",
++      "verifiedStatus": "source-register",
++      "sourceDataPath": "/data/shanmuga-kavasam.json",
++      "pageRobots": "noindex,follow",
++      "fullTextPublished": false,
++      "readingEligible": false,
++      "contentScope": "Work and traditional structure register; complete text withheld pending a redistribution-safe source.",
++      "evidenceMarker": "The complete text is not published"
++    },
++    {
++      "route": "/literature/vel-maaral.html",
++      "titleTa": "வேல் மாறல் மகா மந்திரம்",
++      "titleEn": "Vel Maaral Maha Manthiram",
++      "declaredRouteStatus": "published",
++      "verifiedStatus": "source-register",
++      "sourceDataPath": "/data/vel-maaral.json",
++      "pageRobots": "noindex,follow",
++      "fullTextPublished": false,
++      "readingEligible": false,
++      "contentScope": "Source and structure register; unverified complete text is not published.",
++      "evidenceMarker": "without publishing an unverified complete text"
++    },
++    {
++      "route": "/literature/vel-mayil-virutham.html",
++      "titleTa": "வேல் விருத்தம் · மயில் விருத்தம்",
++      "titleEn": "Vel Virutham and Mayil Virutham",
++      "declaredRouteStatus": "published",
++      "verifiedStatus": "source-register",
++      "sourceDataPath": "/data/vel-mayil-virutham.json",
++      "pageRobots": "noindex,follow",
++      "fullTextPublished": false,
++      "readingEligible": false,
++      "contentScope": "Companion work register without unverified verse text.",
++      "evidenceMarker": "registered without publishing unverified verse text"
++    },
++    {
++      "route": "/literature/thirumurugatruppadai-complete.html",
++      "titleTa": "திருமுருகாற்றுப்படை",
++      "titleEn": "Thirumurugatruppadai Structured Complete-Work Navigator",
++      "declaredRouteStatus": "published",
++      "verifiedStatus": "navigation",
++      "sourceDataPath": "/data/thirumurugatruppadai-sections.json",
++      "pageRobots": "index,follow",
++      "fullTextPublished": false,
++      "readingEligible": false,
++      "contentScope": "Six-section navigator; the page does not reproduce a complete critical text.",
++      "evidenceMarker": "Structured full-work navigator"
++    }
++  ],
++  "limitations": [
++    "The route registry is not silently rewritten by this release; mismatches are displayed explicitly.",
++    "Reading eligibility is enforced through the existing Reading Workspace configuration and audited boundary overlay.",
++    "A verified status describes the current page scope, not the historical completeness of the underlying literary work.",
++    "No modern translation, commentary or copyrighted recording is introduced."
++  ]
++}
+diff --git a/data/reading-workspace.json b/data/reading-workspace.json
+index 9b7488a7791b3757faf6e2d80b201c9f1e9cec89..188550b8417ae6471c26127a9be746bb939763fd 100644
+--- a/data/reading-workspace.json
++++ b/data/reading-workspace.json
+@@ -1,9 +1,9 @@
+ {
+-  "release": 224,
+-  "generated": "2026-07-14",
+-  "builtAgainstCommit": "03f8c23e50aea1323211d2ca44cf4cddcf0deec4",
++  "release": 230,
++  "generated": "2026-07-15",
++  "builtAgainstCommit": "292f9f8b2a481f1aab43db2e75d31ccf0a0ffd81",
+   "title": "OmSaravanaBhava Premium Reading Workspace",
+-  "scope": "Browser-local reading progress and focus tools for existing published or clearly bounded devotional reading routes.",
++  "scope": "Browser-local reading progress and focus tools for existing published or bounded devotional reading routes, with explicit exclusion of source-only literature registers and navigation-only pages.",
+   "storageKey": "osb-reading-progress-v1",
+   "maximumProgressItems": 50,
+   "completedThreshold": 95,
+@@ -25,7 +25,14 @@
+   "excludedPaths": [
+     "/reading-workspace.html",
+     "/reading-list.html",
+-    "/print-pdf.html"
++    "/print-pdf.html",
++    "/literature/kandar-alangaram.html",
++    "/literature/kandar-andhadhi.html",
++    "/literature/kandar-kalivenba.html",
++    "/literature/shanmuga-kavasam.html",
++    "/literature/vel-maaral.html",
++    "/literature/vel-mayil-virutham.html",
++    "/literature/thirumurugatruppadai-complete.html"
+   ],
+   "protectedStorageKeys": [
+     "osb-reading-list-v1",
+@@ -36,7 +43,8 @@
+     "No devotional text is copied into progress storage.",
+     "Progress remains in the current browser profile.",
+     "Scroll percentage is an approximate reading position, not proof of completion.",
+-    "The workspace does not alter publication, source or copyright status.",
++    "Source-register and navigation-only literature pages are excluded from reading progress.",
++    "The workspace does not claim that a bounded extract is a complete literary edition.",
+     "No account, analytics or cross-device synchronization is provided."
+   ],
+   "notesIntegration": {
+@@ -44,5 +52,10 @@
+     "storageKey": "osb-reading-notes-v1",
+     "maximumItems": 100,
+     "storesSelectedDevotionalText": false
++  },
++  "publicationBoundaryRegistry": {
++    "path": "/data/publication-boundaries.json",
++    "statusOverride": true,
++    "excludeWhenReadingEligibleFalse": true
+   }
+ }
+diff --git a/manifest-release-230.json b/manifest-release-230.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..724efaf95ed7c74a938e39c2ecafcc147842a34b
+--- /dev/null
++++ b/manifest-release-230.json
+@@ -0,0 +1,87 @@
++{
++  "project": "OmSaravanaBhava",
++  "release": 230,
++  "name": "Literature Publication Boundary Enforcement",
++  "base_commit": "292f9f8b2a481f1aab43db2e75d31ccf0a0ffd81",
++  "base_release": 229,
++  "generated": "2026-07-15",
++  "required_commit_title": "Release 230: enforce literature publication boundaries",
++  "validation_status": "LOCAL_PACKAGE_PASS_PATCH_CHECK_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
++  "production_objective": "Prevent source-only and navigation-only literature pages from being presented as full reading editions, and expose route-registry status mismatches through the existing Content Status route.",
++  "added_files": [
++    ".github/workflows/release-230-integrity.yml",
++    ".github/workflows/release-230-production-smoke.yml",
++    "assets/css/content-status-audit.css",
++    "assets/js/content-status-audit.mjs",
++    "data/publication-boundaries.json",
++    "tests/publication-boundaries.test.mjs",
++    "tools/release_230_validate.py",
++    "manifest-release-230.json",
++    "RELEASE_230_CHANGED_FILES.txt",
++    "RELEASE_230_GITHUB_PORTAL_INSTRUCTIONS.txt",
++    "RELEASE_230_LOCAL_TEST_EVIDENCE.txt",
++    "RELEASE_230_VALIDATION_REPORT.md",
++    "RELEASE_230_SHA256SUMS.txt",
++    "RELEASE_230.patch"
++  ],
++  "modified_files": [
++    "content-status.html",
++    "data/content-status.json",
++    "data/reading-workspace.json",
++    "assets/js/reading-workspace-desktop.mjs",
++    "service-worker.js"
++  ],
++  "deleted_files": [],
++  "merge_sensitive_files": [
++    "content-status.html",
++    "data/reading-workspace.json",
++    "assets/js/reading-workspace-desktop.mjs",
++    "service-worker.js"
++  ],
++  "route_registry_changed": false,
++  "route_registry_strategy": "Current mismatches are preserved as explicit declared-state evidence and surfaced by the audit. Consumer-side reading eligibility uses verified boundary status and exclusions.",
++  "sitemap_changed": false,
++  "new_public_route": false,
++  "new_browser_storage_key": false,
++  "content_changes": false,
++  "service_worker_cache_generation": 228,
++  "claims": {
++    "runtime_derived_status_counts": true,
++    "audited_literature_routes": 8,
++    "source_only_reading_exclusions": 7,
++    "bounded_extract_status_override": true,
++    "same_origin_page_evidence": true,
++    "new_storage_key": false,
++    "analytics": false,
++    "tracking": false,
++    "backend_dependency": false,
++    "devotional_text_modified": false,
++    "complete_work_claim_added": false
++  },
++  "validation_commands": [
++    "node --check assets/js/content-status-audit.mjs",
++    "node --check assets/js/reading-workspace-desktop.mjs",
++    "node --check service-worker.js",
++    "node --test tests/publication-boundaries.test.mjs",
++    "python tools/release_230_validate.py --root . --package-mode --report artifacts/release-230-package-validation.json",
++    "git apply --check RELEASE_230.patch"
++  ],
++  "validation_results": {
++    "local_package": "PASS",
++    "node_syntax": "PASS",
++    "node_tests": "PASS_14_OF_14",
++    "python_compile": "PASS",
++    "workflow_yaml_parse": "PASS",
++    "baseline_blob_match": "PASS",
++    "patch_check": "PASS",
++    "github_actions": "NOT_RUN",
++    "deployed_production": "NOT_RUN"
++  },
++  "known_limitations": [
++    "This release audits and enforces reading eligibility but does not silently rewrite the public route-directory status field.",
++    "Eight literature routes are covered because their page and data declarations provide explicit evidence; no broader corpus completeness claim is made.",
++    "Same-origin page evidence checks depend on network and cache availability.",
++    "GitHub Actions and deployed-production validation remain pending until upload.",
++    "The service-worker cache generation remains 228 because no cache schema or user-data migration is introduced."
++  ]
++}
+diff --git a/service-worker.js b/service-worker.js
+index cb7bb31ca180b1a05a70ab35b106fce17a5036c9..b4aa3df0bd868819c94add8c973ed14ea0352d0a 100644
+--- a/service-worker.js
++++ b/service-worker.js
+@@ -136,7 +136,10 @@ const PRECACHE_URLS = [
+   "/data/platform-status.json",
+   "/assets/js/desktop-layout.js",
+   "/content-status.html",
++  "/assets/css/content-status-audit.css",
++  "/assets/js/content-status-audit.mjs",
+   "/data/content-status.json",
++  "/data/publication-boundaries.json",
+   "/source-catalog.html",
+   "/data/source-catalog.json",
+   "/publication-history.html",
+@@ -253,7 +256,8 @@ const PRECACHE_URLS = [
+   "/assets/css/devotional-practice-planner.css",
+   "/assets/js/devotional-practice-planner.mjs",
+   "/data/devotional-practice-planner.json",
+-  "/manifest-release-228.json"
++  "/manifest-release-228.json",
++  "/manifest-release-230.json"
+ ];
+ 
+ const cacheOptionalAssets = async cache => {
+diff --git a/tests/publication-boundaries.test.mjs b/tests/publication-boundaries.test.mjs
+new file mode 100644
+index 0000000000000000000000000000000000000000..cc01694c80cf515d59d20485caf8916f4c552e2d
+--- /dev/null
++++ b/tests/publication-boundaries.test.mjs
+@@ -0,0 +1,243 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import {readFile} from 'node:fs/promises';
++import {
++  RELEASE,
++  buildStatusCounts,
++  buildRouteMap,
++  evaluateBoundary,
++  applyPublicationBoundaries,
++  filterBoundaryRecords,
++  summariseAudit,
++  normaliseRoute
++} from '../assets/js/content-status-audit.mjs';
++import {
++  RELEASE as WORKSPACE_RELEASE,
++  PUBLICATION_BOUNDARIES_PATH,
++  buildPublicationBoundaryMap,
++  applyPublicationBoundaries as applyWorkspaceBoundaries
++} from '../assets/js/reading-workspace-desktop.mjs';
++
++const readJson = async relative =>
++  JSON.parse(await readFile(new URL(relative, import.meta.url), 'utf8'));
++
++test('release identities are stable', () => {
++  assert.equal(RELEASE, 230);
++  assert.equal(WORKSPACE_RELEASE, 230);
++  assert.equal(
++    PUBLICATION_BOUNDARIES_PATH,
++    '/data/publication-boundaries.json'
++  );
++});
++
++test('boundary registry contains eight unique audited routes', async () => {
++  const payload = await readJson('../data/publication-boundaries.json');
++  assert.equal(payload.release, 230);
++  assert.equal(payload.records.length, 8);
++  const routes = payload.records.map(record => record.route);
++  assert.equal(new Set(routes).size, routes.length);
++  assert.ok(routes.every(route => route.startsWith('/literature/')));
++});
++
++test('seven source-only or navigation routes are reading excluded', async () => {
++  const payload = await readJson('../data/publication-boundaries.json');
++  const excluded = payload.records.filter(
++    record => record.readingEligible === false
++  );
++  assert.equal(excluded.length, 7);
++  assert.deepEqual(
++    [...new Set(excluded.map(record => record.verifiedStatus))].sort(),
++    ['navigation', 'source-register']
++  );
++});
++
++test('Kandar Anubhuti remains bounded-reading eligible', async () => {
++  const payload = await readJson('../data/publication-boundaries.json');
++  const record = payload.records.find(
++    item => item.route === '/literature/kandar-anubhuti.html'
++  );
++  assert.equal(record.verifiedStatus, 'partial-reviewed');
++  assert.equal(record.fullTextPublished, false);
++  assert.equal(record.readingEligible, true);
++});
++
++test('reading workspace config excludes every non-reading audit route', async () => {
++  const boundaries = await readJson('../data/publication-boundaries.json');
++  const config = await readJson('../data/reading-workspace.json');
++  assert.equal(config.release, 230);
++  const excluded = new Set(config.excludedPaths);
++  boundaries.records
++    .filter(record => record.readingEligible === false)
++    .forEach(record => assert.ok(excluded.has(record.route)));
++});
++
++test('status counts are runtime-derived and deterministic', () => {
++  const counts = buildStatusCounts({
++    routes: [
++      {status: 'published'},
++      {status: 'published'},
++      {status: 'source-register'},
++      {}
++    ]
++  });
++  assert.deepEqual(counts, [
++    {status: 'published', count: 2},
++    {status: 'source-register', count: 1},
++    {status: 'unspecified', count: 1}
++  ]);
++});
++
++test('boundary evaluation exposes registry mismatch without hiding it', () => {
++  const record = {
++    route: '/literature/example.html',
++    declaredRouteStatus: 'published',
++    verifiedStatus: 'source-register',
++    readingEligible: false
++  };
++  const result = evaluateBoundary(record, {
++    path: record.route,
++    status: 'published'
++  });
++  assert.equal(result.declaredMatchesSnapshot, true);
++  assert.equal(result.aligned, false);
++  assert.equal(result.mismatch, true);
++  assert.equal(result.readingExcluded, true);
++});
++
++test('publication overlay changes labels and removes source-only routes', () => {
++  const routes = [
++    {path: '/literature/a.html', status: 'published'},
++    {path: '/literature/b.html', status: 'published'},
++    {path: '/literature/c.html', status: 'published'}
++  ];
++  const payload = {
++    records: [
++      {
++        route: '/literature/a.html',
++        verifiedStatus: 'partial-reviewed',
++        readingEligible: true
++      },
++      {
++        route: '/literature/b.html',
++        verifiedStatus: 'source-register',
++        readingEligible: false
++      }
++    ]
++  };
++  assert.deepEqual(applyPublicationBoundaries(routes, payload), [
++    {
++      path: '/literature/a.html',
++      status: 'partial-reviewed',
++      publicationBoundary: payload.records[0]
++    },
++    {path: '/literature/c.html', status: 'published'}
++  ]);
++  assert.deepEqual(
++    applyWorkspaceBoundaries(routes, payload),
++    applyPublicationBoundaries(routes, payload)
++  );
++  assert.equal(buildPublicationBoundaryMap(payload).size, 2);
++});
++
++test('audit filtering supports mismatch, reading exclusion and Tamil search', () => {
++  const records = [
++    {
++      titleTa: 'கந்தர் அனுபூதி',
++      titleEn: 'Kandar Anubhuti',
++      mismatch: true,
++      aligned: false,
++      readingExcluded: false
++    },
++    {
++      titleTa: 'வேல் மாறல்',
++      titleEn: 'Vel Maaral',
++      mismatch: true,
++      aligned: false,
++      readingExcluded: true
++    }
++  ];
++  assert.equal(
++    filterBoundaryRecords(records, {state: 'reading-excluded'}).length,
++    1
++  );
++  assert.equal(
++    filterBoundaryRecords(records, {query: 'கந்தர்'}).length,
++    1
++  );
++});
++
++test('summary uses current route count and audited results', () => {
++  const evaluated = [
++    {mismatch: true, aligned: false, readingExcluded: true},
++    {mismatch: false, aligned: true, readingExcluded: false}
++  ];
++  assert.deepEqual(
++    summariseAudit({routes: [{}, {}, {}]}, evaluated),
++    {
++      routes: 3,
++      audited: 2,
++      mismatches: 1,
++      aligned: 1,
++      excluded: 1
++    }
++  );
++});
++
++test('route normalisation rejects external origins', () => {
++  assert.equal(
++    normaliseRoute('https://omsaravanabhava.org/literature/a.html'),
++    '/literature/a.html'
++  );
++  assert.equal(normaliseRoute('https://example.com/a'), '');
++});
++
++test('content status configuration contains no hard-coded current counts', async () => {
++  const config = await readJson('../data/content-status.json');
++  assert.equal(config.release, 230);
++  assert.equal(config.mode, 'runtime-derived');
++  assert.equal(config.hardCodedStatusCounts, false);
++  assert.equal('statusCounts' in config, false);
++});
++
++test('page is semantic, accessible and release identified', async () => {
++  const html = await readFile(
++    new URL('../content-status.html', import.meta.url),
++    'utf8'
++  );
++  for (const marker of [
++    'data-release="230"',
++    'id="contentStatusMessage"',
++    'role="status"',
++    'aria-live="polite"',
++    'id="contentStatusAudit"',
++    'assets/js/content-status-audit.mjs',
++    'assets/css/content-status-audit.css'
++  ]) {
++    assert.ok(html.includes(marker), `missing ${marker}`);
++  }
++});
++
++test('new modules create no storage, analytics or content fabrication surface', async () => {
++  const source = [
++    await readFile(
++      new URL('../assets/js/content-status-audit.mjs', import.meta.url),
++      'utf8'
++    ),
++    await readFile(
++      new URL('../assets/js/reading-workspace-desktop.mjs', import.meta.url),
++      'utf8'
++    )
++  ].join('\n');
++  for (const forbidden of [
++    'localStorage.setItem',
++    'sessionStorage.setItem',
++    'indexedDB.open',
++    'navigator.sendBeacon',
++    'gtag(',
++    'mixpanel',
++    'generateVerse',
++    'completeText: true'
++  ]) {
++    assert.equal(source.includes(forbidden), false, forbidden);
++  }
++});
+diff --git a/tools/release_230_validate.py b/tools/release_230_validate.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..a49855f8119d83a4b59eb08613234ce44e103e72
+--- /dev/null
++++ b/tools/release_230_validate.py
+@@ -0,0 +1,408 @@
++#!/usr/bin/env python3
++"""Release 230 package and repository validator."""
++
++from __future__ import annotations
++
++import argparse
++import hashlib
++import json
++import re
++import subprocess
++import sys
++import xml.etree.ElementTree as ET
++from html.parser import HTMLParser
++from pathlib import Path
++
++RELEASE = 230
++BASE_COMMIT = "292f9f8b2a481f1aab43db2e75d31ccf0a0ffd81"
++REQUIRED = [
++    "content-status.html",
++    "service-worker.js",
++    "data/content-status.json",
++    "data/reading-workspace.json",
++    "data/publication-boundaries.json",
++    "assets/css/content-status-audit.css",
++    "assets/js/content-status-audit.mjs",
++    "assets/js/reading-workspace-desktop.mjs",
++    "tests/publication-boundaries.test.mjs",
++    "tools/release_230_validate.py",
++    ".github/workflows/release-230-integrity.yml",
++    ".github/workflows/release-230-production-smoke.yml",
++    "manifest-release-230.json",
++    "RELEASE_230_CHANGED_FILES.txt",
++    "RELEASE_230_GITHUB_PORTAL_INSTRUCTIONS.txt",
++    "RELEASE_230_LOCAL_TEST_EVIDENCE.txt",
++    "RELEASE_230_VALIDATION_REPORT.md",
++    "RELEASE_230.patch",
++]
++PRECACHE = [
++    "/assets/css/content-status-audit.css",
++    "/assets/js/content-status-audit.mjs",
++    "/data/publication-boundaries.json",
++    "/manifest-release-230.json",
++]
++FORBIDDEN = [
++    "BEGIN PRIVATE KEY",
++    "api_key=",
++    "apikey=",
++    "localhost:",
++    "127.0.0.1:",
++    "google-analytics",
++    "mixpanel",
++    "segment.io",
++]
++
++
++class AuditParser(HTMLParser):
++    def __init__(self) -> None:
++        super().__init__(convert_charrefs=True)
++        self.ids: list[str] = []
++        self.h1 = 0
++        self.main = 0
++        self.lang = ""
++        self.canonical = ""
++        self.status_regions = 0
++
++    def handle_starttag(self, tag, attrs):
++        values = dict(attrs)
++        if tag == "html":
++            self.lang = values.get("lang", "")
++        if tag == "h1":
++            self.h1 += 1
++        if tag == "main":
++            self.main += 1
++        if values.get("id"):
++            self.ids.append(values["id"])
++        if tag == "link" and values.get("rel") == "canonical":
++            self.canonical = values.get("href", "")
++        if values.get("role") == "status":
++            self.status_regions += 1
++
++
++def sha256(path: Path) -> str:
++    digest = hashlib.sha256()
++    with path.open("rb") as handle:
++        for block in iter(lambda: handle.read(1024 * 1024), b""):
++            digest.update(block)
++    return digest.hexdigest()
++
++
++def run(command: list[str], root: Path) -> tuple[int, str]:
++    result = subprocess.run(
++        command,
++        cwd=root,
++        text=True,
++        stdout=subprocess.PIPE,
++        stderr=subprocess.STDOUT,
++        check=False,
++    )
++    return result.returncode, result.stdout
++
++
++def load_json(root: Path, relative: str):
++    return json.loads((root / relative).read_text(encoding="utf-8"))
++
++
++def validate_boundaries(root, errors, checks):
++    payload = load_json(root, "data/publication-boundaries.json")
++    records = payload.get("records", [])
++    if payload.get("release") != RELEASE:
++        errors.append("publication boundary release mismatch")
++    if len(records) != 8:
++        errors.append(f"expected 8 boundary records, found {len(records)}")
++    routes = [str(item.get("route", "")) for item in records]
++    if len(routes) != len(set(routes)):
++        errors.append("duplicate publication boundary routes")
++    if any(not route.startswith("/literature/") for route in routes):
++        errors.append("publication boundary route outside /literature/")
++    excluded = [item for item in records if item.get("readingEligible") is False]
++    if len(excluded) != 7:
++        errors.append(f"expected 7 reading-excluded records, found {len(excluded)}")
++    allowed = {"partial-reviewed", "source-register", "navigation"}
++    invalid = sorted({
++        str(item.get("verifiedStatus"))
++        for item in records
++        if item.get("verifiedStatus") not in allowed
++    })
++    if invalid:
++        errors.append(f"invalid verified statuses: {invalid}")
++    if any(item.get("fullTextPublished") is not False for item in records):
++        errors.append("audited records must not claim complete text")
++    checks.append("eight-record publication boundary schema")
++
++
++def validate_reading_config(root, errors, checks):
++    config = load_json(root, "data/reading-workspace.json")
++    boundaries = load_json(root, "data/publication-boundaries.json")
++    if config.get("release") != RELEASE:
++        errors.append("reading workspace release mismatch")
++    excluded = set(config.get("excludedPaths", []))
++    missing = [
++        item["route"]
++        for item in boundaries["records"]
++        if item.get("readingEligible") is False and item["route"] not in excluded
++    ]
++    if missing:
++        errors.append(f"reading exclusions missing: {missing}")
++    if config.get("publicationBoundaryRegistry", {}).get("path") != \
++            "/data/publication-boundaries.json":
++        errors.append("reading workspace boundary registry path missing")
++    checks.append("reading eligibility exclusions and overlay registration")
++
++
++def validate_content_status(root, errors, checks):
++    config = load_json(root, "data/content-status.json")
++    if config.get("release") != RELEASE:
++        errors.append("content status config release mismatch")
++    if config.get("mode") != "runtime-derived":
++        errors.append("content status counts must be runtime-derived")
++    if "statusCounts" in config:
++        errors.append("stale hard-coded statusCounts field remains")
++    html = (root / "content-status.html").read_text(encoding="utf-8")
++    parser = AuditParser()
++    parser.feed(html)
++    duplicates = sorted({
++        value for value in parser.ids if parser.ids.count(value) > 1
++    })
++    if duplicates:
++        errors.append(f"content-status duplicate IDs: {duplicates}")
++    if parser.lang != "ta":
++        errors.append("content-status lang must remain ta")
++    if parser.h1 != 1:
++        errors.append(f"content-status h1 count is {parser.h1}")
++    if parser.main != 1:
++        errors.append(f"content-status main count is {parser.main}")
++    if parser.status_regions < 1:
++        errors.append("content-status has no status live region")
++    if parser.canonical != "https://omsaravanabhava.org/content-status.html":
++        errors.append("content-status canonical mismatch")
++    for marker in (
++        'data-release="230"',
++        'assets/js/content-status-audit.mjs',
++        'assets/css/content-status-audit.css',
++        'id="contentStatusAudit"',
++    ):
++        if marker not in html:
++            errors.append(f"content-status marker missing: {marker}")
++    checks.append("content status semantics and runtime-count boundary")
++
++
++def validate_assets(root, errors, checks):
++    audit_js = (root / "assets/js/content-status-audit.mjs").read_text(
++        encoding="utf-8"
++    )
++    desktop_js = (
++        root / "assets/js/reading-workspace-desktop.mjs"
++    ).read_text(encoding="utf-8")
++    css = (root / "assets/css/content-status-audit.css").read_text(
++        encoding="utf-8"
++    )
++    sw = (root / "service-worker.js").read_text(encoding="utf-8")
++    for marker in (
++        "export const RELEASE = 230;",
++        "buildStatusCounts",
++        "evaluateBoundary",
++        "verifyAllPageEvidence",
++        "applyPublicationBoundaries",
++    ):
++        if marker not in audit_js + desktop_js:
++            errors.append(f"JavaScript marker missing: {marker}")
++    for marker in (
++        ":focus",
++        "@media (prefers-reduced-motion: reduce)",
++        "@media print",
++    ):
++        if marker not in css and marker != ":focus":
++            errors.append(f"CSS marker missing: {marker}")
++    if "const RELEASE = '228';" not in sw:
++        errors.append("service-worker cache generation changed unexpectedly")
++    for asset in PRECACHE:
++        count = sw.count(f'"{asset}"')
++        if count != 1:
++            errors.append(f"precache {asset} count is {count}")
++    for forbidden in (
++        "localStorage.setItem",
++        "sessionStorage.setItem",
++        "indexedDB.open",
++        "navigator.sendBeacon",
++    ):
++        if forbidden in audit_js:
++            errors.append(f"audit module forbidden operation: {forbidden}")
++    checks.append("audit modules, responsive CSS and additive precache")
++
++
++def validate_manifest(root, errors, checks):
++    manifest = load_json(root, "manifest-release-230.json")
++    expected = {
++        "release": RELEASE,
++        "base_commit": BASE_COMMIT,
++        "required_commit_title":
++            "Release 230: enforce literature publication boundaries",
++    }
++    for key, value in expected.items():
++        if manifest.get(key) != value:
++            errors.append(f"manifest {key} mismatch")
++    if manifest.get("deleted_files") != []:
++        errors.append("manifest declares deleted files")
++    if manifest.get("new_browser_storage_key") is not False:
++        errors.append("manifest must declare no new storage key")
++    checks.append("manifest identity, scope and limitations")
++
++
++def validate_checksums(root, errors, checks):
++    ledger = root / "RELEASE_230_SHA256SUMS.txt"
++    if not ledger.exists():
++        return
++    for line in ledger.read_text(encoding="utf-8").splitlines():
++        if not line.strip():
++            continue
++        expected, relative = line.split("  ", 1)
++        target = root / relative
++        if not target.exists():
++            errors.append(f"checksum target missing: {relative}")
++        elif sha256(target) != expected:
++            errors.append(f"checksum mismatch: {relative}")
++    checks.append("final SHA256 ledger")
++
++
++def validate_repo_alignment(root, errors, warnings, checks):
++    route_path = root / "data/site-routes.json"
++    if not route_path.exists():
++        warnings.append("site-routes.json unavailable for repository alignment")
++        return
++    routes = load_json(root, "data/site-routes.json").get("routes", [])
++    route_map = {
++        str(item.get("path", "")): item
++        for item in routes if isinstance(item, dict)
++    }
++    boundaries = load_json(root, "data/publication-boundaries.json")
++    stale = []
++    for record in boundaries["records"]:
++        actual = route_map.get(record["route"], {}).get("status")
++        if actual != record["declaredRouteStatus"]:
++            stale.append({
++                "route": record["route"],
++                "auditSnapshot": record["declaredRouteStatus"],
++                "actual": actual,
++            })
++    if stale:
++        errors.append(f"boundary audit snapshot is stale: {stale}")
++    checks.append("route registry matches the explicitly audited snapshot")
++
++
++def scan_forbidden(root, errors, checks):
++    suffixes = {".html", ".js", ".mjs", ".json", ".css"}
++    direct_files = {
++        "content-status.html",
++        "service-worker.js",
++        "manifest-release-230.json",
++    }
++    for path in root.rglob("*"):
++        if not path.is_file() or path.suffix.lower() not in suffixes:
++            continue
++        relative = path.relative_to(root)
++        production_scope = (
++            relative.parts[0] in {"assets", "data"} or
++            relative.as_posix() in direct_files
++        )
++        if not production_scope:
++            continue
++        source = path.read_text(
++            encoding="utf-8",
++            errors="replace"
++        ).lower()
++        for marker in FORBIDDEN:
++            if marker.lower() in source:
++                errors.append(
++                    f"forbidden marker {marker!r}: {relative}"
++                )
++    checks.append("production credential, localhost and analytics marker scan")
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", default=".")
++    parser.add_argument("--package-mode", action="store_true")
++    parser.add_argument("--report")
++    args = parser.parse_args()
++    root = Path(args.root).resolve()
++
++    errors: list[str] = []
++    warnings: list[str] = []
++    checks: list[str] = []
++    skipped: list[str] = []
++
++    for relative in REQUIRED:
++        if not (root / relative).exists():
++            errors.append(f"required file missing: {relative}")
++    checks.append("required release files")
++
++    for path in root.rglob("*.json"):
++        try:
++            json.loads(path.read_text(encoding="utf-8"))
++        except Exception as exc:
++            errors.append(f"invalid JSON {path.relative_to(root)}: {exc}")
++    checks.append("JSON syntax")
++
++    validate_boundaries(root, errors, checks)
++    validate_reading_config(root, errors, checks)
++    validate_content_status(root, errors, checks)
++    validate_assets(root, errors, checks)
++    validate_manifest(root, errors, checks)
++    validate_checksums(root, errors, checks)
++    scan_forbidden(root, errors, checks)
++
++    node_available = subprocess.run(
++        ["bash", "-lc", "command -v node >/dev/null 2>&1"],
++        cwd=root,
++        check=False,
++    ).returncode == 0
++    if node_available:
++        for command in (
++            ["node", "--check", "assets/js/content-status-audit.mjs"],
++            ["node", "--check", "assets/js/reading-workspace-desktop.mjs"],
++            ["node", "--check", "service-worker.js"],
++            ["node", "--test", "tests/publication-boundaries.test.mjs"],
++        ):
++            code, output = run(command, root)
++            if code:
++                errors.append(f"{' '.join(command)} failed:\n{output}")
++        checks.append("Node syntax and Release 230 tests")
++    else:
++        skipped.append("Node syntax/tests unavailable")
++
++    if args.package_mode:
++        skipped.extend([
++            "route registry snapshot alignment",
++            "same-origin page evidence requests",
++            "GitHub Actions conclusion",
++            "deployed-production verification",
++        ])
++    else:
++        validate_repo_alignment(root, errors, warnings, checks)
++
++    report = {
++        "release": RELEASE,
++        "base_commit": BASE_COMMIT,
++        "mode": "package" if args.package_mode else "repository",
++        "status": "PASS" if not errors else "FAIL",
++        "errors": errors,
++        "warnings": warnings,
++        "checks": checks,
++        "skipped": skipped,
++        "github_actions": "NOT_RUN_LOCALLY",
++        "deployed_production": "NOT_RUN_LOCALLY",
++    }
++    output = json.dumps(report, indent=2, ensure_ascii=False)
++    print(output)
++    if args.report:
++        target = Path(args.report)
++        if not target.is_absolute():
++            target = root / target
++        target.parent.mkdir(parents=True, exist_ok=True)
++        target.write_text(output + "\n", encoding="utf-8")
++    return 1 if errors else 0
++
++
++if __name__ == "__main__":
++    sys.exit(main())

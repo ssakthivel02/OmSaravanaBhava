@@ -1,0 +1,184 @@
+Release 230 — Local Test Evidence
+Generated: 2026-07-15
+Base commit: 292f9f8b2a481f1aab43db2e75d31ccf0a0ffd81
+
+LOCAL PACKAGE RESULT: PASS
+PATCH APPLICABILITY: PASS
+GITHUB ACTIONS RESULT: NOT RUN LOCALLY
+DEPLOYED PRODUCTION RESULT: NOT RUN LOCALLY
+
+Verified Release 229 Git blob baseline:
+5fdfa7261778de77c08fa370cfd800a34a9a7155  content-status.html
+4367aff8baf45c5b26870840d1a25137e9bb8299  data/content-status.json
+9b7488a7791b3757faf6e2d80b201c9f1e9cec89  data/reading-workspace.json
+ef997e7d583a2d66a293f90e5025385e1f0c531c  assets/js/reading-workspace-desktop.mjs
+cb7bb31ca180b1a05a70ab35b106fce17a5036c9  service-worker.js
+
+Workflow YAML parse:
+PASS  .github/workflows/release-230-integrity.yml
+PASS  .github/workflows/release-230-production-smoke.yml
+
+$ node --check assets/js/content-status-audit.mjs
+Exit code: 0
+
+
+$ node --check assets/js/reading-workspace-desktop.mjs
+Exit code: 0
+
+
+$ node --check service-worker.js
+Exit code: 0
+
+
+$ node --test tests/publication-boundaries.test.mjs
+Exit code: 0
+TAP version 13
+# Subtest: release identities are stable
+ok 1 - release identities are stable
+  ---
+  duration_ms: 1.123407
+  type: 'test'
+  ...
+# Subtest: boundary registry contains eight unique audited routes
+ok 2 - boundary registry contains eight unique audited routes
+  ---
+  duration_ms: 7.041762
+  type: 'test'
+  ...
+# Subtest: seven source-only or navigation routes are reading excluded
+ok 3 - seven source-only or navigation routes are reading excluded
+  ---
+  duration_ms: 1.834501
+  type: 'test'
+  ...
+# Subtest: Kandar Anubhuti remains bounded-reading eligible
+ok 4 - Kandar Anubhuti remains bounded-reading eligible
+  ---
+  duration_ms: 1.182831
+  type: 'test'
+  ...
+# Subtest: reading workspace config excludes every non-reading audit route
+ok 5 - reading workspace config excludes every non-reading audit route
+  ---
+  duration_ms: 2.215287
+  type: 'test'
+  ...
+# Subtest: status counts are runtime-derived and deterministic
+ok 6 - status counts are runtime-derived and deterministic
+  ---
+  duration_ms: 6.895364
+  type: 'test'
+  ...
+# Subtest: boundary evaluation exposes registry mismatch without hiding it
+ok 7 - boundary evaluation exposes registry mismatch without hiding it
+  ---
+  duration_ms: 0.37583
+  type: 'test'
+  ...
+# Subtest: publication overlay changes labels and removes source-only routes
+ok 8 - publication overlay changes labels and removes source-only routes
+  ---
+  duration_ms: 0.557379
+  type: 'test'
+  ...
+# Subtest: audit filtering supports mismatch, reading exclusion and Tamil search
+ok 9 - audit filtering supports mismatch, reading exclusion and Tamil search
+  ---
+  duration_ms: 0.480505
+  type: 'test'
+  ...
+# Subtest: summary uses current route count and audited results
+ok 10 - summary uses current route count and audited results
+  ---
+  duration_ms: 0.744593
+  type: 'test'
+  ...
+# Subtest: route normalisation rejects external origins
+ok 11 - route normalisation rejects external origins
+  ---
+  duration_ms: 0.27513
+  type: 'test'
+  ...
+# Subtest: content status configuration contains no hard-coded current counts
+ok 12 - content status configuration contains no hard-coded current counts
+  ---
+  duration_ms: 4.169262
+  type: 'test'
+  ...
+# Subtest: page is semantic, accessible and release identified
+ok 13 - page is semantic, accessible and release identified
+  ---
+  duration_ms: 1.095481
+  type: 'test'
+  ...
+# Subtest: new modules create no storage, analytics or content fabrication surface
+ok 14 - new modules create no storage, analytics or content fabrication surface
+  ---
+  duration_ms: 1.839608
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 130.079846
+
+$ python -m py_compile tools/release_230_validate.py
+Exit code: 0
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/generated/interface/models.py", line 30820, in hydrate_crdt_from_proto
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/remote.py", line 749, in __call__
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/client.py", line 150, in call
+artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
+
+$ python tools/release_230_validate.py --root . --package-mode
+Exit code: 0
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/generated/interface/models.py", line 30820, in hydrate_crdt_from_proto
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/remote.py", line 749, in __call__
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/client.py", line 150, in call
+artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
+{
+  "release": 230,
+  "base_commit": "292f9f8b2a481f1aab43db2e75d31ccf0a0ffd81",
+  "mode": "package",
+  "status": "PASS",
+  "errors": [],
+  "warnings": [],
+  "checks": [
+    "required release files",
+    "JSON syntax",
+    "eight-record publication boundary schema",
+    "reading eligibility exclusions and overlay registration",
+    "content status semantics and runtime-count boundary",
+    "audit modules, responsive CSS and additive precache",
+    "manifest identity, scope and limitations",
+    "production credential, localhost and analytics marker scan",
+    "Node syntax and Release 230 tests"
+  ],
+  "skipped": [
+    "route registry snapshot alignment",
+    "same-origin page evidence requests",
+    "GitHub Actions conclusion",
+    "deployed-production verification"
+  ],
+  "github_actions": "NOT_RUN_LOCALLY",
+  "deployed_production": "NOT_RUN_LOCALLY"
+}
+
+$ git apply --check RELEASE_230.patch (from exact Release 229 baseline)
+Exit code: 0

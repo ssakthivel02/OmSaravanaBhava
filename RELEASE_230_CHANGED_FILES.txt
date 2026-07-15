@@ -1,0 +1,31 @@
+Release 230 — Literature Publication Boundary Enforcement
+Base commit: 292f9f8b2a481f1aab43db2e75d31ccf0a0ffd81
+
+M  content-status.html
+M  data/content-status.json
+M  data/reading-workspace.json
+M  assets/js/reading-workspace-desktop.mjs
+M  service-worker.js
+A  data/publication-boundaries.json
+A  assets/css/content-status-audit.css
+A  assets/js/content-status-audit.mjs
+A  tests/publication-boundaries.test.mjs
+A  tools/release_230_validate.py
+A  .github/workflows/release-230-integrity.yml
+A  .github/workflows/release-230-production-smoke.yml
+A  manifest-release-230.json
+
+Evidence files:
+A  RELEASE_230_CHANGED_FILES.txt
+A  RELEASE_230_GITHUB_PORTAL_INSTRUCTIONS.txt
+A  RELEASE_230_LOCAL_TEST_EVIDENCE.txt
+A  RELEASE_230_SHA256SUMS.txt
+A  RELEASE_230_VALIDATION_REPORT.md
+A  RELEASE_230.patch
+
+Deliberately unchanged:
+- data/site-routes.json — current labels remain explicit audit evidence rather than being silently rewritten.
+- sitemap.xml — content-status.html already exists and no route is added.
+- literature and devotional page text — no verse, translation or commentary is changed.
+- personal-data registries — no new browser-local dataset or storage key.
+- service-worker cache generation — remains 228; Release 230 assets are additive precache entries.

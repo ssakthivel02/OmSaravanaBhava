@@ -1,0 +1,281 @@
+/*
+Release 230 — Content publication status and boundary audit.
+No colour tokens are redefined; this stylesheet extends the established theme.
+*/
+.content-status-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) repeat(4, minmax(110px, 0.28fr));
+  gap: 16px;
+  align-items: center;
+}
+
+.content-status-metric {
+  display: grid;
+  place-items: center;
+  min-height: 112px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--surface-strong, #fff);
+  text-align: center;
+}
+
+.content-status-metric strong {
+  color: var(--red);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1;
+}
+
+.content-status-metric span {
+  font-size: 0.84rem;
+  font-weight: 850;
+}
+
+.content-status-message {
+  margin: 14px 0;
+  font-weight: 800;
+}
+
+.content-status-heading-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.content-status-heading-row h2 {
+  margin: 8px 0 0;
+}
+
+.content-status-count-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.content-status-count {
+  display: grid;
+  gap: 6px;
+  min-height: 116px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface-strong, #fff);
+}
+
+.content-status-count strong {
+  color: var(--red);
+  font-size: 2rem;
+}
+
+.content-status-count code {
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.content-status-controls {
+  display: grid;
+  grid-template-columns: minmax(200px, 0.7fr) minmax(260px, 1.3fr);
+  gap: 14px;
+  align-items: end;
+}
+
+.content-status-controls label {
+  display: grid;
+  gap: 6px;
+  font-weight: 850;
+}
+
+.content-status-controls input,
+.content-status-controls select {
+  width: 100%;
+}
+
+.content-status-audit-list {
+  display: grid;
+  gap: 14px;
+}
+
+.content-status-record {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.content-status-record.is-mismatch {
+  border-left: 5px solid var(--orange);
+}
+
+.content-status-record.is-aligned {
+  border-left: 5px solid var(--green, #2d7a46);
+}
+
+.content-status-labels,
+.content-status-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.content-status-record h3 {
+  margin: 10px 0 4px;
+}
+
+.content-status-title-en {
+  margin-top: 0;
+  color: #6a4638;
+  font-weight: 800;
+}
+
+.content-status-comparison {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 10px;
+  align-items: center;
+  margin: 14px 0;
+}
+
+.content-status-state {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(244, 156, 44, 0.06);
+}
+
+.content-status-state span,
+.content-status-state strong {
+  display: block;
+}
+
+.content-status-state span {
+  margin-bottom: 4px;
+  font-size: 0.78rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.content-status-arrow {
+  font-size: 1.4rem;
+  font-weight: 900;
+}
+
+.content-status-facts {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.content-status-fact {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.42fr) minmax(0, 1fr);
+  gap: 10px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.content-status-fact:last-child {
+  border-bottom: 0;
+}
+
+.content-status-fact dt {
+  font-weight: 900;
+}
+
+.content-status-fact dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.content-status-evidence {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(165, 29, 23, 0.05);
+  font-size: 0.9rem;
+}
+
+.content-status-boundary {
+  border-left: 5px solid var(--orange);
+}
+
+body.dark .content-status-title-en {
+  color: #f4d9c8;
+}
+
+@media (max-width: 1120px) {
+  .content-status-hero {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .content-status-hero > div:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .content-status-count-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .content-status-record {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .content-status-hero,
+  .content-status-count-grid,
+  .content-status-controls,
+  .content-status-comparison {
+    grid-template-columns: 1fr;
+  }
+
+  .content-status-hero > div:first-child {
+    grid-column: auto;
+  }
+
+  .content-status-arrow {
+    transform: rotate(90deg);
+    text-align: center;
+  }
+
+  .content-status-fact {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .content-status-heading-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .content-status-heading-row .btn {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content-status-record,
+  .content-status-actions .btn {
+    transition: none;
+  }
+}
+
+@media print {
+  .content-status-controls,
+  #contentStatusRefresh,
+  .content-status-actions,
+  #contentStatusMessage {
+    display: none !important;
+  }
+
+  .content-status-record {
+    break-inside: avoid;
+  }
+}

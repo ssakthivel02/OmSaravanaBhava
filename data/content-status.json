@@ -1,17 +1,16 @@
 {
-  "generated": "2026-07-13",
-  "searchRecordCount": 56,
-  "sourceRecordCount": 4,
-  "statusCounts": {
-    "published-source-linked": 19,
-    "published": 16,
-    "partial-reviewed": 3,
-    "source-review-required": 5,
-    "reviewed-opening-extract": 2,
-    "uploaded-collection-review": 1,
-    "uploaded-source-identified": 1,
-    "uploaded-reference-identified": 2,
-    "source-linked-sections-available": 1,
-    "source-register": 6
-  }
+  "release": 230,
+  "generated": "2026-07-15",
+  "baseCommit": "292f9f8b2a481f1aab43db2e75d31ccf0a0ffd81",
+  "mode": "runtime-derived",
+  "routeRegistryPath": "/data/site-routes.json",
+  "boundaryRegistryPath": "/data/publication-boundaries.json",
+  "description": "Status totals are derived from the current route registry at runtime. Audited literature mismatches are reported separately; no stale hard-coded totals are presented as current.",
+  "hardCodedStatusCounts": false,
+  "pageEvidenceChecks": true,
+  "limitations": [
+    "The browser page can verify same-origin files and text markers but cannot certify editorial scholarship.",
+    "Network or cache failures may make page-evidence checks temporarily unavailable.",
+    "GitHub Actions status is not inferred from this static dashboard."
+  ]
 }

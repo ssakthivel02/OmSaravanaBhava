@@ -1,6 +1,33 @@
-export const RELEASE = 229;
+export const RELEASE = 230;
 export const DESKTOP_BREAKPOINT = 1180;
 export const CANONICAL_ORIGIN = 'https://omsaravanabhava.org';
+export const PUBLICATION_BOUNDARIES_PATH = '/data/publication-boundaries.json';
+
+
+export const buildPublicationBoundaryMap = payload => new Map(
+  (Array.isArray(payload?.records) ? payload.records : [])
+    .map(record => [String(record?.route || '').trim(), record])
+    .filter(([route]) => route.startsWith('/'))
+);
+
+export const applyPublicationBoundaries = (routes, payload) => {
+  const boundaries = buildPublicationBoundaryMap(payload);
+  return (Array.isArray(routes) ? routes : [])
+    .filter(route => {
+      const boundary = boundaries.get(String(route?.path || ''));
+      return boundary?.readingEligible !== false;
+    })
+    .map(route => {
+      const boundary = boundaries.get(String(route?.path || ''));
+      return boundary
+        ? {
+            ...route,
+            status: String(boundary.verifiedStatus || route.status),
+            publicationBoundary: boundary
+          }
+        : route;
+    });
+};
 
 export const clampSelectionIndex = (index, length) => {
   const size = Math.max(0, Number(length) || 0);
@@ -384,6 +411,26 @@ export const initialiseDesktopWorkspace = async ({
   let model;
   try {
     model = await readerModule.loadReadingModel();
+    try {
+      const response = await globalThis.fetch(PUBLICATION_BOUNDARIES_PATH, {
+        cache: 'no-store',
+        credentials: 'same-origin',
+        headers: {'Accept': 'application/json'}
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+      const boundaries = await response.json();
+      model.routes = applyPublicationBoundaries(
+        model.routes,
+        boundaries
+      );
+    } catch (boundaryError) {
+      console.warn(
+        '[OmSaravanaBhava] Publication boundary overlay unavailable',
+        boundaryError
+      );
+    }
   } catch (error) {
     console.warn(
       '[OmSaravanaBhava] Desktop reading model unavailable',

@@ -1,9 +1,9 @@
 {
-  "release": 224,
-  "generated": "2026-07-14",
-  "builtAgainstCommit": "03f8c23e50aea1323211d2ca44cf4cddcf0deec4",
+  "release": 230,
+  "generated": "2026-07-15",
+  "builtAgainstCommit": "292f9f8b2a481f1aab43db2e75d31ccf0a0ffd81",
   "title": "OmSaravanaBhava Premium Reading Workspace",
-  "scope": "Browser-local reading progress and focus tools for existing published or clearly bounded devotional reading routes.",
+  "scope": "Browser-local reading progress and focus tools for existing published or bounded devotional reading routes, with explicit exclusion of source-only literature registers and navigation-only pages.",
   "storageKey": "osb-reading-progress-v1",
   "maximumProgressItems": 50,
   "completedThreshold": 95,
@@ -25,7 +25,14 @@
   "excludedPaths": [
     "/reading-workspace.html",
     "/reading-list.html",
-    "/print-pdf.html"
+    "/print-pdf.html",
+    "/literature/kandar-alangaram.html",
+    "/literature/kandar-andhadhi.html",
+    "/literature/kandar-kalivenba.html",
+    "/literature/shanmuga-kavasam.html",
+    "/literature/vel-maaral.html",
+    "/literature/vel-mayil-virutham.html",
+    "/literature/thirumurugatruppadai-complete.html"
   ],
   "protectedStorageKeys": [
     "osb-reading-list-v1",
@@ -36,7 +43,8 @@
     "No devotional text is copied into progress storage.",
     "Progress remains in the current browser profile.",
     "Scroll percentage is an approximate reading position, not proof of completion.",
-    "The workspace does not alter publication, source or copyright status.",
+    "Source-register and navigation-only literature pages are excluded from reading progress.",
+    "The workspace does not claim that a bounded extract is a complete literary edition.",
     "No account, analytics or cross-device synchronization is provided."
   ],
   "notesIntegration": {
@@ -44,5 +52,10 @@
     "storageKey": "osb-reading-notes-v1",
     "maximumItems": 100,
     "storesSelectedDevotionalText": false
+  },
+  "publicationBoundaryRegistry": {
+    "path": "/data/publication-boundaries.json",
+    "statusOverride": true,
+    "excludeWhenReadingEligibleFalse": true
   }
 }
