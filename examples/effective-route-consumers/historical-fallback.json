@@ -1,0 +1,6 @@
+{
+  "historicalStatus": "available",
+  "overrideStatus": "HTTP 503",
+  "resultMode": "historical-fallback",
+  "visibleWarningRequired": true
+}

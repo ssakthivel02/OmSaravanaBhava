@@ -1,18 +1,18 @@
 {
-  "release": 236,
+  "release": 237,
   "algorithm": "sha256",
-  "scope": "tracked-control-files-excluding-manifest-release-evidence-and-self",
+  "scope": "release-package-source-excluding-manifest-evidence-and-self",
   "excludedPaths": [
-    "RELEASE_236.patch",
-    "RELEASE_236_CHANGED_FILES.txt",
-    "RELEASE_236_GITHUB_PORTAL_INSTRUCTIONS.txt",
-    "RELEASE_236_LOCAL_TEST_EVIDENCE.txt",
-    "RELEASE_236_SHA256SUMS.txt",
-    "RELEASE_236_VALIDATION_REPORT.md",
+    "RELEASE_237.patch",
+    "RELEASE_237_CHANGED_FILES.txt",
+    "RELEASE_237_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_237_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_237_SHA256SUMS.txt",
+    "RELEASE_237_VALIDATION_REPORT.md",
     "data/repository-integrity-inventory.json",
-    "manifest-release-236.json"
+    "manifest-release-237.json"
   ],
-  "recordCount": 310,
+  "recordCount": 421,
   "records": [
     {
       "path": ".editorconfig",
@@ -22,9 +22,15 @@
     },
     {
       "path": ".gitattributes",
-      "sizeBytes": 314,
-      "sha256": "92c0dbc0c2ab1c064d0f6b246ef991fe2ef09dc1756373d72d1d5c0b08b4645c",
+      "sizeBytes": 468,
+      "sha256": "ef2fd67b4c6c6a89b03482721bd45ef097eb19b8926e96b48f4935940d7e2723",
       "suffix": ""
+    },
+    {
+      "path": ".github/workflows/effective-route-consumers.yml",
+      "sizeBytes": 1727,
+      "sha256": "7c906e143ef525fe9b982e346a5911bb5cb9283ac555f35ba065d64c4230951f",
+      "suffix": ".yml"
     },
     {
       "path": ".github/workflows/release-232-attestation.yml",
@@ -34,8 +40,8 @@
     },
     {
       "path": ".github/workflows/release-232-governance.yml",
-      "sizeBytes": 5127,
-      "sha256": "ddd634597cf6032efe601c2ee2c66256906c170bbf87bd1581850b1a470ada55",
+      "sizeBytes": 5643,
+      "sha256": "d7503477bba2dffde36d3da8c61dd8841caceb90a6e2e0cc315666e1e2e19e35",
       "suffix": ".yml"
     },
     {
@@ -52,20 +58,20 @@
     },
     {
       "path": ".gitignore",
-      "sizeBytes": 708,
-      "sha256": "cff6b9d0f4885c67e4772ac128d5fb5d07c106696383c61add71c1dc0587a79d",
+      "sizeBytes": 801,
+      "sha256": "d726df15b2734fb4449fe61b80c7ead9bfcd356fe96cdd1365a9bb18a440bcee",
       "suffix": ""
     },
     {
       "path": ".pre-commit-config.yaml",
-      "sizeBytes": 611,
-      "sha256": "24be23365d1b5980109c099b70908cb9cf455c89934b4bc90eaf84642d9519ac",
+      "sizeBytes": 826,
+      "sha256": "40616dc4e12296832338c6cabfae2f10ca9304e9cf3df80129443c80e66d8dbc",
       "suffix": ".yaml"
     },
     {
       "path": ".release-governance.json",
-      "sizeBytes": 3396,
-      "sha256": "1c9b7d2173a51cef7cf29aa25809895d37b8b014f0981ab23f5a96784462e247",
+      "sizeBytes": 4116,
+      "sha256": "2358e112848f62ff59c89985fdf54180d90f90d3a3726ac2441dfceb8d46ee59",
       "suffix": ".json"
     },
     {
@@ -76,9 +82,15 @@
     },
     {
       "path": "Makefile",
-      "sizeBytes": 472,
-      "sha256": "1afd63170b30f5e8e07fd061df46b1ea78d605bed40b2c1376687376c7d62ae7",
+      "sizeBytes": 640,
+      "sha256": "cab2aa71477c61918581dc34ee2cf15ed1b082be95caf0f0bccd4d070fa9e531",
       "suffix": ""
+    },
+    {
+      "path": "PUBLISH_RELEASE_237.cmd",
+      "sizeBytes": 768,
+      "sha256": "6fbd241535910c7d68edca25949d73fad51bbe9018a0fd4b8fed60b0f435015c",
+      "suffix": ".cmd"
     },
     {
       "path": "RELEASE_233.patch",
@@ -189,15 +201,207 @@
       "suffix": ".md"
     },
     {
+      "path": "RELEASE_236.patch",
+      "sizeBytes": 210090,
+      "sha256": "d35a01bd1b9d8e1b8f813054d74c2e251b7ec0a6e0361027f86e1da89f9dd952",
+      "suffix": ".patch"
+    },
+    {
+      "path": "RELEASE_236_CHANGED_FILES.txt",
+      "sizeBytes": 7024,
+      "sha256": "f91086690ff4b5489c9067a2176df28cfa3c39ed0e4c52a7a93228563dbb120e",
+      "suffix": ".txt"
+    },
+    {
+      "path": "RELEASE_236_GITHUB_PORTAL_INSTRUCTIONS.txt",
+      "sizeBytes": 2133,
+      "sha256": "d971aa59917e879c7a2487b8ab5cb81ba66b61020032d228439ee88f0ec1eab1",
+      "suffix": ".txt"
+    },
+    {
+      "path": "RELEASE_236_LOCAL_TEST_EVIDENCE.txt",
+      "sizeBytes": 19776,
+      "sha256": "480cd783b2ebb33e77795d09fbbd71799a58a5c9fccaaa6c01a135a4d8a72ab5",
+      "suffix": ".txt"
+    },
+    {
+      "path": "RELEASE_236_SHA256SUMS.txt",
+      "sizeBytes": 34157,
+      "sha256": "11d5666dfb93a6c567045c9ccb5ccfc8ce5b7efb7850146421a2ab67c92fd27c",
+      "suffix": ".txt"
+    },
+    {
+      "path": "RELEASE_236_VALIDATION_REPORT.md",
+      "sizeBytes": 2284,
+      "sha256": "6f0f1dd6d48c54a78dd8c05411ba55ef5b46387bcace71b63e10d4f3d95039c4",
+      "suffix": ".md"
+    },
+    {
+      "path": "assets/js/content-status-audit.mjs",
+      "sizeBytes": 13915,
+      "sha256": "03b6e9f0529a2b69df80d71eaaa8b434c082af52402a8d1e2830968a75b78f79",
+      "suffix": ".mjs"
+    },
+    {
+      "path": "assets/js/discovery-workspace.mjs",
+      "sizeBytes": 16229,
+      "sha256": "5a7a96251c5e83ae2bdc0a2fe69b633827e634f1ba0503bbc9566d634120a32f",
+      "suffix": ".mjs"
+    },
+    {
+      "path": "assets/js/effective-route-registry.mjs",
+      "sizeBytes": 8713,
+      "sha256": "d6e25398ac002390558fb842edcd5b7a155cd2e5b8e98c1a87f373d3cbc23c21",
+      "suffix": ".mjs"
+    },
+    {
+      "path": "assets/js/route-status-reconciliation.js",
+      "sizeBytes": 4219,
+      "sha256": "2ef7325bb5ec615a7cae96703f1f152a696a8738439340abcc28a0444dbd2a0c",
+      "suffix": ".js"
+    },
+    {
+      "path": "assets/js/site-directory.mjs",
+      "sizeBytes": 5840,
+      "sha256": "6615081909e4b0e431aa7d83fbe0b1d258e38f4e40f401bd3c2dd866f4bbf254",
+      "suffix": ".mjs"
+    },
+    {
+      "path": "content-status.html",
+      "sizeBytes": 6540,
+      "sha256": "2f3139c3dd1988c1499e55ddbb95c13459c139f03e0a7906d53c24ada3a2fe4b",
+      "suffix": ".html"
+    },
+    {
+      "path": "data/effective-route-registry-runtime.json",
+      "sizeBytes": 693,
+      "sha256": "0730ba81d11d39d55928144d687cbeb23409c958a8dff701377c587e859efc5d",
+      "suffix": ".json"
+    },
+    {
       "path": "data/site-routes-effective-overrides.json",
       "sizeBytes": 6159,
       "sha256": "66ad7a83b4ced3420fa6cb391d715d9729f119df33f9769f3b0695de3e920bf5",
       "suffix": ".json"
     },
     {
+      "path": "discovery.html",
+      "sizeBytes": 6866,
+      "sha256": "f045784da1ab894acb1443693f76acc154aa28655ffac93fac1743b913149211",
+      "suffix": ".html"
+    },
+    {
       "path": "docs/browser-upload-commit-policy.md",
       "sizeBytes": 1629,
       "sha256": "b970ebeeca8eb55b251a5fe0ce190879cc7912c54a0c5e495eba67180959cc27",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/effective-route-consumers/README.md",
+      "sizeBytes": 177,
+      "sha256": "e450852efe654f9cf55084bc9f9eeeb855bd5a4de15115192d0fac29068f9f50",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/effective-route-consumers/accessibility.md",
+      "sizeBytes": 143,
+      "sha256": "f78d8f172c59d89ea9952357ae37fe5adafb85fc9ef8a4fa3d48a2712be90633",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/effective-route-consumers/architecture.md",
+      "sizeBytes": 242,
+      "sha256": "2eab6065aa87b7705b1e0ccca9cdf133b6cb8e4abfd7e3af6520a5ec76e0202c",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/effective-route-consumers/compatibility-helper.md",
+      "sizeBytes": 162,
+      "sha256": "6a8de928a41e1e190e95b5d019efc5d8fe3f2d6c9757b7ee4e79ef6104589dce",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/effective-route-consumers/content-status.md",
+      "sizeBytes": 184,
+      "sha256": "fd0cf883e6fbfc9eeee9f22259126e61fe99193def0f3ce3320cfa5c5b897566",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/effective-route-consumers/discovery.md",
+      "sizeBytes": 131,
+      "sha256": "788f778c8868458c33229349e075ab97527668492e5caa1defd343fd4ef4c449",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/effective-route-consumers/exact-path-merge.md",
+      "sizeBytes": 179,
+      "sha256": "adabb4c5c65d25460a2d4205a6b42adb2f7f32dbdfdf64a7c4ceb186a68a0093",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/effective-route-consumers/explicit-loader.md",
+      "sizeBytes": 153,
+      "sha256": "c33b36797369fdbc322189b0fd3de0fb30353172d9c8c80f7f5e2161e9ad7a31",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/effective-route-consumers/future-consumers.md",
+      "sizeBytes": 167,
+      "sha256": "6da98b3816c7ec2d6f3518549362c1035a740027205fe7efa667eceab870e700",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/effective-route-consumers/historical-fallback.md",
+      "sizeBytes": 173,
+      "sha256": "00634e0bdc108249c2067483ef06883b56cbe1a8f96e1883374170a4c7595cbc",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/effective-route-consumers/migration-boundary.md",
+      "sizeBytes": 138,
+      "sha256": "db23ddeb84e5a7ac4f4e0e48fd49c49d506b39acfcf5db59ebca3d1a399affe3",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/effective-route-consumers/operations.md",
+      "sizeBytes": 165,
+      "sha256": "4dd8aa3d8113eea9c9d6ae88af1cecb6041cafdb98eaa895a99b0ac7aca7300c",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/effective-route-consumers/performance.md",
+      "sizeBytes": 147,
+      "sha256": "7458867fe1d3eac7c89a17f2c0dc210c97f782efa6e2ac6afa003853ab908e8b",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/effective-route-consumers/publisher.md",
+      "sizeBytes": 183,
+      "sha256": "3a0507b6b4b3019d6042647402c0dd558ef0c1afc45769095cc893c9b79f8428",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/effective-route-consumers/rollback.md",
+      "sizeBytes": 179,
+      "sha256": "e100a0202fdaeb7d96968605b4eaf6667db76e8259c2581343604487e695d2dd",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/effective-route-consumers/security.md",
+      "sizeBytes": 161,
+      "sha256": "8f3bea815a661896a8e5d81e29d17f6334b21933f34583fb95a4bd8238cf8719",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/effective-route-consumers/site-directory.md",
+      "sizeBytes": 150,
+      "sha256": "1ba9e863630ad67534ad57e7cf3805aebd4daf4b744c1aa97862965857686133",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/effective-route-consumers/testing.md",
+      "sizeBytes": 172,
+      "sha256": "7e4607a30f435324ef3fc1d2bb81a6cc22b47bb44d79d60b5b2c4d75e5a61eb2",
       "suffix": ".md"
     },
     {
@@ -214,8 +418,8 @@
     },
     {
       "path": "docs/release-governance.md",
-      "sizeBytes": 2871,
-      "sha256": "29d2089c159831ddf9ac06f6669a4d5d4b95a4326cc3dac8e0eb3e3d78feaf8a",
+      "sizeBytes": 3574,
+      "sha256": "1748d506bf4d2617330e8254856b2b6eb80b9e5e0d1c00d6f1d70c08be516f9a",
       "suffix": ".md"
     },
     {
@@ -471,6 +675,42 @@
       "suffix": ".md"
     },
     {
+      "path": "examples/effective-route-consumers/compose-effective-registry.json",
+      "sizeBytes": 144,
+      "sha256": "fee8fd88303f0f49714851dd14a60f7e8dbb127379f8bc8016e5e9a6c347bd26",
+      "suffix": ".json"
+    },
+    {
+      "path": "examples/effective-route-consumers/consumer-map.json",
+      "sizeBytes": 180,
+      "sha256": "2f96f75c969e29a2e8f86bab8be6c5dc8e5319dec7a70e6a6785ae6e3838edaa",
+      "suffix": ".json"
+    },
+    {
+      "path": "examples/effective-route-consumers/diagnostics.json",
+      "sizeBytes": 100,
+      "sha256": "7f391c7323bf5b17270807c193be47d820997cb24fd411dee2d60b6022b12ce1",
+      "suffix": ".json"
+    },
+    {
+      "path": "examples/effective-route-consumers/historical-fallback.json",
+      "sizeBytes": 143,
+      "sha256": "d57b1b87fb25016c793bd709d00d0e696eac9d06579dde01f852b1597e1d67a9",
+      "suffix": ".json"
+    },
+    {
+      "path": "examples/effective-route-consumers/override-record.json",
+      "sizeBytes": 167,
+      "sha256": "2b046eedacdcf69272465d83b3a5865cb0b91eb65a5a6d7632b1962cc45b41cc",
+      "suffix": ".json"
+    },
+    {
+      "path": "examples/effective-route-consumers/publisher-result.json",
+      "sizeBytes": 140,
+      "sha256": "1d8218fe7ab7be4f2ebb2395ba7bd27cd93afbe82e67f07cba9699c29f4a20cf",
+      "suffix": ".json"
+    },
+    {
       "path": "examples/release-governance/browser-upload-fallback.txt",
       "sizeBytes": 325,
       "sha256": "d7e47fc07e272ad0c7d3041297a386d091fc32e1d34ba345e532d666ccd52bd9",
@@ -546,6 +786,186 @@
       "path": "examples/route-registry/source-register.json",
       "sizeBytes": 128,
       "sha256": "96b05d66d5ab5feb8eb9c8b56eac36a4dad936aee2f0a2b9de7610a2b2554860",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/invalid/01-historical-not-object.json",
+      "sizeBytes": 105,
+      "sha256": "6818ae6a9c935ad8836d6851248efd40c3f43eb302e27dfdc77224517b39c6ca",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/invalid/02-routes-not-array.json",
+      "sizeBytes": 145,
+      "sha256": "851525ecba291e532effe4394fc39252dc48986e1dc2b60278cb001ff2c922ce",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/invalid/03-historical-empty-path.json",
+      "sizeBytes": 185,
+      "sha256": "5af53b05274b40bd7a9d1531987f8c610a57a387c0bbdac638c5e03b710d4562",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/invalid/04-historical-duplicate-path.json",
+      "sizeBytes": 225,
+      "sha256": "89a17e2ac5773f7e4e09673ffc7a99cdb5a3a97ce99fdbc8fa3b99499e69757b",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/invalid/05-overrides-not-object.json",
+      "sizeBytes": 82,
+      "sha256": "2806613d326c4b45ba6fc4f6aaf8123d6672d9ddf739cfd436fdaedfaab06e2b",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/invalid/06-release-missing.json",
+      "sizeBytes": 125,
+      "sha256": "e335f09dc46eadafafb7b1efa92da6fd8c75948a8b18224b6f27d256052f13f4",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/invalid/07-release-zero.json",
+      "sizeBytes": 143,
+      "sha256": "50cc93ce3da509396fbf227ffedcea0baedecca801a6655764d0f5f7bf1171b0",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/invalid/08-records-not-array.json",
+      "sizeBytes": 145,
+      "sha256": "ea73359ca25940219f60c81d2d5aef889201469e89a6e50b795157c1967f9b0f",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/invalid/09-record-count-mismatch.json",
+      "sizeBytes": 145,
+      "sha256": "d3acebd00e0f063f5404f17368f9af30554ff7e7eb8c8fd4e56722f76fda0f89",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/invalid/10-override-empty-path.json",
+      "sizeBytes": 217,
+      "sha256": "ed2e32eeb7e2b45ed031105e2c94a83dc0d02f44f25549eb43b4aeb4e47643f1",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/invalid/11-override-external-path.json",
+      "sizeBytes": 238,
+      "sha256": "6b0382949e2669dc6f89aee9ecdc7f2ee954590f8c4358070e47ccea22bbc892",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/invalid/12-override-duplicate-path.json",
+      "sizeBytes": 289,
+      "sha256": "e8fe52834102e37ddbacba32ae36fe1ad1515c4be7c834b9f39dc00cd39818af",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/invalid/13-status-missing.json",
+      "sizeBytes": 187,
+      "sha256": "a0684458be64935d121b34c716ce0b849e2e871e063f340bf35f6e6291328a84",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/invalid/14-status-empty.json",
+      "sizeBytes": 209,
+      "sha256": "3fb7ae191e99d84ebb67229123d072ed24a851b031213ff54b15da5b587c90ed",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/invalid/15-null-record.json",
+      "sizeBytes": 161,
+      "sha256": "12ef047d33d9bb0a6d11bcee6593e15904b9c00c9916dd693e143951d104e7e2",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/invalid/16-query-only-path.json",
+      "sizeBytes": 221,
+      "sha256": "69fe4f7c8c9da8d09a9afbc08dc2bbc2e5ee74fe758dd55b70bb5ccb62917e44",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/invalid/17-fragment-only-path.json",
+      "sizeBytes": 219,
+      "sha256": "d028a4ce6b22d829283e9a5bc09f8c2add66a764f6997207c7904306886b6888",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/invalid/18-malformed-url.json",
+      "sizeBytes": 225,
+      "sha256": "c65f678461028bffe646c2b87cd674c89ad43d8585316720f2b08ae705897674",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/valid/01-single-override.json",
+      "sizeBytes": 432,
+      "sha256": "2f2bb84dede5c6b90e06e98c22c335b364c684e5f7419db937d336180fd08533",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/valid/02-no-overrides.json",
+      "sizeBytes": 295,
+      "sha256": "d1a2fd711def1176049bda4f5d95896ff5a64f2f4754c5fa87ae295eedea3d61",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/valid/03-unmatched-override.json",
+      "sizeBytes": 376,
+      "sha256": "8410eafbe5a23199aa91178aa72539d68b72de69a663f4d3e1cd6208ea3d9c70",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/valid/04-reading-excluded.json",
+      "sizeBytes": 391,
+      "sha256": "f7526259d52b4a8b9608c5549cf43498a761f30242d47d10ad5ad07d934a4419",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/valid/05-summary-replacement.json",
+      "sizeBytes": 415,
+      "sha256": "431d1f82e1054ad653538e718b7395a8d81e13e5b81717d34824232bfbee83fd",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/valid/06-metadata-preserved.json",
+      "sizeBytes": 392,
+      "sha256": "a4ffb822ce5873c55ecfe0de948669b0d4e5bb55b17b3d592946822b05e7b089",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/valid/07-sorted-diagnostics.json",
+      "sizeBytes": 378,
+      "sha256": "729882ba5865253f2734d1fdb539ccd6cb00cc63fa2891756c97a6cce4d24f5e",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/valid/08-full-metadata.json",
+      "sizeBytes": 786,
+      "sha256": "93cf2e3d078b70b769a125e8fdf31e5770537206515f5f235a1e8f8d336593f9",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/valid/09-tamil-route.json",
+      "sizeBytes": 500,
+      "sha256": "9b07ff64833a7d9c583124a1c4e3f02b57007206a803ea70c86335593cc2aaae",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/valid/10-multiple-routes.json",
+      "sizeBytes": 594,
+      "sha256": "91ffa1dd00ee03e91cd5e8f62708c6c392ac75bcb82ce07b3db0386b33eb7171",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/valid/11-relative-path-normalisation.json",
+      "sizeBytes": 339,
+      "sha256": "c19fa4f0726dbee352e230dce55fd1c2b50bc0190b8e16ab90b19c6e7c3fb28a",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/effective-route-registry/valid/12-empty-summary.json",
+      "sizeBytes": 407,
+      "sha256": "2382866e7abc12dca3fbda170aae86989ab56c8360ed991b6de9dc27d145cf34",
       "suffix": ".json"
     },
     {
@@ -957,6 +1377,30 @@
       "suffix": ".json"
     },
     {
+      "path": "manifest-release-236.json",
+      "sizeBytes": 20869,
+      "sha256": "8e4938a7ad927e089d4d0b68cb342147c4317ab09b67ea7c6d7204bf20e2a73e",
+      "suffix": ".json"
+    },
+    {
+      "path": "policies/effective-route-consumer-required-assets.json",
+      "sizeBytes": 377,
+      "sha256": "4cb2a93084bb5ae128fb99850779cd89cdce04acf73e1721815b86fd2181666a",
+      "suffix": ".json"
+    },
+    {
+      "path": "policies/effective-route-consumers.json",
+      "sizeBytes": 1540,
+      "sha256": "faf08b243cd11f7199a0620d6ca3e1f23e4f1a11ec8357dc54e24b5b51d49b4b",
+      "suffix": ".json"
+    },
+    {
+      "path": "policies/release-237-publisher.json",
+      "sizeBytes": 528,
+      "sha256": "f4061bc3d71d15b717ca0ce9379d219089746e3a254c10031b4c3f79843dc468",
+      "suffix": ".json"
+    },
+    {
       "path": "policies/repository-binary-policy.json",
       "sizeBytes": 284,
       "sha256": "030a8a04c433dd8b3775c3b9896f65d7788ee2cbaecea291292759fc633b2088",
@@ -994,26 +1438,56 @@
     },
     {
       "path": "policies/repository-integrity-required-assets.json",
-      "sizeBytes": 496,
-      "sha256": "633e4414d005ebe49c20c1d64ab25f98851a7ffa01df6d008129c56f39260ad4",
+      "sizeBytes": 895,
+      "sha256": "3e640067ad95474936c7d01d45feff56e0b7ad262cf21b337f2843068fd1c604",
       "suffix": ".json"
     },
     {
       "path": "policies/repository-integrity.json",
-      "sizeBytes": 1630,
-      "sha256": "87d4992742ec16a1a3445be6441b54cdf07a95b07c1d35a8796faedc034fd8fe",
+      "sizeBytes": 2029,
+      "sha256": "29aab3a48006b145667757e0cc2a13137ca6b74f3e1bacc28d99e781a3932f44",
       "suffix": ".json"
     },
     {
       "path": "pyproject.toml",
-      "sizeBytes": 369,
-      "sha256": "7a054ec114bbc778c40e2268ac2158a59321cff33d4297a63b03c1a6beae473a",
+      "sizeBytes": 386,
+      "sha256": "a85ff4d58e604ad961b0d3565925071c2887f3abe0df4f9d36cb741acadb812a",
       "suffix": ".toml"
+    },
+    {
+      "path": "schemas/effective-route-consumer-policy.schema.json",
+      "sizeBytes": 236,
+      "sha256": "ae7e1749786801231a6a2c5ff2dbf3611097d5bc79688aed40b89965a122aeb7",
+      "suffix": ".json"
+    },
+    {
+      "path": "schemas/effective-route-registry-composed.schema.json",
+      "sizeBytes": 495,
+      "sha256": "cb3cd891a1ccbc675812ff91cf397ce9c2d08386885b6012398ac3fbfe3060bf",
+      "suffix": ".json"
+    },
+    {
+      "path": "schemas/effective-route-registry-diagnostics.schema.json",
+      "sizeBytes": 547,
+      "sha256": "334c47727d43fa447a2ffbb9c06ce14195eb54ea36cb890032eb36eb445ee5eb",
+      "suffix": ".json"
+    },
+    {
+      "path": "schemas/effective-route-registry-runtime.schema.json",
+      "sizeBytes": 895,
+      "sha256": "37b9ebd0a0f4e52be0f57ded54d9ff0b9f25e634899d4eee33eeb93af469fed2",
+      "suffix": ".json"
     },
     {
       "path": "schemas/publication-boundaries.schema.json",
       "sizeBytes": 740,
       "sha256": "7b10f283810acedeb197589bb2c8dc2695f5aa588a467c171891ed3a2e66622c",
+      "suffix": ".json"
+    },
+    {
+      "path": "schemas/release-237-publisher.schema.json",
+      "sizeBytes": 227,
+      "sha256": "41c79b9c46f1a9d56b92746035ea4c9b925841936ac5462df6fc6e6b22f3e7db",
       "suffix": ".json"
     },
     {
@@ -1203,6 +1677,60 @@
       "suffix": ".py"
     },
     {
+      "path": "scripts/release237/prepare-checkout.py",
+      "sizeBytes": 2144,
+      "sha256": "22ae7bd47154cae043ea07f46c0e3104bc5e2c583d7a09f8661bdfb28bf7ddf3",
+      "suffix": ".py"
+    },
+    {
+      "path": "scripts/release237/publish-no-push.ps1",
+      "sizeBytes": 292,
+      "sha256": "98916931b5a673c7056070f6aad5e21470d28c93a677c256e5b941ceef731fa7",
+      "suffix": ".ps1"
+    },
+    {
+      "path": "scripts/release237/publish-release-237.ps1",
+      "sizeBytes": 3869,
+      "sha256": "b4b07dc6f5053ac8d772825128bd2202bbdcb162f5debd679f43bcca1d7ec79e",
+      "suffix": ".ps1"
+    },
+    {
+      "path": "scripts/release237/publish-release-237.sh",
+      "sizeBytes": 1948,
+      "sha256": "5518aefd4ab4ecb5ba0cbded9eeb2b5f0c2521a32ff2fba807875053c5828359",
+      "suffix": ".sh"
+    },
+    {
+      "path": "scripts/release237/run-release-tests.py",
+      "sizeBytes": 1296,
+      "sha256": "d475c58fecbba5b048c861d30c606cb7ff07f6da877f713523ff6e065931a962",
+      "suffix": ".py"
+    },
+    {
+      "path": "scripts/release237/show-result.ps1",
+      "sizeBytes": 554,
+      "sha256": "fb329b442b277cefd20bac66229c1d2cc59696adf3c3e416f607e1630ae148d6",
+      "suffix": ".ps1"
+    },
+    {
+      "path": "scripts/release237/verify-base.py",
+      "sizeBytes": 955,
+      "sha256": "42fa5bda5b4fb5586f594099c35f1d8774e6ae0fa817de6ea84f655497d4711d",
+      "suffix": ".py"
+    },
+    {
+      "path": "scripts/release237/verify-no-tracked-cache.py",
+      "sizeBytes": 780,
+      "sha256": "8e13a198d5be676e62be9dcc6ec6dbbf1245160eb60cebf3c9b7e92c59974563",
+      "suffix": ".py"
+    },
+    {
+      "path": "scripts/release237/verify-staged-change-set.py",
+      "sizeBytes": 2451,
+      "sha256": "e4a5c91a4206bd505f0df1cdb510653988918aadba15694d6bf5133f1b147043",
+      "suffix": ".py"
+    },
+    {
       "path": "scripts/repository/preflight-hygiene.ps1",
       "sizeBytes": 313,
       "sha256": "2ad677d8c44831ce24c553340b1927212b9afd8898f8af6b17996d5d9582d42e",
@@ -1239,6 +1767,12 @@
       "suffix": ".sh"
     },
     {
+      "path": "site-directory.html",
+      "sizeBytes": 3729,
+      "sha256": "94a9c64410c0a62f44230c8ce5bc3f8d3d16feae278461d24bada581ccbf7d1d",
+      "suffix": ".html"
+    },
+    {
       "path": "templates/release-commit-message.template.txt",
       "sizeBytes": 305,
       "sha256": "4658ef61e5da552abd6df7c0c572bff3044e255a6b563fd5eae7ae2a6b587dea",
@@ -1246,9 +1780,75 @@
     },
     {
       "path": "templates/release-upload-checklist.md",
-      "sizeBytes": 1618,
-      "sha256": "cc97d19c63078715002cd163ec92ee50f52a5c64daf4c45cf6f14749053e68e5",
+      "sizeBytes": 2209,
+      "sha256": "75f508255b560c8e8799a8270050f5a8355430cc58ca944904237680859984c6",
       "suffix": ".md"
+    },
+    {
+      "path": "tests/effective_route_consumers/__init__.py",
+      "sizeBytes": 45,
+      "sha256": "51feab8776beb4c248fc2a07dfa3b26eaf6f5230d2b89eecd046a02d2cf002dc",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/effective_route_consumers/test_html_scan.py",
+      "sizeBytes": 1285,
+      "sha256": "9e57821117353d647b0d91d258cb612b6da2e7362ded190e91d92f05237963f6",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/effective_route_consumers/test_release_237_package.py",
+      "sizeBytes": 1913,
+      "sha256": "e6c4cedd3502e53dd4db2f3ab65e4dacaadf1ebe79672e9c23e0b16f044d5d19",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/effective_route_consumers/test_runtime.py",
+      "sizeBytes": 771,
+      "sha256": "440d08b353d5e99e3d3ec65a23886b12c4d8ea8d7dd49c3f6430e4b672be770a",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/effective_route_consumers/test_source_scan.py",
+      "sizeBytes": 1123,
+      "sha256": "acddb89072e847234b9cc2018934fefc91a3069c1df7efb684870a4e9016a28b",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/effective_route_consumers/test_validator.py",
+      "sizeBytes": 2931,
+      "sha256": "8131cd32a8d261fe050b9e9fcba28b90f0a75d2a86378c3a81199d198317e00d",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/js/content-status-audit.test.mjs",
+      "sizeBytes": 1950,
+      "sha256": "5e00b5b6577ad3c8e19c2a111328d358684f1715cde48f60e785d5ed4f5ab75b",
+      "suffix": ".mjs"
+    },
+    {
+      "path": "tests/js/discovery-workspace.test.mjs",
+      "sizeBytes": 2675,
+      "sha256": "eeb4a655fa02d4f711f13ab2062a042c4cc36bc27731e6f9f08c97bb62781ae7",
+      "suffix": ".mjs"
+    },
+    {
+      "path": "tests/js/effective-route-registry.test.mjs",
+      "sizeBytes": 4359,
+      "sha256": "d3573617d8a9ee59ed3cb03c394571c2a66419dff8c80a089760c6793251d56b",
+      "suffix": ".mjs"
+    },
+    {
+      "path": "tests/js/no-global-fetch-interception.test.mjs",
+      "sizeBytes": 865,
+      "sha256": "2e98366fcd210fe472c3fc0d51913ffd5cd12ae300a03913965702a79d31756e",
+      "suffix": ".mjs"
+    },
+    {
+      "path": "tests/js/site-directory.test.mjs",
+      "sizeBytes": 1046,
+      "sha256": "a8759e0837ab525deff96e4c6c3e762ef89ddd91d90699a7c4375699ec28ddf6",
+      "suffix": ".mjs"
     },
     {
       "path": "tests/release_control/__init__.py",
@@ -1488,6 +2088,72 @@
       "path": "tests/route_registry/test_validation.py",
       "sizeBytes": 1071,
       "sha256": "c24725dde682de6726a8809c598ed1f5edabbe1f2a4aabf3737b5ea11b6592dd",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/effective_route_consumers/__init__.py",
+      "sizeBytes": 152,
+      "sha256": "92f09f9724c53b473c8217227eb6cf06edcf9dbfeccbdbe6d46e6da259f2dc53",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/effective_route_consumers/constants.py",
+      "sizeBytes": 193,
+      "sha256": "6bcc59828c161be6a36e695d279fb5d48519918b6bc39c82dfa538b747721221",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/effective_route_consumers/hashing.py",
+      "sizeBytes": 325,
+      "sha256": "fc294039b6dfd9f4f73c1134733328689f6561bab2bb6e5462043483aacaf2c5",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/effective_route_consumers/html_scan.py",
+      "sizeBytes": 876,
+      "sha256": "de817f928afa6b2ba113f698d5015258d311de6652f71f4565aaa44fb1fc3465",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/effective_route_consumers/jsonio.py",
+      "sizeBytes": 594,
+      "sha256": "c6b5043944a75ce85cfd32a81a6ad1439d39e4de1c6bf01403362568cc1239ef",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/effective_route_consumers/models.py",
+      "sizeBytes": 304,
+      "sha256": "e4727bad9f3c49d577250534cb2807192eb2f62da6cf9e8e4e782e91663bda04",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/effective_route_consumers/runtime.py",
+      "sizeBytes": 899,
+      "sha256": "02d954e1f8ee5d66c959f49d5be8a9ec00f2cd745c7595cd4eaad88d606e8d9c",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/effective_route_consumers/source_scan.py",
+      "sizeBytes": 928,
+      "sha256": "07e90a618de4a4de2197a791f8d66742ec6bcdeacd2399f964feb4484a807307",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/effective_route_consumers/validate.py",
+      "sizeBytes": 1082,
+      "sha256": "0ae13ee84390aa51aea9ec301796754a6912ca97be7428707e6b2233ca060386",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/effective_route_consumers/validator.py",
+      "sizeBytes": 3428,
+      "sha256": "af89fba1a86ad64c5e6b05daa04ca4ee049d4bc73747cd03ec811d415972fd72",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/effective_route_consumers_cli.py",
+      "sizeBytes": 138,
+      "sha256": "090a2ef0277a1f4ea1bbf46518b7982b320945bc2385c026c3c3b815be87b3a4",
       "suffix": ".py"
     },
     {
@@ -1780,8 +2446,8 @@
     },
     {
       "path": "tools/repository_integrity/validate.py",
-      "sizeBytes": 1551,
-      "sha256": "fd40192dc2496fb0d050048a2a305100b281835fdddf59333298f5f39e4c9731",
+      "sizeBytes": 2088,
+      "sha256": "e5d6117fb43051497143331fa29a2ee002cf06675f097dc262e52190d42c827c",
       "suffix": ".py"
     },
     {
@@ -1875,5 +2541,5 @@
       "suffix": ".py"
     }
   ],
-  "inventorySha256": "af0510ccc2af249102ef679d4b8849ceef2b2f1dad920bec233a4d1d543c1e48"
+  "inventorySha256": "33307cc198fb9c4b7531c4af8e5a9cf7eac8af2178ef91bed3a60544b037fe31"
 }

@@ -1,0 +1,47 @@
+Release 237 — Local Test Evidence
+Generated: 2026-07-16
+Base commit: dfc5ce53229d9af53a99fe9a089d5d29bb3ea9b5
+Required title: Release 237: migrate effective route consumers and finalise tracked-cache cleanup
+
+RELEASE 236 REMOTE AUDIT
+- Latest commit SHA: dfc5ce53229d9af53a99fe9a089d5d29bb3ea9b5
+- Exact Release 236 subject: PASS
+- Exactly one commit above Release 235: PASS
+- Current tracked .pyc path remains retrievable: CONFIRMED
+- GitHub compare exposes no cache deletion records
+- Combined status records exposed: none
+- Commit workflow runs exposed: none
+- Release 236 tracked-cache objective: INCOMPLETE
+
+RELEASE 237 FINAL LOCAL RESULTS
+- JavaScript runtime tests: PASS 18 OF 18
+- Python regression tests: PASS 125 OF 125
+- Workflow YAML validation: PASS 5 OF 5
+- Effective route-consumer validation: PASS, zero findings
+- Repository Hygiene: PASS, zero violations
+- Repository Integrity: PASS, zero violations
+- Stable inventory records: 421
+- Stable inventory SHA256: 33307cc198fb9c4b7531c4af8e5a9cf7eac8af2178ef91bed3a60544b037fe31
+- Synthetic staged coverage: PASS 138 OF 138
+- Synthetic deletions: PASS 14 OF 14
+- Synthetic exact commit subject: PASS
+- Synthetic commit changed files: PASS 138
+- Synthetic commit deletions: PASS 14
+- No tracked Python cache after staging: PASS
+- Governance subset patch apply/reverse checks: PASS
+- Governance subset patch lines: 6071
+- Package governance: PASS
+- Checksum ledger: PASS
+- Extracted ZIP validation and byte equality: PASS
+- GitHub Actions: INCONCLUSIVE
+- Independent Attestation: INCONCLUSIVE
+
+PUBLIC CONSUMER MIGRATION
+- Content Status imports loadEffectiveRouteRegistry
+- Discovery imports loadEffectiveRouteRegistry
+- Site Directory is now an ES module consumer
+- Legacy site-directory.js is deleted
+- route-status-reconciliation.js no longer replaces global fetch
+- historical fallback is explicit and visible
+- site-routes.json is unchanged
+- site-routes-effective-overrides.json is unchanged

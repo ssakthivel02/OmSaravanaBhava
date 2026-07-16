@@ -54,3 +54,7 @@ temp/
 artifacts/*.sarif
 artifacts/repository-integrity-report.json
 artifacts/repository-integrity-inventory.json
+
+# Release 237 auto-clone publisher workspaces
+OmSaravanaBhava-release237/
+release237-clone/

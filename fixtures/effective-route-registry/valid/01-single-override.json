@@ -1,0 +1,27 @@
+{
+  "historical": {
+    "release": 228,
+    "routes": [
+      {
+        "path": "/a.html",
+        "status": "published",
+        "summary": "Old"
+      }
+    ]
+  },
+  "overrides": {
+    "release": 234,
+    "recordCount": 1,
+    "records": [
+      {
+        "path": "/a.html",
+        "status": "partial-reviewed",
+        "summary": "New"
+      }
+    ]
+  },
+  "expected": {
+    "mode": "explicit-overrides",
+    "applied": 1
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "historical": "/data/site-routes.json",
+  "overrides": "/data/site-routes-effective-overrides.json",
+  "resultMode": "explicit-overrides"
+}

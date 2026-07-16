@@ -1,0 +1,20 @@
+{
+  "release": 237,
+  "generated": "2026-07-16",
+  "loader": "/assets/js/effective-route-registry.mjs",
+  "historicalRegistry": "/data/site-routes.json",
+  "effectiveOverrides": "/data/site-routes-effective-overrides.json",
+  "consumers": [
+    "/content-status.html",
+    "/discovery.html",
+    "/site-directory.html"
+  ],
+  "globalFetchInterception": false,
+  "fallbackMode": "historical-registry-with-visible-warning",
+  "cacheMode": "shared-in-memory-promise",
+  "limitations": [
+    "The historical route registry remains unchanged.",
+    "Only explicit override records can alter an effective route.",
+    "Fallback does not claim canonical status when overrides are unavailable."
+  ]
+}

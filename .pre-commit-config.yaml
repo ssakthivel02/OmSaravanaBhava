@@ -11,8 +11,13 @@ repos:
         entry: python -B -m tools.repository_integrity.validate --root .
         language: system
         pass_filenames: false
+      - id: effective-route-consumers
+        name: Effective route consumers
+        entry: python -B -m tools.effective_route_consumers.validate --root .
+        language: system
+        pass_filenames: false
       - id: release-tests
-        name: Release governance tests
-        entry: python -B -m unittest discover -s tests -p test_*.py -v
+        name: Release regression suites
+        entry: python -B scripts/release237/run-release-tests.py --root .
         language: system
         pass_filenames: false

@@ -1,11 +1,11 @@
 {
-  "release": 236,
+  "release": 237,
   "generated": "2026-07-16",
-  "baseCommit": "d06aa0d99315344ad2c23ee3a1d98fb635f33b16",
-  "requiredCommitTitle": "Release 236: complete tracked-cache cleanup and enforce repository integrity",
-  "manifestPath": "manifest-release-236.json",
-  "checksumLedger": "RELEASE_236_SHA256SUMS.txt",
-  "patchPath": "RELEASE_236.patch",
+  "baseCommit": "dfc5ce53229d9af53a99fe9a089d5d29bb3ea9b5",
+  "requiredCommitTitle": "Release 237: migrate effective route consumers and finalise tracked-cache cleanup",
+  "manifestPath": "manifest-release-237.json",
+  "checksumLedger": "RELEASE_237_SHA256SUMS.txt",
+  "patchPath": "RELEASE_237.patch",
   "attestationSchema": "schemas/release-attestation.schema.json",
   "manifestSchema": "schemas/release-manifest.schema.json",
   "filePolicy": {
@@ -29,12 +29,12 @@
     "securityBoundary": "Fallback is accepted only when the subject is an explicitly allowed GitHub browser default and the first non-empty commit-body line exactly matches required_commit_title."
   },
   "requiredEvidenceFiles": [
-    "RELEASE_236_CHANGED_FILES.txt",
-    "RELEASE_236_GITHUB_PORTAL_INSTRUCTIONS.txt",
-    "RELEASE_236_LOCAL_TEST_EVIDENCE.txt",
-    "RELEASE_236_SHA256SUMS.txt",
-    "RELEASE_236_VALIDATION_REPORT.md",
-    "RELEASE_236.patch"
+    "RELEASE_237_CHANGED_FILES.txt",
+    "RELEASE_237_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_237_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_237_SHA256SUMS.txt",
+    "RELEASE_237_VALIDATION_REPORT.md",
+    "RELEASE_237.patch"
   ],
   "allowedStatusLanguage": [
     "PASS",
@@ -89,5 +89,22 @@
     "failOnMissingGovernanceAsset": true,
     "failOnUnexpectedBinary": true,
     "maximumViolations": 0
+  },
+  "effectiveRouteConsumerPolicy": {
+    "policyPath": "policies/effective-route-consumers.json",
+    "runtimeContract": "data/effective-route-registry-runtime.json",
+    "validator": "tools/effective_route_consumers/validate.py",
+    "workflow": ".github/workflows/effective-route-consumers.yml",
+    "forbidGlobalFetchReplacement": true,
+    "requireExplicitLoader": true,
+    "requireHistoricalFallback": true,
+    "consumerRelease": 237
+  },
+  "publisherPolicy": {
+    "policyPath": "policies/release-237-publisher.json",
+    "mode": "auto-clone-copy-and-delete",
+    "browserUploadAllowed": false,
+    "expectedBaseCommit": "dfc5ce53229d9af53a99fe9a089d5d29bb3ea9b5",
+    "verifyExactStagedCoverage": true
   }
 }

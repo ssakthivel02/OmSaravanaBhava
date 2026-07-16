@@ -51,9 +51,14 @@ jobs:
           echo "release=$release" >> "$GITHUB_OUTPUT"
           echo "Using $manifest for Release $release"
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
       - name: Compile release governance tools
         run: |
-          python -B -m compileall -q tools/release_control tools/repository_hygiene tools/repository_integrity tools/route_registry tools/release_validate.py
+          python -B -m compileall -q tools/release_control tools/repository_hygiene tools/repository_integrity tools/effective_route_consumers tools/route_registry tools/release_validate.py
 
       - name: Run governance unit tests
         run: |
@@ -73,6 +78,16 @@ jobs:
           PYTHONDONTWRITEBYTECODE: "1"
         run: |
           python -B -m tools.repository_integrity.validate             --root .             --report artifacts/repository-integrity-report.json             --inventory artifacts/repository-integrity-inventory.json             --sarif artifacts/repository-integrity.sarif
+
+      - name: Validate explicit effective route consumers
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          python -B -m tools.effective_route_consumers.validate             --root .             --report artifacts/effective-route-consumers-report.json
+
+      - name: Run browser runtime tests
+        run: |
+          node --test tests/js/*.test.mjs
 
       - name: Validate effective route-registry drift from policy
         env:

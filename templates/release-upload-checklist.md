@@ -28,3 +28,11 @@
 - [ ] Exactly thirteen tracked `.pyc` paths are deleted.
 - [ ] Repository Hygiene and Repository Integrity both pass with zero violations.
 - [ ] The release commit subject exactly matches the Release 236 title.
+
+- [ ] Release 237 is published with the auto-clone publisher, not GitHub browser upload.
+- [ ] Fresh-clone base is exactly `dfc5ce53229d9af53a99fe9a089d5d29bb3ea9b5`.
+- [ ] All thirteen tracked Python caches and `assets/js/site-directory.js` are deleted.
+- [ ] Content Status, Discovery and Site Directory import the explicit registry loader.
+- [ ] No route-consumer source assigns `globalThis.fetch` or `window.fetch`.
+- [ ] JavaScript, Python, hygiene, integrity and effective-consumer gates all pass.
+- [ ] Staged changed-file count and status exactly match `manifest-release-237.json`.

@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "release": 237,
+  "generated": "2026-07-16",
+  "loader": "assets/js/effective-route-registry.mjs",
+  "historicalRegistry": "data/site-routes.json",
+  "effectiveOverrides": "data/site-routes-effective-overrides.json",
+  "runtimeContract": "data/effective-route-registry-runtime.json",
+  "consumers": {
+    "content-status.html": "assets/js/content-status-audit.mjs",
+    "discovery.html": "assets/js/discovery-workspace.mjs",
+    "site-directory.html": "assets/js/site-directory.mjs"
+  },
+  "compatibilityHelper": "assets/js/route-status-reconciliation.js",
+  "forbidGlobalFetchReplacement": true,
+  "requireExplicitLoaderImport": true,
+  "requireHistoricalFallback": true,
+  "requireVisibleFallbackState": true,
+  "requireExactPathMerge": true,
+  "requireDeterministicOrdering": true,
+  "maximumOverrideRecords": 100,
+  "allowedOverrideFields": [
+    "path",
+    "status",
+    "summary",
+    "publicationStatusPrevious",
+    "publicationStatusCanonical",
+    "publicationStatusSource",
+    "publicationBoundaryRelease",
+    "readingEligible",
+    "fullTextPublished",
+    "sourceDataPath",
+    "pageRobots",
+    "evidenceMarker"
+  ],
+  "limitations": [
+    "The loader does not mutate the historical route registry.",
+    "The loader does not intercept or replace the browser Fetch API.",
+    "Fallback preserves historical data and displays a warning.",
+    "Only exact same-origin path matches receive overrides."
+  ],
+  "effectiveOverridesSha256": "66ad7a83b4ced3420fa6cb391d715d9729f119df33f9769f3b0695de3e920bf5"
+}

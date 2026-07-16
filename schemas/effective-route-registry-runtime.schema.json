@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://omsaravanabhava.org/schemas/effective-route-registry-runtime.schema.json",
+  "type": "object",
+  "required": [
+    "release",
+    "loader",
+    "historicalRegistry",
+    "effectiveOverrides",
+    "consumers",
+    "globalFetchInterception",
+    "fallbackMode"
+  ],
+  "properties": {
+    "release": {
+      "type": "integer",
+      "minimum": 237
+    },
+    "loader": {
+      "type": "string",
+      "pattern": "^/assets/js/"
+    },
+    "historicalRegistry": {
+      "const": "/data/site-routes.json"
+    },
+    "effectiveOverrides": {
+      "const": "/data/site-routes-effective-overrides.json"
+    },
+    "consumers": {
+      "type": "array",
+      "minItems": 3,
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "globalFetchInterception": {
+      "const": false
+    }
+  }
+}

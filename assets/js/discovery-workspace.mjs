@@ -1,23 +1,29 @@
-export const RELEASE = 222;
+import {
+  CONSUMER_RELEASE,
+  loadEffectiveRouteRegistry,
+  normaliseRoutePath,
+  normaliseStatus,
+  registryStatusMessage
+} from './effective-route-registry.mjs';
+
+export const RELEASE = 237;
 export const LENSES_PATH = '/data/discovery-lenses.json';
 export const NAVIGATION_PATH = '/data/navigation-sections.json';
-export const ROUTES_PATH = '/data/site-routes.json';
-export const CANONICAL_ORIGIN = 'https://omsaravanabhava.org';
 
-export const normaliseRoute = value => {
-  const raw = String(value ?? '').trim();
-  if (!raw) return '';
-  try {
-    const url = new URL(raw, `${CANONICAL_ORIGIN}/`);
-    if (url.origin !== CANONICAL_ORIGIN) return '';
-    return `${url.pathname}${url.search}${url.hash}`;
-  } catch {
-    return '';
+const fetchJson = async (path, fetcher = globalThis.fetch) => {
+  if (typeof fetcher !== 'function') {
+    throw new Error('Fetch API unavailable');
   }
+  const response = await fetcher(path, {
+    cache: 'no-store',
+    credentials: 'same-origin',
+    headers: {'Accept': 'application/json'}
+  });
+  if (!response.ok) {
+    throw new Error(`${path}: HTTP ${response.status}`);
+  }
+  return response.json();
 };
-
-export const normaliseStatus = value =>
-  String(value ?? '').trim().toLocaleLowerCase();
 
 export const normaliseDiscoveryModel = (
   lensesPayload,
@@ -53,15 +59,19 @@ export const normaliseDiscoveryModel = (
   const routeMap = new Map();
   (Array.isArray(routeRegistry.routes) ? routeRegistry.routes : [])
     .forEach(record => {
-      const path = normaliseRoute(record?.path);
+      const path = normaliseRoutePath(record?.path);
       if (!path || routeMap.has(path)) return;
       routeMap.set(path, {
+        ...record,
         path,
         titleTa: String(record.titleTa ?? '').trim(),
         titleEn: String(record.titleEn ?? path).trim() || path,
-        category: String(record.category ?? 'Uncategorised').trim(),
+        category: String(
+          record.category ?? 'Uncategorised'
+        ).trim(),
         status: normaliseStatus(record.status),
-        summary: String(record.summary ?? '').trim()
+        summary: String(record.summary ?? '').trim(),
+        readingEligible: record.readingEligible !== false
       });
     });
 
@@ -75,16 +85,15 @@ export const normaliseDiscoveryModel = (
 
       (Array.isArray(section.items) ? section.items : [])
         .forEach(item => {
-          const path = normaliseRoute(item?.path);
+          const path = normaliseRoutePath(item?.path);
           const route = routeMap.get(path);
           if (!path || !route) return;
+          if (!route.readingEligible) return;
           if (excludedStatuses.has(route.status)) return;
           if (
             allowedStatuses.size > 0 &&
             !allowedStatuses.has(route.status)
-          ) {
-            return;
-          }
+          ) return;
 
           const existing = itemMap.get(path);
           const merged = {
@@ -100,6 +109,11 @@ export const normaliseDiscoveryModel = (
               route.summary,
             category: route.category,
             status: route.status,
+            publicationStatusPrevious: String(
+              route.publicationStatusPrevious || ''
+            ),
+            effectiveOverrideApplied:
+              route.effectiveOverrideApplied === true,
             sectionIds: [
               ...new Set([
                 ...(existing?.sectionIds || []),
@@ -110,9 +124,9 @@ export const normaliseDiscoveryModel = (
               ...new Set([
                 ...(existing?.audiences || []),
                 ...(Array.isArray(section.audiences)
-                  ? section.audiences.map(value =>
-                      String(value).trim()
-                    )
+                  ? section.audiences
+                      .map(value => String(value).trim())
+                      .filter(Boolean)
                   : [])
               ])
             ]
@@ -135,28 +149,25 @@ export const normaliseDiscoveryModel = (
       });
     });
 
-  const lenses = [];
-  (Array.isArray(lensConfig.lenses) ? lensConfig.lenses : [])
-    .forEach(lens => {
-      const id = String(lens?.id ?? '').trim();
-      if (!id) return;
-      lenses.push({
-        id,
-        titleTa: String(lens.titleTa ?? '').trim(),
-        titleEn: String(lens.titleEn ?? id).trim() || id,
-        summary: String(lens.summary ?? '').trim(),
-        sectionIds: Array.isArray(lens.sectionIds)
-          ? lens.sectionIds
-              .map(value => String(value).trim())
-              .filter(Boolean)
-          : [],
-        audiences: Array.isArray(lens.audiences)
-          ? lens.audiences
-              .map(value => String(value).trim())
-              .filter(Boolean)
-          : []
-      });
-    });
+  const lenses = (Array.isArray(lensConfig.lenses)
+    ? lensConfig.lenses
+    : []
+  ).map(lens => ({
+    id: String(lens?.id ?? '').trim(),
+    titleTa: String(lens?.titleTa ?? '').trim(),
+    titleEn: String(lens?.titleEn ?? lens?.id ?? '').trim(),
+    summary: String(lens?.summary ?? '').trim(),
+    sectionIds: Array.isArray(lens?.sectionIds)
+      ? lens.sectionIds
+          .map(value => String(value).trim())
+          .filter(Boolean)
+      : [],
+    audiences: Array.isArray(lens?.audiences)
+      ? lens.audiences
+          .map(value => String(value).trim())
+          .filter(Boolean)
+      : []
+  })).filter(lens => lens.id);
 
   const audienceLabels =
     navigation.audienceLabels &&
@@ -172,14 +183,18 @@ export const normaliseDiscoveryModel = (
       : {};
 
   return {
-    release: Number(lensConfig.release) || 0,
+    release: RELEASE,
+    sourceRelease: Number(lensConfig.release) || 0,
     routeRelease: Number(routeRegistry.release) || 0,
+    effectiveRegistryRelease:
+      Number(routeRegistry.effectiveRegistryRelease) || 0,
+    effectiveRegistryMode:
+      String(routeRegistry.effectiveRegistryMode || ''),
+    registryMessage: registryStatusMessage(routeRegistry),
     navigationRelease: Number(navigation.release) || 0,
     allowedStatuses: [...allowedStatuses],
     excludedStatuses: [...excludedStatuses],
-    featuredLensIds: Array.isArray(
-      lensConfig.featuredLensIds
-    )
+    featuredLensIds: Array.isArray(lensConfig.featuredLensIds)
       ? lensConfig.featuredLensIds
           .map(value => String(value).trim())
           .filter(Boolean)
@@ -191,13 +206,8 @@ export const normaliseDiscoveryModel = (
   };
 };
 
-export const itemsForLens = (
-  model,
-  lensId = 'all'
-) => {
-  const items = Array.isArray(model?.items)
-    ? model.items
-    : [];
+export const itemsForLens = (model, lensId = 'all') => {
+  const items = Array.isArray(model?.items) ? model.items : [];
   const lens = (model?.lenses || [])
     .find(record => record.id === lensId);
   if (!lens || lens.id === 'all' || lens.sectionIds.length === 0) {
@@ -226,25 +236,21 @@ export const filterDiscoveryItems = (
       if (
         audience !== 'all' &&
         !item.audiences.includes(audience)
-      ) {
-        return false;
-      }
+      ) return false;
       if (
         status !== 'all' &&
         item.status !== status
-      ) {
-        return false;
-      }
+      ) return false;
       if (!needle) return true;
-      const haystack = [
+      return [
         item.titleTa,
         item.titleEn,
         item.description,
         item.category,
         item.status,
+        item.publicationStatusPrevious,
         ...item.sectionIds
-      ].join(' ').toLocaleLowerCase();
-      return haystack.includes(needle);
+      ].join(' ').toLocaleLowerCase().includes(needle);
     })
     .sort((left, right) =>
       left.category.localeCompare(right.category) ||
@@ -253,9 +259,7 @@ export const filterDiscoveryItems = (
 };
 
 export const buildDiscoveryMetrics = model => {
-  const items = Array.isArray(model?.items)
-    ? model.items
-    : [];
+  const items = Array.isArray(model?.items) ? model.items : [];
   const categories = new Set(
     items.map(item => item.category).filter(Boolean)
   );
@@ -273,6 +277,9 @@ export const buildDiscoveryMetrics = model => {
       .length,
     categoryCount: categories.size,
     lensCount: (model?.lenses || []).length,
+    overrideCount: items.filter(
+      item => item.effectiveOverrideApplied
+    ).length,
     statuses: [...statuses.entries()]
       .map(([status, count]) => ({status, count}))
       .sort((left, right) =>
@@ -288,33 +295,14 @@ export const lensRouteCounts = model =>
     count: itemsForLens(model, lens.id).length
   }));
 
-const fetchJson = async (
-  path,
-  fetcher = globalThis.fetch
-) => {
-  if (typeof fetcher !== 'function') {
-    throw new Error('Fetch API unavailable');
-  }
-  const response = await fetcher(path, {
-    cache: 'default',
-    credentials: 'same-origin',
-    headers: {'Accept': 'application/json'}
-  });
-  if (!response.ok) {
-    throw new Error(`${path} returned HTTP ${response.status}`);
-  }
-  return response.json();
-};
-
 export const loadDiscoveryModel = async (
   fetcher = globalThis.fetch
 ) => {
-  const [lenses, navigation, routes] =
-    await Promise.all([
-      fetchJson(LENSES_PATH, fetcher),
-      fetchJson(NAVIGATION_PATH, fetcher),
-      fetchJson(ROUTES_PATH, fetcher)
-    ]);
+  const [lenses, navigation, routes] = await Promise.all([
+    fetchJson(LENSES_PATH, fetcher),
+    fetchJson(NAVIGATION_PATH, fetcher),
+    loadEffectiveRouteRegistry({fetcher})
+  ]);
   return normaliseDiscoveryModel(
     lenses,
     navigation,
@@ -325,20 +313,15 @@ export const loadDiscoveryModel = async (
 const createText = (
   parent,
   tag,
-  text,
+  value,
   className
 ) => {
   const element = document.createElement(tag);
   if (className) element.className = className;
-  element.textContent = String(text);
+  element.textContent = String(value ?? '');
   parent.appendChild(element);
   return element;
 };
-
-const displayTitle = record =>
-  record.titleTa && record.titleEn
-    ? `${record.titleTa} · ${record.titleEn}`
-    : record.titleTa || record.titleEn;
 
 const populateSelect = (
   select,
@@ -358,16 +341,47 @@ const populateSelect = (
   });
 };
 
-const renderMetric = (id, value) => {
-  const element = document.getElementById(id);
-  if (element) element.textContent = String(value);
+const displayTitle = record =>
+  record.titleTa && record.titleEn
+    ? `${record.titleTa} · ${record.titleEn}`
+    : record.titleTa || record.titleEn;
+
+const createRouteCard = item => {
+  const article = document.createElement('article');
+  article.className = 'card discovery-route-card';
+
+  const meta = document.createElement('div');
+  meta.className = 'discovery-route-meta';
+  createText(meta, 'span', item.category, 'pill');
+  createText(meta, 'span', item.status, 'pill');
+  if (item.effectiveOverrideApplied) {
+    createText(meta, 'span', 'Explicit override', 'pill');
+  }
+  article.appendChild(meta);
+  createText(article, 'h3', displayTitle(item));
+  createText(article, 'p', item.description);
+  const audience = item.audiences.length
+    ? item.audiences.join(' · ')
+    : 'General';
+  createText(
+    article,
+    'p',
+    `Audience: ${audience}`,
+    'discovery-route-audience'
+  );
+  const link = document.createElement('a');
+  link.className = 'btn';
+  link.href = item.path;
+  link.textContent = 'Open route';
+  article.appendChild(link);
+  return article;
 };
 
-const createLensCard = (
+const createLensButton = (
   lens,
   count,
   active,
-  selectLens
+  activate
 ) => {
   const button = document.createElement('button');
   button.type = 'button';
@@ -378,17 +392,8 @@ const createLensCard = (
     'aria-pressed',
     active ? 'true' : 'false'
   );
-  createText(
-    button,
-    'span',
-    lens.titleTa,
-    'discovery-lens-ta'
-  );
-  createText(
-    button,
-    'strong',
-    lens.titleEn
-  );
+  createText(button, 'span', lens.titleTa, 'discovery-lens-ta');
+  createText(button, 'strong', lens.titleEn);
   createText(
     button,
     'span',
@@ -398,258 +403,157 @@ const createLensCard = (
   createText(
     button,
     'span',
-    `${count} published route${count === 1 ? '' : 's'}`,
+    `${count} route${count === 1 ? '' : 's'}`,
     'discovery-lens-count'
   );
-  button.addEventListener(
-    'click',
-    () => selectLens(lens.id)
-  );
+  button.addEventListener('click', () => activate(lens.id));
   return button;
 };
 
-const renderLensGrid = (
-  host,
-  model,
-  activeLensId,
-  selectLens
-) => {
-  const counts = new Map(
-    lensRouteCounts(model)
-      .map(item => [item.id, item.count])
+export const initialiseDiscoveryWorkspace = async ({
+  documentRef = globalThis.document,
+  fetcher = globalThis.fetch
+} = {}) => {
+  if (!documentRef) return false;
+  const search = documentRef.getElementById('discoverySearch');
+  const audience = documentRef.getElementById('discoveryAudience');
+  const status = documentRef.getElementById('discoveryStatusFilter');
+  const reset = documentRef.getElementById('discoveryReset');
+  const lenses = documentRef.getElementById('discoveryLensGrid');
+  const results = documentRef.getElementById('discoveryResults');
+  const loadStatus = documentRef.getElementById('discoveryLoadStatus');
+  const resultStatus = documentRef.getElementById(
+    'discoveryResultStatus'
   );
-  host.replaceChildren();
-  model.lenses.forEach(lens => {
-    host.appendChild(
-      createLensCard(
-        lens,
-        counts.get(lens.id) || 0,
-        lens.id === activeLensId,
-        selectLens
-      )
-    );
-  });
-};
-
-const createRouteCard = item => {
-  const article = document.createElement('article');
-  article.className = 'card discovery-route-card';
-
-  const meta = document.createElement('div');
-  meta.className = 'discovery-route-meta';
-  createText(meta, 'span', item.category, 'pill');
-  createText(meta, 'span', item.status, 'pill');
-  article.appendChild(meta);
-
-  createText(article, 'h2', displayTitle(item));
-  createText(article, 'p', item.description);
-  createText(
-    article,
-    'p',
-    item.audiences.join(' · '),
-    'discovery-audiences'
-  );
-
-  const link = document.createElement('a');
-  link.className = 'btn';
-  link.href = item.path;
-  link.textContent = 'Open published route';
-  article.appendChild(link);
-  return article;
-};
-
-const renderResults = (
-  host,
-  results
-) => {
-  host.replaceChildren();
-  if (!results.length) {
-    const empty = document.createElement('article');
-    empty.className = 'card discovery-empty';
-    createText(empty, 'h2', 'No routes match');
-    createText(
-      empty,
-      'p',
-      'Change the discovery lens, audience, status or search text.'
-    );
-    host.appendChild(empty);
-    return;
-  }
-  results.forEach(item =>
-    host.appendChild(createRouteCard(item))
-  );
-};
-
-const initialiseDiscoveryPage = async model => {
-  const lensHost =
-    document.getElementById('discoveryLensGrid');
-  const resultsHost =
-    document.getElementById('discoveryResults');
-  const audience =
-    document.getElementById('discoveryAudience');
-  const status =
-    document.getElementById('discoveryStatusFilter');
-  const search =
-    document.getElementById('discoverySearch');
-  const reset =
-    document.getElementById('discoveryReset');
-  const resultStatus =
-    document.getElementById('discoveryResultStatus');
-
   if (
-    !lensHost ||
-    !resultsHost ||
-    !audience ||
-    !status ||
-    !search ||
-    !reset ||
-    !resultStatus
-  ) {
-    return;
-  }
+    !search || !audience || !status || !reset ||
+    !lenses || !results || !loadStatus || !resultStatus
+  ) return false;
 
-  const metrics = buildDiscoveryMetrics(model);
-  renderMetric(
-    'discoveryRouteCount',
-    metrics.routeCount
-  );
-  renderMetric(
-    'discoverySectionCount',
-    metrics.sectionCount
-  );
-  renderMetric(
-    'discoveryCategoryCount',
-    metrics.categoryCount
-  );
-
-  populateSelect(
-    audience,
-    Object.entries(model.audienceLabels)
-      .filter(([key]) => key !== 'all')
-      .map(([value, label]) => ({value, label})),
-    model.audienceLabels.all || 'All visitors'
-  );
-  populateSelect(
-    status,
-    metrics.statuses.map(item => ({
-      value: item.status,
-      label: `${item.status} (${item.count})`
-    })),
-    'All publication states'
-  );
-
-  let activeLensId = 'all';
-
-  const render = () => {
-    const results = filterDiscoveryItems(model, {
-      lensId: activeLensId,
-      audience: audience.value,
-      status: status.value,
-      query: search.value
-    });
-    renderLensGrid(
-      lensHost,
-      model,
-      activeLensId,
-      lensId => {
-        activeLensId = lensId;
-        render();
-      }
-    );
-    renderResults(resultsHost, results);
-    resultStatus.textContent =
-      `${results.length} actual published route${results.length === 1 ? '' : 's'} match the current view.`;
-  };
-
-  search.addEventListener('input', render);
-  audience.addEventListener('change', render);
-  status.addEventListener('change', render);
-  reset.addEventListener('click', () => {
-    activeLensId = 'all';
-    search.value = '';
-    audience.value = 'all';
-    status.value = 'all';
-    render();
-    search.focus();
-  });
-
-  render();
-};
-
-const initialiseHomeDiscovery = model => {
-  const host =
-    document.getElementById('homeDiscoveryLenses');
-  const count =
-    document.getElementById('homeDiscoveryRouteCount');
-  if (!host || !count) return;
-
-  const featured = new Set(model.featuredLensIds);
-  const counts = new Map(
-    lensRouteCounts(model)
-      .map(item => [item.id, item.count])
-  );
-  host.replaceChildren();
-  model.lenses
-    .filter(lens => featured.has(lens.id))
-    .forEach(lens => {
-      const link = document.createElement('a');
-      link.className = 'home-discovery-lens';
-      link.href =
-        `/discovery.html?lens=${encodeURIComponent(lens.id)}`;
-      createText(link, 'span', lens.titleTa);
-      createText(link, 'strong', lens.titleEn);
-      createText(
-        link,
-        'small',
-        `${counts.get(lens.id) || 0} current routes`
-      );
-      host.appendChild(link);
-    });
-
-  count.textContent = String(
-    buildDiscoveryMetrics(model).routeCount
-  );
-};
-
-const applyLensFromUrl = () => {
-  const params = new URLSearchParams(
-    globalThis.location?.search || ''
-  );
-  const lensId = params.get('lens');
-  if (!lensId) return;
-  const button = document.querySelector(
-    `[data-lens-id="${CSS.escape(lensId)}"]`
-  );
-  button?.click();
-};
-
-const initialise = async () => {
-  const pageStatus =
-    document.getElementById('discoveryLoadStatus');
   try {
-    const model = await loadDiscoveryModel();
-    initialiseHomeDiscovery(model);
-    await initialiseDiscoveryPage(model);
-    applyLensFromUrl();
-    if (pageStatus) {
-      pageStatus.textContent =
-        `Discovery data loaded from route release ${model.routeRelease} and navigation release ${model.navigationRelease}.`;
-    }
+    const model = await loadDiscoveryModel(fetcher);
+    let lensId = model.featuredLensIds[0] ||
+      model.lenses[0]?.id ||
+      'all';
+
+    const metrics = buildDiscoveryMetrics(model);
+    [
+      ['discoveryRouteCount', metrics.routeCount],
+      ['discoverySectionCount', metrics.sectionCount],
+      ['discoveryCategoryCount', metrics.categoryCount]
+    ].forEach(([id, value]) => {
+      const node = documentRef.getElementById(id);
+      if (node) node.textContent = String(value);
+    });
+
+    const audienceValues = [...new Set(
+      model.items.flatMap(item => item.audiences)
+    )].sort().map(value => ({
+      value,
+      label: model.audienceLabels[value] || value
+    }));
+    const statusValues = [...new Set(
+      model.items.map(item => item.status)
+    )].filter(Boolean).sort();
+
+    populateSelect(audience, audienceValues, 'All audiences');
+    populateSelect(status, statusValues, 'All publication states');
+
+    const render = () => {
+      const filtered = filterDiscoveryItems(model, {
+        lensId,
+        audience: audience.value,
+        status: status.value,
+        query: search.value
+      });
+      results.replaceChildren();
+      if (!filtered.length) {
+        const empty = documentRef.createElement('article');
+        empty.className = 'card';
+        createText(empty, 'h3', 'No discovery route matches');
+        createText(
+          empty,
+          'p',
+          'Reset the filters or choose another discovery lens.'
+        );
+        results.appendChild(empty);
+      } else {
+        filtered.forEach(item => {
+          results.appendChild(createRouteCard(item));
+        });
+      }
+      resultStatus.textContent =
+        `${filtered.length} of ${model.items.length} eligible routes shown.`;
+
+      const countMap = new Map(
+        lensRouteCounts(model)
+          .map(item => [item.id, item.count])
+      );
+      lenses.replaceChildren();
+      model.lenses.forEach(lens => {
+        lenses.appendChild(createLensButton(
+          lens,
+          countMap.get(lens.id) || 0,
+          lens.id === lensId,
+          value => {
+            lensId = value;
+            render();
+          }
+        ));
+      });
+    };
+
+    search.addEventListener('input', render);
+    audience.addEventListener('change', render);
+    status.addEventListener('change', render);
+    reset.addEventListener('click', () => {
+      search.value = '';
+      audience.value = 'all';
+      status.value = 'all';
+      lensId = model.featuredLensIds[0] ||
+        model.lenses[0]?.id ||
+        'all';
+      render();
+      search.focus();
+    });
+
+    loadStatus.textContent =
+      `${model.registryMessage} ${metrics.overrideCount} eligible discovery routes use explicit canonical overrides.`;
+    render();
+    documentRef.documentElement.dataset.discoveryRelease =
+      String(RELEASE);
+    documentRef.documentElement.dataset.consumerRelease =
+      String(CONSUMER_RELEASE);
+    return true;
   } catch (error) {
     console.error(
       '[OmSaravanaBhava] Discovery workspace unavailable',
       error
     );
-    if (pageStatus) {
-      pageStatus.textContent =
-        'The local discovery registries could not be loaded.';
-    }
+    loadStatus.textContent =
+      `Discovery workspace unavailable: ${String(error?.message || error)}`;
+    results.replaceChildren();
+    const alert = documentRef.createElement('article');
+    alert.className = 'card';
+    alert.setAttribute('role', 'alert');
+    createText(
+      alert,
+      'p',
+      'Use the structured Explore page or Site Directory.'
+    );
+    results.appendChild(alert);
+    return false;
   }
 };
 
 if (typeof document !== 'undefined') {
-  document.addEventListener(
-    'DOMContentLoaded',
-    initialise
-  );
+  if (document.readyState === 'loading') {
+    document.addEventListener(
+      'DOMContentLoaded',
+      () => initialiseDiscoveryWorkspace(),
+      {once: true}
+    );
+  } else {
+    initialiseDiscoveryWorkspace();
+  }
 }

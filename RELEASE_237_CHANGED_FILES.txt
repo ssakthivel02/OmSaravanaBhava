@@ -1,0 +1,152 @@
+Release 237 — Explicit Effective Route Consumers and Final Tracked-Cache Cleanup
+Base commit: dfc5ce53229d9af53a99fe9a089d5d29bb3ea9b5
+Required title: Release 237: migrate effective route consumers and finalise tracked-cache cleanup
+
+Added files (105):
+A  .github/workflows/effective-route-consumers.yml
+A  PUBLISH_RELEASE_237.cmd
+A  RELEASE_237.patch
+A  RELEASE_237_CHANGED_FILES.txt
+A  RELEASE_237_GITHUB_PORTAL_INSTRUCTIONS.txt
+A  RELEASE_237_LOCAL_TEST_EVIDENCE.txt
+A  RELEASE_237_SHA256SUMS.txt
+A  RELEASE_237_VALIDATION_REPORT.md
+A  assets/js/effective-route-registry.mjs
+A  assets/js/site-directory.mjs
+A  data/effective-route-registry-runtime.json
+A  docs/effective-route-consumers/README.md
+A  docs/effective-route-consumers/accessibility.md
+A  docs/effective-route-consumers/architecture.md
+A  docs/effective-route-consumers/compatibility-helper.md
+A  docs/effective-route-consumers/content-status.md
+A  docs/effective-route-consumers/discovery.md
+A  docs/effective-route-consumers/exact-path-merge.md
+A  docs/effective-route-consumers/explicit-loader.md
+A  docs/effective-route-consumers/future-consumers.md
+A  docs/effective-route-consumers/historical-fallback.md
+A  docs/effective-route-consumers/migration-boundary.md
+A  docs/effective-route-consumers/operations.md
+A  docs/effective-route-consumers/performance.md
+A  docs/effective-route-consumers/publisher.md
+A  docs/effective-route-consumers/rollback.md
+A  docs/effective-route-consumers/security.md
+A  docs/effective-route-consumers/site-directory.md
+A  docs/effective-route-consumers/testing.md
+A  examples/effective-route-consumers/compose-effective-registry.json
+A  examples/effective-route-consumers/consumer-map.json
+A  examples/effective-route-consumers/diagnostics.json
+A  examples/effective-route-consumers/historical-fallback.json
+A  examples/effective-route-consumers/override-record.json
+A  examples/effective-route-consumers/publisher-result.json
+A  fixtures/effective-route-registry/invalid/01-historical-not-object.json
+A  fixtures/effective-route-registry/invalid/02-routes-not-array.json
+A  fixtures/effective-route-registry/invalid/03-historical-empty-path.json
+A  fixtures/effective-route-registry/invalid/04-historical-duplicate-path.json
+A  fixtures/effective-route-registry/invalid/05-overrides-not-object.json
+A  fixtures/effective-route-registry/invalid/06-release-missing.json
+A  fixtures/effective-route-registry/invalid/07-release-zero.json
+A  fixtures/effective-route-registry/invalid/08-records-not-array.json
+A  fixtures/effective-route-registry/invalid/09-record-count-mismatch.json
+A  fixtures/effective-route-registry/invalid/10-override-empty-path.json
+A  fixtures/effective-route-registry/invalid/11-override-external-path.json
+A  fixtures/effective-route-registry/invalid/12-override-duplicate-path.json
+A  fixtures/effective-route-registry/invalid/13-status-missing.json
+A  fixtures/effective-route-registry/invalid/14-status-empty.json
+A  fixtures/effective-route-registry/invalid/15-null-record.json
+A  fixtures/effective-route-registry/invalid/16-query-only-path.json
+A  fixtures/effective-route-registry/invalid/17-fragment-only-path.json
+A  fixtures/effective-route-registry/invalid/18-malformed-url.json
+A  fixtures/effective-route-registry/valid/01-single-override.json
+A  fixtures/effective-route-registry/valid/02-no-overrides.json
+A  fixtures/effective-route-registry/valid/03-unmatched-override.json
+A  fixtures/effective-route-registry/valid/04-reading-excluded.json
+A  fixtures/effective-route-registry/valid/05-summary-replacement.json
+A  fixtures/effective-route-registry/valid/06-metadata-preserved.json
+A  fixtures/effective-route-registry/valid/07-sorted-diagnostics.json
+A  fixtures/effective-route-registry/valid/08-full-metadata.json
+A  fixtures/effective-route-registry/valid/09-tamil-route.json
+A  fixtures/effective-route-registry/valid/10-multiple-routes.json
+A  fixtures/effective-route-registry/valid/11-relative-path-normalisation.json
+A  fixtures/effective-route-registry/valid/12-empty-summary.json
+A  manifest-release-237.json
+A  policies/effective-route-consumer-required-assets.json
+A  policies/effective-route-consumers.json
+A  policies/release-237-publisher.json
+A  schemas/effective-route-consumer-policy.schema.json
+A  schemas/effective-route-registry-composed.schema.json
+A  schemas/effective-route-registry-diagnostics.schema.json
+A  schemas/effective-route-registry-runtime.schema.json
+A  schemas/release-237-publisher.schema.json
+A  scripts/release237/prepare-checkout.py
+A  scripts/release237/publish-no-push.ps1
+A  scripts/release237/publish-release-237.ps1
+A  scripts/release237/publish-release-237.sh
+A  scripts/release237/run-release-tests.py
+A  scripts/release237/show-result.ps1
+A  scripts/release237/verify-base.py
+A  scripts/release237/verify-no-tracked-cache.py
+A  scripts/release237/verify-staged-change-set.py
+A  tests/effective_route_consumers/__init__.py
+A  tests/effective_route_consumers/test_html_scan.py
+A  tests/effective_route_consumers/test_release_237_package.py
+A  tests/effective_route_consumers/test_runtime.py
+A  tests/effective_route_consumers/test_source_scan.py
+A  tests/effective_route_consumers/test_validator.py
+A  tests/js/content-status-audit.test.mjs
+A  tests/js/discovery-workspace.test.mjs
+A  tests/js/effective-route-registry.test.mjs
+A  tests/js/no-global-fetch-interception.test.mjs
+A  tests/js/site-directory.test.mjs
+A  tools/effective_route_consumers/__init__.py
+A  tools/effective_route_consumers/constants.py
+A  tools/effective_route_consumers/hashing.py
+A  tools/effective_route_consumers/html_scan.py
+A  tools/effective_route_consumers/jsonio.py
+A  tools/effective_route_consumers/models.py
+A  tools/effective_route_consumers/runtime.py
+A  tools/effective_route_consumers/source_scan.py
+A  tools/effective_route_consumers/validate.py
+A  tools/effective_route_consumers/validator.py
+A  tools/effective_route_consumers_cli.py
+
+Modified files (19):
+M  .gitattributes
+M  .github/workflows/release-232-governance.yml
+M  .gitignore
+M  .pre-commit-config.yaml
+M  .release-governance.json
+M  Makefile
+M  assets/js/content-status-audit.mjs
+M  assets/js/discovery-workspace.mjs
+M  assets/js/route-status-reconciliation.js
+M  content-status.html
+M  data/repository-integrity-inventory.json
+M  discovery.html
+M  docs/release-governance.md
+M  policies/repository-integrity-required-assets.json
+M  policies/repository-integrity.json
+M  pyproject.toml
+M  site-directory.html
+M  templates/release-upload-checklist.md
+M  tools/repository_integrity/validate.py
+
+Deleted files (14):
+D  assets/js/site-directory.js
+D  tools/release_control/__pycache__/__init__.cpython-313.pyc
+D  tools/release_control/__pycache__/checks.cpython-313.pyc
+D  tools/release_control/__pycache__/checks_checksums.cpython-313.pyc
+D  tools/release_control/__pycache__/checks_commit.cpython-313.pyc
+D  tools/release_control/__pycache__/checks_files.cpython-313.pyc
+D  tools/release_control/__pycache__/checks_manifest.cpython-313.pyc
+D  tools/release_control/__pycache__/checks_patch.cpython-313.pyc
+D  tools/release_control/__pycache__/cli.cpython-313.pyc
+D  tools/release_control/__pycache__/constants.cpython-313.pyc
+D  tools/release_control/__pycache__/git.cpython-313.pyc
+D  tools/release_control/__pycache__/jsonio.cpython-313.pyc
+D  tools/release_control/__pycache__/models.cpython-313.pyc
+D  tools/release_control/__pycache__/report.cpython-313.pyc
+
+Actual declared Git change count: 138
+Package archive file count: 429
+Publisher mode: fresh auto-clone, manifest-driven copy and deletion.
+GitHub browser upload: prohibited for this release.

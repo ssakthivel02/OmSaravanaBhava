@@ -73,3 +73,16 @@ dedicated Repository Integrity workflow.
 
 The release must be applied through Git. `APPLY_RELEASE_236.cmd` provides the
 recommended Windows path and applies the binary patch with `git apply --index`.
+
+## Release 237 explicit route-consumer and auto-clone publisher gate
+
+Release 237 removes the remaining tracked Python cache files and the retired
+non-module Site Directory consumer. Content Status, Discovery and Site Directory
+load the deterministic effective route registry directly through a shared ES
+module. The legacy annotation helper no longer assigns `globalThis.fetch`.
+
+The release must be published through `PUBLISH_RELEASE_237.cmd` or the matching
+PowerShell/Bash publisher. The publisher creates a fresh clone at the exact
+approved base, performs manifest-driven copy and deletion, verifies every staged
+status, runs Node and Python regression suites, commits the exact title and
+pushes.

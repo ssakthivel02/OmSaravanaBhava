@@ -1,0 +1,66 @@
+Release 237 — use the auto-clone publisher
+
+VERIFIED CURRENT MAIN
+dfc5ce53229d9af53a99fe9a089d5d29bb3ea9b5
+
+EXACT COMMIT TITLE
+Release 237: migrate effective route consumers and finalise tracked-cache cleanup
+
+WHY GITHUB BROWSER UPLOAD MUST NOT BE USED
+The current Release 236 commit has the correct title and parent, but a tracked
+Python cache file is still retrievable from GitHub. The browser upload process
+did not perform the declared cache deletions.
+
+RECOMMENDED WINDOWS METHOD
+1. Extract OmSaravanaBhava-Release-237.zip outside any Git repository.
+2. Double-click PUBLISH_RELEASE_237.cmd.
+3. The publisher creates a unique clean clone under the Windows TEMP folder.
+4. Complete GitHub authentication when Git Credential Manager requests it.
+5. The publisher verifies, commits and pushes automatically.
+
+The publisher performs these steps:
+- clones origin/main into a fresh directory;
+- verifies HEAD is exactly dfc5ce53229d9af53a99fe9a089d5d29bb3ea9b5;
+- copies only manifest-declared additions and modifications;
+- runs git rm for all fourteen declared deletions;
+- verifies exact staged statuses for all 138 paths;
+- confirms that no tracked Python cache remains;
+- runs 18 JavaScript tests and 125 Python tests;
+- runs effective-consumer, hygiene, integrity and package governance gates;
+- commits with the exact Release 237 title;
+- runs strict repository governance;
+- pushes to origin/main.
+
+OPTIONAL CUSTOM CLONE DIRECTORY
+PUBLISH_RELEASE_237.cmd "C:\Project\OmSaravanaBhava-release237"
+
+POWERSHELL
+powershell -ExecutionPolicy Bypass -File `
+  .\scripts\release237\publish-release-237.ps1 `
+  -PackageRoot "C:\Downloads\OmSaravanaBhava-Release-237" `
+  -TargetRoot "C:\Project\OmSaravanaBhava-release237"
+
+BASH OR GIT BASH
+scripts/release237/publish-release-237.sh /path/to/clean/release237-clone
+
+EXPECTED CHANGE SET
+- 138 total changed paths
+- 105 additions
+- 19 modifications
+- 14 deletions
+- 13 Python cache deletions
+- 1 legacy Site Directory JavaScript deletion
+
+POST-PUSH CHECKS
+1. Parent SHA is dfc5ce53229d9af53a99fe9a089d5d29bb3ea9b5.
+2. Commit subject exactly equals the Release 237 title.
+3. GitHub compare reports 138 changed paths and 14 deletions.
+4. The tracked cache path is no longer retrievable.
+5. Effective Route Consumers passes.
+6. Repository Hygiene passes with zero violations.
+7. Repository Integrity passes with zero violations.
+8. Release Governance Gate and Independent Attestation pass.
+
+If push authentication fails, the prepared clone remains on disk. Sign in to
+GitHub and run:
+git push origin HEAD:main

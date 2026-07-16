@@ -1,0 +1,65 @@
+name: Effective Route Consumers
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: effective-route-consumers-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  route-consumers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository with parent
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Run explicit route-consumer validation
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          python -B -m tools.effective_route_consumers.validate             --root .             --report artifacts/effective-route-consumers-report.json
+
+      - name: Run browser runtime regression tests
+        run: |
+          node --test tests/js/*.test.mjs
+
+      - name: Run Python route-consumer tests
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          python -B -m unittest discover             -s tests/effective_route_consumers             -p "test_*.py"             -v
+
+      - name: Confirm no tracked Python cache
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          python -B scripts/release237/verify-no-tracked-cache.py
+
+      - name: Upload route-consumer evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: effective-route-consumers-evidence
+          path: artifacts/
+          if-no-files-found: warn
+          retention-days: 90

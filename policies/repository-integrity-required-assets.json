@@ -1,19 +1,28 @@
 {
-  "release": 236,
+  "release": 237,
   "paths": [
-    ".release-governance.json",
-    ".gitignore",
-    ".gitattributes",
     ".editorconfig",
+    ".gitattributes",
+    ".github/workflows/effective-route-consumers.yml",
+    ".gitignore",
     ".pre-commit-config.yaml",
+    ".release-governance.json",
     "Makefile",
-    "pyproject.toml",
-    "tools/release_validate.py",
-    "tools/repository_hygiene/validate.py",
-    "tools/repository_integrity/validate.py",
+    "PUBLISH_RELEASE_237.cmd",
+    "assets/js/content-status-audit.mjs",
+    "assets/js/discovery-workspace.mjs",
+    "assets/js/effective-route-registry.mjs",
+    "assets/js/site-directory.mjs",
+    "data/effective-route-registry-runtime.json",
+    "policies/effective-route-consumers.json",
     "policies/repository-hygiene.json",
     "policies/repository-integrity.json",
+    "pyproject.toml",
+    "schemas/release-attestation.schema.json",
     "schemas/release-manifest.schema.json",
-    "schemas/release-attestation.schema.json"
+    "tools/effective_route_consumers/validate.py",
+    "tools/release_validate.py",
+    "tools/repository_hygiene/validate.py",
+    "tools/repository_integrity/validate.py"
   ]
 }

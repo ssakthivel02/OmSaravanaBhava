@@ -1,19 +1,14 @@
-export const RELEASE = 231;
+import {
+  CONSUMER_RELEASE,
+  loadEffectiveRouteRegistry,
+  normaliseRoutePath,
+  registryStatusMessage
+} from './effective-route-registry.mjs';
+
+export const RELEASE = 237;
 export const CONFIG_PATH = '/data/content-status.json';
-export const ROUTES_PATH = '/data/site-routes.json';
 export const BOUNDARIES_PATH = '/data/publication-boundaries.json';
 export const CANONICAL_ORIGIN = 'https://omsaravanabhava.org';
-
-export const normaliseRoute = value => {
-  const raw = String(value ?? '').trim();
-  if (!raw) return '';
-  try {
-    const url = new URL(raw, `${CANONICAL_ORIGIN}/`);
-    return url.origin === CANONICAL_ORIGIN ? url.pathname : '';
-  } catch {
-    return '';
-  }
-};
 
 export const buildStatusCounts = routesPayload => {
   const counts = new Map();
@@ -21,8 +16,7 @@ export const buildStatusCounts = routesPayload => {
     ? routesPayload.routes
     : [];
   routes.forEach(record => {
-    if (!record || typeof record !== 'object') return;
-    const status = String(record.status ?? 'unspecified').trim() ||
+    const status = String(record?.status || 'unspecified').trim() ||
       'unspecified';
     counts.set(status, (counts.get(status) || 0) + 1);
   });
@@ -37,61 +31,33 @@ export const buildStatusCounts = routesPayload => {
 export const buildRouteMap = routesPayload => new Map(
   (Array.isArray(routesPayload?.routes) ? routesPayload.routes : [])
     .filter(record => record && typeof record === 'object')
-    .map(record => [normaliseRoute(record.path), record])
+    .map(record => [normaliseRoutePath(record.path), record])
     .filter(([route]) => route)
 );
 
 export const evaluateBoundary = (record, routeRecord) => {
-  const declared = String(routeRecord?.status ?? '').trim();
-  const expectedDeclared = String(
-    record?.declaredRouteStatus ?? ''
+  const route = normaliseRoutePath(record?.route);
+  const effectiveStatus = String(routeRecord?.status || '').trim();
+  const verifiedStatus = String(record?.verifiedStatus || '').trim();
+  const previousStatus = String(
+    routeRecord?.publicationStatusPrevious ||
+    record?.declaredRouteStatus ||
+    ''
   ).trim();
-  const verified = String(record?.verifiedStatus ?? '').trim();
-  const route = normaliseRoute(record?.route);
   return {
     ...record,
     route,
     routePresent: Boolean(routeRecord),
-    declaredStatus: declared || 'missing',
-    declaredStatusExpected: expectedDeclared,
-    verifiedStatus: verified,
-    declaredMatchesSnapshot:
-      Boolean(routeRecord) && declared === expectedDeclared,
-    aligned:
-      Boolean(routeRecord) && declared === verified,
-    mismatch:
-      !routeRecord || declared !== verified,
-    readingExcluded: record?.readingEligible === false
+    previousStatus: previousStatus || 'missing',
+    effectiveStatus: effectiveStatus || 'missing',
+    verifiedStatus,
+    aligned: Boolean(routeRecord) && effectiveStatus === verifiedStatus,
+    mismatch: !routeRecord || effectiveStatus !== verifiedStatus,
+    readingExcluded: routeRecord
+      ? routeRecord.readingEligible === false
+      : record?.readingEligible === false,
+    overrideApplied: routeRecord?.effectiveOverrideApplied === true
   };
-};
-
-export const applyPublicationBoundaries = (
-  routes,
-  boundariesPayload
-) => {
-  const records = Array.isArray(boundariesPayload?.records)
-    ? boundariesPayload.records
-    : [];
-  const map = new Map(
-    records
-      .map(record => [normaliseRoute(record.route), record])
-      .filter(([route]) => route)
-  );
-  return (Array.isArray(routes) ? routes : [])
-    .filter(route => {
-      const boundary = map.get(normaliseRoute(route.path));
-      return boundary?.readingEligible !== false;
-    })
-    .map(route => {
-      const boundary = map.get(normaliseRoute(route.path));
-      return boundary
-        ? {
-            ...route,
-            status: boundary.verifiedStatus || route.status,
-            publicationBoundary: boundary
-          }
-        : route;
-    });
 };
 
 export const filterBoundaryRecords = (
@@ -109,30 +75,30 @@ export const filterBoundaryRecords = (
       return false;
     }
     if (!needle) return true;
-    const haystack = [
+    return [
       record.titleTa,
       record.titleEn,
       record.route,
-      record.declaredStatus,
+      record.previousStatus,
+      record.effectiveStatus,
       record.verifiedStatus,
       record.contentScope
-    ].join(' ').toLocaleLowerCase();
-    return haystack.includes(needle);
+    ].join(' ').toLocaleLowerCase().includes(needle);
   });
 };
 
-export const summariseAudit = (routesPayload, evaluated) => {
-  const records = Array.isArray(evaluated) ? evaluated : [];
-  return {
-    routes: Array.isArray(routesPayload?.routes)
-      ? routesPayload.routes.length
-      : 0,
-    audited: records.length,
-    mismatches: records.filter(record => record.mismatch).length,
-    aligned: records.filter(record => record.aligned).length,
-    excluded: records.filter(record => record.readingExcluded).length
-  };
-};
+export const summariseAudit = (routesPayload, records) => ({
+  routes: Array.isArray(routesPayload?.routes)
+    ? routesPayload.routes.length
+    : 0,
+  audited: records.length,
+  mismatches: records.filter(record => record.mismatch).length,
+  aligned: records.filter(record => record.aligned).length,
+  excluded: records.filter(record => record.readingExcluded).length,
+  overrides: Number(
+    routesPayload?.effectiveRegistryDiagnostics?.appliedCount
+  ) || 0
+});
 
 const fetchJson = async (path, fetcher = globalThis.fetch) => {
   if (typeof fetcher !== 'function') {
@@ -151,7 +117,7 @@ export const verifyPageEvidence = async (
   record,
   fetcher = globalThis.fetch
 ) => {
-  const route = normaliseRoute(record?.route);
+  const route = normaliseRoutePath(record?.route);
   if (!route || typeof fetcher !== 'function') {
     return {
       route,
@@ -168,22 +134,18 @@ export const verifyPageEvidence = async (
       headers: {'Accept': 'text/html'}
     });
     const text = await response.text();
-    const marker = String(record?.evidenceMarker ?? '');
-    const robots = String(record?.pageRobots ?? '');
+    const marker = String(record?.evidenceMarker || '');
+    const robots = String(record?.pageRobots || '');
+    const escaped = robots.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     return {
       route,
       available: response.ok,
       status: response.status,
       markerFound: Boolean(marker) && text.includes(marker),
-      robotsFound:
-        Boolean(robots) &&
-        new RegExp(
-          `<meta\\s+name=["']robots["']\\s+content=["']${robots.replace(
-            /[.*+?^${}()|[\]\\]/g,
-            '\\$&'
-          )}["']`,
-          'i'
-        ).test(text),
+      robotsFound: Boolean(robots) && new RegExp(
+        `<meta\\s+name=["']robots["']\\s+content=["']${escaped}["']`,
+        'i'
+      ).test(text),
       error: response.ok ? '' : `HTTP ${response.status}`
     };
   } catch (error) {
@@ -202,44 +164,40 @@ export const verifyAllPageEvidence = async (
   fetcher = globalThis.fetch,
   concurrency = 4
 ) => {
-  const items = Array.isArray(records) ? records : [];
-  const results = new Array(items.length);
+  const source = Array.isArray(records) ? records : [];
+  const results = new Array(source.length);
   let cursor = 0;
   const worker = async () => {
-    while (cursor < items.length) {
-      const index = cursor;
-      cursor += 1;
-      results[index] = await verifyPageEvidence(
-        items[index],
-        fetcher
-      );
+    while (cursor < source.length) {
+      const index = cursor++;
+      results[index] = await verifyPageEvidence(source[index], fetcher);
     }
   };
   await Promise.all(
     Array.from(
-      {length: Math.max(1, Math.min(concurrency, items.length || 1))},
+      {length: Math.max(1, Math.min(concurrency, source.length || 1))},
       () => worker()
     )
   );
   return results;
 };
 
-const createText = (parent, tag, text, className) => {
-  const element = document.createElement(tag);
-  if (className) element.className = className;
-  element.textContent = String(text ?? '');
-  parent.appendChild(element);
-  return element;
+const text = (parent, tag, value, className) => {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  node.textContent = String(value ?? '');
+  parent.appendChild(node);
+  return node;
 };
 
-const appendPill = (parent, text) =>
-  createText(parent, 'span', text, 'pill');
+const pill = (parent, value) =>
+  text(parent, 'span', value, 'pill');
 
-const appendFact = (list, term, detail) => {
+const fact = (list, term, detail) => {
   const row = document.createElement('div');
   row.className = 'content-status-fact';
-  createText(row, 'dt', term);
-  createText(row, 'dd', detail);
+  text(row, 'dt', term);
+  text(row, 'dd', detail);
   list.appendChild(row);
 };
 
@@ -248,8 +206,8 @@ const renderCounts = (host, counts) => {
   counts.forEach(item => {
     const article = document.createElement('article');
     article.className = 'content-status-count';
-    createText(article, 'strong', item.count);
-    createText(article, 'code', item.status);
+    text(article, 'strong', item.count);
+    text(article, 'code', item.status);
     host.appendChild(article);
   });
 };
@@ -262,43 +220,39 @@ const renderRecord = (record, evidence) => {
   const primary = document.createElement('div');
   const labels = document.createElement('div');
   labels.className = 'content-status-labels';
-  appendPill(labels, record.mismatch ? 'Registry mismatch' : 'Aligned');
-  appendPill(
+  pill(labels, record.mismatch ? 'Effective conflict' : 'Aligned');
+  pill(
     labels,
     record.readingExcluded
       ? 'Excluded from reading'
       : 'Bounded reading eligible'
   );
+  if (record.overrideApplied) pill(labels, 'Explicit override applied');
   primary.appendChild(labels);
 
-  createText(
+  text(
     primary,
     'h3',
     record.titleTa || record.titleEn || record.route
   );
   if (record.titleTa && record.titleEn) {
-    createText(
-      primary,
-      'p',
-      record.titleEn,
-      'content-status-title-en'
-    );
+    text(primary, 'p', record.titleEn, 'content-status-title-en');
   }
-  createText(primary, 'p', record.contentScope || '');
+  text(primary, 'p', record.contentScope || '');
 
   const comparison = document.createElement('div');
   comparison.className = 'content-status-comparison';
-  const declared = document.createElement('div');
-  declared.className = 'content-status-state';
-  createText(declared, 'span', 'Effective route status');
-  createText(declared, 'strong', record.declaredStatus);
-  comparison.appendChild(declared);
-  createText(comparison, 'span', '→', 'content-status-arrow');
-  const verified = document.createElement('div');
-  verified.className = 'content-status-state';
-  createText(verified, 'span', 'Verified page scope');
-  createText(verified, 'strong', record.verifiedStatus);
-  comparison.appendChild(verified);
+  const previous = document.createElement('div');
+  previous.className = 'content-status-state';
+  text(previous, 'span', 'Historical route status');
+  text(previous, 'strong', record.previousStatus);
+  comparison.appendChild(previous);
+  text(comparison, 'span', '→', 'content-status-arrow');
+  const effective = document.createElement('div');
+  effective.className = 'content-status-state';
+  text(effective, 'span', 'Effective canonical status');
+  text(effective, 'strong', record.effectiveStatus);
+  comparison.appendChild(effective);
   primary.appendChild(comparison);
 
   const actions = document.createElement('div');
@@ -308,45 +262,43 @@ const renderRecord = (record, evidence) => {
   open.href = record.route;
   open.textContent = 'Open audited page';
   actions.appendChild(open);
-  const source = document.createElement('a');
-  source.className = 'btn secondary';
-  source.href = record.sourceDataPath;
-  source.textContent = 'Open source data';
-  actions.appendChild(source);
+  if (record.sourceDataPath) {
+    const source = document.createElement('a');
+    source.className = 'btn secondary';
+    source.href = record.sourceDataPath;
+    source.textContent = 'Open source data';
+    actions.appendChild(source);
+  }
   primary.appendChild(actions);
   article.appendChild(primary);
 
   const facts = document.createElement('dl');
   facts.className = 'content-status-facts';
-  appendFact(facts, 'Route', record.route);
-  appendFact(
+  fact(facts, 'Route', record.route);
+  fact(facts, 'Verified status', record.verifiedStatus);
+  fact(
     facts,
     'Complete text',
     record.fullTextPublished ? 'Published' : 'Not claimed'
   );
-  appendFact(facts, 'Robots declaration', record.pageRobots);
-  appendFact(
+  fact(facts, 'Robots declaration', record.pageRobots || 'Not declared');
+  fact(
     facts,
     'Page reachable',
     evidence?.available ? `Yes · HTTP ${evidence.status}` : 'Unavailable'
   );
-  appendFact(
+  fact(
     facts,
     'Boundary marker',
     evidence?.markerFound ? 'Confirmed' : 'Not confirmed'
   );
-  appendFact(
+  fact(
     facts,
     'Robots marker',
     evidence?.robotsFound ? 'Confirmed' : 'Not confirmed'
   );
   if (evidence?.error) {
-    createText(
-      facts,
-      'p',
-      evidence.error,
-      'content-status-evidence'
-    );
+    text(facts, 'p', evidence.error, 'content-status-evidence');
   }
   article.appendChild(facts);
   return article;
@@ -365,19 +317,10 @@ export const initialiseContentStatusAudit = async ({
   const refresh = documentRef.getElementById('contentStatusRefresh');
   const visible = documentRef.getElementById('contentStatusVisible');
   if (
-    !message ||
-    !countsHost ||
-    !auditHost ||
-    !state ||
-    !search ||
-    !refresh ||
-    !visible
-  ) {
-    return false;
-  }
+    !message || !countsHost || !auditHost ||
+    !state || !search || !refresh || !visible
+  ) return false;
 
-  let routesPayload;
-  let boundaryPayload;
   let evaluated = [];
   let evidenceMap = new Map();
 
@@ -390,8 +333,8 @@ export const initialiseContentStatusAudit = async ({
     if (!filtered.length) {
       const empty = documentRef.createElement('article');
       empty.className = 'card';
-      createText(empty, 'h3', 'No audited record matches');
-      createText(empty, 'p', 'Change the audit-state filter or search.');
+      text(empty, 'h3', 'No audited record matches');
+      text(empty, 'p', 'Change the audit-state filter or search.');
       auditHost.appendChild(empty);
     } else {
       filtered.forEach(record => {
@@ -405,28 +348,26 @@ export const initialiseContentStatusAudit = async ({
 
   const run = async () => {
     refresh.disabled = true;
-    message.textContent = 'Loading route and publication-boundary registries…';
+    message.textContent =
+      'Loading the explicit effective route registry…';
     try {
       const [config, routes, boundaries] = await Promise.all([
         fetchJson(CONFIG_PATH, fetcher),
-        fetchJson(ROUTES_PATH, fetcher),
+        loadEffectiveRouteRegistry({fetcher, cache: false}),
         fetchJson(BOUNDARIES_PATH, fetcher)
       ]);
-      if (
-        config.release !== RELEASE ||
-        boundaries.release !== RELEASE
-      ) {
-        throw new Error('Release registry identity mismatch');
+      if (!Array.isArray(boundaries.records)) {
+        throw new Error('Publication boundary records are unavailable');
       }
-      routesPayload = routes;
-      boundaryPayload = boundaries;
-      const routeMap = buildRouteMap(routesPayload);
-      evaluated = boundaryPayload.records.map(record =>
-        evaluateBoundary(record, routeMap.get(normaliseRoute(record.route)))
+      const routeMap = buildRouteMap(routes);
+      evaluated = boundaries.records.map(record =>
+        evaluateBoundary(
+          record,
+          routeMap.get(normaliseRoutePath(record.route))
+        )
       );
-      renderCounts(countsHost, buildStatusCounts(routesPayload));
-
-      const summary = summariseAudit(routesPayload, evaluated);
+      renderCounts(countsHost, buildStatusCounts(routes));
+      const summary = summariseAudit(routes, evaluated);
       const metrics = {
         contentStatusRoutes: summary.routes,
         contentStatusAudited: summary.audited,
@@ -437,13 +378,12 @@ export const initialiseContentStatusAudit = async ({
         const element = documentRef.getElementById(id);
         if (element) element.textContent = String(value);
       });
-
       message.textContent =
-        `Canonical registry loaded. ${summary.mismatches} effective conflict${summary.mismatches === 1 ? '' : 's'} remain. Checking same-origin evidence…`;
+        `${registryStatusMessage(routes)} ${summary.mismatches} effective conflict${summary.mismatches === 1 ? '' : 's'} remain. Checking page evidence…`;
       render();
 
       const evidence = await verifyAllPageEvidence(
-        boundaryPayload.records,
+        boundaries.records,
         fetcher
       );
       evidenceMap = new Map(
@@ -453,10 +393,14 @@ export const initialiseContentStatusAudit = async ({
         item => item.available && item.markerFound && item.robotsFound
       ).length;
       message.textContent =
-        `Audit ready: ${summary.audited} records, ${summary.mismatches} effective conflicts, ${confirmed}/${evidence.length} page declarations confirmed in this request.`;
+        `Audit ready: ${summary.audited} records, ${summary.overrides} explicit overrides, ${summary.mismatches} conflicts, ${confirmed}/${evidence.length} page declarations confirmed.`;
       render();
       documentRef.documentElement.dataset.contentStatusRelease =
         String(RELEASE);
+      documentRef.documentElement.dataset.consumerRelease =
+        String(CONSUMER_RELEASE);
+      documentRef.documentElement.dataset.contentStatusConfigRelease =
+        String(config.release || '');
       return true;
     } catch (error) {
       console.warn(
