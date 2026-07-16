@@ -1,19 +1,18 @@
 {
-  "release": 238,
+  "release": 239,
   "algorithm": "sha256",
-  "scope": "bootstrap-package-static-files-excluding-transaction-dynamic-evidence",
+  "scope": "release-package-static-files-excluding-manifest-evidence-and-self",
   "excludedPaths": [
-    ".release-governance.json",
-    "RELEASE_238.patch",
-    "RELEASE_238_CHANGED_FILES.txt",
-    "RELEASE_238_GITHUB_PORTAL_INSTRUCTIONS.txt",
-    "RELEASE_238_LOCAL_TEST_EVIDENCE.txt",
-    "RELEASE_238_SHA256SUMS.txt",
-    "RELEASE_238_VALIDATION_REPORT.md",
+    "RELEASE_239.patch",
+    "RELEASE_239_CHANGED_FILES.txt",
+    "RELEASE_239_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_239_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_239_SHA256SUMS.txt",
+    "RELEASE_239_VALIDATION_REPORT.md",
     "data/repository-integrity-inventory.json",
-    "manifest-release-238.json"
+    "manifest-release-239.json"
   ],
-  "recordCount": 490,
+  "recordCount": 531,
   "records": [
     {
       "path": ".editorconfig",
@@ -23,9 +22,15 @@
     },
     {
       "path": ".gitattributes",
-      "sizeBytes": 680,
-      "sha256": "67c925203f8cfd94bf17e9c64427cde1dd48e6a3cb56313465c350ae908caffd",
+      "sizeBytes": 834,
+      "sha256": "0cb2cb4e7bb7afeaf75c40d8ce0cd9a8c603da4515495519ba7971b8c9a2dac3",
       "suffix": ""
+    },
+    {
+      "path": ".github/workflows/atomic-publish-verification.yml",
+      "sizeBytes": 1377,
+      "sha256": "a2f7a18c4414f5f51472470b2be2df25d6125c536f9f0316bd501e0f4044b8fd",
+      "suffix": ".yml"
     },
     {
       "path": ".github/workflows/deployment-conformance.yml",
@@ -47,8 +52,8 @@
     },
     {
       "path": ".github/workflows/release-232-governance.yml",
-      "sizeBytes": 6766,
-      "sha256": "86939be29242ac65cedc3ed6db0abc4ecaaf0677b61365365693db6518fc33e4",
+      "sizeBytes": 7080,
+      "sha256": "56da59ea3ac776caa66c1d60d63556d7be429313721ccf190f7bde04719fa091",
       "suffix": ".yml"
     },
     {
@@ -71,15 +76,21 @@
     },
     {
       "path": ".gitignore",
-      "sizeBytes": 900,
-      "sha256": "24292daea3b3fb3eb5b08e623b9fada69d63f0d80df7f69c45b499ffd33d5e9f",
+      "sizeBytes": 994,
+      "sha256": "53550ba2b8b76211cc2379cc4b579549c8b51f4e58fe2a719b7bd806b79d16fa",
       "suffix": ""
     },
     {
       "path": ".pre-commit-config.yaml",
-      "sizeBytes": 821,
-      "sha256": "0bfdca36a6ebba5a1e4c2342dd014a2c800aec5e2d321fcc6c4980d13fe73f91",
+      "sizeBytes": 631,
+      "sha256": "7ba2dcc6ddeab29750084a8529473d28bc8d8e66302c9bf06df35c02ca488c00",
       "suffix": ".yaml"
+    },
+    {
+      "path": ".release-governance.json",
+      "sizeBytes": 5008,
+      "sha256": "13ab9acb35817df72741af47b84c85949406a92b1016ac38e9f02ba34e430398",
+      "suffix": ".json"
     },
     {
       "path": "APPLY_RELEASE_236.cmd",
@@ -95,14 +106,20 @@
     },
     {
       "path": "Makefile",
-      "sizeBytes": 832,
-      "sha256": "7eac6525052bb6e33994ce19bce1aed53deed6dd009e9a80d05a7abdab76c0a4",
+      "sizeBytes": 716,
+      "sha256": "74d45b82dbecf75629f2fec5e8338686f926cb720f2de64b67a28ec167dcb098",
       "suffix": ""
     },
     {
       "path": "PUBLISH_RELEASE_237.cmd",
       "sizeBytes": 768,
       "sha256": "6fbd241535910c7d68edca25949d73fad51bbe9018a0fd4b8fed60b0f435015c",
+      "suffix": ".cmd"
+    },
+    {
+      "path": "PUBLISH_RELEASE_239.cmd",
+      "sizeBytes": 762,
+      "sha256": "3842ea87cee1dc4816a40d64ac7d9d3dce9ed08b3194ebaaa685b597ae2d9900",
       "suffix": ".cmd"
     },
     {
@@ -286,6 +303,42 @@
       "suffix": ".md"
     },
     {
+      "path": "RELEASE_238.patch",
+      "sizeBytes": 105571,
+      "sha256": "5c4a156bbfb5393dab85ed067f55fcce7d5de225a72d792b627164b4653be3bc",
+      "suffix": ".patch"
+    },
+    {
+      "path": "RELEASE_238_CHANGED_FILES.txt",
+      "sizeBytes": 5502,
+      "sha256": "db2a8d4706dddea312bd41bc815588e2aa92668d7cc2fd5232a86122d1b428d8",
+      "suffix": ".txt"
+    },
+    {
+      "path": "RELEASE_238_GITHUB_PORTAL_INSTRUCTIONS.txt",
+      "sizeBytes": 1921,
+      "sha256": "bd730fc30c94b7ed0cb50a2b6721e933c2dcb1a42f2cfc74c00a628efb311f2e",
+      "suffix": ".txt"
+    },
+    {
+      "path": "RELEASE_238_LOCAL_TEST_EVIDENCE.txt",
+      "sizeBytes": 1399,
+      "sha256": "d92d03f7cb449ed33b2c111fcf20e54ba4e47e5fdeba34f690ef7c2d89673f5a",
+      "suffix": ".txt"
+    },
+    {
+      "path": "RELEASE_238_SHA256SUMS.txt",
+      "sizeBytes": 54400,
+      "sha256": "db48cf0d65842d8ccf3eb2f49b01cf6dc939865f1300c4e7d4f430d8d5c189f9",
+      "suffix": ".txt"
+    },
+    {
+      "path": "RELEASE_238_VALIDATION_REPORT.md",
+      "sizeBytes": 2657,
+      "sha256": "59d111f7550b298a4eafef2723719a3ca6bee4647340f5d7627de2a05eee106d",
+      "suffix": ".md"
+    },
+    {
       "path": "assets/js/content-status-audit.mjs",
       "sizeBytes": 13915,
       "sha256": "cdf25a1cdff312dd644ef23e56c0ff82ebaae3d96aca2b752ec723b6b6b33207",
@@ -322,9 +375,15 @@
       "suffix": ".html"
     },
     {
+      "path": "data/atomic-publisher.json",
+      "sizeBytes": 587,
+      "sha256": "a8d2b2fbd323e6619d54c168b3e4bf4c0e75521be33da8541e67b1a7050c054d",
+      "suffix": ".json"
+    },
+    {
       "path": "data/deployment-conformance.json",
       "sizeBytes": 832,
-      "sha256": "2b71da594e0370aeeb059826d05d304e331db22f27446ddc5bf5cdd163519477",
+      "sha256": "7ebb6902d65793f7ad575c41fbbc3f7564798f55fca7b08b449d0056e15436f0",
       "suffix": ".json"
     },
     {
@@ -343,6 +402,12 @@
       "path": "data/release-238-transaction.json",
       "sizeBytes": 880,
       "sha256": "f46847f7afa3bdbd3076e6c140bee090150654ed81a54cac5c5bc84610b5c899",
+      "suffix": ".json"
+    },
+    {
+      "path": "data/release-239-deletion-plan.json",
+      "sizeBytes": 1110,
+      "sha256": "6350c83e3da64c46b4b9e0cbba4a753bbae411de0b1de07407698631ee35137b",
       "suffix": ".json"
     },
     {
@@ -508,6 +573,36 @@
       "suffix": ".md"
     },
     {
+      "path": "docs/release-239/README.md",
+      "sizeBytes": 272,
+      "sha256": "7df7afbd848c02ce975e00f9cabc1157538a460e1d483b21300397abb94b41f2",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/release-239/failure-safety.md",
+      "sizeBytes": 298,
+      "sha256": "1d705137a25f584fe4005d69655a95b25f4596b80aee0976dddf88e2afb35d79",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/release-239/post-publish.md",
+      "sizeBytes": 272,
+      "sha256": "a87cf4a0eb5a402593259445a5ec76f2708c06e35f718773b339e82adaeabc08",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/release-239/why-atomic.md",
+      "sizeBytes": 328,
+      "sha256": "31872cdbc3a95a2fba4effb9586bd870248a5c37513207e7d562dc5d5ebe4e63",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/release-239/windows-publisher.md",
+      "sizeBytes": 262,
+      "sha256": "0253f193d4632eff9595df3a427ce8d778c638b78feeea63688c27923ed797f1",
+      "suffix": ".md"
+    },
+    {
       "path": "docs/release-attestation.md",
       "sizeBytes": 688,
       "sha256": "7feae2b4f1b9a3ff4fca6418a38e5a18987cecd8474d1bec4b41a026c19fe1f8",
@@ -515,8 +610,8 @@
     },
     {
       "path": "docs/release-governance.md",
-      "sizeBytes": 4310,
-      "sha256": "c8720d621865bc0b24dd73f4ed233e8e464b8056f46d2072d7f75aa027f1b7ae",
+      "sizeBytes": 4923,
+      "sha256": "52298f0db68f3cb99bc3d8abe0e9bdef36d63a4fa2d745e225b8f039540b3799",
       "suffix": ".md"
     },
     {
@@ -1534,9 +1629,21 @@
       "suffix": ".json"
     },
     {
+      "path": "manifest-release-238.json",
+      "sizeBytes": 32151,
+      "sha256": "720dce56ceb8e942fd7c7f73e53a50247a991393d4e3c3dd7c21303e776dbf6b",
+      "suffix": ".json"
+    },
+    {
+      "path": "policies/atomic-publisher.json",
+      "sizeBytes": 600,
+      "sha256": "7ca21df7d17e8c47000801245d624cc886ab02ee755299fb407aec45c602aaf2",
+      "suffix": ".json"
+    },
+    {
       "path": "policies/deployment-conformance.json",
       "sizeBytes": 586,
-      "sha256": "d98065bb881c2a9775d8df2bf8aa748febbabc9873328ec61465a116d85c81f5",
+      "sha256": "0762a6040d9964ae11f9826967fc2ecd87b237b368103f6334fa1255ad1ff6ba",
       "suffix": ".json"
     },
     {
@@ -1601,26 +1708,38 @@
     },
     {
       "path": "policies/repository-integrity-required-assets.json",
-      "sizeBytes": 1406,
-      "sha256": "9b0547bd0bc6848328eeab87737f6e113cd4ef9895ce85be4d2db61c07e21c28",
+      "sizeBytes": 1677,
+      "sha256": "35b71f050b4fa69812c6d6c00e007dde16335af27a82723320c9f4b1c3d33827",
       "suffix": ".json"
     },
     {
       "path": "policies/repository-integrity.json",
-      "sizeBytes": 2540,
-      "sha256": "1f17a1520766d2e43abb9b8c3979c16fd17f67ff04a1b390d8f02ef844d8f1a5",
+      "sizeBytes": 2811,
+      "sha256": "f366daef0dc3d6aa6fce920b49947a8f07c967edfcf9fc96048f7b4f5284f781",
       "suffix": ".json"
     },
     {
       "path": "pyproject.toml",
-      "sizeBytes": 384,
-      "sha256": "f77f40990373e62a20f5f59d35b8815772346b1f293307f41fccdcd51224186f",
+      "sizeBytes": 314,
+      "sha256": "2f49d3d043200d794d8cda8a6c35622c444980c86578b557ff4dc205adceffbf",
       "suffix": ".toml"
+    },
+    {
+      "path": "schemas/atomic-publish-result.schema.json",
+      "sizeBytes": 421,
+      "sha256": "3ff660424ce20f7c0510d003527091a1eaaefadbb3f15653442cec454fc7ea13",
+      "suffix": ".json"
+    },
+    {
+      "path": "schemas/atomic-publisher.schema.json",
+      "sizeBytes": 540,
+      "sha256": "b8ce97a6dcc1d3bfa1185c98410261828ca6004addb5111eefef458127c2e35c",
+      "suffix": ".json"
     },
     {
       "path": "schemas/deployment-conformance.schema.json",
       "sizeBytes": 542,
-      "sha256": "40acd7d2cbd7d919fc4c767d6c8dce582e61753c9516d47f396aa4183479a4da",
+      "sha256": "8b220162cc0065c93ff6c882b613754f81517303c1d62871f133b876fdfb58d8",
       "suffix": ".json"
     },
     {
@@ -1948,6 +2067,48 @@
       "suffix": ".py"
     },
     {
+      "path": "scripts/release239/prepare-checkout.py",
+      "sizeBytes": 2148,
+      "sha256": "dd906393c4d2961ce6b61390e1508be4ff39b67e0074218ec946efbc85c9dda9",
+      "suffix": ".py"
+    },
+    {
+      "path": "scripts/release239/publish-release-239.ps1",
+      "sizeBytes": 3246,
+      "sha256": "b7b328840e33a64cd32fbec94f57f260bc90a3ac3dc5d1c7ea309d275a660b19",
+      "suffix": ".ps1"
+    },
+    {
+      "path": "scripts/release239/publish-release-239.sh",
+      "sizeBytes": 1888,
+      "sha256": "8243ea92ce8b5ab37cdaa24143401dee0adf098ca13f273d0695ab6c1417c7dd",
+      "suffix": ".sh"
+    },
+    {
+      "path": "scripts/release239/run-release-tests.py",
+      "sizeBytes": 1328,
+      "sha256": "b76d9443d8fbb127a7cb2be1fbabb6c910833c5da6297222ae86d803697c1dc2",
+      "suffix": ".py"
+    },
+    {
+      "path": "scripts/release239/show-result.ps1",
+      "sizeBytes": 532,
+      "sha256": "e0038ad65ca02cb56323d6764d92265f8d39c120778b488b28c8bbd309d4644e",
+      "suffix": ".ps1"
+    },
+    {
+      "path": "scripts/release239/verify-base.py",
+      "sizeBytes": 838,
+      "sha256": "5f6e2d73dd8fe24f85cdd1cd4653b15d76bcacb765661c77b34c6858e800d12a",
+      "suffix": ".py"
+    },
+    {
+      "path": "scripts/release239/verify-staged-change-set.py",
+      "sizeBytes": 2015,
+      "sha256": "f9d345356a52a4c020bb42a90f2e975a69564d167ab7e54a9132ac8922af4660",
+      "suffix": ".py"
+    },
+    {
       "path": "scripts/repository/preflight-hygiene.ps1",
       "sizeBytes": 313,
       "sha256": "2ad677d8c44831ce24c553340b1927212b9afd8898f8af6b17996d5d9582d42e",
@@ -1986,7 +2147,7 @@
     {
       "path": "service-worker.js",
       "sizeBytes": 5892,
-      "sha256": "984c5fbbeed93b600d50c9dbb15cf695c5abc8fd80cd485368eb50ed76ea1d10",
+      "sha256": "81c7d79dce4c1a82731ce3b718336a3592e41e1302ff04cc208a07831f830c1e",
       "suffix": ".js"
     },
     {
@@ -2003,9 +2164,39 @@
     },
     {
       "path": "templates/release-upload-checklist.md",
-      "sizeBytes": 2774,
-      "sha256": "f2532477de729d9281b117083e5c25dc0773d3e92ed5e5a262bef99d871f1576",
+      "sizeBytes": 3216,
+      "sha256": "c4189f874f5333ffe66b0cf026096725434273581b0b18e2983d7b793d8574b9",
       "suffix": ".md"
+    },
+    {
+      "path": "tests/atomic_publisher/__init__.py",
+      "sizeBytes": 30,
+      "sha256": "d53a12b34833eeb143fc91158d8f8f214dff45eca3e5ade8374d74846a8e304f",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/atomic_publisher/test_plan.py",
+      "sizeBytes": 1167,
+      "sha256": "72895ee2b38ff7f4a12e0bc41301c804945fa64d63860cca043123ed10db18e0",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/atomic_publisher/test_release_239_package.py",
+      "sizeBytes": 1448,
+      "sha256": "b49ce54d21011210f377557e91395864133746959de8b05dffa2687873e6487a",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/atomic_publisher/test_scripts.py",
+      "sizeBytes": 722,
+      "sha256": "4060e0641d8fb0d008369a7ea7ebbc6aeb2164d22862fd7487afcedea7d134eb",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/atomic_publisher/test_validator.py",
+      "sizeBytes": 1818,
+      "sha256": "f49b37e1386f68364741b4ec3c0f5b5a583e9a350930c827f805ebd3945c6268",
+      "suffix": ".py"
     },
     {
       "path": "tests/deployment_conformance/__init__.py",
@@ -2028,7 +2219,7 @@
     {
       "path": "tests/deployment_conformance/test_service_worker.py",
       "sizeBytes": 1064,
-      "sha256": "d7448132c617bc0caaa710b9fd50889cfd6797a272d92253c55490ec2f0c9d9e",
+      "sha256": "a65651787d8622366f5cfa602d2fa656236c744ac46c44ddac031910ce7a5f62",
       "suffix": ".py"
     },
     {
@@ -2374,6 +2565,60 @@
       "suffix": ".py"
     },
     {
+      "path": "tools/atomic_publisher/__init__.py",
+      "sizeBytes": 141,
+      "sha256": "48571b627350f7c0625181037f2561aaa103c0e451a73af2e7f7be91d896ce53",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/atomic_publisher/constants.py",
+      "sizeBytes": 162,
+      "sha256": "2c08d991d65cf5e19c9c8ea9796e2a8f4a4543a3ff87780475e463f756fe574d",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/atomic_publisher/git.py",
+      "sizeBytes": 1126,
+      "sha256": "0c04aabfbf8bea501fb86c21ac35395b2bd6365dc36feeeac74ba2355e77b7f9",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/atomic_publisher/jsonio.py",
+      "sizeBytes": 593,
+      "sha256": "7fdcdcac5da7cd361d9acc5f5c9e89d61ea6867823abff930d3b9af379c3b78b",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/atomic_publisher/models.py",
+      "sizeBytes": 295,
+      "sha256": "5114c247d3b5c6896ac61c83d2f478961930293f2a492a3d4af4a0d869503c42",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/atomic_publisher/plan.py",
+      "sizeBytes": 1738,
+      "sha256": "b3846a5d40f09dde147415fbdeb880c7ec4faf19d3a33c82c87a516bb8690bc9",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/atomic_publisher/validate.py",
+      "sizeBytes": 1194,
+      "sha256": "f22e5cee787e50ac6cb3081a8c0208e4223edd6e66289762b87806524968ff0c",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/atomic_publisher/validator.py",
+      "sizeBytes": 2779,
+      "sha256": "fbe827ae5ad784aec5df97f7316211eb7749579307420444d80132c2975b490e",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/atomic_publisher_cli.py",
+      "sizeBytes": 129,
+      "sha256": "6320c777f4d492edf43679e6c7f131c7affd1c099fa98787d246831dbeb8d720",
+      "suffix": ".py"
+    },
+    {
       "path": "tools/deployment_conformance/__init__.py",
       "sizeBytes": 120,
       "sha256": "527f9923267c56fd12710a0ba040b807e423ff7bc96142f3fd7a3be665ec4a05",
@@ -2429,8 +2674,8 @@
     },
     {
       "path": "tools/deployment_conformance/validator.py",
-      "sizeBytes": 1507,
-      "sha256": "adfccaa97185165b61730e1af5c61b67f3898eb8fe137de49d33b221c3c488f8",
+      "sizeBytes": 1535,
+      "sha256": "e6c2c35d7b11f993e8f448833cfacabd01b81b4d2b67e00387d624638ed85321",
       "suffix": ".py"
     },
     {
@@ -2956,5 +3201,5 @@
       "suffix": ".py"
     }
   ],
-  "inventorySha256": "330055631746d149ab720dea2d975caf724c06bbe546417b783d43de67081432"
+  "inventorySha256": "d1914f6d944c4a4b44664ebd25e5221302d74ad295a733ed1915a4b206e7cf75"
 }

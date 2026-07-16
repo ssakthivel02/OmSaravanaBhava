@@ -67,7 +67,7 @@ jobs:
 
       - name: Compile release governance tools
         run: |
-          python -B -m compileall -q tools/release_control tools/repository_hygiene tools/repository_integrity tools/effective_route_consumers tools/release_transaction tools/deployment_conformance tools/route_registry tools/release_validate.py
+          python -B -m compileall -q tools/release_control tools/repository_hygiene tools/repository_integrity tools/effective_route_consumers tools/release_transaction tools/deployment_conformance tools/atomic_publisher tools/route_registry tools/release_validate.py
 
       - name: Run governance unit tests
         run: |
@@ -103,6 +103,14 @@ jobs:
           PYTHONDONTWRITEBYTECODE: "1"
         run: |
           python -B -m tools.effective_route_consumers.validate             --root .             --report artifacts/effective-route-consumers-report.json
+
+      - name: Validate atomic publisher contract
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          if [[ -f manifest-release-239.json ]]; then
+            python -B -m tools.atomic_publisher.validate               --root .               --mode final
+          fi
 
       - name: Validate deployment conformance
         if: steps.manifest.outputs.state != 'bootstrap'

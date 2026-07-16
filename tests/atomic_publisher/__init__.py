@@ -1,0 +1,1 @@
+"""Atomic publisher tests."""

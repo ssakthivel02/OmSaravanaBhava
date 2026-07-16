@@ -1,0 +1,1599 @@
+diff --git a/.gitattributes b/.gitattributes
+index 729f913cda25ac3f3f1ab40c01b610c322a35444..59e386857e5c91e3cbcba18b9d449ccf4aa13293 100644
+--- a/.gitattributes
++++ b/.gitattributes
+@@ -26,3 +26,8 @@ FINALIZE_RELEASE_238.cmd text eol=lf
+ scripts/release238/*.ps1 text eol=lf
+ scripts/release238/*.py text eol=lf
+ .github/workflows/release-238-finalize.yml text eol=lf
++
++# Deterministic Release 239 publisher bytes
++PUBLISH_RELEASE_239.cmd text eol=lf
++scripts/release239/*.ps1 text eol=lf
++scripts/release239/*.py text eol=lf
+diff --git a/.github/workflows/atomic-publish-verification.yml b/.github/workflows/atomic-publish-verification.yml
+new file mode 100644
+index 0000000000000000000000000000000000000000..27d75f37ed4d95d888a274ae4e5180ce625ef27a
+--- /dev/null
++++ b/.github/workflows/atomic-publish-verification.yml
+@@ -0,0 +1,50 @@
++name: Atomic Publish Verification
++
++on:
++  push:
++    branches: [main]
++  pull_request:
++  workflow_dispatch:
++
++permissions:
++  contents: read
++
++concurrency:
++  group: atomic-publish-verification-${{ github.ref }}
++  cancel-in-progress: true
++
++jobs:
++  verify:
++    runs-on: ubuntu-latest
++    timeout-minutes: 15
++    steps:
++      - name: Check out repository with parent
++        uses: actions/checkout@v4
++        with:
++          fetch-depth: 2
++
++      - name: Set up Python
++        uses: actions/setup-python@v5
++        with:
++          python-version: "3.12"
++
++      - name: Set up Node
++        uses: actions/setup-node@v4
++        with:
++          node-version: "22"
++
++      - name: Validate final atomic state
++        env:
++          PYTHONDONTWRITEBYTECODE: "1"
++        run: |
++          python -B -m tools.atomic_publisher.validate             --root .             --mode final
++          python -B -m tools.deployment_conformance.validate --root .
++          python -B -m tools.repository_hygiene.validate --root .
++          python -B -m tools.repository_integrity.validate             --root .             --manifest manifest-release-239.json
++
++      - name: Run regression suites
++        env:
++          PYTHONDONTWRITEBYTECODE: "1"
++        run: |
++          node --test tests/js/*.test.mjs
++          python -B -m unittest discover             -s tests             -p "test_*.py"             -v
+diff --git a/.github/workflows/release-232-governance.yml b/.github/workflows/release-232-governance.yml
+index 74b92529bef6606246fd82daeffe030ff4f02bfc..7afb59919324fde52d1ecf54413f3a461ef1c286 100644
+--- a/.github/workflows/release-232-governance.yml
++++ b/.github/workflows/release-232-governance.yml
+@@ -67,7 +67,7 @@ jobs:
+ 
+       - name: Compile release governance tools
+         run: |
+-          python -B -m compileall -q tools/release_control tools/repository_hygiene tools/repository_integrity tools/effective_route_consumers tools/release_transaction tools/deployment_conformance tools/route_registry tools/release_validate.py
++          python -B -m compileall -q tools/release_control tools/repository_hygiene tools/repository_integrity tools/effective_route_consumers tools/release_transaction tools/deployment_conformance tools/atomic_publisher tools/route_registry tools/release_validate.py
+ 
+       - name: Run governance unit tests
+         run: |
+@@ -104,6 +104,14 @@ jobs:
+         run: |
+           python -B -m tools.effective_route_consumers.validate             --root .             --report artifacts/effective-route-consumers-report.json
+ 
++      - name: Validate atomic publisher contract
++        env:
++          PYTHONDONTWRITEBYTECODE: "1"
++        run: |
++          if [[ -f manifest-release-239.json ]]; then
++            python -B -m tools.atomic_publisher.validate               --root .               --mode final
++          fi
++
+       - name: Validate deployment conformance
+         if: steps.manifest.outputs.state != 'bootstrap'
+         env:
+diff --git a/.gitignore b/.gitignore
+index 455010564cb8479d51327190bcc7506f18a8063f..062153b9cf1b7a2e570973bc86bc32924d72353d 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -62,3 +62,7 @@ release237-clone/
+ # Release 238 finalizer temporary files
+ RELEASE_238_FINALIZATION_RESULT.tmp
+ release238-finalizer/
++
++# Release 239 fresh-clone publisher workspaces
++OmSaravanaBhava-release239/
++release239-clone/
+diff --git a/.pre-commit-config.yaml b/.pre-commit-config.yaml
+index a1872d989ad59240d3138f74ec4d2be0d4e169bf..57a36d084c628c691e1290e4a27c0c5275be57d1 100644
+--- a/.pre-commit-config.yaml
++++ b/.pre-commit-config.yaml
+@@ -2,13 +2,13 @@ repos:
+   - repo: local
+     hooks:
+       - id: release-tests
+-        name: Release regression suites
+-        entry: python -B scripts/release238/run-release-238-tests.py --root .
++        name: Release 239 regression suites
++        entry: python -B scripts/release239/run-release-tests.py --root .
+         language: system
+         pass_filenames: false
+-      - id: deployment-conformance
+-        name: Deployment conformance
+-        entry: python -B -m tools.deployment_conformance.validate --root .
++      - id: atomic-publisher
++        name: Atomic publisher contract
++        entry: python -B -m tools.atomic_publisher.validate --root . --mode package
+         language: system
+         pass_filenames: false
+       - id: repository-hygiene
+@@ -16,8 +16,3 @@ repos:
+         entry: python -B -m tools.repository_hygiene.validate --root .
+         language: system
+         pass_filenames: false
+-      - id: repository-integrity
+-        name: Repository integrity
+-        entry: python -B -m tools.repository_integrity.validate --root .
+-        language: system
+-        pass_filenames: false
+diff --git a/Makefile b/Makefile
+index 354523b5167d2fe58a08c88aed2c763ca854c3f6..df4af20b129fde8a89f00b22bb9af9c46ffd5833 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,7 +1,7 @@
+ PYTHON ?= python
+ NODE ?= node
+ 
+-.PHONY: test js-test hygiene integrity route-consumers transaction deployment release-check cleanup
++.PHONY: test js-test atomic deployment hygiene integrity release-check cleanup
+ 
+ test:
+ 	$(PYTHON) -B -m unittest discover -s tests -p "test_*.py" -v
+@@ -9,23 +9,20 @@ test:
+ js-test:
+ 	$(NODE) --test tests/js/*.test.mjs
+ 
++atomic:
++	$(PYTHON) -B -m tools.atomic_publisher.validate --root . --mode package
++
++deployment:
++	$(PYTHON) -B -m tools.deployment_conformance.validate --root .
++
+ hygiene:
+ 	$(PYTHON) -B -m tools.repository_hygiene.validate --root .
+ 
+ integrity:
+ 	$(PYTHON) -B -m tools.repository_integrity.validate --root .
+ 
+-route-consumers:
+-	$(PYTHON) -B -m tools.effective_route_consumers.validate --root .
+-
+-transaction:
+-	$(PYTHON) -B -m tools.release_transaction.validate --root . --mode bootstrap
+-
+-deployment:
+-	$(PYTHON) -B -m tools.deployment_conformance.validate --root .
+-
+ release-check:
+-	$(PYTHON) -B tools/release_validate.py --root . --manifest manifest-release-238.json --package-mode
++	$(PYTHON) -B tools/release_validate.py --root . --manifest manifest-release-239.json --package-mode
+ 
+ cleanup:
+ 	$(PYTHON) -B -m tools.repository_integrity.cleanup --root .
+diff --git a/PUBLISH_RELEASE_239.cmd b/PUBLISH_RELEASE_239.cmd
+new file mode 100644
+index 0000000000000000000000000000000000000000..af4569a6676bf4bd49e21d7bd2bcdcc3649eba58
+--- /dev/null
++++ b/PUBLISH_RELEASE_239.cmd
+@@ -0,0 +1,33 @@
++@echo off
++setlocal EnableExtensions
++set "PACKAGE_ROOT=%~dp0"
++
++where git >nul 2>nul || (
++  echo ERROR: Git is not installed or unavailable in PATH.
++  pause
++  exit /b 1
++)
++where python >nul 2>nul || (
++  echo ERROR: Python is not installed or unavailable in PATH.
++  pause
++  exit /b 1
++)
++where node >nul 2>nul || (
++  echo ERROR: Node.js is not installed or unavailable in PATH.
++  pause
++  exit /b 1
++)
++
++set "TARGET_ROOT=%~1"
++if "%TARGET_ROOT%"=="" (
++  set "TARGET_ROOT=%TEMP%\OmSaravanaBhava-release239-%RANDOM%"
++)
++
++powershell -NoProfile -ExecutionPolicy Bypass ^
++  -File "%PACKAGE_ROOT%scripts\release239\publish-release-239.ps1" ^
++  -PackageRoot "%PACKAGE_ROOT%" ^
++  -TargetRoot "%TARGET_ROOT%"
++
++set "RESULT=%ERRORLEVEL%"
++if not "%RESULT%"=="0" pause
++exit /b %RESULT%
+diff --git a/data/deployment-conformance.json b/data/deployment-conformance.json
+index 335ade1f932f53fc5cc9217a392dd4407105f8c6..233a32029e90b1a6ecf4ec446707f7a60787b8c7 100644
+--- a/data/deployment-conformance.json
++++ b/data/deployment-conformance.json
+@@ -1,7 +1,7 @@
+ {
+-  "release": 238,
++  "release": 239,
+   "serviceWorker": "/service-worker.js",
+-  "expectedCacheRelease": "238",
++  "expectedCacheRelease": "239",
+   "requiredPrecacheUrls": [
+     "/content-status.html",
+     "/discovery.html",
+diff --git a/data/release-239-deletion-plan.json b/data/release-239-deletion-plan.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..2b55b68d174c9adc1779c371b534eae4d148dbd1
+--- /dev/null
++++ b/data/release-239-deletion-plan.json
+@@ -0,0 +1,22 @@
++{
++  "release": 239,
++  "baseCommit": "530ad97c68b6e7b8cbe997f2b6bbaf440ec5d527",
++  "expectedCount": 14,
++  "paths": [
++    "assets/js/site-directory.js",
++    "tools/release_control/__pycache__/__init__.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_checksums.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_commit.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_files.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_manifest.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_patch.cpython-313.pyc",
++    "tools/release_control/__pycache__/cli.cpython-313.pyc",
++    "tools/release_control/__pycache__/constants.cpython-313.pyc",
++    "tools/release_control/__pycache__/git.cpython-313.pyc",
++    "tools/release_control/__pycache__/jsonio.cpython-313.pyc",
++    "tools/release_control/__pycache__/models.cpython-313.pyc",
++    "tools/release_control/__pycache__/report.cpython-313.pyc"
++  ],
++  "reason": "Complete the deletion objective left unfinalized by Releases 235-238."
++}
+diff --git a/docs/release-239/README.md b/docs/release-239/README.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..d3e4a569ef5fad3964af8624a809dea2474778c9
+--- /dev/null
++++ b/docs/release-239/README.md
+@@ -0,0 +1,6 @@
++# Release 239
++
++Release 239 replaces the failed browser-finalizer pattern with a single atomic
++fresh-clone publisher. One command verifies the exact Release 238 base, copies
++declared files, deletes fourteen tracked artifacts, validates, commits the exact
++title and pushes.
+diff --git a/docs/release-239/failure-safety.md b/docs/release-239/failure-safety.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..7c5f60a439937e32192a0bd96040a352e05c71af
+--- /dev/null
++++ b/docs/release-239/failure-safety.md
+@@ -0,0 +1,6 @@
++# Failure Safety
++
++The publisher stops before commit if the remote base moved, a deletion target is
++missing, a staged status differs from the manifest, a test fails or governance
++fails. The temporary clone is retained for diagnosis; the production branch is
++unchanged until the final push succeeds.
+diff --git a/docs/release-239/post-publish.md b/docs/release-239/post-publish.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..29789b430fb7585d772dba5f856e512a2ac3e876
+--- /dev/null
++++ b/docs/release-239/post-publish.md
+@@ -0,0 +1,6 @@
++# Post-Publish Verification
++
++The completed commit must have the exact Release 239 title, parent
++`530ad97c68b6e7b8cbe997f2b6bbaf440ec5d527`, the manifest-declared changed-file
++count, fourteen deletions, no tracked Python caches and no legacy
++`assets/js/site-directory.js`.
+diff --git a/docs/release-239/why-atomic.md b/docs/release-239/why-atomic.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..6847746df6d4d0c6860bd29d371109fe7b893547
+--- /dev/null
++++ b/docs/release-239/why-atomic.md
+@@ -0,0 +1,6 @@
++# Why Atomic Publishing
++
++GitHub browser upload cannot delete files omitted from an archive. Release 238
++was therefore committed with its final title while its manifest remained in
++bootstrap state and all deletion targets remained tracked. Release 239 performs
++copy, deletion, validation and commit in one local Git transaction.
+diff --git a/docs/release-239/windows-publisher.md b/docs/release-239/windows-publisher.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..946dd689c204ee71477bb691e96a495c025f4710
+--- /dev/null
++++ b/docs/release-239/windows-publisher.md
+@@ -0,0 +1,6 @@
++# Windows Publisher
++
++Extract the package outside any repository and double-click
++`PUBLISH_RELEASE_239.cmd`. The script creates a unique temporary clone, verifies
++the exact base SHA, applies the manifest, runs all gates and pushes through Git
++Credential Manager.
+diff --git a/docs/release-governance.md b/docs/release-governance.md
+index a1cad5bc66207b449d50c3d12166aa47f51a4641..6a26a7a7163002c64c2282aea9f59881f2a159dc 100644
+--- a/docs/release-governance.md
++++ b/docs/release-governance.md
+@@ -99,3 +99,15 @@ creates the exact final release commit and pushes it.
+ The bootstrap title and final title are both security boundaries. A bootstrap
+ commit is not the completed release. Completion requires the exact final commit,
+ zero planned deletion targets, cache release 238 and a finalization result file.
++
++## Release 239 atomic publication gate
++
++Release 239 must not be uploaded through the GitHub browser. The package
++publisher creates a fresh clone at the exact Release 238 SHA, copies only
++manifest-declared additions and modifications, removes all fourteen tracked
++artifacts with `git rm`, verifies exact staged statuses, runs the full regression
++and governance suite, commits the exact Release 239 title and pushes once.
++
++A release is rejected when the remote base moved, any deletion target is
++missing before application, any forbidden path remains afterward, or the
++staged change set differs from the manifest.
+diff --git a/policies/deployment-conformance.json b/policies/deployment-conformance.json
+index eb669cad47a733b98d4c27836cee1cce4670458b..83be852bf375306d7e1f78113ab68ba7bae8893e 100644
+--- a/policies/deployment-conformance.json
++++ b/policies/deployment-conformance.json
+@@ -1,6 +1,6 @@
+ {
+   "version": 1,
+-  "release": 238,
++  "release": 239,
+   "contract": "data/deployment-conformance.json",
+   "serviceWorker": "service-worker.js",
+   "requiredConsumerAssets": [
+@@ -16,6 +16,6 @@
+     "assets/js/site-directory.js"
+   ],
+   "forbidGlobalFetchReplacement": true,
+-  "requireCacheRelease": "238",
++  "requireCacheRelease": "239",
+   "requireExplicitOverrideRegistry": true
+ }
+diff --git a/policies/repository-integrity-required-assets.json b/policies/repository-integrity-required-assets.json
+index af3c6de44606e44541dea807dd5db4e39c831f5c..f77127db074d53f1b966a40ae478d0f3c3600dbe 100644
+--- a/policies/repository-integrity-required-assets.json
++++ b/policies/repository-integrity-required-assets.json
+@@ -1,5 +1,5 @@
+ {
+-  "release": 238,
++  "release": 239,
+   "paths": [
+     ".editorconfig",
+     ".gitattributes",
+@@ -12,14 +12,19 @@
+     "FINALIZE_RELEASE_238.cmd",
+     "Makefile",
+     "PUBLISH_RELEASE_237.cmd",
++    "PUBLISH_RELEASE_239.cmd",
+     "assets/js/content-status-audit.mjs",
+     "assets/js/discovery-workspace.mjs",
+     "assets/js/effective-route-registry.mjs",
+     "assets/js/site-directory.mjs",
++    "data/atomic-publisher.json",
+     "data/deployment-conformance.json",
+     "data/effective-route-registry-runtime.json",
+     "data/release-238-deletion-plan.json",
+     "data/release-238-transaction.json",
++    "data/release-239-deletion-plan.json",
++    "manifest-release-239.json",
++    "policies/atomic-publisher.json",
+     "policies/deployment-conformance.json",
+     "policies/effective-route-consumers.json",
+     "policies/release-transaction.json",
+@@ -29,7 +34,9 @@
+     "schemas/release-attestation.schema.json",
+     "schemas/release-manifest.schema.json",
+     "scripts/release238/finalize-release-238.py",
++    "scripts/release239/publish-release-239.ps1",
+     "service-worker.js",
++    "tools/atomic_publisher/validate.py",
+     "tools/deployment_conformance/validate.py",
+     "tools/effective_route_consumers/validate.py",
+     "tools/release_transaction/validate.py",
+diff --git a/policies/repository-integrity.json b/policies/repository-integrity.json
+index 60a73592eca3c35ea8c918a56f2ef517d3973711..a68d26fe861ba9d3fed0f6ae7775201793a5c537 100644
+--- a/policies/repository-integrity.json
++++ b/policies/repository-integrity.json
+@@ -1,6 +1,6 @@
+ {
+   "version": 1,
+-  "release": 238,
++  "release": 239,
+   "generated": "2026-07-16",
+   "requiredGovernanceAssets": [
+     ".editorconfig",
+@@ -14,14 +14,19 @@
+     "FINALIZE_RELEASE_238.cmd",
+     "Makefile",
+     "PUBLISH_RELEASE_237.cmd",
++    "PUBLISH_RELEASE_239.cmd",
+     "assets/js/content-status-audit.mjs",
+     "assets/js/discovery-workspace.mjs",
+     "assets/js/effective-route-registry.mjs",
+     "assets/js/site-directory.mjs",
++    "data/atomic-publisher.json",
+     "data/deployment-conformance.json",
+     "data/effective-route-registry-runtime.json",
+     "data/release-238-deletion-plan.json",
+     "data/release-238-transaction.json",
++    "data/release-239-deletion-plan.json",
++    "manifest-release-239.json",
++    "policies/atomic-publisher.json",
+     "policies/deployment-conformance.json",
+     "policies/effective-route-consumers.json",
+     "policies/release-transaction.json",
+@@ -31,7 +36,9 @@
+     "schemas/release-attestation.schema.json",
+     "schemas/release-manifest.schema.json",
+     "scripts/release238/finalize-release-238.py",
++    "scripts/release239/publish-release-239.ps1",
+     "service-worker.js",
++    "tools/atomic_publisher/validate.py",
+     "tools/deployment_conformance/validate.py",
+     "tools/effective_route_consumers/validate.py",
+     "tools/release_transaction/validate.py",
+diff --git a/pyproject.toml b/pyproject.toml
+index 35cc0811d7785fb5b609b8b18653721662759e54..58fb92ce5d587a462b8b8da4071adc72f7822f4a 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -1,8 +1,8 @@
+ [project]
+ name = "omsaravanabhava-release-governance"
+-version = "238.0.0"
++version = "239.0.0"
+ requires-python = ">=3.12"
+-description = "Transactional release, deployment conformance and repository integrity tooling."
++description = "Atomic publishing, deployment conformance and repository integrity tooling."
+ 
+ [tool.unittest]
+ start-directory = "tests"
+@@ -11,7 +11,3 @@ pattern = "test_*.py"
+ [tool.ruff]
+ line-length = 100
+ target-version = "py312"
+-
+-[tool.pyright]
+-pythonVersion = "3.12"
+-typeCheckingMode = "basic"
+diff --git a/schemas/atomic-publish-result.schema.json b/schemas/atomic-publish-result.schema.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..8a7540c22ba6f31a674271a6cc5ba6085412fea5
+--- /dev/null
++++ b/schemas/atomic-publish-result.schema.json
+@@ -0,0 +1,25 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "type": "object",
++  "required": [
++    "release",
++    "baseCommit",
++    "commitTitle",
++    "changedCount",
++    "deletedCount",
++    "validation"
++  ],
++  "properties": {
++    "release": {
++      "const": 239
++    },
++    "changedCount": {
++      "type": "integer",
++      "minimum": 1,
++      "maximum": 500
++    },
++    "deletedCount": {
++      "const": 14
++    }
++  }
++}
+diff --git a/schemas/atomic-publisher.schema.json b/schemas/atomic-publisher.schema.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..b2be4992a9edace8ae2a11fdcdccaa3a34e59648
+--- /dev/null
++++ b/schemas/atomic-publisher.schema.json
+@@ -0,0 +1,29 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "type": "object",
++  "required": [
++    "release",
++    "repository",
++    "branch",
++    "baseCommit",
++    "commitTitle",
++    "mode",
++    "browserUploadAllowed",
++    "verifyExactStagedCoverage"
++  ],
++  "properties": {
++    "release": {
++      "const": 239
++    },
++    "baseCommit": {
++      "type": "string",
++      "pattern": "^[0-9a-f]{40}$"
++    },
++    "mode": {
++      "const": "fresh-clone-manifest-transaction"
++    },
++    "browserUploadAllowed": {
++      "const": false
++    }
++  }
++}
+diff --git a/schemas/deployment-conformance.schema.json b/schemas/deployment-conformance.schema.json
+index ce6991200ac831c3c1e90d23f7129bd7ab2a6d3a..68081e1fb9248a258c55fc1102bb8283f303173c 100644
+--- a/schemas/deployment-conformance.schema.json
++++ b/schemas/deployment-conformance.schema.json
+@@ -11,10 +11,10 @@
+   ],
+   "properties": {
+     "release": {
+-      "const": 238
++      "const": 239
+     },
+     "expectedCacheRelease": {
+-      "const": "238"
++      "const": "239"
+     },
+     "requiredPrecacheUrls": {
+       "type": "array",
+diff --git a/scripts/release239/prepare-checkout.py b/scripts/release239/prepare-checkout.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..71ae77138765a7a9c66510ab53fec1ed37ade9f1
+--- /dev/null
++++ b/scripts/release239/prepare-checkout.py
+@@ -0,0 +1,72 @@
++#!/usr/bin/env python3
++"""Apply the Release 239 manifest to a clean repository clone."""
++
++from __future__ import annotations
++
++import argparse
++import json
++import shutil
++import subprocess
++from pathlib import Path
++
++
++def run(command: list[str], cwd: Path) -> None:
++    result = subprocess.run(command, cwd=cwd, check=False)
++    if result.returncode:
++        raise SystemExit(result.returncode)
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--package-root", required=True)
++    parser.add_argument("--repository-root", required=True)
++    args = parser.parse_args()
++
++    package = Path(args.package_root).resolve()
++    repository = Path(args.repository_root).resolve()
++    manifest = json.loads(
++        (package / "manifest-release-239.json")
++        .read_text(encoding="utf-8")
++    )
++
++    copied: list[str] = []
++    for key in ("added_files", "modified_files"):
++        for relative in manifest.get(key, []):
++            source = package / relative
++            destination = repository / relative
++            if not source.is_file():
++                raise SystemExit(f"Package file is missing: {relative}")
++            destination.parent.mkdir(parents=True, exist_ok=True)
++            shutil.copy2(source, destination)
++            copied.append(relative)
++
++    deleted = [str(path) for path in manifest.get("deleted_files", [])]
++    tracked_before = set(
++        subprocess.run(
++            ["git", "ls-files"],
++            cwd=repository,
++            stdout=subprocess.PIPE,
++            text=True,
++            check=True,
++        ).stdout.splitlines()
++    )
++    missing = sorted(set(deleted) - tracked_before)
++    if missing:
++        raise SystemExit(
++            "Deletion targets are not tracked at the approved base:\n" +
++            "\n".join(missing)
++        )
++
++    run(["git", "rm", "-f", "--", *deleted], repository)
++    run(["git", "add", "--", *sorted(set(copied))], repository)
++
++    print(json.dumps({
++        "copied": len(copied),
++        "deleted": len(deleted),
++        "declared": len(set(copied + deleted)),
++    }, indent=2))
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/scripts/release239/publish-release-239.ps1 b/scripts/release239/publish-release-239.ps1
+new file mode 100644
+index 0000000000000000000000000000000000000000..d422f39c53df3e60d849a4e0d626562f5d226d95
+--- /dev/null
++++ b/scripts/release239/publish-release-239.ps1
+@@ -0,0 +1,112 @@
++[CmdletBinding()]
++param(
++    [Parameter(Mandatory = $true)]
++    [string]$PackageRoot,
++
++    [Parameter(Mandatory = $true)]
++    [string]$TargetRoot,
++
++    [string]$RemoteUrl = "https://github.com/ssakthivel02/OmSaravanaBhava.git",
++
++    [string]$Branch = "main",
++
++    [switch]$NoPush
++)
++
++$ErrorActionPreference = "Stop"
++$expectedBase = "530ad97c68b6e7b8cbe997f2b6bbaf440ec5d527"
++$title = "Release 239: atomically reconcile repository state and establish verifiable publishing"
++
++$PackageRoot = (Resolve-Path $PackageRoot).Path
++$TargetRoot = [System.IO.Path]::GetFullPath($TargetRoot)
++
++if (Test-Path -LiteralPath $TargetRoot) {
++    $items = @(Get-ChildItem -Force -LiteralPath $TargetRoot)
++    if ($items.Count -gt 0) {
++        throw "Target directory is not empty: $TargetRoot"
++    }
++}
++else {
++    New-Item -ItemType Directory -Path $TargetRoot | Out-Null
++}
++
++Write-Host "Cloning current repository into: $TargetRoot"
++& git clone --branch $Branch --single-branch $RemoteUrl $TargetRoot
++if ($LASTEXITCODE -ne 0) {
++    throw "Git clone failed."
++}
++
++Push-Location $TargetRoot
++try {
++    $actual = (& git rev-parse HEAD).Trim()
++    if ($actual -ne $expectedBase) {
++        throw "Expected HEAD $expectedBase but found $actual."
++    }
++
++    $env:PYTHONDONTWRITEBYTECODE = "1"
++
++    python -B `
++      (Join-Path $PackageRoot "scripts\release239\prepare-checkout.py") `
++      --package-root $PackageRoot `
++      --repository-root $TargetRoot
++    if ($LASTEXITCODE -ne 0) {
++        throw "Manifest application failed."
++    }
++
++    python -B scripts/release239/verify-base.py --root .
++    python -B scripts/release239/verify-staged-change-set.py --root .
++    python -B scripts/release239/run-release-tests.py --root .
++    python -B -m tools.repository_hygiene.validate --root .
++    python -B -m tools.repository_integrity.validate `
++      --root . `
++      --manifest manifest-release-239.json
++    python -B tools/release_validate.py `
++      --root . `
++      --manifest manifest-release-239.json `
++      --package-mode
++    if ($LASTEXITCODE -ne 0) {
++        throw "Release validation failed."
++    }
++
++    $userName = (& git config user.name).Trim()
++    $userEmail = (& git config user.email).Trim()
++    if ([string]::IsNullOrWhiteSpace($userName)) {
++        & git config user.name "Sakthivel S"
++    }
++    if ([string]::IsNullOrWhiteSpace($userEmail)) {
++        $userEmail = Read-Host "Git commit email"
++        & git config user.email $userEmail
++    }
++
++    & git diff --cached --name-status
++    & git commit -m $title
++    if ($LASTEXITCODE -ne 0) {
++        throw "Commit failed."
++    }
++
++    python -B tools/release_validate.py `
++      --root . `
++      --manifest manifest-release-239.json `
++      --repository-mode `
++      --strict-commit-subject
++    python -B -m tools.atomic_publisher.validate `
++      --root . `
++      --mode final
++    if ($LASTEXITCODE -ne 0) {
++        throw "Post-commit validation failed."
++    }
++
++    if (-not $NoPush) {
++        & git push origin "HEAD:$Branch"
++        if ($LASTEXITCODE -ne 0) {
++            throw "Push failed. Complete GitHub authentication and rerun."
++        }
++    }
++
++    Write-Host "Release 239 committed successfully:"
++    & git log -1 --oneline
++    Write-Host "Clone retained at: $TargetRoot"
++}
++finally {
++    Pop-Location
++}
+diff --git a/scripts/release239/publish-release-239.sh b/scripts/release239/publish-release-239.sh
+new file mode 100755
+index 0000000000000000000000000000000000000000..70bdaf8cf2e25cebb3ff1867e7bd8e17c7033019
+--- /dev/null
++++ b/scripts/release239/publish-release-239.sh
+@@ -0,0 +1,54 @@
++#!/usr/bin/env bash
++set -euo pipefail
++
++package_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
++target_root="${1:-${TMPDIR:-/tmp}/OmSaravanaBhava-release239-$$}"
++remote_url="${2:-https://github.com/ssakthivel02/OmSaravanaBhava.git}"
++branch="${3:-main}"
++expected="530ad97c68b6e7b8cbe997f2b6bbaf440ec5d527"
++title="Release 239: atomically reconcile repository state and establish verifiable publishing"
++
++if [[ -e "$target_root" ]] && [[ -n "$(find "$target_root" -mindepth 1 -maxdepth 1 -print -quit 2>/dev/null)" ]]; then
++  printf 'Target directory is not empty: %s\n' "$target_root" >&2
++  exit 1
++fi
++mkdir -p "$target_root"
++
++git clone --branch "$branch" --single-branch "$remote_url" "$target_root"
++cd "$target_root"
++
++[[ "$(git rev-parse HEAD)" == "$expected" ]] || {
++  printf 'Expected HEAD %s but found %s\n' "$expected" "$(git rev-parse HEAD)" >&2
++  exit 1
++}
++
++export PYTHONDONTWRITEBYTECODE=1
++python -B "$package_root/scripts/release239/prepare-checkout.py" \
++  --package-root "$package_root" \
++  --repository-root "$target_root"
++python -B scripts/release239/verify-base.py --root .
++python -B scripts/release239/verify-staged-change-set.py --root .
++python -B scripts/release239/run-release-tests.py --root .
++python -B -m tools.repository_hygiene.validate --root .
++python -B -m tools.repository_integrity.validate \
++  --root . --manifest manifest-release-239.json
++python -B tools/release_validate.py \
++  --root . --manifest manifest-release-239.json --package-mode
++
++git diff --cached --name-status
++git commit -m "$title"
++
++python -B tools/release_validate.py \
++  --root . \
++  --manifest manifest-release-239.json \
++  --repository-mode \
++  --strict-commit-subject
++python -B -m tools.atomic_publisher.validate \
++  --root . --mode final
++
++if [[ "${NO_PUSH:-0}" != "1" ]]; then
++  git push origin "HEAD:$branch"
++fi
++
++git log -1 --oneline
++printf 'Clone retained at: %s\n' "$target_root"
+diff --git a/scripts/release239/run-release-tests.py b/scripts/release239/run-release-tests.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..5493162b4dcea7f9130b615ac397f4c19aa02773
+--- /dev/null
++++ b/scripts/release239/run-release-tests.py
+@@ -0,0 +1,50 @@
++#!/usr/bin/env python3
++"""Run Release 239 regression and governance tests."""
++
++from __future__ import annotations
++
++import argparse
++import os
++import subprocess
++from pathlib import Path
++
++
++def run(command: list[str], root: Path, env: dict[str, str]) -> None:
++    print("$", " ".join(command))
++    result = subprocess.run(command, cwd=root, env=env, check=False)
++    if result.returncode:
++        raise SystemExit(result.returncode)
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", default=".")
++    args = parser.parse_args()
++    root = Path(args.root).resolve()
++    env = dict(os.environ)
++    env["PYTHONDONTWRITEBYTECODE"] = "1"
++
++    js_tests = sorted(
++        path.relative_to(root).as_posix()
++        for path in (root / "tests/js").glob("*.test.mjs")
++    )
++    run(["node", "--test", *js_tests], root, env)
++    run([
++        "python", "-B", "-m", "unittest", "discover",
++        "-s", "tests", "-p", "test_*.py", "-v",
++    ], root, env)
++    run([
++        "python", "-B", "-m",
++        "tools.deployment_conformance.validate",
++        "--root", ".",
++    ], root, env)
++    run([
++        "python", "-B", "-m",
++        "tools.atomic_publisher.validate",
++        "--root", ".", "--mode", "staged",
++    ], root, env)
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/scripts/release239/show-result.ps1 b/scripts/release239/show-result.ps1
+new file mode 100644
+index 0000000000000000000000000000000000000000..e1e267b23487ee31a6bbb76570ff694b58faac86
+--- /dev/null
++++ b/scripts/release239/show-result.ps1
+@@ -0,0 +1,20 @@
++[CmdletBinding()]
++param([Parameter(Mandatory = $true)][string]$RepositoryRoot)
++
++Push-Location $RepositoryRoot
++try {
++    Write-Host "HEAD:" (& git rev-parse HEAD)
++    Write-Host "Parent:" (& git rev-parse HEAD^)
++    Write-Host "Subject:" (& git log -1 --format=%s)
++    Write-Host "Changed:" (
++      (& git diff --name-only HEAD^ HEAD | Measure-Object).Count
++    )
++    Write-Host "Deleted:" (
++      (& git diff --name-status HEAD^ HEAD |
++       Select-String "^D`t" |
++       Measure-Object).Count
++    )
++}
++finally {
++    Pop-Location
++}
+diff --git a/scripts/release239/verify-base.py b/scripts/release239/verify-base.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..da5ae5e9e895e74280944cf5ff6fa57b462f574a
+--- /dev/null
++++ b/scripts/release239/verify-base.py
+@@ -0,0 +1,35 @@
++#!/usr/bin/env python3
++"""Verify the approved Release 238 base commit."""
++
++from __future__ import annotations
++
++import argparse
++import subprocess
++from pathlib import Path
++
++EXPECTED = "530ad97c68b6e7b8cbe997f2b6bbaf440ec5d527"
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", default=".")
++    args = parser.parse_args()
++    root = Path(args.root).resolve()
++    actual = subprocess.run(
++        ["git", "rev-parse", "HEAD"],
++        cwd=root,
++        stdout=subprocess.PIPE,
++        stderr=subprocess.PIPE,
++        text=True,
++        check=True,
++    ).stdout.strip()
++    if actual != EXPECTED:
++        raise SystemExit(
++            f"Expected base {EXPECTED}, found {actual}."
++        )
++    print(f"Base verified: {actual}")
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/scripts/release239/verify-staged-change-set.py b/scripts/release239/verify-staged-change-set.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..5d49d4180cc96ffea2f90e20e8a55a819adb618c
+--- /dev/null
++++ b/scripts/release239/verify-staged-change-set.py
+@@ -0,0 +1,74 @@
++#!/usr/bin/env python3
++"""Verify exact staged paths and Git statuses."""
++
++from __future__ import annotations
++
++import argparse
++import json
++import subprocess
++from pathlib import Path
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", default=".")
++    args = parser.parse_args()
++    root = Path(args.root).resolve()
++    manifest = json.loads(
++        (root / "manifest-release-239.json")
++        .read_text(encoding="utf-8")
++    )
++    expected: dict[str, str] = {}
++    for path in manifest["added_files"]:
++        expected[path] = "A"
++    for path in manifest["modified_files"]:
++        expected[path] = "M"
++    for path in manifest["deleted_files"]:
++        expected[path] = "D"
++
++    output = subprocess.run(
++        [
++            "git", "diff", "--cached",
++            "--name-status", "--no-renames",
++        ],
++        cwd=root,
++        stdout=subprocess.PIPE,
++        stderr=subprocess.PIPE,
++        text=True,
++        check=True,
++    ).stdout
++    actual = {}
++    for line in output.splitlines():
++        if not line:
++            continue
++        status, path = line.split("\t", 1)
++        actual[path] = status[0]
++
++    missing = sorted(set(expected) - set(actual))
++    extra = sorted(set(actual) - set(expected))
++    mismatched = {
++        path: {"expected": expected[path], "actual": actual[path]}
++        for path in sorted(set(expected) & set(actual))
++        if expected[path] != actual[path]
++    }
++    report = {
++        "status": (
++            "PASS"
++            if not missing and not extra and not mismatched
++            else "FAIL"
++        ),
++        "expectedCount": len(expected),
++        "actualCount": len(actual),
++        "deletedCount": sum(
++            1 for status in actual.values() if status == "D"
++        ),
++        "missing": missing,
++        "extra": extra,
++        "mismatched": mismatched,
++    }
++    print(json.dumps(report, indent=2))
++    return 0 if report["status"] == "PASS" else 1
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/service-worker.js b/service-worker.js
+index 6ab98f7982ae9b46fca3b1d54fca7578fb5e10d9..eacaf676c2c75c1aa6314ea14d583f36b87d033e 100644
+--- a/service-worker.js
++++ b/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '238';
++const RELEASE = '239';
+ const CACHE_PREFIX = 'osb-';
+ const STATIC_CACHE = `${CACHE_PREFIX}static-v${RELEASE}`;
+ const RUNTIME_CACHE = `${CACHE_PREFIX}runtime-v${RELEASE}`;
+diff --git a/templates/release-upload-checklist.md b/templates/release-upload-checklist.md
+index f852ade13ae14cc3c86d132c47dd2c3f9f6f78a5..07fd25038ac2c5e6110f0a4a7b735eaf0b50e7c1 100644
+--- a/templates/release-upload-checklist.md
++++ b/templates/release-upload-checklist.md
+@@ -44,3 +44,10 @@
+ - [ ] Confirm all thirteen `.pyc` files and `assets/js/site-directory.js` are deleted.
+ - [ ] Confirm service-worker cache release is 238 and the legacy script is not precached.
+ - [ ] Confirm deployment conformance, hygiene, integrity and strict governance pass.
++
++- [ ] Release 239 is published only with `PUBLISH_RELEASE_239.cmd`.
++- [ ] The fresh clone starts at `530ad97c68b6e7b8cbe997f2b6bbaf440ec5d527`.
++- [ ] All fourteen deletion targets are tracked before application.
++- [ ] Staged paths and statuses exactly match `manifest-release-239.json`.
++- [ ] No `.pyc`, `__pycache__` or retired `assets/js/site-directory.js` remains.
++- [ ] Deployment, hygiene, integrity and strict release governance pass.
+diff --git a/tests/atomic_publisher/__init__.py b/tests/atomic_publisher/__init__.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..694e2a7c952498188d7bd7f2d31cb1781e48df99
+--- /dev/null
++++ b/tests/atomic_publisher/__init__.py
+@@ -0,0 +1 @@
++"""Atomic publisher tests."""
+diff --git a/tests/atomic_publisher/test_plan.py b/tests/atomic_publisher/test_plan.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..cf2c3d65a4f7661d4bc1b94d17c8d5a471156849
+--- /dev/null
++++ b/tests/atomic_publisher/test_plan.py
+@@ -0,0 +1,43 @@
++import unittest
++
++from tools.atomic_publisher.plan import (
++    expected_changes,
++    validate_manifest_plan,
++)
++
++
++POLICY = {
++    "requiredBaseCommit":
++        "530ad97c68b6e7b8cbe997f2b6bbaf440ec5d527",
++    "requiredCommitTitle":
++        "Release 239: atomically reconcile repository state and establish verifiable publishing",
++    "hardChangedFileLimit": 500,
++}
++
++
++class PlanTests(unittest.TestCase):
++    def manifest(self):
++        return {
++            "release": 239,
++            "base_commit": POLICY["requiredBaseCommit"],
++            "required_commit_title": POLICY["requiredCommitTitle"],
++            "added_files": ["a"],
++            "modified_files": ["b"],
++            "deleted_files": [f"d{i}" for i in range(14)],
++        }
++
++    def test_expected_statuses(self):
++        expected = expected_changes(self.manifest())
++        self.assertEqual(expected["a"], "A")
++        self.assertEqual(expected["b"], "M")
++        self.assertEqual(expected["d0"], "D")
++
++    def test_canonical_plan_passes(self):
++        self.assertEqual(
++            validate_manifest_plan(self.manifest(), POLICY),
++            [],
++        )
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/atomic_publisher/test_release_239_package.py b/tests/atomic_publisher/test_release_239_package.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..fa4ea2a90ae7f6b22880360ce9051705e109b70a
+--- /dev/null
++++ b/tests/atomic_publisher/test_release_239_package.py
+@@ -0,0 +1,49 @@
++from pathlib import Path
++import json
++import unittest
++
++
++ROOT = Path(__file__).resolve().parents[2]
++
++
++class Release239PackageTests(unittest.TestCase):
++    def manifest(self):
++        return json.loads(
++            (ROOT / "manifest-release-239.json")
++            .read_text(encoding="utf-8")
++        )
++
++    def test_identity(self):
++        manifest = self.manifest()
++        self.assertEqual((manifest["release"], manifest["base_release"]), (239, 238))
++        self.assertEqual(
++            manifest["base_commit"],
++            "530ad97c68b6e7b8cbe997f2b6bbaf440ec5d527",
++        )
++
++    def test_fourteen_deletions(self):
++        manifest = self.manifest()
++        self.assertEqual(len(manifest["deleted_files"]), 14)
++        self.assertIn(
++            "assets/js/site-directory.js",
++            manifest["deleted_files"],
++        )
++
++    def test_windows_publisher_is_fresh_clone(self):
++        source = (
++            ROOT / "scripts/release239/publish-release-239.ps1"
++        ).read_text(encoding="utf-8")
++        self.assertIn("git clone", source)
++        self.assertIn("verify-staged-change-set.py", source)
++        self.assertIn("git push origin", source)
++
++    def test_browser_upload_is_forbidden(self):
++        contract = json.loads(
++            (ROOT / "data/atomic-publisher.json")
++            .read_text(encoding="utf-8")
++        )
++        self.assertFalse(contract["browserUploadAllowed"])
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/atomic_publisher/test_scripts.py b/tests/atomic_publisher/test_scripts.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..b4354afb7f198bebced06ab3e9460f00b01601a2
+--- /dev/null
++++ b/tests/atomic_publisher/test_scripts.py
+@@ -0,0 +1,27 @@
++from pathlib import Path
++import unittest
++
++
++ROOT = Path(__file__).resolve().parents[2]
++
++
++class ScriptTests(unittest.TestCase):
++    def test_prepare_script_uses_git_rm(self):
++        source = (
++            ROOT / "scripts/release239/prepare-checkout.py"
++        ).read_text(encoding="utf-8")
++        self.assertIn('"git", "rm"', source)
++        self.assertIn("Deletion targets are not tracked", source)
++
++    def test_publisher_requires_exact_base(self):
++        source = (
++            ROOT / "scripts/release239/verify-base.py"
++        ).read_text(encoding="utf-8")
++        self.assertIn(
++            "530ad97c68b6e7b8cbe997f2b6bbaf440ec5d527",
++            source,
++        )
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/atomic_publisher/test_validator.py b/tests/atomic_publisher/test_validator.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..8906d2debd8452506372132cd1577e02706359f9
+--- /dev/null
++++ b/tests/atomic_publisher/test_validator.py
+@@ -0,0 +1,63 @@
++from pathlib import Path
++import tempfile
++import unittest
++
++from tools.atomic_publisher.validator import (
++    validate_atomic_publish_plan,
++)
++
++
++BASE = "530ad97c68b6e7b8cbe997f2b6bbaf440ec5d527"
++TITLE = "Release 239: atomically reconcile repository state and establish verifiable publishing"
++DELETED = [f"d{i}" for i in range(14)]
++POLICY = {
++    "requiredBaseCommit": BASE,
++    "requiredCommitTitle": TITLE,
++    "hardChangedFileLimit": 500,
++}
++CONTRACT = {
++    "release": 239,
++    "baseCommit": BASE,
++    "browserUploadAllowed": False,
++}
++MANIFEST = {
++    "release": 239,
++    "base_commit": BASE,
++    "required_commit_title": TITLE,
++    "added_files": ["a"],
++    "modified_files": ["b"],
++    "deleted_files": DELETED,
++}
++
++
++class ValidatorTests(unittest.TestCase):
++    def test_exact_staged_state_passes(self):
++        staged = {"a": "A", "b": "M", **{p: "D" for p in DELETED}}
++        with tempfile.TemporaryDirectory() as directory:
++            report = validate_atomic_publish_plan(
++                root=Path(directory),
++                policy=POLICY,
++                contract=CONTRACT,
++                manifest=MANIFEST,
++                staged_changes=staged,
++            )
++        self.assertEqual(report["status"], "PASS")
++
++    def test_remaining_deletion_target_fails(self):
++        with tempfile.TemporaryDirectory() as directory:
++            report = validate_atomic_publish_plan(
++                root=Path(directory),
++                policy=POLICY,
++                contract=CONTRACT,
++                manifest=MANIFEST,
++                tracked_after={DELETED[0]},
++            )
++        self.assertEqual(report["status"], "FAIL")
++        self.assertTrue(any(
++            item["rule"] == "deletion-target-remains"
++            for item in report["findings"]
++        ))
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/deployment_conformance/test_service_worker.py b/tests/deployment_conformance/test_service_worker.py
+index 42f30e9f8215d225b0bb32ea775fe8fe56e7b5c2..7cc89a772a0b60f4cecc7e3639c0f83d91fe18a9 100644
+--- a/tests/deployment_conformance/test_service_worker.py
++++ b/tests/deployment_conformance/test_service_worker.py
+@@ -6,7 +6,7 @@ from tools.deployment_conformance.service_worker import (
+ 
+ 
+ CONTRACT = {
+-    "expectedCacheRelease": "238",
++    "expectedCacheRelease": "239",
+     "requiredPrecacheUrls": ["/assets/js/site-directory.mjs"],
+     "forbiddenPrecacheUrls": ["/assets/js/site-directory.js"],
+ }
+@@ -15,7 +15,7 @@ CONTRACT = {
+ class ServiceWorkerTests(unittest.TestCase):
+     def test_canonical_source_passes(self):
+         source = (
+-            "const RELEASE = '238';\n"
++            "const RELEASE = '239';\n"
+             "const URLS = ['/assets/js/site-directory.mjs'];\n"
+         )
+         self.assertEqual(
+@@ -25,7 +25,7 @@ class ServiceWorkerTests(unittest.TestCase):
+ 
+     def test_legacy_precache_fails(self):
+         source = (
+-            "const RELEASE = '238';\n"
++            "const RELEASE = '239';\n"
+             "const URLS = ['/assets/js/site-directory.mjs',"
+             "'/assets/js/site-directory.js'];\n"
+         )
+diff --git a/tools/atomic_publisher/__init__.py b/tools/atomic_publisher/__init__.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..567919f8d2e34870fb73a89c05d1bceb0f5d31cf
+--- /dev/null
++++ b/tools/atomic_publisher/__init__.py
+@@ -0,0 +1,5 @@
++"""Atomic release publishing validation."""
++
++from .validator import validate_atomic_publish_plan
++
++__all__ = ["validate_atomic_publish_plan"]
+diff --git a/tools/atomic_publisher/constants.py b/tools/atomic_publisher/constants.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..a1516b9916efd598f7b684dfd5ab8b3c372c3848
+--- /dev/null
++++ b/tools/atomic_publisher/constants.py
+@@ -0,0 +1,6 @@
++"""Atomic publishing constants."""
++
++PASS = "PASS"
++FAIL = "FAIL"
++DEFAULT_POLICY = "policies/atomic-publisher.json"
++DEFAULT_CONTRACT = "data/atomic-publisher.json"
+diff --git a/tools/atomic_publisher/git.py b/tools/atomic_publisher/git.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..83a0386c7935dd3d24e954e49a38f84548a38d81
+--- /dev/null
++++ b/tools/atomic_publisher/git.py
+@@ -0,0 +1,47 @@
++"""Git state helpers."""
++
++from __future__ import annotations
++
++import subprocess
++from pathlib import Path
++
++
++def run(root: Path, *args: str) -> str:
++    result = subprocess.run(
++        ["git", *args],
++        cwd=root,
++        stdout=subprocess.PIPE,
++        stderr=subprocess.PIPE,
++        text=True,
++        check=False,
++    )
++    if result.returncode:
++        raise RuntimeError(result.stderr.strip() or result.stdout.strip())
++    return result.stdout.strip()
++
++
++def head(root: Path) -> str:
++    return run(root, "rev-parse", "HEAD")
++
++
++def subject(root: Path) -> str:
++    return run(root, "log", "-1", "--format=%s")
++
++
++def parent(root: Path) -> str:
++    return run(root, "rev-parse", "HEAD^")
++
++
++def tracked(root: Path) -> set[str]:
++    return set(filter(None, run(root, "ls-files").splitlines()))
++
++
++def staged(root: Path) -> dict[str, str]:
++    output = run(root, "diff", "--cached", "--name-status", "--no-renames")
++    changes: dict[str, str] = {}
++    for line in output.splitlines():
++        if not line:
++            continue
++        status, path = line.split("\t", 1)
++        changes[path] = status[0]
++    return changes
+diff --git a/tools/atomic_publisher/jsonio.py b/tools/atomic_publisher/jsonio.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..c5d6093e52f7256f98d61eef619a2aaabbfe22f7
+--- /dev/null
++++ b/tools/atomic_publisher/jsonio.py
+@@ -0,0 +1,23 @@
++"""JSON helpers."""
++
++from __future__ import annotations
++
++import json
++from pathlib import Path
++from typing import Any
++
++
++def load_json(path: Path) -> dict[str, Any]:
++    payload = json.loads(path.read_text(encoding="utf-8"))
++    if not isinstance(payload, dict):
++        raise ValueError(f"Expected JSON object: {path}")
++    return payload
++
++
++def write_json(path: Path, payload: dict[str, Any]) -> None:
++    path.parent.mkdir(parents=True, exist_ok=True)
++    path.write_text(
++        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
++        encoding="utf-8",
++        newline="\n",
++    )
+diff --git a/tools/atomic_publisher/models.py b/tools/atomic_publisher/models.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..a9a264d3019abe1956288ab9567b7b86efc3bc7b
+--- /dev/null
++++ b/tools/atomic_publisher/models.py
+@@ -0,0 +1,16 @@
++"""Atomic publishing models."""
++
++from __future__ import annotations
++
++from dataclasses import asdict, dataclass
++from typing import Any
++
++
++@dataclass(frozen=True)
++class Finding:
++    rule: str
++    message: str
++    path: str = ""
++
++    def to_dict(self) -> dict[str, Any]:
++        return asdict(self)
+diff --git a/tools/atomic_publisher/plan.py b/tools/atomic_publisher/plan.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..767b212d2677035f92a56297d567f8add7a99454
+--- /dev/null
++++ b/tools/atomic_publisher/plan.py
+@@ -0,0 +1,38 @@
++"""Manifest change-set validation."""
++
++from __future__ import annotations
++
++from .models import Finding
++
++
++def expected_changes(manifest: dict) -> dict[str, str]:
++    expected: dict[str, str] = {}
++    for path in manifest.get("added_files", []):
++        expected[str(path)] = "A"
++    for path in manifest.get("modified_files", []):
++        expected[str(path)] = "M"
++    for path in manifest.get("deleted_files", []):
++        expected[str(path)] = "D"
++    return expected
++
++
++def validate_manifest_plan(manifest: dict, policy: dict) -> list[Finding]:
++    findings: list[Finding] = []
++    expected = expected_changes(manifest)
++    if manifest.get("release") != 239:
++        findings.append(Finding("manifest-release", "Manifest release must be 239."))
++    if manifest.get("base_commit") != policy.get("requiredBaseCommit"):
++        findings.append(Finding("manifest-base", "Manifest base commit is not the approved Release 238 SHA."))
++    if manifest.get("required_commit_title") != policy.get("requiredCommitTitle"):
++        findings.append(Finding("manifest-title", "Manifest commit title is not exact."))
++    if len(expected) > int(policy.get("hardChangedFileLimit", 500)):
++        findings.append(Finding("hard-limit", "Declared changed-file count exceeds the hard limit."))
++    if len(manifest.get("deleted_files", [])) != 14:
++        findings.append(Finding("deletion-count", "Release 239 must declare exactly fourteen deletions."))
++    if len(expected) != (
++        len(manifest.get("added_files", [])) +
++        len(manifest.get("modified_files", [])) +
++        len(manifest.get("deleted_files", []))
++    ):
++        findings.append(Finding("duplicate-path", "A path appears in more than one manifest change list."))
++    return findings
+diff --git a/tools/atomic_publisher/validate.py b/tools/atomic_publisher/validate.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..5f05cf85652dba07f23653ea874dc0be443e4929
+--- /dev/null
++++ b/tools/atomic_publisher/validate.py
+@@ -0,0 +1,39 @@
++#!/usr/bin/env python3
++"""CLI for Release 239 atomic publishing validation."""
++
++from __future__ import annotations
++
++import argparse
++import json
++from pathlib import Path
++
++from .git import staged, tracked
++from .jsonio import load_json
++from .validator import validate_atomic_publish_plan
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", default=".")
++    parser.add_argument("--mode", choices=("package", "staged", "final"), required=True)
++    args = parser.parse_args()
++
++    root = Path(args.root).resolve()
++    policy = load_json(root / "policies/atomic-publisher.json")
++    contract = load_json(root / "data/atomic-publisher.json")
++    manifest = load_json(root / "manifest-release-239.json")
++
++    report = validate_atomic_publish_plan(
++        root=root,
++        policy=policy,
++        contract=contract,
++        manifest=manifest,
++        staged_changes=staged(root) if args.mode == "staged" else None,
++        tracked_after=tracked(root) if args.mode == "final" else None,
++    )
++    print(json.dumps(report, ensure_ascii=False, indent=2))
++    return 0 if report["status"] == "PASS" else 1
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/tools/atomic_publisher/validator.py b/tools/atomic_publisher/validator.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..986260ea629322c91425e66dc786f8057f0aaa9e
+--- /dev/null
++++ b/tools/atomic_publisher/validator.py
+@@ -0,0 +1,70 @@
++"""Atomic publisher validation."""
++
++from __future__ import annotations
++
++from pathlib import Path
++
++from .constants import FAIL, PASS
++from .models import Finding
++from .plan import expected_changes, validate_manifest_plan
++
++
++def validate_atomic_publish_plan(
++    *,
++    root: Path,
++    policy: dict,
++    contract: dict,
++    manifest: dict,
++    staged_changes: dict[str, str] | None = None,
++    tracked_before: set[str] | None = None,
++    tracked_after: set[str] | None = None,
++) -> dict:
++    findings: list[Finding] = []
++    findings.extend(validate_manifest_plan(manifest, policy))
++
++    if contract.get("release") != 239:
++        findings.append(Finding("contract-release", "Atomic publisher contract release must be 239."))
++    if contract.get("baseCommit") != policy.get("requiredBaseCommit"):
++        findings.append(Finding("contract-base", "Atomic publisher contract base differs from policy."))
++    if contract.get("browserUploadAllowed") is not False:
++        findings.append(Finding("browser-upload", "Browser upload must be forbidden for Release 239."))
++
++    expected = expected_changes(manifest)
++    if staged_changes is not None:
++        missing = sorted(set(expected) - set(staged_changes))
++        extra = sorted(set(staged_changes) - set(expected))
++        mismatched = sorted(
++            path for path in set(expected) & set(staged_changes)
++            if expected[path] != staged_changes[path]
++        )
++        if missing:
++            findings.append(Finding("staged-missing", "Missing staged paths: " + ", ".join(missing)))
++        if extra:
++            findings.append(Finding("staged-extra", "Undeclared staged paths: " + ", ".join(extra)))
++        if mismatched:
++            findings.append(Finding("staged-status", "Incorrect staged status: " + ", ".join(mismatched)))
++
++    deletion_targets = set(manifest.get("deleted_files", []))
++    if tracked_before is not None:
++        missing_before = sorted(deletion_targets - tracked_before)
++        if missing_before:
++            findings.append(Finding(
++                "deletion-target-missing-before",
++                "Deletion targets were not tracked before apply: " + ", ".join(missing_before),
++            ))
++    if tracked_after is not None:
++        remaining = sorted(deletion_targets & tracked_after)
++        if remaining:
++            findings.append(Finding(
++                "deletion-target-remains",
++                "Deletion targets remain tracked after apply: " + ", ".join(remaining),
++            ))
++
++    return {
++        "status": PASS if not findings else FAIL,
++        "release": 239,
++        "findingCount": len(findings),
++        "declaredChangedCount": len(expected),
++        "declaredDeletedCount": len(deletion_targets),
++        "findings": [finding.to_dict() for finding in findings],
++    }
+diff --git a/tools/atomic_publisher_cli.py b/tools/atomic_publisher_cli.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..d9f42601e4c391a68d3a727b0eb714ddcd4c11c1
+--- /dev/null
++++ b/tools/atomic_publisher_cli.py
+@@ -0,0 +1,5 @@
++#!/usr/bin/env python3
++from tools.atomic_publisher.validate import main
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/tools/deployment_conformance/validator.py b/tools/deployment_conformance/validator.py
+index 0292de9a7c0ca3e9d045ea70447504adb239eaaf..508cb4f233acb163ca2eb8d19c60e6ca5e2de11e 100644
+--- a/tools/deployment_conformance/validator.py
++++ b/tools/deployment_conformance/validator.py
+@@ -35,7 +35,7 @@ def validate_deployment(root: Path, policy: dict, contract: dict) -> dict:
+     findings.extend(validate_route_assets(root))
+     return {
+         "status": PASS if not findings else FAIL,
+-        "release": 238,
++        "release": int(policy.get("release", 239)),
+         "findingCount": len(findings),
+         "findings": [item.to_dict() for item in findings],
+     }

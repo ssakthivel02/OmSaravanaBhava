@@ -26,3 +26,8 @@ FINALIZE_RELEASE_238.cmd text eol=lf
 scripts/release238/*.ps1 text eol=lf
 scripts/release238/*.py text eol=lf
 .github/workflows/release-238-finalize.yml text eol=lf
+
+# Deterministic Release 239 publisher bytes
+PUBLISH_RELEASE_239.cmd text eol=lf
+scripts/release239/*.ps1 text eol=lf
+scripts/release239/*.py text eol=lf

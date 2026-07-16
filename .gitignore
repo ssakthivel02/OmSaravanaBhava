@@ -62,3 +62,7 @@ release237-clone/
 # Release 238 finalizer temporary files
 RELEASE_238_FINALIZATION_RESULT.tmp
 release238-finalizer/
+
+# Release 239 fresh-clone publisher workspaces
+OmSaravanaBhava-release239/
+release239-clone/

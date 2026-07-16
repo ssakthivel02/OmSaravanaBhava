@@ -1,0 +1,18 @@
+{
+  "release": 239,
+  "repository": "https://github.com/ssakthivel02/OmSaravanaBhava.git",
+  "branch": "main",
+  "baseCommit": "530ad97c68b6e7b8cbe997f2b6bbaf440ec5d527",
+  "commitTitle": "Release 239: atomically reconcile repository state and establish verifiable publishing",
+  "mode": "fresh-clone-manifest-transaction",
+  "browserUploadAllowed": false,
+  "entryPoint": "PUBLISH_RELEASE_239.cmd",
+  "copyLists": [
+    "added_files",
+    "modified_files"
+  ],
+  "deleteList": "deleted_files",
+  "verifyExactStagedCoverage": true,
+  "runFullValidation": true,
+  "pushByDefault": true
+}

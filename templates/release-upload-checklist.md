@@ -44,3 +44,10 @@
 - [ ] Confirm all thirteen `.pyc` files and `assets/js/site-directory.js` are deleted.
 - [ ] Confirm service-worker cache release is 238 and the legacy script is not precached.
 - [ ] Confirm deployment conformance, hygiene, integrity and strict governance pass.
+
+- [ ] Release 239 is published only with `PUBLISH_RELEASE_239.cmd`.
+- [ ] The fresh clone starts at `530ad97c68b6e7b8cbe997f2b6bbaf440ec5d527`.
+- [ ] All fourteen deletion targets are tracked before application.
+- [ ] Staged paths and statuses exactly match `manifest-release-239.json`.
+- [ ] No `.pyc`, `__pycache__` or retired `assets/js/site-directory.js` remains.
+- [ ] Deployment, hygiene, integrity and strict release governance pass.

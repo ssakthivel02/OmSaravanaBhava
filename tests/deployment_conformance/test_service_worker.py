@@ -6,7 +6,7 @@ from tools.deployment_conformance.service_worker import (
 
 
 CONTRACT = {
-    "expectedCacheRelease": "238",
+    "expectedCacheRelease": "239",
     "requiredPrecacheUrls": ["/assets/js/site-directory.mjs"],
     "forbiddenPrecacheUrls": ["/assets/js/site-directory.js"],
 }
@@ -15,7 +15,7 @@ CONTRACT = {
 class ServiceWorkerTests(unittest.TestCase):
     def test_canonical_source_passes(self):
         source = (
-            "const RELEASE = '238';\n"
+            "const RELEASE = '239';\n"
             "const URLS = ['/assets/js/site-directory.mjs'];\n"
         )
         self.assertEqual(
@@ -25,7 +25,7 @@ class ServiceWorkerTests(unittest.TestCase):
 
     def test_legacy_precache_fails(self):
         source = (
-            "const RELEASE = '238';\n"
+            "const RELEASE = '239';\n"
             "const URLS = ['/assets/js/site-directory.mjs',"
             "'/assets/js/site-directory.js'];\n"
         )

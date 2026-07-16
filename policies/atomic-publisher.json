@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "release": 239,
+  "contract": "data/atomic-publisher.json",
+  "manifest": "manifest-release-239.json",
+  "requiredBaseCommit": "530ad97c68b6e7b8cbe997f2b6bbaf440ec5d527",
+  "requiredCommitTitle": "Release 239: atomically reconcile repository state and establish verifiable publishing",
+  "hardChangedFileLimit": 500,
+  "requireCleanFreshClone": true,
+  "requireExactStatusCoverage": true,
+  "requireAllDeletionTargetsTrackedBeforeApply": true,
+  "requireNoForbiddenPathsAfterApply": true,
+  "requireStrictRepositoryValidationAfterCommit": true,
+  "browserUploadForbidden": true
+}

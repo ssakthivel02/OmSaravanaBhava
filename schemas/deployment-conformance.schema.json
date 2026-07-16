@@ -11,10 +11,10 @@
   ],
   "properties": {
     "release": {
-      "const": 238
+      "const": 239
     },
     "expectedCacheRelease": {
-      "const": "238"
+      "const": "239"
     },
     "requiredPrecacheUrls": {
       "type": "array",

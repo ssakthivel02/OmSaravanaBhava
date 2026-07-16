@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "release",
+    "baseCommit",
+    "commitTitle",
+    "changedCount",
+    "deletedCount",
+    "validation"
+  ],
+  "properties": {
+    "release": {
+      "const": 239
+    },
+    "changedCount": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 500
+    },
+    "deletedCount": {
+      "const": 14
+    }
+  }
+}

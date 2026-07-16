@@ -1,0 +1,85 @@
+Release 239 — Atomic Repository Reconciliation and Verifiable Publishing
+Base commit: 530ad97c68b6e7b8cbe997f2b6bbaf440ec5d527
+Required title: Release 239: atomically reconcile repository state and establish verifiable publishing
+
+Added files (40):
+A  .github/workflows/atomic-publish-verification.yml
+A  PUBLISH_RELEASE_239.cmd
+A  RELEASE_239.patch
+A  RELEASE_239_CHANGED_FILES.txt
+A  RELEASE_239_GITHUB_PORTAL_INSTRUCTIONS.txt
+A  RELEASE_239_LOCAL_TEST_EVIDENCE.txt
+A  RELEASE_239_SHA256SUMS.txt
+A  RELEASE_239_VALIDATION_REPORT.md
+A  data/atomic-publisher.json
+A  data/release-239-deletion-plan.json
+A  docs/release-239/README.md
+A  docs/release-239/failure-safety.md
+A  docs/release-239/post-publish.md
+A  docs/release-239/why-atomic.md
+A  docs/release-239/windows-publisher.md
+A  manifest-release-239.json
+A  policies/atomic-publisher.json
+A  schemas/atomic-publish-result.schema.json
+A  schemas/atomic-publisher.schema.json
+A  scripts/release239/prepare-checkout.py
+A  scripts/release239/publish-release-239.ps1
+A  scripts/release239/publish-release-239.sh
+A  scripts/release239/run-release-tests.py
+A  scripts/release239/show-result.ps1
+A  scripts/release239/verify-base.py
+A  scripts/release239/verify-staged-change-set.py
+A  tests/atomic_publisher/__init__.py
+A  tests/atomic_publisher/test_plan.py
+A  tests/atomic_publisher/test_release_239_package.py
+A  tests/atomic_publisher/test_scripts.py
+A  tests/atomic_publisher/test_validator.py
+A  tools/atomic_publisher/__init__.py
+A  tools/atomic_publisher/constants.py
+A  tools/atomic_publisher/git.py
+A  tools/atomic_publisher/jsonio.py
+A  tools/atomic_publisher/models.py
+A  tools/atomic_publisher/plan.py
+A  tools/atomic_publisher/validate.py
+A  tools/atomic_publisher/validator.py
+A  tools/atomic_publisher_cli.py
+
+Modified files (17):
+M  .gitattributes
+M  .github/workflows/release-232-governance.yml
+M  .gitignore
+M  .pre-commit-config.yaml
+M  .release-governance.json
+M  Makefile
+M  data/deployment-conformance.json
+M  docs/release-governance.md
+M  policies/deployment-conformance.json
+M  policies/repository-integrity-required-assets.json
+M  policies/repository-integrity.json
+M  pyproject.toml
+M  schemas/deployment-conformance.schema.json
+M  service-worker.js
+M  templates/release-upload-checklist.md
+M  tests/deployment_conformance/test_service_worker.py
+M  tools/deployment_conformance/validator.py
+
+Deleted files (14):
+D  assets/js/site-directory.js
+D  tools/release_control/__pycache__/__init__.cpython-313.pyc
+D  tools/release_control/__pycache__/checks.cpython-313.pyc
+D  tools/release_control/__pycache__/checks_checksums.cpython-313.pyc
+D  tools/release_control/__pycache__/checks_commit.cpython-313.pyc
+D  tools/release_control/__pycache__/checks_files.cpython-313.pyc
+D  tools/release_control/__pycache__/checks_manifest.cpython-313.pyc
+D  tools/release_control/__pycache__/checks_patch.cpython-313.pyc
+D  tools/release_control/__pycache__/cli.cpython-313.pyc
+D  tools/release_control/__pycache__/constants.cpython-313.pyc
+D  tools/release_control/__pycache__/git.cpython-313.pyc
+D  tools/release_control/__pycache__/jsonio.cpython-313.pyc
+D  tools/release_control/__pycache__/models.cpython-313.pyc
+D  tools/release_control/__pycache__/report.cpython-313.pyc
+
+Actual Git changes: 71
+Package archive files: 539
+Publishing mode: fresh-clone atomic transaction.
+GitHub browser upload: prohibited.

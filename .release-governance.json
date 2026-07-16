@@ -1,11 +1,11 @@
 {
-  "release": 238,
+  "release": 239,
   "generated": "2026-07-16",
-  "baseCommit": "b7bc25a3888f5bbe4a55a55ba69fd05ac3cc8e60",
-  "requiredCommitTitle": "Bootstrap Release 238: install browser-safe finalizer and deployment conformance",
-  "manifestPath": "manifest-release-238.json",
-  "checksumLedger": "RELEASE_238_SHA256SUMS.txt",
-  "patchPath": "RELEASE_238.patch",
+  "baseCommit": "530ad97c68b6e7b8cbe997f2b6bbaf440ec5d527",
+  "requiredCommitTitle": "Release 239: atomically reconcile repository state and establish verifiable publishing",
+  "manifestPath": "manifest-release-239.json",
+  "checksumLedger": "RELEASE_239_SHA256SUMS.txt",
+  "patchPath": "RELEASE_239.patch",
   "attestationSchema": "schemas/release-attestation.schema.json",
   "manifestSchema": "schemas/release-manifest.schema.json",
   "filePolicy": {
@@ -29,12 +29,12 @@
     "securityBoundary": "Fallback is accepted only when the subject is an explicitly allowed GitHub browser default and the first non-empty commit-body line exactly matches required_commit_title."
   },
   "requiredEvidenceFiles": [
-    "RELEASE_238_CHANGED_FILES.txt",
-    "RELEASE_238_GITHUB_PORTAL_INSTRUCTIONS.txt",
-    "RELEASE_238_LOCAL_TEST_EVIDENCE.txt",
-    "RELEASE_238_SHA256SUMS.txt",
-    "RELEASE_238_VALIDATION_REPORT.md",
-    "RELEASE_238.patch"
+    "RELEASE_239_CHANGED_FILES.txt",
+    "RELEASE_239_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_239_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_239_SHA256SUMS.txt",
+    "RELEASE_239_VALIDATION_REPORT.md",
+    "RELEASE_239.patch"
   ],
   "allowedStatusLanguage": [
     "PASS",
@@ -101,13 +101,14 @@
     "consumerRelease": 238
   },
   "publisherPolicy": {
-    "mode": "browser-bootstrap-auto-finalizer",
-    "browserUploadAllowed": true,
-    "bootstrapTitleRequired": "Bootstrap Release 238: install browser-safe finalizer and deployment conformance",
-    "automaticFinalizationRequired": true,
-    "fallbackCommand": "FINALIZE_RELEASE_238.cmd"
+    "policyPath": "policies/atomic-publisher.json",
+    "mode": "fresh-clone-manifest-transaction",
+    "browserUploadAllowed": false,
+    "expectedBaseCommit": "530ad97c68b6e7b8cbe997f2b6bbaf440ec5d527",
+    "verifyExactStagedCoverage": true,
+    "entryPoint": "PUBLISH_RELEASE_239.cmd"
   },
-  "transactionState": "bootstrap",
+  "transactionState": "atomic",
   "releaseTransactionPolicy": {
     "policyPath": "policies/release-transaction.json",
     "transactionPath": "data/release-238-transaction.json",
@@ -121,6 +122,6 @@
     "contractPath": "data/deployment-conformance.json",
     "validator": "tools/deployment_conformance/validate.py",
     "workflow": ".github/workflows/deployment-conformance.yml",
-    "serviceWorkerRelease": "238"
+    "serviceWorkerRelease": "239"
   }
 }

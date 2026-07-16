@@ -99,3 +99,15 @@ creates the exact final release commit and pushes it.
 The bootstrap title and final title are both security boundaries. A bootstrap
 commit is not the completed release. Completion requires the exact final commit,
 zero planned deletion targets, cache release 238 and a finalization result file.
+
+## Release 239 atomic publication gate
+
+Release 239 must not be uploaded through the GitHub browser. The package
+publisher creates a fresh clone at the exact Release 238 SHA, copies only
+manifest-declared additions and modifications, removes all fourteen tracked
+artifacts with `git rm`, verifies exact staged statuses, runs the full regression
+and governance suite, commits the exact Release 239 title and pushes once.
+
+A release is rejected when the remote base moved, any deletion target is
+missing before application, any forbidden path remains afterward, or the
+staged change set differs from the manifest.

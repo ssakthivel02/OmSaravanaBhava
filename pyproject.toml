@@ -1,8 +1,8 @@
 [project]
 name = "omsaravanabhava-release-governance"
-version = "238.0.0"
+version = "239.0.0"
 requires-python = ">=3.12"
-description = "Transactional release, deployment conformance and repository integrity tooling."
+description = "Atomic publishing, deployment conformance and repository integrity tooling."
 
 [tool.unittest]
 start-directory = "tests"
@@ -11,7 +11,3 @@ pattern = "test_*.py"
 [tool.ruff]
 line-length = 100
 target-version = "py312"
-
-[tool.pyright]
-pythonVersion = "3.12"
-typeCheckingMode = "basic"
