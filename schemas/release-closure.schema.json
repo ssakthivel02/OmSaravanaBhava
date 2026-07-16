@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "release",
+    "mode",
+    "approvedBaseCommit",
+    "finalCommitTitle",
+    "state",
+    "workflow",
+    "deletionPlan"
+  ],
+  "properties": {
+    "release": {
+      "const": 240
+    },
+    "state": {
+      "enum": [
+        "pending",
+        "finalized"
+      ]
+    },
+    "approvedBaseCommit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "browserStageSubjectEnforced": {
+      "const": false
+    }
+  }
+}

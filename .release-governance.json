@@ -1,11 +1,11 @@
 {
-  "release": 239,
+  "release": 240,
   "generated": "2026-07-16",
-  "baseCommit": "530ad97c68b6e7b8cbe997f2b6bbaf440ec5d527",
-  "requiredCommitTitle": "Release 239: atomically reconcile repository state and establish verifiable publishing",
-  "manifestPath": "manifest-release-239.json",
-  "checksumLedger": "RELEASE_239_SHA256SUMS.txt",
-  "patchPath": "RELEASE_239.patch",
+  "baseCommit": "546830197db7dddca9ab0cf8aaf62595ab3bc07f",
+  "requiredCommitTitle": "Release 240: complete repository cleanup and establish self-healing release closure",
+  "manifestPath": "manifest-release-240.json",
+  "checksumLedger": "RELEASE_240_SHA256SUMS.txt",
+  "patchPath": "RELEASE_240.patch",
   "attestationSchema": "schemas/release-attestation.schema.json",
   "manifestSchema": "schemas/release-manifest.schema.json",
   "filePolicy": {
@@ -29,12 +29,12 @@
     "securityBoundary": "Fallback is accepted only when the subject is an explicitly allowed GitHub browser default and the first non-empty commit-body line exactly matches required_commit_title."
   },
   "requiredEvidenceFiles": [
-    "RELEASE_239_CHANGED_FILES.txt",
-    "RELEASE_239_GITHUB_PORTAL_INSTRUCTIONS.txt",
-    "RELEASE_239_LOCAL_TEST_EVIDENCE.txt",
-    "RELEASE_239_SHA256SUMS.txt",
-    "RELEASE_239_VALIDATION_REPORT.md",
-    "RELEASE_239.patch"
+    "RELEASE_240_CHANGED_FILES.txt",
+    "RELEASE_240_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_240_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_240_SHA256SUMS.txt",
+    "RELEASE_240_VALIDATION_REPORT.md",
+    "RELEASE_240.patch"
   ],
   "allowedStatusLanguage": [
     "PASS",
@@ -101,27 +101,26 @@
     "consumerRelease": 238
   },
   "publisherPolicy": {
-    "policyPath": "policies/atomic-publisher.json",
-    "mode": "fresh-clone-manifest-transaction",
-    "browserUploadAllowed": false,
-    "expectedBaseCommit": "530ad97c68b6e7b8cbe997f2b6bbaf440ec5d527",
-    "verifyExactStagedCoverage": true,
-    "entryPoint": "PUBLISH_RELEASE_239.cmd"
+    "mode": "browser-stage-self-healing-finalizer",
+    "browserUploadAllowed": true,
+    "stageSubjectEnforced": false,
+    "approvedBaseCommit": "546830197db7dddca9ab0cf8aaf62595ab3bc07f",
+    "workflow": ".github/workflows/release-240-closure.yml",
+    "localPublisher": "PUBLISH_RELEASE_240.cmd"
   },
-  "transactionState": "atomic",
-  "releaseTransactionPolicy": {
-    "policyPath": "policies/release-transaction.json",
-    "transactionPath": "data/release-238-transaction.json",
-    "deletionPlan": "data/release-238-deletion-plan.json",
-    "bootstrapCommitTitle": "Bootstrap Release 238: install browser-safe finalizer and deployment conformance",
-    "finalCommitTitle": "Release 238: reconcile repository state and enforce deployment conformance",
-    "automaticFinalizer": ".github/workflows/release-238-finalize.yml"
-  },
+  "transactionState": "pending-closure",
   "deploymentConformancePolicy": {
     "policyPath": "policies/deployment-conformance.json",
     "contractPath": "data/deployment-conformance.json",
     "validator": "tools/deployment_conformance/validate.py",
     "workflow": ".github/workflows/deployment-conformance.yml",
-    "serviceWorkerRelease": "239"
+    "serviceWorkerRelease": "240"
+  },
+  "closurePolicy": {
+    "policyPath": "policies/release-closure.json",
+    "contractPath": "data/release-240-closure.json",
+    "deletionPlan": "data/release-240-deletion-plan.json",
+    "validator": "tools/release_closure/validate.py",
+    "maximumTargets": 500
   }
 }

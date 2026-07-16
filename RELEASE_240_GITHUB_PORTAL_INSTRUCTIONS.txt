@@ -1,0 +1,41 @@
+Release 240 — self-healing browser stage and authoritative closure
+
+APPROVED BASE
+546830197db7dddca9ab0cf8aaf62595ab3bc07f
+
+RECOMMENDED STAGE TITLE
+Stage Release 240: install self-healing repository closure
+
+AUTHORITATIVE FINAL TITLE
+Release 240: complete repository cleanup and establish self-healing release closure
+
+The browser stage subject is deliberately NOT enforced. “Add files via upload”, the recommended stage title, or a final-looking title will all allow the closure workflow to proceed.
+
+REQUIRED GITHUB SETTING
+Settings > Actions > General > Workflow permissions > Read and write permissions.
+
+BROWSER METHOD
+1. Extract OmSaravanaBhava-Release-240.zip.
+2. Upload all extracted files to the repository root.
+3. Commit to main.
+4. The Release 240 Self-Healing Closure workflow verifies that the stage parent is 546830197db7dddca9ab0cf8aaf62595ab3bc07f.
+5. It removes 94 obsolete and forbidden paths.
+6. It runs all validation gates.
+7. It creates and pushes the authoritative exact-title Release 240 commit.
+
+ONE-COMMAND WINDOWS METHOD
+Double-click PUBLISH_RELEASE_240.cmd. It creates both the stage and final commits in a fresh clone.
+
+LOCAL FALLBACK
+When the browser stage exists but Actions cannot push, run FINALIZE_RELEASE_240.cmd against a local clone containing the stage commit.
+
+EXPECTED AUTHORITATIVE COMMIT
+- 99 changed paths
+- 1 addition
+- 4 modifications
+- 94 deletions
+- exact title shown above
+- parent equal to the browser/local stage SHA
+- RELEASE_240_CLOSURE_RESULT.json present
+- no tracked Python cache
+- no assets/js/site-directory.js

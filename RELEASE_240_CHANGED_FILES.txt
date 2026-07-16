@@ -1,0 +1,172 @@
+Release 240 — Self-Healing Repository Closure
+Approved base: 546830197db7dddca9ab0cf8aaf62595ab3bc07f
+Recommended stage title: Stage Release 240: install self-healing repository closure
+Authoritative final title: Release 240: complete repository cleanup and establish self-healing release closure
+
+Browser-stage additions (39):
+A  .github/workflows/release-240-closure.yml
+A  FINALIZE_RELEASE_240.cmd
+A  PUBLISH_RELEASE_240.cmd
+A  RELEASE_240.patch
+A  RELEASE_240_CHANGED_FILES.txt
+A  RELEASE_240_GITHUB_PORTAL_INSTRUCTIONS.txt
+A  RELEASE_240_LOCAL_TEST_EVIDENCE.txt
+A  RELEASE_240_SHA256SUMS.txt
+A  RELEASE_240_VALIDATION_REPORT.md
+A  data/release-240-closure.json
+A  data/release-240-deletion-plan.json
+A  data/repository-baseline-240.json
+A  docs/release-240/README.md
+A  docs/release-240/browser-stage.md
+A  docs/release-240/completion-proof.md
+A  docs/release-240/deletion-scope.md
+A  docs/release-240/local-publisher.md
+A  manifest-release-240.json
+A  policies/release-closure.json
+A  schemas/release-closure-result.schema.json
+A  schemas/release-closure.schema.json
+A  scripts/release240/finalize-release-240.py
+A  scripts/release240/publish-release-240.ps1
+A  scripts/release240/run-release-tests.py
+A  scripts/release240/verify-final-state.py
+A  scripts/release240/verify-stage.py
+A  tests/release_closure/__init__.py
+A  tests/release_closure/test_plan.py
+A  tests/release_closure/test_release_240_package.py
+A  tests/release_closure/test_validator.py
+A  tools/release_closure/__init__.py
+A  tools/release_closure/constants.py
+A  tools/release_closure/git.py
+A  tools/release_closure/jsonio.py
+A  tools/release_closure/models.py
+A  tools/release_closure/plan.py
+A  tools/release_closure/validate.py
+A  tools/release_closure/validator.py
+A  tools/release_closure_cli.py
+
+Browser-stage modifications (17):
+M  .gitattributes
+M  .github/workflows/release-232-governance.yml
+M  .gitignore
+M  .pre-commit-config.yaml
+M  .release-governance.json
+M  Makefile
+M  data/deployment-conformance.json
+M  data/repository-integrity-inventory.json
+M  docs/release-governance.md
+M  policies/deployment-conformance.json
+M  policies/repository-integrity-required-assets.json
+M  policies/repository-integrity.json
+M  pyproject.toml
+M  schemas/deployment-conformance.schema.json
+M  service-worker.js
+M  tests/deployment_conformance/test_service_worker.py
+M  tools/deployment_conformance/validator.py
+
+Browser-stage deletions (0):
+
+Authoritative closure deletions (94):
+D  .github/workflows/atomic-publish-verification.yml
+D  .github/workflows/release-238-finalize.yml
+D  APPLY_RELEASE_236.cmd
+D  FINALIZE_RELEASE_238.cmd
+D  PUBLISH_RELEASE_237.cmd
+D  PUBLISH_RELEASE_239.cmd
+D  assets/js/site-directory.js
+D  data/atomic-publisher.json
+D  data/release-238-deletion-plan.json
+D  data/release-238-transaction.json
+D  policies/atomic-publisher.json
+D  policies/release-transaction.json
+D  schemas/atomic-publish-result.schema.json
+D  schemas/atomic-publisher.schema.json
+D  schemas/release-finalization-result.schema.json
+D  schemas/release-transaction.schema.json
+D  scripts/release236/apply-release-236.ps1
+D  scripts/release236/apply-release-236.sh
+D  scripts/release236/show-changed-files.ps1
+D  scripts/release236/show-changed-files.sh
+D  scripts/release236/verify-base.ps1
+D  scripts/release236/verify-base.sh
+D  scripts/release236/verify-deletions.py
+D  scripts/release237/prepare-checkout.py
+D  scripts/release237/publish-no-push.ps1
+D  scripts/release237/publish-release-237.ps1
+D  scripts/release237/publish-release-237.sh
+D  scripts/release237/run-release-tests.py
+D  scripts/release237/show-result.ps1
+D  scripts/release237/verify-base.py
+D  scripts/release237/verify-no-tracked-cache.py
+D  scripts/release237/verify-staged-change-set.py
+D  scripts/release238/finalize-local.ps1
+D  scripts/release238/finalize-local.sh
+D  scripts/release238/finalize-release-238.py
+D  scripts/release238/run-release-238-tests.py
+D  scripts/release238/verify-bootstrap.py
+D  scripts/release238/verify-final-state.py
+D  scripts/release239/prepare-checkout.py
+D  scripts/release239/publish-release-239.ps1
+D  scripts/release239/publish-release-239.sh
+D  scripts/release239/run-release-tests.py
+D  scripts/release239/show-result.ps1
+D  scripts/release239/verify-base.py
+D  scripts/release239/verify-staged-change-set.py
+D  tests/atomic_publisher/__init__.py
+D  tests/atomic_publisher/test_plan.py
+D  tests/atomic_publisher/test_release_239_package.py
+D  tests/atomic_publisher/test_scripts.py
+D  tests/atomic_publisher/test_validator.py
+D  tests/effective_route_consumers/test_release_237_package.py
+D  tests/release_control/test_release_232_package.py
+D  tests/release_control/test_release_233_package.py
+D  tests/release_control/test_release_234_package.py
+D  tests/release_transaction/__init__.py
+D  tests/release_transaction/test_plan.py
+D  tests/release_transaction/test_release_238_package.py
+D  tests/release_transaction/test_state.py
+D  tests/release_transaction/test_validator.py
+D  tests/repository_hygiene/test_release_235_package.py
+D  tests/repository_integrity/test_release_236_package.py
+D  tools/atomic_publisher/__init__.py
+D  tools/atomic_publisher/constants.py
+D  tools/atomic_publisher/git.py
+D  tools/atomic_publisher/jsonio.py
+D  tools/atomic_publisher/models.py
+D  tools/atomic_publisher/plan.py
+D  tools/atomic_publisher/validate.py
+D  tools/atomic_publisher/validator.py
+D  tools/atomic_publisher_cli.py
+D  tools/release_control/__pycache__/__init__.cpython-313.pyc
+D  tools/release_control/__pycache__/checks.cpython-313.pyc
+D  tools/release_control/__pycache__/checks_checksums.cpython-313.pyc
+D  tools/release_control/__pycache__/checks_commit.cpython-313.pyc
+D  tools/release_control/__pycache__/checks_files.cpython-313.pyc
+D  tools/release_control/__pycache__/checks_manifest.cpython-313.pyc
+D  tools/release_control/__pycache__/checks_patch.cpython-313.pyc
+D  tools/release_control/__pycache__/cli.cpython-313.pyc
+D  tools/release_control/__pycache__/constants.cpython-313.pyc
+D  tools/release_control/__pycache__/git.cpython-313.pyc
+D  tools/release_control/__pycache__/jsonio.cpython-313.pyc
+D  tools/release_control/__pycache__/models.cpython-313.pyc
+D  tools/release_control/__pycache__/report.cpython-313.pyc
+D  tools/release_transaction/__init__.py
+D  tools/release_transaction/constants.py
+D  tools/release_transaction/git.py
+D  tools/release_transaction/jsonio.py
+D  tools/release_transaction/models.py
+D  tools/release_transaction/plan.py
+D  tools/release_transaction/result.py
+D  tools/release_transaction/state.py
+D  tools/release_transaction/validate.py
+D  tools/release_transaction/validator.py
+D  tools/release_transaction_cli.py
+
+Authoritative closure addition (1):
+A  RELEASE_240_CLOSURE_RESULT.json
+Authoritative closure modifications (4):
+M  .release-governance.json
+M  data/release-240-closure.json
+M  manifest-release-240.json
+M  RELEASE_240_SHA256SUMS.txt
+Authoritative final changes: 99
+Package archive files: 578

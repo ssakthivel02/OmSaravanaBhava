@@ -56,13 +56,12 @@ artifacts/repository-integrity-report.json
 artifacts/repository-integrity-inventory.json
 
 # Release 237 auto-clone publisher workspaces
-OmSaravanaBhava-release237/
-release237-clone/
 
 # Release 238 finalizer temporary files
 RELEASE_238_FINALIZATION_RESULT.tmp
-release238-finalizer/
 
 # Release 239 fresh-clone publisher workspaces
-OmSaravanaBhava-release239/
-release239-clone/
+
+# Release 240 closure workspaces
+OmSaravanaBhava-release240/
+release240-clone/

@@ -1,0 +1,36 @@
+Release 240 — Local Test Evidence
+Generated: 2026-07-16
+Approved base: 546830197db7dddca9ab0cf8aaf62595ab3bc07f
+Final title: Release 240: complete repository cleanup and establish self-healing release closure
+
+RELEASE 239 REMOTE AUDIT
+- Latest Release 239 SHA verified
+- Exact subject and Release 238 parent verified
+- Manifest declares fourteen deletions
+- GitHub compare exposed zero deletions
+- Retired assets/js/site-directory.js remains tracked
+- Compiled Python cache remains tracked
+- Combined status records exposed: none
+- Commit workflow runs exposed: none
+
+RELEASE 240 VALIDATION
+- Browser-stage subject enforcement: disabled
+- Browser-stage changes: PASS 56
+- Authoritative final changes: PASS 99
+- Authoritative deletions: PASS 94
+- JavaScript tests: PASS 18 OF 18
+- Python tests after closure: PASS 112 OF 112
+- Final-tree workflow YAML: PASS 7 OF 7
+- Closure pending validation: PASS
+- Closure staged validation: PASS
+- Closure final validation: PASS
+- Deployment conformance: PASS
+- Effective route consumer conformance: PASS
+- Repository Hygiene: PASS
+- Repository Integrity: PASS
+- Package governance: PASS
+- Strict post-commit governance: PASS
+- Static patch applicability/reverse applicability: PASS
+- Static inventory records: 488
+- Static patch lines: 2373
+- Remote authoritative finalization: NOT_RUN

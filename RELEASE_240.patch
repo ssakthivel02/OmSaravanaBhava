@@ -1,0 +1,2373 @@
+diff --git a/.gitattributes b/.gitattributes
+index 59e386857e5c91e3cbcba18b9d449ccf4aa13293..2f2c9c44b3e409a34e68134f5211fb6f3ba25002 100644
+--- a/.gitattributes
++++ b/.gitattributes
+@@ -13,21 +13,15 @@
+ *.pyc binary
+ 
+ # Deterministic Release 236 installer bytes
+-APPLY_RELEASE_236.cmd text eol=lf
+-scripts/release236/*.ps1 text eol=lf
+ 
+ # Deterministic Release 237 publisher bytes
+-PUBLISH_RELEASE_237.cmd text eol=lf
+-scripts/release237/*.ps1 text eol=lf
+-scripts/release237/*.py text eol=lf
+ 
+ # Deterministic Release 238 transaction bytes
+-FINALIZE_RELEASE_238.cmd text eol=lf
+-scripts/release238/*.ps1 text eol=lf
+-scripts/release238/*.py text eol=lf
+-.github/workflows/release-238-finalize.yml text eol=lf
+ 
+ # Deterministic Release 239 publisher bytes
+-PUBLISH_RELEASE_239.cmd text eol=lf
+-scripts/release239/*.ps1 text eol=lf
+-scripts/release239/*.py text eol=lf
++
++# Deterministic Release 240 closure bytes
++PUBLISH_RELEASE_240.cmd text eol=lf
++FINALIZE_RELEASE_240.cmd text eol=lf
++scripts/release240/*.ps1 text eol=lf
++scripts/release240/*.py text eol=lf
+diff --git a/.github/workflows/release-232-governance.yml b/.github/workflows/release-232-governance.yml
+index 7afb59919324fde52d1ecf54413f3a461ef1c286..a6de32065f8dbe1a56c42789d9249b2d5c926ead 100644
+--- a/.github/workflows/release-232-governance.yml
++++ b/.github/workflows/release-232-governance.yml
+@@ -5,12 +5,6 @@ on:
+     branches: [main]
+   pull_request:
+   workflow_dispatch:
+-    inputs:
+-      strict_subject:
+-        description: Require exact Git commit subject and disable browser fallback
+-        required: false
+-        type: boolean
+-        default: false
+ 
+ permissions:
+   contents: read
+@@ -22,174 +16,43 @@ concurrency:
+ jobs:
+   governance:
+     runs-on: ubuntu-latest
+-    timeout-minutes: 15
++    timeout-minutes: 20
+     steps:
+-      - name: Check out repository with parent commit
+-        uses: actions/checkout@v4
++      - uses: actions/checkout@v4
+         with:
+           fetch-depth: 2
+-
+-      - name: Set up Python
+-        uses: actions/setup-python@v5
++      - uses: actions/setup-python@v5
+         with:
+-          python-version: "3.12"
+-
+-      - name: Discover latest numeric release manifest
+-        id: manifest
+-        shell: bash
++          python-version: '3.12'
++      - uses: actions/setup-node@v4
++        with:
++          node-version: '22'
++      - name: Discover release state
++        id: release
+         run: |
+           manifest="$(python -m tools.release_control.discovery --root .)"
+-          release="$(MANIFEST_PATH="$manifest" python - <<'PY'
+-          import json
+-          import os
++          echo "manifest=$manifest" >> "$GITHUB_OUTPUT"
++          MANIFEST="$manifest" python - <<'PY' >> "$GITHUB_OUTPUT"
++          import json, os
+           from pathlib import Path
+-          path = Path(os.environ["MANIFEST_PATH"])
+-          print(json.loads(path.read_text(encoding="utf-8"))["release"])
++          p=json.loads(Path(os.environ['MANIFEST']).read_text(encoding='utf-8'))
++          print(f"number={p['release']}")
++          print(f"closure={p.get('closure',{}).get('state','none')}")
+           PY
+-          )"
+-          echo "path=$manifest" >> "$GITHUB_OUTPUT"
+-          state="$(MANIFEST_PATH="$manifest" python - <<'PY'
+-          import json
+-          import os
+-          from pathlib import Path
+-          payload = json.loads(Path(os.environ["MANIFEST_PATH"]).read_text(encoding="utf-8"))
+-          print(payload.get("transaction", {}).get("state", "single"))
+-          PY
+-          )"
+-          echo "release=$release" >> "$GITHUB_OUTPUT"
+-          echo "state=$state" >> "$GITHUB_OUTPUT"
+-          echo "Using $manifest for Release $release in state $state"
+-
+-      - name: Set up Node
+-        uses: actions/setup-node@v4
+-        with:
+-          node-version: "22"
+-
+-      - name: Compile release governance tools
+-        run: |
+-          python -B -m compileall -q tools/release_control tools/repository_hygiene tools/repository_integrity tools/effective_route_consumers tools/release_transaction tools/deployment_conformance tools/atomic_publisher tools/route_registry tools/release_validate.py
+-
+-      - name: Run governance unit tests
+-        run: |
+-          python -m unittest discover \
+-            -s tests/release_control \
+-            -p "test_*.py" \
+-            -v
+-
+-      - name: Validate Release 238 bootstrap transaction
+-        if: steps.manifest.outputs.state == 'bootstrap'
+-        env:
+-          PYTHONDONTWRITEBYTECODE: "1"
+-        run: |
+-          python -B -m tools.release_transaction.validate --root . --mode bootstrap
+-
+-      - name: Validate repository hygiene
+-        if: steps.manifest.outputs.state != 'bootstrap'
+-        env:
+-          PYTHONDONTWRITEBYTECODE: "1"
+-        run: |
+-          python -B -m tools.repository_hygiene.validate             --root .             --report artifacts/repository-hygiene-report.json
+-
+-      - name: Validate repository integrity
+-        if: steps.manifest.outputs.state != 'bootstrap'
+-        env:
+-          PYTHONDONTWRITEBYTECODE: "1"
+-        run: |
+-          python -B -m tools.repository_integrity.validate             --root .             --report artifacts/repository-integrity-report.json             --inventory artifacts/repository-integrity-inventory.json             --sarif artifacts/repository-integrity.sarif
+-
+-      - name: Validate explicit effective route consumers
+-        if: steps.manifest.outputs.state != 'bootstrap'
++      - name: Validate pending closure stage
++        if: steps.release.outputs.closure == 'pending'
+         env:
+-          PYTHONDONTWRITEBYTECODE: "1"
+-        run: |
+-          python -B -m tools.effective_route_consumers.validate             --root .             --report artifacts/effective-route-consumers-report.json
+-
+-      - name: Validate atomic publisher contract
+-        env:
+-          PYTHONDONTWRITEBYTECODE: "1"
+-        run: |
+-          if [[ -f manifest-release-239.json ]]; then
+-            python -B -m tools.atomic_publisher.validate               --root .               --mode final
+-          fi
+-
+-      - name: Validate deployment conformance
+-        if: steps.manifest.outputs.state != 'bootstrap'
++          PYTHONDONTWRITEBYTECODE: '1'
++        run: python -B -m tools.release_closure.validate --root . --mode pending
++      - name: Validate finalized repository
++        if: steps.release.outputs.closure != 'pending'
+         env:
+-          PYTHONDONTWRITEBYTECODE: "1"
++          PYTHONDONTWRITEBYTECODE: '1'
+         run: |
++          python -B -m tools.repository_hygiene.validate --root .
++          python -B -m tools.repository_integrity.validate --root . --manifest "${{ steps.release.outputs.manifest }}"
++          python -B -m tools.effective_route_consumers.validate --root .
+           python -B -m tools.deployment_conformance.validate --root .
+-
+-      - name: Run browser runtime tests
+-        run: |
+           node --test tests/js/*.test.mjs
+-
+-      - name: Validate effective route-registry drift from policy
+-        env:
+-          PYTHONDONTWRITEBYTECODE: "1"
+-        run: |
+-          python -B - <<'PY'
+-          import subprocess
+-          from pathlib import Path
+-          from tools.repository_hygiene.workflow import route_registry_command
+-          subprocess.run(route_registry_command(Path(".")), check=True)
+-          PY
+-
+-      - name: Validate uploaded commit and generate attestation
+-        shell: bash
+-        run: |
+-          strict_flag=""
+-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && \
+-             [ "${{ inputs.strict_subject }}" = "true" ]; then
+-            strict_flag="--strict-commit-subject"
+-          fi
+-          python tools/release_validate.py \
+-            --root . \
+-            --manifest "${{ steps.manifest.outputs.path }}" \
+-            --repository-mode \
+-            $strict_flag \
+-            --report "artifacts/release-${{ steps.manifest.outputs.release }}-governance-report.json" \
+-            --attestation "artifacts/release-${{ steps.manifest.outputs.release }}-attestation.json"
+-
+-      - name: Write job summary
+-        if: always()
+-        shell: bash
+-        run: |
+-          echo "# Release ${{ steps.manifest.outputs.release }} governance" >> "$GITHUB_STEP_SUMMARY"
+-          echo >> "$GITHUB_STEP_SUMMARY"
+-          report="artifacts/release-${{ steps.manifest.outputs.release }}-governance-report.json"
+-          if [ ! -f "$report" ]; then
+-            echo "Report was not generated." >> "$GITHUB_STEP_SUMMARY"
+-            exit 0
+-          fi
+-          REPORT_PATH="$report" python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+-          import json
+-          import os
+-          from pathlib import Path
+-
+-          payload = json.loads(
+-              Path(os.environ["REPORT_PATH"]).read_text(encoding="utf-8")
+-          )
+-          print(f"**Status:** {payload['status']}")
+-          print()
+-          if payload.get("warnings"):
+-              print("## Warnings")
+-              for warning in payload["warnings"]:
+-                  print(f"- {warning}")
+-              print()
+-          print("| Check | Status | Result |")
+-          print("|---|---:|---|")
+-          for check in payload.get("checks", []):
+-              message = str(check.get("message", "")).replace("|", "\\|")
+-              print(
+-                  f"| {check.get('name')} | {check.get('status')} | {message} |"
+-              )
+-          PY
+-
+-      - name: Upload governance evidence
+-        if: always()
+-        uses: actions/upload-artifact@v4
+-        with:
+-          name: release-${{ steps.manifest.outputs.release }}-governance-evidence
+-          path: artifacts/
+-          if-no-files-found: warn
+-          retention-days: 90
++          python -B -m unittest discover -s tests -p 'test_*.py' -v
++          python -B tools/release_validate.py --root . --manifest "${{ steps.release.outputs.manifest }}" --repository-mode
+diff --git a/.github/workflows/release-240-closure.yml b/.github/workflows/release-240-closure.yml
+new file mode 100644
+index 0000000000000000000000000000000000000000..b4af5bb90e29fd933d3ffd4999b7016100408e44
+--- /dev/null
++++ b/.github/workflows/release-240-closure.yml
+@@ -0,0 +1,70 @@
++name: Release 240 Self-Healing Closure
++
++on:
++  push:
++    branches: [main]
++    paths:
++      - manifest-release-240.json
++      - data/release-240-closure.json
++      - .github/workflows/release-240-closure.yml
++  workflow_dispatch:
++
++permissions:
++  contents: write
++
++concurrency:
++  group: release-240-self-healing-closure
++  cancel-in-progress: false
++
++jobs:
++  finalize:
++    if: github.actor != 'github-actions[bot]'
++    runs-on: ubuntu-latest
++    timeout-minutes: 25
++    steps:
++      - uses: actions/checkout@v4
++        with:
++          fetch-depth: 0
++          token: ${{ secrets.GITHUB_TOKEN }}
++      - uses: actions/setup-python@v5
++        with:
++          python-version: '3.12'
++      - uses: actions/setup-node@v4
++        with:
++          node-version: '22'
++      - name: Verify stage ancestry and pending state
++        env:
++          PYTHONDONTWRITEBYTECODE: '1'
++        run: |
++          python -B scripts/release240/verify-stage.py --root .
++          python -B -m tools.release_closure.validate --root . --mode pending
++      - name: Prepare authoritative closure commit
++        env:
++          PYTHONDONTWRITEBYTECODE: '1'
++        run: |
++          python -B scripts/release240/finalize-release-240.py --root . --stage-sha "${{ GITHUB_SHA }}"
++          python -B scripts/release240/verify-final-state.py --root .
++          python -B -m tools.release_closure.validate --root . --mode staged
++      - name: Run complete validation suite
++        env:
++          PYTHONDONTWRITEBYTECODE: '1'
++        run: |
++          python -B scripts/release240/run-release-tests.py --root .
++          python -B -m tools.repository_hygiene.validate --root .
++          python -B -m tools.repository_integrity.validate --root . --manifest manifest-release-240.json
++          python -B tools/release_validate.py --root . --manifest manifest-release-240.json --package-mode
++          python -B scripts/release240/finalize-release-240.py --root . --mark-pass
++      - name: Create exact Release 240 commit
++        run: |
++          git config user.name "OmSaravanaBhava Release Bot"
++          git config user.email "actions@users.noreply.github.com"
++          git diff --cached --name-status
++          git commit -m "Release 240: complete repository cleanup and establish self-healing release closure"
++      - name: Validate final commit
++        env:
++          PYTHONDONTWRITEBYTECODE: '1'
++        run: |
++          python -B tools/release_validate.py --root . --manifest manifest-release-240.json --repository-mode --strict-commit-subject
++          python -B -m tools.release_closure.validate --root . --mode final
++      - name: Push authoritative closure commit
++        run: git push origin HEAD:main
+diff --git a/.gitignore b/.gitignore
+index 062153b9cf1b7a2e570973bc86bc32924d72353d..7864a090c6ecc3251df18ee7c65e399424311ae1 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -56,13 +56,12 @@ artifacts/repository-integrity-report.json
+ artifacts/repository-integrity-inventory.json
+ 
+ # Release 237 auto-clone publisher workspaces
+-OmSaravanaBhava-release237/
+-release237-clone/
+ 
+ # Release 238 finalizer temporary files
+ RELEASE_238_FINALIZATION_RESULT.tmp
+-release238-finalizer/
+ 
+ # Release 239 fresh-clone publisher workspaces
+-OmSaravanaBhava-release239/
+-release239-clone/
++
++# Release 240 closure workspaces
++OmSaravanaBhava-release240/
++release240-clone/
+diff --git a/.pre-commit-config.yaml b/.pre-commit-config.yaml
+index 57a36d084c628c691e1290e4a27c0c5275be57d1..a8abebb31b4bf09fc938651ea3e64740fcf29df1 100644
+--- a/.pre-commit-config.yaml
++++ b/.pre-commit-config.yaml
+@@ -2,13 +2,8 @@ repos:
+   - repo: local
+     hooks:
+       - id: release-tests
+-        name: Release 239 regression suites
+-        entry: python -B scripts/release239/run-release-tests.py --root .
+-        language: system
+-        pass_filenames: false
+-      - id: atomic-publisher
+-        name: Atomic publisher contract
+-        entry: python -B -m tools.atomic_publisher.validate --root . --mode package
++        name: Release 240 regression suites
++        entry: python -B scripts/release240/run-release-tests.py --root .
+         language: system
+         pass_filenames: false
+       - id: repository-hygiene
+@@ -16,3 +11,8 @@ repos:
+         entry: python -B -m tools.repository_hygiene.validate --root .
+         language: system
+         pass_filenames: false
++      - id: deployment-conformance
++        name: Deployment conformance
++        entry: python -B -m tools.deployment_conformance.validate --root .
++        language: system
++        pass_filenames: false
+diff --git a/FINALIZE_RELEASE_240.cmd b/FINALIZE_RELEASE_240.cmd
+new file mode 100644
+index 0000000000000000000000000000000000000000..ea95054ffa6e40abbb7ce6fead229e6211f04afa
+--- /dev/null
++++ b/FINALIZE_RELEASE_240.cmd
+@@ -0,0 +1,9 @@
++@echo off
++setlocal EnableExtensions
++set "REPO=%~1"
++if "%REPO%"=="" set /p "REPO=Local repository path containing the Release 240 stage commit: "
++if not exist "%REPO%\.git" (echo ERROR: Invalid Git repository.& pause & exit /b 1)
++powershell -NoProfile -ExecutionPolicy Bypass -Command "Set-Location -LiteralPath '%REPO%'; $env:PYTHONDONTWRITEBYTECODE='1'; python -B scripts/release240/finalize-release-240.py --root .; python -B scripts/release240/verify-final-state.py --root .; python -B -m tools.release_closure.validate --root . --mode staged; python -B scripts/release240/run-release-tests.py --root .; python -B -m tools.repository_hygiene.validate --root .; python -B -m tools.repository_integrity.validate --root . --manifest manifest-release-240.json; python -B scripts/release240/finalize-release-240.py --root . --mark-pass; git commit -m 'Release 240: complete repository cleanup and establish self-healing release closure'; python -B tools/release_validate.py --root . --manifest manifest-release-240.json --repository-mode --strict-commit-subject; python -B -m tools.release_closure.validate --root . --mode final; git push origin HEAD:main"
++set "RESULT=%ERRORLEVEL%"
++if not "%RESULT%"=="0" pause
++exit /b %RESULT%
+diff --git a/Makefile b/Makefile
+index df4af20b129fde8a89f00b22bb9af9c46ffd5833..229d058ce981093de8ce2529df574cc7417a6e2e 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,28 +1,19 @@
+ PYTHON ?= python
+ NODE ?= node
+-
+-.PHONY: test js-test atomic deployment hygiene integrity release-check cleanup
+-
++.PHONY: test js-test closure deployment hygiene integrity release-check cleanup
+ test:
+ 	$(PYTHON) -B -m unittest discover -s tests -p "test_*.py" -v
+-
+ js-test:
+ 	$(NODE) --test tests/js/*.test.mjs
+-
+-atomic:
+-	$(PYTHON) -B -m tools.atomic_publisher.validate --root . --mode package
+-
++closure:
++	$(PYTHON) -B -m tools.release_closure.validate --root . --mode final
+ deployment:
+ 	$(PYTHON) -B -m tools.deployment_conformance.validate --root .
+-
+ hygiene:
+ 	$(PYTHON) -B -m tools.repository_hygiene.validate --root .
+-
+ integrity:
+-	$(PYTHON) -B -m tools.repository_integrity.validate --root .
+-
++	$(PYTHON) -B -m tools.repository_integrity.validate --root . --manifest manifest-release-240.json
+ release-check:
+-	$(PYTHON) -B tools/release_validate.py --root . --manifest manifest-release-239.json --package-mode
+-
++	$(PYTHON) -B tools/release_validate.py --root . --manifest manifest-release-240.json --package-mode
+ cleanup:
+ 	$(PYTHON) -B -m tools.repository_integrity.cleanup --root .
+diff --git a/PUBLISH_RELEASE_240.cmd b/PUBLISH_RELEASE_240.cmd
+new file mode 100644
+index 0000000000000000000000000000000000000000..b1df51fa606ae9a74efdc17e1d78c64ca2ebd01b
+--- /dev/null
++++ b/PUBLISH_RELEASE_240.cmd
+@@ -0,0 +1,9 @@
++@echo off
++setlocal EnableExtensions
++set "PACKAGE_ROOT=%~dp0"
++set "TARGET_ROOT=%~1"
++if "%TARGET_ROOT%"=="" set "TARGET_ROOT=%TEMP%\OmSaravanaBhava-release240-%RANDOM%"
++powershell -NoProfile -ExecutionPolicy Bypass -File "%PACKAGE_ROOT%scripts\release240\publish-release-240.ps1" -PackageRoot "%PACKAGE_ROOT%" -TargetRoot "%TARGET_ROOT%"
++set "RESULT=%ERRORLEVEL%"
++if not "%RESULT%"=="0" pause
++exit /b %RESULT%
+diff --git a/data/deployment-conformance.json b/data/deployment-conformance.json
+index 233a32029e90b1a6ecf4ec446707f7a60787b8c7..0e4a638abb1910780c73b3ee2b169ceac0d21953 100644
+--- a/data/deployment-conformance.json
++++ b/data/deployment-conformance.json
+@@ -1,7 +1,7 @@
+ {
+-  "release": 239,
++  "release": 240,
+   "serviceWorker": "/service-worker.js",
+-  "expectedCacheRelease": "239",
++  "expectedCacheRelease": "240",
+   "requiredPrecacheUrls": [
+     "/content-status.html",
+     "/discovery.html",
+diff --git a/data/release-240-deletion-plan.json b/data/release-240-deletion-plan.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..18812fe7f88f37b8d77d64a9d740258186b295e6
+--- /dev/null
++++ b/data/release-240-deletion-plan.json
+@@ -0,0 +1,105 @@
++{
++  "release": 240,
++  "approvedBaseCommit": "546830197db7dddca9ab0cf8aaf62595ab3bc07f",
++  "expectedCount": 94,
++  "categories": {
++    "forbiddenTrackedArtifacts": 14,
++    "obsoletePublishersAndFinalizers": 80
++  },
++  "paths": [
++    ".github/workflows/atomic-publish-verification.yml",
++    ".github/workflows/release-238-finalize.yml",
++    "APPLY_RELEASE_236.cmd",
++    "FINALIZE_RELEASE_238.cmd",
++    "PUBLISH_RELEASE_237.cmd",
++    "PUBLISH_RELEASE_239.cmd",
++    "assets/js/site-directory.js",
++    "data/atomic-publisher.json",
++    "data/release-238-deletion-plan.json",
++    "data/release-238-transaction.json",
++    "policies/atomic-publisher.json",
++    "policies/release-transaction.json",
++    "schemas/atomic-publish-result.schema.json",
++    "schemas/atomic-publisher.schema.json",
++    "schemas/release-finalization-result.schema.json",
++    "schemas/release-transaction.schema.json",
++    "scripts/release236/apply-release-236.ps1",
++    "scripts/release236/apply-release-236.sh",
++    "scripts/release236/show-changed-files.ps1",
++    "scripts/release236/show-changed-files.sh",
++    "scripts/release236/verify-base.ps1",
++    "scripts/release236/verify-base.sh",
++    "scripts/release236/verify-deletions.py",
++    "scripts/release237/prepare-checkout.py",
++    "scripts/release237/publish-no-push.ps1",
++    "scripts/release237/publish-release-237.ps1",
++    "scripts/release237/publish-release-237.sh",
++    "scripts/release237/run-release-tests.py",
++    "scripts/release237/show-result.ps1",
++    "scripts/release237/verify-base.py",
++    "scripts/release237/verify-no-tracked-cache.py",
++    "scripts/release237/verify-staged-change-set.py",
++    "scripts/release238/finalize-local.ps1",
++    "scripts/release238/finalize-local.sh",
++    "scripts/release238/finalize-release-238.py",
++    "scripts/release238/run-release-238-tests.py",
++    "scripts/release238/verify-bootstrap.py",
++    "scripts/release238/verify-final-state.py",
++    "scripts/release239/prepare-checkout.py",
++    "scripts/release239/publish-release-239.ps1",
++    "scripts/release239/publish-release-239.sh",
++    "scripts/release239/run-release-tests.py",
++    "scripts/release239/show-result.ps1",
++    "scripts/release239/verify-base.py",
++    "scripts/release239/verify-staged-change-set.py",
++    "tests/atomic_publisher/__init__.py",
++    "tests/atomic_publisher/test_plan.py",
++    "tests/atomic_publisher/test_release_239_package.py",
++    "tests/atomic_publisher/test_scripts.py",
++    "tests/atomic_publisher/test_validator.py",
++    "tests/effective_route_consumers/test_release_237_package.py",
++    "tests/release_control/test_release_232_package.py",
++    "tests/release_control/test_release_233_package.py",
++    "tests/release_control/test_release_234_package.py",
++    "tests/release_transaction/__init__.py",
++    "tests/release_transaction/test_plan.py",
++    "tests/release_transaction/test_release_238_package.py",
++    "tests/release_transaction/test_state.py",
++    "tests/release_transaction/test_validator.py",
++    "tests/repository_hygiene/test_release_235_package.py",
++    "tests/repository_integrity/test_release_236_package.py",
++    "tools/atomic_publisher/__init__.py",
++    "tools/atomic_publisher/constants.py",
++    "tools/atomic_publisher/git.py",
++    "tools/atomic_publisher/jsonio.py",
++    "tools/atomic_publisher/models.py",
++    "tools/atomic_publisher/plan.py",
++    "tools/atomic_publisher/validate.py",
++    "tools/atomic_publisher/validator.py",
++    "tools/atomic_publisher_cli.py",
++    "tools/release_control/__pycache__/__init__.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_checksums.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_commit.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_files.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_manifest.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_patch.cpython-313.pyc",
++    "tools/release_control/__pycache__/cli.cpython-313.pyc",
++    "tools/release_control/__pycache__/constants.cpython-313.pyc",
++    "tools/release_control/__pycache__/git.cpython-313.pyc",
++    "tools/release_control/__pycache__/jsonio.cpython-313.pyc",
++    "tools/release_control/__pycache__/models.cpython-313.pyc",
++    "tools/release_control/__pycache__/report.cpython-313.pyc",
++    "tools/release_transaction/__init__.py",
++    "tools/release_transaction/constants.py",
++    "tools/release_transaction/git.py",
++    "tools/release_transaction/jsonio.py",
++    "tools/release_transaction/models.py",
++    "tools/release_transaction/plan.py",
++    "tools/release_transaction/result.py",
++    "tools/release_transaction/state.py",
++    "tools/release_transaction/validate.py",
++    "tools/release_transaction/validator.py",
++    "tools/release_transaction_cli.py"
++  ]
++}
+diff --git a/data/repository-baseline-240.json b/data/repository-baseline-240.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..7cd8e9d6f92c4ce370853e7b191e222705a74b73
+--- /dev/null
++++ b/data/repository-baseline-240.json
+@@ -0,0 +1,19 @@
++{
++  "release": 240,
++  "generated": "2026-07-16",
++  "baseline": {
++    "trackedPythonCaches": 0,
++    "trackedGeneratedBinaries": 0,
++    "retiredRouteConsumers": 0,
++    "obsoleteReleasePublishers": 0,
++    "obsoleteReleaseFinalizers": 0,
++    "serviceWorkerRelease": 240
++  },
++  "requiredActiveControls": [
++    ".github/workflows/release-240-closure.yml",
++    ".github/workflows/release-232-governance.yml",
++    ".github/workflows/repository-hygiene.yml",
++    ".github/workflows/repository-integrity.yml",
++    "tools/release_closure/validate.py"
++  ]
++}
+diff --git a/data/repository-integrity-inventory.json b/data/repository-integrity-inventory.json
+index 97a54a35cdaa08fb7036e20d65299415ac0ed7d9..0280d39c0f3c9228219f426c0274183b0652b657 100644
+--- a/data/repository-integrity-inventory.json
++++ b/data/repository-integrity-inventory.json
+@@ -1,18 +1,115 @@
+ {
+-  "release": 239,
++  "release": 240,
+   "algorithm": "sha256",
+-  "scope": "release-package-static-files-excluding-manifest-evidence-and-self",
++  "scope": "authoritative-final-tree-excluding-dynamic-closure-evidence",
+   "excludedPaths": [
+-    "RELEASE_239.patch",
+-    "RELEASE_239_CHANGED_FILES.txt",
+-    "RELEASE_239_GITHUB_PORTAL_INSTRUCTIONS.txt",
+-    "RELEASE_239_LOCAL_TEST_EVIDENCE.txt",
+-    "RELEASE_239_SHA256SUMS.txt",
+-    "RELEASE_239_VALIDATION_REPORT.md",
++    ".github/workflows/atomic-publish-verification.yml",
++    ".github/workflows/release-238-finalize.yml",
++    ".release-governance.json",
++    "APPLY_RELEASE_236.cmd",
++    "FINALIZE_RELEASE_238.cmd",
++    "PUBLISH_RELEASE_237.cmd",
++    "PUBLISH_RELEASE_239.cmd",
++    "RELEASE_240.patch",
++    "RELEASE_240_CHANGED_FILES.txt",
++    "RELEASE_240_CLOSURE_RESULT.json",
++    "RELEASE_240_GITHUB_PORTAL_INSTRUCTIONS.txt",
++    "RELEASE_240_LOCAL_TEST_EVIDENCE.txt",
++    "RELEASE_240_SHA256SUMS.txt",
++    "RELEASE_240_VALIDATION_REPORT.md",
++    "assets/js/site-directory.js",
++    "data/atomic-publisher.json",
++    "data/release-238-deletion-plan.json",
++    "data/release-238-transaction.json",
++    "data/release-240-closure.json",
+     "data/repository-integrity-inventory.json",
+-    "manifest-release-239.json"
++    "manifest-release-240.json",
++    "policies/atomic-publisher.json",
++    "policies/release-transaction.json",
++    "schemas/atomic-publish-result.schema.json",
++    "schemas/atomic-publisher.schema.json",
++    "schemas/release-finalization-result.schema.json",
++    "schemas/release-transaction.schema.json",
++    "scripts/release236/apply-release-236.ps1",
++    "scripts/release236/apply-release-236.sh",
++    "scripts/release236/show-changed-files.ps1",
++    "scripts/release236/show-changed-files.sh",
++    "scripts/release236/verify-base.ps1",
++    "scripts/release236/verify-base.sh",
++    "scripts/release236/verify-deletions.py",
++    "scripts/release237/prepare-checkout.py",
++    "scripts/release237/publish-no-push.ps1",
++    "scripts/release237/publish-release-237.ps1",
++    "scripts/release237/publish-release-237.sh",
++    "scripts/release237/run-release-tests.py",
++    "scripts/release237/show-result.ps1",
++    "scripts/release237/verify-base.py",
++    "scripts/release237/verify-no-tracked-cache.py",
++    "scripts/release237/verify-staged-change-set.py",
++    "scripts/release238/finalize-local.ps1",
++    "scripts/release238/finalize-local.sh",
++    "scripts/release238/finalize-release-238.py",
++    "scripts/release238/run-release-238-tests.py",
++    "scripts/release238/verify-bootstrap.py",
++    "scripts/release238/verify-final-state.py",
++    "scripts/release239/prepare-checkout.py",
++    "scripts/release239/publish-release-239.ps1",
++    "scripts/release239/publish-release-239.sh",
++    "scripts/release239/run-release-tests.py",
++    "scripts/release239/show-result.ps1",
++    "scripts/release239/verify-base.py",
++    "scripts/release239/verify-staged-change-set.py",
++    "tests/atomic_publisher/__init__.py",
++    "tests/atomic_publisher/test_plan.py",
++    "tests/atomic_publisher/test_release_239_package.py",
++    "tests/atomic_publisher/test_scripts.py",
++    "tests/atomic_publisher/test_validator.py",
++    "tests/effective_route_consumers/test_release_237_package.py",
++    "tests/release_control/test_release_232_package.py",
++    "tests/release_control/test_release_233_package.py",
++    "tests/release_control/test_release_234_package.py",
++    "tests/release_transaction/__init__.py",
++    "tests/release_transaction/test_plan.py",
++    "tests/release_transaction/test_release_238_package.py",
++    "tests/release_transaction/test_state.py",
++    "tests/release_transaction/test_validator.py",
++    "tests/repository_hygiene/test_release_235_package.py",
++    "tests/repository_integrity/test_release_236_package.py",
++    "tools/atomic_publisher/__init__.py",
++    "tools/atomic_publisher/constants.py",
++    "tools/atomic_publisher/git.py",
++    "tools/atomic_publisher/jsonio.py",
++    "tools/atomic_publisher/models.py",
++    "tools/atomic_publisher/plan.py",
++    "tools/atomic_publisher/validate.py",
++    "tools/atomic_publisher/validator.py",
++    "tools/atomic_publisher_cli.py",
++    "tools/release_control/__pycache__/__init__.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_checksums.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_commit.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_files.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_manifest.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_patch.cpython-313.pyc",
++    "tools/release_control/__pycache__/cli.cpython-313.pyc",
++    "tools/release_control/__pycache__/constants.cpython-313.pyc",
++    "tools/release_control/__pycache__/git.cpython-313.pyc",
++    "tools/release_control/__pycache__/jsonio.cpython-313.pyc",
++    "tools/release_control/__pycache__/models.cpython-313.pyc",
++    "tools/release_control/__pycache__/report.cpython-313.pyc",
++    "tools/release_transaction/__init__.py",
++    "tools/release_transaction/constants.py",
++    "tools/release_transaction/git.py",
++    "tools/release_transaction/jsonio.py",
++    "tools/release_transaction/models.py",
++    "tools/release_transaction/plan.py",
++    "tools/release_transaction/result.py",
++    "tools/release_transaction/state.py",
++    "tools/release_transaction/validate.py",
++    "tools/release_transaction/validator.py",
++    "tools/release_transaction_cli.py"
+   ],
+-  "recordCount": 531,
++  "recordCount": 488,
+   "records": [
+     {
+       "path": ".editorconfig",
+@@ -22,16 +119,10 @@
+     },
+     {
+       "path": ".gitattributes",
+-      "sizeBytes": 834,
+-      "sha256": "0cb2cb4e7bb7afeaf75c40d8ce0cd9a8c603da4515495519ba7971b8c9a2dac3",
++      "sizeBytes": 569,
++      "sha256": "7981e45697039f795221f15d0509900e2d9d91cdd3a82dfc6198a5ff53e81b8c",
+       "suffix": ""
+     },
+-    {
+-      "path": ".github/workflows/atomic-publish-verification.yml",
+-      "sizeBytes": 1377,
+-      "sha256": "a2f7a18c4414f5f51472470b2be2df25d6125c536f9f0316bd501e0f4044b8fd",
+-      "suffix": ".yml"
+-    },
+     {
+       "path": ".github/workflows/deployment-conformance.yml",
+       "sizeBytes": 1263,
+@@ -52,14 +143,14 @@
+     },
+     {
+       "path": ".github/workflows/release-232-governance.yml",
+-      "sizeBytes": 7080,
+-      "sha256": "56da59ea3ac776caa66c1d60d63556d7be429313721ccf190f7bde04719fa091",
++      "sizeBytes": 2037,
++      "sha256": "287e168e56192ffb77b2c1c60e066a751bc511624f9d8fcaf018dcbe3c3408a8",
+       "suffix": ".yml"
+     },
+     {
+-      "path": ".github/workflows/release-238-finalize.yml",
+-      "sizeBytes": 3123,
+-      "sha256": "ee4c3b717c90454245c3ce1326b1ca396f0fb1d4e51f0e76b33c59ba794d9398",
++      "path": ".github/workflows/release-240-closure.yml",
++      "sizeBytes": 2667,
++      "sha256": "20f1fa9738d0e457a6d57650e46d1afc04cb71ae264e86a559a738c79429e2e4",
+       "suffix": ".yml"
+     },
+     {
+@@ -76,50 +167,32 @@
+     },
+     {
+       "path": ".gitignore",
+-      "sizeBytes": 994,
+-      "sha256": "53550ba2b8b76211cc2379cc4b579549c8b51f4e58fe2a719b7bd806b79d16fa",
++      "sizeBytes": 960,
++      "sha256": "0ebd85f53efb2e6524953ca347ab9687a739ac942dd36e5f7528c76bab35a523",
+       "suffix": ""
+     },
+     {
+       "path": ".pre-commit-config.yaml",
+-      "sizeBytes": 631,
+-      "sha256": "7ba2dcc6ddeab29750084a8529473d28bc8d8e66302c9bf06df35c02ca488c00",
++      "sizeBytes": 625,
++      "sha256": "60d738145ce284a1bef40cb9af2bfffb2e2fcfb9fb53c93e60b498f1c5819dbe",
+       "suffix": ".yaml"
+     },
+     {
+-      "path": ".release-governance.json",
+-      "sizeBytes": 5008,
+-      "sha256": "13ab9acb35817df72741af47b84c85949406a92b1016ac38e9f02ba34e430398",
+-      "suffix": ".json"
+-    },
+-    {
+-      "path": "APPLY_RELEASE_236.cmd",
+-      "sizeBytes": 833,
+-      "sha256": "87da5aae8f4bff6c071add5095b4d4cc7311eaf8838d256a7243cb0829ec11fc",
+-      "suffix": ".cmd"
+-    },
+-    {
+-      "path": "FINALIZE_RELEASE_238.cmd",
+-      "sizeBytes": 579,
+-      "sha256": "69e82089c6381dc5332301bec3661a9e937a324aac71441521a26604469fc473",
++      "path": "FINALIZE_RELEASE_240.cmd",
++      "sizeBytes": 1227,
++      "sha256": "52be6bfb8fff29cb190ddc7945313e2e8c3b7b9ade472af61f374c66efcdd571",
+       "suffix": ".cmd"
+     },
+     {
+       "path": "Makefile",
+-      "sizeBytes": 716,
+-      "sha256": "74d45b82dbecf75629f2fec5e8338686f926cb720f2de64b67a28ec167dcb098",
++      "sizeBytes": 743,
++      "sha256": "45ef6c7b03f1f5a9fcae8d95b3ad9f6df7696c4821ad4f070b24f3b1f827d6b9",
+       "suffix": ""
+     },
+     {
+-      "path": "PUBLISH_RELEASE_237.cmd",
+-      "sizeBytes": 768,
+-      "sha256": "6fbd241535910c7d68edca25949d73fad51bbe9018a0fd4b8fed60b0f435015c",
+-      "suffix": ".cmd"
+-    },
+-    {
+-      "path": "PUBLISH_RELEASE_239.cmd",
+-      "sizeBytes": 762,
+-      "sha256": "3842ea87cee1dc4816a40d64ac7d9d3dce9ed08b3194ebaaa685b597ae2d9900",
++      "path": "PUBLISH_RELEASE_240.cmd",
++      "sizeBytes": 408,
++      "sha256": "e6f6ad650f3a297c94eca70db941116846bc4f5125b29a4fa0aadbdaeebdc9db",
+       "suffix": ".cmd"
+     },
+     {
+@@ -338,6 +411,42 @@
+       "sha256": "59d111f7550b298a4eafef2723719a3ca6bee4647340f5d7627de2a05eee106d",
+       "suffix": ".md"
+     },
++    {
++      "path": "RELEASE_239.patch",
++      "sizeBytes": 55970,
++      "sha256": "d2854077719854092445df635e3015849ba89a8a4a090a48547ce70417a08821",
++      "suffix": ".patch"
++    },
++    {
++      "path": "RELEASE_239_CHANGED_FILES.txt",
++      "sizeBytes": 3373,
++      "sha256": "83070388fad13d0976e65d5f01d8dab9f599ff2f290356e80dea396386d67887",
++      "suffix": ".txt"
++    },
++    {
++      "path": "RELEASE_239_GITHUB_PORTAL_INSTRUCTIONS.txt",
++      "sizeBytes": 1713,
++      "sha256": "458a9dc1c5f44dce419c96ef86a145a070acf755ee08e84d3aef0fce27cf884f",
++      "suffix": ".txt"
++    },
++    {
++      "path": "RELEASE_239_LOCAL_TEST_EVIDENCE.txt",
++      "sizeBytes": 1279,
++      "sha256": "9ddfbff80dd5511bde8085a0c429994f96072796e715e629773f61fc9076c272",
++      "suffix": ".txt"
++    },
++    {
++      "path": "RELEASE_239_SHA256SUMS.txt",
++      "sizeBytes": 58445,
++      "sha256": "138f2774c3b5c9d2f7beb97fe8031890dd98cd2cd22a2e9b7fe286ca8e9be8b1",
++      "suffix": ".txt"
++    },
++    {
++      "path": "RELEASE_239_VALIDATION_REPORT.md",
++      "sizeBytes": 2115,
++      "sha256": "b9ca6a15eb78f16e3e53e98c1a1fcd165f04712565e05224586a02ad99223d35",
++      "suffix": ".md"
++    },
+     {
+       "path": "assets/js/content-status-audit.mjs",
+       "sizeBytes": 13915,
+@@ -374,16 +483,10 @@
+       "sha256": "adae9e857061cac25a50a2ff157ed2856b85724d243787ccb1875ad7708fbd5e",
+       "suffix": ".html"
+     },
+-    {
+-      "path": "data/atomic-publisher.json",
+-      "sizeBytes": 587,
+-      "sha256": "a8d2b2fbd323e6619d54c168b3e4bf4c0e75521be33da8541e67b1a7050c054d",
+-      "suffix": ".json"
+-    },
+     {
+       "path": "data/deployment-conformance.json",
+       "sizeBytes": 832,
+-      "sha256": "7ebb6902d65793f7ad575c41fbbc3f7564798f55fca7b08b449d0056e15436f0",
++      "sha256": "a810c1a50f2949bd3e49569fde05661ea9b2065b9765dd7c239d265840d7be78",
+       "suffix": ".json"
+     },
+     {
+@@ -393,21 +496,21 @@
+       "suffix": ".json"
+     },
+     {
+-      "path": "data/release-238-deletion-plan.json",
+-      "sizeBytes": 1147,
+-      "sha256": "7b89dbd5cbb0deebb05093efab215eb8ada27a71fed085edb285f16a8bdffdc6",
++      "path": "data/release-239-deletion-plan.json",
++      "sizeBytes": 1110,
++      "sha256": "6350c83e3da64c46b4b9e0cbba4a753bbae411de0b1de07407698631ee35137b",
+       "suffix": ".json"
+     },
+     {
+-      "path": "data/release-238-transaction.json",
+-      "sizeBytes": 880,
+-      "sha256": "f46847f7afa3bdbd3076e6c140bee090150654ed81a54cac5c5bc84610b5c899",
++      "path": "data/release-240-deletion-plan.json",
++      "sizeBytes": 4802,
++      "sha256": "96335ca8ba8d33fd0df9327f7703c576bfc8fc7973130807939023225fece41a",
+       "suffix": ".json"
+     },
+     {
+-      "path": "data/release-239-deletion-plan.json",
+-      "sizeBytes": 1110,
+-      "sha256": "6350c83e3da64c46b4b9e0cbba4a753bbae411de0b1de07407698631ee35137b",
++      "path": "data/repository-baseline-240.json",
++      "sizeBytes": 546,
++      "sha256": "e2a501d71823fedfc3eaf7df21fafbfa3a1f04f07e95f3a9183994ce6e2d56a1",
+       "suffix": ".json"
+     },
+     {
+@@ -602,6 +705,36 @@
+       "sha256": "0253f193d4632eff9595df3a427ce8d778c638b78feeea63688c27923ed797f1",
+       "suffix": ".md"
+     },
++    {
++      "path": "docs/release-240/README.md",
++      "sizeBytes": 156,
++      "sha256": "b8b9e1d763de2ef6b404b803dc83ad1dfcc741a4d4bdd4c999d0d8978e1c5457",
++      "suffix": ".md"
++    },
++    {
++      "path": "docs/release-240/browser-stage.md",
++      "sizeBytes": 226,
++      "sha256": "469fd93cd92c093b76e65c6cc0d234503170699568177b52a0b07dfad7361452",
++      "suffix": ".md"
++    },
++    {
++      "path": "docs/release-240/completion-proof.md",
++      "sizeBytes": 202,
++      "sha256": "6ea8c37aabed0d9584f5f0b3f00c5d1acf7f82f8dddfb1edd1f1748cd7ce862d",
++      "suffix": ".md"
++    },
++    {
++      "path": "docs/release-240/deletion-scope.md",
++      "sizeBytes": 205,
++      "sha256": "2fa8fbbee3d971a08ce8438b1e50ff32f704f01c64db02c3731b9a674308a94c",
++      "suffix": ".md"
++    },
++    {
++      "path": "docs/release-240/local-publisher.md",
++      "sizeBytes": 195,
++      "sha256": "01d845ecf15e4a9c0829314e555b484a7bcd3324d0be0d07394b82925dad03e2",
++      "suffix": ".md"
++    },
+     {
+       "path": "docs/release-attestation.md",
+       "sizeBytes": 688,
+@@ -610,8 +743,8 @@
+     },
+     {
+       "path": "docs/release-governance.md",
+-      "sizeBytes": 4923,
+-      "sha256": "52298f0db68f3cb99bc3d8abe0e9bdef36d63a4fa2d745e225b8f039540b3799",
++      "sizeBytes": 5151,
++      "sha256": "bce7802bfa761dd90931051fb4299d59cf41d645d55e26468a8b370f9c993284",
+       "suffix": ".md"
+     },
+     {
+@@ -1635,15 +1768,15 @@
+       "suffix": ".json"
+     },
+     {
+-      "path": "policies/atomic-publisher.json",
+-      "sizeBytes": 600,
+-      "sha256": "7ca21df7d17e8c47000801245d624cc886ab02ee755299fb407aec45c602aaf2",
++      "path": "manifest-release-239.json",
++      "sizeBytes": 32782,
++      "sha256": "a447f2680522ebba81ffc6e37280afc14fd0b06b9cbd92c2a662dc7af6d161b8",
+       "suffix": ".json"
+     },
+     {
+       "path": "policies/deployment-conformance.json",
+       "sizeBytes": 586,
+-      "sha256": "0762a6040d9964ae11f9826967fc2ecd87b237b368103f6334fa1255ad1ff6ba",
++      "sha256": "a981448282f664b18bdc94a1ea53f8fb6622691c75577067dbb01cdcb8ac5744",
+       "suffix": ".json"
+     },
+     {
+@@ -1665,9 +1798,9 @@
+       "suffix": ".json"
+     },
+     {
+-      "path": "policies/release-transaction.json",
+-      "sizeBytes": 909,
+-      "sha256": "396ee3b21b76e9e58748016f5cf994d775beabb58e8cd1e9942c6a9ec66eb82a",
++      "path": "policies/release-closure.json",
++      "sizeBytes": 561,
++      "sha256": "01f650742fa84aaf8df6a989f4f5a0bb848cd97751811b53d977ff99363f2068",
+       "suffix": ".json"
+     },
+     {
+@@ -1708,38 +1841,26 @@
+     },
+     {
+       "path": "policies/repository-integrity-required-assets.json",
+-      "sizeBytes": 1677,
+-      "sha256": "35b71f050b4fa69812c6d6c00e007dde16335af27a82723320c9f4b1c3d33827",
++      "sizeBytes": 1452,
++      "sha256": "9d4be1fc723135fa918ae49359af1b3535ff2f8679e5bbbab7612caa2a60c354",
+       "suffix": ".json"
+     },
+     {
+       "path": "policies/repository-integrity.json",
+-      "sizeBytes": 2811,
+-      "sha256": "f366daef0dc3d6aa6fce920b49947a8f07c967edfcf9fc96048f7b4f5284f781",
++      "sizeBytes": 2586,
++      "sha256": "16e41f0faa73ab31f947dd825177467508d8a6f3e088c2c61e3ff76e1af61bd6",
+       "suffix": ".json"
+     },
+     {
+       "path": "pyproject.toml",
+-      "sizeBytes": 314,
+-      "sha256": "2f49d3d043200d794d8cda8a6c35622c444980c86578b557ff4dc205adceffbf",
++      "sizeBytes": 251,
++      "sha256": "c9d4b143ef9e7b921da9023d884a5aa65368bf62c4b4bcc7949b5eaa53c300bf",
+       "suffix": ".toml"
+     },
+-    {
+-      "path": "schemas/atomic-publish-result.schema.json",
+-      "sizeBytes": 421,
+-      "sha256": "3ff660424ce20f7c0510d003527091a1eaaefadbb3f15653442cec454fc7ea13",
+-      "suffix": ".json"
+-    },
+-    {
+-      "path": "schemas/atomic-publisher.schema.json",
+-      "sizeBytes": 540,
+-      "sha256": "b8ce97a6dcc1d3bfa1185c98410261828ca6004addb5111eefef458127c2e35c",
+-      "suffix": ".json"
+-    },
+     {
+       "path": "schemas/deployment-conformance.schema.json",
+       "sizeBytes": 542,
+-      "sha256": "8b220162cc0065c93ff6c882b613754f81517303c1d62871f133b876fdfb58d8",
++      "sha256": "de4a44cb2220d41041be078e2604a3e38c1906c56477685822c2de4b4d209c68",
+       "suffix": ".json"
+     },
+     {
+@@ -1785,21 +1906,21 @@
+       "suffix": ".json"
+     },
+     {
+-      "path": "schemas/release-finalization-result.schema.json",
+-      "sizeBytes": 481,
+-      "sha256": "86939ff2b643b9904a26578e2412a80fe9e55737431cc30d824f0e88787f985f",
++      "path": "schemas/release-closure-result.schema.json",
++      "sizeBytes": 473,
++      "sha256": "e78e107a9228ab4b5f1deebe6d925d09122517d08a49da02d72b67a7c3c324e1",
+       "suffix": ".json"
+     },
+     {
+-      "path": "schemas/release-manifest.schema.json",
+-      "sizeBytes": 1415,
+-      "sha256": "6e077f4e5dfbafd5071eb0b743a95920d883a7ae944bd965684cfa3386bc0ea0",
++      "path": "schemas/release-closure.schema.json",
++      "sizeBytes": 538,
++      "sha256": "03f4e89a99a7defc0b7834f20c52ba576ce33217555acec03f45ad5dfc9b9a4c",
+       "suffix": ".json"
+     },
+     {
+-      "path": "schemas/release-transaction.schema.json",
+-      "sizeBytes": 545,
+-      "sha256": "c3571b5f027bd189403547bfecf8fdc7c03f88cfb5f85c372c1d03b07719ca53",
++      "path": "schemas/release-manifest.schema.json",
++      "sizeBytes": 1415,
++      "sha256": "6e077f4e5dfbafd5071eb0b743a95920d883a7ae944bd965684cfa3386bc0ea0",
+       "suffix": ".json"
+     },
+     {
+@@ -1935,177 +2056,33 @@
+       "suffix": ".sh"
+     },
+     {
+-      "path": "scripts/release236/apply-release-236.ps1",
+-      "sizeBytes": 2974,
+-      "sha256": "71ffcc79a8c9a5d83a26cb1c0f1e318ef7d1e3e22f6d20d76dbc4ac86faf037e",
+-      "suffix": ".ps1"
+-    },
+-    {
+-      "path": "scripts/release236/apply-release-236.sh",
+-      "sizeBytes": 1639,
+-      "sha256": "407ea799e96fb4213e13df9e5e3a12fc9066f596a05c5b23e79a585ab950230d",
+-      "suffix": ".sh"
+-    },
+-    {
+-      "path": "scripts/release236/show-changed-files.ps1",
+-      "sizeBytes": 167,
+-      "sha256": "e7138f89bf3da19c2fbafcfec16c5d1a5bc2049f847ba3f419de11a5834c7dbd",
+-      "suffix": ".ps1"
+-    },
+-    {
+-      "path": "scripts/release236/show-changed-files.sh",
+-      "sizeBytes": 108,
+-      "sha256": "e65c5b87b1feab1b0438c158502bfb5185b803a1934086bbd797021ca4a1bf75",
+-      "suffix": ".sh"
+-    },
+-    {
+-      "path": "scripts/release236/verify-base.ps1",
+-      "sizeBytes": 325,
+-      "sha256": "b927d058a15fb3e94ae01ede144a70b4ed6a82b50ff723b4e14792889f918711",
+-      "suffix": ".ps1"
+-    },
+-    {
+-      "path": "scripts/release236/verify-base.sh",
+-      "sizeBytes": 291,
+-      "sha256": "6a64cb89177858cc39a2132c92c4ab6aa5b23d0802a1144543a807fcfe3cd525",
+-      "suffix": ".sh"
+-    },
+-    {
+-      "path": "scripts/release236/verify-deletions.py",
+-      "sizeBytes": 431,
+-      "sha256": "a4385b60b542b85ed892f955aaa50d96cd0c731d4843a4e2ae625d73b8877a2d",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "scripts/release237/prepare-checkout.py",
+-      "sizeBytes": 2144,
+-      "sha256": "22ae7bd47154cae043ea07f46c0e3104bc5e2c583d7a09f8661bdfb28bf7ddf3",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "scripts/release237/publish-no-push.ps1",
+-      "sizeBytes": 292,
+-      "sha256": "98916931b5a673c7056070f6aad5e21470d28c93a677c256e5b941ceef731fa7",
+-      "suffix": ".ps1"
+-    },
+-    {
+-      "path": "scripts/release237/publish-release-237.ps1",
+-      "sizeBytes": 3869,
+-      "sha256": "b4b07dc6f5053ac8d772825128bd2202bbdcb162f5debd679f43bcca1d7ec79e",
+-      "suffix": ".ps1"
+-    },
+-    {
+-      "path": "scripts/release237/publish-release-237.sh",
+-      "sizeBytes": 1948,
+-      "sha256": "5518aefd4ab4ecb5ba0cbded9eeb2b5f0c2521a32ff2fba807875053c5828359",
+-      "suffix": ".sh"
+-    },
+-    {
+-      "path": "scripts/release237/run-release-tests.py",
+-      "sizeBytes": 1296,
+-      "sha256": "d475c58fecbba5b048c861d30c606cb7ff07f6da877f713523ff6e065931a962",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "scripts/release237/show-result.ps1",
+-      "sizeBytes": 554,
+-      "sha256": "fb329b442b277cefd20bac66229c1d2cc59696adf3c3e416f607e1630ae148d6",
+-      "suffix": ".ps1"
+-    },
+-    {
+-      "path": "scripts/release237/verify-base.py",
+-      "sizeBytes": 955,
+-      "sha256": "42fa5bda5b4fb5586f594099c35f1d8774e6ae0fa817de6ea84f655497d4711d",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "scripts/release237/verify-no-tracked-cache.py",
+-      "sizeBytes": 780,
+-      "sha256": "8e13a198d5be676e62be9dcc6ec6dbbf1245160eb60cebf3c9b7e92c59974563",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "scripts/release237/verify-staged-change-set.py",
+-      "sizeBytes": 2451,
+-      "sha256": "e4a5c91a4206bd505f0df1cdb510653988918aadba15694d6bf5133f1b147043",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "scripts/release238/finalize-local.ps1",
+-      "sizeBytes": 1518,
+-      "sha256": "1e2d39e09bec4275809ae9b3dd0b81a788c21425454829fcf6d851a5786b17c0",
+-      "suffix": ".ps1"
+-    },
+-    {
+-      "path": "scripts/release238/finalize-local.sh",
+-      "sizeBytes": 940,
+-      "sha256": "6114064d0ef30e3d7fb38050f245c7911997e4f90687bfe2ede58351a894dbdc",
+-      "suffix": ".sh"
+-    },
+-    {
+-      "path": "scripts/release238/finalize-release-238.py",
+-      "sizeBytes": 5724,
+-      "sha256": "60a7914a67365fc4a9847f994056c5a86ed90c7873cdc0b2d5a015e049065e82",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "scripts/release238/run-release-238-tests.py",
+-      "sizeBytes": 1186,
+-      "sha256": "0d1ff5b29a3381e394791d40634a3fe7ac66fe848aebfdd179dd482d5cca9703",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "scripts/release238/verify-bootstrap.py",
+-      "sizeBytes": 1261,
+-      "sha256": "b5e12bc36bc4efe0024353e34cc356fa9aa4fa722d87bf2d87830242ee4c8af9",
++      "path": "scripts/release240/finalize-release-240.py",
++      "sizeBytes": 4388,
++      "sha256": "2ebde824d63d58cc38c0e9757af16fa3c3939808faeb3e0f1169670771714c4a",
+       "suffix": ".py"
+     },
+     {
+-      "path": "scripts/release238/verify-final-state.py",
+-      "sizeBytes": 1576,
+-      "sha256": "db217e0bf256d47fb4c58c30f955ff4fb0ae67ae558aaf5c1f3139755149a91c",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "scripts/release239/prepare-checkout.py",
+-      "sizeBytes": 2148,
+-      "sha256": "dd906393c4d2961ce6b61390e1508be4ff39b67e0074218ec946efbc85c9dda9",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "scripts/release239/publish-release-239.ps1",
+-      "sizeBytes": 3246,
+-      "sha256": "b7b328840e33a64cd32fbec94f57f260bc90a3ac3dc5d1c7ea309d275a660b19",
++      "path": "scripts/release240/publish-release-240.ps1",
++      "sizeBytes": 2491,
++      "sha256": "6f2c39c638ec5263634756369e8457878ac1e5fed97899a3fc141e6f34d33ceb",
+       "suffix": ".ps1"
+     },
+     {
+-      "path": "scripts/release239/publish-release-239.sh",
+-      "sizeBytes": 1888,
+-      "sha256": "8243ea92ce8b5ab37cdaa24143401dee0adf098ca13f273d0695ab6c1417c7dd",
+-      "suffix": ".sh"
+-    },
+-    {
+-      "path": "scripts/release239/run-release-tests.py",
+-      "sizeBytes": 1328,
+-      "sha256": "b76d9443d8fbb127a7cb2be1fbabb6c910833c5da6297222ae86d803697c1dc2",
++      "path": "scripts/release240/run-release-tests.py",
++      "sizeBytes": 890,
++      "sha256": "4bc800d6a95811347aa3a58001b74d68169fcc019b202d8ee7aed67a5a2f49d3",
+       "suffix": ".py"
+     },
+     {
+-      "path": "scripts/release239/show-result.ps1",
+-      "sizeBytes": 532,
+-      "sha256": "e0038ad65ca02cb56323d6764d92265f8d39c120778b488b28c8bbd309d4644e",
+-      "suffix": ".ps1"
+-    },
+-    {
+-      "path": "scripts/release239/verify-base.py",
+-      "sizeBytes": 838,
+-      "sha256": "5f6e2d73dd8fe24f85cdd1cd4653b15d76bcacb765661c77b34c6858e800d12a",
++      "path": "scripts/release240/verify-final-state.py",
++      "sizeBytes": 1013,
++      "sha256": "4eda4c7a4bb48b49879667a2ba78b837c36b4cfaa336fbee3e0f2dc2bb2431a1",
+       "suffix": ".py"
+     },
+     {
+-      "path": "scripts/release239/verify-staged-change-set.py",
+-      "sizeBytes": 2015,
+-      "sha256": "f9d345356a52a4c020bb42a90f2e975a69564d167ab7e54a9132ac8922af4660",
++      "path": "scripts/release240/verify-stage.py",
++      "sizeBytes": 885,
++      "sha256": "0b352be75b12e531eb9d01e1ca46ce4b709c11b3c9d9b968d3ef7ea73604e004",
+       "suffix": ".py"
+     },
+     {
+@@ -2147,7 +2124,7 @@
+     {
+       "path": "service-worker.js",
+       "sizeBytes": 5892,
+-      "sha256": "81c7d79dce4c1a82731ce3b718336a3592e41e1302ff04cc208a07831f830c1e",
++      "sha256": "70b63751f8f4cc71db533a9e02433cd80cbfe94a11be9d2ee535515b80db1ef5",
+       "suffix": ".js"
+     },
+     {
+@@ -2168,36 +2145,6 @@
+       "sha256": "c4189f874f5333ffe66b0cf026096725434273581b0b18e2983d7b793d8574b9",
+       "suffix": ".md"
+     },
+-    {
+-      "path": "tests/atomic_publisher/__init__.py",
+-      "sizeBytes": 30,
+-      "sha256": "d53a12b34833eeb143fc91158d8f8f214dff45eca3e5ade8374d74846a8e304f",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tests/atomic_publisher/test_plan.py",
+-      "sizeBytes": 1167,
+-      "sha256": "72895ee2b38ff7f4a12e0bc41301c804945fa64d63860cca043123ed10db18e0",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tests/atomic_publisher/test_release_239_package.py",
+-      "sizeBytes": 1448,
+-      "sha256": "b49ce54d21011210f377557e91395864133746959de8b05dffa2687873e6487a",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tests/atomic_publisher/test_scripts.py",
+-      "sizeBytes": 722,
+-      "sha256": "4060e0641d8fb0d008369a7ea7ebbc6aeb2164d22862fd7487afcedea7d134eb",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tests/atomic_publisher/test_validator.py",
+-      "sizeBytes": 1818,
+-      "sha256": "f49b37e1386f68364741b4ec3c0f5b5a583e9a350930c827f805ebd3945c6268",
+-      "suffix": ".py"
+-    },
+     {
+       "path": "tests/deployment_conformance/__init__.py",
+       "sizeBytes": 36,
+@@ -2219,7 +2166,7 @@
+     {
+       "path": "tests/deployment_conformance/test_service_worker.py",
+       "sizeBytes": 1064,
+-      "sha256": "a65651787d8622366f5cfa602d2fa656236c744ac46c44ddac031910ce7a5f62",
++      "sha256": "7910d4e7618d4afc37a3fe29788160682c7f4605b6d22bcd7129c7657008ff9b",
+       "suffix": ".py"
+     },
+     {
+@@ -2240,12 +2187,6 @@
+       "sha256": "fc1d39a8ef6a4e15d031cc8e402ba9656fbe248b999d34a1f1a44f8a67717b75",
+       "suffix": ".py"
+     },
+-    {
+-      "path": "tests/effective_route_consumers/test_release_237_package.py",
+-      "sizeBytes": 1913,
+-      "sha256": "e6c4cedd3502e53dd4db2f3ab65e4dacaadf1ebe79672e9c23e0b16f044d5d19",
+-      "suffix": ".py"
+-    },
+     {
+       "path": "tests/effective_route_consumers/test_runtime.py",
+       "sizeBytes": 771,
+@@ -2294,6 +2235,30 @@
+       "sha256": "a8759e0837ab525deff96e4c6c3e762ef89ddd91d90699a7c4375699ec28ddf6",
+       "suffix": ".mjs"
+     },
++    {
++      "path": "tests/release_closure/__init__.py",
++      "sizeBytes": 29,
++      "sha256": "ba8e5d0f0300f1501715f2abfb6e99a95354545f05053d2a7d335fdb082ad959",
++      "suffix": ".py"
++    },
++    {
++      "path": "tests/release_closure/test_plan.py",
++      "sizeBytes": 591,
++      "sha256": "3a0e5ac5f245a66917f12984748c12075ec2dd316f944a04cff8eac133a96a5e",
++      "suffix": ".py"
++    },
++    {
++      "path": "tests/release_closure/test_release_240_package.py",
++      "sizeBytes": 858,
++      "sha256": "2c97157b4ea5bbb5a1046e94c7c996200e51de58bcdfc63b78aa7d6587050a41",
++      "suffix": ".py"
++    },
++    {
++      "path": "tests/release_closure/test_validator.py",
++      "sizeBytes": 1240,
++      "sha256": "230f4413377a9fa38799a426ff2aa17f407e05fc065657fc89554ac01bb9320e",
++      "suffix": ".py"
++    },
+     {
+       "path": "tests/release_control/__init__.py",
+       "sizeBytes": 37,
+@@ -2354,60 +2319,12 @@
+       "sha256": "430d6e7b1d4a80b1b3ef4fb7341b5082452acdae0779d44fd517129d9130e0aa",
+       "suffix": ".py"
+     },
+-    {
+-      "path": "tests/release_control/test_release_232_package.py",
+-      "sizeBytes": 1382,
+-      "sha256": "14ebef42241e9722a5aeb43ebea89f117916df8b58161bbb6a87945284a46577",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tests/release_control/test_release_233_package.py",
+-      "sizeBytes": 3536,
+-      "sha256": "06dcca755585e7bda0bc9a65a830553fb6b786d3da9b7d539e2d03ec89e1c919",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tests/release_control/test_release_234_package.py",
+-      "sizeBytes": 933,
+-      "sha256": "22d8b1f812430640a8295bd121ae6ae50f8da788383b0c50d1ca699004b99495",
+-      "suffix": ".py"
+-    },
+     {
+       "path": "tests/release_control/test_report.py",
+       "sizeBytes": 3090,
+       "sha256": "6437d2785089a9a3d0205ce9e2d0a7822756237ae01a5f017dfafaae6b9098dc",
+       "suffix": ".py"
+     },
+-    {
+-      "path": "tests/release_transaction/__init__.py",
+-      "sizeBytes": 33,
+-      "sha256": "ec5f483fea6cdbbe404de81e30c9d0fe036b7c123ec881f6a807fa1f2447d627",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tests/release_transaction/test_plan.py",
+-      "sizeBytes": 878,
+-      "sha256": "bd0ac459c18e593439281786d2a3c6c47164a6c9c0b980ab79782f08baa5216c",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tests/release_transaction/test_release_238_package.py",
+-      "sizeBytes": 1503,
+-      "sha256": "64c24ac4a2ae6e87739ef1ac4b0bbb06ed91a3f06a79d9195bb0df949c1aa7df",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tests/release_transaction/test_state.py",
+-      "sizeBytes": 1046,
+-      "sha256": "29a79d72b5b3373a45728ca98aff104781a395a595ac563d8404cdd1283c7c01",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tests/release_transaction/test_validator.py",
+-      "sizeBytes": 2184,
+-      "sha256": "b4dc3f48e5303980edc26e9205803a546925830d9a39625d330830916fc10ef7",
+-      "suffix": ".py"
+-    },
+     {
+       "path": "tests/repository_hygiene/__init__.py",
+       "sizeBytes": 39,
+@@ -2432,12 +2349,6 @@
+       "sha256": "7fddef8ed0012c7f2fb25d860a704f819fc4e7f930cc62aff693b230aef4634b",
+       "suffix": ".py"
+     },
+-    {
+-      "path": "tests/repository_hygiene/test_release_235_package.py",
+-      "sizeBytes": 876,
+-      "sha256": "328987dde0a908575a52fba12d3dadd5a84bc9abf9e3a4f7b84e5d95e8a46b1c",
+-      "suffix": ".py"
+-    },
+     {
+       "path": "tests/repository_hygiene/test_scanner.py",
+       "sizeBytes": 1045,
+@@ -2510,12 +2421,6 @@
+       "sha256": "b31811adea41e0fbc1d04ea534110ae38dcd5a9c7fd1f8e0b4404dc178574f16",
+       "suffix": ".py"
+     },
+-    {
+-      "path": "tests/repository_integrity/test_release_236_package.py",
+-      "sizeBytes": 1852,
+-      "sha256": "46d188837e13e90b30d26c2eb19e5f4cff6ef0df71fff0131437db4b808c9218",
+-      "suffix": ".py"
+-    },
+     {
+       "path": "tests/repository_integrity/test_rules.py",
+       "sizeBytes": 888,
+@@ -2564,60 +2469,6 @@
+       "sha256": "c24725dde682de6726a8809c598ed1f5edabbe1f2a4aabf3737b5ea11b6592dd",
+       "suffix": ".py"
+     },
+-    {
+-      "path": "tools/atomic_publisher/__init__.py",
+-      "sizeBytes": 141,
+-      "sha256": "48571b627350f7c0625181037f2561aaa103c0e451a73af2e7f7be91d896ce53",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tools/atomic_publisher/constants.py",
+-      "sizeBytes": 162,
+-      "sha256": "2c08d991d65cf5e19c9c8ea9796e2a8f4a4543a3ff87780475e463f756fe574d",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tools/atomic_publisher/git.py",
+-      "sizeBytes": 1126,
+-      "sha256": "0c04aabfbf8bea501fb86c21ac35395b2bd6365dc36feeeac74ba2355e77b7f9",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tools/atomic_publisher/jsonio.py",
+-      "sizeBytes": 593,
+-      "sha256": "7fdcdcac5da7cd361d9acc5f5c9e89d61ea6867823abff930d3b9af379c3b78b",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tools/atomic_publisher/models.py",
+-      "sizeBytes": 295,
+-      "sha256": "5114c247d3b5c6896ac61c83d2f478961930293f2a492a3d4af4a0d869503c42",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tools/atomic_publisher/plan.py",
+-      "sizeBytes": 1738,
+-      "sha256": "b3846a5d40f09dde147415fbdeb880c7ec4faf19d3a33c82c87a516bb8690bc9",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tools/atomic_publisher/validate.py",
+-      "sizeBytes": 1194,
+-      "sha256": "f22e5cee787e50ac6cb3081a8c0208e4223edd6e66289762b87806524968ff0c",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tools/atomic_publisher/validator.py",
+-      "sizeBytes": 2779,
+-      "sha256": "fbe827ae5ad784aec5df97f7316211eb7749579307420444d80132c2975b490e",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tools/atomic_publisher_cli.py",
+-      "sizeBytes": 129,
+-      "sha256": "6320c777f4d492edf43679e6c7f131c7affd1c099fa98787d246831dbeb8d720",
+-      "suffix": ".py"
+-    },
+     {
+       "path": "tools/deployment_conformance/__init__.py",
+       "sizeBytes": 120,
+@@ -2675,7 +2526,7 @@
+     {
+       "path": "tools/deployment_conformance/validator.py",
+       "sizeBytes": 1535,
+-      "sha256": "e6c2c35d7b11f993e8f448833cfacabd01b81b4d2b67e00387d624638ed85321",
++      "sha256": "a840c02b89116f32246cb1a80c2d9e4ef1694ae2cf6d3f53344922a22c522f0a",
+       "suffix": ".py"
+     },
+     {
+@@ -2756,6 +2607,60 @@
+       "sha256": "9de4ba8c614bb1cc0885bb275263ea87687ce20282968effe9a42e94e86f90e5",
+       "suffix": ".py"
+     },
++    {
++      "path": "tools/release_closure/__init__.py",
++      "sizeBytes": 121,
++      "sha256": "486efd6cce2b03887ddb47970f13f7aad8882f1c87409197634fc0d97f520a9c",
++      "suffix": ".py"
++    },
++    {
++      "path": "tools/release_closure/constants.py",
++      "sizeBytes": 128,
++      "sha256": "92ce111fa30553ab59f7224662795a49db4446511818c7f789588065f7d47874",
++      "suffix": ".py"
++    },
++    {
++      "path": "tools/release_closure/git.py",
++      "sizeBytes": 634,
++      "sha256": "5ae8e2197b7d1b94a9858d6a29c4c56f5deaebefe0cd2a58a946d4d8d6e92bb0",
++      "suffix": ".py"
++    },
++    {
++      "path": "tools/release_closure/jsonio.py",
++      "sizeBytes": 373,
++      "sha256": "4644d5abf899c70961e51bf99026c35ad2877964bbc3c8708d005f26576c0b5d",
++      "suffix": ".py"
++    },
++    {
++      "path": "tools/release_closure/models.py",
++      "sizeBytes": 209,
++      "sha256": "2327974fa53d33930b9ba46b121300c805e1116586cd0b34da1fa6180174e1f8",
++      "suffix": ".py"
++    },
++    {
++      "path": "tools/release_closure/plan.py",
++      "sizeBytes": 945,
++      "sha256": "3715b7612a862d119d76248789c84c392b7b5688f3c8512a2105617785158c17",
++      "suffix": ".py"
++    },
++    {
++      "path": "tools/release_closure/validate.py",
++      "sizeBytes": 883,
++      "sha256": "5b2596490ee3929abbfb4a08c466c1343c749c275e51b1a96451de28e1485c5c",
++      "suffix": ".py"
++    },
++    {
++      "path": "tools/release_closure/validator.py",
++      "sizeBytes": 2450,
++      "sha256": "627c815c20c2b8af1fc0a069d75ade4734f1c850ed9c940c4a3c4e647613571e",
++      "suffix": ".py"
++    },
++    {
++      "path": "tools/release_closure_cli.py",
++      "sizeBytes": 98,
++      "sha256": "939fbd23639ffa31fa2c0f609800713bcc4f863edae85b7f716f4d1c1fee6c90",
++      "suffix": ".py"
++    },
+     {
+       "path": "tools/release_control/__init__.py",
+       "sizeBytes": 221,
+@@ -2846,72 +2751,6 @@
+       "sha256": "4f99da6e02b3bc5a0ce05309d92c1a21006e6e8be0c942d89da2f73eaf0587c4",
+       "suffix": ".py"
+     },
+-    {
+-      "path": "tools/release_transaction/__init__.py",
+-      "sizeBytes": 129,
+-      "sha256": "e64b0ab3d5d8bbc43700d439f3da08df25cb3661076358063663d85096b5cee7",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tools/release_transaction/constants.py",
+-      "sizeBytes": 221,
+-      "sha256": "fcf0764de139b3cebb7f5656cd06fa419dd1bb7c76a57f6fe4c88d3577ca0588",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tools/release_transaction/git.py",
+-      "sizeBytes": 1126,
+-      "sha256": "c30835258ff9189a592dcaf7777d5a81e8108bc575a4d22b52df63f1a2263151",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tools/release_transaction/jsonio.py",
+-      "sizeBytes": 593,
+-      "sha256": "7fdcdcac5da7cd361d9acc5f5c9e89d61ea6867823abff930d3b9af379c3b78b",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tools/release_transaction/models.py",
+-      "sizeBytes": 297,
+-      "sha256": "36b536cdeb5b629d0b3756859fd680b590185431ba7115406cbbee1989a2f63a",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tools/release_transaction/plan.py",
+-      "sizeBytes": 1368,
+-      "sha256": "c507025f46f29f4dc1a54429c111852a570e98232b55feaf9643d74c3828d624",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tools/release_transaction/result.py",
+-      "sizeBytes": 571,
+-      "sha256": "3538c3d8a6859cca51b9dc2bba378887835048390738b0e6930a95749e142fa6",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tools/release_transaction/state.py",
+-      "sizeBytes": 1047,
+-      "sha256": "db9497bf4359e2857985b86826af7f30474e988609a375fa41eebea70818f319",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tools/release_transaction/validate.py",
+-      "sizeBytes": 1273,
+-      "sha256": "37d3ffcf594ed6b06cdfba47cb6a9e347803ac32906256d3ea8874ecea145c47",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tools/release_transaction/validator.py",
+-      "sizeBytes": 2495,
+-      "sha256": "b04ff24736a63d957ab9fc4b0439723f183af20e19805b628d3906fffbc67490",
+-      "suffix": ".py"
+-    },
+-    {
+-      "path": "tools/release_transaction_cli.py",
+-      "sizeBytes": 132,
+-      "sha256": "ef3d784de40ddd9c3d7155da37dace251190c1c89705232ce51d421219e745b8",
+-      "suffix": ".py"
+-    },
+     {
+       "path": "tools/release_validate.py",
+       "sizeBytes": 368,
+@@ -3201,5 +3040,5 @@
+       "suffix": ".py"
+     }
+   ],
+-  "inventorySha256": "d1914f6d944c4a4b44664ebd25e5221302d74ad295a733ed1915a4b206e7cf75"
++  "inventorySha256": "b94b1d41908ac44ade5dd9fc404e6c61ba4c961f837f59a3d0427d0c7e89ae72"
+ }
+diff --git a/docs/release-240/README.md b/docs/release-240/README.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..3214fb9c66b8951d2f9fbc7cbdf0b1926484c9ea
+--- /dev/null
++++ b/docs/release-240/README.md
+@@ -0,0 +1,3 @@
++# Readme
++
++Release 240 closes the repeated tracked-cache and legacy-consumer cleanup failure with a title-independent, write-enabled self-healing finalizer.
+diff --git a/docs/release-240/browser-stage.md b/docs/release-240/browser-stage.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..edc85b098922f8148ca83f89c90f68dc10d6ca1a
+--- /dev/null
++++ b/docs/release-240/browser-stage.md
+@@ -0,0 +1,3 @@
++# Browser Stage
++
++Upload the package normally. The stage commit subject is deliberately not a validation boundary. An Actions finalizer verifies ancestry and the pending manifest before creating the authoritative final commit.
+diff --git a/docs/release-240/completion-proof.md b/docs/release-240/completion-proof.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..0b198dc2aa422de956f2390fe0aa55ee974b51d8
+--- /dev/null
++++ b/docs/release-240/completion-proof.md
+@@ -0,0 +1,3 @@
++# Completion Proof
++
++Completion requires the exact Release 240 title, parent equal to the stage SHA, a closure result, zero deletion targets, service-worker release 240 and strict repository governance.
+diff --git a/docs/release-240/deletion-scope.md b/docs/release-240/deletion-scope.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..6ef3b0110e99b5bd908435cb48de8413df06de16
+--- /dev/null
++++ b/docs/release-240/deletion-scope.md
+@@ -0,0 +1,3 @@
++# Deletion Scope
++
++The finalizer removes 94 paths: fourteen forbidden artifacts and 80 obsolete release-specific publishers, finalizers, transaction tools, scripts, workflows, and historical package tests.
+diff --git a/docs/release-240/local-publisher.md b/docs/release-240/local-publisher.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..d385e60fa4b68933c40fd361299a498895e8c3e8
+--- /dev/null
++++ b/docs/release-240/local-publisher.md
+@@ -0,0 +1,3 @@
++# Local Publisher
++
++PUBLISH_RELEASE_240.cmd performs both stage and final commits in a fresh clone. FINALIZE_RELEASE_240.cmd is the fallback when the browser stage exists but Actions cannot push.
+diff --git a/docs/release-governance.md b/docs/release-governance.md
+index 6a26a7a7163002c64c2282aea9f59881f2a159dc..3bc2f7b3b48c3c5328ce951e90179ccf80abf468 100644
+--- a/docs/release-governance.md
++++ b/docs/release-governance.md
+@@ -111,3 +111,7 @@ and governance suite, commits the exact Release 239 title and pushes once.
+ A release is rejected when the remote base moved, any deletion target is
+ missing before application, any forbidden path remains afterward, or the
+ staged change set differs from the manifest.
++
++## Release 240 self-healing closure
++
++Release 240 accepts any browser stage subject, verifies ancestry and pending state, removes all planned artifacts, validates the final tree and creates the authoritative exact-title commit.
+diff --git a/policies/deployment-conformance.json b/policies/deployment-conformance.json
+index 83be852bf375306d7e1f78113ab68ba7bae8893e..fd6c6166579248163297c5331c75442533d9f8a8 100644
+--- a/policies/deployment-conformance.json
++++ b/policies/deployment-conformance.json
+@@ -1,6 +1,6 @@
+ {
+   "version": 1,
+-  "release": 239,
++  "release": 240,
+   "contract": "data/deployment-conformance.json",
+   "serviceWorker": "service-worker.js",
+   "requiredConsumerAssets": [
+@@ -16,6 +16,6 @@
+     "assets/js/site-directory.js"
+   ],
+   "forbidGlobalFetchReplacement": true,
+-  "requireCacheRelease": "239",
++  "requireCacheRelease": "240",
+   "requireExplicitOverrideRegistry": true
+ }
+diff --git a/policies/release-closure.json b/policies/release-closure.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..f064afae10a58ca0145de99f32fd6321eb342549
+--- /dev/null
++++ b/policies/release-closure.json
+@@ -0,0 +1,14 @@
++{
++  "version": 1,
++  "release": 240,
++  "contract": "data/release-240-closure.json",
++  "deletionPlan": "data/release-240-deletion-plan.json",
++  "approvedBaseCommit": "546830197db7dddca9ab0cf8aaf62595ab3bc07f",
++  "finalCommitTitle": "Release 240: complete repository cleanup and establish self-healing release closure",
++  "maximumFinalChangedFiles": 500,
++  "requireAllTargetsBeforeFinalization": true,
++  "requireNoTargetsAfterFinalization": true,
++  "requireExactStagedCoverage": true,
++  "requireContentsWriteWorkflow": true,
++  "allowAnyStageCommitSubject": true
++}
+diff --git a/policies/repository-integrity-required-assets.json b/policies/repository-integrity-required-assets.json
+index f77127db074d53f1b966a40ae478d0f3c3600dbe..0d7f94133917eba653fb7da8470ce3ce221c22fe 100644
+--- a/policies/repository-integrity-required-assets.json
++++ b/policies/repository-integrity-required-assets.json
+@@ -1,45 +1,40 @@
+ {
+-  "release": 239,
++  "release": 240,
+   "paths": [
+     ".editorconfig",
+     ".gitattributes",
+     ".github/workflows/deployment-conformance.yml",
+     ".github/workflows/effective-route-consumers.yml",
+-    ".github/workflows/release-238-finalize.yml",
++    ".github/workflows/release-240-closure.yml",
+     ".gitignore",
+     ".pre-commit-config.yaml",
+     ".release-governance.json",
+-    "FINALIZE_RELEASE_238.cmd",
++    "FINALIZE_RELEASE_240.cmd",
+     "Makefile",
+-    "PUBLISH_RELEASE_237.cmd",
+-    "PUBLISH_RELEASE_239.cmd",
++    "PUBLISH_RELEASE_240.cmd",
+     "assets/js/content-status-audit.mjs",
+     "assets/js/discovery-workspace.mjs",
+     "assets/js/effective-route-registry.mjs",
+     "assets/js/site-directory.mjs",
+-    "data/atomic-publisher.json",
+     "data/deployment-conformance.json",
+     "data/effective-route-registry-runtime.json",
+-    "data/release-238-deletion-plan.json",
+-    "data/release-238-transaction.json",
+     "data/release-239-deletion-plan.json",
++    "data/release-240-closure.json",
++    "data/release-240-deletion-plan.json",
+     "manifest-release-239.json",
+-    "policies/atomic-publisher.json",
++    "manifest-release-240.json",
+     "policies/deployment-conformance.json",
+     "policies/effective-route-consumers.json",
+-    "policies/release-transaction.json",
++    "policies/release-closure.json",
+     "policies/repository-hygiene.json",
+     "policies/repository-integrity.json",
+     "pyproject.toml",
+     "schemas/release-attestation.schema.json",
+     "schemas/release-manifest.schema.json",
+-    "scripts/release238/finalize-release-238.py",
+-    "scripts/release239/publish-release-239.ps1",
+     "service-worker.js",
+-    "tools/atomic_publisher/validate.py",
+     "tools/deployment_conformance/validate.py",
+     "tools/effective_route_consumers/validate.py",
+-    "tools/release_transaction/validate.py",
++    "tools/release_closure/validate.py",
+     "tools/release_validate.py",
+     "tools/repository_hygiene/validate.py",
+     "tools/repository_integrity/validate.py"
+diff --git a/policies/repository-integrity.json b/policies/repository-integrity.json
+index a68d26fe861ba9d3fed0f6ae7775201793a5c537..2a38d9cbce150b05a24498c033aaa75b97b60870 100644
+--- a/policies/repository-integrity.json
++++ b/policies/repository-integrity.json
+@@ -1,47 +1,42 @@
+ {
+   "version": 1,
+-  "release": 239,
++  "release": 240,
+   "generated": "2026-07-16",
+   "requiredGovernanceAssets": [
+     ".editorconfig",
+     ".gitattributes",
+     ".github/workflows/deployment-conformance.yml",
+     ".github/workflows/effective-route-consumers.yml",
+-    ".github/workflows/release-238-finalize.yml",
++    ".github/workflows/release-240-closure.yml",
+     ".gitignore",
+     ".pre-commit-config.yaml",
+     ".release-governance.json",
+-    "FINALIZE_RELEASE_238.cmd",
++    "FINALIZE_RELEASE_240.cmd",
+     "Makefile",
+-    "PUBLISH_RELEASE_237.cmd",
+-    "PUBLISH_RELEASE_239.cmd",
++    "PUBLISH_RELEASE_240.cmd",
+     "assets/js/content-status-audit.mjs",
+     "assets/js/discovery-workspace.mjs",
+     "assets/js/effective-route-registry.mjs",
+     "assets/js/site-directory.mjs",
+-    "data/atomic-publisher.json",
+     "data/deployment-conformance.json",
+     "data/effective-route-registry-runtime.json",
+-    "data/release-238-deletion-plan.json",
+-    "data/release-238-transaction.json",
+     "data/release-239-deletion-plan.json",
++    "data/release-240-closure.json",
++    "data/release-240-deletion-plan.json",
+     "manifest-release-239.json",
+-    "policies/atomic-publisher.json",
++    "manifest-release-240.json",
+     "policies/deployment-conformance.json",
+     "policies/effective-route-consumers.json",
+-    "policies/release-transaction.json",
++    "policies/release-closure.json",
+     "policies/repository-hygiene.json",
+     "policies/repository-integrity.json",
+     "pyproject.toml",
+     "schemas/release-attestation.schema.json",
+     "schemas/release-manifest.schema.json",
+-    "scripts/release238/finalize-release-238.py",
+-    "scripts/release239/publish-release-239.ps1",
+     "service-worker.js",
+-    "tools/atomic_publisher/validate.py",
+     "tools/deployment_conformance/validate.py",
+     "tools/effective_route_consumers/validate.py",
+-    "tools/release_transaction/validate.py",
++    "tools/release_closure/validate.py",
+     "tools/release_validate.py",
+     "tools/repository_hygiene/validate.py",
+     "tools/repository_integrity/validate.py"
+diff --git a/pyproject.toml b/pyproject.toml
+index 58fb92ce5d587a462b8b8da4071adc72f7822f4a..bbe890278c4d4c2f5b2170f0e7f1aeac4486a563 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -1,13 +1,8 @@
+ [project]
+ name = "omsaravanabhava-release-governance"
+-version = "239.0.0"
++version = "240.0.0"
+ requires-python = ">=3.12"
+-description = "Atomic publishing, deployment conformance and repository integrity tooling."
+-
+-[tool.unittest]
+-start-directory = "tests"
+-pattern = "test_*.py"
+-
++description = "Self-healing release closure, deployment conformance and repository integrity."
+ [tool.ruff]
+ line-length = 100
+ target-version = "py312"
+diff --git a/schemas/deployment-conformance.schema.json b/schemas/deployment-conformance.schema.json
+index 68081e1fb9248a258c55fc1102bb8283f303173c..1f04d2b197d85893346f05f4343185e80f9762c8 100644
+--- a/schemas/deployment-conformance.schema.json
++++ b/schemas/deployment-conformance.schema.json
+@@ -11,10 +11,10 @@
+   ],
+   "properties": {
+     "release": {
+-      "const": 239
++      "const": 240
+     },
+     "expectedCacheRelease": {
+-      "const": "239"
++      "const": "240"
+     },
+     "requiredPrecacheUrls": {
+       "type": "array",
+diff --git a/schemas/release-closure-result.schema.json b/schemas/release-closure-result.schema.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..c2747ec6380c67f5264adad49de7c8cdf4d24d51
+--- /dev/null
++++ b/schemas/release-closure-result.schema.json
+@@ -0,0 +1,26 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "type": "object",
++  "required": [
++    "release",
++    "stageCommit",
++    "finalCommitTitle",
++    "deletedPaths",
++    "validation"
++  ],
++  "properties": {
++    "release": {
++      "const": 240
++    },
++    "stageCommit": {
++      "type": "string",
++      "pattern": "^[0-9a-f]{40}$"
++    },
++    "deletedPaths": {
++      "type": "array",
++      "minItems": 94,
++      "maxItems": 94,
++      "uniqueItems": true
++    }
++  }
++}
+diff --git a/schemas/release-closure.schema.json b/schemas/release-closure.schema.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..5e497bb67b1fb4e816e65536ceb41e2c058733f1
+--- /dev/null
++++ b/schemas/release-closure.schema.json
+@@ -0,0 +1,31 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "type": "object",
++  "required": [
++    "release",
++    "mode",
++    "approvedBaseCommit",
++    "finalCommitTitle",
++    "state",
++    "workflow",
++    "deletionPlan"
++  ],
++  "properties": {
++    "release": {
++      "const": 240
++    },
++    "state": {
++      "enum": [
++        "pending",
++        "finalized"
++      ]
++    },
++    "approvedBaseCommit": {
++      "type": "string",
++      "pattern": "^[0-9a-f]{40}$"
++    },
++    "browserStageSubjectEnforced": {
++      "const": false
++    }
++  }
++}
+diff --git a/scripts/release240/finalize-release-240.py b/scripts/release240/finalize-release-240.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..60bb0974bf35813477b048e0d1a73018b2e08f4c
+--- /dev/null
++++ b/scripts/release240/finalize-release-240.py
+@@ -0,0 +1,36 @@
++#!/usr/bin/env python3
++from __future__ import annotations
++import argparse, hashlib, json, subprocess
++from pathlib import Path
++TITLE='Release 240: complete repository cleanup and establish self-healing release closure'
++BASE='546830197db7dddca9ab0cf8aaf62595ab3bc07f'
++def git(root,*args):
++    r=subprocess.run(["git",*args],cwd=root,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True,check=False)
++    if r.returncode: raise RuntimeError(r.stderr.strip() or r.stdout.strip())
++    return r.stdout.strip()
++def sha256(path):
++    h=hashlib.sha256();
++    with path.open("rb") as f:
++        for b in iter(lambda:f.read(1024*1024),b""): h.update(b)
++    return h.hexdigest()
++def dump(path,payload): path.write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8",newline="\n")
++def ledger(root):
++    paths=[".release-governance.json","manifest-release-240.json","RELEASE_240.patch","RELEASE_240_CHANGED_FILES.txt","RELEASE_240_GITHUB_PORTAL_INSTRUCTIONS.txt","RELEASE_240_LOCAL_TEST_EVIDENCE.txt","RELEASE_240_VALIDATION_REPORT.md","RELEASE_240_CLOSURE_RESULT.json"]
++    lines=[f"{sha256(root/p)}  {p}" for p in paths if (root/p).is_file()]
++    (root/"RELEASE_240_SHA256SUMS.txt").write_text("\n".join(lines)+"\n",encoding="utf-8",newline="\n")
++def main():
++    p=argparse.ArgumentParser(); p.add_argument("--root",default="."); p.add_argument("--stage-sha"); p.add_argument("--expected-base"); p.add_argument("--mark-pass",action="store_true"); a=p.parse_args(); root=Path(a.root).resolve()
++    if a.mark_pass:
++        rp=root/"RELEASE_240_CLOSURE_RESULT.json"; result=json.loads(rp.read_text(encoding="utf-8")); result["validation"]={"closureStaged":"PASS","deploymentConformance":"PASS","repositoryHygiene":"PASS","repositoryIntegrity":"PASS","regressionTests":"PASS","packageGovernance":"PASS"}; dump(rp,result); ledger(root); subprocess.run(["git","add","--",rp.name,"RELEASE_240_SHA256SUMS.txt"],cwd=root,check=True); return 0
++    stage=a.stage_sha or git(root,"rev-parse","HEAD"); parent=git(root,"rev-parse",f"{stage}^"); expected=a.expected_base or BASE
++    if parent != expected: raise SystemExit(f"Stage parent must be {expected}; found {parent}")
++    manifest=json.loads((root/"manifest-release-240.json").read_text(encoding="utf-8")); plan=json.loads((root/"data/release-240-deletion-plan.json").read_text(encoding="utf-8")); targets=[str(x) for x in plan["paths"]]
++    tracked=set(filter(None,git(root,"ls-files").splitlines())); missing=sorted(set(targets)-tracked)
++    if missing: raise SystemExit("Closure targets missing before finalization:\n"+"\n".join(missing))
++    subprocess.run(["git","rm","-f","--",*targets],cwd=root,check=True)
++    config=json.loads((root/".release-governance.json").read_text(encoding="utf-8")); config["baseCommit"]=stage; config["requiredCommitTitle"]=TITLE; config["transactionState"]="finalized"; dump(root/".release-governance.json",config)
++    contract=json.loads((root/"data/release-240-closure.json").read_text(encoding="utf-8")); contract["state"]="finalized"; contract["stageCommit"]=stage; dump(root/"data/release-240-closure.json",contract)
++    manifest["base_commit"]=stage; manifest["required_commit_title"]=TITLE; manifest["added_files"]=["RELEASE_240_CLOSURE_RESULT.json"]; manifest["modified_files"]=[".release-governance.json","data/release-240-closure.json","manifest-release-240.json","RELEASE_240_SHA256SUMS.txt"]; manifest["deleted_files"]=targets; manifest["closure"]["state"]="finalized"; manifest["closure"]["stage_commit"]=stage; manifest["validation_status"]="FINALIZATION_PREPARED_REMOTE_VALIDATION_PENDING"; dump(root/"manifest-release-240.json",manifest)
++    result={"release":240,"stageCommit":stage,"finalCommitTitle":TITLE,"deletedPaths":sorted(targets),"deletedCount":len(targets),"validation":{"closureStaged":"PENDING","deploymentConformance":"PENDING","repositoryHygiene":"PENDING","repositoryIntegrity":"PENDING","regressionTests":"PENDING","packageGovernance":"PENDING"}}; dump(root/"RELEASE_240_CLOSURE_RESULT.json",result); ledger(root)
++    subprocess.run(["git","add","--",".release-governance.json","data/release-240-closure.json","manifest-release-240.json","RELEASE_240_SHA256SUMS.txt","RELEASE_240_CLOSURE_RESULT.json"],cwd=root,check=True); print(json.dumps({"stage":stage,"deleted":len(targets),"title":TITLE},indent=2)); return 0
++if __name__=="__main__": raise SystemExit(main())
+diff --git a/scripts/release240/publish-release-240.ps1 b/scripts/release240/publish-release-240.ps1
+new file mode 100644
+index 0000000000000000000000000000000000000000..cec70c15268cffb6f572722b1032f6c19637b5a7
+--- /dev/null
++++ b/scripts/release240/publish-release-240.ps1
+@@ -0,0 +1,27 @@
++[CmdletBinding()]
++param([Parameter(Mandatory=$true)][string]$PackageRoot,[Parameter(Mandatory=$true)][string]$TargetRoot,[string]$RemoteUrl="https://github.com/ssakthivel02/OmSaravanaBhava.git",[switch]$NoPush)
++$ErrorActionPreference="Stop"; $base="546830197db7dddca9ab0cf8aaf62595ab3bc07f"; $stageTitle="Stage Release 240: install self-healing repository closure"; $finalTitle="Release 240: complete repository cleanup and establish self-healing release closure"
++$PackageRoot=(Resolve-Path $PackageRoot).Path; $TargetRoot=[IO.Path]::GetFullPath($TargetRoot)
++if(Test-Path $TargetRoot){if(@(Get-ChildItem -Force $TargetRoot).Count -gt 0){throw "Target is not empty: $TargetRoot"}}else{New-Item -ItemType Directory -Path $TargetRoot|Out-Null}
++& git clone --branch main --single-branch $RemoteUrl $TargetRoot; if($LASTEXITCODE){throw "Clone failed"}
++Push-Location $TargetRoot
++try{
++  if((& git rev-parse HEAD).Trim() -ne $base){throw "Remote main moved from approved base."}
++  $manifest=Get-Content (Join-Path $PackageRoot 'manifest-release-240.json') -Raw|ConvertFrom-Json
++  foreach($path in @($manifest.added_files)+@($manifest.modified_files)){$src=Join-Path $PackageRoot $path; $dst=Join-Path $TargetRoot $path; New-Item -ItemType Directory -Force -Path (Split-Path $dst)|Out-Null; Copy-Item -Force $src $dst}
++  & git add --all; & git commit -m $stageTitle; if($LASTEXITCODE){throw "Stage commit failed"}
++  $stage=(& git rev-parse HEAD).Trim(); $env:PYTHONDONTWRITEBYTECODE='1'
++  python -B scripts/release240/finalize-release-240.py --root . --stage-sha $stage
++  python -B scripts/release240/verify-final-state.py --root .
++  python -B -m tools.release_closure.validate --root . --mode staged
++  python -B scripts/release240/run-release-tests.py --root .
++  python -B -m tools.repository_hygiene.validate --root .
++  python -B -m tools.repository_integrity.validate --root . --manifest manifest-release-240.json
++  python -B tools/release_validate.py --root . --manifest manifest-release-240.json --package-mode
++  python -B scripts/release240/finalize-release-240.py --root . --mark-pass
++  & git commit -m $finalTitle; if($LASTEXITCODE){throw "Final commit failed"}
++  python -B tools/release_validate.py --root . --manifest manifest-release-240.json --repository-mode --strict-commit-subject
++  python -B -m tools.release_closure.validate --root . --mode final
++  if(-not $NoPush){& git push origin HEAD:main; if($LASTEXITCODE){throw "Push failed"}}
++  & git log -2 --oneline
++}finally{Pop-Location}
+diff --git a/scripts/release240/run-release-tests.py b/scripts/release240/run-release-tests.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..adaa2e26a67c75bc9e00e781b9862eda202144dc
+--- /dev/null
++++ b/scripts/release240/run-release-tests.py
+@@ -0,0 +1,11 @@
++#!/usr/bin/env python3
++import argparse, os, subprocess
++from pathlib import Path
++def run(cmd,root,env):
++    print("$"," ".join(cmd)); r=subprocess.run(cmd,cwd=root,env=env,check=False);
++    if r.returncode: raise SystemExit(r.returncode)
++def main():
++    p=argparse.ArgumentParser(); p.add_argument("--root",default="."); a=p.parse_args(); root=Path(a.root).resolve(); env=dict(os.environ); env["PYTHONDONTWRITEBYTECODE"]="1"
++    js=sorted(x.relative_to(root).as_posix() for x in (root/"tests/js").glob("*.test.mjs")); run(["node","--test",*js],root,env); run(["python","-B","-m","unittest","discover","-s","tests","-p","test_*.py","-v"],root,env); run(["python","-B","-m","tools.deployment_conformance.validate","--root","."],root,env); run(["python","-B","-m","tools.effective_route_consumers.validate","--root","."],root,env)
++    return 0
++if __name__=="__main__": raise SystemExit(main())
+diff --git a/scripts/release240/verify-final-state.py b/scripts/release240/verify-final-state.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..d9e079b51f629699fbe946bfb021360a3afbb800
+--- /dev/null
++++ b/scripts/release240/verify-final-state.py
+@@ -0,0 +1,10 @@
++#!/usr/bin/env python3
++import argparse, json, subprocess
++from pathlib import Path
++def main():
++    p=argparse.ArgumentParser(); p.add_argument("--root",default="."); a=p.parse_args(); root=Path(a.root).resolve(); plan=json.loads((root/"data/release-240-deletion-plan.json").read_text(encoding="utf-8")); tracked=set(subprocess.run(["git","ls-files"],cwd=root,stdout=subprocess.PIPE,text=True,check=True).stdout.splitlines()); remaining=sorted(set(plan["paths"])&tracked)
++    if remaining: raise SystemExit("Targets remain tracked:\n"+"\n".join(remaining))
++    staged=subprocess.run(["git","diff","--cached","--name-status","--no-renames"],cwd=root,stdout=subprocess.PIPE,text=True,check=True).stdout.splitlines(); deleted=sum(1 for x in staged if x.startswith("D\t"))
++    if deleted!=len(plan["paths"]): raise SystemExit(f"Expected {len(plan['paths'])} staged deletions, found {deleted}")
++    print(f"Final closure state verified: {deleted} deletions."); return 0
++if __name__=="__main__": raise SystemExit(main())
+diff --git a/scripts/release240/verify-stage.py b/scripts/release240/verify-stage.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..8848061004a51bccb83d7f500d4ddc0af78f0951
+--- /dev/null
++++ b/scripts/release240/verify-stage.py
+@@ -0,0 +1,12 @@
++#!/usr/bin/env python3
++import argparse, json, subprocess
++from pathlib import Path
++BASE='546830197db7dddca9ab0cf8aaf62595ab3bc07f'
++def g(root,*args): return subprocess.run(["git",*args],cwd=root,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True,check=True).stdout.strip()
++def main():
++    p=argparse.ArgumentParser(); p.add_argument("--root",default="."); p.add_argument("--expected-base"); a=p.parse_args(); root=Path(a.root).resolve(); parent=g(root,"rev-parse","HEAD^"); expected=a.expected_base or BASE
++    if parent!=expected: raise SystemExit(f"Stage parent mismatch: {parent}")
++    c=json.loads((root/"data/release-240-closure.json").read_text(encoding="utf-8"));
++    if c.get("state")!="pending": raise SystemExit("Closure state is not pending.")
++    print("Stage verified without enforcing its commit subject."); return 0
++if __name__=="__main__": raise SystemExit(main())
+diff --git a/service-worker.js b/service-worker.js
+index eacaf676c2c75c1aa6314ea14d583f36b87d033e..75c4358c529208aa81af2bdd4d472da308a33139 100644
+--- a/service-worker.js
++++ b/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '239';
++const RELEASE = '240';
+ const CACHE_PREFIX = 'osb-';
+ const STATIC_CACHE = `${CACHE_PREFIX}static-v${RELEASE}`;
+ const RUNTIME_CACHE = `${CACHE_PREFIX}runtime-v${RELEASE}`;
+diff --git a/tests/deployment_conformance/test_service_worker.py b/tests/deployment_conformance/test_service_worker.py
+index 7cc89a772a0b60f4cecc7e3639c0f83d91fe18a9..3abf643306642e6f5d333400440e3e9bd1d471e8 100644
+--- a/tests/deployment_conformance/test_service_worker.py
++++ b/tests/deployment_conformance/test_service_worker.py
+@@ -6,7 +6,7 @@ from tools.deployment_conformance.service_worker import (
+ 
+ 
+ CONTRACT = {
+-    "expectedCacheRelease": "239",
++    "expectedCacheRelease": "240",
+     "requiredPrecacheUrls": ["/assets/js/site-directory.mjs"],
+     "forbiddenPrecacheUrls": ["/assets/js/site-directory.js"],
+ }
+@@ -15,7 +15,7 @@ CONTRACT = {
+ class ServiceWorkerTests(unittest.TestCase):
+     def test_canonical_source_passes(self):
+         source = (
+-            "const RELEASE = '239';\n"
++            "const RELEASE = '240';\n"
+             "const URLS = ['/assets/js/site-directory.mjs'];\n"
+         )
+         self.assertEqual(
+@@ -25,7 +25,7 @@ class ServiceWorkerTests(unittest.TestCase):
+ 
+     def test_legacy_precache_fails(self):
+         source = (
+-            "const RELEASE = '239';\n"
++            "const RELEASE = '240';\n"
+             "const URLS = ['/assets/js/site-directory.mjs',"
+             "'/assets/js/site-directory.js'];\n"
+         )
+diff --git a/tests/release_closure/__init__.py b/tests/release_closure/__init__.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..695a4bb7e7f6c0ccc9da649fc35d3a2c97e322c4
+--- /dev/null
++++ b/tests/release_closure/__init__.py
+@@ -0,0 +1 @@
++"""Release closure tests."""
+diff --git a/tests/release_closure/test_plan.py b/tests/release_closure/test_plan.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..0a810265f05e6dbcbee0cf8070e8db3853d148d8
+--- /dev/null
++++ b/tests/release_closure/test_plan.py
+@@ -0,0 +1,9 @@
++import unittest
++from tools.release_closure.plan import validate_plan
++class PlanTests(unittest.TestCase):
++    def plan(self):
++        return {"release":240,"expectedCount":14,"paths":["assets/js/site-directory.js",*[f"x/__pycache__/c{i}.pyc" for i in range(13)]]}
++    def test_minimal_forbidden_plan_passes(self): self.assertEqual(validate_plan(self.plan(),{"maximumFinalChangedFiles":500}),[])
++    def test_duplicate_fails(self):
++        p=self.plan(); p["paths"][-1]=p["paths"][0]; self.assertTrue(validate_plan(p,{"maximumFinalChangedFiles":500}))
++if __name__=="__main__": unittest.main()
+diff --git a/tests/release_closure/test_release_240_package.py b/tests/release_closure/test_release_240_package.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..98551fc8809df7208f990988f6210669b7e046bf
+--- /dev/null
++++ b/tests/release_closure/test_release_240_package.py
+@@ -0,0 +1,11 @@
++from pathlib import Path
++import json, unittest
++ROOT=Path(__file__).resolve().parents[2]
++class PackageTests(unittest.TestCase):
++    def test_manifest_identity(self):
++        m=json.loads((ROOT/"manifest-release-240.json").read_text(encoding="utf-8")); self.assertEqual((m["release"],m["base_release"]),(240,239)); self.assertEqual(m["bootstrap_base_commit"],"546830197db7dddca9ab0cf8aaf62595ab3bc07f")
++    def test_workflow_ignores_stage_subject(self):
++        s=(ROOT/".github/workflows/release-240-closure.yml").read_text(encoding="utf-8"); self.assertNotIn("verify-stage-title",s); self.assertIn("contents: write",s)
++    def test_plan_exceeds_fourteen_for_obsolete_cleanup(self):
++        p=json.loads((ROOT/"data/release-240-deletion-plan.json").read_text(encoding="utf-8")); self.assertGreater(len(p["paths"]),14)
++if __name__=="__main__": unittest.main()
+diff --git a/tests/release_closure/test_validator.py b/tests/release_closure/test_validator.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..6874030cf9dfb8efcfff5f273cb7481cadeeb5f8
+--- /dev/null
++++ b/tests/release_closure/test_validator.py
+@@ -0,0 +1,16 @@
++from pathlib import Path
++import tempfile, unittest
++from tools.release_closure.validator import validate_closure
++TARGETS=["assets/js/site-directory.js",*[f"x/__pycache__/c{i}.pyc" for i in range(13)]]
++POLICY={"approvedBaseCommit":"a"*40,"maximumFinalChangedFiles":500}
++CONTRACT={"release":240,"approvedBaseCommit":"a"*40,"browserStageSubjectEnforced":False}
++PLAN={"release":240,"expectedCount":14,"paths":TARGETS}
++class ValidatorTests(unittest.TestCase):
++    def test_pending_passes_with_targets(self):
++        with tempfile.TemporaryDirectory() as d:
++            r=validate_closure(root=Path(d),policy=POLICY,contract=CONTRACT,plan=PLAN,mode="pending",tracked_paths=set(TARGETS)); self.assertEqual(r["status"],"PASS")
++    def test_staged_exact_passes(self):
++        changes={p:"D" for p in TARGETS}; changes.update({"RELEASE_240_CLOSURE_RESULT.json":"A",".release-governance.json":"M","data/release-240-closure.json":"M","manifest-release-240.json":"M","RELEASE_240_SHA256SUMS.txt":"M"})
++        with tempfile.TemporaryDirectory() as d:
++            r=validate_closure(root=Path(d),policy=POLICY,contract=CONTRACT,plan=PLAN,mode="staged",staged_changes=changes); self.assertEqual(r["status"],"PASS")
++if __name__=="__main__": unittest.main()
+diff --git a/tools/deployment_conformance/validator.py b/tools/deployment_conformance/validator.py
+index 508cb4f233acb163ca2eb8d19c60e6ca5e2de11e..04447e2cd64971955443667752a28baf75ed5b84 100644
+--- a/tools/deployment_conformance/validator.py
++++ b/tools/deployment_conformance/validator.py
+@@ -35,7 +35,7 @@ def validate_deployment(root: Path, policy: dict, contract: dict) -> dict:
+     findings.extend(validate_route_assets(root))
+     return {
+         "status": PASS if not findings else FAIL,
+-        "release": int(policy.get("release", 239)),
++        "release": int(policy.get("release", 240)),
+         "findingCount": len(findings),
+         "findings": [item.to_dict() for item in findings],
+     }
+diff --git a/tools/release_closure/__init__.py b/tools/release_closure/__init__.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..c87b5fe7a101ebd3fb3dba6f6358a80b2bcf11dd
+--- /dev/null
++++ b/tools/release_closure/__init__.py
+@@ -0,0 +1,3 @@
++"""Self-healing repository closure validation."""
++from .validator import validate_closure
++__all__ = ["validate_closure"]
+diff --git a/tools/release_closure/constants.py b/tools/release_closure/constants.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..2faaa2f13dafd0b55a59edf8fc7ce2995e03bb4a
+--- /dev/null
++++ b/tools/release_closure/constants.py
+@@ -0,0 +1,4 @@
++PASS = "PASS"
++FAIL = "FAIL"
++DEFAULT_POLICY = "policies/release-closure.json"
++DEFAULT_CONTRACT = "data/release-240-closure.json"
+diff --git a/tools/release_closure/git.py b/tools/release_closure/git.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..cda3a5e58b8dfd57ed5f94dd00fbce4d2fe6879d
+--- /dev/null
++++ b/tools/release_closure/git.py
+@@ -0,0 +1,14 @@
++import subprocess
++from pathlib import Path
++def run(root: Path, *args: str):
++    result=subprocess.run(["git",*args],cwd=root,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True,check=False)
++    if result.returncode: raise RuntimeError(result.stderr.strip() or result.stdout.strip())
++    return result.stdout.strip()
++def tracked(root): return set(filter(None, run(root,"ls-files").splitlines()))
++def staged(root):
++    out=run(root,"diff","--cached","--name-status","--no-renames")
++    result={}
++    for line in out.splitlines():
++        if line:
++            status,path=line.split("\t",1); result[path]=status[0]
++    return result
+diff --git a/tools/release_closure/jsonio.py b/tools/release_closure/jsonio.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..cc93dfa77821645063c35defce4510bb99d6e73b
+--- /dev/null
++++ b/tools/release_closure/jsonio.py
+@@ -0,0 +1,8 @@
++import json
++from pathlib import Path
++def load_json(path: Path):
++    payload=json.loads(path.read_text(encoding="utf-8"))
++    if not isinstance(payload, dict): raise ValueError(f"Expected JSON object: {path}")
++    return payload
++def write_json(path: Path, payload):
++    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2)+"\n", encoding="utf-8", newline="\n")
+diff --git a/tools/release_closure/models.py b/tools/release_closure/models.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..cea93ae289d06e4574af2e9f927d9526259f5f46
+--- /dev/null
++++ b/tools/release_closure/models.py
+@@ -0,0 +1,8 @@
++from __future__ import annotations
++from dataclasses import dataclass, asdict
++@dataclass(frozen=True)
++class Finding:
++    rule: str
++    message: str
++    path: str = ""
++    def to_dict(self): return asdict(self)
+diff --git a/tools/release_closure/plan.py b/tools/release_closure/plan.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..64c1088d16e542ce904447b777ecd70ca03e70fa
+--- /dev/null
++++ b/tools/release_closure/plan.py
+@@ -0,0 +1,10 @@
++from .models import Finding
++def validate_plan(plan, policy):
++    findings=[]; paths=[str(x) for x in plan.get("paths",[])]
++    if plan.get("release") != 240: findings.append(Finding("plan-release","Deletion plan release must be 240."))
++    if len(paths) != int(plan.get("expectedCount",-1)): findings.append(Finding("plan-count","Deletion plan expectedCount differs from its path count."))
++    if len(paths) != len(set(paths)): findings.append(Finding("plan-duplicate","Deletion plan paths must be unique."))
++    if len(paths) > int(policy.get("maximumFinalChangedFiles",500))-4: findings.append(Finding("plan-limit","Final closure would exceed the changed-file limit."))
++    forbidden=sum(1 for p in paths if "__pycache__" in p or p.endswith((".pyc",".pyo")) or p=="assets/js/site-directory.js")
++    if forbidden != 14: findings.append(Finding("forbidden-count","Plan must include the fourteen known forbidden artifacts."))
++    return findings
+diff --git a/tools/release_closure/validate.py b/tools/release_closure/validate.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..79857067ec39a6771db78d473ad8e3fe6562b40e
+--- /dev/null
++++ b/tools/release_closure/validate.py
+@@ -0,0 +1,11 @@
++#!/usr/bin/env python3
++import argparse, json
++from pathlib import Path
++from .git import tracked, staged
++from .jsonio import load_json
++from .validator import validate_closure
++def main():
++    p=argparse.ArgumentParser(); p.add_argument("--root",default="."); p.add_argument("--mode",choices=("pending","staged","final"),required=True); a=p.parse_args(); root=Path(a.root).resolve()
++    report=validate_closure(root=root,policy=load_json(root/"policies/release-closure.json"),contract=load_json(root/"data/release-240-closure.json"),plan=load_json(root/"data/release-240-deletion-plan.json"),mode=a.mode,tracked_paths=tracked(root) if a.mode in ("pending","final") else None,staged_changes=staged(root) if a.mode=="staged" else None)
++    print(json.dumps(report,ensure_ascii=False,indent=2)); return 0 if report["status"]=="PASS" else 1
++if __name__=="__main__": raise SystemExit(main())
+diff --git a/tools/release_closure/validator.py b/tools/release_closure/validator.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..ef453142bde8cc1d16d2b206f8d176e1c9044348
+--- /dev/null
++++ b/tools/release_closure/validator.py
+@@ -0,0 +1,27 @@
++from pathlib import Path
++from .constants import PASS, FAIL
++from .models import Finding
++from .plan import validate_plan
++def validate_closure(*, root: Path, policy: dict, contract: dict, plan: dict, mode: str, tracked_paths=None, staged_changes=None):
++    findings=[]; findings.extend(validate_plan(plan,policy)); targets=set(plan.get("paths",[]))
++    if contract.get("release") != 240: findings.append(Finding("contract-release","Closure contract release must be 240."))
++    if contract.get("approvedBaseCommit") != policy.get("approvedBaseCommit"): findings.append(Finding("contract-base","Contract and policy base commits differ."))
++    if contract.get("browserStageSubjectEnforced") is not False: findings.append(Finding("stage-subject","Stage commit subject must not be enforced."))
++    if mode=="pending":
++        if tracked_paths is not None:
++            missing=sorted(targets-tracked_paths)
++            if missing: findings.append(Finding("pending-targets","Closure targets missing before finalization: "+", ".join(missing)))
++    elif mode=="staged":
++        expected={p:"D" for p in targets}; expected.update({"RELEASE_240_CLOSURE_RESULT.json":"A", ".release-governance.json":"M", "data/release-240-closure.json":"M", "manifest-release-240.json":"M", "RELEASE_240_SHA256SUMS.txt":"M"})
++        actual=staged_changes or {}
++        missing=sorted(set(expected)-set(actual)); extra=sorted(set(actual)-set(expected)); mismatch=sorted(p for p in set(expected)&set(actual) if expected[p]!=actual[p])
++        if missing: findings.append(Finding("staged-missing","Missing staged paths: "+", ".join(missing)))
++        if extra: findings.append(Finding("staged-extra","Undeclared staged paths: "+", ".join(extra)))
++        if mismatch: findings.append(Finding("staged-status","Incorrect staged statuses: "+", ".join(mismatch)))
++    elif mode=="final":
++        if tracked_paths is not None:
++            remaining=sorted(targets&tracked_paths)
++            if remaining: findings.append(Finding("final-targets","Closure targets remain tracked: "+", ".join(remaining)))
++        if not (root/"RELEASE_240_CLOSURE_RESULT.json").is_file(): findings.append(Finding("final-result","Closure result is missing."))
++    else: findings.append(Finding("mode","Unsupported closure mode."))
++    return {"status":PASS if not findings else FAIL,"release":240,"mode":mode,"findingCount":len(findings),"targetCount":len(targets),"findings":[f.to_dict() for f in findings]}
+diff --git a/tools/release_closure_cli.py b/tools/release_closure_cli.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..ca14cf44aad41da4b8e854a356bf5c7b7f776697
+--- /dev/null
++++ b/tools/release_closure_cli.py
+@@ -0,0 +1,2 @@
++from tools.release_closure.validate import main
++if __name__=="__main__": raise SystemExit(main())

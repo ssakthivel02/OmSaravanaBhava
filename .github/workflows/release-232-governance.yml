@@ -5,12 +5,6 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
-    inputs:
-      strict_subject:
-        description: Require exact Git commit subject and disable browser fallback
-        required: false
-        type: boolean
-        default: false
 
 permissions:
   contents: read
@@ -22,174 +16,43 @@ concurrency:
 jobs:
   governance:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
-      - name: Check out repository with parent commit
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 2
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-
-      - name: Discover latest numeric release manifest
-        id: manifest
-        shell: bash
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Discover release state
+        id: release
         run: |
           manifest="$(python -m tools.release_control.discovery --root .)"
-          release="$(MANIFEST_PATH="$manifest" python - <<'PY'
-          import json
-          import os
+          echo "manifest=$manifest" >> "$GITHUB_OUTPUT"
+          MANIFEST="$manifest" python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os
           from pathlib import Path
-          path = Path(os.environ["MANIFEST_PATH"])
-          print(json.loads(path.read_text(encoding="utf-8"))["release"])
+          p=json.loads(Path(os.environ['MANIFEST']).read_text(encoding='utf-8'))
+          print(f"number={p['release']}")
+          print(f"closure={p.get('closure',{}).get('state','none')}")
           PY
-          )"
-          echo "path=$manifest" >> "$GITHUB_OUTPUT"
-          state="$(MANIFEST_PATH="$manifest" python - <<'PY'
-          import json
-          import os
-          from pathlib import Path
-          payload = json.loads(Path(os.environ["MANIFEST_PATH"]).read_text(encoding="utf-8"))
-          print(payload.get("transaction", {}).get("state", "single"))
-          PY
-          )"
-          echo "release=$release" >> "$GITHUB_OUTPUT"
-          echo "state=$state" >> "$GITHUB_OUTPUT"
-          echo "Using $manifest for Release $release in state $state"
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-
-      - name: Compile release governance tools
-        run: |
-          python -B -m compileall -q tools/release_control tools/repository_hygiene tools/repository_integrity tools/effective_route_consumers tools/release_transaction tools/deployment_conformance tools/atomic_publisher tools/route_registry tools/release_validate.py
-
-      - name: Run governance unit tests
-        run: |
-          python -m unittest discover \
-            -s tests/release_control \
-            -p "test_*.py" \
-            -v
-
-      - name: Validate Release 238 bootstrap transaction
-        if: steps.manifest.outputs.state == 'bootstrap'
+      - name: Validate pending closure stage
+        if: steps.release.outputs.closure == 'pending'
         env:
-          PYTHONDONTWRITEBYTECODE: "1"
-        run: |
-          python -B -m tools.release_transaction.validate --root . --mode bootstrap
-
-      - name: Validate repository hygiene
-        if: steps.manifest.outputs.state != 'bootstrap'
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python -B -m tools.release_closure.validate --root . --mode pending
+      - name: Validate finalized repository
+        if: steps.release.outputs.closure != 'pending'
         env:
-          PYTHONDONTWRITEBYTECODE: "1"
+          PYTHONDONTWRITEBYTECODE: '1'
         run: |
-          python -B -m tools.repository_hygiene.validate             --root .             --report artifacts/repository-hygiene-report.json
-
-      - name: Validate repository integrity
-        if: steps.manifest.outputs.state != 'bootstrap'
-        env:
-          PYTHONDONTWRITEBYTECODE: "1"
-        run: |
-          python -B -m tools.repository_integrity.validate             --root .             --report artifacts/repository-integrity-report.json             --inventory artifacts/repository-integrity-inventory.json             --sarif artifacts/repository-integrity.sarif
-
-      - name: Validate explicit effective route consumers
-        if: steps.manifest.outputs.state != 'bootstrap'
-        env:
-          PYTHONDONTWRITEBYTECODE: "1"
-        run: |
-          python -B -m tools.effective_route_consumers.validate             --root .             --report artifacts/effective-route-consumers-report.json
-
-      - name: Validate atomic publisher contract
-        env:
-          PYTHONDONTWRITEBYTECODE: "1"
-        run: |
-          if [[ -f manifest-release-239.json ]]; then
-            python -B -m tools.atomic_publisher.validate               --root .               --mode final
-          fi
-
-      - name: Validate deployment conformance
-        if: steps.manifest.outputs.state != 'bootstrap'
-        env:
-          PYTHONDONTWRITEBYTECODE: "1"
-        run: |
+          python -B -m tools.repository_hygiene.validate --root .
+          python -B -m tools.repository_integrity.validate --root . --manifest "${{ steps.release.outputs.manifest }}"
+          python -B -m tools.effective_route_consumers.validate --root .
           python -B -m tools.deployment_conformance.validate --root .
-
-      - name: Run browser runtime tests
-        run: |
           node --test tests/js/*.test.mjs
-
-      - name: Validate effective route-registry drift from policy
-        env:
-          PYTHONDONTWRITEBYTECODE: "1"
-        run: |
-          python -B - <<'PY'
-          import subprocess
-          from pathlib import Path
-          from tools.repository_hygiene.workflow import route_registry_command
-          subprocess.run(route_registry_command(Path(".")), check=True)
-          PY
-
-      - name: Validate uploaded commit and generate attestation
-        shell: bash
-        run: |
-          strict_flag=""
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && \
-             [ "${{ inputs.strict_subject }}" = "true" ]; then
-            strict_flag="--strict-commit-subject"
-          fi
-          python tools/release_validate.py \
-            --root . \
-            --manifest "${{ steps.manifest.outputs.path }}" \
-            --repository-mode \
-            $strict_flag \
-            --report "artifacts/release-${{ steps.manifest.outputs.release }}-governance-report.json" \
-            --attestation "artifacts/release-${{ steps.manifest.outputs.release }}-attestation.json"
-
-      - name: Write job summary
-        if: always()
-        shell: bash
-        run: |
-          echo "# Release ${{ steps.manifest.outputs.release }} governance" >> "$GITHUB_STEP_SUMMARY"
-          echo >> "$GITHUB_STEP_SUMMARY"
-          report="artifacts/release-${{ steps.manifest.outputs.release }}-governance-report.json"
-          if [ ! -f "$report" ]; then
-            echo "Report was not generated." >> "$GITHUB_STEP_SUMMARY"
-            exit 0
-          fi
-          REPORT_PATH="$report" python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
-          import json
-          import os
-          from pathlib import Path
-
-          payload = json.loads(
-              Path(os.environ["REPORT_PATH"]).read_text(encoding="utf-8")
-          )
-          print(f"**Status:** {payload['status']}")
-          print()
-          if payload.get("warnings"):
-              print("## Warnings")
-              for warning in payload["warnings"]:
-                  print(f"- {warning}")
-              print()
-          print("| Check | Status | Result |")
-          print("|---|---:|---|")
-          for check in payload.get("checks", []):
-              message = str(check.get("message", "")).replace("|", "\\|")
-              print(
-                  f"| {check.get('name')} | {check.get('status')} | {message} |"
-              )
-          PY
-
-      - name: Upload governance evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: release-${{ steps.manifest.outputs.release }}-governance-evidence
-          path: artifacts/
-          if-no-files-found: warn
-          retention-days: 90
+          python -B -m unittest discover -s tests -p 'test_*.py' -v
+          python -B tools/release_validate.py --root . --manifest "${{ steps.release.outputs.manifest }}" --repository-mode

@@ -1,4 +1,4 @@
-const RELEASE = '239';
+const RELEASE = '240';
 const CACHE_PREFIX = 'osb-';
 const STATIC_CACHE = `${CACHE_PREFIX}static-v${RELEASE}`;
 const RUNTIME_CACHE = `${CACHE_PREFIX}runtime-v${RELEASE}`;

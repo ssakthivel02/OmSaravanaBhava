@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "release": 240,
+  "contract": "data/release-240-closure.json",
+  "deletionPlan": "data/release-240-deletion-plan.json",
+  "approvedBaseCommit": "546830197db7dddca9ab0cf8aaf62595ab3bc07f",
+  "finalCommitTitle": "Release 240: complete repository cleanup and establish self-healing release closure",
+  "maximumFinalChangedFiles": 500,
+  "requireAllTargetsBeforeFinalization": true,
+  "requireNoTargetsAfterFinalization": true,
+  "requireExactStagedCoverage": true,
+  "requireContentsWriteWorkflow": true,
+  "allowAnyStageCommitSubject": true
+}

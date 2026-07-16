@@ -111,3 +111,7 @@ and governance suite, commits the exact Release 239 title and pushes once.
 A release is rejected when the remote base moved, any deletion target is
 missing before application, any forbidden path remains afterward, or the
 staged change set differs from the manifest.
+
+## Release 240 self-healing closure
+
+Release 240 accepts any browser stage subject, verifies ancestry and pending state, removes all planned artifacts, validates the final tree and creates the authoritative exact-title commit.

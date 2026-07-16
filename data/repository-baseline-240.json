@@ -1,0 +1,19 @@
+{
+  "release": 240,
+  "generated": "2026-07-16",
+  "baseline": {
+    "trackedPythonCaches": 0,
+    "trackedGeneratedBinaries": 0,
+    "retiredRouteConsumers": 0,
+    "obsoleteReleasePublishers": 0,
+    "obsoleteReleaseFinalizers": 0,
+    "serviceWorkerRelease": 240
+  },
+  "requiredActiveControls": [
+    ".github/workflows/release-240-closure.yml",
+    ".github/workflows/release-232-governance.yml",
+    ".github/workflows/repository-hygiene.yml",
+    ".github/workflows/repository-integrity.yml",
+    "tools/release_closure/validate.py"
+  ]
+}

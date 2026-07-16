@@ -1,7 +1,7 @@
 {
-  "release": 239,
+  "release": 240,
   "serviceWorker": "/service-worker.js",
-  "expectedCacheRelease": "239",
+  "expectedCacheRelease": "240",
   "requiredPrecacheUrls": [
     "/content-status.html",
     "/discovery.html",

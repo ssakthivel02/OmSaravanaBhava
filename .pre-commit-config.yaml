@@ -2,17 +2,17 @@ repos:
   - repo: local
     hooks:
       - id: release-tests
-        name: Release 239 regression suites
-        entry: python -B scripts/release239/run-release-tests.py --root .
-        language: system
-        pass_filenames: false
-      - id: atomic-publisher
-        name: Atomic publisher contract
-        entry: python -B -m tools.atomic_publisher.validate --root . --mode package
+        name: Release 240 regression suites
+        entry: python -B scripts/release240/run-release-tests.py --root .
         language: system
         pass_filenames: false
       - id: repository-hygiene
         name: Repository hygiene
         entry: python -B -m tools.repository_hygiene.validate --root .
+        language: system
+        pass_filenames: false
+      - id: deployment-conformance
+        name: Deployment conformance
+        entry: python -B -m tools.deployment_conformance.validate --root .
         language: system
         pass_filenames: false

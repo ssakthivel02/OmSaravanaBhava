@@ -13,21 +13,15 @@
 *.pyc binary
 
 # Deterministic Release 236 installer bytes
-APPLY_RELEASE_236.cmd text eol=lf
-scripts/release236/*.ps1 text eol=lf
 
 # Deterministic Release 237 publisher bytes
-PUBLISH_RELEASE_237.cmd text eol=lf
-scripts/release237/*.ps1 text eol=lf
-scripts/release237/*.py text eol=lf
 
 # Deterministic Release 238 transaction bytes
-FINALIZE_RELEASE_238.cmd text eol=lf
-scripts/release238/*.ps1 text eol=lf
-scripts/release238/*.py text eol=lf
-.github/workflows/release-238-finalize.yml text eol=lf
 
 # Deterministic Release 239 publisher bytes
-PUBLISH_RELEASE_239.cmd text eol=lf
-scripts/release239/*.ps1 text eol=lf
-scripts/release239/*.py text eol=lf
+
+# Deterministic Release 240 closure bytes
+PUBLISH_RELEASE_240.cmd text eol=lf
+FINALIZE_RELEASE_240.cmd text eol=lf
+scripts/release240/*.ps1 text eol=lf
+scripts/release240/*.py text eol=lf

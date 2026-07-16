@@ -1,0 +1,15 @@
+{
+  "release": 240,
+  "mode": "title-independent-browser-stage-write-enabled-finalizer",
+  "approvedBaseCommit": "546830197db7dddca9ab0cf8aaf62595ab3bc07f",
+  "stageCommitTitleRecommended": "Stage Release 240: install self-healing repository closure",
+  "finalCommitTitle": "Release 240: complete repository cleanup and establish self-healing release closure",
+  "state": "pending",
+  "workflow": ".github/workflows/release-240-closure.yml",
+  "deletionPlan": "data/release-240-deletion-plan.json",
+  "result": "RELEASE_240_CLOSURE_RESULT.json",
+  "browserStageSubjectEnforced": false,
+  "contentsWriteRequired": true,
+  "localPublisher": "PUBLISH_RELEASE_240.cmd",
+  "localFallback": "FINALIZE_RELEASE_240.cmd"
+}

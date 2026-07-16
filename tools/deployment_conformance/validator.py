@@ -35,7 +35,7 @@ def validate_deployment(root: Path, policy: dict, contract: dict) -> dict:
     findings.extend(validate_route_assets(root))
     return {
         "status": PASS if not findings else FAIL,
-        "release": int(policy.get("release", 239)),
+        "release": int(policy.get("release", 240)),
         "findingCount": len(findings),
         "findings": [item.to_dict() for item in findings],
     }

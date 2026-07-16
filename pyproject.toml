@@ -1,13 +1,8 @@
 [project]
 name = "omsaravanabhava-release-governance"
-version = "239.0.0"
+version = "240.0.0"
 requires-python = ">=3.12"
-description = "Atomic publishing, deployment conformance and repository integrity tooling."
-
-[tool.unittest]
-start-directory = "tests"
-pattern = "test_*.py"
-
+description = "Self-healing release closure, deployment conformance and repository integrity."
 [tool.ruff]
 line-length = 100
 target-version = "py312"
