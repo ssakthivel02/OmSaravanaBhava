@@ -1,0 +1,132 @@
+name: Release Governance Gate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      strict_subject:
+        description: Require exact Git commit subject and disable browser fallback
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-governance-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  governance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository with parent commit
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Discover latest numeric release manifest
+        id: manifest
+        shell: bash
+        run: |
+          manifest="$(python -m tools.release_control.discovery --root .)"
+          release="$(MANIFEST_PATH="$manifest" python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          path = Path(os.environ["MANIFEST_PATH"])
+          print(json.loads(path.read_text(encoding="utf-8"))["release"])
+          PY
+          )"
+          echo "path=$manifest" >> "$GITHUB_OUTPUT"
+          echo "release=$release" >> "$GITHUB_OUTPUT"
+          echo "Using $manifest for Release $release"
+
+      - name: Compile release governance tools
+        run: |
+          python -m compileall -q tools/release_control tools/release_validate.py
+
+      - name: Run governance unit tests
+        run: |
+          python -m unittest discover \
+            -s tests/release_control \
+            -p "test_*.py" \
+            -v
+
+      - name: Validate effective route-registry drift
+        run: |
+          python -m tools.route_registry.validate \
+            --boundaries fixtures/route-registry/canonical/publication-boundaries.json \
+            --overrides data/site-routes-effective-overrides.json \
+            --release 234 \
+            --generated 2026-07-16 \
+            --check-drift
+
+      - name: Validate uploaded commit and generate attestation
+        shell: bash
+        run: |
+          strict_flag=""
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && \
+             [ "${{ inputs.strict_subject }}" = "true" ]; then
+            strict_flag="--strict-commit-subject"
+          fi
+          python tools/release_validate.py \
+            --root . \
+            --manifest "${{ steps.manifest.outputs.path }}" \
+            --repository-mode \
+            $strict_flag \
+            --report "artifacts/release-${{ steps.manifest.outputs.release }}-governance-report.json" \
+            --attestation "artifacts/release-${{ steps.manifest.outputs.release }}-attestation.json"
+
+      - name: Write job summary
+        if: always()
+        shell: bash
+        run: |
+          echo "# Release ${{ steps.manifest.outputs.release }} governance" >> "$GITHUB_STEP_SUMMARY"
+          echo >> "$GITHUB_STEP_SUMMARY"
+          report="artifacts/release-${{ steps.manifest.outputs.release }}-governance-report.json"
+          if [ ! -f "$report" ]; then
+            echo "Report was not generated." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          REPORT_PATH="$report" python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          import os
+          from pathlib import Path
+
+          payload = json.loads(
+              Path(os.environ["REPORT_PATH"]).read_text(encoding="utf-8")
+          )
+          print(f"**Status:** {payload['status']}")
+          print()
+          if payload.get("warnings"):
+              print("## Warnings")
+              for warning in payload["warnings"]:
+                  print(f"- {warning}")
+              print()
+          print("| Check | Status | Result |")
+          print("|---|---:|---|")
+          for check in payload.get("checks", []):
+              message = str(check.get("message", "")).replace("|", "\\|")
+              print(
+                  f"| {check.get('name')} | {check.get('status')} | {message} |"
+              )
+          PY
+
+      - name: Upload governance evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-${{ steps.manifest.outputs.release }}-governance-evidence
+          path: artifacts/
+          if-no-files-found: warn
+          retention-days: 90

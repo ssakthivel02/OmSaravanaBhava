@@ -1,0 +1,78 @@
+name: Release Independent Attestation
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_run:
+    workflows: ["Release Governance Gate"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-independent-attestation
+  cancel-in-progress: true
+
+jobs:
+  attest:
+    if: >-
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Resolve commit
+        id: resolve
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_run" ]; then
+            echo "sha=${{ github.event.workflow_run.head_sha }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "sha=${{ github.sha }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Check out attested commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.resolve.outputs.sha }}
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Discover latest numeric release manifest
+        id: manifest
+        shell: bash
+        run: |
+          manifest="$(python -m tools.release_control.discovery --root .)"
+          release="$(MANIFEST_PATH="$manifest" python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          path = Path(os.environ["MANIFEST_PATH"])
+          print(json.loads(path.read_text(encoding="utf-8"))["release"])
+          PY
+          )"
+          echo "path=$manifest" >> "$GITHUB_OUTPUT"
+          echo "release=$release" >> "$GITHUB_OUTPUT"
+
+      - name: Re-run browser-compatible deterministic governance
+        run: |
+          python tools/release_validate.py \
+            --root . \
+            --manifest "${{ steps.manifest.outputs.path }}" \
+            --repository-mode \
+            --report "artifacts/release-${{ steps.manifest.outputs.release }}-independent-report.json" \
+            --attestation "artifacts/release-${{ steps.manifest.outputs.release }}-independent-attestation.json"
+
+      - name: Upload independent attestation
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-${{ steps.manifest.outputs.release }}-independent-attestation
+          path: artifacts/
+          if-no-files-found: error
+          retention-days: 90

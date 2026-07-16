@@ -1,0 +1,69 @@
+{
+  "release": 234,
+  "generated": "2026-07-16",
+  "baseCommit": "7ac29a8a85ebacdaa94b24c8d1ad63adb08c86d0",
+  "requiredCommitTitle": "Release 234: add deterministic effective route-registry pipeline",
+  "manifestPath": "manifest-release-234.json",
+  "checksumLedger": "RELEASE_234_SHA256SUMS.txt",
+  "patchPath": "RELEASE_234.patch",
+  "attestationSchema": "schemas/release-attestation.schema.json",
+  "manifestSchema": "schemas/release-manifest.schema.json",
+  "filePolicy": {
+    "warningThreshold": 100,
+    "hardLimit": 500,
+    "allowOverride": false,
+    "reason": "A single static-site release should remain reviewable, reversible and uploadable. File count is not a delivery KPI."
+  },
+  "commitPolicy": {
+    "mode": "browser-compatible",
+    "requireExactSubject": true,
+    "allowBrowserDescriptionFallback": true,
+    "browserFallbackSubjects": [
+      "Add files via upload"
+    ],
+    "bodyTitleMatch": "first-non-empty-line",
+    "fallbackStatus": "WARN",
+    "strictCliFlag": "--strict-commit-subject",
+    "strictEnvironmentVariable": "OSB_STRICT_COMMIT_SUBJECT",
+    "allowDescription": true,
+    "securityBoundary": "Fallback is accepted only when the subject is an explicitly allowed GitHub browser default and the first non-empty commit-body line exactly matches required_commit_title."
+  },
+  "requiredEvidenceFiles": [
+    "RELEASE_234_CHANGED_FILES.txt",
+    "RELEASE_234_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_234_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_234_SHA256SUMS.txt",
+    "RELEASE_234_VALIDATION_REPORT.md",
+    "RELEASE_234.patch"
+  ],
+  "allowedStatusLanguage": [
+    "PASS",
+    "WARN",
+    "FAIL",
+    "NOT_RUN",
+    "INCONCLUSIVE",
+    "SKIPPED"
+  ],
+  "noFillerPolicy": {
+    "enabled": true,
+    "forbiddenNamePatterns": [
+      "file-0000",
+      "placeholder-",
+      "dummy-",
+      "sample-copy-",
+      "generated-empty-"
+    ],
+    "minimumNonWhitespaceBytes": 12
+  },
+  "routeRegistryPolicy": {
+    "historicalRegistry": "data/site-routes.json",
+    "boundaryRegistry": "data/publication-boundaries.json",
+    "effectiveOverrides": "data/site-routes-effective-overrides.json",
+    "generator": "tools/route_registry/generate.py",
+    "validator": "tools/route_registry/validate.py",
+    "failOnDrift": true,
+    "requireDeterministicSort": true,
+    "requireProvenance": true,
+    "maximumOverrideRecords": 100
+  }
+}

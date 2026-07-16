@@ -13,7 +13,7 @@ class Release233PackageChecks(unittest.TestCase):
             (ROOT / ".release-governance.json").read_text(encoding="utf-8")
         )
         policy = config["commitPolicy"]
-        self.assertEqual(config["release"], 233)
+        self.assertGreaterEqual(config["release"], 233)
         self.assertEqual(policy["mode"], "browser-compatible")
         self.assertTrue(policy["allowBrowserDescriptionFallback"])
         self.assertEqual(
@@ -71,6 +71,11 @@ class Release233PackageChecks(unittest.TestCase):
         self.assertIn("exact-subject", policy)
         self.assertIn("browser-description-fallback", policy)
         self.assertIn("--strict-commit-subject", policy)
+
+
+    def test_release_233_manifest_remains_historical(self):
+        manifest = json.loads((ROOT / "manifest-release-233.json").read_text(encoding="utf-8"))
+        self.assertEqual(manifest["release"], 233)
 
 
 if __name__ == "__main__":

@@ -52,3 +52,8 @@ The workflow fails when:
 ## Non-goals
 
 The gate does not certify devotional scholarship, production interaction quality or editorial completeness. It certifies repository release mechanics and records any browser compatibility warning without hiding it.
+
+
+## Release 234 route-registry gate
+
+The governance workflow regenerates the canonical override registry from the audited boundary fixture and fails on semantic or byte-level drift. The historical `data/site-routes.json` snapshot remains unchanged.

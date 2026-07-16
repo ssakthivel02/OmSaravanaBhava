@@ -13,3 +13,7 @@
 - [ ] Attestation artifact is downloaded and retained.
 - [ ] GitHub Pages is checked separately when production files changed.
 - [ ] Production checks use precise status language.
+
+- [ ] Effective route-registry drift validation passes.
+- [ ] Override records remain sorted and evidence-backed.
+- [ ] Historical `data/site-routes.json` remains unmodified.
