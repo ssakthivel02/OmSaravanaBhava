@@ -1,6 +1,6 @@
 # OmSaravanaBhava release governance
 
-Release 232 introduces a deterministic gate for repository releases. The gate treats a release as an auditable change set rather than a file-count exercise.
+Release 233 extends the deterministic gate with explicit GitHub browser-upload compatibility while preserving strict local Git mode.
 
 ## Required identity
 
@@ -8,24 +8,38 @@ Every release must have:
 
 - a contiguous release number;
 - the exact first-parent base commit;
-- one exact Git commit subject;
-- an explicit manifest;
-- complete changed-file declarations;
+- an explicit required release title;
+- an auditable commit-metadata mode;
+- a complete changed-file manifest;
 - a SHA256 ledger;
 - a reversible patch;
 - local and remote evidence with precise status language.
 
-For Release 232 the required subject is:
+For Release 233 the required title is:
 
-`Release 232: add deterministic release governance gate`
+`Release 233: add browser-compatible commit attestation`
 
-The subject is the first line of the Git commit message. A description may follow, but it does not replace the subject.
+## Commit metadata
 
-## Gate behaviour
+Preferred local and GitHub form:
+
+- subject exactly equals the required title;
+- status `PASS`;
+- mode `exact-subject`.
+
+Controlled GitHub browser fallback:
+
+- subject is exactly `Add files via upload`;
+- first non-empty body line exactly equals the required title;
+- status `WARN`;
+- mode `browser-description-fallback`.
+
+All other forms fail. Strict mode disables fallback.
+
+## Other gate behaviour
 
 The workflow fails when:
 
-- the subject is `Add files via upload` or another generic title;
 - the first parent differs from the manifest base commit;
 - Git changed files and manifest paths differ;
 - required evidence is missing;
@@ -37,4 +51,4 @@ The workflow fails when:
 
 ## Non-goals
 
-The gate does not certify devotional scholarship, prove production interaction quality, or replace human editorial review. It certifies repository release mechanics only.
+The gate does not certify devotional scholarship, production interaction quality or editorial completeness. It certifies repository release mechanics and records any browser compatibility warning without hiding it.

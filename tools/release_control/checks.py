@@ -19,6 +19,7 @@ def validate_release(
     config_path: Path,
     manifest_path: Path,
     repository_mode: bool,
+    strict_commit_subject: bool = False,
 ) -> GovernanceReport:
     config = load_json(config_path)
     manifest = ManifestView(manifest_path, load_json(manifest_path))
@@ -29,7 +30,13 @@ def validate_release(
     )
     for result in check_manifest(manifest, config):
         report.add(result)
-    for result in check_commit(root, manifest, config, repository_mode):
+    for result in check_commit(
+        root,
+        manifest,
+        config,
+        repository_mode,
+        strict_subject=strict_commit_subject,
+    ):
         report.add(result)
     for result in check_files(root, manifest, config, repository_mode):
         report.add(result)
@@ -40,5 +47,6 @@ def validate_release(
         manifest,
         report,
         repository_mode,
+        strict_commit_subject=strict_commit_subject,
     )
     return report

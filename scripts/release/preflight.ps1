@@ -1,21 +1,28 @@
 [CmdletBinding()]
 param(
     [string]$Root = ".",
-    [switch]$RepositoryMode
+    [string]$Manifest = "",
+    [switch]$RepositoryMode,
+    [switch]$StrictCommitSubject
 )
 
 $ErrorActionPreference = "Stop"
 $mode = if ($RepositoryMode) { "--repository-mode" } else { "--package-mode" }
 Push-Location $Root
 try {
-    python tools/release_232_validate.py `
-        --root . `
-        --manifest manifest-release-232.json `
-        $mode
-    if ($LASTEXITCODE -ne 0) {
-        throw "Release 232 governance validation failed."
+    if ([string]::IsNullOrWhiteSpace($Manifest)) {
+        $Manifest = (python -m tools.release_control.discovery --root .).Trim()
     }
-    Write-Host "Release 232 governance validation passed." -ForegroundColor Green
+    $strict = if ($StrictCommitSubject) { "--strict-commit-subject" } else { $null }
+    python tools/release_validate.py `
+        --root . `
+        --manifest $Manifest `
+        $mode `
+        $strict
+    if ($LASTEXITCODE -ne 0) {
+        throw "Release governance validation failed for $Manifest."
+    }
+    Write-Host "Release governance validation passed for $Manifest." -ForegroundColor Green
 }
 finally {
     Pop-Location

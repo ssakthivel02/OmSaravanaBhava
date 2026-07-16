@@ -1,0 +1,2111 @@
+diff --git a/.github/workflows/release-232-attestation.yml b/.github/workflows/release-232-attestation.yml
+index 1bc0b8279bcf27f12d4b08d0b9ac63e66fda4db2..21b3df47e80dfabed518a1cc643651cd477921a0 100644
+--- a/.github/workflows/release-232-attestation.yml
++++ b/.github/workflows/release-232-attestation.yml
+@@ -1,18 +1,18 @@
+-name: Release 232 Independent Attestation
++name: Release Independent Attestation
+ 
+ on:
+   workflow_dispatch:
+   schedule:
+     - cron: "17 3 * * *"
+   workflow_run:
+-    workflows: ["Release 232 Deterministic Governance Gate"]
++    workflows: ["Release Governance Gate"]
+     types: [completed]
+ 
+ permissions:
+   contents: read
+ 
+ concurrency:
+-  group: release-232-independent-attestation
++  group: release-independent-attestation
+   cancel-in-progress: true
+ 
+ jobs:
+@@ -49,17 +49,30 @@ jobs:
+         shell: bash
+         run: |
+           manifest="$(python -m tools.release_control.discovery --root .)"
++          release="$(MANIFEST_PATH="$manifest" python - <<'PY'
++          import json
++          import os
++          from pathlib import Path
++          path = Path(os.environ["MANIFEST_PATH"])
++          print(json.loads(path.read_text(encoding="utf-8"))["release"])
++          PY
++          )"
+           echo "path=$manifest" >> "$GITHUB_OUTPUT"
+-          echo "Using $manifest"
++          echo "release=$release" >> "$GITHUB_OUTPUT"
+ 
+-      - name: Re-run deterministic governance
++      - name: Re-run browser-compatible deterministic governance
+         run: |
+-          python tools/release_232_validate.py             --root .             --manifest "${{ steps.manifest.outputs.path }}"             --repository-mode             --report artifacts/release-232-independent-report.json             --attestation artifacts/release-232-independent-attestation.json
++          python tools/release_validate.py \
++            --root . \
++            --manifest "${{ steps.manifest.outputs.path }}" \
++            --repository-mode \
++            --report "artifacts/release-${{ steps.manifest.outputs.release }}-independent-report.json" \
++            --attestation "artifacts/release-${{ steps.manifest.outputs.release }}-independent-attestation.json"
+ 
+       - name: Upload independent attestation
+         uses: actions/upload-artifact@v4
+         with:
+-          name: release-232-independent-attestation
++          name: release-${{ steps.manifest.outputs.release }}-independent-attestation
+           path: artifacts/
+           if-no-files-found: error
+           retention-days: 90
+diff --git a/.github/workflows/release-232-governance.yml b/.github/workflows/release-232-governance.yml
+index d4986a54d1b65fa1a964f6f3a4ea83bd0c154880..7bc90bd0a7c98557c642015909d4bfb060e78a33 100644
+--- a/.github/workflows/release-232-governance.yml
++++ b/.github/workflows/release-232-governance.yml
+@@ -1,16 +1,22 @@
+-name: Release 232 Deterministic Governance Gate
++name: Release Governance Gate
+ 
+ on:
+   push:
+     branches: [main]
+   pull_request:
+   workflow_dispatch:
++    inputs:
++      strict_subject:
++        description: Require exact Git commit subject and disable browser fallback
++        required: false
++        type: boolean
++        default: false
+ 
+ permissions:
+   contents: read
+ 
+ concurrency:
+-  group: release-232-governance-${{ github.ref }}
++  group: release-governance-${{ github.ref }}
+   cancel-in-progress: true
+ 
+ jobs:
+@@ -33,12 +39,21 @@ jobs:
+         shell: bash
+         run: |
+           manifest="$(python -m tools.release_control.discovery --root .)"
++          release="$(MANIFEST_PATH="$manifest" python - <<'PY'
++          import json
++          import os
++          from pathlib import Path
++          path = Path(os.environ["MANIFEST_PATH"])
++          print(json.loads(path.read_text(encoding="utf-8"))["release"])
++          PY
++          )"
+           echo "path=$manifest" >> "$GITHUB_OUTPUT"
+-          echo "Using $manifest"
++          echo "release=$release" >> "$GITHUB_OUTPUT"
++          echo "Using $manifest for Release $release"
+ 
+       - name: Compile release governance tools
+         run: |
+-          python -m compileall -q tools/release_control tools/release_232_validate.py
++          python -m compileall -q tools/release_control tools/release_validate.py
+ 
+       - name: Run governance unit tests
+         run: |
+@@ -48,34 +63,47 @@ jobs:
+             -v
+ 
+       - name: Validate uploaded commit and generate attestation
++        shell: bash
+         run: |
+-          python tools/release_232_validate.py \
++          strict_flag=""
++          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && \
++             [ "${{ inputs.strict_subject }}" = "true" ]; then
++            strict_flag="--strict-commit-subject"
++          fi
++          python tools/release_validate.py \
+             --root . \
+             --manifest "${{ steps.manifest.outputs.path }}" \
+             --repository-mode \
+-            --report artifacts/release-232-governance-report.json \
+-            --attestation artifacts/release-232-attestation.json
++            $strict_flag \
++            --report "artifacts/release-${{ steps.manifest.outputs.release }}-governance-report.json" \
++            --attestation "artifacts/release-${{ steps.manifest.outputs.release }}-attestation.json"
+ 
+       - name: Write job summary
+         if: always()
+         shell: bash
+         run: |
+-          echo "# Release 232 governance" >> "$GITHUB_STEP_SUMMARY"
++          echo "# Release ${{ steps.manifest.outputs.release }} governance" >> "$GITHUB_STEP_SUMMARY"
+           echo >> "$GITHUB_STEP_SUMMARY"
+-          if [ ! -f artifacts/release-232-governance-report.json ]; then
++          report="artifacts/release-${{ steps.manifest.outputs.release }}-governance-report.json"
++          if [ ! -f "$report" ]; then
+             echo "Report was not generated." >> "$GITHUB_STEP_SUMMARY"
+             exit 0
+           fi
+-          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
++          REPORT_PATH="$report" python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+           import json
++          import os
+           from pathlib import Path
+ 
+           payload = json.loads(
+-              Path("artifacts/release-232-governance-report.json")
+-              .read_text(encoding="utf-8")
++              Path(os.environ["REPORT_PATH"]).read_text(encoding="utf-8")
+           )
+           print(f"**Status:** {payload['status']}")
+           print()
++          if payload.get("warnings"):
++              print("## Warnings")
++              for warning in payload["warnings"]:
++                  print(f"- {warning}")
++              print()
+           print("| Check | Status | Result |")
+           print("|---|---:|---|")
+           for check in payload.get("checks", []):
+@@ -89,7 +117,7 @@ jobs:
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+-          name: release-232-governance-evidence
++          name: release-${{ steps.manifest.outputs.release }}-governance-evidence
+           path: artifacts/
+           if-no-files-found: warn
+           retention-days: 90
+diff --git a/.release-governance.json b/.release-governance.json
+index 020756d3ee4c1095fae5a7102677ecc0a33fb843..762f3dbc321b8328fb64c7c95dd2287d42d80bbc 100644
+--- a/.release-governance.json
++++ b/.release-governance.json
+@@ -1,11 +1,11 @@
+ {
+-  "release": 232,
++  "release": 233,
+   "generated": "2026-07-15",
+-  "baseCommit": "f6c081ccf3f35c4b5960ba9932d588151bf39cd9",
+-  "requiredCommitTitle": "Release 232: add deterministic release governance gate",
+-  "manifestPath": "manifest-release-232.json",
+-  "checksumLedger": "RELEASE_232_SHA256SUMS.txt",
+-  "patchPath": "RELEASE_232.patch",
++  "baseCommit": "514eaf96ecaa53560bfd47cc8fc84ebd49e686f1",
++  "requiredCommitTitle": "Release 233: add browser-compatible commit attestation",
++  "manifestPath": "manifest-release-233.json",
++  "checksumLedger": "RELEASE_233_SHA256SUMS.txt",
++  "patchPath": "RELEASE_233.patch",
+   "attestationSchema": "schemas/release-attestation.schema.json",
+   "manifestSchema": "schemas/release-manifest.schema.json",
+   "filePolicy": {
+@@ -15,25 +15,30 @@
+     "reason": "A single static-site release should remain reviewable, reversible and uploadable. File count is not a delivery KPI."
+   },
+   "commitPolicy": {
++    "mode": "browser-compatible",
+     "requireExactSubject": true,
+-    "rejectSubjects": [
+-      "Add files via upload",
+-      "Update files",
+-      "Create files",
+-      "Initial commit"
++    "allowBrowserDescriptionFallback": true,
++    "browserFallbackSubjects": [
++      "Add files via upload"
+     ],
+-    "allowDescription": true
++    "bodyTitleMatch": "first-non-empty-line",
++    "fallbackStatus": "WARN",
++    "strictCliFlag": "--strict-commit-subject",
++    "strictEnvironmentVariable": "OSB_STRICT_COMMIT_SUBJECT",
++    "allowDescription": true,
++    "securityBoundary": "Fallback is accepted only when the subject is an explicitly allowed GitHub browser default and the first non-empty commit-body line exactly matches required_commit_title."
+   },
+   "requiredEvidenceFiles": [
+-    "RELEASE_232_CHANGED_FILES.txt",
+-    "RELEASE_232_GITHUB_PORTAL_INSTRUCTIONS.txt",
+-    "RELEASE_232_LOCAL_TEST_EVIDENCE.txt",
+-    "RELEASE_232_VALIDATION_REPORT.md",
+-    "RELEASE_232_SHA256SUMS.txt",
+-    "RELEASE_232.patch"
++    "RELEASE_233_CHANGED_FILES.txt",
++    "RELEASE_233_GITHUB_PORTAL_INSTRUCTIONS.txt",
++    "RELEASE_233_LOCAL_TEST_EVIDENCE.txt",
++    "RELEASE_233_VALIDATION_REPORT.md",
++    "RELEASE_233_SHA256SUMS.txt",
++    "RELEASE_233.patch"
+   ],
+   "allowedStatusLanguage": [
+     "PASS",
++    "WARN",
+     "FAIL",
+     "NOT_RUN",
+     "INCONCLUSIVE",
+diff --git a/docs/browser-upload-commit-policy.md b/docs/browser-upload-commit-policy.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..2fa572c5394d5ccc6356a6a186f73a59553d9f3f
+--- /dev/null
++++ b/docs/browser-upload-commit-policy.md
+@@ -0,0 +1,46 @@
++# Browser-compatible commit policy
++
++Release 233 recognises two evidence-backed commit-metadata modes.
++
++## Exact-subject mode
++
++The preferred mode uses this exact Git subject:
++
++`Release 233: add browser-compatible commit attestation`
++
++The commit check returns `PASS`, and the attestation records:
++
++- `subject_matches: true`
++- `metadata_mode: exact-subject`
++
++The supplied PowerShell and shell publishing scripts always create this form.
++
++## GitHub browser-description fallback
++
++GitHub's browser uploader may retain `Add files via upload` as the subject when the release title is entered in the larger description field. Release 233 accepts that form only when:
++
++1. the subject is exactly `Add files via upload`;
++2. the first non-empty commit-body line exactly equals the manifest's `required_commit_title`;
++3. strict subject mode is not enabled.
++
++The commit check returns `WARN`, while overall governance may remain `PASS` if every other check succeeds. The attestation records:
++
++- `subject_matches: false`
++- `body_matches: true`
++- `metadata_mode: browser-description-fallback`
++
++This is a transparent compatibility path, not a claim that the subject is correct.
++
++## Rejected forms
++
++The gate fails when:
++
++- both subject and body title are wrong;
++- the generic subject is used with an empty body;
++- the required title appears later than the first non-empty body line;
++- an unapproved generic subject is used;
++- strict subject mode is enabled.
++
++## Strict mode
++
++Use `--strict-commit-subject` or set `OSB_STRICT_COMMIT_SUBJECT=1` to disable browser fallback. The local publishing scripts use strict validation after creating the commit.
+diff --git a/docs/github-browser-upload.md b/docs/github-browser-upload.md
+index 48f62191990156d8da52ccd99052f2a7a40e3cc8..f5c4d9cf1b70a7da6c4129497bad26a43cd63814 100644
+--- a/docs/github-browser-upload.md
++++ b/docs/github-browser-upload.md
+@@ -2,33 +2,54 @@
+ 
+ ## Before upload
+ 
+-1. Confirm `main` is still `f6c081ccf3f35c4b5960ba9932d588151bf39cd9`.
++1. Confirm `main` is still `514eaf96ecaa53560bfd47cc8fc84ebd49e686f1`.
+ 2. Extract the release ZIP.
+ 3. Enable hidden files in Windows File Explorer.
+ 4. Verify `.github` is visible.
+-5. Run `scripts/release/preflight.ps1` when a local extracted copy is available.
++5. Run `scripts/release/preflight.ps1` against the extracted package when practical.
+ 
+-## Commit form
++## Preferred commit form
+ 
+-GitHub shows two text fields:
+-
+-1. the small upper **commit title** field;
+-2. the larger optional description field.
++GitHub normally shows a small upper commit-title field and a larger optional description field.
+ 
+ Enter this in the small upper field:
+ 
+-`Release 232: add deterministic release governance gate`
++`Release 233: add browser-compatible commit attestation`
++
++Leave the description blank unless context is required. This produces an exact-subject `PASS`.
++
++## Browser fallback
++
++When the interface does not allow the default `Add files via upload` subject to be replaced, enter this exact title as the **first non-empty line** of the larger description field:
++
++`Release 233: add browser-compatible commit attestation`
++
++The governance gate will record a `WARN` with `metadata_mode: browser-description-fallback`. It will not pretend the subject was correct.
++
++Do not add greetings, spaces or explanatory text before the title. The first non-empty description line must be exact.
++
++## Preferred local publisher
++
++After Release 233 is available locally, use:
++
++```powershell
++./scripts/release/publish-release.ps1 -Manifest manifest-release-N.json
++```
++
++or:
+ 
+-Leave the description blank unless additional context is genuinely required.
++```bash
++scripts/release/publish-release.sh . manifest-release-N.json
++```
+ 
+-`Add files via upload` is not an acceptable release subject. Release 232 will fail automatically when that subject is used.
++The publisher verifies the base SHA and declared files, creates an exact-subject commit and optionally pushes it.
+ 
+ ## After upload
+ 
+ 1. Copy the new `main` SHA.
+-2. Confirm its parent is `f6c081ccf3f35c4b5960ba9932d588151bf39cd9`.
+-3. Open Actions.
+-4. Confirm **Release 232 Deterministic Governance Gate** passes.
+-5. Download the governance evidence artifact.
++2. Confirm its parent matches the manifest `base_commit`.
++3. Open **Release Governance Gate**.
++4. Confirm overall status is `PASS`.
++5. Review whether commit metadata is `PASS` or `WARN`.
+ 6. Confirm the independent attestation passes.
+-7. Record the exact commit SHA and workflow conclusions before starting Release 233.
++7. Retain both artifacts before starting the next release.
+diff --git a/docs/release-attestation.md b/docs/release-attestation.md
+index 94e4ada5b83eb03017061b9a83f2da36bef6e35d..1c8bb6e7be02c6508ad11ea9a0d17aa226175a84 100644
+--- a/docs/release-attestation.md
++++ b/docs/release-attestation.md
+@@ -1,13 +1,17 @@
+ # Release attestation
+ 
+-The Release 232 gate emits a JSON attestation containing:
++The governance gate emits JSON containing:
+ 
+ - release number and overall governance status;
++- warning count and warning messages;
+ - uploaded commit SHA and first parent;
+-- exact commit subject and match result;
++- Git subject and first non-empty body line;
++- subject-match and body-match booleans;
++- metadata mode: exact subject, browser fallback, invalid or not run;
++- strict-subject flag;
+ - manifest path, SHA256 and base commit;
+ - changed-file count and manifest coverage differences;
+ - every deterministic check and result;
+ - UTC generation timestamp.
+ 
+-The independent attestation workflow re-runs the same deterministic checks against the selected commit. It does not reuse the first workflow's conclusion as proof.
++The independent attestation workflow re-runs the same checks against the selected commit. It does not reuse the first workflow's conclusion as proof.
+diff --git a/docs/release-governance.md b/docs/release-governance.md
+index 466c447ef7c997e5b519fe043120cb5e52470609..31f6eb8d26d5c28933d8953d53377e70fff91db2 100644
+--- a/docs/release-governance.md
++++ b/docs/release-governance.md
+@@ -1,6 +1,6 @@
+ # OmSaravanaBhava release governance
+ 
+-Release 232 introduces a deterministic gate for repository releases. The gate treats a release as an auditable change set rather than a file-count exercise.
++Release 233 extends the deterministic gate with explicit GitHub browser-upload compatibility while preserving strict local Git mode.
+ 
+ ## Required identity
+ 
+@@ -8,24 +8,38 @@ Every release must have:
+ 
+ - a contiguous release number;
+ - the exact first-parent base commit;
+-- one exact Git commit subject;
+-- an explicit manifest;
+-- complete changed-file declarations;
++- an explicit required release title;
++- an auditable commit-metadata mode;
++- a complete changed-file manifest;
+ - a SHA256 ledger;
+ - a reversible patch;
+ - local and remote evidence with precise status language.
+ 
+-For Release 232 the required subject is:
++For Release 233 the required title is:
+ 
+-`Release 232: add deterministic release governance gate`
++`Release 233: add browser-compatible commit attestation`
+ 
+-The subject is the first line of the Git commit message. A description may follow, but it does not replace the subject.
++## Commit metadata
+ 
+-## Gate behaviour
++Preferred local and GitHub form:
++
++- subject exactly equals the required title;
++- status `PASS`;
++- mode `exact-subject`.
++
++Controlled GitHub browser fallback:
++
++- subject is exactly `Add files via upload`;
++- first non-empty body line exactly equals the required title;
++- status `WARN`;
++- mode `browser-description-fallback`.
++
++All other forms fail. Strict mode disables fallback.
++
++## Other gate behaviour
+ 
+ The workflow fails when:
+ 
+-- the subject is `Add files via upload` or another generic title;
+ - the first parent differs from the manifest base commit;
+ - Git changed files and manifest paths differ;
+ - required evidence is missing;
+@@ -37,4 +51,4 @@ The workflow fails when:
+ 
+ ## Non-goals
+ 
+-The gate does not certify devotional scholarship, prove production interaction quality, or replace human editorial review. It certifies repository release mechanics only.
++The gate does not certify devotional scholarship, production interaction quality or editorial completeness. It certifies repository release mechanics and records any browser compatibility warning without hiding it.
+diff --git a/docs/release-status-language.md b/docs/release-status-language.md
+index d1a8b4bd7cf4d87664eecc076c906e99b932eca6..899452936481c9558ad6d82122475f707d16a1ff 100644
+--- a/docs/release-status-language.md
++++ b/docs/release-status-language.md
+@@ -6,6 +6,12 @@ Use only evidence-backed terms.
+ 
+ A check ran and all stated assertions succeeded.
+ 
++## WARN
++
++A check ran and accepted a documented compatibility condition. Overall governance may remain PASS, but the warning must remain visible in the report and attestation.
++
++The principal Release 233 example is GitHub browser-description fallback: the body title is exact, but the subject remains `Add files via upload`.
++
+ ## FAIL
+ 
+ A check ran and one or more stated assertions failed.
+@@ -22,4 +28,4 @@ The check was attempted but the available interface or evidence could not establ
+ 
+ The check was intentionally omitted because it does not apply in the current mode.
+ 
+-Never translate `NOT_RUN`, `INCONCLUSIVE` or `SKIPPED` into `PASS`. Repository validation and production validation are separate claims.
++Never translate `WARN`, `NOT_RUN`, `INCONCLUSIVE` or `SKIPPED` into an unqualified check-level PASS. Repository validation and production validation remain separate claims.
+diff --git a/examples/release-governance/browser-upload-fallback.txt b/examples/release-governance/browser-upload-fallback.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..26e26292bad095f0c7c8228b7cdde6d5ab4754fc
+--- /dev/null
++++ b/examples/release-governance/browser-upload-fallback.txt
+@@ -0,0 +1,12 @@
++Subject generated by GitHub browser:
++Add files via upload
++
++First non-empty description line:
++Release 233: add browser-compatible commit attestation
++
++Expected Release 233 attestation:
++subject_matches=false
++body_matches=true
++metadata_mode=browser-description-fallback
++commit-metadata status=WARN
++overall governance status=PASS
+diff --git a/manifest-release-233.json b/manifest-release-233.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..5a733065d420c24d6962185b1471195679072d5b
+--- /dev/null
++++ b/manifest-release-233.json
+@@ -0,0 +1,162 @@
++{
++  "project": "OmSaravanaBhava",
++  "release": 233,
++  "name": "Browser-Compatible Commit Attestation",
++  "base_commit": "514eaf96ecaa53560bfd47cc8fc84ebd49e686f1",
++  "base_release": 232,
++  "generated": "2026-07-15",
++  "required_commit_title": "Release 233: add browser-compatible commit attestation",
++  "validation_status": "LOCAL_PACKAGE_PASS_REPOSITORY_INTEGRATION_PASS_PATCH_CHECK_PASS_CHECKSUM_PASS_ZIP_PASS_GITHUB_ACTIONS_NOT_RUN",
++  "production_objective": "Preserve strict exact-subject governance for local Git releases while supporting a narrowly bounded GitHub browser-upload fallback that accepts only the default Add files via upload subject plus an exact required release title as the first non-empty commit-body line, records the condition as WARN, and emits explicit subject/body attestation fields.",
++  "added_files": [
++    "RELEASE_233.patch",
++    "RELEASE_233_CHANGED_FILES.txt",
++    "RELEASE_233_GITHUB_PORTAL_INSTRUCTIONS.txt",
++    "RELEASE_233_LOCAL_TEST_EVIDENCE.txt",
++    "RELEASE_233_SHA256SUMS.txt",
++    "RELEASE_233_VALIDATION_REPORT.md",
++    "docs/browser-upload-commit-policy.md",
++    "examples/release-governance/browser-upload-fallback.txt",
++    "manifest-release-233.json",
++    "scripts/release/check-commit-metadata.ps1",
++    "scripts/release/check-commit-metadata.sh",
++    "scripts/release/publish-release.ps1",
++    "scripts/release/publish-release.sh",
++    "templates/release-commit-message.template.txt",
++    "tests/release_control/test_browser_commit_policy.py",
++    "tests/release_control/test_release_233_package.py",
++    "tools/release_233_validate.py",
++    "tools/release_validate.py"
++  ],
++  "modified_files": [
++    ".github/workflows/release-232-attestation.yml",
++    ".github/workflows/release-232-governance.yml",
++    ".release-governance.json",
++    "docs/github-browser-upload.md",
++    "docs/release-attestation.md",
++    "docs/release-governance.md",
++    "docs/release-status-language.md",
++    "schemas/release-attestation.schema.json",
++    "scripts/release/check-commit-title.ps1",
++    "scripts/release/check-commit-title.sh",
++    "scripts/release/preflight.ps1",
++    "scripts/release/preflight.sh",
++    "templates/release-upload-checklist.md",
++    "tests/release_control/support.py",
++    "tests/release_control/test_cli.py",
++    "tests/release_control/test_commit.py",
++    "tests/release_control/test_release_232_package.py",
++    "tests/release_control/test_report.py",
++    "tools/release_control/checks.py",
++    "tools/release_control/checks_commit.py",
++    "tools/release_control/cli.py",
++    "tools/release_control/constants.py",
++    "tools/release_control/git.py",
++    "tools/release_control/models.py",
++    "tools/release_control/report.py"
++  ],
++  "deleted_files": [],
++  "merge_sensitive_files": [
++    ".github/workflows/release-232-governance.yml",
++    ".github/workflows/release-232-attestation.yml",
++    ".release-governance.json",
++    "tools/release_control/checks_commit.py",
++    "tools/release_control/cli.py",
++    "tools/release_control/report.py",
++    "manifest-release-233.json"
++  ],
++  "route_registry_changed": false,
++  "sitemap_changed": false,
++  "new_public_route": false,
++  "new_browser_storage_key": false,
++  "content_changes": false,
++  "service_worker_changed": false,
++  "commit_metadata_policy": {
++    "preferred_mode": "exact-subject",
++    "preferred_check_status": "PASS",
++    "browser_fallback_subject": "Add files via upload",
++    "browser_fallback_body_rule": "first non-empty line exactly equals required_commit_title",
++    "browser_fallback_check_status": "WARN",
++    "browser_fallback_overall_status": "PASS when all other checks pass",
++    "strict_cli_flag": "--strict-commit-subject",
++    "strict_environment_variable": "OSB_STRICT_COMMIT_SUBJECT"
++  },
++  "claims": {
++    "governance_corrective_release": true,
++    "release_232_subject_noncompliance_remediated": true,
++    "browser_fallback_is_visible_warning": true,
++    "strict_mode_preserved": true,
++    "safe_local_publishers_added": true,
++    "production_html_modified": false,
++    "devotional_text_modified": false,
++    "personal_data_modified": false,
++    "new_storage_key": false,
++    "analytics": false,
++    "tracking": false,
++    "backend_dependency": false
++  },
++  "validation_commands": [
++    "python -m compileall -q tools/release_control tools/release_validate.py tools/release_233_validate.py",
++    "python -m unittest discover -s tests/release_control -p \"test_*.py\" -v",
++    "python tools/release_233_validate.py --root . --manifest manifest-release-233.json --package-mode",
++    "git apply --check RELEASE_233.patch"
++  ],
++  "validation_results": {
++    "baseline_blob_match": "PASS",
++    "local_package": "PASS",
++    "python_compile": "PASS",
++    "python_tests": "PASS_60_OF_60",
++    "workflow_yaml_parse": "PASS_2_OF_2",
++    "package_changed_file_count": 43,
++    "patch_check": "PASS",
++    "checksum_ledger": "PASS",
++    "zip_validation": "PASS",
++    "github_actions": "NOT_RUN",
++    "independent_attestation": "NOT_RUN",
++    "deployed_production": "NOT_APPLICABLE_NO_SITE_CHANGE",
++    "package_archive_file_count": 58,
++    "shell_syntax": "PASS_4_OF_4",
++    "browser_fallback_repository_integration": "PASS_WITH_WARN",
++    "strict_fallback_rejection": "PASS",
++    "exact_subject_strict_integration": "PASS",
++    "patch_lines": 2111
++  },
++  "known_limitations": [
++    "Release 232 cannot receive an exact-subject PASS because its uploaded subject is Add files via upload.",
++    "Release 233 browser fallback records WARN rather than pretending the generic subject is correct.",
++    "The fallback is limited to one approved GitHub subject and an exact first non-empty body line.",
++    "Strict mode remains necessary for teams that require exact Git subjects.",
++    "Package mode cannot validate the future uploaded commit subject, body or first parent.",
++    "GitHub Actions and independent attestation remain pending until upload.",
++    "This release changes governance only and does not certify live website behaviour."
++  ],
++  "patch_scope": {
++    "includes": "All Release 233 implementation, tests, scripts, documentation, workflow updates, schema update and manifest.",
++    "excludes": [
++      "RELEASE_233.patch",
++      "RELEASE_233_CHANGED_FILES.txt",
++      "RELEASE_233_GITHUB_PORTAL_INSTRUCTIONS.txt",
++      "RELEASE_233_LOCAL_TEST_EVIDENCE.txt",
++      "RELEASE_233_SHA256SUMS.txt",
++      "RELEASE_233_VALIDATION_REPORT.md"
++    ],
++    "reason": "Evidence files are finalised after implementation patch applicability and tests pass."
++  },
++  "package_support_files": [
++    "manifest-release-232.json",
++    "tools/release_control/__init__.py",
++    "tools/release_control/__main__.py",
++    "tools/release_control/checks_checksums.py",
++    "tools/release_control/checks_files.py",
++    "tools/release_control/checks_manifest.py",
++    "tools/release_control/checks_patch.py",
++    "tools/release_control/discovery.py",
++    "tools/release_control/jsonio.py",
++    "tests/release_control/__init__.py",
++    "tests/release_control/test_checksums.py",
++    "tests/release_control/test_discovery.py",
++    "tests/release_control/test_files.py",
++    "tests/release_control/test_manifest.py",
++    "tests/release_control/test_patch.py"
++  ]
++}
+diff --git a/schemas/release-attestation.schema.json b/schemas/release-attestation.schema.json
+index 06fb0b9c07f26df90929c47627417a9a2561e2bc..839b289b93dde7d241d82daf3a3f45018c39608d 100644
+--- a/schemas/release-attestation.schema.json
++++ b/schemas/release-attestation.schema.json
+@@ -1,7 +1,7 @@
+ {
+   "$schema": "https://json-schema.org/draft/2020-12/schema",
+   "$id": "https://omsaravanabhava.org/schemas/release-attestation.schema.json",
+-  "title": "OmSaravanaBhava release attestation",
++  "title": "OmSaravanaBhava browser-compatible release attestation",
+   "type": "object",
+   "required": [
+     "release",
+@@ -10,7 +10,9 @@
+     "manifest",
+     "files",
+     "checks",
+-    "generated_at_utc"
++    "generated_at_utc",
++    "warning_count",
++    "warnings"
+   ],
+   "properties": {
+     "release": {
+@@ -29,7 +31,11 @@
+         "sha",
+         "parent",
+         "subject",
+-        "subject_matches"
++        "body_first_line",
++        "subject_matches",
++        "body_matches",
++        "metadata_mode",
++        "strict_subject"
+       ],
+       "properties": {
+         "sha": {
+@@ -43,6 +49,24 @@
+         },
+         "subject_matches": {
+           "type": "boolean"
++        },
++        "body_first_line": {
++          "type": "string"
++        },
++        "body_matches": {
++          "type": "boolean"
++        },
++        "metadata_mode": {
++          "enum": [
++            "exact-subject",
++            "browser-description-fallback",
++            "invalid",
++            "not-run",
++            "unknown"
++          ]
++        },
++        "strict_subject": {
++          "type": "boolean"
+         }
+       }
+     },
+@@ -105,6 +129,16 @@
+     },
+     "generated_at_utc": {
+       "type": "string"
++    },
++    "warning_count": {
++      "type": "integer",
++      "minimum": 0
++    },
++    "warnings": {
++      "type": "array",
++      "items": {
++        "type": "string"
++      }
+     }
+   },
+   "additionalProperties": true
+diff --git a/scripts/release/check-commit-metadata.ps1 b/scripts/release/check-commit-metadata.ps1
+new file mode 100644
+index 0000000000000000000000000000000000000000..448d0d4f1d0fcddeee78670f232485429880b42b
+--- /dev/null
++++ b/scripts/release/check-commit-metadata.ps1
+@@ -0,0 +1,28 @@
++[CmdletBinding()]
++param(
++    [string]$Manifest = "",
++    [switch]$Strict
++)
++
++$ErrorActionPreference = "Stop"
++if ([string]::IsNullOrWhiteSpace($Manifest)) {
++    $Manifest = (python -m tools.release_control.discovery --root .).Trim()
++}
++$metadata = Get-Content -Raw -LiteralPath $Manifest | ConvertFrom-Json
++$expected = [string]$metadata.required_commit_title
++$subject = (& git log -1 --pretty=%s).Trim()
++$body = & git log -1 --pretty=%b
++$bodyFirst = ($body -split "`r?`n" | Where-Object { -not [string]::IsNullOrWhiteSpace($_) } | Select-Object -First 1).Trim()
++
++if ($subject -eq $expected) {
++    Write-Host "PASS exact commit subject: $subject" -ForegroundColor Green
++    exit 0
++}
++
++if (-not $Strict -and $subject -eq "Add files via upload" -and $bodyFirst -eq $expected) {
++    Write-Warning "Browser fallback accepted: generic subject with exact release title in the first non-empty body line."
++    exit 0
++}
++
++Write-Error "Commit metadata mismatch. Expected '$expected'; subject='$subject'; body first line='$bodyFirst'."
++exit 1
+diff --git a/scripts/release/check-commit-metadata.sh b/scripts/release/check-commit-metadata.sh
+new file mode 100755
+index 0000000000000000000000000000000000000000..c652cbb19c9ba7f5f734f1f6574a475c48805a21
+--- /dev/null
++++ b/scripts/release/check-commit-metadata.sh
+@@ -0,0 +1,30 @@
++#!/usr/bin/env bash
++set -euo pipefail
++
++manifest="${1:-}"
++if [[ -z "$manifest" ]]; then
++  manifest="$(python -m tools.release_control.discovery --root .)"
++fi
++mode="${2:-browser-compatible}"
++expected="$(python - "$manifest" <<'PY'
++import json
++import sys
++from pathlib import Path
++print(json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))["required_commit_title"])
++PY
++)"
++subject="$(git log -1 --pretty=%s)"
++body_first="$(git log -1 --pretty=%b | awk 'NF {gsub(/^[[:space:]]+|[[:space:]]+$/, ""); print; exit}')"
++
++if [[ "$subject" == "$expected" ]]; then
++  printf 'PASS exact commit subject: %s\n' "$subject"
++  exit 0
++fi
++
++if [[ "$mode" != "strict" && "$subject" == "Add files via upload" && "$body_first" == "$expected" ]]; then
++  printf 'WARN browser fallback accepted: subject=%q body-first-line=%q\n' "$subject" "$body_first" >&2
++  exit 0
++fi
++
++printf 'FAIL commit metadata mismatch. expected=%q subject=%q body-first-line=%q\n' "$expected" "$subject" "$body_first" >&2
++exit 1
+diff --git a/scripts/release/check-commit-title.ps1 b/scripts/release/check-commit-title.ps1
+index e800982297cc6006c7f0e186a96916357fc837e4..aed660324199b02ba3b8cac8c3cd5d2a2f65073a 100644
+--- a/scripts/release/check-commit-title.ps1
++++ b/scripts/release/check-commit-title.ps1
+@@ -1,10 +1,6 @@
+ [CmdletBinding()]
+-param([string]$Expected = "Release 232: add deterministic release governance gate")
++param([string]$Manifest = "")
+ 
+ $ErrorActionPreference = "Stop"
+-$actual = (git log -1 --pretty=%s).Trim()
+-if ($actual -ne $Expected) {
+-    Write-Error "Commit subject mismatch. Expected '$Expected'; found '$actual'."
+-    exit 1
+-}
+-Write-Host "Commit subject is exact: $actual" -ForegroundColor Green
++& "$PSScriptRoot/check-commit-metadata.ps1" -Manifest $Manifest -Strict
++exit $LASTEXITCODE
+diff --git a/scripts/release/check-commit-title.sh b/scripts/release/check-commit-title.sh
+index 090944450856b8ac473bf3a92fce4689437f29bd..c6a51e273b9761b54c49fe51dc94f616775fb938 100755
+--- a/scripts/release/check-commit-title.sh
++++ b/scripts/release/check-commit-title.sh
+@@ -1,11 +1,4 @@
+ #!/usr/bin/env bash
+ set -euo pipefail
+-expected='Release 232: add deterministic release governance gate'
+-actual="$(git log -1 --pretty=%s)"
+-if [[ "$actual" != "$expected" ]]; then
+-  printf 'Commit subject mismatch. Expected %q; found %q.
+-' "$expected" "$actual" >&2
+-  exit 1
+-fi
+-printf 'PASS exact commit subject: %s
+-' "$actual"
++script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
++"$script_dir/check-commit-metadata.sh" "${1:-}" strict
+diff --git a/scripts/release/preflight.ps1 b/scripts/release/preflight.ps1
+index 43e5d8295e5d63bf6292b5f866c7111aa69dcaaf..0213d1d970c5dc5f526ad293b6caf7654dee1215 100644
+--- a/scripts/release/preflight.ps1
++++ b/scripts/release/preflight.ps1
+@@ -1,21 +1,28 @@
+ [CmdletBinding()]
+ param(
+     [string]$Root = ".",
+-    [switch]$RepositoryMode
++    [string]$Manifest = "",
++    [switch]$RepositoryMode,
++    [switch]$StrictCommitSubject
+ )
+ 
+ $ErrorActionPreference = "Stop"
+ $mode = if ($RepositoryMode) { "--repository-mode" } else { "--package-mode" }
+ Push-Location $Root
+ try {
+-    python tools/release_232_validate.py `
++    if ([string]::IsNullOrWhiteSpace($Manifest)) {
++        $Manifest = (python -m tools.release_control.discovery --root .).Trim()
++    }
++    $strict = if ($StrictCommitSubject) { "--strict-commit-subject" } else { $null }
++    python tools/release_validate.py `
+         --root . `
+-        --manifest manifest-release-232.json `
+-        $mode
++        --manifest $Manifest `
++        $mode `
++        $strict
+     if ($LASTEXITCODE -ne 0) {
+-        throw "Release 232 governance validation failed."
++        throw "Release governance validation failed for $Manifest."
+     }
+-    Write-Host "Release 232 governance validation passed." -ForegroundColor Green
++    Write-Host "Release governance validation passed for $Manifest." -ForegroundColor Green
+ }
+ finally {
+     Pop-Location
+diff --git a/scripts/release/preflight.sh b/scripts/release/preflight.sh
+index 7073d4c78fb167f2561abf56f0f9ae3b58dfeced..115e73d1a07ca60fe840c9305c8cf2e387525d9d 100755
+--- a/scripts/release/preflight.sh
++++ b/scripts/release/preflight.sh
+@@ -3,5 +3,19 @@ set -euo pipefail
+ 
+ root="${1:-.}"
+ mode="${2:---package-mode}"
++manifest="${3:-}"
++strict="${4:-}"
+ cd "$root"
+-python tools/release_232_validate.py   --root .   --manifest manifest-release-232.json   "$mode"
++if [[ -z "$manifest" ]]; then
++  manifest="$(python -m tools.release_control.discovery --root .)"
++fi
++args=(
++  tools/release_validate.py
++  --root .
++  --manifest "$manifest"
++  "$mode"
++)
++if [[ "$strict" == "strict" ]]; then
++  args+=(--strict-commit-subject)
++fi
++python "${args[@]}"
+diff --git a/scripts/release/publish-release.ps1 b/scripts/release/publish-release.ps1
+new file mode 100644
+index 0000000000000000000000000000000000000000..fe602ce9f399bdb8f3fdd8847532e0287dd6bcd4
+--- /dev/null
++++ b/scripts/release/publish-release.ps1
+@@ -0,0 +1,63 @@
++[CmdletBinding(SupportsShouldProcess)]
++param(
++    [string]$Root = ".",
++    [string]$Manifest = "",
++    [string]$Remote = "origin",
++    [string]$Branch = "main",
++    [switch]$NoPush
++)
++
++$ErrorActionPreference = "Stop"
++Push-Location $Root
++try {
++    if ([string]::IsNullOrWhiteSpace($Manifest)) {
++        $Manifest = (python -m tools.release_control.discovery --root .).Trim()
++    }
++    $metadata = Get-Content -Raw -LiteralPath $Manifest | ConvertFrom-Json
++    $expectedBase = [string]$metadata.base_commit
++    $title = [string]$metadata.required_commit_title
++    $head = (& git rev-parse HEAD).Trim()
++    if ($head -ne $expectedBase) {
++        throw "Base mismatch. Expected $expectedBase; current HEAD is $head."
++    }
++
++    $declared = @($metadata.added_files) + @($metadata.modified_files) + @($metadata.deleted_files)
++    $declared = $declared | ForEach-Object { [string]$_ } | Sort-Object -Unique
++    $actual = & git status --porcelain=v1
++    $actualPaths = @()
++    foreach ($line in $actual) {
++        if ($line.Length -lt 4) { continue }
++        $path = $line.Substring(3)
++        if ($path -match " -> ") { $path = ($path -split " -> ")[-1] }
++        $actualPaths += $path.Trim('"')
++    }
++    $unexpected = $actualPaths | Where-Object { $_ -notin $declared }
++    if ($unexpected) {
++        throw "Unexpected changed paths: $($unexpected -join ', ')"
++    }
++
++    python tools/release_validate.py --root . --manifest $Manifest --package-mode
++    if ($LASTEXITCODE -ne 0) { throw "Package governance validation failed." }
++
++    & git add -- $declared
++    if ($LASTEXITCODE -ne 0) { throw "git add failed." }
++    $staged = & git diff --cached --name-only
++    $missing = $declared | Where-Object { $_ -notin $staged -and (Test-Path -LiteralPath $_) }
++    if ($missing) { throw "Declared paths were not staged: $($missing -join ', ')" }
++
++    if ($PSCmdlet.ShouldProcess("$Branch", "Commit '$title'")) {
++        & git commit -m $title
++        if ($LASTEXITCODE -ne 0) { throw "git commit failed." }
++    }
++    & "$PSScriptRoot/check-commit-metadata.ps1" -Manifest $Manifest -Strict
++    if ($LASTEXITCODE -ne 0) { throw "Strict metadata validation failed." }
++
++    if (-not $NoPush -and $PSCmdlet.ShouldProcess("$Remote/$Branch", "Push release commit")) {
++        & git push $Remote "HEAD:$Branch"
++        if ($LASTEXITCODE -ne 0) { throw "git push failed." }
++    }
++    Write-Host "Release commit created with exact subject: $title" -ForegroundColor Green
++}
++finally {
++    Pop-Location
++}
+diff --git a/scripts/release/publish-release.sh b/scripts/release/publish-release.sh
+new file mode 100755
+index 0000000000000000000000000000000000000000..05dbb65d3de7993d9422084b53a5d54cd2fc9db6
+--- /dev/null
++++ b/scripts/release/publish-release.sh
+@@ -0,0 +1,54 @@
++#!/usr/bin/env bash
++set -euo pipefail
++
++root="${1:-.}"
++manifest="${2:-}"
++remote="${3:-origin}"
++branch="${4:-main}"
++no_push="${NO_PUSH:-0}"
++cd "$root"
++if [[ -z "$manifest" ]]; then
++  manifest="$(python -m tools.release_control.discovery --root .)"
++fi
++
++readarray -t metadata < <(python - "$manifest" <<'PY'
++import json
++import sys
++from pathlib import Path
++payload = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
++print(payload["base_commit"])
++print(payload["required_commit_title"])
++for key in ("added_files", "modified_files", "deleted_files"):
++    for path in payload.get(key, []):
++        print(path)
++PY
++)
++base="${metadata[0]}"
++title="${metadata[1]}"
++declared=("${metadata[@]:2}")
++head="$(git rev-parse HEAD)"
++[[ "$head" == "$base" ]] || {
++  printf 'Base mismatch. expected=%s current=%s\n' "$base" "$head" >&2
++  exit 1
++}
++
++mapfile -t actual < <(git status --porcelain=v1 | sed -E 's/^...//' | sed -E 's/^.* -> //; s/^"|"$//g')
++for path in "${actual[@]}"; do
++  found=0
++  for expected in "${declared[@]}"; do
++    [[ "$path" == "$expected" ]] && found=1 && break
++  done
++  [[ $found -eq 1 ]] || {
++    printf 'Unexpected changed path: %s\n' "$path" >&2
++    exit 1
++  }
++done
++
++python tools/release_validate.py --root . --manifest "$manifest" --package-mode
++git add -- "${declared[@]}"
++git commit -m "$title"
++scripts/release/check-commit-metadata.sh "$manifest" strict
++if [[ "$no_push" != "1" ]]; then
++  git push "$remote" "HEAD:$branch"
++fi
++printf 'Release commit created with exact subject: %s\n' "$title"
+diff --git a/templates/release-commit-message.template.txt b/templates/release-commit-message.template.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..1f0a45eb121760d95406a585bcf2ee8367280cdd
+--- /dev/null
++++ b/templates/release-commit-message.template.txt
+@@ -0,0 +1,4 @@
++Release 233: add browser-compatible commit attestation
++
++Optional description. The exact release title must remain the subject for local Git commits.
++For GitHub browser uploads only, the governance fallback accepts the browser default subject when this exact title is the first non-empty description line.
+diff --git a/templates/release-upload-checklist.md b/templates/release-upload-checklist.md
+index 35f40b81b6a07521f0f02af8e817341493e5d9db..f5eb334cfb4a632cd14dcb06777b02626e020fbf 100644
+--- a/templates/release-upload-checklist.md
++++ b/templates/release-upload-checklist.md
+@@ -5,9 +5,11 @@
+ - [ ] Hidden `.github` directory is visible.
+ - [ ] Contents—not the outer folder—are selected for upload.
+ - [ ] No unexpected deletion is shown.
+-- [ ] Commit title is entered in the small upper field.
+-- [ ] Commit description is blank unless required.
+-- [ ] Governance workflow passes.
++- [ ] Preferred: exact title is entered in the small upper subject field.
++- [ ] Browser fallback: exact title is the first non-empty description line.
++- [ ] No explanatory text appears before the fallback title.
++- [ ] Governance workflow overall status is PASS.
++- [ ] Commit metadata is reviewed as PASS or WARN.
+ - [ ] Attestation artifact is downloaded and retained.
+-- [ ] GitHub Pages result is checked separately.
++- [ ] GitHub Pages is checked separately when production files changed.
+ - [ ] Production checks use precise status language.
+diff --git a/tests/release_control/support.py b/tests/release_control/support.py
+index 96d64e756d2c34e37e32a8cd12f0bfb5cb6b615d..a926d9e7185db6da236e4d38d2a306f2bd651fd6 100644
+--- a/tests/release_control/support.py
++++ b/tests/release_control/support.py
+@@ -12,16 +12,20 @@ def write_json(path: Path, payload: dict) -> None:
+ 
+ def base_config() -> dict:
+     return {
+-        "release": 232,
++        "release": 233,
+         "baseCommit": "a" * 40,
+-        "requiredCommitTitle": "Release 232: add deterministic release governance gate",
++        "requiredCommitTitle": "Release 233: add browser-compatible commit attestation",
+         "requiredEvidenceFiles": [],
+         "checksumLedger": "SUMS.txt",
+         "patchPath": "release.patch",
+         "filePolicy": {"warningThreshold": 100, "hardLimit": 500},
+         "commitPolicy": {
+-            "rejectSubjects": ["Add files via upload"],
++            "mode": "browser-compatible",
+             "requireExactSubject": True,
++            "allowBrowserDescriptionFallback": True,
++            "browserFallbackSubjects": ["Add files via upload"],
++            "bodyTitleMatch": "first-non-empty-line",
++            "fallbackStatus": "WARN",
+         },
+         "noFillerPolicy": {
+             "enabled": True,
+@@ -34,21 +38,21 @@ def base_config() -> dict:
+ def base_manifest() -> dict:
+     return {
+         "project": "OmSaravanaBhava",
+-        "release": 232,
+-        "name": "Governance Gate",
++        "release": 233,
++        "name": "Browser-Compatible Commit Attestation",
+         "base_commit": "a" * 40,
+-        "base_release": 231,
++        "base_release": 232,
+         "generated": "2026-07-15",
+-        "required_commit_title": "Release 232: add deterministic release governance gate",
++        "required_commit_title": "Release 233: add browser-compatible commit attestation",
+         "validation_status": "PASS",
+-        "production_objective": "Add deterministic release governance checks.",
++        "production_objective": "Add transparent browser-compatible commit metadata validation.",
+         "added_files": [],
+         "modified_files": [],
+         "deleted_files": [],
+         "new_browser_storage_key": False,
+         "content_changes": False,
+         "validation_results": {},
+-        "known_limitations": ["Repository checks run only after upload."],
++        "known_limitations": ["Production checks remain separate."],
+     }
+ 
+ 
+@@ -70,5 +74,12 @@ def init_repo(root: Path, base_file: str = "base.txt") -> str:
+     git(root, "config", "user.name", "Release Tests")
+     (root / base_file).write_text("base\n", encoding="utf-8")
+     git(root, "add", ".")
+-    git(root, "commit", "-qm", "Release 231 baseline")
++    git(root, "commit", "-qm", "Release 232 baseline")
+     return git(root, "rev-parse", "HEAD")
++
++
++def commit(root: Path, subject: str, body: str = "") -> None:
++    command = ["commit", "-qm", subject]
++    if body:
++        command.extend(["-m", body])
++    git(root, *command)
+diff --git a/tests/release_control/test_browser_commit_policy.py b/tests/release_control/test_browser_commit_policy.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..1d664d4f6129579d945b959b0ca7be5805b2e3f2
+--- /dev/null
++++ b/tests/release_control/test_browser_commit_policy.py
+@@ -0,0 +1,64 @@
++from __future__ import annotations
++
++import unittest
++from pathlib import Path
++
++ROOT = Path(__file__).resolve().parents[2]
++
++
++class BrowserCommitPolicyStaticChecks(unittest.TestCase):
++    def test_powershell_metadata_script_checks_first_body_line(self):
++        text = (
++            ROOT / "scripts/release/check-commit-metadata.ps1"
++        ).read_text(encoding="utf-8")
++        self.assertIn("Select-Object -First 1", text)
++        self.assertIn("Add files via upload", text)
++        self.assertIn("[switch]$Strict", text)
++
++    def test_shell_metadata_script_supports_strict_mode(self):
++        text = (
++            ROOT / "scripts/release/check-commit-metadata.sh"
++        ).read_text(encoding="utf-8")
++        self.assertIn('mode="${2:-browser-compatible}"', text)
++        self.assertIn('"$mode" != "strict"', text)
++        self.assertIn("body_first", text)
++
++    def test_local_publishers_commit_manifest_title(self):
++        powershell = (
++            ROOT / "scripts/release/publish-release.ps1"
++        ).read_text(encoding="utf-8")
++        shell = (
++            ROOT / "scripts/release/publish-release.sh"
++        ).read_text(encoding="utf-8")
++        self.assertIn("git commit -m $title", powershell)
++        self.assertIn('git commit -m "$title"', shell)
++        self.assertIn("base_commit", powershell)
++        self.assertIn("base_commit", shell)
++
++    def test_preflight_scripts_discover_latest_manifest(self):
++        powershell = (
++            ROOT / "scripts/release/preflight.ps1"
++        ).read_text(encoding="utf-8")
++        shell = (
++            ROOT / "scripts/release/preflight.sh"
++        ).read_text(encoding="utf-8")
++        self.assertIn("tools.release_control.discovery", powershell)
++        self.assertIn("tools/release_validate.py", powershell)
++        self.assertIn("tools.release_control.discovery", shell)
++        self.assertIn("tools/release_validate.py", shell)
++
++    def test_strict_compatibility_wrappers_delegate_to_metadata_check(self):
++        powershell = (
++            ROOT / "scripts/release/check-commit-title.ps1"
++        ).read_text(encoding="utf-8")
++        shell = (
++            ROOT / "scripts/release/check-commit-title.sh"
++        ).read_text(encoding="utf-8")
++        self.assertIn("check-commit-metadata.ps1", powershell)
++        self.assertIn("-Strict", powershell)
++        self.assertIn("check-commit-metadata.sh", shell)
++        self.assertIn("strict", shell)
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/release_control/test_cli.py b/tests/release_control/test_cli.py
+index acb4c5476912276504adb771349e0d786f50fccc..79b2b12c12d8c8bf627a42da4a5c0c5067b6a1f5 100644
+--- a/tests/release_control/test_cli.py
++++ b/tests/release_control/test_cli.py
+@@ -1,6 +1,8 @@
+ from __future__ import annotations
+ 
++import os
+ import unittest
++from unittest.mock import patch
+ 
+ from tools.release_control.cli import build_parser
+ 
+@@ -8,21 +10,46 @@ from tools.release_control.cli import build_parser
+ class CliChecks(unittest.TestCase):
+     def test_package_mode_arguments_parse(self):
+         args = build_parser().parse_args([
+-            "--manifest", "manifest-release-232.json", "--package-mode"
++            "--manifest",
++            "manifest-release-233.json",
++            "--package-mode",
+         ])
+         self.assertTrue(args.package_mode)
+         self.assertFalse(args.repository_mode)
+ 
+     def test_repository_mode_arguments_parse(self):
+         args = build_parser().parse_args([
+-            "--manifest", "manifest-release-232.json", "--repository-mode"
++            "--manifest",
++            "manifest-release-233.json",
++            "--repository-mode",
+         ])
+         self.assertTrue(args.repository_mode)
+         self.assertFalse(args.package_mode)
+ 
++    def test_strict_subject_flag_parses(self):
++        args = build_parser().parse_args([
++            "--manifest",
++            "manifest-release-233.json",
++            "--repository-mode",
++            "--strict-commit-subject",
++        ])
++        self.assertTrue(args.strict_commit_subject)
++
++    def test_strict_environment_default(self):
++        with patch.dict(os.environ, {"OSB_STRICT_COMMIT_SUBJECT": "true"}):
++            args = build_parser().parse_args([
++                "--manifest",
++                "manifest-release-233.json",
++                "--repository-mode",
++            ])
++            self.assertTrue(args.strict_commit_subject)
++
+     def test_mode_is_required(self):
+         with self.assertRaises(SystemExit):
+-            build_parser().parse_args(["--manifest", "manifest-release-232.json"])
++            build_parser().parse_args([
++                "--manifest",
++                "manifest-release-233.json",
++            ])
+ 
+ 
+ if __name__ == "__main__":
+diff --git a/tests/release_control/test_commit.py b/tests/release_control/test_commit.py
+index f615119c8f19bd083f11f450e3c3fb21bbda6efb..6aa8477449b5eece9198d0323fc9bf44848d33fd 100644
+--- a/tests/release_control/test_commit.py
++++ b/tests/release_control/test_commit.py
+@@ -6,11 +6,18 @@ from pathlib import Path
+ 
+ from tools.release_control.checks_commit import check_commit
+ from tools.release_control.models import ManifestView
+-from tests.release_control.support import base_config, base_manifest, git, init_repo, write_json
++from tests.release_control.support import (
++    base_config,
++    base_manifest,
++    commit,
++    git,
++    init_repo,
++    write_json,
++)
+ 
+ 
+ class CommitChecks(unittest.TestCase):
+-    def prepare(self, subject: str):
++    def prepare(self, subject: str, body: str = ""):
+         directory = tempfile.TemporaryDirectory()
+         root = Path(directory.name)
+         base = init_repo(root)
+@@ -21,45 +28,140 @@ class CommitChecks(unittest.TestCase):
+         path = root / "manifest.json"
+         write_json(path, payload)
+         git(root, "add", ".")
+-        git(root, "commit", "-qm", subject)
++        commit(root, subject, body)
+         return directory, root, ManifestView(path, payload), config
+ 
+-    def test_package_mode_skips_commit_identity(self):
++    def metadata(self, results):
++        return next(item for item in results if item.name == "commit-metadata")
++
++    def parent(self, results):
++        return next(item for item in results if item.name == "commit-parent")
++
++    def test_package_mode_skips_commit_metadata(self):
+         with tempfile.TemporaryDirectory() as directory:
+             root = Path(directory)
+             payload = base_manifest()
+             path = root / "manifest.json"
+             write_json(path, payload)
+             results = check_commit(
+-                root, ManifestView(path, payload), base_config(), False
++                root,
++                ManifestView(path, payload),
++                base_config(),
++                False,
+             )
+             self.assertEqual(results[0].status, "SKIPPED")
+ 
+-    def test_exact_subject_and_parent_pass(self):
++    def test_exact_subject_passes(self):
++        title = base_manifest()["required_commit_title"]
++        holder, root, manifest, config = self.prepare(title)
++        with holder:
++            results = check_commit(root, manifest, config, True)
++            metadata = self.metadata(results)
++            self.assertEqual(metadata.status, "PASS")
++            self.assertEqual(metadata.details["metadata_mode"], "exact-subject")
++            self.assertTrue(metadata.details["subject_matches"])
++            self.assertEqual(self.parent(results).status, "PASS")
++
++    def test_browser_default_with_exact_body_warns(self):
++        title = base_manifest()["required_commit_title"]
+         holder, root, manifest, config = self.prepare(
+-            manifest_title := base_manifest()["required_commit_title"]
++            "Add files via upload",
++            title,
+         )
+         with holder:
+-            results = check_commit(root, manifest, config, True)
+-            self.assertTrue(all(item.status == "PASS" for item in results))
+-            self.assertEqual(manifest_title, config["requiredCommitTitle"])
++            metadata = self.metadata(
++                check_commit(root, manifest, config, True)
++            )
++            self.assertEqual(metadata.status, "WARN")
++            self.assertEqual(
++                metadata.details["metadata_mode"],
++                "browser-description-fallback",
++            )
++            self.assertFalse(metadata.details["subject_matches"])
++            self.assertTrue(metadata.details["body_matches"])
+ 
+-    def test_add_files_subject_fails(self):
++    def test_browser_body_may_have_blank_lines_before_title(self):
++        title = base_manifest()["required_commit_title"]
++        holder, root, manifest, config = self.prepare(
++            "Add files via upload",
++            f"\n\n{title}\nAdditional description",
++        )
++        with holder:
++            metadata = self.metadata(
++                check_commit(root, manifest, config, True)
++            )
++            self.assertEqual(metadata.status, "WARN")
++            self.assertEqual(metadata.details["body_first_line"], title)
++
++    def test_browser_body_title_after_explanation_fails(self):
++        title = base_manifest()["required_commit_title"]
++        holder, root, manifest, config = self.prepare(
++            "Add files via upload",
++            f"Please upload this release\n{title}",
++        )
++        with holder:
++            metadata = self.metadata(
++                check_commit(root, manifest, config, True)
++            )
++            self.assertEqual(metadata.status, "FAIL")
++
++    def test_browser_default_without_body_fails(self):
+         holder, root, manifest, config = self.prepare("Add files via upload")
+         with holder:
+-            results = check_commit(root, manifest, config, True)
+-            subject = next(item for item in results if item.name == "commit-subject")
+-            self.assertEqual(subject.status, "FAIL")
++            metadata = self.metadata(
++                check_commit(root, manifest, config, True)
++            )
++            self.assertEqual(metadata.status, "FAIL")
+ 
+-    def test_wrong_parent_fails(self):
++    def test_unapproved_generic_subject_fails_even_with_exact_body(self):
++        title = base_manifest()["required_commit_title"]
++        holder, root, manifest, config = self.prepare("Update files", title)
++        with holder:
++            metadata = self.metadata(
++                check_commit(root, manifest, config, True)
++            )
++            self.assertEqual(metadata.status, "FAIL")
++
++    def test_strict_mode_rejects_browser_fallback(self):
++        title = base_manifest()["required_commit_title"]
+         holder, root, manifest, config = self.prepare(
+-            base_manifest()["required_commit_title"]
++            "Add files via upload",
++            title,
+         )
++        with holder:
++            metadata = self.metadata(
++                check_commit(
++                    root,
++                    manifest,
++                    config,
++                    True,
++                    strict_subject=True,
++                )
++            )
++            self.assertEqual(metadata.status, "FAIL")
++            self.assertTrue(metadata.details["strict_subject"])
++
++    def test_fallback_can_be_disabled_by_configuration(self):
++        title = base_manifest()["required_commit_title"]
++        holder, root, manifest, config = self.prepare(
++            "Add files via upload",
++            title,
++        )
++        with holder:
++            config["commitPolicy"]["allowBrowserDescriptionFallback"] = False
++            metadata = self.metadata(
++                check_commit(root, manifest, config, True)
++            )
++            self.assertEqual(metadata.status, "FAIL")
++
++    def test_wrong_parent_fails_independently(self):
++        title = base_manifest()["required_commit_title"]
++        holder, root, manifest, config = self.prepare(title)
+         with holder:
+             manifest.data["base_commit"] = "c" * 40
+             results = check_commit(root, manifest, config, True)
+-            parent = next(item for item in results if item.name == "commit-parent")
+-            self.assertEqual(parent.status, "FAIL")
++            self.assertEqual(self.metadata(results).status, "PASS")
++            self.assertEqual(self.parent(results).status, "FAIL")
+ 
+ 
+ if __name__ == "__main__":
+diff --git a/tests/release_control/test_release_232_package.py b/tests/release_control/test_release_232_package.py
+index 42382def2044ee2ddbe23d2c373662b5937cd54e..d6b40411819f754e529b5f2fda974e26af3194a9 100644
+--- a/tests/release_control/test_release_232_package.py
++++ b/tests/release_control/test_release_232_package.py
+@@ -7,39 +7,26 @@ from pathlib import Path
+ ROOT = Path(__file__).resolve().parents[2]
+ 
+ 
+-class Release232PackageChecks(unittest.TestCase):
+-    def test_governance_config_rejects_add_files_subject(self):
+-        config = json.loads((ROOT / ".release-governance.json").read_text(encoding="utf-8"))
+-        self.assertIn(
+-            "Add files via upload",
+-            config["commitPolicy"]["rejectSubjects"],
+-        )
+-        self.assertLessEqual(config["filePolicy"]["hardLimit"], 500)
+-
+-    def test_workflow_runs_repository_mode_validator(self):
+-        workflow = (
+-            ROOT / ".github/workflows/release-232-governance.yml"
+-        ).read_text(encoding="utf-8")
+-        self.assertIn("--repository-mode", workflow)
+-        self.assertIn("tools.release_control.discovery", workflow)
+-        self.assertIn("steps.manifest.outputs.path", workflow)
+-        self.assertIn("fetch-depth: 2", workflow)
+-
+-    def test_manifest_has_no_site_content_or_storage_change(self):
++class Release232HistoricalPackageChecks(unittest.TestCase):
++    def test_release_232_manifest_remains_available_as_historical_evidence(self):
+         manifest = json.loads(
+             (ROOT / "manifest-release-232.json").read_text(encoding="utf-8")
+         )
+         self.assertEqual(manifest["release"], 232)
+         self.assertEqual(manifest["base_release"], 231)
+-        self.assertFalse(manifest["new_browser_storage_key"])
+-        self.assertFalse(manifest["content_changes"])
+-        self.assertEqual(manifest["modified_files"], [])
+-        self.assertEqual(manifest["deleted_files"], [])
++        self.assertEqual(
++            manifest["required_commit_title"],
++            "Release 232: add deterministic release governance gate",
++        )
+ 
+-    def test_no_production_html_or_devotional_data_is_in_manifest(self):
++    def test_release_232_remained_governance_only(self):
+         manifest = json.loads(
+             (ROOT / "manifest-release-232.json").read_text(encoding="utf-8")
+         )
++        self.assertFalse(manifest["new_browser_storage_key"])
++        self.assertFalse(manifest["content_changes"])
++        self.assertEqual(manifest["modified_files"], [])
++        self.assertEqual(manifest["deleted_files"], [])
+         paths = set(manifest["added_files"])
+         self.assertFalse(any(path.endswith(".html") for path in paths))
+         self.assertFalse(any(path.startswith("literature/") for path in paths))
+diff --git a/tests/release_control/test_release_233_package.py b/tests/release_control/test_release_233_package.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..97704e1dc6bc99f45657d2d30799c5e1bd655ee3
+--- /dev/null
++++ b/tests/release_control/test_release_233_package.py
+@@ -0,0 +1,77 @@
++from __future__ import annotations
++
++import json
++import unittest
++from pathlib import Path
++
++ROOT = Path(__file__).resolve().parents[2]
++
++
++class Release233PackageChecks(unittest.TestCase):
++    def test_governance_config_enables_narrow_browser_fallback(self):
++        config = json.loads(
++            (ROOT / ".release-governance.json").read_text(encoding="utf-8")
++        )
++        policy = config["commitPolicy"]
++        self.assertEqual(config["release"], 233)
++        self.assertEqual(policy["mode"], "browser-compatible")
++        self.assertTrue(policy["allowBrowserDescriptionFallback"])
++        self.assertEqual(
++            policy["browserFallbackSubjects"],
++            ["Add files via upload"],
++        )
++        self.assertEqual(policy["bodyTitleMatch"], "first-non-empty-line")
++        self.assertEqual(policy["fallbackStatus"], "WARN")
++        self.assertLessEqual(config["filePolicy"]["hardLimit"], 500)
++
++    def test_workflow_runs_generic_repository_validator(self):
++        workflow = (
++            ROOT / ".github/workflows/release-232-governance.yml"
++        ).read_text(encoding="utf-8")
++        self.assertIn("name: Release Governance Gate", workflow)
++        self.assertIn("--repository-mode", workflow)
++        self.assertIn("tools.release_control.discovery", workflow)
++        self.assertIn("tools/release_validate.py", workflow)
++        self.assertIn("steps.manifest.outputs.release", workflow)
++        self.assertIn("fetch-depth: 2", workflow)
++        self.assertIn("## Warnings", workflow)
++
++    def test_independent_attestation_follows_generic_gate(self):
++        workflow = (
++            ROOT / ".github/workflows/release-232-attestation.yml"
++        ).read_text(encoding="utf-8")
++        self.assertIn('workflows: ["Release Governance Gate"]', workflow)
++        self.assertIn("tools/release_validate.py", workflow)
++        self.assertIn("independent-attestation", workflow)
++
++    def test_release_233_manifest_has_no_site_content_or_storage_change(self):
++        manifest = json.loads(
++            (ROOT / "manifest-release-233.json").read_text(encoding="utf-8")
++        )
++        self.assertEqual(manifest["release"], 233)
++        self.assertEqual(manifest["base_release"], 232)
++        self.assertFalse(manifest["new_browser_storage_key"])
++        self.assertFalse(manifest["content_changes"])
++        self.assertEqual(manifest["deleted_files"], [])
++
++    def test_no_production_html_or_devotional_data_is_in_release_233(self):
++        manifest = json.loads(
++            (ROOT / "manifest-release-233.json").read_text(encoding="utf-8")
++        )
++        paths = set(manifest["added_files"]) | set(manifest["modified_files"])
++        self.assertFalse(any(path.endswith(".html") for path in paths))
++        self.assertFalse(any(path.startswith("literature/") for path in paths))
++        self.assertFalse(any(path.startswith("slokas/") for path in paths))
++        self.assertNotIn("service-worker.js", paths)
++
++    def test_exact_and_fallback_modes_are_documented(self):
++        policy = (ROOT / "docs/browser-upload-commit-policy.md").read_text(
++            encoding="utf-8"
++        )
++        self.assertIn("exact-subject", policy)
++        self.assertIn("browser-description-fallback", policy)
++        self.assertIn("--strict-commit-subject", policy)
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/release_control/test_report.py b/tests/release_control/test_report.py
+index b87142cbc18fc3ad9e7b8f19c9259eb282e2517a..e73a9b8de6d7c88569de7a380b02851a9dcd585c 100644
+--- a/tests/release_control/test_report.py
++++ b/tests/release_control/test_report.py
+@@ -11,31 +11,61 @@ from tests.release_control.support import base_manifest, write_json
+ 
+ class ReportChecks(unittest.TestCase):
+     def test_failed_check_marks_report_failed(self):
+-        report = GovernanceReport(release=232, mode="package", root=".")
++        report = GovernanceReport(release=233, mode="package", root=".")
+         report.add(CheckResult("example", "FAIL", "failed"))
+         self.assertEqual(report.status, "FAIL")
+         self.assertEqual(len(report.errors), 1)
+ 
++    def test_warn_is_visible_without_failing_overall_report(self):
++        report = GovernanceReport(release=233, mode="repository", root=".")
++        report.add(CheckResult("commit-metadata", "WARN", "browser fallback"))
++        self.assertEqual(report.status, "PASS")
++        self.assertEqual(len(report.warnings), 1)
++        self.assertIn("browser fallback", report.warnings[0])
++
+     def test_inconclusive_check_is_warning_not_failure(self):
+-        report = GovernanceReport(release=232, mode="package", root=".")
++        report = GovernanceReport(release=233, mode="package", root=".")
+         report.add(CheckResult("remote", "INCONCLUSIVE", "unavailable"))
+         self.assertEqual(report.status, "PASS")
+         self.assertEqual(len(report.warnings), 1)
+ 
+-    def test_package_attestation_uses_manifest_base(self):
++    def test_package_attestation_uses_manifest_base_and_not_run_metadata(self):
+         with tempfile.TemporaryDirectory() as directory:
+             root = Path(directory)
+             payload = base_manifest()
+             path = root / "manifest.json"
+             write_json(path, payload)
+-            report = GovernanceReport(release=232, mode="package", root=str(root))
++            report = GovernanceReport(release=233, mode="package", root=str(root))
+             attestation = build_attestation(
+-                root, ManifestView(path, payload), report, False
++                root,
++                ManifestView(path, payload),
++                report,
++                False,
+             )
+             self.assertEqual(attestation["commit"]["parent"], payload["base_commit"])
+             self.assertEqual(attestation["commit"]["subject"], "NOT_RUN")
++            self.assertEqual(attestation["commit"]["body_first_line"], "NOT_RUN")
++            self.assertEqual(attestation["commit"]["metadata_mode"], "not-run")
++            self.assertFalse(attestation["commit"]["strict_subject"])
++            self.assertEqual(attestation["warning_count"], 0)
+             self.assertEqual(len(attestation["manifest"]["sha256"]), 64)
+ 
++    def test_strict_flag_is_recorded_in_package_attestation(self):
++        with tempfile.TemporaryDirectory() as directory:
++            root = Path(directory)
++            payload = base_manifest()
++            path = root / "manifest.json"
++            write_json(path, payload)
++            report = GovernanceReport(release=233, mode="package", root=str(root))
++            attestation = build_attestation(
++                root,
++                ManifestView(path, payload),
++                report,
++                False,
++                strict_commit_subject=True,
++            )
++            self.assertTrue(attestation["commit"]["strict_subject"])
++
+ 
+ if __name__ == "__main__":
+     unittest.main()
+diff --git a/tools/release_233_validate.py b/tools/release_233_validate.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..204ba1786ab540b3811114c988d8c52592aa7d59
+--- /dev/null
++++ b/tools/release_233_validate.py
+@@ -0,0 +1,17 @@
++#!/usr/bin/env python3
++"""Release 233 release-governance entry point."""
++
++from __future__ import annotations
++
++import sys
++from pathlib import Path
++
++ROOT = Path(__file__).resolve().parents[1]
++if str(ROOT) not in sys.path:
++    sys.path.insert(0, str(ROOT))
++
++from tools.release_control.cli import main
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/tools/release_control/checks.py b/tools/release_control/checks.py
+index 2670e0c55b607e181849cb39f7d6864e6ef491c1..63ba20723bee5272b64a5672b3589875e8fdfa28 100644
+--- a/tools/release_control/checks.py
++++ b/tools/release_control/checks.py
+@@ -19,6 +19,7 @@ def validate_release(
+     config_path: Path,
+     manifest_path: Path,
+     repository_mode: bool,
++    strict_commit_subject: bool = False,
+ ) -> GovernanceReport:
+     config = load_json(config_path)
+     manifest = ManifestView(manifest_path, load_json(manifest_path))
+@@ -29,7 +30,13 @@ def validate_release(
+     )
+     for result in check_manifest(manifest, config):
+         report.add(result)
+-    for result in check_commit(root, manifest, config, repository_mode):
++    for result in check_commit(
++        root,
++        manifest,
++        config,
++        repository_mode,
++        strict_subject=strict_commit_subject,
++    ):
+         report.add(result)
+     for result in check_files(root, manifest, config, repository_mode):
+         report.add(result)
+@@ -40,5 +47,6 @@ def validate_release(
+         manifest,
+         report,
+         repository_mode,
++        strict_commit_subject=strict_commit_subject,
+     )
+     return report
+diff --git a/tools/release_control/checks_commit.py b/tools/release_control/checks_commit.py
+index f6e14a38e2ca1e5ea1d8f17ee5c752b9b9431196..24bb12144463d0a02bb3109c7a7deee1a4dccf8b 100644
+--- a/tools/release_control/checks_commit.py
++++ b/tools/release_control/checks_commit.py
+@@ -1,46 +1,103 @@
+-"""Commit identity and ancestry checks."""
++"""Commit metadata and ancestry checks."""
+ 
+ from __future__ import annotations
+ 
+ from pathlib import Path
+ 
+-from .constants import FAIL, PASS, SKIPPED
+-from .git import commit_subject, current_sha, is_repository, parent_sha
++from .constants import FAIL, PASS, SKIPPED, WARN
++from .git import (
++    commit_body,
++    commit_subject,
++    current_sha,
++    first_non_empty_line,
++    is_repository,
++    parent_sha,
++)
+ from .models import CheckResult, ManifestView
+ 
+ 
+-def check_commit(root: Path, manifest: ManifestView, config: dict, repository_mode: bool) -> list[CheckResult]:
++def check_commit(
++    root: Path,
++    manifest: ManifestView,
++    config: dict,
++    repository_mode: bool,
++    strict_subject: bool = False,
++) -> list[CheckResult]:
+     if not repository_mode:
+-        return [CheckResult(
+-            "commit-identity",
+-            SKIPPED,
+-            "Commit subject and ancestry are checked after repository upload.",
+-        )]
++        return [
++            CheckResult(
++                "commit-metadata",
++                SKIPPED,
++                "Commit metadata and ancestry are checked after repository upload.",
++                {"strict_subject": strict_subject},
++            )
++        ]
+     if not is_repository(root):
+-        return [CheckResult(
+-            "commit-identity",
+-            FAIL,
+-            "Repository mode was requested outside a Git work tree.",
+-        )]
++        return [
++            CheckResult(
++                "commit-metadata",
++                FAIL,
++                "Repository mode was requested outside a Git work tree.",
++                {"strict_subject": strict_subject},
++            )
++        ]
+ 
++    policy = config.get("commitPolicy", {})
+     subject = commit_subject(root)
++    body = commit_body(root)
++    body_first_line = first_non_empty_line(body)
+     expected = manifest.required_title
+-    reject = [str(item) for item in config.get("commitPolicy", {}).get("rejectSubjects", [])]
+-    exact_ok = subject == expected
+-    rejected = subject in reject
+-    title_ok = exact_ok and not rejected
++    exact_subject = subject == expected
++    exact_body = body_first_line == expected
++    fallback_subjects = {
++        str(item)
++        for item in policy.get("browserFallbackSubjects", [])
++    }
++    fallback_allowed = (
++        not strict_subject
++        and bool(policy.get("allowBrowserDescriptionFallback"))
++        and subject in fallback_subjects
++        and exact_body
++    )
++
++    if exact_subject:
++        metadata_status = PASS
++        metadata_mode = "exact-subject"
++        message = "Git commit subject exactly matches the release manifest."
++    elif fallback_allowed:
++        metadata_status = WARN
++        metadata_mode = "browser-description-fallback"
++        message = (
++            "GitHub browser default subject accepted with warning because the "
++            "first non-empty commit-body line exactly matches the release title."
++        )
++    else:
++        metadata_status = FAIL
++        metadata_mode = "invalid"
++        strict_note = " Strict subject mode is enabled." if strict_subject else ""
++        message = (
++            f"Expected subject {expected!r}; found {subject!r}. "
++            f"Commit-body first line was {body_first_line!r}.{strict_note}"
++        )
+ 
+     sha = current_sha(root)
+     parent = parent_sha(root)
+     ancestry_ok = parent == manifest.base_commit
+     return [
+         CheckResult(
+-            "commit-subject",
+-            PASS if title_ok else FAIL,
+-            "Git commit subject exactly matches the release manifest."
+-            if title_ok
+-            else f"Expected {expected!r}; found {subject!r}.",
+-            {"subject": subject, "expected": expected, "rejected": rejected},
++            "commit-metadata",
++            metadata_status,
++            message,
++            {
++                "subject": subject,
++                "expected": expected,
++                "subject_matches": exact_subject,
++                "body_first_line": body_first_line,
++                "body_matches": exact_body,
++                "metadata_mode": metadata_mode,
++                "fallback_subject_allowed": subject in fallback_subjects,
++                "strict_subject": strict_subject,
++            },
+         ),
+         CheckResult(
+             "commit-parent",
+@@ -48,6 +105,10 @@ def check_commit(root: Path, manifest: ManifestView, config: dict, repository_mo
+             "Git first parent matches manifest base_commit."
+             if ancestry_ok
+             else "Git first parent does not match manifest base_commit.",
+-            {"sha": sha, "parent": parent, "expected_parent": manifest.base_commit},
++            {
++                "sha": sha,
++                "parent": parent,
++                "expected_parent": manifest.base_commit,
++            },
+         ),
+     ]
+diff --git a/tools/release_control/cli.py b/tools/release_control/cli.py
+index 45c9e3dd4443b1c396dd9b91f17f41b9e8e77aff..403854ddc8cedecf935d638ee853377cb076dae7 100644
+--- a/tools/release_control/cli.py
++++ b/tools/release_control/cli.py
+@@ -4,6 +4,7 @@ from __future__ import annotations
+ 
+ import argparse
+ import json
++import os
+ import sys
+ from pathlib import Path
+ 
+@@ -12,6 +13,11 @@ from .constants import DEFAULT_CONFIG
+ from .jsonio import dump_json
+ 
+ 
++def _environment_strict_default() -> bool:
++    value = os.getenv("OSB_STRICT_COMMIT_SUBJECT", "")
++    return value.strip().lower() in {"1", "true", "yes", "on"}
++
++
+ def build_parser() -> argparse.ArgumentParser:
+     parser = argparse.ArgumentParser(
+         description="Validate an OmSaravanaBhava release package or uploaded commit."
+@@ -22,6 +28,15 @@ def build_parser() -> argparse.ArgumentParser:
+     mode = parser.add_mutually_exclusive_group(required=True)
+     mode.add_argument("--package-mode", action="store_true")
+     mode.add_argument("--repository-mode", action="store_true")
++    parser.add_argument(
++        "--strict-commit-subject",
++        action="store_true",
++        default=_environment_strict_default(),
++        help=(
++            "Reject GitHub browser-description fallback and require the exact "
++            "release title as the Git commit subject."
++        ),
++    )
+     parser.add_argument("--report")
+     parser.add_argument("--attestation")
+     return parser
+@@ -37,6 +52,7 @@ def main(argv: list[str] | None = None) -> int:
+         config_path=config,
+         manifest_path=manifest,
+         repository_mode=args.repository_mode,
++        strict_commit_subject=args.strict_commit_subject,
+     )
+     payload = report.to_dict()
+     print(json.dumps(payload, indent=2, ensure_ascii=False))
+diff --git a/tools/release_control/constants.py b/tools/release_control/constants.py
+index 16a357d969c45deacd2d9ac63cd4bf7332629159..1f868517490d14f3b87ee70d311c0dd1e8b81d72 100644
+--- a/tools/release_control/constants.py
++++ b/tools/release_control/constants.py
+@@ -7,6 +7,7 @@ DEFAULT_MANIFEST_PATTERN = "manifest-release-{release}.json"
+ SHA1_PATTERN = r"^[0-9a-f]{40}$"
+ SHA256_PATTERN = r"^[0-9a-f]{64}$"
+ PASS = "PASS"
++WARN = "WARN"
+ FAIL = "FAIL"
+ SKIPPED = "SKIPPED"
+ INCONCLUSIVE = "INCONCLUSIVE"
+diff --git a/tools/release_control/git.py b/tools/release_control/git.py
+index dcc6adc5e0646d8630783536a0fb490ddeceebda..aa52714635c9eb3411e71f3f2a6e0c5699879907 100644
+--- a/tools/release_control/git.py
++++ b/tools/release_control/git.py
+@@ -44,8 +44,24 @@ def commit_subject(root: Path) -> str:
+     return result.output if result.code == 0 else ""
+ 
+ 
++def commit_body(root: Path) -> str:
++    result = run_git(root, "log", "-1", "--pretty=%b")
++    return result.output if result.code == 0 else ""
++
++
++def first_non_empty_line(value: str) -> str:
++    return next((line.strip() for line in value.splitlines() if line.strip()), "")
++
++
+ def changed_files(root: Path) -> list[str]:
+-    result = run_git(root, "diff", "--name-only", "--diff-filter=ACDMRTUXB", "HEAD^", "HEAD")
++    result = run_git(
++        root,
++        "diff",
++        "--name-only",
++        "--diff-filter=ACDMRTUXB",
++        "HEAD^",
++        "HEAD",
++    )
+     if result.code != 0:
+         return []
+     return sorted(line for line in result.output.splitlines() if line.strip())
+diff --git a/tools/release_control/models.py b/tools/release_control/models.py
+index 6ba5f688aa008e9621f1de3a25af44ce79461e73..f3cf15cce5d850165f7871ff87a80685d91d4a99 100644
+--- a/tools/release_control/models.py
++++ b/tools/release_control/models.py
+@@ -16,7 +16,13 @@ class CheckResult:
+ 
+     @property
+     def passed(self) -> bool:
+-        return self.status in {"PASS", "SKIPPED", "INCONCLUSIVE", "NOT_RUN"}
++        return self.status in {
++            "PASS",
++            "WARN",
++            "SKIPPED",
++            "INCONCLUSIVE",
++            "NOT_RUN",
++        }
+ 
+     def to_dict(self) -> dict[str, Any]:
+         return asdict(self)
+@@ -38,7 +44,7 @@ class GovernanceReport:
+         if result.status == "FAIL":
+             self.status = "FAIL"
+             self.errors.append(f"{result.name}: {result.message}")
+-        elif result.status in {"INCONCLUSIVE", "NOT_RUN"}:
++        elif result.status in {"WARN", "INCONCLUSIVE", "NOT_RUN"}:
+             self.warnings.append(f"{result.name}: {result.message}")
+ 
+     def to_dict(self) -> dict[str, Any]:
+diff --git a/tools/release_control/report.py b/tools/release_control/report.py
+index 7ac31c47b596d4053c782533c8929a4744e121b8..aaf574ae238c8c88308fbcaef7c7b03c8d7ddb16 100644
+--- a/tools/release_control/report.py
++++ b/tools/release_control/report.py
+@@ -6,7 +6,14 @@ from datetime import datetime, timezone
+ from pathlib import Path
+ from typing import Any
+ 
+-from .git import commit_subject, current_sha, is_repository, parent_sha
++from .git import (
++    commit_body,
++    commit_subject,
++    current_sha,
++    first_non_empty_line,
++    is_repository,
++    parent_sha,
++)
+ from .jsonio import sha256_file
+ from .models import GovernanceReport, ManifestView
+ 
+@@ -16,25 +23,57 @@ def build_attestation(
+     manifest: ManifestView,
+     report: GovernanceReport,
+     repository_mode: bool,
++    strict_commit_subject: bool = False,
+ ) -> dict[str, Any]:
+     repository = repository_mode and is_repository(root)
+     subject = commit_subject(root) if repository else "NOT_RUN"
++    body_first_line = (
++        first_non_empty_line(commit_body(root))
++        if repository
++        else "NOT_RUN"
++    )
+     sha = current_sha(root) if repository else "NOT_RUN"
+     parent = parent_sha(root) if repository else manifest.base_commit
+     manifest_sha = sha256_file(manifest.path)
+     changed_detail = next(
+-        (check.details for check in report.checks if check.name == "changed-file-coverage"),
++        (
++            check.details
++            for check in report.checks
++            if check.name == "changed-file-coverage"
++        ),
++        {},
++    )
++    metadata_detail = next(
++        (
++            check.details
++            for check in report.checks
++            if check.name == "commit-metadata"
++        ),
+         {},
+     )
+     declared = manifest.declared_paths
+     return {
+         "release": manifest.release,
+         "status": report.status,
++        "warning_count": len(report.warnings),
+         "commit": {
+             "sha": sha,
+             "parent": parent,
+             "subject": subject,
+-            "subject_matches": subject == manifest.required_title if repository else False,
++            "body_first_line": body_first_line,
++            "subject_matches": (
++                subject == manifest.required_title if repository else False
++            ),
++            "body_matches": (
++                body_first_line == manifest.required_title
++                if repository
++                else False
++            ),
++            "metadata_mode": metadata_detail.get(
++                "metadata_mode",
++                "not-run" if not repository else "unknown",
++            ),
++            "strict_subject": strict_commit_subject,
+         },
+         "manifest": {
+             "path": manifest.path.relative_to(root).as_posix(),
+@@ -42,11 +81,16 @@ def build_attestation(
+             "base_commit": manifest.base_commit,
+         },
+         "files": {
+-            "changed": len(changed_detail.get("changed", [])) if changed_detail else 0,
++            "changed": (
++                len(changed_detail.get("changed", []))
++                if changed_detail
++                else 0
++            ),
+             "declared": len(declared),
+             "undeclared": changed_detail.get("undeclared", []),
+             "missing": changed_detail.get("overdeclared", []),
+         },
++        "warnings": list(report.warnings),
+         "checks": [item.to_dict() for item in report.checks],
+         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
+     }
+diff --git a/tools/release_validate.py b/tools/release_validate.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..e944521013301fbe1e37916b47872f4485220cea
+--- /dev/null
++++ b/tools/release_validate.py
+@@ -0,0 +1,17 @@
++#!/usr/bin/env python3
++"""Generic OmSaravanaBhava release-governance entry point."""
++
++from __future__ import annotations
++
++import sys
++from pathlib import Path
++
++ROOT = Path(__file__).resolve().parents[1]
++if str(ROOT) not in sys.path:
++    sys.path.insert(0, str(ROOT))
++
++from tools.release_control.cli import main
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())

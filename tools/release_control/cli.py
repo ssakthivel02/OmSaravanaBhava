@@ -4,12 +4,18 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from pathlib import Path
 
 from .checks import validate_release
 from .constants import DEFAULT_CONFIG
 from .jsonio import dump_json
+
+
+def _environment_strict_default() -> bool:
+    value = os.getenv("OSB_STRICT_COMMIT_SUBJECT", "")
+    return value.strip().lower() in {"1", "true", "yes", "on"}
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -22,6 +28,15 @@ def build_parser() -> argparse.ArgumentParser:
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument("--package-mode", action="store_true")
     mode.add_argument("--repository-mode", action="store_true")
+    parser.add_argument(
+        "--strict-commit-subject",
+        action="store_true",
+        default=_environment_strict_default(),
+        help=(
+            "Reject GitHub browser-description fallback and require the exact "
+            "release title as the Git commit subject."
+        ),
+    )
     parser.add_argument("--report")
     parser.add_argument("--attestation")
     return parser
@@ -37,6 +52,7 @@ def main(argv: list[str] | None = None) -> int:
         config_path=config,
         manifest_path=manifest,
         repository_mode=args.repository_mode,
+        strict_commit_subject=args.strict_commit_subject,
     )
     payload = report.to_dict()
     print(json.dumps(payload, indent=2, ensure_ascii=False))

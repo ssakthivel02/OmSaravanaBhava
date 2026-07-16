@@ -44,8 +44,24 @@ def commit_subject(root: Path) -> str:
     return result.output if result.code == 0 else ""
 
 
+def commit_body(root: Path) -> str:
+    result = run_git(root, "log", "-1", "--pretty=%b")
+    return result.output if result.code == 0 else ""
+
+
+def first_non_empty_line(value: str) -> str:
+    return next((line.strip() for line in value.splitlines() if line.strip()), "")
+
+
 def changed_files(root: Path) -> list[str]:
-    result = run_git(root, "diff", "--name-only", "--diff-filter=ACDMRTUXB", "HEAD^", "HEAD")
+    result = run_git(
+        root,
+        "diff",
+        "--name-only",
+        "--diff-filter=ACDMRTUXB",
+        "HEAD^",
+        "HEAD",
+    )
     if result.code != 0:
         return []
     return sorted(line for line in result.output.splitlines() if line.strip())

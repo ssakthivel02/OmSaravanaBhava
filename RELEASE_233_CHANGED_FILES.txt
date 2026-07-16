@@ -1,0 +1,82 @@
+Release 233 — Browser-Compatible Commit Attestation
+Base commit: 514eaf96ecaa53560bfd47cc8fc84ebd49e686f1
+Required release title: Release 233: add browser-compatible commit attestation
+
+Added changed files (18):
+A  RELEASE_233.patch
+A  RELEASE_233_CHANGED_FILES.txt
+A  RELEASE_233_GITHUB_PORTAL_INSTRUCTIONS.txt
+A  RELEASE_233_LOCAL_TEST_EVIDENCE.txt
+A  RELEASE_233_SHA256SUMS.txt
+A  RELEASE_233_VALIDATION_REPORT.md
+A  docs/browser-upload-commit-policy.md
+A  examples/release-governance/browser-upload-fallback.txt
+A  manifest-release-233.json
+A  scripts/release/check-commit-metadata.ps1
+A  scripts/release/check-commit-metadata.sh
+A  scripts/release/publish-release.ps1
+A  scripts/release/publish-release.sh
+A  templates/release-commit-message.template.txt
+A  tests/release_control/test_browser_commit_policy.py
+A  tests/release_control/test_release_233_package.py
+A  tools/release_233_validate.py
+A  tools/release_validate.py
+
+Modified changed files (25):
+M  .github/workflows/release-232-attestation.yml
+M  .github/workflows/release-232-governance.yml
+M  .release-governance.json
+M  docs/github-browser-upload.md
+M  docs/release-attestation.md
+M  docs/release-governance.md
+M  docs/release-status-language.md
+M  schemas/release-attestation.schema.json
+M  scripts/release/check-commit-title.ps1
+M  scripts/release/check-commit-title.sh
+M  scripts/release/preflight.ps1
+M  scripts/release/preflight.sh
+M  templates/release-upload-checklist.md
+M  tests/release_control/support.py
+M  tests/release_control/test_cli.py
+M  tests/release_control/test_commit.py
+M  tests/release_control/test_release_232_package.py
+M  tests/release_control/test_report.py
+M  tools/release_control/checks.py
+M  tools/release_control/checks_commit.py
+M  tools/release_control/cli.py
+M  tools/release_control/constants.py
+M  tools/release_control/git.py
+M  tools/release_control/models.py
+M  tools/release_control/report.py
+
+Byte-identical package support files (15):
+=  manifest-release-232.json
+=  tools/release_control/__init__.py
+=  tools/release_control/__main__.py
+=  tools/release_control/checks_checksums.py
+=  tools/release_control/checks_files.py
+=  tools/release_control/checks_manifest.py
+=  tools/release_control/checks_patch.py
+=  tools/release_control/discovery.py
+=  tools/release_control/jsonio.py
+=  tests/release_control/__init__.py
+=  tests/release_control/test_checksums.py
+=  tests/release_control/test_discovery.py
+=  tests/release_control/test_files.py
+=  tests/release_control/test_manifest.py
+=  tests/release_control/test_patch.py
+
+Deleted files: none
+
+Git changed-file total: 43
+ZIP archive file total: 58
+
+Production impact:
+- No public HTML, devotional content, sitemap, route registry or service worker change.
+- No browser-local data schema or storage key change.
+- Governance workflows, validators, scripts, tests, documentation and schemas only.
+
+Commit policy:
+- Exact subject remains preferred and returns PASS.
+- GitHub browser default plus exact first body line returns WARN.
+- Strict mode rejects browser fallback.

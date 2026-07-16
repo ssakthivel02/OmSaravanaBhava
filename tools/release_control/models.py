@@ -16,7 +16,13 @@ class CheckResult:
 
     @property
     def passed(self) -> bool:
-        return self.status in {"PASS", "SKIPPED", "INCONCLUSIVE", "NOT_RUN"}
+        return self.status in {
+            "PASS",
+            "WARN",
+            "SKIPPED",
+            "INCONCLUSIVE",
+            "NOT_RUN",
+        }
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -38,7 +44,7 @@ class GovernanceReport:
         if result.status == "FAIL":
             self.status = "FAIL"
             self.errors.append(f"{result.name}: {result.message}")
-        elif result.status in {"INCONCLUSIVE", "NOT_RUN"}:
+        elif result.status in {"WARN", "INCONCLUSIVE", "NOT_RUN"}:
             self.warnings.append(f"{result.name}: {result.message}")
 
     def to_dict(self) -> dict[str, Any]:
