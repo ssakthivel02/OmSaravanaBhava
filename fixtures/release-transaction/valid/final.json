@@ -1,0 +1,6 @@
+{
+  "parent": "bootstrap-sha",
+  "subject": "Release 238: reconcile repository state and enforce deployment conformance",
+  "remainingDeletionTargets": 0,
+  "expected": "PASS"
+}

@@ -6,7 +6,7 @@ import {
   registryStatusMessage
 } from './effective-route-registry.mjs';
 
-export const RELEASE = 237;
+export const RELEASE = 238;
 export const LENSES_PATH = '/data/discovery-lenses.json';
 export const NAVIGATION_PATH = '/data/navigation-sections.json';
 

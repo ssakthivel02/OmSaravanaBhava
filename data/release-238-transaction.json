@@ -1,0 +1,24 @@
+{
+  "release": 238,
+  "mode": "browser-bootstrap-auto-finalizer",
+  "transactionBaseCommit": "b7bc25a3888f5bbe4a55a55ba69fd05ac3cc8e60",
+  "bootstrapCommitTitle": "Bootstrap Release 238: install browser-safe finalizer and deployment conformance",
+  "finalCommitTitle": "Release 238: reconcile repository state and enforce deployment conformance",
+  "bootstrapManifest": "manifest-release-238.json",
+  "deletionPlan": "data/release-238-deletion-plan.json",
+  "finalizationResult": "RELEASE_238_FINALIZATION_RESULT.json",
+  "automaticWorkflow": ".github/workflows/release-238-finalize.yml",
+  "fallbackCommand": "FINALIZE_RELEASE_238.cmd",
+  "stages": [
+    {
+      "id": "bootstrap",
+      "createsFinalizer": true,
+      "browserUploadCompatible": true
+    },
+    {
+      "id": "finalize",
+      "deletesTrackedArtifacts": true,
+      "commitsExactReleaseTitle": true
+    }
+  ]
+}

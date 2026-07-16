@@ -1,4 +1,4 @@
-export const CONSUMER_RELEASE = 237;
+export const CONSUMER_RELEASE = 238;
 export const HISTORICAL_REGISTRY_PATH = '/data/site-routes.json';
 export const EFFECTIVE_OVERRIDES_PATH =
   '/data/site-routes-effective-overrides.json';

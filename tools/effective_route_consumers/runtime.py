@@ -7,11 +7,11 @@ from .models import Finding
 
 def validate_runtime(payload: dict, path: str) -> list[Finding]:
     findings: list[Finding] = []
-    if payload.get("release") != 237:
+    if payload.get("release") != 238:
         findings.append(Finding(
             path,
             "runtime-release",
-            "Runtime contract release must be 237.",
+            "Runtime contract release must be 238.",
         ))
     if payload.get("globalFetchInterception") is not False:
         findings.append(Finding(

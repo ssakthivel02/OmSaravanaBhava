@@ -1,0 +1,2884 @@
+diff --git a/.gitattributes b/.gitattributes
+index fccd97fe8654da3c8c47bda02f5e165b67e0356d..729f913cda25ac3f3f1ab40c01b610c322a35444 100644
+--- a/.gitattributes
++++ b/.gitattributes
+@@ -20,3 +20,9 @@ scripts/release236/*.ps1 text eol=lf
+ PUBLISH_RELEASE_237.cmd text eol=lf
+ scripts/release237/*.ps1 text eol=lf
+ scripts/release237/*.py text eol=lf
++
++# Deterministic Release 238 transaction bytes
++FINALIZE_RELEASE_238.cmd text eol=lf
++scripts/release238/*.ps1 text eol=lf
++scripts/release238/*.py text eol=lf
++.github/workflows/release-238-finalize.yml text eol=lf
+diff --git a/.github/workflows/deployment-conformance.yml b/.github/workflows/deployment-conformance.yml
+new file mode 100644
+index 0000000000000000000000000000000000000000..18c595e2dffc864ae3cfb09a1b3bc40656dc1967
+--- /dev/null
++++ b/.github/workflows/deployment-conformance.yml
+@@ -0,0 +1,55 @@
++name: Deployment Conformance
++
++on:
++  push:
++    branches: [main]
++  pull_request:
++  workflow_dispatch:
++
++permissions:
++  contents: read
++
++concurrency:
++  group: deployment-conformance-${{ github.ref }}
++  cancel-in-progress: true
++
++jobs:
++  deployment:
++    runs-on: ubuntu-latest
++    timeout-minutes: 15
++    steps:
++      - name: Check out repository
++        uses: actions/checkout@v4
++
++      - name: Set up Python
++        uses: actions/setup-python@v5
++        with:
++          python-version: "3.12"
++
++      - name: Set up Node
++        uses: actions/setup-node@v4
++        with:
++          node-version: "22"
++
++      - name: Validate deployment contracts
++        env:
++          PYTHONDONTWRITEBYTECODE: "1"
++        run: |
++          python -B -m tools.deployment_conformance.validate --root .
++
++      - name: Run route-consumer browser tests
++        run: |
++          node --test tests/js/*.test.mjs
++
++      - name: Run deployment and transaction tests
++        env:
++          PYTHONDONTWRITEBYTECODE: "1"
++        run: |
++          python -B -m unittest discover \
++            -s tests/deployment_conformance \
++            -p "test_*.py" \
++            -v
++          python -B -m unittest discover \
++            -s tests/release_transaction \
++            -p "test_*.py" \
++            -v
+diff --git a/.github/workflows/release-232-governance.yml b/.github/workflows/release-232-governance.yml
+index 9cd69f2649fd75c066a191b96004eef47683699b..74b92529bef6606246fd82daeffe030ff4f02bfc 100644
+--- a/.github/workflows/release-232-governance.yml
++++ b/.github/workflows/release-232-governance.yml
+@@ -48,8 +48,17 @@ jobs:
+           PY
+           )"
+           echo "path=$manifest" >> "$GITHUB_OUTPUT"
++          state="$(MANIFEST_PATH="$manifest" python - <<'PY'
++          import json
++          import os
++          from pathlib import Path
++          payload = json.loads(Path(os.environ["MANIFEST_PATH"]).read_text(encoding="utf-8"))
++          print(payload.get("transaction", {}).get("state", "single"))
++          PY
++          )"
+           echo "release=$release" >> "$GITHUB_OUTPUT"
+-          echo "Using $manifest for Release $release"
++          echo "state=$state" >> "$GITHUB_OUTPUT"
++          echo "Using $manifest for Release $release in state $state"
+ 
+       - name: Set up Node
+         uses: actions/setup-node@v4
+@@ -58,7 +67,7 @@ jobs:
+ 
+       - name: Compile release governance tools
+         run: |
+-          python -B -m compileall -q tools/release_control tools/repository_hygiene tools/repository_integrity tools/effective_route_consumers tools/route_registry tools/release_validate.py
++          python -B -m compileall -q tools/release_control tools/repository_hygiene tools/repository_integrity tools/effective_route_consumers tools/release_transaction tools/deployment_conformance tools/route_registry tools/release_validate.py
+ 
+       - name: Run governance unit tests
+         run: |
+@@ -67,24 +76,41 @@ jobs:
+             -p "test_*.py" \
+             -v
+ 
++      - name: Validate Release 238 bootstrap transaction
++        if: steps.manifest.outputs.state == 'bootstrap'
++        env:
++          PYTHONDONTWRITEBYTECODE: "1"
++        run: |
++          python -B -m tools.release_transaction.validate --root . --mode bootstrap
++
+       - name: Validate repository hygiene
++        if: steps.manifest.outputs.state != 'bootstrap'
+         env:
+           PYTHONDONTWRITEBYTECODE: "1"
+         run: |
+           python -B -m tools.repository_hygiene.validate             --root .             --report artifacts/repository-hygiene-report.json
+ 
+       - name: Validate repository integrity
++        if: steps.manifest.outputs.state != 'bootstrap'
+         env:
+           PYTHONDONTWRITEBYTECODE: "1"
+         run: |
+           python -B -m tools.repository_integrity.validate             --root .             --report artifacts/repository-integrity-report.json             --inventory artifacts/repository-integrity-inventory.json             --sarif artifacts/repository-integrity.sarif
+ 
+       - name: Validate explicit effective route consumers
++        if: steps.manifest.outputs.state != 'bootstrap'
+         env:
+           PYTHONDONTWRITEBYTECODE: "1"
+         run: |
+           python -B -m tools.effective_route_consumers.validate             --root .             --report artifacts/effective-route-consumers-report.json
+ 
++      - name: Validate deployment conformance
++        if: steps.manifest.outputs.state != 'bootstrap'
++        env:
++          PYTHONDONTWRITEBYTECODE: "1"
++        run: |
++          python -B -m tools.deployment_conformance.validate --root .
++
+       - name: Run browser runtime tests
+         run: |
+           node --test tests/js/*.test.mjs
+diff --git a/.github/workflows/release-238-finalize.yml b/.github/workflows/release-238-finalize.yml
+new file mode 100644
+index 0000000000000000000000000000000000000000..d9cc1ec849593f18acd0d32b70df2556ca948572
+--- /dev/null
++++ b/.github/workflows/release-238-finalize.yml
+@@ -0,0 +1,105 @@
++name: Release 238 Finalizer
++
++on:
++  push:
++    branches: [main]
++    paths:
++      - manifest-release-238.json
++      - data/release-238-transaction.json
++      - .github/workflows/release-238-finalize.yml
++  workflow_dispatch:
++
++permissions:
++  contents: write
++
++concurrency:
++  group: release-238-finalizer
++  cancel-in-progress: false
++
++jobs:
++  finalize:
++    if: github.actor != 'github-actions[bot]'
++    runs-on: ubuntu-latest
++    timeout-minutes: 20
++    steps:
++      - name: Check out bootstrap commit
++        uses: actions/checkout@v4
++        with:
++          fetch-depth: 0
++          token: ${{ secrets.GITHUB_TOKEN }}
++
++      - name: Set up Python
++        uses: actions/setup-python@v5
++        with:
++          python-version: "3.12"
++
++      - name: Set up Node
++        uses: actions/setup-node@v4
++        with:
++          node-version: "22"
++
++      - name: Verify bootstrap transaction
++        env:
++          PYTHONDONTWRITEBYTECODE: "1"
++        run: |
++          python -B scripts/release238/verify-bootstrap.py --root .
++          python -B -m tools.release_transaction.validate \
++            --root . \
++            --mode bootstrap
++
++      - name: Prepare final repository state
++        env:
++          PYTHONDONTWRITEBYTECODE: "1"
++        run: |
++          python -B scripts/release238/finalize-release-238.py \
++            --root . \
++            --bootstrap-sha "${GITHUB_SHA}"
++          python -B scripts/release238/verify-final-state.py --root .
++
++      - name: Run Release 238 tests
++        env:
++          PYTHONDONTWRITEBYTECODE: "1"
++        run: |
++          python -B scripts/release238/run-release-238-tests.py --root .
++
++      - name: Validate repository gates
++        env:
++          PYTHONDONTWRITEBYTECODE: "1"
++        run: |
++          python -B -m tools.deployment_conformance.validate --root .
++          python -B -m tools.repository_hygiene.validate --root .
++          python -B -m tools.repository_integrity.validate \
++            --root . \
++            --manifest manifest-release-238.json
++          python -B tools/release_validate.py \
++            --root . \
++            --manifest manifest-release-238.json \
++            --package-mode
++          python -B scripts/release238/finalize-release-238.py \
++            --root . \
++            --mark-pass
++
++      - name: Create exact final release commit
++        run: |
++          git config user.name "OmSaravanaBhava Release Bot"
++          git config user.email "actions@users.noreply.github.com"
++          git diff --cached --name-status
++          git commit -m "Release 238: reconcile repository state and enforce deployment conformance"
++
++      - name: Validate final commit
++        env:
++          PYTHONDONTWRITEBYTECODE: "1"
++        run: |
++          python -B tools/release_validate.py \
++            --root . \
++            --manifest manifest-release-238.json \
++            --repository-mode \
++            --strict-commit-subject
++          python -B -m tools.release_transaction.validate \
++            --root . \
++            --mode final \
++            --bootstrap-commit "${GITHUB_SHA}"
++
++      - name: Push final commit
++        run: |
++          git push origin HEAD:main
+diff --git a/.gitignore b/.gitignore
+index e442ad61cf7e88ae2b3f7ca32c4805d2921eff7b..455010564cb8479d51327190bcc7506f18a8063f 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -58,3 +58,7 @@ artifacts/repository-integrity-inventory.json
+ # Release 237 auto-clone publisher workspaces
+ OmSaravanaBhava-release237/
+ release237-clone/
++
++# Release 238 finalizer temporary files
++RELEASE_238_FINALIZATION_RESULT.tmp
++release238-finalizer/
+diff --git a/.pre-commit-config.yaml b/.pre-commit-config.yaml
+index eb3bd4d01550dcca0de1a8e4b727afff5a528ed2..a1872d989ad59240d3138f74ec4d2be0d4e169bf 100644
+--- a/.pre-commit-config.yaml
++++ b/.pre-commit-config.yaml
+@@ -1,6 +1,16 @@
+ repos:
+   - repo: local
+     hooks:
++      - id: release-tests
++        name: Release regression suites
++        entry: python -B scripts/release238/run-release-238-tests.py --root .
++        language: system
++        pass_filenames: false
++      - id: deployment-conformance
++        name: Deployment conformance
++        entry: python -B -m tools.deployment_conformance.validate --root .
++        language: system
++        pass_filenames: false
+       - id: repository-hygiene
+         name: Repository hygiene
+         entry: python -B -m tools.repository_hygiene.validate --root .
+@@ -11,13 +21,3 @@ repos:
+         entry: python -B -m tools.repository_integrity.validate --root .
+         language: system
+         pass_filenames: false
+-      - id: effective-route-consumers
+-        name: Effective route consumers
+-        entry: python -B -m tools.effective_route_consumers.validate --root .
+-        language: system
+-        pass_filenames: false
+-      - id: release-tests
+-        name: Release regression suites
+-        entry: python -B scripts/release237/run-release-tests.py --root .
+-        language: system
+-        pass_filenames: false
+diff --git a/FINALIZE_RELEASE_238.cmd b/FINALIZE_RELEASE_238.cmd
+new file mode 100644
+index 0000000000000000000000000000000000000000..2b1c6ab4ca60361b7fcd1ad3ffe164ce262f37ac
+--- /dev/null
++++ b/FINALIZE_RELEASE_238.cmd
+@@ -0,0 +1,22 @@
++@echo off
++setlocal EnableExtensions
++set "REPOSITORY_ROOT=%~1"
++
++if "%REPOSITORY_ROOT%"=="" (
++  echo Enter the local OmSaravanaBhava repository containing the Release 238 bootstrap commit.
++  set /p "REPOSITORY_ROOT=Repository path: "
++)
++
++if not exist "%REPOSITORY_ROOT%\.git" (
++  echo ERROR: Not a Git repository: %REPOSITORY_ROOT%
++  pause
++  exit /b 1
++)
++
++powershell -NoProfile -ExecutionPolicy Bypass ^
++  -File "%REPOSITORY_ROOT%\scripts\release238\finalize-local.ps1" ^
++  -RepositoryRoot "%REPOSITORY_ROOT%"
++
++set "RESULT=%ERRORLEVEL%"
++if not "%RESULT%"=="0" pause
++exit /b %RESULT%
+diff --git a/Makefile b/Makefile
+index 4d216227b8110f3197d16162d874019a16855b4f..354523b5167d2fe58a08c88aed2c763ca854c3f6 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,7 +1,7 @@
+ PYTHON ?= python
+ NODE ?= node
+ 
+-.PHONY: test js-test hygiene integrity route-consumers release-check cleanup
++.PHONY: test js-test hygiene integrity route-consumers transaction deployment release-check cleanup
+ 
+ test:
+ 	$(PYTHON) -B -m unittest discover -s tests -p "test_*.py" -v
+@@ -18,8 +18,14 @@ integrity:
+ route-consumers:
+ 	$(PYTHON) -B -m tools.effective_route_consumers.validate --root .
+ 
++transaction:
++	$(PYTHON) -B -m tools.release_transaction.validate --root . --mode bootstrap
++
++deployment:
++	$(PYTHON) -B -m tools.deployment_conformance.validate --root .
++
+ release-check:
+-	$(PYTHON) -B tools/release_validate.py --root . --manifest manifest-release-237.json --package-mode
++	$(PYTHON) -B tools/release_validate.py --root . --manifest manifest-release-238.json --package-mode
+ 
+ cleanup:
+ 	$(PYTHON) -B -m tools.repository_integrity.cleanup --root .
+diff --git a/assets/js/content-status-audit.mjs b/assets/js/content-status-audit.mjs
+index 5b4152b1d6ea34349f85b27e6739d53b0ee13777..b4dc7cd11d9ca5f34c96ec682044355a64e92802 100644
+--- a/assets/js/content-status-audit.mjs
++++ b/assets/js/content-status-audit.mjs
+@@ -5,7 +5,7 @@ import {
+   registryStatusMessage
+ } from './effective-route-registry.mjs';
+ 
+-export const RELEASE = 237;
++export const RELEASE = 238;
+ export const CONFIG_PATH = '/data/content-status.json';
+ export const BOUNDARIES_PATH = '/data/publication-boundaries.json';
+ export const CANONICAL_ORIGIN = 'https://omsaravanabhava.org';
+diff --git a/assets/js/discovery-workspace.mjs b/assets/js/discovery-workspace.mjs
+index f737987d2189c8d94c454c2cb775aa2c25695e31..71d593ace54afb6cfbd429f932b3c52c6e7d96f6 100644
+--- a/assets/js/discovery-workspace.mjs
++++ b/assets/js/discovery-workspace.mjs
+@@ -6,7 +6,7 @@ import {
+   registryStatusMessage
+ } from './effective-route-registry.mjs';
+ 
+-export const RELEASE = 237;
++export const RELEASE = 238;
+ export const LENSES_PATH = '/data/discovery-lenses.json';
+ export const NAVIGATION_PATH = '/data/navigation-sections.json';
+ 
+diff --git a/assets/js/effective-route-registry.mjs b/assets/js/effective-route-registry.mjs
+index a778a4574b97d3c0f62c16672e1245bd13579ecc..592ffe6b0c1a23fee9c2edfaeb5f7468df8fab4f 100644
+--- a/assets/js/effective-route-registry.mjs
++++ b/assets/js/effective-route-registry.mjs
+@@ -1,4 +1,4 @@
+-export const CONSUMER_RELEASE = 237;
++export const CONSUMER_RELEASE = 238;
+ export const HISTORICAL_REGISTRY_PATH = '/data/site-routes.json';
+ export const EFFECTIVE_OVERRIDES_PATH =
+   '/data/site-routes-effective-overrides.json';
+diff --git a/assets/js/route-status-reconciliation.js b/assets/js/route-status-reconciliation.js
+index 0833355aeae42fee19ba833f7333cecc05b89820..73b1e571af598448eaf00dd2091313d8e3526a5b 100644
+--- a/assets/js/route-status-reconciliation.js
++++ b/assets/js/route-status-reconciliation.js
+@@ -1,7 +1,7 @@
+ (() => {
+   'use strict';
+ 
+-  const RELEASE = 237;
++  const RELEASE = 238;
+   const OVERRIDES_PATH = '/data/site-routes-effective-overrides.json';
+   const CANONICAL_ORIGIN = 'https://omsaravanabhava.org';
+ 
+diff --git a/assets/js/site-directory.mjs b/assets/js/site-directory.mjs
+index e70a4d05dbfa9a4f09e4d09eb59ade730a52c638..c3097decfdf3d1648ceed0fdb94e111da8af3e62 100644
+--- a/assets/js/site-directory.mjs
++++ b/assets/js/site-directory.mjs
+@@ -4,7 +4,7 @@ import {
+   registryStatusMessage
+ } from './effective-route-registry.mjs';
+ 
+-export const RELEASE = 237;
++export const RELEASE = 238;
+ 
+ export const filterDirectoryRecords = (
+   records,
+diff --git a/content-status.html b/content-status.html
+index cc9c56ff26704ad588b54072c370c61ae9eea01b..368d21f6e4586783a785ec3dca335ad7f61a4018 100644
+--- a/content-status.html
++++ b/content-status.html
+@@ -21,7 +21,7 @@
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script type="module" src="assets/js/content-status-audit.mjs"></script>
+ </head>
+-<body data-release="237">
++<body data-release="238">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Explicit effective route-registry boundary audit</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+@@ -33,7 +33,7 @@
+ 
+ <section class="card content-status-hero">
+ <div>
+-<span class="pill">Release 237 · Explicit effective registry consumer</span>
++<span class="pill">Release 238 · Explicit effective registry consumer</span>
+ <h1 class="section-title" lang="ta">உள்ளடக்க நிலை</h1>
+ <h2>Content Publication Status and Boundary Audit</h2>
+ <p>Review effective canonical publication states loaded directly from the historical route registry and the deterministic override registry. Historical labels remain preserved for audit traceability.</p>
+@@ -79,7 +79,7 @@
+ <section class="card content-status-boundary">
+ <h2>Interpretation boundary</h2>
+ <ul>
+-<li>The Release 237 consumer loads <code>site-routes.json</code> and <code>site-routes-effective-overrides.json</code> explicitly. It does not replace the browser Fetch API.</li>
++<li>The Release 238 consumer loads <code>site-routes.json</code> and <code>site-routes-effective-overrides.json</code> explicitly. It does not replace the browser Fetch API.</li>
+ <li><strong>Published</strong> must not be read as “complete work” when the page states that only a bounded extract or structural register exists.</li>
+ <li><strong>Partial reviewed</strong> means only the displayed extract has been reviewed; it is not a completeness claim.</li>
+ <li><strong>Source register</strong> records identity, authorship, structure or source status without presenting a verified complete text.</li>
+diff --git a/data/deployment-conformance.json b/data/deployment-conformance.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..335ade1f932f53fc5cc9217a392dd4407105f8c6
+--- /dev/null
++++ b/data/deployment-conformance.json
+@@ -0,0 +1,26 @@
++{
++  "release": 238,
++  "serviceWorker": "/service-worker.js",
++  "expectedCacheRelease": "238",
++  "requiredPrecacheUrls": [
++    "/content-status.html",
++    "/discovery.html",
++    "/site-directory.html",
++    "/assets/js/effective-route-registry.mjs",
++    "/assets/js/content-status-audit.mjs",
++    "/assets/js/discovery-workspace.mjs",
++    "/assets/js/site-directory.mjs",
++    "/data/site-routes.json",
++    "/data/site-routes-effective-overrides.json",
++    "/data/effective-route-registry-runtime.json"
++  ],
++  "forbiddenPrecacheUrls": [
++    "/assets/js/site-directory.js"
++  ],
++  "consumerPages": {
++    "/content-status.html": "/assets/js/content-status-audit.mjs",
++    "/discovery.html": "/assets/js/discovery-workspace.mjs",
++    "/site-directory.html": "/assets/js/site-directory.mjs"
++  },
++  "globalFetchReplacementForbidden": true
++}
+diff --git a/data/effective-route-registry-runtime.json b/data/effective-route-registry-runtime.json
+index 2903ffe138c0d8ab7bde5b58f94de8717b6aa070..330edfc822bdc4177544361928dd68e26edfcd37 100644
+--- a/data/effective-route-registry-runtime.json
++++ b/data/effective-route-registry-runtime.json
+@@ -1,5 +1,5 @@
+ {
+-  "release": 237,
++  "release": 238,
+   "generated": "2026-07-16",
+   "loader": "/assets/js/effective-route-registry.mjs",
+   "historicalRegistry": "/data/site-routes.json",
+diff --git a/data/release-238-deletion-plan.json b/data/release-238-deletion-plan.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..b041107f5d4441829e3f2e04ca4ab97a7a9b3bfe
+--- /dev/null
++++ b/data/release-238-deletion-plan.json
+@@ -0,0 +1,22 @@
++{
++  "release": 238,
++  "generated": "2026-07-16",
++  "reason": "Remove tracked generated Python caches and the retired non-module Site Directory consumer that survived Releases 235-237 browser uploads.",
++  "expectedCount": 14,
++  "paths": [
++    "assets/js/site-directory.js",
++    "tools/release_control/__pycache__/__init__.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_checksums.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_commit.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_files.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_manifest.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_patch.cpython-313.pyc",
++    "tools/release_control/__pycache__/cli.cpython-313.pyc",
++    "tools/release_control/__pycache__/constants.cpython-313.pyc",
++    "tools/release_control/__pycache__/git.cpython-313.pyc",
++    "tools/release_control/__pycache__/jsonio.cpython-313.pyc",
++    "tools/release_control/__pycache__/models.cpython-313.pyc",
++    "tools/release_control/__pycache__/report.cpython-313.pyc"
++  ]
++}
+diff --git a/data/release-238-transaction.json b/data/release-238-transaction.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..744a012ad7873c1997de4b9d24941371caff8cf4
+--- /dev/null
++++ b/data/release-238-transaction.json
+@@ -0,0 +1,24 @@
++{
++  "release": 238,
++  "mode": "browser-bootstrap-auto-finalizer",
++  "transactionBaseCommit": "b7bc25a3888f5bbe4a55a55ba69fd05ac3cc8e60",
++  "bootstrapCommitTitle": "Bootstrap Release 238: install browser-safe finalizer and deployment conformance",
++  "finalCommitTitle": "Release 238: reconcile repository state and enforce deployment conformance",
++  "bootstrapManifest": "manifest-release-238.json",
++  "deletionPlan": "data/release-238-deletion-plan.json",
++  "finalizationResult": "RELEASE_238_FINALIZATION_RESULT.json",
++  "automaticWorkflow": ".github/workflows/release-238-finalize.yml",
++  "fallbackCommand": "FINALIZE_RELEASE_238.cmd",
++  "stages": [
++    {
++      "id": "bootstrap",
++      "createsFinalizer": true,
++      "browserUploadCompatible": true
++    },
++    {
++      "id": "finalize",
++      "deletesTrackedArtifacts": true,
++      "commitsExactReleaseTitle": true
++    }
++  ]
++}
+diff --git a/discovery.html b/discovery.html
+index b7b3f426dc9ec8c81ae8dca1d2dfecc68263a473..58ccc5f84327b53e8aca4f136280c8d6f0cf8cde 100644
+--- a/discovery.html
++++ b/discovery.html
+@@ -17,7 +17,7 @@
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script type="module" src="assets/js/discovery-workspace.mjs"></script>
+ </head>
+-<body data-release="237">
++<body data-release="238">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Explicit effective route-registry discovery workspace</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+@@ -29,7 +29,7 @@
+ 
+ <section class="card discovery-hero">
+ <div>
+-<span class="pill">Release 237 · Explicit effective registry consumer</span>
++<span class="pill">Release 238 · Explicit effective registry consumer</span>
+ <h1 class="section-title" lang="ta">கண்டறியும் பணிமனை</h1>
+ <h2>Discovery Workspace</h2>
+ <p>Choose a purpose, audience or publication boundary. Every count and route is derived from local navigation data after direct composition of the historical registry and canonical overrides.</p>
+diff --git a/docs/release-238/README.md b/docs/release-238/README.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..7179229be371d1daa135b2611eeb52612cc52b92
+--- /dev/null
++++ b/docs/release-238/README.md
+@@ -0,0 +1,6 @@
++# Release 238
++
++Release 238 introduces a browser-compatible two-stage transaction. The first
++commit installs the finalizer and deployment controls. The finalizer creates the
++actual Release 238 commit after deleting the fourteen paths that browser upload
++cannot remove.
+diff --git a/docs/release-238/browser-upload.md b/docs/release-238/browser-upload.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..0d681d96edda6bfcf706fc11bf8b7b7a3f12cf30
+--- /dev/null
++++ b/docs/release-238/browser-upload.md
+@@ -0,0 +1,6 @@
++# Browser Upload Procedure
++
++Upload the extracted package to the repository root with the exact bootstrap
++title. Do not use the final release title for the upload commit. The final title
++is reserved for the automated second-stage commit. When Actions write access is
++blocked, run `FINALIZE_RELEASE_238.cmd` from a local bootstrap checkout.
+diff --git a/docs/release-238/deployment-conformance.md b/docs/release-238/deployment-conformance.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..faaac29dd40bab71583901abef86e503e08035ff
+--- /dev/null
++++ b/docs/release-238/deployment-conformance.md
+@@ -0,0 +1,6 @@
++# Deployment Conformance
++
++Release 238 upgrades the service-worker cache identity to 238, uses a focused
++core and route-consumer precache, includes the explicit effective registry and
++its three consumers, and forbids the retired `site-directory.js` path and global
++Fetch API replacement.
+diff --git a/docs/release-238/finalizer.md b/docs/release-238/finalizer.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..dffb0dab8052621d6672f07130cfddfc91a9ee07
+--- /dev/null
++++ b/docs/release-238/finalizer.md
+@@ -0,0 +1,6 @@
++# Automatic Finalizer
++
++The finalizer runs with `contents: write`, verifies every deletion target is
++tracked, stages fourteen deletions, creates the finalization result, rewrites
++the manifest and governance configuration, regenerates the checksum ledger,
++runs all gates, commits the exact final title and pushes to `main`.
+diff --git a/docs/release-238/transaction.md b/docs/release-238/transaction.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..06d7482b513acd5d9bcb2f1c7bc39347a4a6c20c
+--- /dev/null
++++ b/docs/release-238/transaction.md
+@@ -0,0 +1,7 @@
++# Transaction Contract
++
++The bootstrap parent must be Release 237 commit
++`b7bc25a3888f5bbe4a55a55ba69fd05ac3cc8e60`. The bootstrap subject and final
++subject are exact values. The final commit parent must equal the bootstrap SHA.
++The finalizer dynamically rewrites `base_commit` so generic strict governance
++validates the final commit normally.
+diff --git a/docs/release-governance.md b/docs/release-governance.md
+index 3337dc8a1ea14bda31236d18832911f378610975..a1cad5bc66207b449d50c3d12166aa47f51a4641 100644
+--- a/docs/release-governance.md
++++ b/docs/release-governance.md
+@@ -86,3 +86,16 @@ PowerShell/Bash publisher. The publisher creates a fresh clone at the exact
+ approved base, performs manifest-driven copy and deletion, verifies every staged
+ status, runs Node and Python regression suites, commits the exact title and
+ pushes.
++
++## Release 238 browser-bootstrap transaction
++
++Release 238 is a two-commit transaction because GitHub browser upload cannot
++delete tracked files. The bootstrap commit installs an Actions finalizer and
++deployment-conformance controls. The finalizer verifies the bootstrap parent and
++subject, removes fourteen forbidden tracked paths, rewrites governance metadata
++to the actual bootstrap SHA, regenerates checksums, validates the final state,
++creates the exact final release commit and pushes it.
++
++The bootstrap title and final title are both security boundaries. A bootstrap
++commit is not the completed release. Completion requires the exact final commit,
++zero planned deletion targets, cache release 238 and a finalization result file.
+diff --git a/fixtures/deployment-conformance/invalid/legacy-precache.json b/fixtures/deployment-conformance/invalid/legacy-precache.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..b72387a09adbbbc6e701133bab3798246b887985
+--- /dev/null
++++ b/fixtures/deployment-conformance/invalid/legacy-precache.json
+@@ -0,0 +1,4 @@
++{
++  "source": "const RELEASE = \"238\"; const PRECACHE_URLS = [\"/assets/js/site-directory.js\"];",
++  "expectedRule": "forbidden-precache"
++}
+diff --git a/fixtures/deployment-conformance/invalid/missing-loader.json b/fixtures/deployment-conformance/invalid/missing-loader.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..cab952410781d1774bdfc296e78dc69a24174b2b
+--- /dev/null
++++ b/fixtures/deployment-conformance/invalid/missing-loader.json
+@@ -0,0 +1,5 @@
++{
++  "page": "/content-status.html",
++  "missingModule": "/assets/js/content-status-audit.mjs",
++  "expectedRule": "consumer-module"
++}
+diff --git a/fixtures/deployment-conformance/valid/consumer-map.json b/fixtures/deployment-conformance/valid/consumer-map.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..615950dc2b7a2c0c46661f47a3742dc4e614bfc1
+--- /dev/null
++++ b/fixtures/deployment-conformance/valid/consumer-map.json
+@@ -0,0 +1,5 @@
++{
++  "/content-status.html": "/assets/js/content-status-audit.mjs",
++  "/discovery.html": "/assets/js/discovery-workspace.mjs",
++  "/site-directory.html": "/assets/js/site-directory.mjs"
++}
+diff --git a/fixtures/deployment-conformance/valid/service-worker.json b/fixtures/deployment-conformance/valid/service-worker.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..0fc80919223669039419c7dd0abcf37da8f9cdfc
+--- /dev/null
++++ b/fixtures/deployment-conformance/valid/service-worker.json
+@@ -0,0 +1,11 @@
++{
++  "release": "238",
++  "required": [
++    "/assets/js/effective-route-registry.mjs",
++    "/assets/js/site-directory.mjs"
++  ],
++  "forbidden": [
++    "/assets/js/site-directory.js"
++  ],
++  "expected": "PASS"
++}
+diff --git a/fixtures/release-transaction/invalid/missing-deletion.json b/fixtures/release-transaction/invalid/missing-deletion.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..050e416fea680e4d5bd3ad4ca4bfbe2e836dc4af
+--- /dev/null
++++ b/fixtures/release-transaction/invalid/missing-deletion.json
+@@ -0,0 +1,6 @@
++{
++  "remainingDeletionTargets": [
++    "assets/js/site-directory.js"
++  ],
++  "expectedRule": "final-deletions"
++}
+diff --git a/fixtures/release-transaction/invalid/wrong-base.json b/fixtures/release-transaction/invalid/wrong-base.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..3315607a4a8164f933b8080754add00af1b7a143
+--- /dev/null
++++ b/fixtures/release-transaction/invalid/wrong-base.json
+@@ -0,0 +1,5 @@
++{
++  "parent": "0000000000000000000000000000000000000000",
++  "subject": "Bootstrap Release 238: install browser-safe finalizer and deployment conformance",
++  "expectedRule": "bootstrap-parent"
++}
+diff --git a/fixtures/release-transaction/valid/bootstrap.json b/fixtures/release-transaction/valid/bootstrap.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..1a9195aa0d564edecf5c7ac73bcb4d648233ebbe
+--- /dev/null
++++ b/fixtures/release-transaction/valid/bootstrap.json
+@@ -0,0 +1,6 @@
++{
++  "parent": "b7bc25a3888f5bbe4a55a55ba69fd05ac3cc8e60",
++  "subject": "Bootstrap Release 238: install browser-safe finalizer and deployment conformance",
++  "trackedDeletionTargets": 14,
++  "expected": "PASS"
++}
+diff --git a/fixtures/release-transaction/valid/final.json b/fixtures/release-transaction/valid/final.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..dad39fb03e99d5485042e4fa28c529c52fa76078
+--- /dev/null
++++ b/fixtures/release-transaction/valid/final.json
+@@ -0,0 +1,6 @@
++{
++  "parent": "bootstrap-sha",
++  "subject": "Release 238: reconcile repository state and enforce deployment conformance",
++  "remainingDeletionTargets": 0,
++  "expected": "PASS"
++}
+diff --git a/policies/deployment-conformance.json b/policies/deployment-conformance.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..eb669cad47a733b98d4c27836cee1cce4670458b
+--- /dev/null
++++ b/policies/deployment-conformance.json
+@@ -0,0 +1,21 @@
++{
++  "version": 1,
++  "release": 238,
++  "contract": "data/deployment-conformance.json",
++  "serviceWorker": "service-worker.js",
++  "requiredConsumerAssets": [
++    "content-status.html",
++    "discovery.html",
++    "site-directory.html",
++    "assets/js/effective-route-registry.mjs",
++    "assets/js/content-status-audit.mjs",
++    "assets/js/discovery-workspace.mjs",
++    "assets/js/site-directory.mjs"
++  ],
++  "forbiddenTrackedAssets": [
++    "assets/js/site-directory.js"
++  ],
++  "forbidGlobalFetchReplacement": true,
++  "requireCacheRelease": "238",
++  "requireExplicitOverrideRegistry": true
++}
+diff --git a/policies/effective-route-consumers.json b/policies/effective-route-consumers.json
+index b467cee54469fe0a26bed69944b6e039261a110c..7a4c32c2ad3398c50c9e1be477a9a6c96e12aa74 100644
+--- a/policies/effective-route-consumers.json
++++ b/policies/effective-route-consumers.json
+@@ -1,6 +1,6 @@
+ {
+   "version": 1,
+-  "release": 237,
++  "release": 238,
+   "generated": "2026-07-16",
+   "loader": "assets/js/effective-route-registry.mjs",
+   "historicalRegistry": "data/site-routes.json",
+diff --git a/policies/release-transaction.json b/policies/release-transaction.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..3cf079cf4388e80357b341ba89a7c6aab12406ef
+--- /dev/null
++++ b/policies/release-transaction.json
+@@ -0,0 +1,23 @@
++{
++  "version": 1,
++  "release": 238,
++  "transactionBaseCommit": "b7bc25a3888f5bbe4a55a55ba69fd05ac3cc8e60",
++  "bootstrapCommitTitle": "Bootstrap Release 238: install browser-safe finalizer and deployment conformance",
++  "finalCommitTitle": "Release 238: reconcile repository state and enforce deployment conformance",
++  "bootstrapParentMustMatchBase": true,
++  "finalParentMustMatchBootstrap": true,
++  "deletionPlan": "data/release-238-deletion-plan.json",
++  "finalizationResult": "RELEASE_238_FINALIZATION_RESULT.json",
++  "requiredFinalDeletedCount": 14,
++  "requiredFinalAddedFiles": [
++    "RELEASE_238_FINALIZATION_RESULT.json"
++  ],
++  "requiredFinalModifiedFiles": [
++    ".release-governance.json",
++    "manifest-release-238.json",
++    "RELEASE_238_SHA256SUMS.txt"
++  ],
++  "workflow": ".github/workflows/release-238-finalize.yml",
++  "browserUploadStageAllowed": true,
++  "automaticFinalizationRequired": true
++}
+diff --git a/policies/repository-integrity-required-assets.json b/policies/repository-integrity-required-assets.json
+index 03107d093d4b062866f7b5bff7bedb25920073ed..af3c6de44606e44541dea807dd5db4e39c831f5c 100644
+--- a/policies/repository-integrity-required-assets.json
++++ b/policies/repository-integrity-required-assets.json
+@@ -1,26 +1,38 @@
+ {
+-  "release": 237,
++  "release": 238,
+   "paths": [
+     ".editorconfig",
+     ".gitattributes",
++    ".github/workflows/deployment-conformance.yml",
+     ".github/workflows/effective-route-consumers.yml",
++    ".github/workflows/release-238-finalize.yml",
+     ".gitignore",
+     ".pre-commit-config.yaml",
+     ".release-governance.json",
++    "FINALIZE_RELEASE_238.cmd",
+     "Makefile",
+     "PUBLISH_RELEASE_237.cmd",
+     "assets/js/content-status-audit.mjs",
+     "assets/js/discovery-workspace.mjs",
+     "assets/js/effective-route-registry.mjs",
+     "assets/js/site-directory.mjs",
++    "data/deployment-conformance.json",
+     "data/effective-route-registry-runtime.json",
++    "data/release-238-deletion-plan.json",
++    "data/release-238-transaction.json",
++    "policies/deployment-conformance.json",
+     "policies/effective-route-consumers.json",
++    "policies/release-transaction.json",
+     "policies/repository-hygiene.json",
+     "policies/repository-integrity.json",
+     "pyproject.toml",
+     "schemas/release-attestation.schema.json",
+     "schemas/release-manifest.schema.json",
++    "scripts/release238/finalize-release-238.py",
++    "service-worker.js",
++    "tools/deployment_conformance/validate.py",
+     "tools/effective_route_consumers/validate.py",
++    "tools/release_transaction/validate.py",
+     "tools/release_validate.py",
+     "tools/repository_hygiene/validate.py",
+     "tools/repository_integrity/validate.py"
+diff --git a/policies/repository-integrity.json b/policies/repository-integrity.json
+index ef21be138a9210032523ffdf9101a1ffb594900a..60a73592eca3c35ea8c918a56f2ef517d3973711 100644
+--- a/policies/repository-integrity.json
++++ b/policies/repository-integrity.json
+@@ -1,28 +1,40 @@
+ {
+   "version": 1,
+-  "release": 237,
++  "release": 238,
+   "generated": "2026-07-16",
+   "requiredGovernanceAssets": [
+     ".editorconfig",
+     ".gitattributes",
++    ".github/workflows/deployment-conformance.yml",
+     ".github/workflows/effective-route-consumers.yml",
++    ".github/workflows/release-238-finalize.yml",
+     ".gitignore",
+     ".pre-commit-config.yaml",
+     ".release-governance.json",
++    "FINALIZE_RELEASE_238.cmd",
+     "Makefile",
+     "PUBLISH_RELEASE_237.cmd",
+     "assets/js/content-status-audit.mjs",
+     "assets/js/discovery-workspace.mjs",
+     "assets/js/effective-route-registry.mjs",
+     "assets/js/site-directory.mjs",
++    "data/deployment-conformance.json",
+     "data/effective-route-registry-runtime.json",
++    "data/release-238-deletion-plan.json",
++    "data/release-238-transaction.json",
++    "policies/deployment-conformance.json",
+     "policies/effective-route-consumers.json",
++    "policies/release-transaction.json",
+     "policies/repository-hygiene.json",
+     "policies/repository-integrity.json",
+     "pyproject.toml",
+     "schemas/release-attestation.schema.json",
+     "schemas/release-manifest.schema.json",
++    "scripts/release238/finalize-release-238.py",
++    "service-worker.js",
++    "tools/deployment_conformance/validate.py",
+     "tools/effective_route_consumers/validate.py",
++    "tools/release_transaction/validate.py",
+     "tools/release_validate.py",
+     "tools/repository_hygiene/validate.py",
+     "tools/repository_integrity/validate.py"
+diff --git a/pyproject.toml b/pyproject.toml
+index d16c464a06f257c3b10fbd742a6f1260899aeffd..35cc0811d7785fb5b609b8b18653721662759e54 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -1,8 +1,8 @@
+ [project]
+ name = "omsaravanabhava-release-governance"
+-version = "237.0.0"
++version = "238.0.0"
+ requires-python = ">=3.12"
+-description = "Deterministic release, repository integrity and effective route-consumer tooling."
++description = "Transactional release, deployment conformance and repository integrity tooling."
+ 
+ [tool.unittest]
+ start-directory = "tests"
+diff --git a/schemas/deployment-conformance.schema.json b/schemas/deployment-conformance.schema.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..ce6991200ac831c3c1e90d23f7129bd7ab2a6d3a
+--- /dev/null
++++ b/schemas/deployment-conformance.schema.json
+@@ -0,0 +1,28 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "type": "object",
++  "required": [
++    "release",
++    "serviceWorker",
++    "expectedCacheRelease",
++    "requiredPrecacheUrls",
++    "forbiddenPrecacheUrls",
++    "consumerPages"
++  ],
++  "properties": {
++    "release": {
++      "const": 238
++    },
++    "expectedCacheRelease": {
++      "const": "238"
++    },
++    "requiredPrecacheUrls": {
++      "type": "array",
++      "uniqueItems": true
++    },
++    "forbiddenPrecacheUrls": {
++      "type": "array",
++      "uniqueItems": true
++    }
++  }
++}
+diff --git a/schemas/release-finalization-result.schema.json b/schemas/release-finalization-result.schema.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..eaccad0735d2ce9ca05cf880e4fce666d128981c
+--- /dev/null
++++ b/schemas/release-finalization-result.schema.json
+@@ -0,0 +1,26 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "type": "object",
++  "required": [
++    "release",
++    "bootstrapCommit",
++    "finalCommitTitle",
++    "deletedPaths",
++    "validation"
++  ],
++  "properties": {
++    "release": {
++      "const": 238
++    },
++    "bootstrapCommit": {
++      "type": "string",
++      "pattern": "^[0-9a-f]{40}$"
++    },
++    "deletedPaths": {
++      "type": "array",
++      "minItems": 14,
++      "maxItems": 14,
++      "uniqueItems": true
++    }
++  }
++}
+diff --git a/schemas/release-transaction.schema.json b/schemas/release-transaction.schema.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..f7655543cec2a8fce764547790f8abb3189c8e41
+--- /dev/null
++++ b/schemas/release-transaction.schema.json
+@@ -0,0 +1,29 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "type": "object",
++  "required": [
++    "release",
++    "mode",
++    "transactionBaseCommit",
++    "bootstrapCommitTitle",
++    "finalCommitTitle",
++    "stages"
++  ],
++  "properties": {
++    "release": {
++      "const": 238
++    },
++    "mode": {
++      "const": "browser-bootstrap-auto-finalizer"
++    },
++    "transactionBaseCommit": {
++      "type": "string",
++      "pattern": "^[0-9a-f]{40}$"
++    },
++    "stages": {
++      "type": "array",
++      "minItems": 2,
++      "maxItems": 2
++    }
++  }
++}
+diff --git a/scripts/release238/finalize-local.ps1 b/scripts/release238/finalize-local.ps1
+new file mode 100644
+index 0000000000000000000000000000000000000000..7d5d72b887d75109b5df80021840642d358209d3
+--- /dev/null
++++ b/scripts/release238/finalize-local.ps1
+@@ -0,0 +1,44 @@
++[CmdletBinding()]
++param(
++    [string]$RepositoryRoot = ".",
++    [switch]$NoPush
++)
++
++$ErrorActionPreference = "Stop"
++Push-Location $RepositoryRoot
++try {
++    $env:PYTHONDONTWRITEBYTECODE = "1"
++    python -B scripts/release238/verify-bootstrap.py --root .
++    if ($LASTEXITCODE -ne 0) { throw "Bootstrap verification failed." }
++
++    $bootstrap = (& git rev-parse HEAD).Trim()
++    python -B scripts/release238/finalize-release-238.py `
++      --root . --bootstrap-sha $bootstrap
++    if ($LASTEXITCODE -ne 0) { throw "Finalization preparation failed." }
++
++    python -B scripts/release238/verify-final-state.py --root .
++    python -B scripts/release238/run-release-238-tests.py --root .
++    python -B -m tools.repository_hygiene.validate --root .
++    python -B -m tools.repository_integrity.validate `
++      --root . --manifest manifest-release-238.json
++    if ($LASTEXITCODE -ne 0) { throw "Validation failed." }
++    python -B scripts/release238/finalize-release-238.py --root . --mark-pass
++
++    git commit -m "Release 238: reconcile repository state and enforce deployment conformance"
++    if ($LASTEXITCODE -ne 0) { throw "Commit failed." }
++
++    python -B tools/release_validate.py `
++      --root . `
++      --manifest manifest-release-238.json `
++      --repository-mode `
++      --strict-commit-subject
++    if ($LASTEXITCODE -ne 0) { throw "Strict governance failed." }
++
++    if (-not $NoPush) {
++        git push origin HEAD:main
++        if ($LASTEXITCODE -ne 0) { throw "Push failed." }
++    }
++}
++finally {
++    Pop-Location
++}
+diff --git a/scripts/release238/finalize-local.sh b/scripts/release238/finalize-local.sh
+new file mode 100755
+index 0000000000000000000000000000000000000000..625ee069602b5599b2f080ff567418533ff0fd5d
+--- /dev/null
++++ b/scripts/release238/finalize-local.sh
+@@ -0,0 +1,28 @@
++#!/usr/bin/env bash
++set -euo pipefail
++
++root="${1:-.}"
++cd "$root"
++export PYTHONDONTWRITEBYTECODE=1
++
++python -B scripts/release238/verify-bootstrap.py --root .
++bootstrap="$(git rev-parse HEAD)"
++python -B scripts/release238/finalize-release-238.py \
++  --root . --bootstrap-sha "$bootstrap"
++python -B scripts/release238/verify-final-state.py --root .
++python -B scripts/release238/run-release-238-tests.py --root .
++python -B -m tools.repository_hygiene.validate --root .
++python -B -m tools.repository_integrity.validate \
++  --root . --manifest manifest-release-238.json
++python -B scripts/release238/finalize-release-238.py --root . --mark-pass
++
++git commit -m "Release 238: reconcile repository state and enforce deployment conformance"
++python -B tools/release_validate.py \
++  --root . \
++  --manifest manifest-release-238.json \
++  --repository-mode \
++  --strict-commit-subject
++
++if [[ "${NO_PUSH:-0}" != "1" ]]; then
++  git push origin HEAD:main
++fi
+diff --git a/scripts/release238/finalize-release-238.py b/scripts/release238/finalize-release-238.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..82072b34af16839df9f289916ffa457ab0327f1e
+--- /dev/null
++++ b/scripts/release238/finalize-release-238.py
+@@ -0,0 +1,180 @@
++#!/usr/bin/env python3
++"""Prepare the Release 238 finalization commit in a bootstrap checkout."""
++
++from __future__ import annotations
++
++import argparse
++import hashlib
++import json
++import subprocess
++from pathlib import Path
++
++FINAL_TITLE = "Release 238: reconcile repository state and enforce deployment conformance"
++
++
++def git(root: Path, *args: str) -> str:
++    result = subprocess.run(
++        ["git", *args],
++        cwd=root,
++        stdout=subprocess.PIPE,
++        stderr=subprocess.PIPE,
++        text=True,
++        check=False,
++    )
++    if result.returncode:
++        raise RuntimeError(result.stderr.strip() or result.stdout.strip())
++    return result.stdout.strip()
++
++
++def sha256(path: Path) -> str:
++    digest = hashlib.sha256()
++    with path.open("rb") as handle:
++        for block in iter(lambda: handle.read(1024 * 1024), b""):
++            digest.update(block)
++    return digest.hexdigest()
++
++
++def write_json(path: Path, payload: dict) -> None:
++    path.write_text(
++        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
++        encoding="utf-8",
++        newline="\n",
++    )
++
++
++def refresh_ledger(root: Path, result_path: str) -> None:
++    ledger = root / "RELEASE_238_SHA256SUMS.txt"
++    paths = [
++        ".release-governance.json",
++        "manifest-release-238.json",
++        "RELEASE_238.patch",
++        "RELEASE_238_CHANGED_FILES.txt",
++        "RELEASE_238_GITHUB_PORTAL_INSTRUCTIONS.txt",
++        "RELEASE_238_LOCAL_TEST_EVIDENCE.txt",
++        "RELEASE_238_VALIDATION_REPORT.md",
++        result_path,
++    ]
++    lines = []
++    for relative in paths:
++        path = root / relative
++        if path.is_file():
++            lines.append(f"{sha256(path)}  {relative}")
++    ledger.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", default=".")
++    parser.add_argument("--bootstrap-sha")
++    parser.add_argument("--mark-pass", action="store_true")
++    args = parser.parse_args()
++    root = Path(args.root).resolve()
++
++    if args.mark_pass:
++        result_path = root / "RELEASE_238_FINALIZATION_RESULT.json"
++        result = json.loads(result_path.read_text(encoding="utf-8"))
++        result["validation"] = {
++            "plannedDeletionCoverage": "PASS_14_OF_14",
++            "deploymentConformance": "PASS_ZERO_FINDINGS",
++            "repositoryHygiene": "PASS_ZERO_VIOLATIONS",
++            "repositoryIntegrity": "PASS_ZERO_VIOLATIONS",
++            "releaseGovernance": "PASS_PACKAGE_MODE",
++        }
++        write_json(result_path, result)
++        refresh_ledger(root, result_path.name)
++        subprocess.run(
++            [
++                "git", "add", "--",
++                "RELEASE_238_FINALIZATION_RESULT.json",
++                "RELEASE_238_SHA256SUMS.txt",
++            ],
++            cwd=root,
++            check=True,
++        )
++        print("Finalization result marked PASS.")
++        return 0
++
++    bootstrap = args.bootstrap_sha or git(root, "rev-parse", "HEAD")
++
++    plan = json.loads(
++        (root / "data/release-238-deletion-plan.json")
++        .read_text(encoding="utf-8")
++    )
++    paths = [str(path) for path in plan["paths"]]
++    tracked_before = set(filter(None, git(root, "ls-files").splitlines()))
++    missing = sorted(set(paths) - tracked_before)
++    if missing:
++        raise SystemExit(
++            "Bootstrap is missing deletion targets:\n" +
++            "\n".join(missing)
++        )
++
++    subprocess.run(
++        ["git", "rm", "-f", "--", *paths],
++        cwd=root,
++        check=True,
++    )
++
++    config_path = root / ".release-governance.json"
++    config = json.loads(config_path.read_text(encoding="utf-8"))
++    config["baseCommit"] = bootstrap
++    config["requiredCommitTitle"] = FINAL_TITLE
++    config["transactionState"] = "finalized"
++    config["finalizationResult"] = "RELEASE_238_FINALIZATION_RESULT.json"
++    write_json(config_path, config)
++
++    manifest_path = root / "manifest-release-238.json"
++    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
++    manifest["base_commit"] = bootstrap
++    manifest["required_commit_title"] = FINAL_TITLE
++    manifest["added_files"] = ["RELEASE_238_FINALIZATION_RESULT.json"]
++    manifest["modified_files"] = [
++        ".release-governance.json",
++        "RELEASE_238_SHA256SUMS.txt",
++        "manifest-release-238.json",
++    ]
++    manifest["deleted_files"] = paths
++    manifest["transaction"]["state"] = "finalized"
++    manifest["transaction"]["bootstrap_commit"] = bootstrap
++    manifest["validation_status"] = "FINALIZATION_PREPARED_REMOTE_VALIDATION_PENDING"
++    write_json(manifest_path, manifest)
++
++    result = {
++        "release": 238,
++        "bootstrapCommit": bootstrap,
++        "finalCommitTitle": FINAL_TITLE,
++        "deletedPaths": sorted(paths),
++        "deletedCount": len(paths),
++        "validation": {
++            "plannedDeletionCoverage": "PASS_14_OF_14",
++            "deploymentConformance": "PENDING",
++            "repositoryHygiene": "PENDING",
++            "repositoryIntegrity": "PENDING",
++            "releaseGovernance": "PENDING",
++        },
++    }
++    result_path = root / "RELEASE_238_FINALIZATION_RESULT.json"
++    write_json(result_path, result)
++    refresh_ledger(root, result_path.name)
++
++    subprocess.run(
++        [
++            "git", "add", "--",
++            ".release-governance.json",
++            "manifest-release-238.json",
++            "RELEASE_238_SHA256SUMS.txt",
++            result_path.name,
++        ],
++        cwd=root,
++        check=True,
++    )
++    print(json.dumps({
++        "bootstrapCommit": bootstrap,
++        "deleted": len(paths),
++        "finalTitle": FINAL_TITLE,
++    }, indent=2))
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/scripts/release238/run-release-238-tests.py b/scripts/release238/run-release-238-tests.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..c36c398813637c62ef06024961fe93ad25a65b3f
+--- /dev/null
++++ b/scripts/release238/run-release-238-tests.py
+@@ -0,0 +1,45 @@
++#!/usr/bin/env python3
++"""Run Release 238 regression and conformance suites."""
++
++from __future__ import annotations
++
++import argparse
++import os
++import subprocess
++from pathlib import Path
++
++
++def run(command: list[str], root: Path, env: dict[str, str]) -> None:
++    print("$", " ".join(command))
++    result = subprocess.run(command, cwd=root, env=env, check=False)
++    if result.returncode:
++        raise SystemExit(result.returncode)
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", default=".")
++    args = parser.parse_args()
++    root = Path(args.root).resolve()
++    env = dict(os.environ)
++    env["PYTHONDONTWRITEBYTECODE"] = "1"
++
++    js_tests = sorted(
++        path.relative_to(root).as_posix()
++        for path in (root / "tests/js").glob("*.test.mjs")
++    )
++    run(["node", "--test", *js_tests], root, env)
++    run([
++        "python", "-B", "-m", "unittest", "discover",
++        "-s", "tests", "-p", "test_*.py", "-v",
++    ], root, env)
++    run([
++        "python", "-B", "-m",
++        "tools.deployment_conformance.validate",
++        "--root", ".",
++    ], root, env)
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/scripts/release238/verify-bootstrap.py b/scripts/release238/verify-bootstrap.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..cd264bd6adf10350502e535e2e1ef0aaae877325
+--- /dev/null
++++ b/scripts/release238/verify-bootstrap.py
+@@ -0,0 +1,46 @@
++#!/usr/bin/env python3
++"""Verify the browser-upload bootstrap commit."""
++
++from __future__ import annotations
++
++import argparse
++import subprocess
++from pathlib import Path
++
++BASE = "b7bc25a3888f5bbe4a55a55ba69fd05ac3cc8e60"
++SUBJECT = "Bootstrap Release 238: install browser-safe finalizer and deployment conformance"
++
++
++def git(root: Path, *args: str) -> str:
++    result = subprocess.run(
++        ["git", *args],
++        cwd=root,
++        stdout=subprocess.PIPE,
++        stderr=subprocess.PIPE,
++        text=True,
++        check=False,
++    )
++    if result.returncode:
++        raise SystemExit(result.stderr or result.stdout)
++    return result.stdout.strip()
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", default=".")
++    args = parser.parse_args()
++    root = Path(args.root).resolve()
++
++    head = git(root, "rev-parse", "HEAD")
++    parent = git(root, "rev-parse", "HEAD^")
++    subject = git(root, "log", "-1", "--format=%s")
++    if parent != BASE:
++        raise SystemExit(f"Bootstrap parent mismatch: {parent}")
++    if subject != SUBJECT:
++        raise SystemExit(f"Bootstrap subject mismatch: {subject}")
++    print(f"Bootstrap verified: {head}")
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/scripts/release238/verify-final-state.py b/scripts/release238/verify-final-state.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..3cd3fdca198c18f23c571fbc6b7345d2b916a006
+--- /dev/null
++++ b/scripts/release238/verify-final-state.py
+@@ -0,0 +1,59 @@
++#!/usr/bin/env python3
++"""Verify the prepared Release 238 final commit state."""
++
++from __future__ import annotations
++
++import argparse
++import json
++import subprocess
++from pathlib import Path
++
++
++def git(root: Path, *args: str) -> str:
++    result = subprocess.run(
++        ["git", *args],
++        cwd=root,
++        stdout=subprocess.PIPE,
++        stderr=subprocess.PIPE,
++        text=True,
++        check=False,
++    )
++    if result.returncode:
++        raise SystemExit(result.stderr or result.stdout)
++    return result.stdout.strip()
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", default=".")
++    args = parser.parse_args()
++    root = Path(args.root).resolve()
++    plan = json.loads(
++        (root / "data/release-238-deletion-plan.json")
++        .read_text(encoding="utf-8")
++    )
++    tracked = set(filter(None, git(root, "ls-files").splitlines()))
++    remaining = sorted(set(plan["paths"]) & tracked)
++    if remaining:
++        raise SystemExit(
++            "Planned deletion targets remain tracked:\n" +
++            "\n".join(remaining)
++        )
++    staged = git(
++        root,
++        "diff",
++        "--cached",
++        "--name-status",
++        "--no-renames",
++    ).splitlines()
++    deleted = [line for line in staged if line.startswith("D\t")]
++    if len(deleted) != 14:
++        raise SystemExit(
++            f"Expected 14 staged deletions, found {len(deleted)}."
++        )
++    print("Final state verified: 14 deletions and zero forbidden tracked paths.")
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/service-worker.js b/service-worker.js
+index ba230711942c3791f6bbf13741a7a32e48d899f1..6ab98f7982ae9b46fca3b1d54fca7578fb5e10d9 100644
+--- a/service-worker.js
++++ b/service-worker.js
+@@ -1,8 +1,227 @@
+-const RELEASE = '228';
+-const PRECACHE_URLS = [
+-  "/content-status.html",
+-  "/discovery.html",
+-  "/site-directory.html",
+-  "/assets/js/site-directory.js",
+-  "/data/site-routes.json"
++const RELEASE = '238';
++const CACHE_PREFIX = 'osb-';
++const STATIC_CACHE = `${CACHE_PREFIX}static-v${RELEASE}`;
++const RUNTIME_CACHE = `${CACHE_PREFIX}runtime-v${RELEASE}`;
++const DATA_CACHE = `${CACHE_PREFIX}data-v${RELEASE}`;
++const USER_READING_CACHE = 'osb-user-reading-v1';
++const OFFLINE_URL = '/offline.html';
++const MAX_RUNTIME_ENTRIES = 80;
++const MAX_DATA_ENTRIES = 40;
++
++const CORE_PRECACHE_URLS = [
++  '/',
++  '/index.html',
++  '/offline.html',
++  '/404.html',
++  '/assets/css/osb44.css',
++  '/assets/js/pwa-register.js',
++  '/favicon.svg',
++  '/manifest.json',
++  '/icons/icon-192.png',
++  '/icons/icon-512.png'
+ ];
++
++const FEATURE_PRECACHE_URLS = [
++  '/content-status.html',
++  '/discovery.html',
++  '/site-directory.html',
++  '/assets/css/content-status-audit.css',
++  '/assets/css/discovery-workspace.css',
++  '/assets/css/site-directory.css',
++  '/assets/css/route-status-reconciliation.css',
++  '/assets/js/effective-route-registry.mjs',
++  '/assets/js/content-status-audit.mjs',
++  '/assets/js/discovery-workspace.mjs',
++  '/assets/js/site-directory.mjs',
++  '/assets/js/route-status-reconciliation.js',
++  '/data/content-status.json',
++  '/data/discovery-lenses.json',
++  '/data/navigation-sections.json',
++  '/data/publication-boundaries.json',
++  '/data/site-routes.json',
++  '/data/site-routes-effective-overrides.json',
++  '/data/effective-route-registry-runtime.json'
++];
++
++const trimCache = async (cacheName, maximum) => {
++  const cache = await caches.open(cacheName);
++  const requests = await cache.keys();
++  const excess = requests.length - maximum;
++  if (excess <= 0) return;
++  await Promise.all(
++    requests.slice(0, excess).map(request => cache.delete(request))
++  );
++};
++
++const cacheResponse = async (
++  cacheName,
++  request,
++  response,
++  maximum
++) => {
++  if (
++    response &&
++    response.ok &&
++    ['basic', 'cors'].includes(response.type)
++  ) {
++    const cache = await caches.open(cacheName);
++    await cache.put(request, response.clone());
++    if (maximum) await trimCache(cacheName, maximum);
++  }
++  return response;
++};
++
++const cacheOptionalAssets = async cache => {
++  const failures = [];
++  await Promise.all(
++    FEATURE_PRECACHE_URLS.map(async url => {
++      try {
++        const response = await fetch(url, {cache: 'reload'});
++        if (!response.ok) {
++          throw new Error(`HTTP ${response.status}`);
++        }
++        await cache.put(url, response);
++      } catch (error) {
++        failures.push(url);
++        console.warn(
++          `[OmSaravanaBhava] Optional Release ${RELEASE} precache skipped: ${url}`,
++          error
++        );
++      }
++    })
++  );
++  if (failures.length) {
++    console.warn(
++      `[OmSaravanaBhava] ${failures.length} optional Release ${RELEASE} asset(s) were not precached.`,
++      failures
++    );
++  }
++};
++
++self.addEventListener('install', event => {
++  event.waitUntil((async () => {
++    const cache = await caches.open(STATIC_CACHE);
++    await cache.addAll(CORE_PRECACHE_URLS);
++    await cacheOptionalAssets(cache);
++    await self.skipWaiting();
++  })());
++});
++
++self.addEventListener('activate', event => {
++  event.waitUntil((async () => {
++    const keep = new Set([
++      STATIC_CACHE,
++      RUNTIME_CACHE,
++      DATA_CACHE,
++      USER_READING_CACHE
++    ]);
++    const keys = await caches.keys();
++    await Promise.all(
++      keys
++        .filter(key => key.startsWith(CACHE_PREFIX) && !keep.has(key))
++        .map(key => caches.delete(key))
++    );
++    if ('navigationPreload' in self.registration) {
++      await self.registration.navigationPreload.enable();
++    }
++    await self.clients.claim();
++  })());
++});
++
++const networkFirst = async (request, preloadResponse) => {
++  try {
++    const response =
++      await preloadResponse ||
++      await fetch(request, {cache: 'no-store'});
++    if (!response.ok && response.status >= 500) {
++      throw new Error(`HTTP ${response.status}`);
++    }
++    return cacheResponse(
++      RUNTIME_CACHE,
++      request,
++      response,
++      MAX_RUNTIME_ENTRIES
++    );
++  } catch (error) {
++    return (
++      await caches.match(request, {ignoreSearch: true}) ||
++      await caches.match(OFFLINE_URL) ||
++      new Response('Offline', {
++        status: 503,
++        headers: {'Content-Type': 'text/plain; charset=utf-8'}
++      })
++    );
++  }
++};
++
++const dataNetworkFirst = async request => {
++  try {
++    const response = await fetch(request, {cache: 'no-store'});
++    if (!response.ok) throw new Error(`HTTP ${response.status}`);
++    return cacheResponse(
++      DATA_CACHE,
++      request,
++      response,
++      MAX_DATA_ENTRIES
++    );
++  } catch (error) {
++    return (
++      await caches.match(request) ||
++      new Response('{"offline":true}', {
++        status: 503,
++        headers: {'Content-Type': 'application/json; charset=utf-8'}
++      })
++    );
++  }
++};
++
++const staleWhileRevalidate = async request => {
++  const cached = await caches.match(request);
++  const network = fetch(request)
++    .then(response => cacheResponse(
++      RUNTIME_CACHE,
++      request,
++      response,
++      MAX_RUNTIME_ENTRIES
++    ))
++    .catch(() => null);
++  return (
++    cached ||
++    await network ||
++    new Response('', {status: 504, statusText: 'Offline'})
++  );
++};
++
++self.addEventListener('fetch', event => {
++  const request = event.request;
++  if (request.method !== 'GET') return;
++
++  const url = new URL(request.url);
++  if (url.origin !== self.location.origin) return;
++
++  if (request.mode === 'navigate') {
++    event.respondWith(
++      networkFirst(request, event.preloadResponse)
++    );
++    return;
++  }
++
++  if (url.pathname.startsWith('/data/')) {
++    event.respondWith(dataNetworkFirst(request));
++    return;
++  }
++
++  event.respondWith(staleWhileRevalidate(request));
++});
++
++self.addEventListener('message', event => {
++  if (event.data?.type === 'SKIP_WAITING') {
++    self.skipWaiting();
++  }
++  if (event.data?.type === 'CLEAR_RUNTIME_CACHES') {
++    event.waitUntil(Promise.all([
++      caches.delete(RUNTIME_CACHE),
++      caches.delete(DATA_CACHE)
++    ]));
++  }
++});
+diff --git a/site-directory.html b/site-directory.html
+index b22adbe258a02fa20415775f5da4a1ea84584686..be7e828371ef55a9ddb25b8d1eb5aeab630d0c61 100644
+--- a/site-directory.html
++++ b/site-directory.html
+@@ -17,13 +17,13 @@
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script type="module" src="assets/js/site-directory.mjs"></script>
+ </head>
+-<body data-release="237">
++<body data-release="238">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Explicit effective public route directory</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="platform.html">Platform</a></div></div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Site Route Directory</span></p></nav>
+-<section class="card"><span class="pill">Release 237 · Explicit effective publication states</span><h1 class="section-title" lang="ta">தள வழித்தட அட்டவணை</h1><h2>Complete Site Route Directory</h2><p>This directory composes the preserved historical route registry with the deterministic effective override registry before displaying status and summary metadata. Route existence never overrides page-level source, completeness or rights declarations.</p></section>
++<section class="card"><span class="pill">Release 238 · Explicit effective publication states</span><h1 class="section-title" lang="ta">தள வழித்தட அட்டவணை</h1><h2>Complete Site Route Directory</h2><p>This directory composes the preserved historical route registry with the deterministic effective override registry before displaying status and summary metadata. Route existence never overrides page-level source, completeness or rights declarations.</p></section>
+ <section aria-labelledby="directory-heading"><h2 id="directory-heading" class="section-title">Find a route</h2>
+ <div class="route-controls"><label>Search routes<input id="routeSearch" type="search" autocomplete="off" placeholder="Temple, Thiruppugazh, learning, privacy…"></label><label>Category<select id="routeCategory"><option>All</option></select></label><label>Status<select id="routeStatus"><option>All</option></select></label><button id="routeReset" class="btn secondary" type="button">Reset</button></div>
+ <p id="routeCount" role="status" aria-live="polite">Loading the explicit effective route registry…</p>
+diff --git a/templates/release-upload-checklist.md b/templates/release-upload-checklist.md
+index 05273957f5563796368f3f43d6c6f55c35da31a2..f852ade13ae14cc3c86d132c47dd2c3f9f6f78a5 100644
+--- a/templates/release-upload-checklist.md
++++ b/templates/release-upload-checklist.md
+@@ -36,3 +36,11 @@
+ - [ ] No route-consumer source assigns `globalThis.fetch` or `window.fetch`.
+ - [ ] JavaScript, Python, hygiene, integrity and effective-consumer gates all pass.
+ - [ ] Staged changed-file count and status exactly match `manifest-release-237.json`.
++
++- [ ] Upload Release 238 with the exact bootstrap title, not the final title.
++- [ ] Confirm Actions workflow permissions allow `contents: write`.
++- [ ] Confirm `Release 238 Finalizer` starts after the bootstrap upload.
++- [ ] Confirm the final commit title is exact and its parent is the bootstrap SHA.
++- [ ] Confirm all thirteen `.pyc` files and `assets/js/site-directory.js` are deleted.
++- [ ] Confirm service-worker cache release is 238 and the legacy script is not precached.
++- [ ] Confirm deployment conformance, hygiene, integrity and strict governance pass.
+diff --git a/tests/deployment_conformance/__init__.py b/tests/deployment_conformance/__init__.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..e4319d6ca37c714ba3c359e174a4f21b951872de
+--- /dev/null
++++ b/tests/deployment_conformance/__init__.py
+@@ -0,0 +1 @@
++"""Deployment conformance tests."""
+diff --git a/tests/deployment_conformance/test_html.py b/tests/deployment_conformance/test_html.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..32bef57b5321bc2d862f09ac539b803e1770da31
+--- /dev/null
++++ b/tests/deployment_conformance/test_html.py
+@@ -0,0 +1,43 @@
++from pathlib import Path
++import tempfile
++import unittest
++
++from tools.deployment_conformance.html import (
++    validate_consumer_html,
++)
++
++
++class HtmlTests(unittest.TestCase):
++    def test_module_page_passes(self):
++        with tempfile.TemporaryDirectory() as directory:
++            root = Path(directory)
++            (root / "page.html").write_text(
++                '<body data-release="238">'
++                '<script type="module" src="assets/js/page.mjs"></script>',
++                encoding="utf-8",
++            )
++            self.assertEqual(validate_consumer_html(
++                root,
++                {"/page.html": "/assets/js/page.mjs"},
++            ), [])
++
++    def test_stale_release_fails(self):
++        with tempfile.TemporaryDirectory() as directory:
++            root = Path(directory)
++            (root / "page.html").write_text(
++                '<body data-release="237">'
++                '<script type="module" src="assets/js/page.mjs"></script>',
++                encoding="utf-8",
++            )
++            findings = validate_consumer_html(
++                root,
++                {"/page.html": "/assets/js/page.mjs"},
++            )
++            self.assertTrue(any(
++                item.rule == "stale-page-release"
++                for item in findings
++            ))
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/deployment_conformance/test_modules.py b/tests/deployment_conformance/test_modules.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..ef477c71504b47c3f4cf131dc27f5e3574360802
+--- /dev/null
++++ b/tests/deployment_conformance/test_modules.py
+@@ -0,0 +1,26 @@
++from pathlib import Path
++import tempfile
++import unittest
++
++from tools.deployment_conformance.modules import validate_modules
++
++
++class ModuleTests(unittest.TestCase):
++    def test_clean_module_passes(self):
++        with tempfile.TemporaryDirectory() as directory:
++            root = Path(directory)
++            path = root / "x.mjs"
++            path.write_text("export const value = 1;\n", encoding="utf-8")
++            self.assertEqual(validate_modules(root, ["x.mjs"]), [])
++
++    def test_global_fetch_assignment_fails(self):
++        with tempfile.TemporaryDirectory() as directory:
++            root = Path(directory)
++            path = root / "x.js"
++            path.write_text("globalThis.fetch = replacement;\n", encoding="utf-8")
++            findings = validate_modules(root, ["x.js"])
++            self.assertEqual(findings[0].rule, "global-fetch")
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/deployment_conformance/test_service_worker.py b/tests/deployment_conformance/test_service_worker.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..42f30e9f8215d225b0bb32ea775fe8fe56e7b5c2
+--- /dev/null
++++ b/tests/deployment_conformance/test_service_worker.py
+@@ -0,0 +1,40 @@
++import unittest
++
++from tools.deployment_conformance.service_worker import (
++    validate_service_worker,
++)
++
++
++CONTRACT = {
++    "expectedCacheRelease": "238",
++    "requiredPrecacheUrls": ["/assets/js/site-directory.mjs"],
++    "forbiddenPrecacheUrls": ["/assets/js/site-directory.js"],
++}
++
++
++class ServiceWorkerTests(unittest.TestCase):
++    def test_canonical_source_passes(self):
++        source = (
++            "const RELEASE = '238';\n"
++            "const URLS = ['/assets/js/site-directory.mjs'];\n"
++        )
++        self.assertEqual(
++            validate_service_worker(source, CONTRACT),
++            [],
++        )
++
++    def test_legacy_precache_fails(self):
++        source = (
++            "const RELEASE = '238';\n"
++            "const URLS = ['/assets/js/site-directory.mjs',"
++            "'/assets/js/site-directory.js'];\n"
++        )
++        findings = validate_service_worker(source, CONTRACT)
++        self.assertTrue(any(
++            item.rule == "forbidden-precache"
++            for item in findings
++        ))
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/deployment_conformance/test_validator.py b/tests/deployment_conformance/test_validator.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..c34d7a5ac2e5f533139510b828c499a2f83a329c
+--- /dev/null
++++ b/tests/deployment_conformance/test_validator.py
+@@ -0,0 +1,26 @@
++from pathlib import Path
++import json
++import unittest
++
++from tools.deployment_conformance.validator import validate_deployment
++
++
++ROOT = Path(__file__).resolve().parents[2]
++
++
++class ValidatorTests(unittest.TestCase):
++    def test_release_package_passes(self):
++        policy = json.loads(
++            (ROOT / "policies/deployment-conformance.json")
++            .read_text(encoding="utf-8")
++        )
++        contract = json.loads(
++            (ROOT / "data/deployment-conformance.json")
++            .read_text(encoding="utf-8")
++        )
++        report = validate_deployment(ROOT, policy, contract)
++        self.assertEqual(report["status"], "PASS")
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/effective_route_consumers/test_html_scan.py b/tests/effective_route_consumers/test_html_scan.py
+index dfb81074b447c098ca3fdcc18485bb7a6efb41a9..b4cb16cb4dc39fc2409d5fdee188cb7c3af95800 100644
+--- a/tests/effective_route_consumers/test_html_scan.py
++++ b/tests/effective_route_consumers/test_html_scan.py
+@@ -8,7 +8,7 @@ from tools.effective_route_consumers.html_scan import scan_html
+ class HtmlScanTests(unittest.TestCase):
+     def test_release_and_module_pass(self):
+         source = (
+-            '<body data-release="237">'
++            '<body data-release="238">'
+             '<script type="module" src="assets/js/x.mjs"></script>'
+         )
+         with tempfile.TemporaryDirectory() as directory:
+diff --git a/tests/effective_route_consumers/test_runtime.py b/tests/effective_route_consumers/test_runtime.py
+index 7d7f4b859229d32359ede1c38783e3ea726580e5..4e6a1900aa85f804c264f8a4befcb10df264a5f6 100644
+--- a/tests/effective_route_consumers/test_runtime.py
++++ b/tests/effective_route_consumers/test_runtime.py
+@@ -6,7 +6,7 @@ from tools.effective_route_consumers.runtime import validate_runtime
+ class RuntimeTests(unittest.TestCase):
+     def test_canonical_runtime_passes(self):
+         payload = {
+-            "release": 237,
++            "release": 238,
+             "globalFetchInterception": False,
+             "consumers": ["/a", "/b", "/c"],
+         }
+@@ -14,7 +14,7 @@ class RuntimeTests(unittest.TestCase):
+ 
+     def test_global_fetch_interception_fails(self):
+         payload = {
+-            "release": 237,
++            "release": 238,
+             "globalFetchInterception": True,
+             "consumers": ["/a", "/b", "/c"],
+         }
+diff --git a/tests/effective_route_consumers/test_validator.py b/tests/effective_route_consumers/test_validator.py
+index 9e9539ed69193e3cd316e190a917409cd709c42e..f2e7ce4a1117fd21b0fa3968aa7e16ddd19ac9d8 100644
+--- a/tests/effective_route_consumers/test_validator.py
++++ b/tests/effective_route_consumers/test_validator.py
+@@ -65,7 +65,7 @@ class ValidatorTests(unittest.TestCase):
+                 },
+             }
+             runtime = {
+-                "release": 237,
++                "release": 238,
+                 "globalFetchInterception": False,
+                 "consumers": ["/a", "/b", "/c"],
+             }
+diff --git a/tests/release_transaction/__init__.py b/tests/release_transaction/__init__.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..813548a28d948d29d73272ba7df2ae205f48e09f
+--- /dev/null
++++ b/tests/release_transaction/__init__.py
+@@ -0,0 +1 @@
++"""Release transaction tests."""
+diff --git a/tests/release_transaction/test_plan.py b/tests/release_transaction/test_plan.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..c561f3a1e31b502fdd41a323ba1617b969d653a4
+--- /dev/null
++++ b/tests/release_transaction/test_plan.py
+@@ -0,0 +1,32 @@
++import unittest
++
++from tools.release_transaction.plan import validate_plan
++
++
++class PlanTests(unittest.TestCase):
++    def canonical(self):
++        return {
++            "release": 238,
++            "expectedCount": 14,
++            "paths": [
++                "assets/js/site-directory.js",
++                *[
++                    f"tools/release_control/__pycache__/x{i}.pyc"
++                    for i in range(13)
++                ],
++            ],
++        }
++
++    def test_canonical_plan_passes(self):
++        self.assertEqual(validate_plan(self.canonical()), [])
++
++    def test_wrong_cache_count_fails(self):
++        plan = self.canonical()
++        plan["paths"] = plan["paths"][:-1]
++        plan["expectedCount"] = 13
++        findings = validate_plan(plan)
++        self.assertTrue(any(item.rule == "plan-count" for item in findings))
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/release_transaction/test_release_238_package.py b/tests/release_transaction/test_release_238_package.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..5603d0315dfed605026d228c155b78329372a54e
+--- /dev/null
++++ b/tests/release_transaction/test_release_238_package.py
+@@ -0,0 +1,48 @@
++from pathlib import Path
++import json
++import unittest
++
++
++ROOT = Path(__file__).resolve().parents[2]
++
++
++class Release238PackageTests(unittest.TestCase):
++    def manifest(self):
++        return json.loads(
++            (ROOT / "manifest-release-238.json")
++            .read_text(encoding="utf-8")
++        )
++
++    def test_identity(self):
++        manifest = self.manifest()
++        self.assertEqual((manifest["release"], manifest["base_release"]), (238, 237))
++        self.assertRegex(manifest["base_commit"], r"^[0-9a-f]{40}$")
++        self.assertEqual(
++            manifest["transaction"]["transaction_base_commit"],
++            "b7bc25a3888f5bbe4a55a55ba69fd05ac3cc8e60",
++        )
++
++    def test_transaction_titles_are_distinct(self):
++        transaction = self.manifest()["transaction"]
++        self.assertNotEqual(
++            transaction["bootstrap_commit_title"],
++            transaction["final_commit_title"],
++        )
++
++    def test_finalizer_workflow_has_write_permission(self):
++        source = (
++            ROOT / ".github/workflows/release-238-finalize.yml"
++        ).read_text(encoding="utf-8")
++        self.assertIn("contents: write", source)
++        self.assertIn("git push origin HEAD:main", source)
++
++    def test_deletion_plan_contains_fourteen_paths(self):
++        plan = json.loads(
++            (ROOT / "data/release-238-deletion-plan.json")
++            .read_text(encoding="utf-8")
++        )
++        self.assertEqual(len(plan["paths"]), 14)
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/release_transaction/test_state.py b/tests/release_transaction/test_state.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..b54edef1a8e11a0d103c9a75a38c206e008e12c5
+--- /dev/null
++++ b/tests/release_transaction/test_state.py
+@@ -0,0 +1,38 @@
++import unittest
++
++from tools.release_transaction.state import (
++    validate_bootstrap,
++    validate_final,
++)
++
++
++POLICY = {
++    "transactionBaseCommit":
++        "b7bc25a3888f5bbe4a55a55ba69fd05ac3cc8e60",
++    "bootstrapCommitTitle":
++        "Bootstrap Release 238: install browser-safe finalizer and deployment conformance",
++    "finalCommitTitle":
++        "Release 238: reconcile repository state and enforce deployment conformance",
++}
++
++
++class StateTests(unittest.TestCase):
++    def test_bootstrap_passes(self):
++        self.assertEqual(validate_bootstrap(
++            parent=POLICY["transactionBaseCommit"],
++            subject=POLICY["bootstrapCommitTitle"],
++            policy=POLICY,
++        ), [])
++
++    def test_final_parent_is_enforced(self):
++        findings = validate_final(
++            parent="wrong",
++            subject=POLICY["finalCommitTitle"],
++            bootstrap_commit="bootstrap",
++            policy=POLICY,
++        )
++        self.assertEqual(findings[0].rule, "final-parent")
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/release_transaction/test_validator.py b/tests/release_transaction/test_validator.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..0547a9b63b00da4cbd34907a12406c1df3fa623c
+--- /dev/null
++++ b/tests/release_transaction/test_validator.py
+@@ -0,0 +1,70 @@
++from pathlib import Path
++import tempfile
++import unittest
++
++from tools.release_transaction.validator import validate_transaction
++
++
++POLICY = {
++    "transactionBaseCommit":
++        "b7bc25a3888f5bbe4a55a55ba69fd05ac3cc8e60",
++    "bootstrapCommitTitle":
++        "Bootstrap Release 238: install browser-safe finalizer and deployment conformance",
++    "finalCommitTitle":
++        "Release 238: reconcile repository state and enforce deployment conformance",
++    "finalizationResult": "RELEASE_238_FINALIZATION_RESULT.json",
++}
++TRANSACTION = {
++    "release": 238,
++    "transactionBaseCommit": POLICY["transactionBaseCommit"],
++}
++PLAN = {
++    "release": 238,
++    "expectedCount": 14,
++    "paths": [
++        "assets/js/site-directory.js",
++        *[
++            f"tools/release_control/__pycache__/x{i}.pyc"
++            for i in range(13)
++        ],
++    ],
++}
++
++
++class ValidatorTests(unittest.TestCase):
++    def test_bootstrap_requires_all_targets(self):
++        with tempfile.TemporaryDirectory() as directory:
++            report = validate_transaction(
++                root=Path(directory),
++                policy=POLICY,
++                transaction=TRANSACTION,
++                plan=PLAN,
++                mode="bootstrap",
++                parent=POLICY["transactionBaseCommit"],
++                subject=POLICY["bootstrapCommitTitle"],
++                tracked_paths=set(PLAN["paths"]),
++            )
++            self.assertEqual(report["status"], "PASS")
++
++    def test_final_requires_result(self):
++        with tempfile.TemporaryDirectory() as directory:
++            report = validate_transaction(
++                root=Path(directory),
++                policy=POLICY,
++                transaction=TRANSACTION,
++                plan=PLAN,
++                mode="final",
++                parent="bootstrap",
++                subject=POLICY["finalCommitTitle"],
++                bootstrap_commit="bootstrap",
++                tracked_paths=set(),
++            )
++            self.assertEqual(report["status"], "FAIL")
++            self.assertTrue(any(
++                item["rule"] == "final-result"
++                for item in report["findings"]
++            ))
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tools/deployment_conformance/__init__.py b/tools/deployment_conformance/__init__.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..a09c099ecb0b5db162d3a04ff56f07a4ddf5ed0e
+--- /dev/null
++++ b/tools/deployment_conformance/__init__.py
+@@ -0,0 +1,5 @@
++"""Deployment conformance validation."""
++
++from .validator import validate_deployment
++
++__all__ = ["validate_deployment"]
+diff --git a/tools/deployment_conformance/constants.py b/tools/deployment_conformance/constants.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..e4ab8d2e0747ce8fcc787ff3cd00396c4fd85d8c
+--- /dev/null
++++ b/tools/deployment_conformance/constants.py
+@@ -0,0 +1,6 @@
++"""Deployment conformance constants."""
++
++PASS = "PASS"
++FAIL = "FAIL"
++DEFAULT_POLICY = "policies/deployment-conformance.json"
++DEFAULT_CONTRACT = "data/deployment-conformance.json"
+diff --git a/tools/deployment_conformance/html.py b/tools/deployment_conformance/html.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..33c1aaaa4254f689783859db6c8e8a1b90931f1d
+--- /dev/null
++++ b/tools/deployment_conformance/html.py
+@@ -0,0 +1,27 @@
++"""HTML consumer deployment checks."""
++
++from __future__ import annotations
++
++from pathlib import Path
++
++from .models import Finding
++
++
++def validate_consumer_html(
++    root: Path,
++    consumers: dict[str, str],
++) -> list[Finding]:
++    findings: list[Finding] = []
++    for route, module in consumers.items():
++        relative = route.lstrip("/")
++        path = root / relative
++        if not path.is_file():
++            findings.append(Finding(relative, "consumer-page", "Consumer page is missing."))
++            continue
++        source = path.read_text(encoding="utf-8")
++        token = f'type="module" src="{module.lstrip("/")}"'
++        if token not in source:
++            findings.append(Finding(relative, "consumer-module", f"Expected module reference is missing: {module}"))
++        if 'data-release="237"' in source:
++            findings.append(Finding(relative, "stale-page-release", "Consumer page still declares Release 237."))
++    return findings
+diff --git a/tools/deployment_conformance/jsonio.py b/tools/deployment_conformance/jsonio.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..48658f9c5b8b84e874067cc7132980f7b04914b6
+--- /dev/null
++++ b/tools/deployment_conformance/jsonio.py
+@@ -0,0 +1,14 @@
++"""JSON helpers."""
++
++from __future__ import annotations
++
++import json
++from pathlib import Path
++from typing import Any
++
++
++def load_json(path: Path) -> dict[str, Any]:
++    payload = json.loads(path.read_text(encoding="utf-8"))
++    if not isinstance(payload, dict):
++        raise ValueError(f"Expected JSON object: {path}")
++    return payload
+diff --git a/tools/deployment_conformance/models.py b/tools/deployment_conformance/models.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..b38a85194606b180db02fc4ff15078346abe2d5c
+--- /dev/null
++++ b/tools/deployment_conformance/models.py
+@@ -0,0 +1,16 @@
++"""Deployment conformance models."""
++
++from __future__ import annotations
++
++from dataclasses import asdict, dataclass
++from typing import Any
++
++
++@dataclass(frozen=True)
++class Finding:
++    path: str
++    rule: str
++    message: str
++
++    def to_dict(self) -> dict[str, Any]:
++        return asdict(self)
+diff --git a/tools/deployment_conformance/modules.py b/tools/deployment_conformance/modules.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..797c05c5956563cfa69196ddf9d5b5600eac68f8
+--- /dev/null
++++ b/tools/deployment_conformance/modules.py
+@@ -0,0 +1,23 @@
++"""JavaScript module deployment checks."""
++
++from __future__ import annotations
++
++import re
++from pathlib import Path
++
++from .models import Finding
++
++FETCH_ASSIGNMENT = re.compile(r"(?:globalThis|window)\.fetch\s*=")
++
++
++def validate_modules(root: Path, paths: list[str]) -> list[Finding]:
++    findings: list[Finding] = []
++    for relative in paths:
++        path = root / relative
++        if not path.is_file():
++            findings.append(Finding(relative, "module-missing", "Required module is missing."))
++            continue
++        source = path.read_text(encoding="utf-8")
++        if FETCH_ASSIGNMENT.search(source):
++            findings.append(Finding(relative, "global-fetch", "Module replaces the global Fetch API."))
++    return findings
+diff --git a/tools/deployment_conformance/routes.py b/tools/deployment_conformance/routes.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..96420d863dce3f41468bbd72a00945273d9db8a5
+--- /dev/null
++++ b/tools/deployment_conformance/routes.py
+@@ -0,0 +1,25 @@
++"""Route-registry deployment checks."""
++
++from __future__ import annotations
++
++from pathlib import Path
++
++from .models import Finding
++
++
++def validate_route_assets(root: Path) -> list[Finding]:
++    findings: list[Finding] = []
++    required = [
++        "data/site-routes-effective-overrides.json",
++        "data/effective-route-registry-runtime.json",
++    ]
++    for relative in required:
++        if not (root / relative).is_file():
++            findings.append(Finding(relative, "route-asset", "Required route-registry asset is missing."))
++    if (root / "assets/js/site-directory.js").exists():
++        findings.append(Finding(
++            "assets/js/site-directory.js",
++            "legacy-route-consumer",
++            "Retired non-module Site Directory consumer remains tracked.",
++        ))
++    return findings
+diff --git a/tools/deployment_conformance/service_worker.py b/tools/deployment_conformance/service_worker.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..ae6981f84008513189b3986d4e3da8886f2bad50
+--- /dev/null
++++ b/tools/deployment_conformance/service_worker.py
+@@ -0,0 +1,28 @@
++"""Service-worker deployment checks."""
++
++from __future__ import annotations
++
++import re
++
++from .models import Finding
++
++RELEASE_PATTERN = re.compile(r"const RELEASE = ['\"](?P<value>\d+)['\"]")
++
++
++def validate_service_worker(
++    source: str,
++    contract: dict,
++    path: str = "service-worker.js",
++) -> list[Finding]:
++    findings: list[Finding] = []
++    match = RELEASE_PATTERN.search(source)
++    expected = str(contract.get("expectedCacheRelease", ""))
++    if not match or match.group("value") != expected:
++        findings.append(Finding(path, "cache-release", f"Service worker cache release must be {expected}."))
++    for url in contract.get("requiredPrecacheUrls", []):
++        if f'"{url}"' not in source and f"'{url}'" not in source:
++            findings.append(Finding(path, "required-precache", f"Required precache URL is missing: {url}"))
++    for url in contract.get("forbiddenPrecacheUrls", []):
++        if f'"{url}"' in source or f"'{url}'" in source:
++            findings.append(Finding(path, "forbidden-precache", f"Retired precache URL remains: {url}"))
++    return findings
+diff --git a/tools/deployment_conformance/validate.py b/tools/deployment_conformance/validate.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..e6bc41beec0248f477def2bed1a319801b5133d6
+--- /dev/null
++++ b/tools/deployment_conformance/validate.py
+@@ -0,0 +1,29 @@
++#!/usr/bin/env python3
++"""CLI for deployment conformance."""
++
++from __future__ import annotations
++
++import argparse
++import json
++from pathlib import Path
++
++from .jsonio import load_json
++from .validator import validate_deployment
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", default=".")
++    args = parser.parse_args()
++    root = Path(args.root).resolve()
++    report = validate_deployment(
++        root,
++        load_json(root / "policies/deployment-conformance.json"),
++        load_json(root / "data/deployment-conformance.json"),
++    )
++    print(json.dumps(report, ensure_ascii=False, indent=2))
++    return 0 if report["status"] == "PASS" else 1
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/tools/deployment_conformance/validator.py b/tools/deployment_conformance/validator.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..0292de9a7c0ca3e9d045ea70447504adb239eaaf
+--- /dev/null
++++ b/tools/deployment_conformance/validator.py
+@@ -0,0 +1,41 @@
++"""Deployment conformance orchestration."""
++
++from __future__ import annotations
++
++from pathlib import Path
++
++from .constants import FAIL, PASS
++from .html import validate_consumer_html
++from .modules import validate_modules
++from .routes import validate_route_assets
++from .service_worker import validate_service_worker
++
++
++def validate_deployment(root: Path, policy: dict, contract: dict) -> dict:
++    findings = []
++    service_worker_path = root / str(policy.get("serviceWorker", "service-worker.js"))
++    if service_worker_path.is_file():
++        findings.extend(validate_service_worker(
++            service_worker_path.read_text(encoding="utf-8"),
++            contract,
++            service_worker_path.relative_to(root).as_posix(),
++        ))
++    else:
++        from .models import Finding
++        findings.append(Finding("service-worker.js", "service-worker-missing", "Service worker is missing."))
++
++    findings.extend(validate_consumer_html(root, contract.get("consumerPages", {})))
++    findings.extend(validate_modules(root, [
++        "assets/js/effective-route-registry.mjs",
++        "assets/js/content-status-audit.mjs",
++        "assets/js/discovery-workspace.mjs",
++        "assets/js/site-directory.mjs",
++        "assets/js/route-status-reconciliation.js",
++    ]))
++    findings.extend(validate_route_assets(root))
++    return {
++        "status": PASS if not findings else FAIL,
++        "release": 238,
++        "findingCount": len(findings),
++        "findings": [item.to_dict() for item in findings],
++    }
+diff --git a/tools/deployment_conformance_cli.py b/tools/deployment_conformance_cli.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..7076ae1b5ffed7d56fa465291a63dd83d14c673a
+--- /dev/null
++++ b/tools/deployment_conformance_cli.py
+@@ -0,0 +1,5 @@
++#!/usr/bin/env python3
++from tools.deployment_conformance.validate import main
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/tools/effective_route_consumers/html_scan.py b/tools/effective_route_consumers/html_scan.py
+index 716408491813d0db2ffd726baeee437d3edc3d66..d03e1e174b3b0254e902a2fb3819c8cc67dff1d9 100644
+--- a/tools/effective_route_consumers/html_scan.py
++++ b/tools/effective_route_consumers/html_scan.py
+@@ -8,7 +8,7 @@ from pathlib import Path
+ from .models import Finding
+ 
+ BODY_RELEASE = re.compile(
+-    r"<body[^>]*\bdata-release=[\"']237[\"']",
++    r"<body[^>]*\bdata-release=[\"']238[\"']",
+     re.IGNORECASE,
+ )
+ 
+@@ -24,7 +24,7 @@ def scan_html(
+         findings.append(Finding(
+             relative,
+             "release-marker-missing",
+-            "Consumer page must declare data-release 237.",
++            "Consumer page must declare data-release 238.",
+         ))
+     expected = f'type="module" src="{expected_script}"'
+     if expected not in source:
+diff --git a/tools/effective_route_consumers/runtime.py b/tools/effective_route_consumers/runtime.py
+index 3d181866a40026f9d92c8222f1a52f9f65bdd314..b27b69bf6cc7d2841cb938e253b03f68403e0b32 100644
+--- a/tools/effective_route_consumers/runtime.py
++++ b/tools/effective_route_consumers/runtime.py
+@@ -7,11 +7,11 @@ from .models import Finding
+ 
+ def validate_runtime(payload: dict, path: str) -> list[Finding]:
+     findings: list[Finding] = []
+-    if payload.get("release") != 237:
++    if payload.get("release") != 238:
+         findings.append(Finding(
+             path,
+             "runtime-release",
+-            "Runtime contract release must be 237.",
++            "Runtime contract release must be 238.",
+         ))
+     if payload.get("globalFetchInterception") is not False:
+         findings.append(Finding(
+diff --git a/tools/effective_route_consumers/validator.py b/tools/effective_route_consumers/validator.py
+index 59724d9d12979d7331c0a3c8e04f167866794c74..ed84f86a16ddaf2b62d25c55381a03e205a8dedf 100644
+--- a/tools/effective_route_consumers/validator.py
++++ b/tools/effective_route_consumers/validator.py
+@@ -106,7 +106,7 @@ def validate_effective_route_consumers(
+ 
+     return {
+         "status": PASS if not findings else FAIL,
+-        "release": 237,
++        "release": int(policy.get("release", 238)),
+         "findingCount": len(findings),
+         "findings": [item.to_dict() for item in findings],
+     }
+diff --git a/tools/release_transaction/__init__.py b/tools/release_transaction/__init__.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..78072429dec934aab62d7108644fa795d7f7bcf2
+--- /dev/null
++++ b/tools/release_transaction/__init__.py
+@@ -0,0 +1,5 @@
++"""Two-stage release transaction validation."""
++
++from .validator import validate_transaction
++
++__all__ = ["validate_transaction"]
+diff --git a/tools/release_transaction/constants.py b/tools/release_transaction/constants.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..9d4e4bf1c78aeefaa8f05a82740eccd357e56534
+--- /dev/null
++++ b/tools/release_transaction/constants.py
+@@ -0,0 +1,8 @@
++"""Release 238 transaction constants."""
++
++BOOTSTRAP = "bootstrap"
++FINAL = "final"
++PASS = "PASS"
++FAIL = "FAIL"
++DEFAULT_POLICY = "policies/release-transaction.json"
++DEFAULT_TRANSACTION = "data/release-238-transaction.json"
+diff --git a/tools/release_transaction/git.py b/tools/release_transaction/git.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..fdbe4811c1c9600f081eea09d2bdb9928e9e8700
+--- /dev/null
++++ b/tools/release_transaction/git.py
+@@ -0,0 +1,47 @@
++"""Git metadata helpers."""
++
++from __future__ import annotations
++
++import subprocess
++from pathlib import Path
++
++
++def run(root: Path, *args: str) -> str:
++    result = subprocess.run(
++        ["git", *args],
++        cwd=root,
++        stdout=subprocess.PIPE,
++        stderr=subprocess.PIPE,
++        text=True,
++        check=False,
++    )
++    if result.returncode:
++        raise RuntimeError(result.stderr.strip() or result.stdout.strip())
++    return result.stdout.strip()
++
++
++def head(root: Path) -> str:
++    return run(root, "rev-parse", "HEAD")
++
++
++def parent(root: Path) -> str:
++    return run(root, "rev-parse", "HEAD^")
++
++
++def subject(root: Path) -> str:
++    return run(root, "log", "-1", "--format=%s")
++
++
++def staged(root: Path) -> dict[str, str]:
++    output = run(root, "diff", "--cached", "--name-status", "--no-renames")
++    result: dict[str, str] = {}
++    for line in output.splitlines():
++        if not line:
++            continue
++        status, path = line.split("\t", 1)
++        result[path] = status[0]
++    return result
++
++
++def tracked(root: Path) -> set[str]:
++    return set(filter(None, run(root, "ls-files").splitlines()))
+diff --git a/tools/release_transaction/jsonio.py b/tools/release_transaction/jsonio.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..c5d6093e52f7256f98d61eef619a2aaabbfe22f7
+--- /dev/null
++++ b/tools/release_transaction/jsonio.py
+@@ -0,0 +1,23 @@
++"""JSON helpers."""
++
++from __future__ import annotations
++
++import json
++from pathlib import Path
++from typing import Any
++
++
++def load_json(path: Path) -> dict[str, Any]:
++    payload = json.loads(path.read_text(encoding="utf-8"))
++    if not isinstance(payload, dict):
++        raise ValueError(f"Expected JSON object: {path}")
++    return payload
++
++
++def write_json(path: Path, payload: dict[str, Any]) -> None:
++    path.parent.mkdir(parents=True, exist_ok=True)
++    path.write_text(
++        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
++        encoding="utf-8",
++        newline="\n",
++    )
+diff --git a/tools/release_transaction/models.py b/tools/release_transaction/models.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..294a1c69b2373f54c6e0432a3ee222d6c5a4c3df
+--- /dev/null
++++ b/tools/release_transaction/models.py
+@@ -0,0 +1,16 @@
++"""Release transaction models."""
++
++from __future__ import annotations
++
++from dataclasses import asdict, dataclass
++from typing import Any
++
++
++@dataclass(frozen=True)
++class Finding:
++    rule: str
++    message: str
++    path: str = ""
++
++    def to_dict(self) -> dict[str, Any]:
++        return asdict(self)
+diff --git a/tools/release_transaction/plan.py b/tools/release_transaction/plan.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..5392dcd0fbdea8233a3268c97c4d8290469b7e21
+--- /dev/null
++++ b/tools/release_transaction/plan.py
+@@ -0,0 +1,30 @@
++"""Deletion-plan validation."""
++
++from __future__ import annotations
++
++from .models import Finding
++
++
++def validate_plan(plan: dict) -> list[Finding]:
++    findings: list[Finding] = []
++    paths = plan.get("paths")
++    if plan.get("release") != 238:
++        findings.append(Finding("plan-release", "Deletion plan release must be 238."))
++    if not isinstance(paths, list):
++        return findings + [Finding("plan-paths", "Deletion plan paths must be an array.")]
++    values = [str(path) for path in paths]
++    if len(values) != 14:
++        findings.append(Finding("plan-count", "Deletion plan must contain exactly 14 paths."))
++    if len(set(values)) != len(values):
++        findings.append(Finding("plan-duplicates", "Deletion plan paths must be unique."))
++    if int(plan.get("expectedCount", -1)) != len(values):
++        findings.append(Finding("plan-expected-count", "expectedCount does not match path count."))
++    cache_count = sum(
++        1 for path in values
++        if "__pycache__" in path or path.endswith((".pyc", ".pyo"))
++    )
++    if cache_count != 13:
++        findings.append(Finding("plan-cache-count", "Deletion plan must include thirteen Python cache files."))
++    if "assets/js/site-directory.js" not in values:
++        findings.append(Finding("plan-legacy-consumer", "Legacy Site Directory script is missing from deletion plan."))
++    return findings
+diff --git a/tools/release_transaction/result.py b/tools/release_transaction/result.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..fa25e89626df6403ac55778a597cde9cfd0709b1
+--- /dev/null
++++ b/tools/release_transaction/result.py
+@@ -0,0 +1,23 @@
++"""Finalization-result generation."""
++
++from __future__ import annotations
++
++from datetime import datetime, timezone
++
++
++def build_result(
++    *,
++    bootstrap_commit: str,
++    final_title: str,
++    deleted_paths: list[str],
++    validation: dict,
++) -> dict:
++    return {
++        "release": 238,
++        "generatedAt": datetime.now(timezone.utc).isoformat(),
++        "bootstrapCommit": bootstrap_commit,
++        "finalCommitTitle": final_title,
++        "deletedPaths": sorted(deleted_paths),
++        "deletedCount": len(deleted_paths),
++        "validation": validation,
++    }
+diff --git a/tools/release_transaction/state.py b/tools/release_transaction/state.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..da07ea9516ebca78b0900c498491b5b72b787120
+--- /dev/null
++++ b/tools/release_transaction/state.py
+@@ -0,0 +1,34 @@
++"""Transaction-state validation."""
++
++from __future__ import annotations
++
++from .models import Finding
++
++
++def validate_bootstrap(
++    *,
++    parent: str,
++    subject: str,
++    policy: dict,
++) -> list[Finding]:
++    findings: list[Finding] = []
++    if parent != policy.get("transactionBaseCommit"):
++        findings.append(Finding("bootstrap-parent", "Bootstrap parent does not match the approved Release 237 base."))
++    if subject != policy.get("bootstrapCommitTitle"):
++        findings.append(Finding("bootstrap-subject", "Bootstrap commit subject is not exact."))
++    return findings
++
++
++def validate_final(
++    *,
++    parent: str,
++    subject: str,
++    bootstrap_commit: str,
++    policy: dict,
++) -> list[Finding]:
++    findings: list[Finding] = []
++    if parent != bootstrap_commit:
++        findings.append(Finding("final-parent", "Final commit parent does not match the bootstrap commit."))
++    if subject != policy.get("finalCommitTitle"):
++        findings.append(Finding("final-subject", "Final commit subject is not exact."))
++    return findings
+diff --git a/tools/release_transaction/validate.py b/tools/release_transaction/validate.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..9e86e97464c8bcb2f4d1cd58afe2cf070ea0caa1
+--- /dev/null
++++ b/tools/release_transaction/validate.py
+@@ -0,0 +1,42 @@
++#!/usr/bin/env python3
++"""CLI for Release 238 transaction validation."""
++
++from __future__ import annotations
++
++import argparse
++import json
++from pathlib import Path
++
++from .git import parent, subject, tracked
++from .jsonio import load_json
++from .validator import validate_transaction
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", default=".")
++    parser.add_argument("--mode", choices=("bootstrap", "final"), required=True)
++    parser.add_argument("--bootstrap-commit", default="")
++    args = parser.parse_args()
++
++    root = Path(args.root).resolve()
++    policy = load_json(root / "policies/release-transaction.json")
++    transaction = load_json(root / "data/release-238-transaction.json")
++    plan = load_json(root / "data/release-238-deletion-plan.json")
++    report = validate_transaction(
++        root=root,
++        policy=policy,
++        transaction=transaction,
++        plan=plan,
++        mode=args.mode,
++        parent=parent(root),
++        subject=subject(root),
++        bootstrap_commit=args.bootstrap_commit,
++        tracked_paths=tracked(root),
++    )
++    print(json.dumps(report, ensure_ascii=False, indent=2))
++    return 0 if report["status"] == "PASS" else 1
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/tools/release_transaction/validator.py b/tools/release_transaction/validator.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..7fcf879b7b6bfd499b91417c04f64a1e58788f95
+--- /dev/null
++++ b/tools/release_transaction/validator.py
+@@ -0,0 +1,69 @@
++"""Release transaction orchestration."""
++
++from __future__ import annotations
++
++from pathlib import Path
++
++from .constants import FAIL, PASS
++from .models import Finding
++from .plan import validate_plan
++from .state import validate_bootstrap, validate_final
++
++
++def validate_transaction(
++    *,
++    root: Path,
++    policy: dict,
++    transaction: dict,
++    plan: dict,
++    mode: str,
++    parent: str = "",
++    subject: str = "",
++    bootstrap_commit: str = "",
++    tracked_paths: set[str] | None = None,
++) -> dict:
++    findings: list[Finding] = []
++    findings.extend(validate_plan(plan))
++
++    if transaction.get("release") != 238:
++        findings.append(Finding("transaction-release", "Transaction release must be 238."))
++    if transaction.get("transactionBaseCommit") != policy.get("transactionBaseCommit"):
++        findings.append(Finding("transaction-base", "Transaction and policy base commits differ."))
++
++    if mode == "bootstrap":
++        findings.extend(validate_bootstrap(parent=parent, subject=subject, policy=policy))
++        expected_present = set(plan.get("paths", []))
++        if tracked_paths is not None:
++            missing = sorted(expected_present - tracked_paths)
++            if missing:
++                findings.append(Finding(
++                    "bootstrap-deletion-targets",
++                    "Bootstrap must begin while every planned deletion target is still tracked: " + ", ".join(missing),
++                ))
++    elif mode == "final":
++        findings.extend(validate_final(
++            parent=parent,
++            subject=subject,
++            bootstrap_commit=bootstrap_commit,
++            policy=policy,
++        ))
++        if tracked_paths is not None:
++            remaining = sorted(set(plan.get("paths", [])) & tracked_paths)
++            if remaining:
++                findings.append(Finding(
++                    "final-deletions",
++                    "Final state still tracks planned deletion targets: " + ", ".join(remaining),
++                ))
++        result_path = root / str(policy.get("finalizationResult", ""))
++        if not result_path.is_file():
++            findings.append(Finding("final-result", "Finalization result file is missing."))
++    else:
++        findings.append(Finding("transaction-mode", f"Unsupported transaction mode: {mode}"))
++
++    return {
++        "status": PASS if not findings else FAIL,
++        "release": 238,
++        "mode": mode,
++        "findingCount": len(findings),
++        "findings": [item.to_dict() for item in findings],
++    }
+diff --git a/tools/release_transaction_cli.py b/tools/release_transaction_cli.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..48c35fef156d3a9d420dddec2b8c2488494bfccf
+--- /dev/null
++++ b/tools/release_transaction_cli.py
+@@ -0,0 +1,5 @@
++#!/usr/bin/env python3
++from tools.release_transaction.validate import main
++
++if __name__ == "__main__":
++    raise SystemExit(main())

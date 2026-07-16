@@ -1,0 +1,5 @@
+{
+  "parent": "0000000000000000000000000000000000000000",
+  "subject": "Bootstrap Release 238: install browser-safe finalizer and deployment conformance",
+  "expectedRule": "bootstrap-parent"
+}

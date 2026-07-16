@@ -8,7 +8,7 @@ from tools.effective_route_consumers.html_scan import scan_html
 class HtmlScanTests(unittest.TestCase):
     def test_release_and_module_pass(self):
         source = (
-            '<body data-release="237">'
+            '<body data-release="238">'
             '<script type="module" src="assets/js/x.mjs"></script>'
         )
         with tempfile.TemporaryDirectory() as directory:

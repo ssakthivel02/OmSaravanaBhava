@@ -1,8 +1,8 @@
 [project]
 name = "omsaravanabhava-release-governance"
-version = "237.0.0"
+version = "238.0.0"
 requires-python = ">=3.12"
-description = "Deterministic release, repository integrity and effective route-consumer tooling."
+description = "Transactional release, deployment conformance and repository integrity tooling."
 
 [tool.unittest]
 start-directory = "tests"

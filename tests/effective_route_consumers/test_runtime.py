@@ -6,7 +6,7 @@ from tools.effective_route_consumers.runtime import validate_runtime
 class RuntimeTests(unittest.TestCase):
     def test_canonical_runtime_passes(self):
         payload = {
-            "release": 237,
+            "release": 238,
             "globalFetchInterception": False,
             "consumers": ["/a", "/b", "/c"],
         }
@@ -14,7 +14,7 @@ class RuntimeTests(unittest.TestCase):
 
     def test_global_fetch_interception_fails(self):
         payload = {
-            "release": 237,
+            "release": 238,
             "globalFetchInterception": True,
             "consumers": ["/a", "/b", "/c"],
         }

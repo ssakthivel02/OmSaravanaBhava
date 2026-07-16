@@ -1,18 +1,19 @@
 {
-  "release": 237,
+  "release": 238,
   "algorithm": "sha256",
-  "scope": "release-package-source-excluding-manifest-evidence-and-self",
+  "scope": "bootstrap-package-static-files-excluding-transaction-dynamic-evidence",
   "excludedPaths": [
-    "RELEASE_237.patch",
-    "RELEASE_237_CHANGED_FILES.txt",
-    "RELEASE_237_GITHUB_PORTAL_INSTRUCTIONS.txt",
-    "RELEASE_237_LOCAL_TEST_EVIDENCE.txt",
-    "RELEASE_237_SHA256SUMS.txt",
-    "RELEASE_237_VALIDATION_REPORT.md",
+    ".release-governance.json",
+    "RELEASE_238.patch",
+    "RELEASE_238_CHANGED_FILES.txt",
+    "RELEASE_238_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_238_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_238_SHA256SUMS.txt",
+    "RELEASE_238_VALIDATION_REPORT.md",
     "data/repository-integrity-inventory.json",
-    "manifest-release-237.json"
+    "manifest-release-238.json"
   ],
-  "recordCount": 421,
+  "recordCount": 490,
   "records": [
     {
       "path": ".editorconfig",
@@ -22,9 +23,15 @@
     },
     {
       "path": ".gitattributes",
-      "sizeBytes": 468,
-      "sha256": "ef2fd67b4c6c6a89b03482721bd45ef097eb19b8926e96b48f4935940d7e2723",
+      "sizeBytes": 680,
+      "sha256": "67c925203f8cfd94bf17e9c64427cde1dd48e6a3cb56313465c350ae908caffd",
       "suffix": ""
+    },
+    {
+      "path": ".github/workflows/deployment-conformance.yml",
+      "sizeBytes": 1263,
+      "sha256": "b16247aa064e491edcabd6c3158a4f16d3fe8ac0124a14d6163a04e5d8377cbf",
+      "suffix": ".yml"
     },
     {
       "path": ".github/workflows/effective-route-consumers.yml",
@@ -40,8 +47,14 @@
     },
     {
       "path": ".github/workflows/release-232-governance.yml",
-      "sizeBytes": 5643,
-      "sha256": "d7503477bba2dffde36d3da8c61dd8841caceb90a6e2e0cc315666e1e2e19e35",
+      "sizeBytes": 6766,
+      "sha256": "86939be29242ac65cedc3ed6db0abc4ecaaf0677b61365365693db6518fc33e4",
+      "suffix": ".yml"
+    },
+    {
+      "path": ".github/workflows/release-238-finalize.yml",
+      "sizeBytes": 3123,
+      "sha256": "ee4c3b717c90454245c3ce1326b1ca396f0fb1d4e51f0e76b33c59ba794d9398",
       "suffix": ".yml"
     },
     {
@@ -58,21 +71,15 @@
     },
     {
       "path": ".gitignore",
-      "sizeBytes": 801,
-      "sha256": "d726df15b2734fb4449fe61b80c7ead9bfcd356fe96cdd1365a9bb18a440bcee",
+      "sizeBytes": 900,
+      "sha256": "24292daea3b3fb3eb5b08e623b9fada69d63f0d80df7f69c45b499ffd33d5e9f",
       "suffix": ""
     },
     {
       "path": ".pre-commit-config.yaml",
-      "sizeBytes": 826,
-      "sha256": "40616dc4e12296832338c6cabfae2f10ca9304e9cf3df80129443c80e66d8dbc",
+      "sizeBytes": 821,
+      "sha256": "0bfdca36a6ebba5a1e4c2342dd014a2c800aec5e2d321fcc6c4980d13fe73f91",
       "suffix": ".yaml"
-    },
-    {
-      "path": ".release-governance.json",
-      "sizeBytes": 4116,
-      "sha256": "2358e112848f62ff59c89985fdf54180d90f90d3a3726ac2441dfceb8d46ee59",
-      "suffix": ".json"
     },
     {
       "path": "APPLY_RELEASE_236.cmd",
@@ -81,9 +88,15 @@
       "suffix": ".cmd"
     },
     {
+      "path": "FINALIZE_RELEASE_238.cmd",
+      "sizeBytes": 579,
+      "sha256": "69e82089c6381dc5332301bec3661a9e937a324aac71441521a26604469fc473",
+      "suffix": ".cmd"
+    },
+    {
       "path": "Makefile",
-      "sizeBytes": 640,
-      "sha256": "cab2aa71477c61918581dc34ee2cf15ed1b082be95caf0f0bccd4d070fa9e531",
+      "sizeBytes": 832,
+      "sha256": "7eac6525052bb6e33994ce19bce1aed53deed6dd009e9a80d05a7abdab76c0a4",
       "suffix": ""
     },
     {
@@ -237,45 +250,99 @@
       "suffix": ".md"
     },
     {
+      "path": "RELEASE_237.patch",
+      "sizeBytes": 224368,
+      "sha256": "9c0b26349ddb314886bcd73af173d3e85d5a0ab33440cb546c9c6ed8620c8058",
+      "suffix": ".patch"
+    },
+    {
+      "path": "RELEASE_237_CHANGED_FILES.txt",
+      "sizeBytes": 7599,
+      "sha256": "701f39894801a91f7cdc3dd014654d9948f7f0a61cd3b9ef2c76a0ad86b32c52",
+      "suffix": ".txt"
+    },
+    {
+      "path": "RELEASE_237_GITHUB_PORTAL_INSTRUCTIONS.txt",
+      "sizeBytes": 2554,
+      "sha256": "2dc8096efc0fce0f2b3dca6e0e85948f0756104d464150478ef9901806733e9b",
+      "suffix": ".txt"
+    },
+    {
+      "path": "RELEASE_237_LOCAL_TEST_EVIDENCE.txt",
+      "sizeBytes": 1962,
+      "sha256": "bec573fbf2484bf55bb8003950291174f20b4a076bb4e37055758692d6aad8b4",
+      "suffix": ".txt"
+    },
+    {
+      "path": "RELEASE_237_SHA256SUMS.txt",
+      "sizeBytes": 46997,
+      "sha256": "468e92d2be41361f3d56c8ddccee2eb7e1b348f9a6a096b5e85ed67d0d5cf9ad",
+      "suffix": ".txt"
+    },
+    {
+      "path": "RELEASE_237_VALIDATION_REPORT.md",
+      "sizeBytes": 2923,
+      "sha256": "beec289593691305473d059080dd67c92bb2a26e91ff2acedceb20f241b8a669",
+      "suffix": ".md"
+    },
+    {
       "path": "assets/js/content-status-audit.mjs",
       "sizeBytes": 13915,
-      "sha256": "03b6e9f0529a2b69df80d71eaaa8b434c082af52402a8d1e2830968a75b78f79",
+      "sha256": "cdf25a1cdff312dd644ef23e56c0ff82ebaae3d96aca2b752ec723b6b6b33207",
       "suffix": ".mjs"
     },
     {
       "path": "assets/js/discovery-workspace.mjs",
       "sizeBytes": 16229,
-      "sha256": "5a7a96251c5e83ae2bdc0a2fe69b633827e634f1ba0503bbc9566d634120a32f",
+      "sha256": "14de57d7e179ffc5bf02ca5f4e1b541b2b2f734b7cc7aaf12b64a75e8a189ec2",
       "suffix": ".mjs"
     },
     {
       "path": "assets/js/effective-route-registry.mjs",
       "sizeBytes": 8713,
-      "sha256": "d6e25398ac002390558fb842edcd5b7a155cd2e5b8e98c1a87f373d3cbc23c21",
+      "sha256": "73a9fda799640befcf582d7714a3cec83c9ffce336e4e40de86863d871f0ee08",
       "suffix": ".mjs"
     },
     {
       "path": "assets/js/route-status-reconciliation.js",
       "sizeBytes": 4219,
-      "sha256": "2ef7325bb5ec615a7cae96703f1f152a696a8738439340abcc28a0444dbd2a0c",
+      "sha256": "4debc51eca11ea3ea6a6e8faf8b7ad2bd6441b79d16ead68ca1556753c278c5a",
       "suffix": ".js"
     },
     {
       "path": "assets/js/site-directory.mjs",
       "sizeBytes": 5840,
-      "sha256": "6615081909e4b0e431aa7d83fbe0b1d258e38f4e40f401bd3c2dd866f4bbf254",
+      "sha256": "e7b021af67a41188c34a50944cd3f462db33b6cfde2e27e907ce354f1c376861",
       "suffix": ".mjs"
     },
     {
       "path": "content-status.html",
       "sizeBytes": 6540,
-      "sha256": "2f3139c3dd1988c1499e55ddbb95c13459c139f03e0a7906d53c24ada3a2fe4b",
+      "sha256": "adae9e857061cac25a50a2ff157ed2856b85724d243787ccb1875ad7708fbd5e",
       "suffix": ".html"
+    },
+    {
+      "path": "data/deployment-conformance.json",
+      "sizeBytes": 832,
+      "sha256": "2b71da594e0370aeeb059826d05d304e331db22f27446ddc5bf5cdd163519477",
+      "suffix": ".json"
     },
     {
       "path": "data/effective-route-registry-runtime.json",
       "sizeBytes": 693,
-      "sha256": "0730ba81d11d39d55928144d687cbeb23409c958a8dff701377c587e859efc5d",
+      "sha256": "81622a7dfa6285fb36910cd040143987d859abb19b57db420822ae25fcd88528",
+      "suffix": ".json"
+    },
+    {
+      "path": "data/release-238-deletion-plan.json",
+      "sizeBytes": 1147,
+      "sha256": "7b89dbd5cbb0deebb05093efab215eb8ada27a71fed085edb285f16a8bdffdc6",
+      "suffix": ".json"
+    },
+    {
+      "path": "data/release-238-transaction.json",
+      "sizeBytes": 880,
+      "sha256": "f46847f7afa3bdbd3076e6c140bee090150654ed81a54cac5c5bc84610b5c899",
       "suffix": ".json"
     },
     {
@@ -287,7 +354,7 @@
     {
       "path": "discovery.html",
       "sizeBytes": 6866,
-      "sha256": "f045784da1ab894acb1443693f76acc154aa28655ffac93fac1743b913149211",
+      "sha256": "b744ba514d2e0682c1b3a5641660d5cbe2be260c31e3b22adfbe9180ca281a08",
       "suffix": ".html"
     },
     {
@@ -411,6 +478,36 @@
       "suffix": ".md"
     },
     {
+      "path": "docs/release-238/README.md",
+      "sizeBytes": 268,
+      "sha256": "2939a41213d30402b3bdd53ebab96f0f98616c85f10169b4b23eba579d281151",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/release-238/browser-upload.md",
+      "sizeBytes": 339,
+      "sha256": "1bc7065478ed86f57631bfc7ecf11c35ab2bfe776a26857e4cbd680b8d6478a4",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/release-238/deployment-conformance.md",
+      "sizeBytes": 287,
+      "sha256": "509fcdec64bc0979250ab29e536cda9e7a29508c7f4dbf7d9b7fa244d93e12f6",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/release-238/finalizer.md",
+      "sizeBytes": 322,
+      "sha256": "34fc74def6c4e526d3bcbd0923343cd5e93a3057eb16fc050dc9702ee27ca5c1",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/release-238/transaction.md",
+      "sizeBytes": 343,
+      "sha256": "7bfa0587dfc2935043849e5d5a284f0e6760fa4eeaf54b96dc942736dc8dd26d",
+      "suffix": ".md"
+    },
+    {
       "path": "docs/release-attestation.md",
       "sizeBytes": 688,
       "sha256": "7feae2b4f1b9a3ff4fca6418a38e5a18987cecd8474d1bec4b41a026c19fe1f8",
@@ -418,8 +515,8 @@
     },
     {
       "path": "docs/release-governance.md",
-      "sizeBytes": 3574,
-      "sha256": "1748d506bf4d2617330e8254856b2b6eb80b9e5e0d1c00d6f1d70c08be516f9a",
+      "sizeBytes": 4310,
+      "sha256": "c8720d621865bc0b24dd73f4ed233e8e464b8056f46d2072d7f75aa027f1b7ae",
       "suffix": ".md"
     },
     {
@@ -789,6 +886,30 @@
       "suffix": ".json"
     },
     {
+      "path": "fixtures/deployment-conformance/invalid/legacy-precache.json",
+      "sizeBytes": 141,
+      "sha256": "a11a806220cdb345a9cdc431ed72f9585678978384312c648c2000fe035e6542",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/deployment-conformance/invalid/missing-loader.json",
+      "sizeBytes": 132,
+      "sha256": "5cc456d02d566c46b736c1472148ee06ca58368bed36963db7a13bd33a7fb1e7",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/deployment-conformance/valid/consumer-map.json",
+      "sizeBytes": 186,
+      "sha256": "7fd817ffdb088058d8dd5bf3eb87ebee6476514ac40bc6e46862690adef54fdd",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/deployment-conformance/valid/service-worker.json",
+      "sizeBytes": 206,
+      "sha256": "4ea13e0314d1f439c33b8764ab26dc8a576de144a2f16bf8b13d7a2411c506a2",
+      "suffix": ".json"
+    },
+    {
       "path": "fixtures/effective-route-registry/invalid/01-historical-not-object.json",
       "sizeBytes": 105,
       "sha256": "6818ae6a9c935ad8836d6851248efd40c3f43eb302e27dfdc77224517b39c6ca",
@@ -966,6 +1087,30 @@
       "path": "fixtures/effective-route-registry/valid/12-empty-summary.json",
       "sizeBytes": 407,
       "sha256": "2382866e7abc12dca3fbda170aae86989ab56c8360ed991b6de9dc27d145cf34",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/release-transaction/invalid/missing-deletion.json",
+      "sizeBytes": 111,
+      "sha256": "4ca1d48f5c5e8f4b3b95a4e8cf76bba35960a732fc1f475f4840aa29fe7b7b74",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/release-transaction/invalid/wrong-base.json",
+      "sizeBytes": 194,
+      "sha256": "b50c56e786ca628c5e7a6c742e4af2d26cd4bd16a9ad88028dfb6df5a41ef026",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/release-transaction/valid/bootstrap.json",
+      "sizeBytes": 210,
+      "sha256": "d1947c64235b77642430314ff20e46a133c0441cc990dcafa197eb83cca77b02",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/release-transaction/valid/final.json",
+      "sizeBytes": 178,
+      "sha256": "0eaa4cc2a655e6dac4142b96ce94e03f0dea57573c806e14f333613061b8b8ea",
       "suffix": ".json"
     },
     {
@@ -1383,6 +1528,18 @@
       "suffix": ".json"
     },
     {
+      "path": "manifest-release-237.json",
+      "sizeBytes": 28812,
+      "sha256": "777db79ba8c516c149b992d50238bd84f57db110560126b2970499d6c3603b6d",
+      "suffix": ".json"
+    },
+    {
+      "path": "policies/deployment-conformance.json",
+      "sizeBytes": 586,
+      "sha256": "d98065bb881c2a9775d8df2bf8aa748febbabc9873328ec61465a116d85c81f5",
+      "suffix": ".json"
+    },
+    {
       "path": "policies/effective-route-consumer-required-assets.json",
       "sizeBytes": 377,
       "sha256": "4cb2a93084bb5ae128fb99850779cd89cdce04acf73e1721815b86fd2181666a",
@@ -1391,13 +1548,19 @@
     {
       "path": "policies/effective-route-consumers.json",
       "sizeBytes": 1540,
-      "sha256": "faf08b243cd11f7199a0620d6ca3e1f23e4f1a11ec8357dc54e24b5b51d49b4b",
+      "sha256": "2ccc3e0f3c6826df086414ffb58f404991c1fca91a966e173ffbfc2b00863e3a",
       "suffix": ".json"
     },
     {
       "path": "policies/release-237-publisher.json",
       "sizeBytes": 528,
       "sha256": "f4061bc3d71d15b717ca0ce9379d219089746e3a254c10031b4c3f79843dc468",
+      "suffix": ".json"
+    },
+    {
+      "path": "policies/release-transaction.json",
+      "sizeBytes": 909,
+      "sha256": "396ee3b21b76e9e58748016f5cf994d775beabb58e8cd1e9942c6a9ec66eb82a",
       "suffix": ".json"
     },
     {
@@ -1438,21 +1601,27 @@
     },
     {
       "path": "policies/repository-integrity-required-assets.json",
-      "sizeBytes": 895,
-      "sha256": "3e640067ad95474936c7d01d45feff56e0b7ad262cf21b337f2843068fd1c604",
+      "sizeBytes": 1406,
+      "sha256": "9b0547bd0bc6848328eeab87737f6e113cd4ef9895ce85be4d2db61c07e21c28",
       "suffix": ".json"
     },
     {
       "path": "policies/repository-integrity.json",
-      "sizeBytes": 2029,
-      "sha256": "29aab3a48006b145667757e0cc2a13137ca6b74f3e1bacc28d99e781a3932f44",
+      "sizeBytes": 2540,
+      "sha256": "1f17a1520766d2e43abb9b8c3979c16fd17f67ff04a1b390d8f02ef844d8f1a5",
       "suffix": ".json"
     },
     {
       "path": "pyproject.toml",
-      "sizeBytes": 386,
-      "sha256": "a85ff4d58e604ad961b0d3565925071c2887f3abe0df4f9d36cb741acadb812a",
+      "sizeBytes": 384,
+      "sha256": "f77f40990373e62a20f5f59d35b8815772346b1f293307f41fccdcd51224186f",
       "suffix": ".toml"
+    },
+    {
+      "path": "schemas/deployment-conformance.schema.json",
+      "sizeBytes": 542,
+      "sha256": "40acd7d2cbd7d919fc4c767d6c8dce582e61753c9516d47f396aa4183479a4da",
+      "suffix": ".json"
     },
     {
       "path": "schemas/effective-route-consumer-policy.schema.json",
@@ -1497,9 +1666,21 @@
       "suffix": ".json"
     },
     {
+      "path": "schemas/release-finalization-result.schema.json",
+      "sizeBytes": 481,
+      "sha256": "86939ff2b643b9904a26578e2412a80fe9e55737431cc30d824f0e88787f985f",
+      "suffix": ".json"
+    },
+    {
       "path": "schemas/release-manifest.schema.json",
       "sizeBytes": 1415,
       "sha256": "6e077f4e5dfbafd5071eb0b743a95920d883a7ae944bd965684cfa3386bc0ea0",
+      "suffix": ".json"
+    },
+    {
+      "path": "schemas/release-transaction.schema.json",
+      "sizeBytes": 545,
+      "sha256": "c3571b5f027bd189403547bfecf8fdc7c03f88cfb5f85c372c1d03b07719ca53",
       "suffix": ".json"
     },
     {
@@ -1731,6 +1912,42 @@
       "suffix": ".py"
     },
     {
+      "path": "scripts/release238/finalize-local.ps1",
+      "sizeBytes": 1518,
+      "sha256": "1e2d39e09bec4275809ae9b3dd0b81a788c21425454829fcf6d851a5786b17c0",
+      "suffix": ".ps1"
+    },
+    {
+      "path": "scripts/release238/finalize-local.sh",
+      "sizeBytes": 940,
+      "sha256": "6114064d0ef30e3d7fb38050f245c7911997e4f90687bfe2ede58351a894dbdc",
+      "suffix": ".sh"
+    },
+    {
+      "path": "scripts/release238/finalize-release-238.py",
+      "sizeBytes": 5724,
+      "sha256": "60a7914a67365fc4a9847f994056c5a86ed90c7873cdc0b2d5a015e049065e82",
+      "suffix": ".py"
+    },
+    {
+      "path": "scripts/release238/run-release-238-tests.py",
+      "sizeBytes": 1186,
+      "sha256": "0d1ff5b29a3381e394791d40634a3fe7ac66fe848aebfdd179dd482d5cca9703",
+      "suffix": ".py"
+    },
+    {
+      "path": "scripts/release238/verify-bootstrap.py",
+      "sizeBytes": 1261,
+      "sha256": "b5e12bc36bc4efe0024353e34cc356fa9aa4fa722d87bf2d87830242ee4c8af9",
+      "suffix": ".py"
+    },
+    {
+      "path": "scripts/release238/verify-final-state.py",
+      "sizeBytes": 1576,
+      "sha256": "db217e0bf256d47fb4c58c30f955ff4fb0ae67ae558aaf5c1f3139755149a91c",
+      "suffix": ".py"
+    },
+    {
       "path": "scripts/repository/preflight-hygiene.ps1",
       "sizeBytes": 313,
       "sha256": "2ad677d8c44831ce24c553340b1927212b9afd8898f8af6b17996d5d9582d42e",
@@ -1767,9 +1984,15 @@
       "suffix": ".sh"
     },
     {
+      "path": "service-worker.js",
+      "sizeBytes": 5892,
+      "sha256": "984c5fbbeed93b600d50c9dbb15cf695c5abc8fd80cd485368eb50ed76ea1d10",
+      "suffix": ".js"
+    },
+    {
       "path": "site-directory.html",
       "sizeBytes": 3729,
-      "sha256": "94a9c64410c0a62f44230c8ce5bc3f8d3d16feae278461d24bada581ccbf7d1d",
+      "sha256": "290e8a8c2d9638702b5404ab6743233d9d59e5e3b74a35d8dcc52abbf57f1d23",
       "suffix": ".html"
     },
     {
@@ -1780,9 +2003,39 @@
     },
     {
       "path": "templates/release-upload-checklist.md",
-      "sizeBytes": 2209,
-      "sha256": "75f508255b560c8e8799a8270050f5a8355430cc58ca944904237680859984c6",
+      "sizeBytes": 2774,
+      "sha256": "f2532477de729d9281b117083e5c25dc0773d3e92ed5e5a262bef99d871f1576",
       "suffix": ".md"
+    },
+    {
+      "path": "tests/deployment_conformance/__init__.py",
+      "sizeBytes": 36,
+      "sha256": "008c19521c7f48c3e122cb2476890c372760324a531d92503f1fe9f7f884cfe4",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/deployment_conformance/test_html.py",
+      "sizeBytes": 1335,
+      "sha256": "691fb621f9aa260afb65e39516b1ad574f0caa5b22648ca1520227552fb0062b",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/deployment_conformance/test_modules.py",
+      "sizeBytes": 900,
+      "sha256": "51f046dbdc4a39d9faa2c171354656a381cf759bc764de9ba4bdb70a94a56dde",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/deployment_conformance/test_service_worker.py",
+      "sizeBytes": 1064,
+      "sha256": "d7448132c617bc0caaa710b9fd50889cfd6797a272d92253c55490ec2f0c9d9e",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/deployment_conformance/test_validator.py",
+      "sizeBytes": 695,
+      "sha256": "9e0190076d14c29874a9f0a778190c24a8350c5524e84248405348cf1ab6f918",
+      "suffix": ".py"
     },
     {
       "path": "tests/effective_route_consumers/__init__.py",
@@ -1793,7 +2046,7 @@
     {
       "path": "tests/effective_route_consumers/test_html_scan.py",
       "sizeBytes": 1285,
-      "sha256": "9e57821117353d647b0d91d258cb612b6da2e7362ded190e91d92f05237963f6",
+      "sha256": "fc1d39a8ef6a4e15d031cc8e402ba9656fbe248b999d34a1f1a44f8a67717b75",
       "suffix": ".py"
     },
     {
@@ -1805,7 +2058,7 @@
     {
       "path": "tests/effective_route_consumers/test_runtime.py",
       "sizeBytes": 771,
-      "sha256": "440d08b353d5e99e3d3ec65a23886b12c4d8ea8d7dd49c3f6430e4b672be770a",
+      "sha256": "dcf499a7faafc44e90a9a7b2e5e9fdb2da03a91ebff03707a6e952a67afc09dd",
       "suffix": ".py"
     },
     {
@@ -1817,7 +2070,7 @@
     {
       "path": "tests/effective_route_consumers/test_validator.py",
       "sizeBytes": 2931,
-      "sha256": "8131cd32a8d261fe050b9e9fcba28b90f0a75d2a86378c3a81199d198317e00d",
+      "sha256": "c77b89b8c969e53715db4fb3457cf08fb269a7f178b6cc3af76bd37c037279b0",
       "suffix": ".py"
     },
     {
@@ -1932,6 +2185,36 @@
       "path": "tests/release_control/test_report.py",
       "sizeBytes": 3090,
       "sha256": "6437d2785089a9a3d0205ce9e2d0a7822756237ae01a5f017dfafaae6b9098dc",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/release_transaction/__init__.py",
+      "sizeBytes": 33,
+      "sha256": "ec5f483fea6cdbbe404de81e30c9d0fe036b7c123ec881f6a807fa1f2447d627",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/release_transaction/test_plan.py",
+      "sizeBytes": 878,
+      "sha256": "bd0ac459c18e593439281786d2a3c6c47164a6c9c0b980ab79782f08baa5216c",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/release_transaction/test_release_238_package.py",
+      "sizeBytes": 1503,
+      "sha256": "64c24ac4a2ae6e87739ef1ac4b0bbb06ed91a3f06a79d9195bb0df949c1aa7df",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/release_transaction/test_state.py",
+      "sizeBytes": 1046,
+      "sha256": "29a79d72b5b3373a45728ca98aff104781a395a595ac563d8404cdd1283c7c01",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/release_transaction/test_validator.py",
+      "sizeBytes": 2184,
+      "sha256": "b4dc3f48e5303980edc26e9205803a546925830d9a39625d330830916fc10ef7",
       "suffix": ".py"
     },
     {
@@ -2091,6 +2374,72 @@
       "suffix": ".py"
     },
     {
+      "path": "tools/deployment_conformance/__init__.py",
+      "sizeBytes": 120,
+      "sha256": "527f9923267c56fd12710a0ba040b807e423ff7bc96142f3fd7a3be665ec4a05",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/deployment_conformance/constants.py",
+      "sizeBytes": 179,
+      "sha256": "47048f03ed373c5ca33ddd56f9b911c5d0194d9a22d116b01db0c510dc2df035",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/deployment_conformance/html.py",
+      "sizeBytes": 953,
+      "sha256": "0277671a6627d19c52ff73baed9fa5bec02c631c2710b76bb7f75565800d8af5",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/deployment_conformance/jsonio.py",
+      "sizeBytes": 338,
+      "sha256": "edaf957727f8ab2dfe97fbb6d948ead4bc3e97eca6e3948ba214795b0be8637f",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/deployment_conformance/models.py",
+      "sizeBytes": 295,
+      "sha256": "22f01a12911ba7dd7098aa2e07c847d1ced6a2ddf47e04710cf8de85c0d49cc1",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/deployment_conformance/modules.py",
+      "sizeBytes": 740,
+      "sha256": "838efd19458e2426a886f376c26d626409a329daac1644ec1b53977db207314c",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/deployment_conformance/routes.py",
+      "sizeBytes": 808,
+      "sha256": "68b4f23944d390732ffea1a7d9e40f70400669e92ccc066af42e463126691acd",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/deployment_conformance/service_worker.py",
+      "sizeBytes": 1087,
+      "sha256": "dc1f7a02febd00f32a97b897f64c9de935b122cad29c5b46208ffc64eb892b24",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/deployment_conformance/validate.py",
+      "sizeBytes": 750,
+      "sha256": "60a728e5dea2fb8155c1bf4a18441270bb32254b912ae687b4fda9ae9c45a029",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/deployment_conformance/validator.py",
+      "sizeBytes": 1507,
+      "sha256": "adfccaa97185165b61730e1af5c61b67f3898eb8fe137de49d33b221c3c488f8",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/deployment_conformance_cli.py",
+      "sizeBytes": 135,
+      "sha256": "66e6f701c1cfd2a2b4cbb889e81dab5b0f06ca73538690643758fedb8dac540d",
+      "suffix": ".py"
+    },
+    {
       "path": "tools/effective_route_consumers/__init__.py",
       "sizeBytes": 152,
       "sha256": "92f09f9724c53b473c8217227eb6cf06edcf9dbfeccbdbe6d46e6da259f2dc53",
@@ -2111,7 +2460,7 @@
     {
       "path": "tools/effective_route_consumers/html_scan.py",
       "sizeBytes": 876,
-      "sha256": "de817f928afa6b2ba113f698d5015258d311de6652f71f4565aaa44fb1fc3465",
+      "sha256": "2cb327cf531fc1a3120512ef2e4dd11414e7efa0f86d812814bb5fd015011e28",
       "suffix": ".py"
     },
     {
@@ -2129,7 +2478,7 @@
     {
       "path": "tools/effective_route_consumers/runtime.py",
       "sizeBytes": 899,
-      "sha256": "02d954e1f8ee5d66c959f49d5be8a9ec00f2cd745c7595cd4eaad88d606e8d9c",
+      "sha256": "2b491b612494edff9cddcfe2e3728eda5044848415929a70635c1a907fce78ca",
       "suffix": ".py"
     },
     {
@@ -2146,8 +2495,8 @@
     },
     {
       "path": "tools/effective_route_consumers/validator.py",
-      "sizeBytes": 3428,
-      "sha256": "af89fba1a86ad64c5e6b05daa04ca4ee049d4bc73747cd03ec811d415972fd72",
+      "sizeBytes": 3456,
+      "sha256": "a927a4627c44951045f63b5361786e6802ec6c13b1d0bd843fd5090278cf9447",
       "suffix": ".py"
     },
     {
@@ -2250,6 +2599,72 @@
       "path": "tools/release_control/report.py",
       "sizeBytes": 2921,
       "sha256": "4f99da6e02b3bc5a0ce05309d92c1a21006e6e8be0c942d89da2f73eaf0587c4",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_transaction/__init__.py",
+      "sizeBytes": 129,
+      "sha256": "e64b0ab3d5d8bbc43700d439f3da08df25cb3661076358063663d85096b5cee7",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_transaction/constants.py",
+      "sizeBytes": 221,
+      "sha256": "fcf0764de139b3cebb7f5656cd06fa419dd1bb7c76a57f6fe4c88d3577ca0588",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_transaction/git.py",
+      "sizeBytes": 1126,
+      "sha256": "c30835258ff9189a592dcaf7777d5a81e8108bc575a4d22b52df63f1a2263151",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_transaction/jsonio.py",
+      "sizeBytes": 593,
+      "sha256": "7fdcdcac5da7cd361d9acc5f5c9e89d61ea6867823abff930d3b9af379c3b78b",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_transaction/models.py",
+      "sizeBytes": 297,
+      "sha256": "36b536cdeb5b629d0b3756859fd680b590185431ba7115406cbbee1989a2f63a",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_transaction/plan.py",
+      "sizeBytes": 1368,
+      "sha256": "c507025f46f29f4dc1a54429c111852a570e98232b55feaf9643d74c3828d624",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_transaction/result.py",
+      "sizeBytes": 571,
+      "sha256": "3538c3d8a6859cca51b9dc2bba378887835048390738b0e6930a95749e142fa6",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_transaction/state.py",
+      "sizeBytes": 1047,
+      "sha256": "db9497bf4359e2857985b86826af7f30474e988609a375fa41eebea70818f319",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_transaction/validate.py",
+      "sizeBytes": 1273,
+      "sha256": "37d3ffcf594ed6b06cdfba47cb6a9e347803ac32906256d3ea8874ecea145c47",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_transaction/validator.py",
+      "sizeBytes": 2495,
+      "sha256": "b04ff24736a63d957ab9fc4b0439723f183af20e19805b628d3906fffbc67490",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_transaction_cli.py",
+      "sizeBytes": 132,
+      "sha256": "ef3d784de40ddd9c3d7155da37dace251190c1c89705232ce51d421219e745b8",
       "suffix": ".py"
     },
     {
@@ -2541,5 +2956,5 @@
       "suffix": ".py"
     }
   ],
-  "inventorySha256": "33307cc198fb9c4b7531c4af8e5a9cf7eac8af2178ef91bed3a60544b037fe31"
+  "inventorySha256": "330055631746d149ab720dea2d975caf724c06bbe546417b783d43de67081432"
 }

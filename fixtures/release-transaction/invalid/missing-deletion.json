@@ -1,0 +1,6 @@
+{
+  "remainingDeletionTargets": [
+    "assets/js/site-directory.js"
+  ],
+  "expectedRule": "final-deletions"
+}

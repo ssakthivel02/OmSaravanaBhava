@@ -48,8 +48,17 @@ jobs:
           PY
           )"
           echo "path=$manifest" >> "$GITHUB_OUTPUT"
+          state="$(MANIFEST_PATH="$manifest" python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          payload = json.loads(Path(os.environ["MANIFEST_PATH"]).read_text(encoding="utf-8"))
+          print(payload.get("transaction", {}).get("state", "single"))
+          PY
+          )"
           echo "release=$release" >> "$GITHUB_OUTPUT"
-          echo "Using $manifest for Release $release"
+          echo "state=$state" >> "$GITHUB_OUTPUT"
+          echo "Using $manifest for Release $release in state $state"
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -58,7 +67,7 @@ jobs:
 
       - name: Compile release governance tools
         run: |
-          python -B -m compileall -q tools/release_control tools/repository_hygiene tools/repository_integrity tools/effective_route_consumers tools/route_registry tools/release_validate.py
+          python -B -m compileall -q tools/release_control tools/repository_hygiene tools/repository_integrity tools/effective_route_consumers tools/release_transaction tools/deployment_conformance tools/route_registry tools/release_validate.py
 
       - name: Run governance unit tests
         run: |
@@ -67,23 +76,40 @@ jobs:
             -p "test_*.py" \
             -v
 
+      - name: Validate Release 238 bootstrap transaction
+        if: steps.manifest.outputs.state == 'bootstrap'
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          python -B -m tools.release_transaction.validate --root . --mode bootstrap
+
       - name: Validate repository hygiene
+        if: steps.manifest.outputs.state != 'bootstrap'
         env:
           PYTHONDONTWRITEBYTECODE: "1"
         run: |
           python -B -m tools.repository_hygiene.validate             --root .             --report artifacts/repository-hygiene-report.json
 
       - name: Validate repository integrity
+        if: steps.manifest.outputs.state != 'bootstrap'
         env:
           PYTHONDONTWRITEBYTECODE: "1"
         run: |
           python -B -m tools.repository_integrity.validate             --root .             --report artifacts/repository-integrity-report.json             --inventory artifacts/repository-integrity-inventory.json             --sarif artifacts/repository-integrity.sarif
 
       - name: Validate explicit effective route consumers
+        if: steps.manifest.outputs.state != 'bootstrap'
         env:
           PYTHONDONTWRITEBYTECODE: "1"
         run: |
           python -B -m tools.effective_route_consumers.validate             --root .             --report artifacts/effective-route-consumers-report.json
+
+      - name: Validate deployment conformance
+        if: steps.manifest.outputs.state != 'bootstrap'
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          python -B -m tools.deployment_conformance.validate --root .
 
       - name: Run browser runtime tests
         run: |

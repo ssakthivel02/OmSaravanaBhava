@@ -1,0 +1,6 @@
+{
+  "parent": "b7bc25a3888f5bbe4a55a55ba69fd05ac3cc8e60",
+  "subject": "Bootstrap Release 238: install browser-safe finalizer and deployment conformance",
+  "trackedDeletionTargets": 14,
+  "expected": "PASS"
+}

@@ -4,7 +4,7 @@ import {
   registryStatusMessage
 } from './effective-route-registry.mjs';
 
-export const RELEASE = 237;
+export const RELEASE = 238;
 
 export const filterDirectoryRecords = (
   records,

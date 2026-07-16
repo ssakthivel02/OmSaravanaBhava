@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "release",
+    "serviceWorker",
+    "expectedCacheRelease",
+    "requiredPrecacheUrls",
+    "forbiddenPrecacheUrls",
+    "consumerPages"
+  ],
+  "properties": {
+    "release": {
+      "const": 238
+    },
+    "expectedCacheRelease": {
+      "const": "238"
+    },
+    "requiredPrecacheUrls": {
+      "type": "array",
+      "uniqueItems": true
+    },
+    "forbiddenPrecacheUrls": {
+      "type": "array",
+      "uniqueItems": true
+    }
+  }
+}

@@ -1,0 +1,132 @@
+Release 238 — Browser-Safe Repository Reconciliation and Deployment Conformance
+Transaction base: b7bc25a3888f5bbe4a55a55ba69fd05ac3cc8e60
+Bootstrap title: Bootstrap Release 238: install browser-safe finalizer and deployment conformance
+Final title: Release 238: reconcile repository state and enforce deployment conformance
+
+Bootstrap added files (69):
+A  .github/workflows/deployment-conformance.yml
+A  .github/workflows/release-238-finalize.yml
+A  FINALIZE_RELEASE_238.cmd
+A  RELEASE_238.patch
+A  RELEASE_238_CHANGED_FILES.txt
+A  RELEASE_238_GITHUB_PORTAL_INSTRUCTIONS.txt
+A  RELEASE_238_LOCAL_TEST_EVIDENCE.txt
+A  RELEASE_238_SHA256SUMS.txt
+A  RELEASE_238_VALIDATION_REPORT.md
+A  data/deployment-conformance.json
+A  data/release-238-deletion-plan.json
+A  data/release-238-transaction.json
+A  docs/release-238/README.md
+A  docs/release-238/browser-upload.md
+A  docs/release-238/deployment-conformance.md
+A  docs/release-238/finalizer.md
+A  docs/release-238/transaction.md
+A  fixtures/deployment-conformance/invalid/legacy-precache.json
+A  fixtures/deployment-conformance/invalid/missing-loader.json
+A  fixtures/deployment-conformance/valid/consumer-map.json
+A  fixtures/deployment-conformance/valid/service-worker.json
+A  fixtures/release-transaction/invalid/missing-deletion.json
+A  fixtures/release-transaction/invalid/wrong-base.json
+A  fixtures/release-transaction/valid/bootstrap.json
+A  fixtures/release-transaction/valid/final.json
+A  manifest-release-238.json
+A  policies/deployment-conformance.json
+A  policies/release-transaction.json
+A  schemas/deployment-conformance.schema.json
+A  schemas/release-finalization-result.schema.json
+A  schemas/release-transaction.schema.json
+A  scripts/release238/finalize-local.ps1
+A  scripts/release238/finalize-local.sh
+A  scripts/release238/finalize-release-238.py
+A  scripts/release238/run-release-238-tests.py
+A  scripts/release238/verify-bootstrap.py
+A  scripts/release238/verify-final-state.py
+A  tests/deployment_conformance/__init__.py
+A  tests/deployment_conformance/test_html.py
+A  tests/deployment_conformance/test_modules.py
+A  tests/deployment_conformance/test_service_worker.py
+A  tests/deployment_conformance/test_validator.py
+A  tests/release_transaction/__init__.py
+A  tests/release_transaction/test_plan.py
+A  tests/release_transaction/test_release_238_package.py
+A  tests/release_transaction/test_state.py
+A  tests/release_transaction/test_validator.py
+A  tools/deployment_conformance/__init__.py
+A  tools/deployment_conformance/constants.py
+A  tools/deployment_conformance/html.py
+A  tools/deployment_conformance/jsonio.py
+A  tools/deployment_conformance/models.py
+A  tools/deployment_conformance/modules.py
+A  tools/deployment_conformance/routes.py
+A  tools/deployment_conformance/service_worker.py
+A  tools/deployment_conformance/validate.py
+A  tools/deployment_conformance/validator.py
+A  tools/deployment_conformance_cli.py
+A  tools/release_transaction/__init__.py
+A  tools/release_transaction/constants.py
+A  tools/release_transaction/git.py
+A  tools/release_transaction/jsonio.py
+A  tools/release_transaction/models.py
+A  tools/release_transaction/plan.py
+A  tools/release_transaction/result.py
+A  tools/release_transaction/state.py
+A  tools/release_transaction/validate.py
+A  tools/release_transaction/validator.py
+A  tools/release_transaction_cli.py
+
+Bootstrap modified files (28):
+M  .gitattributes
+M  .github/workflows/release-232-governance.yml
+M  .gitignore
+M  .pre-commit-config.yaml
+M  .release-governance.json
+M  Makefile
+M  assets/js/content-status-audit.mjs
+M  assets/js/discovery-workspace.mjs
+M  assets/js/effective-route-registry.mjs
+M  assets/js/route-status-reconciliation.js
+M  assets/js/site-directory.mjs
+M  content-status.html
+M  data/effective-route-registry-runtime.json
+M  discovery.html
+M  docs/release-governance.md
+M  policies/effective-route-consumers.json
+M  policies/repository-integrity-required-assets.json
+M  policies/repository-integrity.json
+M  pyproject.toml
+M  service-worker.js
+M  site-directory.html
+M  templates/release-upload-checklist.md
+M  tests/effective_route_consumers/test_html_scan.py
+M  tests/effective_route_consumers/test_runtime.py
+M  tests/effective_route_consumers/test_validator.py
+M  tools/effective_route_consumers/html_scan.py
+M  tools/effective_route_consumers/runtime.py
+M  tools/effective_route_consumers/validator.py
+
+Bootstrap deleted files (0):
+
+Automatic finalizer changes (18):
+A  RELEASE_238_FINALIZATION_RESULT.json
+M  .release-governance.json
+M  RELEASE_238_SHA256SUMS.txt
+M  manifest-release-238.json
+D  assets/js/site-directory.js
+D  tools/release_control/__pycache__/__init__.cpython-313.pyc
+D  tools/release_control/__pycache__/checks.cpython-313.pyc
+D  tools/release_control/__pycache__/checks_checksums.cpython-313.pyc
+D  tools/release_control/__pycache__/checks_commit.cpython-313.pyc
+D  tools/release_control/__pycache__/checks_files.cpython-313.pyc
+D  tools/release_control/__pycache__/checks_manifest.cpython-313.pyc
+D  tools/release_control/__pycache__/checks_patch.cpython-313.pyc
+D  tools/release_control/__pycache__/cli.cpython-313.pyc
+D  tools/release_control/__pycache__/constants.cpython-313.pyc
+D  tools/release_control/__pycache__/git.cpython-313.pyc
+D  tools/release_control/__pycache__/jsonio.cpython-313.pyc
+D  tools/release_control/__pycache__/models.cpython-313.pyc
+D  tools/release_control/__pycache__/report.cpython-313.pyc
+
+Bootstrap changed paths: 97
+Finalizer changed paths: 18
+Finalizer deletions: 14
+Package archive files: 499

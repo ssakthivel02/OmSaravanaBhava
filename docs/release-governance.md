@@ -86,3 +86,16 @@ PowerShell/Bash publisher. The publisher creates a fresh clone at the exact
 approved base, performs manifest-driven copy and deletion, verifies every staged
 status, runs Node and Python regression suites, commits the exact title and
 pushes.
+
+## Release 238 browser-bootstrap transaction
+
+Release 238 is a two-commit transaction because GitHub browser upload cannot
+delete tracked files. The bootstrap commit installs an Actions finalizer and
+deployment-conformance controls. The finalizer verifies the bootstrap parent and
+subject, removes fourteen forbidden tracked paths, rewrites governance metadata
+to the actual bootstrap SHA, regenerates checksums, validates the final state,
+creates the exact final release commit and pushes it.
+
+The bootstrap title and final title are both security boundaries. A bootstrap
+commit is not the completed release. Completion requires the exact final commit,
+zero planned deletion targets, cache release 238 and a finalization result file.

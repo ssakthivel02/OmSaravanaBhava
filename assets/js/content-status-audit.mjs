@@ -5,7 +5,7 @@ import {
   registryStatusMessage
 } from './effective-route-registry.mjs';
 
-export const RELEASE = 237;
+export const RELEASE = 238;
 export const CONFIG_PATH = '/data/content-status.json';
 export const BOUNDARIES_PATH = '/data/publication-boundaries.json';
 export const CANONICAL_ORIGIN = 'https://omsaravanabhava.org';

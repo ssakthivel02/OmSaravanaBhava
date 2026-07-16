@@ -106,7 +106,7 @@ def validate_effective_route_consumers(
 
     return {
         "status": PASS if not findings else FAIL,
-        "release": 237,
+        "release": int(policy.get("release", 238)),
         "findingCount": len(findings),
         "findings": [item.to_dict() for item in findings],
     }

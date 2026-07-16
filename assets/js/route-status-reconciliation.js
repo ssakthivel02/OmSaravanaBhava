@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const RELEASE = 237;
+  const RELEASE = 238;
   const OVERRIDES_PATH = '/data/site-routes-effective-overrides.json';
   const CANONICAL_ORIGIN = 'https://omsaravanabhava.org';
 

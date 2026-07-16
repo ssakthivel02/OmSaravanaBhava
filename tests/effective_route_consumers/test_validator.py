@@ -65,7 +65,7 @@ class ValidatorTests(unittest.TestCase):
                 },
             }
             runtime = {
-                "release": 237,
+                "release": 238,
                 "globalFetchInterception": False,
                 "consumers": ["/a", "/b", "/c"],
             }

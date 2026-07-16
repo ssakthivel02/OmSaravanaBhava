@@ -1,0 +1,53 @@
+Release 238 — browser upload plus automatic finalizer
+
+TRANSACTION BASE
+b7bc25a3888f5bbe4a55a55ba69fd05ac3cc8e60
+
+BOOTSTRAP COMMIT TITLE — USE THIS FOR THE FILE UPLOAD
+Bootstrap Release 238: install browser-safe finalizer and deployment conformance
+
+FINAL COMMIT TITLE — DO NOT USE THIS FOR THE UPLOAD
+Release 238: reconcile repository state and enforce deployment conformance
+
+WHY THIS RELEASE HAS TWO STAGES
+GitHub browser upload can add and replace files but cannot remove tracked files
+that are absent from the ZIP. Releases 235, 236 and 237 therefore left thirteen
+compiled Python cache files and the retired site-directory.js file tracked.
+
+STAGE 1 — NORMAL GITHUB BROWSER UPLOAD
+1. Extract OmSaravanaBhava-Release-238.zip.
+2. Upload the extracted contents to the repository root.
+3. Preserve the .github directory.
+4. Use the exact bootstrap title shown above.
+5. Commit to main.
+
+STAGE 2 — AUTOMATIC
+The Release 238 Finalizer workflow starts after the bootstrap push. It:
+- verifies the bootstrap parent and exact title;
+- removes all fourteen planned paths with git rm;
+- upgrades governance metadata to the actual bootstrap SHA;
+- generates RELEASE_238_FINALIZATION_RESULT.json;
+- runs deployment, hygiene, integrity and strict release gates;
+- creates the exact final Release 238 commit;
+- pushes the final commit to main.
+
+REPOSITORY SETTING REQUIRED
+GitHub → Settings → Actions → General → Workflow permissions:
+select “Read and write permissions”.
+
+EXPECTED BOOTSTRAP
+- 97 changed paths
+- 69 additions
+- 28 modifications
+- zero deletions
+
+EXPECTED FINALIZER
+- 18 changed paths
+- one added finalization result
+- three modified governance/evidence files
+- fourteen deletions
+
+LOCAL FALLBACK
+If branch protection or workflow permissions block the automatic push:
+1. Clone or pull the repository after the bootstrap commit.
+2. Run FINALIZE_RELEASE_238.cmd and provide the repository path.

@@ -36,3 +36,11 @@
 - [ ] No route-consumer source assigns `globalThis.fetch` or `window.fetch`.
 - [ ] JavaScript, Python, hygiene, integrity and effective-consumer gates all pass.
 - [ ] Staged changed-file count and status exactly match `manifest-release-237.json`.
+
+- [ ] Upload Release 238 with the exact bootstrap title, not the final title.
+- [ ] Confirm Actions workflow permissions allow `contents: write`.
+- [ ] Confirm `Release 238 Finalizer` starts after the bootstrap upload.
+- [ ] Confirm the final commit title is exact and its parent is the bootstrap SHA.
+- [ ] Confirm all thirteen `.pyc` files and `assets/js/site-directory.js` are deleted.
+- [ ] Confirm service-worker cache release is 238 and the legacy script is not precached.
+- [ ] Confirm deployment conformance, hygiene, integrity and strict governance pass.

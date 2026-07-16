@@ -8,7 +8,7 @@ from pathlib import Path
 from .models import Finding
 
 BODY_RELEASE = re.compile(
-    r"<body[^>]*\bdata-release=[\"']237[\"']",
+    r"<body[^>]*\bdata-release=[\"']238[\"']",
     re.IGNORECASE,
 )
 
@@ -24,7 +24,7 @@ def scan_html(
         findings.append(Finding(
             relative,
             "release-marker-missing",
-            "Consumer page must declare data-release 237.",
+            "Consumer page must declare data-release 238.",
         ))
     expected = f'type="module" src="{expected_script}"'
     if expected not in source:
