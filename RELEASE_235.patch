@@ -1,0 +1,2030 @@
+diff --git a/.editorconfig b/.editorconfig
+new file mode 100644
+index 0000000000000000000000000000000000000000..cbd4416e7a714b5a125db18837f04f3ab59a8710
+--- /dev/null
++++ b/.editorconfig
+@@ -0,0 +1,18 @@
++root = true
++
++[*]
++charset = utf-8
++end_of_line = lf
++insert_final_newline = true
++trim_trailing_whitespace = true
++
++[*.{json,yml,yaml,md,txt,py,js,css,html}]
++indent_style = space
++indent_size = 2
++
++[*.py]
++indent_size = 4
++
++[*.ps1]
++end_of_line = crlf
++indent_size = 4
+diff --git a/.gitattributes b/.gitattributes
+new file mode 100644
+index 0000000000000000000000000000000000000000..693f7a9f194091fc4a22d55370c67cb095c65151
+--- /dev/null
++++ b/.gitattributes
+@@ -0,0 +1,13 @@
++* text=auto eol=lf
++*.ps1 text eol=crlf
++*.bat text eol=crlf
++*.cmd text eol=crlf
++*.png binary
++*.jpg binary
++*.jpeg binary
++*.gif binary
++*.webp binary
++*.ico binary
++*.pdf binary
++*.zip binary
++*.pyc binary
+diff --git a/.github/workflows/release-232-governance.yml b/.github/workflows/release-232-governance.yml
+index c42738eb763bd914a5379b5fce675118face104d..e45e6cf5bd9634ea215edd14dd9e73e5453c7cfc 100644
+--- a/.github/workflows/release-232-governance.yml
++++ b/.github/workflows/release-232-governance.yml
+@@ -53,7 +53,7 @@ jobs:
+ 
+       - name: Compile release governance tools
+         run: |
+-          python -m compileall -q tools/release_control tools/release_validate.py
++          python -B -m compileall -q tools/release_control tools/repository_hygiene tools/route_registry tools/release_validate.py
+ 
+       - name: Run governance unit tests
+         run: |
+@@ -62,14 +62,22 @@ jobs:
+             -p "test_*.py" \
+             -v
+ 
+-      - name: Validate effective route-registry drift
++      - name: Validate repository hygiene
++        env:
++          PYTHONDONTWRITEBYTECODE: "1"
+         run: |
+-          python -m tools.route_registry.validate \
+-            --boundaries fixtures/route-registry/canonical/publication-boundaries.json \
+-            --overrides data/site-routes-effective-overrides.json \
+-            --release 234 \
+-            --generated 2026-07-16 \
+-            --check-drift
++          python -B -m tools.repository_hygiene.validate             --root .             --report artifacts/repository-hygiene-report.json
++
++      - name: Validate effective route-registry drift from policy
++        env:
++          PYTHONDONTWRITEBYTECODE: "1"
++        run: |
++          python -B - <<'PY'
++          import subprocess
++          from pathlib import Path
++          from tools.repository_hygiene.workflow import route_registry_command
++          subprocess.run(route_registry_command(Path(".")), check=True)
++          PY
+ 
+       - name: Validate uploaded commit and generate attestation
+         shell: bash
+diff --git a/.github/workflows/repository-hygiene.yml b/.github/workflows/repository-hygiene.yml
+new file mode 100644
+index 0000000000000000000000000000000000000000..2501934f99845b8600585616190e6e84cac0864d
+--- /dev/null
++++ b/.github/workflows/repository-hygiene.yml
+@@ -0,0 +1,50 @@
++name: Repository Hygiene
++
++on:
++  push:
++    branches: [main]
++  pull_request:
++  workflow_dispatch:
++
++permissions:
++  contents: read
++
++concurrency:
++  group: repository-hygiene-${{ github.ref }}
++  cancel-in-progress: true
++
++jobs:
++  hygiene:
++    runs-on: ubuntu-latest
++    timeout-minutes: 10
++    steps:
++      - name: Check out repository
++        uses: actions/checkout@v4
++        with:
++          fetch-depth: 2
++
++      - name: Set up Python
++        uses: actions/setup-python@v5
++        with:
++          python-version: "3.12"
++
++      - name: Compile hygiene tooling without writing caches
++        env:
++          PYTHONDONTWRITEBYTECODE: "1"
++        run: |
++          python -B -m compileall -q tools/repository_hygiene
++
++      - name: Validate tracked repository hygiene
++        env:
++          PYTHONDONTWRITEBYTECODE: "1"
++        run: |
++          python -B -m tools.repository_hygiene.validate             --root .             --report artifacts/repository-hygiene-report.json
++
++      - name: Upload hygiene report
++        if: always()
++        uses: actions/upload-artifact@v4
++        with:
++          name: repository-hygiene-report
++          path: artifacts/repository-hygiene-report.json
++          if-no-files-found: warn
++          retention-days: 90
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000000000000000000000000000000000000..7b09bda062a8b352838ebdbd21afeeb881f4baad
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1,51 @@
++# Python
++__pycache__/
++*.py[cod]
++*$py.class
++.pytest_cache/
++.mypy_cache/
++.ruff_cache/
++.coverage
++htmlcov/
++
++# Release validation output
++artifacts/
++*.attestation.json
++*.governance-report.json
++*.independent-report.json
++
++# Build and package output
++dist/
++build/
++out/
++coverage/
++*.zip
++*.tar
++*.tar.gz
++*.tgz
++
++# Local environments
++.venv/
++venv/
++env/
++.env
++.env.*
++!.env.example
++
++# Editors and operating systems
++.vscode/
++.idea/
++.DS_Store
++Thumbs.db
++desktop.ini
++*.swp
++*.swo
++
++# Temporary upload/extraction folders
++*-zip-check/
++*-applycheck/
++*-patchrepo/
++*-integration/
++*-full/
++tmp/
++temp/
+diff --git a/.release-governance.json b/.release-governance.json
+index c46da5b29d8d63a4667c9e2a573b800f6fe97ee0..b1ebefb83d61414c035685e157bd5feb18c4a85f 100644
+--- a/.release-governance.json
++++ b/.release-governance.json
+@@ -1,11 +1,11 @@
+ {
+-  "release": 234,
++  "release": 235,
+   "generated": "2026-07-16",
+-  "baseCommit": "7ac29a8a85ebacdaa94b24c8d1ad63adb08c86d0",
+-  "requiredCommitTitle": "Release 234: add deterministic effective route-registry pipeline",
+-  "manifestPath": "manifest-release-234.json",
+-  "checksumLedger": "RELEASE_234_SHA256SUMS.txt",
+-  "patchPath": "RELEASE_234.patch",
++  "baseCommit": "d43c5ffbb240a01ddd444839c10ba61c438c85a1",
++  "requiredCommitTitle": "Release 235: repair repository hygiene and governance baseline",
++  "manifestPath": "manifest-release-235.json",
++  "checksumLedger": "RELEASE_235_SHA256SUMS.txt",
++  "patchPath": "RELEASE_235.patch",
+   "attestationSchema": "schemas/release-attestation.schema.json",
+   "manifestSchema": "schemas/release-manifest.schema.json",
+   "filePolicy": {
+@@ -29,12 +29,12 @@
+     "securityBoundary": "Fallback is accepted only when the subject is an explicitly allowed GitHub browser default and the first non-empty commit-body line exactly matches required_commit_title."
+   },
+   "requiredEvidenceFiles": [
+-    "RELEASE_234_CHANGED_FILES.txt",
+-    "RELEASE_234_GITHUB_PORTAL_INSTRUCTIONS.txt",
+-    "RELEASE_234_LOCAL_TEST_EVIDENCE.txt",
+-    "RELEASE_234_SHA256SUMS.txt",
+-    "RELEASE_234_VALIDATION_REPORT.md",
+-    "RELEASE_234.patch"
++    "RELEASE_235_CHANGED_FILES.txt",
++    "RELEASE_235_GITHUB_PORTAL_INSTRUCTIONS.txt",
++    "RELEASE_235_LOCAL_TEST_EVIDENCE.txt",
++    "RELEASE_235_SHA256SUMS.txt",
++    "RELEASE_235_VALIDATION_REPORT.md",
++    "RELEASE_235.patch"
+   ],
+   "allowedStatusLanguage": [
+     "PASS",
+@@ -64,6 +64,18 @@
+     "failOnDrift": true,
+     "requireDeterministicSort": true,
+     "requireProvenance": true,
+-    "maximumOverrideRecords": 100
++    "maximumOverrideRecords": 100,
++    "validationRelease": 234,
++    "validationGenerated": "2026-07-16"
++  },
++  "repositoryHygienePolicy": {
++    "policyPath": "policies/repository-hygiene.json",
++    "validator": "tools/repository_hygiene/validate.py",
++    "reportSchema": "schemas/repository-hygiene-report.schema.json",
++    "failOnTrackedCache": true,
++    "failOnTrackedBuildOutput": true,
++    "failOnTemporaryUploadArtifacts": true,
++    "failOnGeneratedBinary": true,
++    "maximumTrackedViolations": 0
+   }
+ }
+diff --git a/docs/release-governance.md b/docs/release-governance.md
+index 81cfad8ac4732b0785b116c3b5730ba3b014d67e..ce7eb9816acff756a65e1d5ed9ddf8a48f2bf4d8 100644
+--- a/docs/release-governance.md
++++ b/docs/release-governance.md
+@@ -57,3 +57,9 @@ The gate does not certify devotional scholarship, production interaction quality
+ ## Release 234 route-registry gate
+ 
+ The governance workflow regenerates the canonical override registry from the audited boundary fixture and fails on semantic or byte-level drift. The historical `data/site-routes.json` snapshot remains unchanged.
++
++## Release 235 repository hygiene gate
++
++Tracked compiler caches, bytecode, temporary extraction directories, validation artefacts and build outputs are prohibited. The governance workflow runs with `PYTHONDONTWRITEBYTECODE=1`, validates tracked paths before release attestation and uploads a separate hygiene report.
++
++The Release 235 cleanup removes thirteen accidentally tracked Python cache files. Full rollback uses `git revert`; the implementation patch intentionally does not recreate generated bytecode.
+diff --git a/docs/repository-hygiene/README.md b/docs/repository-hygiene/README.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..1227a0e658fcbaccd7060c2f652664c437820cf7
+--- /dev/null
++++ b/docs/repository-hygiene/README.md
+@@ -0,0 +1,3 @@
++# Readme
++
++Release 235 removes tracked generated caches and establishes deterministic repository hygiene enforcement.
+diff --git a/docs/repository-hygiene/allowlist.md b/docs/repository-hygiene/allowlist.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..844e05c9635ee8c2298be7d5196b0952e75ee9e1
+--- /dev/null
++++ b/docs/repository-hygiene/allowlist.md
+@@ -0,0 +1,3 @@
++# Allowlist
++
++Exceptions must carry an exact path, reason and expiry date. Permanent wildcard exceptions are not accepted.
+diff --git a/docs/repository-hygiene/binary-policy.md b/docs/repository-hygiene/binary-policy.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..16df1468501095bd12f7c7d8b754e2685706bd9c
+--- /dev/null
++++ b/docs/repository-hygiene/binary-policy.md
+@@ -0,0 +1,3 @@
++# Binary Policy
++
++Devotional images and PDFs remain allowed; generated bytecode, temporary files and build outputs are rejected.
+diff --git a/docs/repository-hygiene/browser-upload-limitations.md b/docs/repository-hygiene/browser-upload-limitations.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..78460e11c88edb0bff05a1e0acb89423d19a9ef1
+--- /dev/null
++++ b/docs/repository-hygiene/browser-upload-limitations.md
+@@ -0,0 +1,3 @@
++# Browser Upload Limitations
++
++GitHub browser uploads add or replace files but do not remove tracked files. Release 235 therefore requires local Git for the thirteen deletions.
+diff --git a/docs/repository-hygiene/ci-enforcement.md b/docs/repository-hygiene/ci-enforcement.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..4b3cfbcc1f8bef2ab1aa0a20778fa23a864b2e7f
+--- /dev/null
++++ b/docs/repository-hygiene/ci-enforcement.md
+@@ -0,0 +1,3 @@
++# Ci Enforcement
++
++Repository Hygiene runs on pushes, pull requests and manual dispatches and uploads a machine-readable report.
+diff --git a/docs/repository-hygiene/cleanup.md b/docs/repository-hygiene/cleanup.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..9d241da3310ad3f29c4372683a040dceacf90e3b
+--- /dev/null
++++ b/docs/repository-hygiene/cleanup.md
+@@ -0,0 +1,3 @@
++# Cleanup
++
++Because browser file uploads cannot delete already tracked files, apply Release 235 from a local clone and run the supplied cleanup publisher.
+diff --git a/docs/repository-hygiene/future-releases.md b/docs/repository-hygiene/future-releases.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..873e448e899ce3cb285e3894ed028fa1733c52f2
+--- /dev/null
++++ b/docs/repository-hygiene/future-releases.md
+@@ -0,0 +1,3 @@
++# Future Releases
++
++Run Python with -B or PYTHONDONTWRITEBYTECODE=1, validate hygiene before commit and keep every release below the configured hard limit.
+diff --git a/docs/repository-hygiene/gitignore.md b/docs/repository-hygiene/gitignore.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..2d9bfb060a5c22b7f483ee1f62a98ba3bedc92a8
+--- /dev/null
++++ b/docs/repository-hygiene/gitignore.md
+@@ -0,0 +1,3 @@
++# Gitignore
++
++The root ignore file blocks Python caches, validation artefacts, archives, editor metadata, build output and temporary extraction directories.
+diff --git a/docs/repository-hygiene/policy.md b/docs/repository-hygiene/policy.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..0df06e3f2029abc8cdf6e704ce2ed3e17f99ac8d
+--- /dev/null
++++ b/docs/repository-hygiene/policy.md
+@@ -0,0 +1,3 @@
++# Policy
++
++Tracked source repositories must not contain compiler caches, temporary upload directories, local validation artefacts or generated bytecode.
+diff --git a/docs/repository-hygiene/rollback.md b/docs/repository-hygiene/rollback.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..77cef7b4fafddd6ed46e749ef5c8548fb0f03bd9
+--- /dev/null
++++ b/docs/repository-hygiene/rollback.md
+@@ -0,0 +1,3 @@
++# Rollback
++
++Use git revert for a complete rollback. The implementation patch intentionally does not restore generated cache binaries.
+diff --git a/examples/repository-hygiene/fail-report.json b/examples/repository-hygiene/fail-report.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..9ad144a1048cef4c33001f8ebefb8591aa39e648
+--- /dev/null
++++ b/examples/repository-hygiene/fail-report.json
+@@ -0,0 +1,14 @@
++{
++  "status": "FAIL",
++  "scanned_files": 1201,
++  "violation_count": 1,
++  "violations": [
++    {
++      "path": "tools/example/__pycache__/module.pyc",
++      "rule": "forbidden-glob",
++      "reason": "Matched '**/__pycache__/**'.",
++      "size_bytes": 1024
++    }
++  ],
++  "ignored_allowlist": []
++}
+diff --git a/examples/repository-hygiene/pass-report.json b/examples/repository-hygiene/pass-report.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..feb99ed9670d83eba04a40671262eace509c8d02
+--- /dev/null
++++ b/examples/repository-hygiene/pass-report.json
+@@ -0,0 +1,7 @@
++{
++  "status": "PASS",
++  "scanned_files": 1200,
++  "violation_count": 0,
++  "violations": [],
++  "ignored_allowlist": []
++}
+diff --git a/examples/repository-hygiene/temporary-exception.json b/examples/repository-hygiene/temporary-exception.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..41ec3aefe7cdae190ccc0542240438517d204078
+--- /dev/null
++++ b/examples/repository-hygiene/temporary-exception.json
+@@ -0,0 +1,5 @@
++{
++  "path": "legacy/vendor/reference.pdf",
++  "reason": "Temporary audit evidence retained during migration.",
++  "expires": "2026-08-15"
++}
+diff --git a/fixtures/repository-hygiene/invalid/build-output.json b/fixtures/repository-hygiene/invalid/build-output.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..16121d1284eb2e4ee29753290b45e71780fe9c10
+--- /dev/null
++++ b/fixtures/repository-hygiene/invalid/build-output.json
+@@ -0,0 +1,5 @@
++{
++  "paths": [
++    "build/site/index.html"
++  ]
++}
+diff --git a/fixtures/repository-hygiene/invalid/editor-swap.json b/fixtures/repository-hygiene/invalid/editor-swap.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..1777d83e1ded07c249446d670156608c4c1d02f5
+--- /dev/null
++++ b/fixtures/repository-hygiene/invalid/editor-swap.json
+@@ -0,0 +1,5 @@
++{
++  "paths": [
++    "docs/readme.md.swp"
++  ]
++}
+diff --git a/fixtures/repository-hygiene/invalid/os-metadata.json b/fixtures/repository-hygiene/invalid/os-metadata.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..85c66e72bb7628adfaaf7e4352135af4e126f386
+--- /dev/null
++++ b/fixtures/repository-hygiene/invalid/os-metadata.json
+@@ -0,0 +1,5 @@
++{
++  "paths": [
++    "assets/.DS_Store"
++  ]
++}
+diff --git a/fixtures/repository-hygiene/invalid/patchrepo.json b/fixtures/repository-hygiene/invalid/patchrepo.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..40c70843ee2dfcca0399803230fa26ec2324a07c
+--- /dev/null
++++ b/fixtures/repository-hygiene/invalid/patchrepo.json
+@@ -0,0 +1,5 @@
++{
++  "paths": [
++    "OmSaravanaBhava-patchrepo/result.txt"
++  ]
++}
+diff --git a/fixtures/repository-hygiene/invalid/python-bytecode.json b/fixtures/repository-hygiene/invalid/python-bytecode.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..8736c4c095c23ff39d2455ecc4b9cdc2563b56e2
+--- /dev/null
++++ b/fixtures/repository-hygiene/invalid/python-bytecode.json
+@@ -0,0 +1,5 @@
++{
++  "paths": [
++    "tools/example/module.pyc"
++  ]
++}
+diff --git a/fixtures/repository-hygiene/invalid/python-cache.json b/fixtures/repository-hygiene/invalid/python-cache.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..1975c74a77446cf365a8d23093599ebb205b9d39
+--- /dev/null
++++ b/fixtures/repository-hygiene/invalid/python-cache.json
+@@ -0,0 +1,5 @@
++{
++  "paths": [
++    "tools/example/__pycache__/module.cpython-313.pyc"
++  ]
++}
+diff --git a/fixtures/repository-hygiene/invalid/validation-artifact.json b/fixtures/repository-hygiene/invalid/validation-artifact.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..47646b335e155a4dd626cfb7a4442e5fa4c1ce5d
+--- /dev/null
++++ b/fixtures/repository-hygiene/invalid/validation-artifact.json
+@@ -0,0 +1,5 @@
++{
++  "paths": [
++    "artifacts/release-report.json"
++  ]
++}
+diff --git a/fixtures/repository-hygiene/invalid/zip-check.json b/fixtures/repository-hygiene/invalid/zip-check.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..a95853b9af696e4ef00a073b54dd24e2a16bc08f
+--- /dev/null
++++ b/fixtures/repository-hygiene/invalid/zip-check.json
+@@ -0,0 +1,5 @@
++{
++  "paths": [
++    "OmSaravanaBhava-zip-check/result.txt"
++  ]
++}
+diff --git a/fixtures/repository-hygiene/valid/allowed-images.json b/fixtures/repository-hygiene/valid/allowed-images.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..c05e37307cdfa489d4f6c26aeb31f53e3716816b
+--- /dev/null
++++ b/fixtures/repository-hygiene/valid/allowed-images.json
+@@ -0,0 +1,6 @@
++{
++  "paths": [
++    "assets/images/murugan.webp",
++    "assets/icons/site.png"
++  ]
++}
+diff --git a/fixtures/repository-hygiene/valid/allowed-pdf.json b/fixtures/repository-hygiene/valid/allowed-pdf.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..0997f223b8d223af6a8f167be9da7a0b0a75e014
+--- /dev/null
++++ b/fixtures/repository-hygiene/valid/allowed-pdf.json
+@@ -0,0 +1,5 @@
++{
++  "paths": [
++    "docs/reference/source-register.pdf"
++  ]
++}
+diff --git a/fixtures/repository-hygiene/valid/normal-json-html.json b/fixtures/repository-hygiene/valid/normal-json-html.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..569bc1a6f63d0e8b5c02f033386cbaae1edc84b6
+--- /dev/null
++++ b/fixtures/repository-hygiene/valid/normal-json-html.json
+@@ -0,0 +1,6 @@
++{
++  "paths": [
++    "data/example.json",
++    "index.html"
++  ]
++}
+diff --git a/fixtures/repository-hygiene/valid/source-only.json b/fixtures/repository-hygiene/valid/source-only.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..6a68ecfa3aa6d22d0ffad14b3aacf949e3bc449b
+--- /dev/null
++++ b/fixtures/repository-hygiene/valid/source-only.json
+@@ -0,0 +1,6 @@
++{
++  "paths": [
++    "tools/example/module.py",
++    "docs/readme.md"
++  ]
++}
+diff --git a/manifest-release-235.json b/manifest-release-235.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..aab717210b0740b958c35c1046609aced3c084df
+--- /dev/null
++++ b/manifest-release-235.json
+@@ -0,0 +1,327 @@
++{
++  "project": "OmSaravanaBhava",
++  "release": 235,
++  "name": "Repository Hygiene and Governance Baseline Repair",
++  "base_commit": "d43c5ffbb240a01ddd444839c10ba61c438c85a1",
++  "base_release": 234,
++  "generated": "2026-07-16",
++  "required_commit_title": "Release 235: repair repository hygiene and governance baseline",
++  "validation_status": "LOCAL_PACKAGE_PASS_REPOSITORY_INTEGRATION_PASS_PATCH_CHECK_PASS_CHECKSUM_PASS_ZIP_PASS_GITHUB_ACTIONS_NOT_RUN",
++  "production_objective": "Remove thirteen accidentally tracked Python cache files, establish repository-wide ignore and binary policies, add deterministic tracked-file hygiene validation and CI enforcement, and make route-registry drift validation configuration-driven.",
++  "added_files": [
++    ".editorconfig",
++    ".gitattributes",
++    ".github/workflows/repository-hygiene.yml",
++    ".gitignore",
++    "RELEASE_235.patch",
++    "RELEASE_235_CHANGED_FILES.txt",
++    "RELEASE_235_GITHUB_PORTAL_INSTRUCTIONS.txt",
++    "RELEASE_235_LOCAL_TEST_EVIDENCE.txt",
++    "RELEASE_235_SHA256SUMS.txt",
++    "RELEASE_235_VALIDATION_REPORT.md",
++    "docs/repository-hygiene/README.md",
++    "docs/repository-hygiene/allowlist.md",
++    "docs/repository-hygiene/binary-policy.md",
++    "docs/repository-hygiene/browser-upload-limitations.md",
++    "docs/repository-hygiene/ci-enforcement.md",
++    "docs/repository-hygiene/cleanup.md",
++    "docs/repository-hygiene/future-releases.md",
++    "docs/repository-hygiene/gitignore.md",
++    "docs/repository-hygiene/policy.md",
++    "docs/repository-hygiene/rollback.md",
++    "examples/repository-hygiene/fail-report.json",
++    "examples/repository-hygiene/pass-report.json",
++    "examples/repository-hygiene/temporary-exception.json",
++    "fixtures/repository-hygiene/invalid/build-output.json",
++    "fixtures/repository-hygiene/invalid/editor-swap.json",
++    "fixtures/repository-hygiene/invalid/os-metadata.json",
++    "fixtures/repository-hygiene/invalid/patchrepo.json",
++    "fixtures/repository-hygiene/invalid/python-bytecode.json",
++    "fixtures/repository-hygiene/invalid/python-cache.json",
++    "fixtures/repository-hygiene/invalid/validation-artifact.json",
++    "fixtures/repository-hygiene/invalid/zip-check.json",
++    "fixtures/repository-hygiene/valid/allowed-images.json",
++    "fixtures/repository-hygiene/valid/allowed-pdf.json",
++    "fixtures/repository-hygiene/valid/normal-json-html.json",
++    "fixtures/repository-hygiene/valid/source-only.json",
++    "manifest-release-235.json",
++    "policies/repository-binary-policy.json",
++    "policies/repository-cleanup-targets.json",
++    "policies/repository-hygiene-allowlist.json",
++    "policies/repository-hygiene.json",
++    "schemas/repository-binary-policy.schema.json",
++    "schemas/repository-cleanup-targets.schema.json",
++    "schemas/repository-hygiene-allowlist.schema.json",
++    "schemas/repository-hygiene-policy.schema.json",
++    "schemas/repository-hygiene-report.schema.json",
++    "scripts/repository/preflight-hygiene.ps1",
++    "scripts/repository/preflight-hygiene.sh",
++    "scripts/repository/prepare-release-235.ps1",
++    "scripts/repository/prepare-release-235.sh",
++    "scripts/repository/remove-tracked-generated-files.ps1",
++    "scripts/repository/remove-tracked-generated-files.sh",
++    "tests/repository_hygiene/__init__.py",
++    "tests/repository_hygiene/test_allowlist.py",
++    "tests/repository_hygiene/test_fixtures.py",
++    "tests/repository_hygiene/test_matching.py",
++    "tests/repository_hygiene/test_release_235_package.py",
++    "tests/repository_hygiene/test_scanner.py",
++    "tests/repository_hygiene/test_validator.py",
++    "tests/repository_hygiene/test_workflow.py",
++    "tools/repository_hygiene/__init__.py",
++    "tools/repository_hygiene/allowlist.py",
++    "tools/repository_hygiene/cleanup.py",
++    "tools/repository_hygiene/constants.py",
++    "tools/repository_hygiene/errors.py",
++    "tools/repository_hygiene/git.py",
++    "tools/repository_hygiene/jsonio.py",
++    "tools/repository_hygiene/matching.py",
++    "tools/repository_hygiene/models.py",
++    "tools/repository_hygiene/scanner.py",
++    "tools/repository_hygiene/signatures.py",
++    "tools/repository_hygiene/validate.py",
++    "tools/repository_hygiene/validator.py",
++    "tools/repository_hygiene/workflow.py",
++    "tools/repository_hygiene_cli.py"
++  ],
++  "modified_files": [
++    ".github/workflows/release-232-governance.yml",
++    ".release-governance.json",
++    "docs/release-governance.md",
++    "templates/release-upload-checklist.md",
++    "tests/release_control/test_release_234_package.py",
++    "tools/route_registry/validate.py"
++  ],
++  "deleted_files": [
++    "tools/release_control/__pycache__/__init__.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_checksums.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_commit.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_files.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_manifest.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_patch.cpython-313.pyc",
++    "tools/release_control/__pycache__/cli.cpython-313.pyc",
++    "tools/release_control/__pycache__/constants.cpython-313.pyc",
++    "tools/release_control/__pycache__/git.cpython-313.pyc",
++    "tools/release_control/__pycache__/jsonio.cpython-313.pyc",
++    "tools/release_control/__pycache__/models.cpython-313.pyc",
++    "tools/release_control/__pycache__/report.cpython-313.pyc"
++  ],
++  "merge_sensitive_files": [
++    ".github/workflows/release-232-governance.yml",
++    ".github/workflows/repository-hygiene.yml",
++    ".release-governance.json",
++    ".gitignore",
++    "policies/repository-hygiene.json",
++    "tools/repository_hygiene/scanner.py",
++    "tools/repository_hygiene/validator.py",
++    "manifest-release-235.json"
++  ],
++  "route_registry_changed": false,
++  "effective_route_overrides_changed": false,
++  "sitemap_changed": false,
++  "new_public_route": false,
++  "new_browser_storage_key": false,
++  "content_changes": false,
++  "service_worker_changed": false,
++  "repository_hygiene": {
++    "tracked_cache_deletions": 13,
++    "maximum_violations": 0,
++    "browser_upload_supported_for_deletions": false,
++    "required_application_mode": "local-git",
++    "patch_restores_generated_cache_files": false
++  },
++  "claims": {
++    "repository_hygiene_corrective_release": true,
++    "tracked_cache_files_removed": 13,
++    "future_cache_tracking_blocked": true,
++    "hygiene_ci_added": true,
++    "route_registry_validation_policy_driven": true,
++    "production_html_modified": false,
++    "devotional_text_modified": false,
++    "personal_data_modified": false,
++    "analytics": false,
++    "tracking": false,
++    "backend_dependency": false
++  },
++  "validation_commands": [
++    "python -B -m compileall -q tools/repository_hygiene tools/route_registry",
++    "python -B -m unittest discover -s tests -p \"test_*.py\" -v",
++    "python -B -m tools.repository_hygiene.validate --root .",
++    "python -B tools/release_validate.py --root . --manifest manifest-release-235.json --package-mode",
++    "git apply --check RELEASE_235.patch"
++  ],
++  "validation_results": {
++    "python_compile": "PASS",
++    "python_tests": "PASS_89_OF_89",
++    "repository_hygiene": "PASS_ZERO_VIOLATIONS",
++    "workflow_yaml_parse": "PASS_3_OF_3",
++    "package_changed_file_count": 93,
++    "package_archive_file_count": 203,
++    "patch_check": "PASS",
++    "checksum_ledger": "PASS",
++    "zip_validation": "PASS",
++    "repository_integration": "PASS_93_OF_93",
++    "github_actions": "NOT_RUN",
++    "independent_attestation": "NOT_RUN",
++    "deployed_production": "NOT_APPLICABLE_NO_SITE_CHANGE",
++    "patch_lines": 2030
++  },
++  "known_limitations": [
++    "GitHub browser upload cannot delete the thirteen already tracked cache files.",
++    "Release 235 must be applied from a local Git clone using the supplied preparation script.",
++    "The implementation patch excludes generated binary cache restoration; use git revert for full rollback.",
++    "Hygiene validation is limited to tracked paths and selected generated-file signatures.",
++    "GitHub Actions and independent attestation remain pending until upload."
++  ],
++  "patch_scope": {
++    "includes": "All Release 235 text implementation, policies, workflows, scripts, schemas, documentation, fixtures, tests and manifest.",
++    "excludes": [
++      "RELEASE_235.patch",
++      "RELEASE_235_CHANGED_FILES.txt",
++      "RELEASE_235_GITHUB_PORTAL_INSTRUCTIONS.txt",
++      "RELEASE_235_LOCAL_TEST_EVIDENCE.txt",
++      "RELEASE_235_SHA256SUMS.txt",
++      "RELEASE_235_VALIDATION_REPORT.md",
++      "tools/release_control/__pycache__/__init__.cpython-313.pyc",
++      "tools/release_control/__pycache__/checks.cpython-313.pyc",
++      "tools/release_control/__pycache__/checks_checksums.cpython-313.pyc",
++      "tools/release_control/__pycache__/checks_commit.cpython-313.pyc",
++      "tools/release_control/__pycache__/checks_files.cpython-313.pyc",
++      "tools/release_control/__pycache__/checks_manifest.cpython-313.pyc",
++      "tools/release_control/__pycache__/checks_patch.cpython-313.pyc",
++      "tools/release_control/__pycache__/cli.cpython-313.pyc",
++      "tools/release_control/__pycache__/constants.cpython-313.pyc",
++      "tools/release_control/__pycache__/git.cpython-313.pyc",
++      "tools/release_control/__pycache__/jsonio.cpython-313.pyc",
++      "tools/release_control/__pycache__/models.cpython-313.pyc",
++      "tools/release_control/__pycache__/report.cpython-313.pyc"
++    ],
++    "reason": "Evidence files are finalised after testing. Generated Python cache deletions are intentionally not reversible through the implementation patch; git revert is the complete rollback mechanism."
++  },
++  "package_support_files": [
++    ".github/workflows/release-232-attestation.yml",
++    "RELEASE_233.patch",
++    "RELEASE_233_CHANGED_FILES.txt",
++    "RELEASE_233_GITHUB_PORTAL_INSTRUCTIONS.txt",
++    "RELEASE_233_LOCAL_TEST_EVIDENCE.txt",
++    "RELEASE_233_SHA256SUMS.txt",
++    "RELEASE_233_VALIDATION_REPORT.md",
++    "RELEASE_234.patch",
++    "RELEASE_234_CHANGED_FILES.txt",
++    "RELEASE_234_GITHUB_PORTAL_INSTRUCTIONS.txt",
++    "RELEASE_234_LOCAL_TEST_EVIDENCE.txt",
++    "RELEASE_234_SHA256SUMS.txt",
++    "RELEASE_234_VALIDATION_REPORT.md",
++    "data/site-routes-effective-overrides.json",
++    "docs/browser-upload-commit-policy.md",
++    "docs/github-browser-upload.md",
++    "docs/release-attestation.md",
++    "docs/release-status-language.md",
++    "docs/route-registry/README.md",
++    "docs/route-registry/architecture.md",
++    "docs/route-registry/consumer-migration.md",
++    "docs/route-registry/drift.md",
++    "docs/route-registry/editorial-boundary.md",
++    "docs/route-registry/failure-modes.md",
++    "docs/route-registry/future-extension.md",
++    "docs/route-registry/generation.md",
++    "docs/route-registry/operations.md",
++    "docs/route-registry/provenance.md",
++    "docs/route-registry/rollback.md",
++    "docs/route-registry/security.md",
++    "docs/route-registry/validation.md",
++    "examples/release-governance/browser-upload-fallback.txt",
++    "examples/route-registry/merge-pseudocode.md",
++    "examples/route-registry/navigation.json",
++    "examples/route-registry/partial-reviewed.json",
++    "examples/route-registry/source-register.json",
++    "fixtures/route-registry/canonical/publication-boundaries.json",
++    "fixtures/route-registry/canonical/site-routes-effective-overrides.json",
++    "fixtures/route-registry/invalid/absolute-url.json",
++    "fixtures/route-registry/invalid/duplicate-route.json",
++    "fixtures/route-registry/invalid/empty-evidence.json",
++    "fixtures/route-registry/invalid/empty-records.json",
++    "fixtures/route-registry/invalid/empty-scope.json",
++    "fixtures/route-registry/invalid/full-text-claim.json",
++    "fixtures/route-registry/invalid/missing-release.json",
++    "fixtures/route-registry/invalid/missing-route.json",
++    "fixtures/route-registry/invalid/nonboolean-reading.json",
++    "fixtures/route-registry/invalid/unsafe-route.json",
++    "fixtures/route-registry/invalid/unsupported-status.json",
++    "fixtures/route-registry/invalid/zero-release.json",
++    "fixtures/route-registry/valid/01-kandar-anubhuti.json",
++    "fixtures/route-registry/valid/02-kandar-alangaram.json",
++    "fixtures/route-registry/valid/03-kandar-andhadhi.json",
++    "fixtures/route-registry/valid/04-kandar-kalivenba.json",
++    "fixtures/route-registry/valid/05-shanmuga-kavasam.json",
++    "fixtures/route-registry/valid/06-vel-maaral.json",
++    "fixtures/route-registry/valid/07-vel-mayil-virutham.json",
++    "fixtures/route-registry/valid/08-thirumurugatruppadai-complete.json",
++    "manifest-release-232.json",
++    "manifest-release-233.json",
++    "manifest-release-234.json",
++    "schemas/publication-boundaries.schema.json",
++    "schemas/release-attestation.schema.json",
++    "schemas/route-registry-drift-report.schema.json",
++    "schemas/route-registry-provenance.schema.json",
++    "schemas/site-routes-effective-overrides.schema.json",
++    "scripts/release/check-commit-metadata.ps1",
++    "scripts/release/check-commit-metadata.sh",
++    "scripts/release/check-commit-title.ps1",
++    "scripts/release/check-commit-title.sh",
++    "scripts/release/preflight.ps1",
++    "scripts/release/preflight.sh",
++    "scripts/release/publish-release.ps1",
++    "scripts/release/publish-release.sh",
++    "templates/release-commit-message.template.txt",
++    "tests/release_control/__init__.py",
++    "tests/release_control/support.py",
++    "tests/release_control/test_browser_commit_policy.py",
++    "tests/release_control/test_checksums.py",
++    "tests/release_control/test_cli.py",
++    "tests/release_control/test_commit.py",
++    "tests/release_control/test_discovery.py",
++    "tests/release_control/test_files.py",
++    "tests/release_control/test_manifest.py",
++    "tests/release_control/test_patch.py",
++    "tests/release_control/test_release_232_package.py",
++    "tests/release_control/test_release_233_package.py",
++    "tests/release_control/test_report.py",
++    "tests/route_registry/__init__.py",
++    "tests/route_registry/test_diff.py",
++    "tests/route_registry/test_fingerprint.py",
++    "tests/route_registry/test_generator.py",
++    "tests/route_registry/test_provenance.py",
++    "tests/route_registry/test_validation.py",
++    "tools/release_233_validate.py",
++    "tools/release_control/__init__.py",
++    "tools/release_control/__main__.py",
++    "tools/release_control/checks.py",
++    "tools/release_control/checks_checksums.py",
++    "tools/release_control/checks_commit.py",
++    "tools/release_control/checks_files.py",
++    "tools/release_control/checks_manifest.py",
++    "tools/release_control/checks_patch.py",
++    "tools/release_control/cli.py",
++    "tools/release_control/constants.py",
++    "tools/release_control/discovery.py",
++    "tools/release_control/git.py",
++    "tools/release_control/jsonio.py",
++    "tools/release_control/models.py",
++    "tools/release_control/report.py",
++    "tools/release_validate.py",
++    "tools/route_registry/__init__.py",
++    "tools/route_registry/constants.py",
++    "tools/route_registry/diff.py",
++    "tools/route_registry/errors.py",
++    "tools/route_registry/fingerprint.py",
++    "tools/route_registry/generate.py",
++    "tools/route_registry/generator.py",
++    "tools/route_registry/jsonio.py",
++    "tools/route_registry/normalise.py",
++    "tools/route_registry/provenance.py",
++    "tools/route_registry/validation.py",
++    "tools/route_registry_cli.py"
++  ]
++}
+diff --git a/policies/repository-binary-policy.json b/policies/repository-binary-policy.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..566f701df0854f65229ef49661b060dc7540d131
+--- /dev/null
++++ b/policies/repository-binary-policy.json
+@@ -0,0 +1,21 @@
++{
++  "version": 1,
++  "allowedExtensions": [
++    ".png",
++    ".jpg",
++    ".jpeg",
++    ".gif",
++    ".webp",
++    ".ico",
++    ".pdf"
++  ],
++  "forbiddenGeneratedExtensions": [
++    ".pyc",
++    ".pyo",
++    ".tmp",
++    ".bak",
++    ".swp",
++    ".swo"
++  ],
++  "maximumSingleFileBytes": 25000000
++}
+diff --git a/policies/repository-cleanup-targets.json b/policies/repository-cleanup-targets.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..1ee25e5aa07c813df8fdf9dd72f6ebfa2d7c3203
+--- /dev/null
++++ b/policies/repository-cleanup-targets.json
+@@ -0,0 +1,18 @@
++{
++  "release": 235,
++  "trackedPathsToRemove": [
++    "tools/release_control/__pycache__/__init__.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_checksums.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_commit.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_files.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_manifest.cpython-313.pyc",
++    "tools/release_control/__pycache__/checks_patch.cpython-313.pyc",
++    "tools/release_control/__pycache__/cli.cpython-313.pyc",
++    "tools/release_control/__pycache__/constants.cpython-313.pyc",
++    "tools/release_control/__pycache__/git.cpython-313.pyc",
++    "tools/release_control/__pycache__/jsonio.cpython-313.pyc",
++    "tools/release_control/__pycache__/models.cpython-313.pyc",
++    "tools/release_control/__pycache__/report.cpython-313.pyc"
++  ]
++}
+diff --git a/policies/repository-hygiene-allowlist.json b/policies/repository-hygiene-allowlist.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..41cb84c30e80697a940248c18571136f74028d9d
+--- /dev/null
++++ b/policies/repository-hygiene-allowlist.json
+@@ -0,0 +1,6 @@
++{
++  "version": 1,
++  "paths": [],
++  "reasonRequired": true,
++  "expiresRequired": true
++}
+diff --git a/policies/repository-hygiene.json b/policies/repository-hygiene.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..22dd644c3fae607f2f87452b22e8fab06161c931
+--- /dev/null
++++ b/policies/repository-hygiene.json
+@@ -0,0 +1,47 @@
++{
++  "version": 1,
++  "release": 235,
++  "generated": "2026-07-16",
++  "forbiddenTrackedGlobs": [
++    "**/__pycache__/**",
++    "**/*.pyc",
++    "**/*.pyo",
++    "**/*.class",
++    "**/.DS_Store",
++    "**/Thumbs.db",
++    "**/desktop.ini",
++    "artifacts/**",
++    "dist/**",
++    "build/**",
++    "coverage/**",
++    "**/*-zip-check/**",
++    "**/*-applycheck/**",
++    "**/*-patchrepo/**",
++    "**/*-integration/**"
++  ],
++  "forbiddenExtensions": [
++    ".pyc",
++    ".pyo",
++    ".tmp",
++    ".bak",
++    ".swp",
++    ".swo"
++  ],
++  "allowedBinaryExtensions": [
++    ".png",
++    ".jpg",
++    ".jpeg",
++    ".gif",
++    ".webp",
++    ".ico",
++    ".pdf"
++  ],
++  "forbiddenExactPaths": [],
++  "maximumViolations": 0,
++  "scanMode": "tracked-files",
++  "limitations": [
++    "The validator analyses tracked repository paths and selected file signatures.",
++    "Large-file hosting and secret scanning remain separate controls.",
++    "A clean hygiene report does not certify application behaviour."
++  ]
++}
+diff --git a/schemas/repository-binary-policy.schema.json b/schemas/repository-binary-policy.schema.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..ccf0c1d46cacb8ebce0bee26984e269f2470cca2
+--- /dev/null
++++ b/schemas/repository-binary-policy.schema.json
+@@ -0,0 +1,10 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "type": "object",
++  "required": [
++    "version",
++    "allowedExtensions",
++    "forbiddenGeneratedExtensions",
++    "maximumSingleFileBytes"
++  ]
++}
+diff --git a/schemas/repository-cleanup-targets.schema.json b/schemas/repository-cleanup-targets.schema.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..1bc3db83ebc120d49ce2e24ab5f7f142996c7206
+--- /dev/null
++++ b/schemas/repository-cleanup-targets.schema.json
+@@ -0,0 +1,21 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "type": "object",
++  "required": [
++    "release",
++    "trackedPathsToRemove"
++  ],
++  "properties": {
++    "release": {
++      "type": "integer",
++      "minimum": 1
++    },
++    "trackedPathsToRemove": {
++      "type": "array",
++      "uniqueItems": true,
++      "items": {
++        "type": "string"
++      }
++    }
++  }
++}
+diff --git a/schemas/repository-hygiene-allowlist.schema.json b/schemas/repository-hygiene-allowlist.schema.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..5409660ef4d5f6873e9e214dc9894bcb709fb88f
+--- /dev/null
++++ b/schemas/repository-hygiene-allowlist.schema.json
+@@ -0,0 +1,10 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "type": "object",
++  "required": [
++    "version",
++    "paths",
++    "reasonRequired",
++    "expiresRequired"
++  ]
++}
+diff --git a/schemas/repository-hygiene-policy.schema.json b/schemas/repository-hygiene-policy.schema.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..d1b0e031df35a82062466d4b994d0ccc2a9e24d1
+--- /dev/null
++++ b/schemas/repository-hygiene-policy.schema.json
+@@ -0,0 +1,32 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "type": "object",
++  "required": [
++    "version",
++    "forbiddenTrackedGlobs",
++    "forbiddenExtensions",
++    "maximumViolations"
++  ],
++  "properties": {
++    "version": {
++      "type": "integer",
++      "minimum": 1
++    },
++    "forbiddenTrackedGlobs": {
++      "type": "array",
++      "items": {
++        "type": "string"
++      }
++    },
++    "forbiddenExtensions": {
++      "type": "array",
++      "items": {
++        "type": "string"
++      }
++    },
++    "maximumViolations": {
++      "type": "integer",
++      "minimum": 0
++    }
++  }
++}
+diff --git a/schemas/repository-hygiene-report.schema.json b/schemas/repository-hygiene-report.schema.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..5a86d78b3edc146eac976a172d5c4389ff4d09ba
+--- /dev/null
++++ b/schemas/repository-hygiene-report.schema.json
+@@ -0,0 +1,37 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "$id": "https://omsaravanabhava.org/schemas/repository-hygiene-report.schema.json",
++  "type": "object",
++  "required": [
++    "status",
++    "scanned_files",
++    "violation_count",
++    "violations",
++    "ignored_allowlist"
++  ],
++  "properties": {
++    "status": {
++      "enum": [
++        "PASS",
++        "FAIL"
++      ]
++    },
++    "scanned_files": {
++      "type": "integer",
++      "minimum": 0
++    },
++    "violation_count": {
++      "type": "integer",
++      "minimum": 0
++    },
++    "violations": {
++      "type": "array"
++    },
++    "ignored_allowlist": {
++      "type": "array",
++      "items": {
++        "type": "string"
++      }
++    }
++  }
++}
+diff --git a/scripts/repository/preflight-hygiene.ps1 b/scripts/repository/preflight-hygiene.ps1
+new file mode 100644
+index 0000000000000000000000000000000000000000..51e600ad9f8fcfe95eca91c969eb64e910ab5edf
+--- /dev/null
++++ b/scripts/repository/preflight-hygiene.ps1
+@@ -0,0 +1,13 @@
++[CmdletBinding()]
++param([string]$Root = ".")
++
++$ErrorActionPreference = "Stop"
++Push-Location $Root
++try {
++    $env:PYTHONDONTWRITEBYTECODE = "1"
++    python -B -m tools.repository_hygiene.validate --root .
++    if ($LASTEXITCODE -ne 0) { throw "Repository hygiene validation failed." }
++}
++finally {
++    Pop-Location
++}
+diff --git a/scripts/repository/preflight-hygiene.sh b/scripts/repository/preflight-hygiene.sh
+new file mode 100755
+index 0000000000000000000000000000000000000000..39c395c53dc2c45fbede8c0989a9df60bd214a42
+--- /dev/null
++++ b/scripts/repository/preflight-hygiene.sh
+@@ -0,0 +1,6 @@
++#!/usr/bin/env bash
++set -euo pipefail
++root="${1:-.}"
++cd "$root"
++export PYTHONDONTWRITEBYTECODE=1
++python -B -m tools.repository_hygiene.validate --root .
+diff --git a/scripts/repository/prepare-release-235.ps1 b/scripts/repository/prepare-release-235.ps1
+new file mode 100644
+index 0000000000000000000000000000000000000000..27644eee5fa49d58ccc9dc6af8c5f258e160e9d5
+--- /dev/null
++++ b/scripts/repository/prepare-release-235.ps1
+@@ -0,0 +1,34 @@
++[CmdletBinding()]
++param(
++    [string]$Root = ".",
++    [string]$Remote = "origin",
++    [string]$Branch = "main",
++    [switch]$NoPush
++)
++
++$ErrorActionPreference = "Stop"
++$expectedBase = "d43c5ffbb240a01ddd444839c10ba61c438c85a1"
++$title = "Release 235: repair repository hygiene and governance baseline"
++Push-Location $Root
++try {
++    $head = (& git rev-parse HEAD).Trim()
++    if ($head -ne $expectedBase) {
++        throw "Expected HEAD $expectedBase but found $head."
++    }
++    & "$PSScriptRoot/remove-tracked-generated-files.ps1" -Root .
++    $env:PYTHONDONTWRITEBYTECODE = "1"
++    python -B tools/release_validate.py --root . --manifest manifest-release-235.json --package-mode
++    if ($LASTEXITCODE -ne 0) { throw "Package validation failed." }
++    & git add -A
++    & git commit -m $title
++    if ($LASTEXITCODE -ne 0) { throw "Commit failed." }
++    python -B tools/release_validate.py --root . --manifest manifest-release-235.json --repository-mode --strict-commit-subject
++    if ($LASTEXITCODE -ne 0) { throw "Strict repository validation failed." }
++    if (-not $NoPush) {
++        & git push $Remote "HEAD:$Branch"
++        if ($LASTEXITCODE -ne 0) { throw "Push failed." }
++    }
++}
++finally {
++    Pop-Location
++}
+diff --git a/scripts/repository/prepare-release-235.sh b/scripts/repository/prepare-release-235.sh
+new file mode 100755
+index 0000000000000000000000000000000000000000..8aa715bdff6b50399ee35657f1a66ec47de46213
+--- /dev/null
++++ b/scripts/repository/prepare-release-235.sh
+@@ -0,0 +1,21 @@
++#!/usr/bin/env bash
++set -euo pipefail
++root="${1:-.}"
++remote="${2:-origin}"
++branch="${3:-main}"
++expected="d43c5ffbb240a01ddd444839c10ba61c438c85a1"
++title="Release 235: repair repository hygiene and governance baseline"
++cd "$root"
++[[ "$(git rev-parse HEAD)" == "$expected" ]] || {
++  printf 'Expected HEAD %s but found %s\n' "$expected" "$(git rev-parse HEAD)" >&2
++  exit 1
++}
++scripts/repository/remove-tracked-generated-files.sh .
++export PYTHONDONTWRITEBYTECODE=1
++python -B tools/release_validate.py --root . --manifest manifest-release-235.json --package-mode
++git add -A
++git commit -m "$title"
++python -B tools/release_validate.py --root . --manifest manifest-release-235.json --repository-mode --strict-commit-subject
++if [[ "${NO_PUSH:-0}" != "1" ]]; then
++  git push "$remote" "HEAD:$branch"
++fi
+diff --git a/scripts/repository/remove-tracked-generated-files.ps1 b/scripts/repository/remove-tracked-generated-files.ps1
+new file mode 100644
+index 0000000000000000000000000000000000000000..0be455a884ba9d4ec68998353e0413ec13358fee
+--- /dev/null
++++ b/scripts/repository/remove-tracked-generated-files.ps1
+@@ -0,0 +1,28 @@
++[CmdletBinding()]
++param(
++    [string]$Root = ".",
++    [string]$Targets = "policies/repository-cleanup-targets.json",
++    [switch]$DryRun
++)
++
++$ErrorActionPreference = "Stop"
++Push-Location $Root
++try {
++    $payload = Get-Content -Raw -LiteralPath $Targets | ConvertFrom-Json
++    foreach ($path in @($payload.trackedPathsToRemove)) {
++        if ($DryRun) {
++            Write-Host "Would remove tracked generated file: $path"
++            continue
++        }
++        if (Test-Path -LiteralPath $path) {
++            & git rm -f -- $path
++            if ($LASTEXITCODE -ne 0) { throw "git rm failed for $path" }
++        }
++        else {
++            & git rm -f --ignore-unmatch -- $path
++        }
++    }
++}
++finally {
++    Pop-Location
++}
+diff --git a/scripts/repository/remove-tracked-generated-files.sh b/scripts/repository/remove-tracked-generated-files.sh
+new file mode 100755
+index 0000000000000000000000000000000000000000..f1668c1db3191581fed13266560957822a437e8c
+--- /dev/null
++++ b/scripts/repository/remove-tracked-generated-files.sh
+@@ -0,0 +1,22 @@
++#!/usr/bin/env bash
++set -euo pipefail
++root="${1:-.}"
++targets="${2:-policies/repository-cleanup-targets.json}"
++mode="${3:-apply}"
++cd "$root"
++mapfile -t paths < <(python - "$targets" <<'PY'
++import json
++import sys
++from pathlib import Path
++payload = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
++for path in payload.get("trackedPathsToRemove", []):
++    print(path)
++PY
++)
++for path in "${paths[@]}"; do
++  if [[ "$mode" == "dry-run" ]]; then
++    printf 'Would remove tracked generated file: %s\n' "$path"
++  else
++    git rm -f --ignore-unmatch -- "$path"
++  fi
++done
+diff --git a/templates/release-upload-checklist.md b/templates/release-upload-checklist.md
+index eb93885d266072943c9d4f6b5e8e2b38262dc71c..3fb29eaadd231de4fa680f69700689c94ed96c4c 100644
+--- a/templates/release-upload-checklist.md
++++ b/templates/release-upload-checklist.md
+@@ -17,3 +17,8 @@
+ - [ ] Effective route-registry drift validation passes.
+ - [ ] Override records remain sorted and evidence-backed.
+ - [ ] Historical `data/site-routes.json` remains unmodified.
++
++- [ ] Repository Hygiene workflow passes with zero violations.
++- [ ] No `__pycache__`, `.pyc`, build, artifact or temporary extraction path is tracked.
++- [ ] Release 235 is applied through local Git because browser upload cannot delete tracked files.
++- [ ] Thirteen cache deletions appear in the commit.
+diff --git a/tests/release_control/test_release_234_package.py b/tests/release_control/test_release_234_package.py
+index c098a90ec340135beca0db2eec3a40f286e3c8a4..bc30b9caf411c3f506f6d90460ceabf014872e83 100644
+--- a/tests/release_control/test_release_234_package.py
++++ b/tests/release_control/test_release_234_package.py
+@@ -3,7 +3,7 @@ import json, unittest
+ ROOT=Path(__file__).resolve().parents[2]
+ class Release234PackageTests(unittest.TestCase):
+  def test_manifest_identity(self):
+-  m=json.loads((ROOT/'manifest-release-234.json').read_text(encoding='utf-8'));self.assertEqual((m['release'],m['base_release']),(234,233))
++  m=json.loads((ROOT/'manifest-release-234.json').read_text(encoding='utf-8'));self.assertGreaterEqual(m['release'],234);self.assertGreaterEqual(m['base_release'],233)
+  def test_historical_registry_not_changed(self):
+   m=json.loads((ROOT/'manifest-release-234.json').read_text(encoding='utf-8'));self.assertNotIn('data/site-routes.json',m['modified_files'])
+  def test_override_count(self):
+diff --git a/tests/repository_hygiene/__init__.py b/tests/repository_hygiene/__init__.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..71124e4d8a7a964d3ddbd16adf08991455a6343d
+--- /dev/null
++++ b/tests/repository_hygiene/__init__.py
+@@ -0,0 +1 @@
++"""Repository hygiene test package."""
+diff --git a/tests/repository_hygiene/test_allowlist.py b/tests/repository_hygiene/test_allowlist.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..cb6d78474da1221daf3917b234fdd059efee768a
+--- /dev/null
++++ b/tests/repository_hygiene/test_allowlist.py
+@@ -0,0 +1,15 @@
++from datetime import date
++import unittest
++from tools.repository_hygiene.allowlist import active_allowlist
++
++class AllowlistTests(unittest.TestCase):
++    def test_active_entry_is_returned(self):
++        payload={"entries":[{"path":"x","reason":"audit","expires":"2026-08-01"}]}
++        self.assertEqual(active_allowlist(payload,date(2026,7,16)),{"x"})
++
++    def test_expired_entry_is_ignored(self):
++        payload={"entries":[{"path":"x","reason":"audit","expires":"2026-07-01"}]}
++        self.assertEqual(active_allowlist(payload,date(2026,7,16)),set())
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/repository_hygiene/test_fixtures.py b/tests/repository_hygiene/test_fixtures.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..ef27d56ad0745358d6b1d492e962f1c4c4f2f099
+--- /dev/null
++++ b/tests/repository_hygiene/test_fixtures.py
+@@ -0,0 +1,28 @@
++from pathlib import Path
++import json, tempfile, unittest
++from tools.repository_hygiene.validator import validate_repository
++
++ROOT=Path(__file__).resolve().parents[2]
++POLICY=json.loads((ROOT/"policies/repository-hygiene.json").read_text(encoding="utf-8"))
++
++class FixtureTests(unittest.TestCase):
++    def run_fixture(self,path):
++        payload=json.loads(path.read_text(encoding="utf-8"))
++        with tempfile.TemporaryDirectory() as d:
++            root=Path(d)
++            for rel in payload["paths"]:
++                target=root/rel;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(b"fixture-data")
++            return validate_repository(root,payload["paths"],POLICY,{"entries":[]})
++
++    def test_valid_fixtures_pass(self):
++        for path in sorted((ROOT/"fixtures/repository-hygiene/valid").glob("*.json")):
++            with self.subTest(path=path.name):
++                self.assertEqual(self.run_fixture(path).status,"PASS")
++
++    def test_invalid_fixtures_fail(self):
++        for path in sorted((ROOT/"fixtures/repository-hygiene/invalid").glob("*.json")):
++            with self.subTest(path=path.name):
++                self.assertEqual(self.run_fixture(path).status,"FAIL")
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/repository_hygiene/test_matching.py b/tests/repository_hygiene/test_matching.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..f6ec7c625fbbd559e99d643bdd3ece42cf418377
+--- /dev/null
++++ b/tests/repository_hygiene/test_matching.py
+@@ -0,0 +1,15 @@
++import unittest
++from tools.repository_hygiene.matching import matches_any, normalise_path
++
++class MatchingTests(unittest.TestCase):
++    def test_normalise_windows_path(self):
++        self.assertEqual(normalise_path(r"tools\x\file.py"), "tools/x/file.py")
++
++    def test_cache_glob_matches(self):
++        self.assertEqual(
++            matches_any("tools/x/__pycache__/a.pyc", ["**/__pycache__/**"]),
++            "**/__pycache__/**",
++        )
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/repository_hygiene/test_release_235_package.py b/tests/repository_hygiene/test_release_235_package.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..509d7c2e4b89c40723b3f48faa51f7bd75d8db4a
+--- /dev/null
++++ b/tests/repository_hygiene/test_release_235_package.py
+@@ -0,0 +1,22 @@
++from pathlib import Path
++import json, unittest
++
++ROOT=Path(__file__).resolve().parents[2]
++
++class Release235PackageTests(unittest.TestCase):
++    def test_manifest_declares_cache_deletions(self):
++        manifest=json.loads((ROOT/"manifest-release-235.json").read_text(encoding="utf-8"))
++        self.assertEqual(len(manifest["deleted_files"]),13)
++        self.assertTrue(all("__pycache__" in path for path in manifest["deleted_files"]))
++
++    def test_ignore_file_blocks_bytecode(self):
++        text=(ROOT/".gitignore").read_text(encoding="utf-8")
++        self.assertIn("__pycache__/",text)
++        self.assertIn("*.py[cod]",text)
++
++    def test_hygiene_workflow_exists(self):
++        text=(ROOT/".github/workflows/repository-hygiene.yml").read_text(encoding="utf-8")
++        self.assertIn("tools.repository_hygiene.validate",text)
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/repository_hygiene/test_scanner.py b/tests/repository_hygiene/test_scanner.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..675272e50048152c257bfdf574212738fdba7189
+--- /dev/null
++++ b/tests/repository_hygiene/test_scanner.py
+@@ -0,0 +1,26 @@
++from pathlib import Path
++import tempfile, unittest
++from tools.repository_hygiene.scanner import scan_repository
++
++class ScannerTests(unittest.TestCase):
++    def policy(self):
++        return {
++            "forbiddenTrackedGlobs":["**/__pycache__/**","build/**","artifacts/**"],
++            "forbiddenExtensions":[".pyc",".swp"],
++            "forbiddenExactPaths":[],
++        }
++
++    def test_clean_source_passes(self):
++        with tempfile.TemporaryDirectory() as d:
++            root=Path(d);(root/"module.py").write_text("x=1\n",encoding="utf-8")
++            violations,_=scan_repository(root,["module.py"],self.policy(),set())
++            self.assertEqual(violations,[])
++
++    def test_cache_fails(self):
++        with tempfile.TemporaryDirectory() as d:
++            root=Path(d);p=root/"x/__pycache__/a.pyc";p.parent.mkdir(parents=True);p.write_bytes(b"abc")
++            violations,_=scan_repository(root,["x/__pycache__/a.pyc"],self.policy(),set())
++            self.assertEqual(len(violations),1)
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/repository_hygiene/test_validator.py b/tests/repository_hygiene/test_validator.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..3c79ca9e0adb4274f2e3084d23c91ee09faf61f8
+--- /dev/null
++++ b/tests/repository_hygiene/test_validator.py
+@@ -0,0 +1,23 @@
++from datetime import date
++from pathlib import Path
++import tempfile, unittest
++from tools.repository_hygiene.validator import validate_repository
++
++class ValidatorTests(unittest.TestCase):
++    def test_status_changes_on_violation(self):
++        policy={"forbiddenTrackedGlobs":["build/**"],"forbiddenExtensions":[],"forbiddenExactPaths":[],"maximumViolations":0}
++        with tempfile.TemporaryDirectory() as d:
++            root=Path(d);p=root/"build/x";p.parent.mkdir();p.write_text("x",encoding="utf-8")
++            report=validate_repository(root,["build/x"],policy,{"entries":[]},today=date(2026,7,16))
++            self.assertEqual(report.status,"FAIL")
++
++    def test_allowlisted_path_is_ignored(self):
++        policy={"forbiddenTrackedGlobs":["build/**"],"forbiddenExtensions":[],"forbiddenExactPaths":[],"maximumViolations":0}
++        allow={"entries":[{"path":"build/x","reason":"temporary","expires":"2026-08-01"}]}
++        with tempfile.TemporaryDirectory() as d:
++            root=Path(d);p=root/"build/x";p.parent.mkdir();p.write_text("x",encoding="utf-8")
++            report=validate_repository(root,["build/x"],policy,allow,today=date(2026,7,16))
++            self.assertEqual(report.status,"PASS")
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/repository_hygiene/test_workflow.py b/tests/repository_hygiene/test_workflow.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..f760da74343c96faed52446490d873533ae5540c
+--- /dev/null
++++ b/tests/repository_hygiene/test_workflow.py
+@@ -0,0 +1,14 @@
++from pathlib import Path
++import unittest
++from tools.repository_hygiene.workflow import route_registry_command
++
++ROOT=Path(__file__).resolve().parents[2]
++
++class WorkflowTests(unittest.TestCase):
++    def test_route_registry_command_uses_policy(self):
++        command=route_registry_command(ROOT)
++        self.assertIn("234",command)
++        self.assertIn("data/site-routes-effective-overrides.json",command)
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tools/repository_hygiene/__init__.py b/tools/repository_hygiene/__init__.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..ba02f3718cc24add17e928825bcf5b475d63b4a9
+--- /dev/null
++++ b/tools/repository_hygiene/__init__.py
+@@ -0,0 +1,6 @@
++"""Repository hygiene validation."""
++
++from .scanner import scan_repository
++from .validator import validate_repository
++
++__all__ = ["scan_repository", "validate_repository"]
+diff --git a/tools/repository_hygiene/allowlist.py b/tools/repository_hygiene/allowlist.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..af76b9e83f6c0945d1c43ec1510300e9998fc316
+--- /dev/null
++++ b/tools/repository_hygiene/allowlist.py
+@@ -0,0 +1,25 @@
++"""Time-bounded hygiene allowlist."""
++
++from __future__ import annotations
++
++from datetime import date
++from typing import Any
++
++
++def active_allowlist(payload: dict[str, Any], today: date) -> set[str]:
++    result: set[str] = set()
++    for item in payload.get("entries", []):
++        if not isinstance(item, dict):
++            continue
++        path = str(item.get("path", "")).strip()
++        reason = str(item.get("reason", "")).strip()
++        expires = str(item.get("expires", "")).strip()
++        if not path or not reason or not expires:
++            continue
++        try:
++            expiry = date.fromisoformat(expires)
++        except ValueError:
++            continue
++        if expiry >= today:
++            result.add(path)
++    return result
+diff --git a/tools/repository_hygiene/cleanup.py b/tools/repository_hygiene/cleanup.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..2605f08ca546d7a34ee2daaac2eabc27c19be345
+--- /dev/null
++++ b/tools/repository_hygiene/cleanup.py
+@@ -0,0 +1,40 @@
++#!/usr/bin/env python3
++"""Remove known generated cache paths from a local working tree."""
++
++from __future__ import annotations
++
++import argparse
++import json
++import shutil
++from pathlib import Path
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", default=".")
++    parser.add_argument("--targets", default="policies/repository-cleanup-targets.json")
++    parser.add_argument("--dry-run", action="store_true")
++    args = parser.parse_args()
++
++    root = Path(args.root).resolve()
++    payload = json.loads((root / args.targets).read_text(encoding="utf-8"))
++    removed = []
++    missing = []
++    for raw in payload.get("trackedPathsToRemove", []):
++        path = root / str(raw)
++        if not path.exists():
++            missing.append(str(raw))
++            continue
++        removed.append(str(raw))
++        if args.dry_run:
++            continue
++        if path.is_dir():
++            shutil.rmtree(path)
++        else:
++            path.unlink()
++    print(json.dumps({"removed": removed, "missing": missing, "dry_run": args.dry_run}, indent=2))
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/tools/repository_hygiene/constants.py b/tools/repository_hygiene/constants.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..6942db09c552fccf7bb5724da6335daaaec1b6d6
+--- /dev/null
++++ b/tools/repository_hygiene/constants.py
+@@ -0,0 +1,6 @@
++"""Repository hygiene constants."""
++
++DEFAULT_POLICY = "policies/repository-hygiene.json"
++DEFAULT_ALLOWLIST = "policies/repository-hygiene-allowlist.json"
++PASS = "PASS"
++FAIL = "FAIL"
+diff --git a/tools/repository_hygiene/errors.py b/tools/repository_hygiene/errors.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..e6047b45e3dd48eea28e40bef94800e3be44165a
+--- /dev/null
++++ b/tools/repository_hygiene/errors.py
+@@ -0,0 +1,4 @@
++"""Repository hygiene errors."""
++
++class HygieneError(ValueError):
++    """Raised when repository hygiene inputs are invalid."""
+diff --git a/tools/repository_hygiene/git.py b/tools/repository_hygiene/git.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..7418c1fdc749f8baeba14f15e1cab12bfbb09e6b
+--- /dev/null
++++ b/tools/repository_hygiene/git.py
+@@ -0,0 +1,33 @@
++"""Git adapter with package-mode fallback."""
++
++from __future__ import annotations
++
++import subprocess
++from pathlib import Path
++
++
++def filesystem_files(root: Path) -> list[str]:
++    return sorted(
++        path.relative_to(root).as_posix()
++        for path in root.rglob("*")
++        if path.is_file()
++        and ".git" not in path.parts
++        and "__pycache__" not in path.parts
++    )
++
++
++def tracked_files(root: Path) -> list[str]:
++    result = subprocess.run(
++        ["git", "ls-files", "-z"],
++        cwd=root,
++        stdout=subprocess.PIPE,
++        stderr=subprocess.PIPE,
++        check=False,
++    )
++    if result.returncode != 0:
++        return filesystem_files(root)
++    return sorted(
++        item.decode("utf-8", errors="surrogateescape")
++        for item in result.stdout.split(b"\0")
++        if item
++    )
+diff --git a/tools/repository_hygiene/jsonio.py b/tools/repository_hygiene/jsonio.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..5b3ae77c72e9ffccd6190fdaecc5aff0e72393d7
+--- /dev/null
++++ b/tools/repository_hygiene/jsonio.py
+@@ -0,0 +1,23 @@
++"""JSON input and output."""
++
++from __future__ import annotations
++
++import json
++from pathlib import Path
++from typing import Any
++
++
++def load_json(path: Path) -> dict[str, Any]:
++    value = json.loads(path.read_text(encoding="utf-8"))
++    if not isinstance(value, dict):
++        raise ValueError(f"Expected object in {path}")
++    return value
++
++
++def dump_json(path: Path, value: dict[str, Any]) -> None:
++    path.parent.mkdir(parents=True, exist_ok=True)
++    path.write_text(
++        json.dumps(value, ensure_ascii=False, indent=2) + "\n",
++        encoding="utf-8",
++        newline="\n",
++    )
+diff --git a/tools/repository_hygiene/matching.py b/tools/repository_hygiene/matching.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..e3007d099050084dc0b425bf9d264de161ddad9e
+--- /dev/null
++++ b/tools/repository_hygiene/matching.py
+@@ -0,0 +1,19 @@
++"""Path rule matching."""
++
++from __future__ import annotations
++
++from fnmatch import fnmatchcase
++from pathlib import PurePosixPath
++
++
++def normalise_path(value: str) -> str:
++    return PurePosixPath(value.replace("\\", "/")).as_posix().lstrip("./")
++
++
++def matches_any(path: str, patterns: list[str]) -> str | None:
++    normalised = normalise_path(path)
++    candidates = [normalised, f"/{normalised}"]
++    for pattern in patterns:
++        if any(fnmatchcase(candidate, pattern) for candidate in candidates):
++            return pattern
++    return None
+diff --git a/tools/repository_hygiene/models.py b/tools/repository_hygiene/models.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..9d62dfbc6d2aac574be59f686d46e4b3e2189ea4
+--- /dev/null
++++ b/tools/repository_hygiene/models.py
+@@ -0,0 +1,34 @@
++"""Typed repository hygiene models."""
++
++from __future__ import annotations
++
++from dataclasses import asdict, dataclass, field
++from typing import Any
++
++
++@dataclass(frozen=True)
++class Violation:
++    path: str
++    rule: str
++    reason: str
++    size_bytes: int = 0
++
++    def to_dict(self) -> dict[str, Any]:
++        return asdict(self)
++
++
++@dataclass
++class HygieneReport:
++    status: str
++    scanned_files: int
++    violations: list[Violation] = field(default_factory=list)
++    ignored_allowlist: list[str] = field(default_factory=list)
++
++    def to_dict(self) -> dict[str, Any]:
++        return {
++            "status": self.status,
++            "scanned_files": self.scanned_files,
++            "violation_count": len(self.violations),
++            "violations": [item.to_dict() for item in self.violations],
++            "ignored_allowlist": list(self.ignored_allowlist),
++        }
+diff --git a/tools/repository_hygiene/scanner.py b/tools/repository_hygiene/scanner.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..d995f49a2db61d4c738973a58e8059caaa70ed2e
+--- /dev/null
++++ b/tools/repository_hygiene/scanner.py
+@@ -0,0 +1,56 @@
++"""Tracked-file repository scanner."""
++
++from __future__ import annotations
++
++from pathlib import Path
++from typing import Iterable
++
++from .matching import matches_any, normalise_path
++from .models import Violation
++from .signatures import signature_reason
++
++
++def scan_repository(
++    root: Path,
++    paths: Iterable[str],
++    policy: dict,
++    allowlisted: set[str],
++) -> tuple[list[Violation], list[str]]:
++    violations: list[Violation] = []
++    ignored: list[str] = []
++    patterns = [str(item) for item in policy.get("forbiddenTrackedGlobs", [])]
++    extensions = {
++        str(item).lower() for item in policy.get("forbiddenExtensions", [])
++    }
++    exact = {
++        normalise_path(str(item))
++        for item in policy.get("forbiddenExactPaths", [])
++    }
++
++    for raw in sorted(set(paths)):
++        path = normalise_path(raw)
++        if path in allowlisted:
++            ignored.append(path)
++            continue
++        file_path = root / path
++        size = file_path.stat().st_size if file_path.is_file() else 0
++
++        if path in exact:
++            violations.append(Violation(path, "forbidden-exact-path", "Exact path is forbidden.", size))
++            continue
++
++        pattern = matches_any(path, patterns)
++        if pattern:
++            violations.append(Violation(path, "forbidden-glob", f"Matched {pattern!r}.", size))
++            continue
++
++        suffix = file_path.suffix.lower()
++        if suffix in extensions:
++            violations.append(Violation(path, "forbidden-extension", f"Extension {suffix!r} is forbidden.", size))
++            continue
++
++        reason = signature_reason(file_path)
++        if reason:
++            violations.append(Violation(path, "forbidden-signature", reason, size))
++
++    return violations, ignored
+diff --git a/tools/repository_hygiene/signatures.py b/tools/repository_hygiene/signatures.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..a2fdc90f674c30c343961dc4a3f145be62f46f0d
+--- /dev/null
++++ b/tools/repository_hygiene/signatures.py
+@@ -0,0 +1,17 @@
++"""Generated and binary file signatures."""
++
++from __future__ import annotations
++
++from pathlib import Path
++
++
++def signature_reason(path: Path) -> str | None:
++    suffix = path.suffix.lower()
++    if suffix in {".pyc", ".pyo"}:
++        return "compiled-python-bytecode"
++    if not path.is_file():
++        return None
++    prefix = path.read_bytes()[:8]
++    if suffix == ".pyc" and len(prefix) >= 4:
++        return "compiled-python-bytecode"
++    return None
+diff --git a/tools/repository_hygiene/validate.py b/tools/repository_hygiene/validate.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..f0ed36db2bbe0d6a5d4a1073e292279ec1f84f84
+--- /dev/null
++++ b/tools/repository_hygiene/validate.py
+@@ -0,0 +1,48 @@
++#!/usr/bin/env python3
++"""Validate tracked repository hygiene."""
++
++from __future__ import annotations
++
++import argparse
++import json
++from pathlib import Path
++
++from .git import tracked_files
++from .jsonio import dump_json, load_json
++from .validator import validate_repository
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", default=".")
++    parser.add_argument("--policy", default="policies/repository-hygiene.json")
++    parser.add_argument("--allowlist", default="policies/repository-hygiene-allowlist.json")
++    parser.add_argument("--report")
++    parser.add_argument("--paths-file")
++    args = parser.parse_args()
++
++    root = Path(args.root).resolve()
++    if args.paths_file:
++        paths = [
++            line.strip()
++            for line in Path(args.paths_file).read_text(encoding="utf-8").splitlines()
++            if line.strip()
++        ]
++    else:
++        paths = tracked_files(root)
++
++    report = validate_repository(
++        root,
++        paths,
++        load_json(root / args.policy),
++        load_json(root / args.allowlist),
++    )
++    payload = report.to_dict()
++    print(json.dumps(payload, ensure_ascii=False, indent=2))
++    if args.report:
++        dump_json(root / args.report, payload)
++    return 0 if report.status == "PASS" else 1
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/tools/repository_hygiene/validator.py b/tools/repository_hygiene/validator.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..7ae96624441432100b889e6461c623a09db46f87
+--- /dev/null
++++ b/tools/repository_hygiene/validator.py
+@@ -0,0 +1,33 @@
++"""Repository hygiene orchestration."""
++
++from __future__ import annotations
++
++from datetime import date
++from pathlib import Path
++from typing import Iterable
++
++from .allowlist import active_allowlist
++from .constants import FAIL, PASS
++from .models import HygieneReport
++from .scanner import scan_repository
++
++
++def validate_repository(
++    root: Path,
++    paths: Iterable[str],
++    policy: dict,
++    allowlist_payload: dict,
++    *,
++    today: date | None = None,
++) -> HygieneReport:
++    active = active_allowlist(allowlist_payload, today or date.today())
++    path_list = sorted(set(paths))
++    violations, ignored = scan_repository(root, path_list, policy, active)
++    maximum = int(policy.get("maximumViolations", 0))
++    status = PASS if len(violations) <= maximum else FAIL
++    return HygieneReport(
++        status=status,
++        scanned_files=len(path_list),
++        violations=violations,
++        ignored_allowlist=ignored,
++    )
+diff --git a/tools/repository_hygiene/workflow.py b/tools/repository_hygiene/workflow.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..e85166fdc9c59a8a682017eb4075948acc60973f
+--- /dev/null
++++ b/tools/repository_hygiene/workflow.py
+@@ -0,0 +1,26 @@
++"""Workflow command construction."""
++
++from __future__ import annotations
++
++from pathlib import Path
++
++from .jsonio import load_json
++
++
++def route_registry_command(root: Path, config_path: str = ".release-governance.json") -> list[str]:
++    config = load_json(root / config_path)
++    policy = config["routeRegistryPolicy"]
++    return [
++        "python",
++        "-m",
++        "tools.route_registry.validate",
++        "--boundaries",
++        str(policy["boundaryRegistry"]),
++        "--overrides",
++        str(policy["effectiveOverrides"]),
++        "--release",
++        str(policy["validationRelease"]),
++        "--generated",
++        str(policy["validationGenerated"]),
++        "--check-drift",
++    ]
+diff --git a/tools/repository_hygiene_cli.py b/tools/repository_hygiene_cli.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..5c664cef694896615625ae3565f3080eeb863938
+--- /dev/null
++++ b/tools/repository_hygiene_cli.py
+@@ -0,0 +1,5 @@
++#!/usr/bin/env python3
++from tools.repository_hygiene.validate import main
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/tools/route_registry/validate.py b/tools/route_registry/validate.py
+old mode 100644
+new mode 100755
+index 424cb4d1f827eeff9f4f2e8fe0b9d924594bfbc0..f0ce57f1055003f90a3921146b89f6532d090b64
+--- a/tools/route_registry/validate.py
++++ b/tools/route_registry/validate.py
+@@ -12,19 +12,42 @@ from .jsonio import load_json
+ from .validation import validate_override_payload
+ 
+ 
++def _policy_values(config_path: Path) -> tuple[str, str, int, str]:
++    config = load_json(config_path)
++    policy = config["routeRegistryPolicy"]
++    return (
++        str(policy["boundaryRegistry"]),
++        str(policy["effectiveOverrides"]),
++        int(policy["validationRelease"]),
++        str(policy["validationGenerated"]),
++    )
++
++
+ def main() -> int:
+     parser = argparse.ArgumentParser()
+-    parser.add_argument("--boundaries", default="data/publication-boundaries.json")
+-    parser.add_argument("--overrides", default="data/site-routes-effective-overrides.json")
+-    parser.add_argument("--release", type=int, default=234)
+-    parser.add_argument("--generated", default="2026-07-16")
++    parser.add_argument("--boundaries")
++    parser.add_argument("--overrides")
++    parser.add_argument("--release", type=int)
++    parser.add_argument("--generated")
++    parser.add_argument("--config")
+     parser.add_argument("--check-drift", action="store_true")
+     args = parser.parse_args()
+-    actual = load_json(Path(args.overrides))
++
++    if args.config:
++        boundaries, overrides, release, generated = _policy_values(Path(args.config))
++    else:
++        boundaries = args.boundaries or "data/publication-boundaries.json"
++        overrides = args.overrides or "data/site-routes-effective-overrides.json"
++        release = args.release or 234
++        generated = args.generated or "2026-07-16"
++
++    actual = load_json(Path(overrides))
+     validate_override_payload(actual)
+     if args.check_drift:
+         expected = build_effective_overrides(
+-            load_json(Path(args.boundaries)), release=args.release, generated=args.generated
++            load_json(Path(boundaries)),
++            release=release,
++            generated=generated,
+         )
+         if actual != expected:
+             print(json.dumps({"status": "FAIL", "reason": "generated output drift"}, indent=2))

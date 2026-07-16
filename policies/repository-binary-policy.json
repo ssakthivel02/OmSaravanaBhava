@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "allowedExtensions": [
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".gif",
+    ".webp",
+    ".ico",
+    ".pdf"
+  ],
+  "forbiddenGeneratedExtensions": [
+    ".pyc",
+    ".pyo",
+    ".tmp",
+    ".bak",
+    ".swp",
+    ".swo"
+  ],
+  "maximumSingleFileBytes": 25000000
+}

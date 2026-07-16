@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "release": 235,
+  "generated": "2026-07-16",
+  "forbiddenTrackedGlobs": [
+    "**/__pycache__/**",
+    "**/*.pyc",
+    "**/*.pyo",
+    "**/*.class",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/desktop.ini",
+    "artifacts/**",
+    "dist/**",
+    "build/**",
+    "coverage/**",
+    "**/*-zip-check/**",
+    "**/*-applycheck/**",
+    "**/*-patchrepo/**",
+    "**/*-integration/**"
+  ],
+  "forbiddenExtensions": [
+    ".pyc",
+    ".pyo",
+    ".tmp",
+    ".bak",
+    ".swp",
+    ".swo"
+  ],
+  "allowedBinaryExtensions": [
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".gif",
+    ".webp",
+    ".ico",
+    ".pdf"
+  ],
+  "forbiddenExactPaths": [],
+  "maximumViolations": 0,
+  "scanMode": "tracked-files",
+  "limitations": [
+    "The validator analyses tracked repository paths and selected file signatures.",
+    "Large-file hosting and secret scanning remain separate controls.",
+    "A clean hygiene report does not certify application behaviour."
+  ]
+}

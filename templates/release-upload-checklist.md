@@ -17,3 +17,8 @@
 - [ ] Effective route-registry drift validation passes.
 - [ ] Override records remain sorted and evidence-backed.
 - [ ] Historical `data/site-routes.json` remains unmodified.
+
+- [ ] Repository Hygiene workflow passes with zero violations.
+- [ ] No `__pycache__`, `.pyc`, build, artifact or temporary extraction path is tracked.
+- [ ] Release 235 is applied through local Git because browser upload cannot delete tracked files.
+- [ ] Thirteen cache deletions appear in the commit.

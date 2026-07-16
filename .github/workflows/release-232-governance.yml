@@ -53,7 +53,7 @@ jobs:
 
       - name: Compile release governance tools
         run: |
-          python -m compileall -q tools/release_control tools/release_validate.py
+          python -B -m compileall -q tools/release_control tools/repository_hygiene tools/route_registry tools/release_validate.py
 
       - name: Run governance unit tests
         run: |
@@ -62,14 +62,22 @@ jobs:
             -p "test_*.py" \
             -v
 
-      - name: Validate effective route-registry drift
+      - name: Validate repository hygiene
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
         run: |
-          python -m tools.route_registry.validate \
-            --boundaries fixtures/route-registry/canonical/publication-boundaries.json \
-            --overrides data/site-routes-effective-overrides.json \
-            --release 234 \
-            --generated 2026-07-16 \
-            --check-drift
+          python -B -m tools.repository_hygiene.validate             --root .             --report artifacts/repository-hygiene-report.json
+
+      - name: Validate effective route-registry drift from policy
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          python -B - <<'PY'
+          import subprocess
+          from pathlib import Path
+          from tools.repository_hygiene.workflow import route_registry_command
+          subprocess.run(route_registry_command(Path(".")), check=True)
+          PY
 
       - name: Validate uploaded commit and generate attestation
         shell: bash

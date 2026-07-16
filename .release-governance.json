@@ -1,11 +1,11 @@
 {
-  "release": 234,
+  "release": 235,
   "generated": "2026-07-16",
-  "baseCommit": "7ac29a8a85ebacdaa94b24c8d1ad63adb08c86d0",
-  "requiredCommitTitle": "Release 234: add deterministic effective route-registry pipeline",
-  "manifestPath": "manifest-release-234.json",
-  "checksumLedger": "RELEASE_234_SHA256SUMS.txt",
-  "patchPath": "RELEASE_234.patch",
+  "baseCommit": "d43c5ffbb240a01ddd444839c10ba61c438c85a1",
+  "requiredCommitTitle": "Release 235: repair repository hygiene and governance baseline",
+  "manifestPath": "manifest-release-235.json",
+  "checksumLedger": "RELEASE_235_SHA256SUMS.txt",
+  "patchPath": "RELEASE_235.patch",
   "attestationSchema": "schemas/release-attestation.schema.json",
   "manifestSchema": "schemas/release-manifest.schema.json",
   "filePolicy": {
@@ -29,12 +29,12 @@
     "securityBoundary": "Fallback is accepted only when the subject is an explicitly allowed GitHub browser default and the first non-empty commit-body line exactly matches required_commit_title."
   },
   "requiredEvidenceFiles": [
-    "RELEASE_234_CHANGED_FILES.txt",
-    "RELEASE_234_GITHUB_PORTAL_INSTRUCTIONS.txt",
-    "RELEASE_234_LOCAL_TEST_EVIDENCE.txt",
-    "RELEASE_234_SHA256SUMS.txt",
-    "RELEASE_234_VALIDATION_REPORT.md",
-    "RELEASE_234.patch"
+    "RELEASE_235_CHANGED_FILES.txt",
+    "RELEASE_235_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_235_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_235_SHA256SUMS.txt",
+    "RELEASE_235_VALIDATION_REPORT.md",
+    "RELEASE_235.patch"
   ],
   "allowedStatusLanguage": [
     "PASS",
@@ -64,6 +64,18 @@
     "failOnDrift": true,
     "requireDeterministicSort": true,
     "requireProvenance": true,
-    "maximumOverrideRecords": 100
+    "maximumOverrideRecords": 100,
+    "validationRelease": 234,
+    "validationGenerated": "2026-07-16"
+  },
+  "repositoryHygienePolicy": {
+    "policyPath": "policies/repository-hygiene.json",
+    "validator": "tools/repository_hygiene/validate.py",
+    "reportSchema": "schemas/repository-hygiene-report.schema.json",
+    "failOnTrackedCache": true,
+    "failOnTrackedBuildOutput": true,
+    "failOnTemporaryUploadArtifacts": true,
+    "failOnGeneratedBinary": true,
+    "maximumTrackedViolations": 0
   }
 }

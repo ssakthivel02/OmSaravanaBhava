@@ -1,0 +1,57 @@
+Release 235 — mandatory local Git application
+
+Repository:
+https://github.com/ssakthivel02/OmSaravanaBhava
+
+CURRENT VERIFIED BASE
+d43c5ffbb240a01ddd444839c10ba61c438c85a1
+
+REQUIRED COMMIT TITLE
+Release 235: repair repository hygiene and governance baseline
+
+WHY STANDARD GITHUB BROWSER UPLOAD MUST NOT BE USED
+Release 235 deletes thirteen already tracked Python cache files. GitHub's browser
+file uploader adds or replaces files but does not remove tracked files that are
+absent from a ZIP. A browser-only upload would leave the repository dirty and
+the Repository Hygiene workflow would fail.
+
+RECOMMENDED APPLICATION
+1. Clone or update the repository locally.
+2. Confirm `git rev-parse HEAD` equals the verified base above.
+3. Extract OmSaravanaBhava-Release-235.zip.
+4. Copy the extracted contents into the repository root, preserving `.github`.
+5. Run:
+
+PowerShell:
+  .\scripts\repository\prepare-release-235.ps1 -Root .
+
+Bash:
+  scripts/repository/prepare-release-235.sh .
+
+The script:
+- verifies the exact base commit;
+- removes all thirteen tracked cache files with `git rm`;
+- validates the package;
+- stages additions, modifications and deletions;
+- commits with the exact Release 235 title;
+- runs strict repository governance;
+- pushes to `main` unless NoPush/NO_PUSH is selected.
+
+MANUAL CHECKS BEFORE PUSH
+- `git status --short` shows 93 changed paths.
+- Exactly thirteen paths are deletions.
+- No tracked path contains `__pycache__` or ends in `.pyc`.
+- The commit subject exactly matches the required title.
+
+POST-PUSH CHECKS
+1. Repository Hygiene: PASS with zero violations.
+2. Release Governance Gate: PASS.
+3. Commit metadata: exact-subject PASS.
+4. Commit parent: d43c5ffbb240a01ddd444839c10ba61c438c85a1.
+5. Changed-file coverage: 93 changed, no undeclared or missing paths.
+6. Effective route-registry drift: PASS.
+7. Independent attestation: PASS.
+
+ROLLBACK
+Use `git revert` on the complete Release 235 commit. The implementation patch
+does not recreate generated Python bytecode.

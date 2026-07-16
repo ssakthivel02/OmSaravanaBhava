@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Release validation output
+artifacts/
+*.attestation.json
+*.governance-report.json
+*.independent-report.json
+
+# Build and package output
+dist/
+build/
+out/
+coverage/
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+
+# Local environments
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+
+# Temporary upload/extraction folders
+*-zip-check/
+*-applycheck/
+*-patchrepo/
+*-integration/
+*-full/
+tmp/
+temp/

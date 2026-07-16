@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "version",
+    "forbiddenTrackedGlobs",
+    "forbiddenExtensions",
+    "maximumViolations"
+  ],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "forbiddenTrackedGlobs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbiddenExtensions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "maximumViolations": {
+      "type": "integer",
+      "minimum": 0
+    }
+  }
+}

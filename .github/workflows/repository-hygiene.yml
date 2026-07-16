@@ -1,0 +1,50 @@
+name: Repository Hygiene
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: repository-hygiene-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  hygiene:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile hygiene tooling without writing caches
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          python -B -m compileall -q tools/repository_hygiene
+
+      - name: Validate tracked repository hygiene
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          python -B -m tools.repository_hygiene.validate             --root .             --report artifacts/repository-hygiene-report.json
+
+      - name: Upload hygiene report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: repository-hygiene-report
+          path: artifacts/repository-hygiene-report.json
+          if-no-files-found: warn
+          retention-days: 90

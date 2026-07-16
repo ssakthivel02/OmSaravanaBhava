@@ -1,0 +1,14 @@
+{
+  "status": "FAIL",
+  "scanned_files": 1201,
+  "violation_count": 1,
+  "violations": [
+    {
+      "path": "tools/example/__pycache__/module.pyc",
+      "rule": "forbidden-glob",
+      "reason": "Matched '**/__pycache__/**'.",
+      "size_bytes": 1024
+    }
+  ],
+  "ignored_allowlist": []
+}

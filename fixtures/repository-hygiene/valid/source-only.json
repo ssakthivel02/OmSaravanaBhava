@@ -1,0 +1,6 @@
+{
+  "paths": [
+    "tools/example/module.py",
+    "docs/readme.md"
+  ]
+}
