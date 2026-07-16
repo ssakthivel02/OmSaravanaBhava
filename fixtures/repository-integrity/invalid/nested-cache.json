@@ -1,0 +1,6 @@
+{
+  "expectedStatus": "FAIL",
+  "paths": [
+    "a/b/c/__pycache__/x.pyc"
+  ]
+}

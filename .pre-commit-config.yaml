@@ -1,0 +1,18 @@
+repos:
+  - repo: local
+    hooks:
+      - id: repository-hygiene
+        name: Repository hygiene
+        entry: python -B -m tools.repository_hygiene.validate --root .
+        language: system
+        pass_filenames: false
+      - id: repository-integrity
+        name: Repository integrity
+        entry: python -B -m tools.repository_integrity.validate --root .
+        language: system
+        pass_filenames: false
+      - id: release-tests
+        name: Release governance tests
+        entry: python -B -m unittest discover -s tests -p test_*.py -v
+        language: system
+        pass_filenames: false

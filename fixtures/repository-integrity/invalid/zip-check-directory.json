@@ -1,0 +1,6 @@
+{
+  "expectedStatus": "FAIL",
+  "paths": [
+    "project-zip-check/report.txt"
+  ]
+}

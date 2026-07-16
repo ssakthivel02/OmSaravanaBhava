@@ -1,0 +1,17 @@
+[project]
+name = "omsaravanabhava-release-governance"
+version = "236.0.0"
+requires-python = ">=3.12"
+description = "Deterministic release, repository hygiene and integrity tooling."
+
+[tool.unittest]
+start-directory = "tests"
+pattern = "test_*.py"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.pyright]
+pythonVersion = "3.12"
+typeCheckingMode = "basic"

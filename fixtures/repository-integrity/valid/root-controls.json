@@ -1,0 +1,8 @@
+{
+  "expectedStatus": "PASS",
+  "paths": [
+    "Makefile",
+    ".pre-commit-config.yaml",
+    ".editorconfig"
+  ]
+}

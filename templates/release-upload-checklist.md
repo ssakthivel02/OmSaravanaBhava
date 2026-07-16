@@ -22,3 +22,9 @@
 - [ ] No `__pycache__`, `.pyc`, build, artifact or temporary extraction path is tracked.
 - [ ] Release 235 is applied through local Git because browser upload cannot delete tracked files.
 - [ ] Thirteen cache deletions appear in the commit.
+
+- [ ] Release 236 is applied through `APPLY_RELEASE_236.cmd`, PowerShell or Bash.
+- [ ] The exact base SHA is `d06aa0d99315344ad2c23ee3a1d98fb635f33b16`.
+- [ ] Exactly thirteen tracked `.pyc` paths are deleted.
+- [ ] Repository Hygiene and Repository Integrity both pass with zero violations.
+- [ ] The release commit subject exactly matches the Release 236 title.

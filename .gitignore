@@ -49,3 +49,8 @@ desktop.ini
 *-full/
 tmp/
 temp/
+
+# Repository integrity evidence
+artifacts/*.sarif
+artifacts/repository-integrity-report.json
+artifacts/repository-integrity-inventory.json

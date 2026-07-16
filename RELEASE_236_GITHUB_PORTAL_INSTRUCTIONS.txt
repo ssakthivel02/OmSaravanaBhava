@@ -1,0 +1,60 @@
+Release 236 — mandatory Git application
+
+VERIFIED CURRENT MAIN
+d06aa0d99315344ad2c23ee3a1d98fb635f33b16
+
+EXACT RELEASE TITLE
+Release 236: complete tracked-cache cleanup and enforce repository integrity
+
+DO NOT USE GITHUB BROWSER ZIP UPLOAD
+Release 235 has the correct title but only 80 actual changes instead of 93.
+The thirteen tracked .pyc deletions did not occur. A browser upload cannot
+remove tracked files merely because they are absent from a ZIP.
+
+RECOMMENDED WINDOWS METHOD
+1. Extract OmSaravanaBhava-Release-236.zip outside the Git repository.
+2. Keep or create a local clone of OmSaravanaBhava.
+3. Double-click APPLY_RELEASE_236.cmd in the extracted package.
+4. Enter the full local repository path when prompted.
+
+Example:
+C:\Project\OmSaravanaBhava
+
+The installer:
+- verifies HEAD is exactly d06aa0d99315344ad2c23ee3a1d98fb635f33b16;
+- applies RELEASE_236.patch with git apply --index --binary;
+- normalises installer files to deterministic LF bytes;
+- deletes all thirteen tracked .pyc files;
+- copies and stages the six final evidence files;
+- runs hygiene, integrity and package governance;
+- commits with the exact Release 236 title;
+- runs strict repository governance;
+- pushes to origin/main.
+
+POWERSHELL
+powershell -ExecutionPolicy Bypass -File `
+  .\scripts\release236\apply-release-236.ps1 `
+  -RepositoryRoot "C:\Project\OmSaravanaBhava" `
+  -PackageRoot "C:\Downloads\OmSaravanaBhava-Release-236"
+
+BASH OR GIT BASH
+scripts/release236/apply-release-236.sh /path/to/OmSaravanaBhava
+
+EXPECTED STAGED CHANGES
+- 135 total paths
+- 115 additions
+- 7 modifications
+- 13 deletions
+- no __pycache__ or .pyc path remains tracked
+
+POST-PUSH CHECKS
+1. Parent SHA is d06aa0d99315344ad2c23ee3a1d98fb635f33b16.
+2. Subject exactly equals: Release 236: complete tracked-cache cleanup and enforce repository integrity
+3. Repository Hygiene passes with zero violations.
+4. Repository Integrity passes with zero violations.
+5. Release Governance Gate passes.
+6. Changed-file coverage is 135/135.
+7. Independent Attestation passes.
+
+The extracted package must remain separate from the Git repository until the
+installer is run.

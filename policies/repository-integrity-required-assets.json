@@ -1,0 +1,19 @@
+{
+  "release": 236,
+  "paths": [
+    ".release-governance.json",
+    ".gitignore",
+    ".gitattributes",
+    ".editorconfig",
+    ".pre-commit-config.yaml",
+    "Makefile",
+    "pyproject.toml",
+    "tools/release_validate.py",
+    "tools/repository_hygiene/validate.py",
+    "tools/repository_integrity/validate.py",
+    "policies/repository-hygiene.json",
+    "policies/repository-integrity.json",
+    "schemas/release-manifest.schema.json",
+    "schemas/release-attestation.schema.json"
+  ]
+}

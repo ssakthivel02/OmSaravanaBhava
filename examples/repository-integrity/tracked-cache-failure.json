@@ -1,0 +1,15 @@
+{
+  "status": "FAIL",
+  "tracked_files": 1501,
+  "violation_count": 1,
+  "violations": [
+    {
+      "path": "tools/x/__pycache__/x.pyc",
+      "rule": "forbidden-tracked-pattern",
+      "message": "Tracked path matches '**/__pycache__/**'.",
+      "severity": "error"
+    }
+  ],
+  "inventory_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+  "ignored_allowlist": []
+}

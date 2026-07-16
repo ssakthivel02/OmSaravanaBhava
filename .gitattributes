@@ -11,3 +11,7 @@
 *.pdf binary
 *.zip binary
 *.pyc binary
+
+# Deterministic Release 236 installer bytes
+APPLY_RELEASE_236.cmd text eol=lf
+scripts/release236/*.ps1 text eol=lf

@@ -1,0 +1,51 @@
+name: Repository Integrity
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+
+concurrency:
+  group: repository-integrity-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository with parent
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate repository integrity
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          python -B -m tools.repository_integrity.validate             --root .             --report artifacts/repository-integrity-report.json             --inventory artifacts/repository-integrity-inventory.json             --sarif artifacts/repository-integrity.sarif
+
+      - name: Upload integrity evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: repository-integrity-evidence
+          path: artifacts/
+          if-no-files-found: warn
+          retention-days: 90
+
+      - name: Upload SARIF
+        if: always() && hashFiles('artifacts/repository-integrity.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: artifacts/repository-integrity.sarif

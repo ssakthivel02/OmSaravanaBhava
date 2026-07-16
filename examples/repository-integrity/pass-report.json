@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "tracked_files": 1500,
+  "violation_count": 0,
+  "violations": [],
+  "inventory_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "ignored_allowlist": []
+}

@@ -32,7 +32,7 @@ jobs:
         env:
           PYTHONDONTWRITEBYTECODE: "1"
         run: |
-          python -B -m compileall -q tools/repository_hygiene
+          python -B -m compileall -q tools/repository_hygiene tools/repository_integrity
 
       - name: Validate tracked repository hygiene
         env:

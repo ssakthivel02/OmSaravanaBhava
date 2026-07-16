@@ -1,0 +1,8 @@
+{
+  "expectedStatus": "PASS",
+  "paths": [
+    ".release-governance.json",
+    ".gitignore",
+    "pyproject.toml"
+  ]
+}

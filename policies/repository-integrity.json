@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "release": 236,
+  "generated": "2026-07-16",
+  "requiredGovernanceAssets": [
+    ".release-governance.json",
+    ".gitignore",
+    ".gitattributes",
+    ".editorconfig",
+    ".pre-commit-config.yaml",
+    "Makefile",
+    "pyproject.toml",
+    "tools/release_validate.py",
+    "tools/repository_hygiene/validate.py",
+    "tools/repository_integrity/validate.py",
+    "policies/repository-hygiene.json",
+    "policies/repository-integrity.json",
+    "schemas/release-manifest.schema.json",
+    "schemas/release-attestation.schema.json"
+  ],
+  "forbiddenTrackedPatterns": [
+    "**/__pycache__/**",
+    "**/*.pyc",
+    "**/*.pyo",
+    "artifacts/**",
+    "build/**",
+    "dist/**",
+    "coverage/**",
+    "**/*-zip-check/**",
+    "**/*-applycheck/**",
+    "**/*-patchrepo/**",
+    "**/*-integration/**"
+  ],
+  "requiredManifestFields": [
+    "release",
+    "base_release",
+    "base_commit",
+    "required_commit_title",
+    "added_files",
+    "modified_files",
+    "deleted_files",
+    "known_limitations"
+  ],
+  "allowedBinaryExtensions": [
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".gif",
+    ".webp",
+    ".ico",
+    ".pdf"
+  ],
+  "forbiddenGeneratedExtensions": [
+    ".pyc",
+    ".pyo",
+    ".class",
+    ".tmp",
+    ".bak",
+    ".swp",
+    ".swo"
+  ],
+  "maximumViolations": 0,
+  "maximumTrackedFileBytes": 25000000,
+  "inventoryHashAlgorithm": "sha256",
+  "limitations": [
+    "The validator analyses tracked paths and selected file signatures.",
+    "Secret scanning and malware scanning remain separate controls.",
+    "A clean repository-integrity report does not certify application behaviour."
+  ]
+}

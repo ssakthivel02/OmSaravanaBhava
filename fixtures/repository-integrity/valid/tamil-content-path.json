@@ -1,0 +1,6 @@
+{
+  "expectedStatus": "PASS",
+  "paths": [
+    "data/tamil/murugan-register.json"
+  ]
+}

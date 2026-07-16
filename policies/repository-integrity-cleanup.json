@@ -1,0 +1,18 @@
+{
+  "release": 236,
+  "trackedPathsToDelete": [
+    "tools/release_control/__pycache__/__init__.cpython-313.pyc",
+    "tools/release_control/__pycache__/checks.cpython-313.pyc",
+    "tools/release_control/__pycache__/checks_checksums.cpython-313.pyc",
+    "tools/release_control/__pycache__/checks_commit.cpython-313.pyc",
+    "tools/release_control/__pycache__/checks_files.cpython-313.pyc",
+    "tools/release_control/__pycache__/checks_manifest.cpython-313.pyc",
+    "tools/release_control/__pycache__/checks_patch.cpython-313.pyc",
+    "tools/release_control/__pycache__/cli.cpython-313.pyc",
+    "tools/release_control/__pycache__/constants.cpython-313.pyc",
+    "tools/release_control/__pycache__/git.cpython-313.pyc",
+    "tools/release_control/__pycache__/jsonio.cpython-313.pyc",
+    "tools/release_control/__pycache__/models.cpython-313.pyc",
+    "tools/release_control/__pycache__/report.cpython-313.pyc"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "expectedStatus": "PASS",
+  "paths": [
+    "tools/a/b/c/module.py"
+  ]
+}

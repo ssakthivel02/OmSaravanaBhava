@@ -1,0 +1,1879 @@
+{
+  "release": 236,
+  "algorithm": "sha256",
+  "scope": "tracked-control-files-excluding-manifest-release-evidence-and-self",
+  "excludedPaths": [
+    "RELEASE_236.patch",
+    "RELEASE_236_CHANGED_FILES.txt",
+    "RELEASE_236_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_236_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_236_SHA256SUMS.txt",
+    "RELEASE_236_VALIDATION_REPORT.md",
+    "data/repository-integrity-inventory.json",
+    "manifest-release-236.json"
+  ],
+  "recordCount": 310,
+  "records": [
+    {
+      "path": ".editorconfig",
+      "sizeBytes": 258,
+      "sha256": "7ecec296e99f3759b4f304eee855486772fd55734f4a2b65448629da03dd7b47",
+      "suffix": ""
+    },
+    {
+      "path": ".gitattributes",
+      "sizeBytes": 314,
+      "sha256": "92c0dbc0c2ab1c064d0f6b246ef991fe2ef09dc1756373d72d1d5c0b08b4645c",
+      "suffix": ""
+    },
+    {
+      "path": ".github/workflows/release-232-attestation.yml",
+      "sizeBytes": 2410,
+      "sha256": "58f2bd41ac10a7a852f791ba01e19101fc8ceab84bfb5a63681a07b47c0f05b9",
+      "suffix": ".yml"
+    },
+    {
+      "path": ".github/workflows/release-232-governance.yml",
+      "sizeBytes": 5127,
+      "sha256": "ddd634597cf6032efe601c2ee2c66256906c170bbf87bd1581850b1a470ada55",
+      "suffix": ".yml"
+    },
+    {
+      "path": ".github/workflows/repository-hygiene.yml",
+      "sizeBytes": 1267,
+      "sha256": "042400cfe7fbbf02863ed73d4eeb0a1c197f6e380e808e5c20586ddcd911dca9",
+      "suffix": ".yml"
+    },
+    {
+      "path": ".github/workflows/repository-integrity.yml",
+      "sizeBytes": 1427,
+      "sha256": "15cb589e1841f4d773d42fc65ee1243129362d466fef1ef6b970db243a2468e8",
+      "suffix": ".yml"
+    },
+    {
+      "path": ".gitignore",
+      "sizeBytes": 708,
+      "sha256": "cff6b9d0f4885c67e4772ac128d5fb5d07c106696383c61add71c1dc0587a79d",
+      "suffix": ""
+    },
+    {
+      "path": ".pre-commit-config.yaml",
+      "sizeBytes": 611,
+      "sha256": "24be23365d1b5980109c099b70908cb9cf455c89934b4bc90eaf84642d9519ac",
+      "suffix": ".yaml"
+    },
+    {
+      "path": ".release-governance.json",
+      "sizeBytes": 3396,
+      "sha256": "1c9b7d2173a51cef7cf29aa25809895d37b8b014f0981ab23f5a96784462e247",
+      "suffix": ".json"
+    },
+    {
+      "path": "APPLY_RELEASE_236.cmd",
+      "sizeBytes": 833,
+      "sha256": "87da5aae8f4bff6c071add5095b4d4cc7311eaf8838d256a7243cb0829ec11fc",
+      "suffix": ".cmd"
+    },
+    {
+      "path": "Makefile",
+      "sizeBytes": 472,
+      "sha256": "1afd63170b30f5e8e07fd061df46b1ea78d605bed40b2c1376687376c7d62ae7",
+      "suffix": ""
+    },
+    {
+      "path": "RELEASE_233.patch",
+      "sizeBytes": 83965,
+      "sha256": "90a472f4c581858aedccb8ca98384b49217edcdde1fa64fd5bfc6bae3c3d76d8",
+      "suffix": ".patch"
+    },
+    {
+      "path": "RELEASE_233_CHANGED_FILES.txt",
+      "sizeBytes": 3033,
+      "sha256": "f24780b07993ae1abf9e688ce0f4b74d5209fc5f952d1bab0f1ea02856afd2a6",
+      "suffix": ".txt"
+    },
+    {
+      "path": "RELEASE_233_GITHUB_PORTAL_INSTRUCTIONS.txt",
+      "sizeBytes": 3089,
+      "sha256": "212d418a4ca948d7ac429e2c7def02cfe8a363b5acdcc6d955bd1b2c0e3d0b5f",
+      "suffix": ".txt"
+    },
+    {
+      "path": "RELEASE_233_LOCAL_TEST_EVIDENCE.txt",
+      "sizeBytes": 10352,
+      "sha256": "a4f19032b3cb9daf66e59d2828549a526445bf952e3ff6acbfad5e2daf571ea7",
+      "suffix": ".txt"
+    },
+    {
+      "path": "RELEASE_233_SHA256SUMS.txt",
+      "sizeBytes": 5810,
+      "sha256": "de069e6593fde6565c3df881749cd85b2d1e19ed9eea20447414d291823251a2",
+      "suffix": ".txt"
+    },
+    {
+      "path": "RELEASE_233_VALIDATION_REPORT.md",
+      "sizeBytes": 3649,
+      "sha256": "63c4eb55cc6c827256b73c71b7df1503eca6152eab94bf14f8496bf8258c58cf",
+      "suffix": ".md"
+    },
+    {
+      "path": "RELEASE_234.patch",
+      "sizeBytes": 149603,
+      "sha256": "ca0a547867b9f1ed9444c0e0d1b76a9e35ae1f99ecb5c01354785dc1a31c1faf",
+      "suffix": ".patch"
+    },
+    {
+      "path": "RELEASE_234_CHANGED_FILES.txt",
+      "sizeBytes": 3542,
+      "sha256": "c048b983450075d6f6cc35a97da8c5c5887bdfefef0a2ad38932acc2d003cb26",
+      "suffix": ".txt"
+    },
+    {
+      "path": "RELEASE_234_GITHUB_PORTAL_INSTRUCTIONS.txt",
+      "sizeBytes": 570,
+      "sha256": "ce1aa8bc7cc293c349b34c53759b69b4aec86a7efebe0a456c87b29cb4b7898c",
+      "suffix": ".txt"
+    },
+    {
+      "path": "RELEASE_234_LOCAL_TEST_EVIDENCE.txt",
+      "sizeBytes": 11020,
+      "sha256": "917d05e08cd0996ff971b7bf3f0a01db3179479c5015361c44433054525f9d7d",
+      "suffix": ".txt"
+    },
+    {
+      "path": "RELEASE_234_SHA256SUMS.txt",
+      "sizeBytes": 13478,
+      "sha256": "32a9567d0080976af5523450dddc065a6f3c79b72dcc66ee36f0783a8db0ae26",
+      "suffix": ".txt"
+    },
+    {
+      "path": "RELEASE_234_VALIDATION_REPORT.md",
+      "sizeBytes": 450,
+      "sha256": "7580b50416eb1343463a78e17ec7d77772261cb539d6e94c4787ffe8dd89a017",
+      "suffix": ".md"
+    },
+    {
+      "path": "RELEASE_235.patch",
+      "sizeBytes": 75432,
+      "sha256": "6384c2c769c530571df373899e2e4628e2e5eb34d0f762d943536de8cd16f2d6",
+      "suffix": ".patch"
+    },
+    {
+      "path": "RELEASE_235_CHANGED_FILES.txt",
+      "sizeBytes": 4716,
+      "sha256": "a2cf50ebcfcc30b528feefe5da2c359b7d5592110b997d072b74ef045cf1c577",
+      "suffix": ".txt"
+    },
+    {
+      "path": "RELEASE_235_GITHUB_PORTAL_INSTRUCTIONS.txt",
+      "sizeBytes": 2005,
+      "sha256": "0d37e66bf3b43846120f7e22c94c7aed4777672dd9d120308476d19ff95a8732",
+      "suffix": ".txt"
+    },
+    {
+      "path": "RELEASE_235_LOCAL_TEST_EVIDENCE.txt",
+      "sizeBytes": 15712,
+      "sha256": "1d9bb4736a39ff1bd6040d0233d7c401fa52ce8a6a3ff7430595a4965186b474",
+      "suffix": ".txt"
+    },
+    {
+      "path": "RELEASE_235_SHA256SUMS.txt",
+      "sizeBytes": 21385,
+      "sha256": "c090cbcde0ed52a74bc1c7a2e44349c939390f3127fe96970785333e0f68f990",
+      "suffix": ".txt"
+    },
+    {
+      "path": "RELEASE_235_VALIDATION_REPORT.md",
+      "sizeBytes": 2221,
+      "sha256": "f6bce9e68e34fda9e83771e9e23595fff84a8116ebfba410c2295e8cf19fdca3",
+      "suffix": ".md"
+    },
+    {
+      "path": "data/site-routes-effective-overrides.json",
+      "sizeBytes": 6159,
+      "sha256": "66ad7a83b4ced3420fa6cb391d715d9729f119df33f9769f3b0695de3e920bf5",
+      "suffix": ".json"
+    },
+    {
+      "path": "docs/browser-upload-commit-policy.md",
+      "sizeBytes": 1629,
+      "sha256": "b970ebeeca8eb55b251a5fe0ce190879cc7912c54a0c5e495eba67180959cc27",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/github-browser-upload.md",
+      "sizeBytes": 1853,
+      "sha256": "b27b9ac51f5b3d88edbe2814447286d3b8b29b4afdd55b15d0bb69d80b8c436e",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/release-attestation.md",
+      "sizeBytes": 688,
+      "sha256": "7feae2b4f1b9a3ff4fca6418a38e5a18987cecd8474d1bec4b41a026c19fe1f8",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/release-governance.md",
+      "sizeBytes": 2871,
+      "sha256": "29d2089c159831ddf9ac06f6669a4d5d4b95a4326cc3dac8e0eb3e3d78feaf8a",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/release-status-language.md",
+      "sizeBytes": 947,
+      "sha256": "54e352a22453b20ebb6ed6e30ba6e81723ca1e42eb932191d129740f0b12d0ce",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-hygiene/README.md",
+      "sizeBytes": 117,
+      "sha256": "ed891c0f5af71c7c9d8dfd47aca9dc391f74c134f12b31cd56d4014e787e8697",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-hygiene/allowlist.md",
+      "sizeBytes": 122,
+      "sha256": "f81ff1d9c682e3b512228c30014ca031a864d233d72f0ae89e809f0d7a323fb8",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-hygiene/binary-policy.md",
+      "sizeBytes": 128,
+      "sha256": "e1c932addc1cbbc035780546820dbff56875b2da7d5cdc4747d5aeb5b1b4d3ec",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-hygiene/browser-upload-limitations.md",
+      "sizeBytes": 176,
+      "sha256": "4a3fef2e87d6647479b24ac7c1b1913e15b8eb85c252d6bd89b240e07586dc19",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-hygiene/ci-enforcement.md",
+      "sizeBytes": 128,
+      "sha256": "187b9b3c1d40bb85b35846c1c84b90d6fb7dc0ee4a3fa908092fa01baabcb923",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-hygiene/cleanup.md",
+      "sizeBytes": 154,
+      "sha256": "a9a5c87f69d2be84dadfbdf2df18d415d634f404259cc5edc4ac86826129d401",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-hygiene/future-releases.md",
+      "sizeBytes": 155,
+      "sha256": "8c792d974a75c9aebe4279935a999a228ddba80ae91c0855f8c387240376eb7f",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-hygiene/gitignore.md",
+      "sizeBytes": 156,
+      "sha256": "1074dc17b2d28f992da81ce7972562ca6f94e21cb46fdd43c8f75b819ce9c77b",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-hygiene/policy.md",
+      "sizeBytes": 152,
+      "sha256": "b59d8cb9bf69bcaba02d98e3804ea8257a7735be14c171c38e772478decfb88e",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-hygiene/rollback.md",
+      "sizeBytes": 134,
+      "sha256": "0a4d35cd2c030a9e9efd65926ef5c05065d7a1ae1bf0ae00ded054714b6aa4d6",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-integrity/README.md",
+      "sizeBytes": 138,
+      "sha256": "ad92cf05a7e6ff6acb38388b574a754c0259d859ee2b319acb6e6c0f4aa58adc",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-integrity/architecture.md",
+      "sizeBytes": 217,
+      "sha256": "96fa5153d773276cc8cbc055fb4f808ed99b898ef84d18867aa2743caf483880",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-integrity/bash-installer.md",
+      "sizeBytes": 142,
+      "sha256": "b43bdb5fe0df251476e6245a753d066d74606c03df54a5c98a4caf9dc4da1b6c",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-integrity/browser-upload-limitations.md",
+      "sizeBytes": 164,
+      "sha256": "4c678d9a367b1b4e93382272c5e26f552d8489dea8ec2526a6302e273c925b94",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-integrity/ci-enforcement.md",
+      "sizeBytes": 134,
+      "sha256": "0759f8a82e171964ce4e536b4e03b70263ace0dc85dc4ffdd3ff81d441b667e4",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-integrity/cleanup.md",
+      "sizeBytes": 154,
+      "sha256": "f732a16040d08ef577932cfffce831da1ecfb322f5179cbdca0c7ee7fc9d8557",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-integrity/data-contract.md",
+      "sizeBytes": 136,
+      "sha256": "61f12ad3eb78728082ed0cb6e49b534aa3bb1750e9f9222c919ef6f728a39b6e",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-integrity/failure-modes.md",
+      "sizeBytes": 159,
+      "sha256": "8bbfa5fd78ef5860d971a0571d35e3f7e37ae464394fe3314cde83f44de3542e",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-integrity/future-releases.md",
+      "sizeBytes": 163,
+      "sha256": "04f44e10849faab98b6165e6d7ed3de15810b25cd5cd77e415782ee7a122075e",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-integrity/inventory.md",
+      "sizeBytes": 139,
+      "sha256": "ca976dc8cde467df33445cbd115934fe82f8c669ebbd512fc9b76858ae169b2d",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-integrity/manifest-coverage.md",
+      "sizeBytes": 193,
+      "sha256": "a56e2f0a7a81276d4f593df10734c408fa8c464707a7f2c675e33052e03492d6",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-integrity/operator-checklist.md",
+      "sizeBytes": 153,
+      "sha256": "35b4ba2e157a7d7e36a098ad3319bd6c63083b8c5f2d7a3981af22ee6c7f9b22",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-integrity/powershell-installer.md",
+      "sizeBytes": 147,
+      "sha256": "f9cac412fb3f73672d5374f6681cdde0d569e5ac59d49abde908661b3fe401a3",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-integrity/pre-commit.md",
+      "sizeBytes": 144,
+      "sha256": "3072b46761c39cf97ec7652918c0d0ce1ea8619071aea26ebeb75df8807b4adc",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-integrity/rollback.md",
+      "sizeBytes": 159,
+      "sha256": "e363b5d906d40eda74c68f96ec3e86025c50efbb118b693a71d85eba1ec4228a",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-integrity/sarif.md",
+      "sizeBytes": 125,
+      "sha256": "ce54cdacacc05c654bded901e507682e6bdacca6cde64f186f503e63b6909e2a",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-integrity/security-boundary.md",
+      "sizeBytes": 166,
+      "sha256": "adf3c948319f7f11ad08d804313d1b55a6461ae64b8c94f72f8d47921cc5ca6f",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/repository-integrity/windows-installer.md",
+      "sizeBytes": 191,
+      "sha256": "712922c228614edba2d78133aaaf7ea23c0d276b4e8f3933aa00ff7b2681dbf8",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/route-registry/README.md",
+      "sizeBytes": 128,
+      "sha256": "ea5ee7516521074bef7159e235f066581646e82ee35a0222a6247271993b21f2",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/route-registry/architecture.md",
+      "sizeBytes": 115,
+      "sha256": "0ac6b773c5ef0ad34256125e2a0091f0700658a24ab380a6115edd7c96b4aa72",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/route-registry/consumer-migration.md",
+      "sizeBytes": 112,
+      "sha256": "cd7b3643ec90b6f8d0311273941e9302be0175b96602962e6f9ef9099edfc9cd",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/route-registry/drift.md",
+      "sizeBytes": 81,
+      "sha256": "f6549e380d85d7ed29be4719ef09975a57e44ef357834939cd5805d7180aa079",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/route-registry/editorial-boundary.md",
+      "sizeBytes": 102,
+      "sha256": "1663f172ea2c0480edb11300d67aab4ce42040939d9860b0d683827622c7bd66",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/route-registry/failure-modes.md",
+      "sizeBytes": 103,
+      "sha256": "96733a0e813bcc15e4c7cf1b017160e6f46aabeb3f689f9f2b940a724aefe80b",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/route-registry/future-extension.md",
+      "sizeBytes": 107,
+      "sha256": "08f1262a626dbfd8df5dd95c7d594a2772a68bf802e928d4d96adbd79005bf28",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/route-registry/generation.md",
+      "sizeBytes": 115,
+      "sha256": "3809930f1595ba7c5c6d47f58496fd6d9087fa1efb84b83d4b2f69d152c680c9",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/route-registry/operations.md",
+      "sizeBytes": 94,
+      "sha256": "7ae52724266f143bd8ddec40baa64de67b22e984a11011d32e84fbf6ba486391",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/route-registry/provenance.md",
+      "sizeBytes": 108,
+      "sha256": "272f8ca7843b9d8548c4624e058140bf74d093a358909f8a245ba39f13a4934e",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/route-registry/rollback.md",
+      "sizeBytes": 97,
+      "sha256": "434f52593f0d14913307041306d9c4c7231f000584951436a7c557d5a683f125",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/route-registry/security.md",
+      "sizeBytes": 112,
+      "sha256": "5055fb662ab31be6cb54733fb91bbf042aefb77f0c4c04b5f4b35bf0a557c854",
+      "suffix": ".md"
+    },
+    {
+      "path": "docs/route-registry/validation.md",
+      "sizeBytes": 119,
+      "sha256": "d785df54f37b50037a0ecc25734a708a675e362079b4d2078d725c03d7fbcc72",
+      "suffix": ".md"
+    },
+    {
+      "path": "examples/release-governance/browser-upload-fallback.txt",
+      "sizeBytes": 325,
+      "sha256": "d7e47fc07e272ad0c7d3041297a386d091fc32e1d34ba345e532d666ccd52bd9",
+      "suffix": ".txt"
+    },
+    {
+      "path": "examples/repository-hygiene/fail-report.json",
+      "sizeBytes": 293,
+      "sha256": "e34c762a257160d2af34ed3e3e6b037e9673243abe3f2f891c5723f85cf7dece",
+      "suffix": ".json"
+    },
+    {
+      "path": "examples/repository-hygiene/pass-report.json",
+      "sizeBytes": 119,
+      "sha256": "0dbb79f643c3084a2f4d91c80d65a17ccef6b4a7bdf28cf3d6b4ba4fbf514e41",
+      "suffix": ".json"
+    },
+    {
+      "path": "examples/repository-hygiene/temporary-exception.json",
+      "sizeBytes": 138,
+      "sha256": "b88594fe0bc3b96f6db3dcedc4641a3c3c6d5fa5a367ae56d0b6252cab41ed76",
+      "suffix": ".json"
+    },
+    {
+      "path": "examples/repository-integrity/inventory-sample.json",
+      "sizeBytes": 344,
+      "sha256": "69ae82c3fc46c58fd10fdd756e87725573033a6ea155724eec7e444f763e80b4",
+      "suffix": ".json"
+    },
+    {
+      "path": "examples/repository-integrity/missing-asset-failure.json",
+      "sizeBytes": 392,
+      "sha256": "2cab4d1b5b382f2517407c699d9284dd95aee43f6ffa855d3d1dd46ed30f6a3b",
+      "suffix": ".json"
+    },
+    {
+      "path": "examples/repository-integrity/pass-report.json",
+      "sizeBytes": 209,
+      "sha256": "bd5cb2c2d59f4569b92b362b7c7549383983e2032e0a7f245af6a8eaeefeb4c0",
+      "suffix": ".json"
+    },
+    {
+      "path": "examples/repository-integrity/temporary-allowlist.json",
+      "sizeBytes": 171,
+      "sha256": "9f9dacc5a9adf71443f426a26405fabccc2243275ee91ef4a3f0871d4a72d413",
+      "suffix": ".json"
+    },
+    {
+      "path": "examples/repository-integrity/tracked-cache-failure.json",
+      "sizeBytes": 398,
+      "sha256": "23e75a73dea1152c9d05cd47fcde3915b877474b879baf5cb7e9cbdaeb28ac0b",
+      "suffix": ".json"
+    },
+    {
+      "path": "examples/route-registry/merge-pseudocode.md",
+      "sizeBytes": 131,
+      "sha256": "b0188e684698813d34178960037ed2cc44abae19dc9137817af0a306ceb3b198",
+      "suffix": ".md"
+    },
+    {
+      "path": "examples/route-registry/navigation.json",
+      "sizeBytes": 118,
+      "sha256": "2ea0bfb21cdadd6103fd304c96de60b342dc282545624b98a1a51fc21344c80d",
+      "suffix": ".json"
+    },
+    {
+      "path": "examples/route-registry/partial-reviewed.json",
+      "sizeBytes": 130,
+      "sha256": "92701adea403286c03cef6d8a27e2805ee107468d866e97bf78f778d1d72fc61",
+      "suffix": ".json"
+    },
+    {
+      "path": "examples/route-registry/source-register.json",
+      "sizeBytes": 128,
+      "sha256": "96b05d66d5ab5feb8eb9c8b56eac36a4dad936aee2f0a2b9de7610a2b2554860",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-hygiene/invalid/build-output.json",
+      "sizeBytes": 49,
+      "sha256": "6d959bfc5e4d48899910bfa7edf7dea930b3d01949fa37a1b736b15cdca2eb6c",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-hygiene/invalid/editor-swap.json",
+      "sizeBytes": 46,
+      "sha256": "74dfc696ad486aeb0fe9798d4214ff76e25b6945516041a41460e946ceb55642",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-hygiene/invalid/os-metadata.json",
+      "sizeBytes": 44,
+      "sha256": "4fcc8dc175da1c5f79043ea2f0c0b771bdfcd3f246eb86feed243dadc81273c3",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-hygiene/invalid/patchrepo.json",
+      "sizeBytes": 64,
+      "sha256": "596bc573a8d9f2a05e7a2d22b0bfbbab761a6a98161921c5cc7ba6d7d9bd98c9",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-hygiene/invalid/python-bytecode.json",
+      "sizeBytes": 52,
+      "sha256": "8984b6baf07df1b78c0ef3cc90af52201113daf7097084eeac416fb6927c0f66",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-hygiene/invalid/python-cache.json",
+      "sizeBytes": 76,
+      "sha256": "5bfb4718d8af69c6dd4d83e450d9f650f7d7f51b2d865f933f8e33e3bf3817a0",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-hygiene/invalid/validation-artifact.json",
+      "sizeBytes": 57,
+      "sha256": "afd6b90476d1c8512352fab994c55c1f0e49003ea08f8d448921640f136e0f6a",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-hygiene/invalid/zip-check.json",
+      "sizeBytes": 64,
+      "sha256": "e94a1882d64a7b1b736fbb4ae201b8a4c24576ade8c140c231e34784e9ee0c73",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-hygiene/valid/allowed-images.json",
+      "sizeBytes": 83,
+      "sha256": "03127510aa3939556922fd03138e973427712fbc40a6b8098b1a3a0f9b76d5de",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-hygiene/valid/allowed-pdf.json",
+      "sizeBytes": 62,
+      "sha256": "74140938e7c0331665d1609df34917d0a0602bc2e06f15513c018692d7e69c63",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-hygiene/valid/normal-json-html.json",
+      "sizeBytes": 63,
+      "sha256": "c758434614c90cdf0c4075eddb7c79a8c003aac5488065b3e0041a5f7139f70d",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-hygiene/valid/source-only.json",
+      "sizeBytes": 73,
+      "sha256": "c1d305e77091265c24f78cd544e1cc634a3ddb27c57891135b55f1c5c3c2be38",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/invalid/applycheck-directory.json",
+      "sizeBytes": 85,
+      "sha256": "acaea489a2edb0cba29bbe7cb4c05bb46957ad963e0cdc982136664273833bd6",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/invalid/artifact-directory.json",
+      "sizeBytes": 77,
+      "sha256": "43768900edf6b2a4578a71bb3eca212315d92b12b1c982ea26f4407aeba6a734",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/invalid/backup-extension.json",
+      "sizeBytes": 66,
+      "sha256": "8c4399edbe9ad47722ae4245f7003b1e3d89f62a52799708d40ca3b55acdc6a1",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/invalid/build-directory.json",
+      "sizeBytes": 72,
+      "sha256": "bb40df10db42e6712ca45e9d9e9d3a10f039eaa9077bf2e6313ad3ecad2d8cdb",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/invalid/cache-directory.json",
+      "sizeBytes": 92,
+      "sha256": "cb006f4bd200f3fd43ec0dd49333c31c0bc4b8c4872ab1c4b6293ace253e32f2",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/invalid/class-extension.json",
+      "sizeBytes": 80,
+      "sha256": "adc878833a8dcdc48ce90464755dada4204f3a3dc0d9be5aa641f809a8c605e9",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/invalid/coverage-directory.json",
+      "sizeBytes": 75,
+      "sha256": "bf45e89e9d990ce9902516118bed608fd44df95c4718833adae4a63930897ac0",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/invalid/dist-directory.json",
+      "sizeBytes": 67,
+      "sha256": "a71004febfea85b3240b563dc648ff779793bc2b4b5e826b7a7f02f012d4044e",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/invalid/generated-cache-root.json",
+      "sizeBytes": 76,
+      "sha256": "ce6cfd648eeae9ca690734b35c91629061af3213756f5ce387414a336fcc1835",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/invalid/integration-directory.json",
+      "sizeBytes": 86,
+      "sha256": "680e5b3d4bb3f20705e45d6ca712dca0f5dcd05bee9e05308a2301c0485cab80",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/invalid/nested-cache.json",
+      "sizeBytes": 79,
+      "sha256": "7467788aea2e839af4bc5b91e956ba464d97a2b2e0bbaea3adfdcc1328fbdf05",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/invalid/patchrepo-directory.json",
+      "sizeBytes": 84,
+      "sha256": "65fba4d0dedca2b03fdba84c2ff42a483122ce86c7b09fe1d796615d4daa1924",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/invalid/pyc-extension.json",
+      "sizeBytes": 80,
+      "sha256": "fa2f52cb1073d1cfa5fbe1790967fa97257593fd8cf56bbf6b9ae27899764e0b",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/invalid/pyo-extension.json",
+      "sizeBytes": 80,
+      "sha256": "7917cb17020a42b9cef992b6f1146df469193e1ef40d4123097fd99782f007ad",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/invalid/second-swap-extension.json",
+      "sizeBytes": 71,
+      "sha256": "76269dab520c92f486a551919f9148003dde63c0247084fab3e1bd621bc5187b",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/invalid/swap-extension.json",
+      "sizeBytes": 71,
+      "sha256": "47492f243f6bfcba1228a5be9497621c07ff75336b9e3e8701472a9956399f04",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/invalid/temporary-extension.json",
+      "sizeBytes": 65,
+      "sha256": "de513ea146baa571b07224c50a2e4b62abbf57ce8ce6b434a24e0508869f40f8",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/invalid/zip-check-directory.json",
+      "sizeBytes": 84,
+      "sha256": "c87b4c86d42584b08460fec15ca16292ed63b39140ce88d6969eae54d21146b3",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/valid/governance-assets.json",
+      "sizeBytes": 120,
+      "sha256": "c3c6886ae90e51366081ae50268a84c79dae0d076a4e6cf406972858612e19cb",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/valid/images-and-pdf.json",
+      "sizeBytes": 121,
+      "sha256": "1582715b331fbcdbe53d7fb6afbe8fcd3514a0e6c052ea5acf41b9bf0b43ba48",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/valid/manifest-files.json",
+      "sizeBytes": 118,
+      "sha256": "23b12daeb2a60b434cb14e54a4a37361c5749450c652ddedf73dad391583c362",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/valid/mixed-text.json",
+      "sizeBytes": 110,
+      "sha256": "c8db1fdbd2239f2056b56af170793caeb4f509af38d072dbbf3b2bc22110ffb1",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/valid/nested-source.json",
+      "sizeBytes": 77,
+      "sha256": "27ca0e68ad1bbd4ba8a4c1361a09e26ef7ba9c344b9308d73f9ee73375381ad3",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/valid/root-controls.json",
+      "sizeBytes": 116,
+      "sha256": "72b20f62c243aa7df89f2f04abf775941ecc597c52f9855f26437229370a0632",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/valid/schemas-only.json",
+      "sizeBytes": 83,
+      "sha256": "1e9d12f4b7e3aed5d33fbc4602137e6b25ac0613b1327ecd0e44db3a93a1bc54",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/valid/scripts-only.json",
+      "sizeBytes": 95,
+      "sha256": "2dfdafb9e2ab0d00b0917ae97942ca06c33ae3abce4fe9f7bf01e4c687bee35d",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/valid/source-files.json",
+      "sizeBytes": 117,
+      "sha256": "bd30521e2951b264688078258415c4c6b5ba3356b45d1f7ba7021915775cd34c",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/valid/tamil-content-path.json",
+      "sizeBytes": 88,
+      "sha256": "1aeaac5fa4badfea8d1b6511cca7edac4f8f8a5ddee8bade719aa58e5fff7d26",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/valid/tests-only.json",
+      "sizeBytes": 82,
+      "sha256": "018e5f4590406b206d0bc9f59704855ad824c2e3f0c8c1eed9b02f70f37a532d",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/repository-integrity/valid/workflow-files.json",
+      "sizeBytes": 98,
+      "sha256": "3e8d1ec2731be61ab528f732aab01b19e8e72deb942a99cbea5559dde8bad5e3",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/route-registry/canonical/publication-boundaries.json",
+      "sizeBytes": 5565,
+      "sha256": "59a0f0e92c669a352147e81852aabc2a9c6b4d0fc2e6feace16a68ba7895702b",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/route-registry/canonical/site-routes-effective-overrides.json",
+      "sizeBytes": 6159,
+      "sha256": "66ad7a83b4ced3420fa6cb391d715d9729f119df33f9769f3b0695de3e920bf5",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/route-registry/invalid/absolute-url.json",
+      "sizeBytes": 5554,
+      "sha256": "94c92ec30c71d2212c910e3c343085979eabcd6bb44a2b6199aee224212e331d",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/route-registry/invalid/duplicate-route.json",
+      "sizeBytes": 6109,
+      "sha256": "bdfdd3558a8d9ded60b913b0092fa0f6e4665d4a58537120a85ca691f8658ce1",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/route-registry/invalid/empty-evidence.json",
+      "sizeBytes": 5520,
+      "sha256": "92483d1a701fe0bfbbb79a55a9c39843908d990dd1f79423d61e5b03f19ac3e1",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/route-registry/invalid/empty-records.json",
+      "sizeBytes": 790,
+      "sha256": "066379182e63ebfa9b5fa9997fd2b5ed48cffef2d18beac74993281895c9b29b",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/route-registry/invalid/empty-scope.json",
+      "sizeBytes": 5523,
+      "sha256": "58cfe4d4672cfd68d7122fab8d1ff83db84df5b0b6cd4356cdbb74775e7b2c8e",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/route-registry/invalid/full-text-claim.json",
+      "sizeBytes": 5564,
+      "sha256": "5ea7d0e56780018f314b9497a324ad2102e64c4ac672360e6b59bc045cd3ca34",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/route-registry/invalid/missing-release.json",
+      "sizeBytes": 5547,
+      "sha256": "78ceebd4e5d6d7a37d24f0ac9bc9743688df7362ca8b60e92d9f7e44ee5484b9",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/route-registry/invalid/missing-route.json",
+      "sizeBytes": 5514,
+      "sha256": "fdd3cdf2322d13fe5ebf3b9293516051e090d74e0a543e760b9373d4971bf91b",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/route-registry/invalid/nonboolean-reading.json",
+      "sizeBytes": 5566,
+      "sha256": "b27c99ff3aa085c86cc16ac76270e0e5dc9e8a1c8c0380022b4143fff18146b4",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/route-registry/invalid/unsafe-route.json",
+      "sizeBytes": 5565,
+      "sha256": "92bd1d31de357ea02556e53469a02e5039f7a3a774007b8a0bb420e02171ab82",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/route-registry/invalid/unsupported-status.json",
+      "sizeBytes": 5557,
+      "sha256": "17f849173f126601087cf1486c4c6271d3aa1b8cc9be324a21af78ea006045a0",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/route-registry/invalid/zero-release.json",
+      "sizeBytes": 5563,
+      "sha256": "5265caebcd9c6ffe804948d0634d097494ce061954843be40118600cab2616b5",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/route-registry/valid/01-kandar-anubhuti.json",
+      "sizeBytes": 1336,
+      "sha256": "e4d708b94b0b3e81de37aa341d30452746c8faf57ad600cf4e8e7d339b6329a7",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/route-registry/valid/02-kandar-alangaram.json",
+      "sizeBytes": 1395,
+      "sha256": "ba20f82b771632af2d00c2044a02ed0d633f992189a7f9e39409c4f2ede9fd89",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/route-registry/valid/03-kandar-andhadhi.json",
+      "sizeBytes": 1366,
+      "sha256": "8e0fa8bc328d0f5c76c1ebe1c1c8f4ba9baafb4a4354cf47be956dd284995410",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/route-registry/valid/04-kandar-kalivenba.json",
+      "sizeBytes": 1384,
+      "sha256": "7f5ec496f7b75119900b248d6bcad9d1f46bd25aa493949d221de8258a5671e1",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/route-registry/valid/05-shanmuga-kavasam.json",
+      "sizeBytes": 1381,
+      "sha256": "be02be4a7f937e899a81eb2cf57780cd34d592aa71ac924e64fba0c9bee506ad",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/route-registry/valid/06-vel-maaral.json",
+      "sizeBytes": 1391,
+      "sha256": "c76b84c3919cdc06b596aea7733d2152bb5e6b00cd0a0c19489fb79c875621ef",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/route-registry/valid/07-vel-mayil-virutham.json",
+      "sizeBytes": 1423,
+      "sha256": "e781e91da8721c621027936fb92176f80d8ea4ae2bf66fd2808e8a33ea1c0bd0",
+      "suffix": ".json"
+    },
+    {
+      "path": "fixtures/route-registry/valid/08-thirumurugatruppadai-complete.json",
+      "sizeBytes": 1433,
+      "sha256": "831ef0e6a8f19889df224d2d1444c0ea8d01fb21b34b29d86b155b7f334a2c8b",
+      "suffix": ".json"
+    },
+    {
+      "path": "manifest-release-232.json",
+      "sizeBytes": 6306,
+      "sha256": "f00ad550f76f839266db1801df49899ec2b3db5505e3dfa65a9543dc01f562f8",
+      "suffix": ".json"
+    },
+    {
+      "path": "manifest-release-233.json",
+      "sizeBytes": 7173,
+      "sha256": "2bb2d774520d35944767b7d7dbc79a0c6418ebd03b0eaf9d832b4348d0c60876",
+      "suffix": ".json"
+    },
+    {
+      "path": "manifest-release-234.json",
+      "sizeBytes": 9333,
+      "sha256": "746200909c3e5dbc76a050e116cdfc2dc45b17cd68020ea1a178065908845d34",
+      "suffix": ".json"
+    },
+    {
+      "path": "manifest-release-235.json",
+      "sizeBytes": 15437,
+      "sha256": "5bc4836261bbdcc2d8e8a0fa7b22eb2f9a312d5cf881b12b72f64012cec5a428",
+      "suffix": ".json"
+    },
+    {
+      "path": "policies/repository-binary-policy.json",
+      "sizeBytes": 284,
+      "sha256": "030a8a04c433dd8b3775c3b9896f65d7788ee2cbaecea291292759fc633b2088",
+      "suffix": ".json"
+    },
+    {
+      "path": "policies/repository-cleanup-targets.json",
+      "sizeBytes": 922,
+      "sha256": "6dde0501572822915d57004852cd9b684379d124581e8f4410a4ddb0ed2a12a1",
+      "suffix": ".json"
+    },
+    {
+      "path": "policies/repository-hygiene-allowlist.json",
+      "sizeBytes": 87,
+      "sha256": "8928cb849430a45f8ea1bcab13e1f1f215af251df6d679e446d0ce452729a3c1",
+      "suffix": ".json"
+    },
+    {
+      "path": "policies/repository-hygiene.json",
+      "sizeBytes": 969,
+      "sha256": "cf04f58f07242d393f333cdfe3a13c4e5f0476f377e5e747cb3c562d9230b791",
+      "suffix": ".json"
+    },
+    {
+      "path": "policies/repository-integrity-allowlist.json",
+      "sizeBytes": 89,
+      "sha256": "98a1bc0f453dc8354e74da4df7eb1e93636e62f6e03db3807852a402f9065780",
+      "suffix": ".json"
+    },
+    {
+      "path": "policies/repository-integrity-cleanup.json",
+      "sizeBytes": 922,
+      "sha256": "22dafcab318b772b68041fa722fc4e9ce1b805da5a55076dd2cdd8fa249cd2c3",
+      "suffix": ".json"
+    },
+    {
+      "path": "policies/repository-integrity-required-assets.json",
+      "sizeBytes": 496,
+      "sha256": "633e4414d005ebe49c20c1d64ab25f98851a7ffa01df6d008129c56f39260ad4",
+      "suffix": ".json"
+    },
+    {
+      "path": "policies/repository-integrity.json",
+      "sizeBytes": 1630,
+      "sha256": "87d4992742ec16a1a3445be6441b54cdf07a95b07c1d35a8796faedc034fd8fe",
+      "suffix": ".json"
+    },
+    {
+      "path": "pyproject.toml",
+      "sizeBytes": 369,
+      "sha256": "7a054ec114bbc778c40e2268ac2158a59321cff33d4297a63b03c1a6beae473a",
+      "suffix": ".toml"
+    },
+    {
+      "path": "schemas/publication-boundaries.schema.json",
+      "sizeBytes": 740,
+      "sha256": "7b10f283810acedeb197589bb2c8dc2695f5aa588a467c171891ed3a2e66622c",
+      "suffix": ".json"
+    },
+    {
+      "path": "schemas/release-attestation.schema.json",
+      "sizeBytes": 2835,
+      "sha256": "06a847caffa56c7a75c311c24b9c4fc07f62d45fd06b4a5e45412e7fff74e1db",
+      "suffix": ".json"
+    },
+    {
+      "path": "schemas/release-manifest.schema.json",
+      "sizeBytes": 1415,
+      "sha256": "6e077f4e5dfbafd5071eb0b743a95920d883a7ae944bd965684cfa3386bc0ea0",
+      "suffix": ".json"
+    },
+    {
+      "path": "schemas/repository-binary-policy.schema.json",
+      "sizeBytes": 210,
+      "sha256": "19b5e04cfd552a12b17b16ed480cab51f1b74e57547a4f4fd9297efd0bcb1460",
+      "suffix": ".json"
+    },
+    {
+      "path": "schemas/repository-cleanup-targets.schema.json",
+      "sizeBytes": 374,
+      "sha256": "20a935cb53294d51444424ba4d7d60bc967d819440e421fc47e6b31c21673b06",
+      "suffix": ".json"
+    },
+    {
+      "path": "schemas/repository-hygiene-allowlist.schema.json",
+      "sizeBytes": 177,
+      "sha256": "d67586d4f239cc9c486d493ba4ace8ca2179bd912e6be1deb886d1430e94e5d3",
+      "suffix": ".json"
+    },
+    {
+      "path": "schemas/repository-hygiene-policy.schema.json",
+      "sizeBytes": 588,
+      "sha256": "d72fd0b9ddd49297f3d4441f6776451070ce73079713dd6e1be79c588874b520",
+      "suffix": ".json"
+    },
+    {
+      "path": "schemas/repository-hygiene-report.schema.json",
+      "sizeBytes": 697,
+      "sha256": "849521cfadf7cfde6af72e97178fe151fae3c0b6090976ff9871d3db88842eec",
+      "suffix": ".json"
+    },
+    {
+      "path": "schemas/repository-integrity-allowlist.schema.json",
+      "sizeBytes": 179,
+      "sha256": "e24d630321d78d72163c16134e23f47e8f75f9a653c29f852d88ee0ed42d9b91",
+      "suffix": ".json"
+    },
+    {
+      "path": "schemas/repository-integrity-cleanup.schema.json",
+      "sizeBytes": 327,
+      "sha256": "fcbe0459ea1c10a02e415bdf57c47cdbbe3988f78c9a00e18c39b3141637efd5",
+      "suffix": ".json"
+    },
+    {
+      "path": "schemas/repository-integrity-inventory.schema.json",
+      "sizeBytes": 193,
+      "sha256": "b50540ac39a34293de9d012b747aa124fd0a78bb2920da0cc4a5d82c060e8fe2",
+      "suffix": ".json"
+    },
+    {
+      "path": "schemas/repository-integrity-policy.schema.json",
+      "sizeBytes": 223,
+      "sha256": "390d71be355a3279c3821dd8aff84d083264c8361bfab89a60f99398068af492",
+      "suffix": ".json"
+    },
+    {
+      "path": "schemas/repository-integrity-report.schema.json",
+      "sizeBytes": 594,
+      "sha256": "dfd112e434e38c618304bc5fc7c50df2818e257f38a2e103adafc26a1f77398d",
+      "suffix": ".json"
+    },
+    {
+      "path": "schemas/repository-integrity-sarif.schema.json",
+      "sizeBytes": 200,
+      "sha256": "d64d1481d50169b5acf7f018e0ab73971cffd7e1f16b7c50412d82d8a67f6bc2",
+      "suffix": ".json"
+    },
+    {
+      "path": "schemas/route-registry-drift-report.schema.json",
+      "sizeBytes": 312,
+      "sha256": "b1ac19ed77783361dcc58487916452809573ada2488c2b73ddef5b7e1c80e5a2",
+      "suffix": ".json"
+    },
+    {
+      "path": "schemas/route-registry-provenance.schema.json",
+      "sizeBytes": 195,
+      "sha256": "c1d554989509b94270f173f486614cab1231f30bafb424518a244cf933753fd6",
+      "suffix": ".json"
+    },
+    {
+      "path": "schemas/site-routes-effective-overrides.schema.json",
+      "sizeBytes": 1189,
+      "sha256": "c582ebd199f15818e2655124af4d3ee4872d3bf20d4d8d7f3945c9cb22762c04",
+      "suffix": ".json"
+    },
+    {
+      "path": "scripts/release/check-commit-metadata.ps1",
+      "sizeBytes": 1026,
+      "sha256": "6269497df2d4c8a58488835d3ba9e89c1d955e6a73924866d9ebfe4a3c747382",
+      "suffix": ".ps1"
+    },
+    {
+      "path": "scripts/release/check-commit-metadata.sh",
+      "sizeBytes": 979,
+      "sha256": "615b862cb4d6f568493ca7fba8b18a0e3cffa28029d330d850538370016f9d76",
+      "suffix": ".sh"
+    },
+    {
+      "path": "scripts/release/check-commit-title.ps1",
+      "sizeBytes": 172,
+      "sha256": "d75d7269c23b8ea55a7cb95f1bf076790d4bec47b18912b40839a0819cff9a18",
+      "suffix": ".ps1"
+    },
+    {
+      "path": "scripts/release/check-commit-title.sh",
+      "sizeBytes": 158,
+      "sha256": "796d3763e085a246c0754b1d7dc1a4d14e9e674fa2c53a3dd8313df1fe0205d6",
+      "suffix": ".sh"
+    },
+    {
+      "path": "scripts/release/preflight.ps1",
+      "sizeBytes": 851,
+      "sha256": "88aed8ae82a7ca56979ba32d7f8ce3721ca562691126bc5f711487365bff6450",
+      "suffix": ".ps1"
+    },
+    {
+      "path": "scripts/release/preflight.sh",
+      "sizeBytes": 404,
+      "sha256": "e73d891ee930f323263048f8e6b70f333b154f7357765948f457fdbd524d9e27",
+      "suffix": ".sh"
+    },
+    {
+      "path": "scripts/release/publish-release.ps1",
+      "sizeBytes": 2480,
+      "sha256": "ee9dc7234c8b88e7e4f43fe56ceae144843a4d93e48382dc69deab08cce9a75e",
+      "suffix": ".ps1"
+    },
+    {
+      "path": "scripts/release/publish-release.sh",
+      "sizeBytes": 1508,
+      "sha256": "fd20c35ab6bb22558b9f04c6a20b1e5633ea30b92359ccbe08e0ba0dfe66fe80",
+      "suffix": ".sh"
+    },
+    {
+      "path": "scripts/release236/apply-release-236.ps1",
+      "sizeBytes": 2974,
+      "sha256": "71ffcc79a8c9a5d83a26cb1c0f1e318ef7d1e3e22f6d20d76dbc4ac86faf037e",
+      "suffix": ".ps1"
+    },
+    {
+      "path": "scripts/release236/apply-release-236.sh",
+      "sizeBytes": 1639,
+      "sha256": "407ea799e96fb4213e13df9e5e3a12fc9066f596a05c5b23e79a585ab950230d",
+      "suffix": ".sh"
+    },
+    {
+      "path": "scripts/release236/show-changed-files.ps1",
+      "sizeBytes": 167,
+      "sha256": "e7138f89bf3da19c2fbafcfec16c5d1a5bc2049f847ba3f419de11a5834c7dbd",
+      "suffix": ".ps1"
+    },
+    {
+      "path": "scripts/release236/show-changed-files.sh",
+      "sizeBytes": 108,
+      "sha256": "e65c5b87b1feab1b0438c158502bfb5185b803a1934086bbd797021ca4a1bf75",
+      "suffix": ".sh"
+    },
+    {
+      "path": "scripts/release236/verify-base.ps1",
+      "sizeBytes": 325,
+      "sha256": "b927d058a15fb3e94ae01ede144a70b4ed6a82b50ff723b4e14792889f918711",
+      "suffix": ".ps1"
+    },
+    {
+      "path": "scripts/release236/verify-base.sh",
+      "sizeBytes": 291,
+      "sha256": "6a64cb89177858cc39a2132c92c4ab6aa5b23d0802a1144543a807fcfe3cd525",
+      "suffix": ".sh"
+    },
+    {
+      "path": "scripts/release236/verify-deletions.py",
+      "sizeBytes": 431,
+      "sha256": "a4385b60b542b85ed892f955aaa50d96cd0c731d4843a4e2ae625d73b8877a2d",
+      "suffix": ".py"
+    },
+    {
+      "path": "scripts/repository/preflight-hygiene.ps1",
+      "sizeBytes": 313,
+      "sha256": "2ad677d8c44831ce24c553340b1927212b9afd8898f8af6b17996d5d9582d42e",
+      "suffix": ".ps1"
+    },
+    {
+      "path": "scripts/repository/preflight-hygiene.sh",
+      "sizeBytes": 153,
+      "sha256": "efca1de0345148bda33015126fa32e192c74d66e3006cec3c5175e843ce2faef",
+      "suffix": ".sh"
+    },
+    {
+      "path": "scripts/repository/prepare-release-235.ps1",
+      "sizeBytes": 1210,
+      "sha256": "1504b2e78814dc6f854d71f43f7934f21081b8f1815ea772be8444a2a5c65dce",
+      "suffix": ".ps1"
+    },
+    {
+      "path": "scripts/repository/prepare-release-235.sh",
+      "sizeBytes": 793,
+      "sha256": "3598f3dd14ed80cf357d9dd4c3850efb365c1c0a0814d99b8d1d62138648ea81",
+      "suffix": ".sh"
+    },
+    {
+      "path": "scripts/repository/remove-tracked-generated-files.ps1",
+      "sizeBytes": 723,
+      "sha256": "fe151822e691bd474d00c4a1ee7e6f1f66fee8accb3a6825cc89252cdb80f31d",
+      "suffix": ".ps1"
+    },
+    {
+      "path": "scripts/repository/remove-tracked-generated-files.sh",
+      "sizeBytes": 568,
+      "sha256": "61ce3b930ff1483fb0bce9684cdbc751eff43a5649d5e9808c03dfc014cb19af",
+      "suffix": ".sh"
+    },
+    {
+      "path": "templates/release-commit-message.template.txt",
+      "sizeBytes": 305,
+      "sha256": "4658ef61e5da552abd6df7c0c572bff3044e255a6b563fd5eae7ae2a6b587dea",
+      "suffix": ".txt"
+    },
+    {
+      "path": "templates/release-upload-checklist.md",
+      "sizeBytes": 1618,
+      "sha256": "cc97d19c63078715002cd163ec92ee50f52a5c64daf4c45cf6f14749053e68e5",
+      "suffix": ".md"
+    },
+    {
+      "path": "tests/release_control/__init__.py",
+      "sizeBytes": 37,
+      "sha256": "6d94e5e2184ac96c1f5f88b4b760508730fef499a442ee816fe43838f935295e",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/release_control/support.py",
+      "sizeBytes": 2723,
+      "sha256": "8b5fdde4ee3097eb72c06181a4ee3e96c671505b771af0faeafadbd4b69de416",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/release_control/test_browser_commit_policy.py",
+      "sizeBytes": 2458,
+      "sha256": "28d9017e0a0e0a6b34d803774a7a185573130016658de2647399b02e453eef54",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/release_control/test_checksums.py",
+      "sizeBytes": 2417,
+      "sha256": "4adc70a57768dc1bbffea2d4a6a228c2432fea5a999fe282624af9a82d3b0d0a",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/release_control/test_cli.py",
+      "sizeBytes": 1679,
+      "sha256": "e032c85df3de771365440d55998de1baea19946fb232bbab68d887c215897b12",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/release_control/test_commit.py",
+      "sizeBytes": 6204,
+      "sha256": "0506bf451a5e608345dc4c777183392970210003e9aeeaefc0a8db176cfca3d1",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/release_control/test_discovery.py",
+      "sizeBytes": 1171,
+      "sha256": "5c1dfe4972a7a42b897f6679719e14405e305353a3a82d323ecadc8bc5b5e61e",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/release_control/test_files.py",
+      "sizeBytes": 5365,
+      "sha256": "302ae2bcc1bd57fe32e4a6d0f97b07531f7ad6cb5f6565c4d52f292a70bb8b93",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/release_control/test_manifest.py",
+      "sizeBytes": 2881,
+      "sha256": "5aae9108afe9d35f965fdcf119017d225cbc77f912958f84470367006816dd36",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/release_control/test_patch.py",
+      "sizeBytes": 1996,
+      "sha256": "430d6e7b1d4a80b1b3ef4fb7341b5082452acdae0779d44fd517129d9130e0aa",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/release_control/test_release_232_package.py",
+      "sizeBytes": 1382,
+      "sha256": "14ebef42241e9722a5aeb43ebea89f117916df8b58161bbb6a87945284a46577",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/release_control/test_release_233_package.py",
+      "sizeBytes": 3536,
+      "sha256": "06dcca755585e7bda0bc9a65a830553fb6b786d3da9b7d539e2d03ec89e1c919",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/release_control/test_release_234_package.py",
+      "sizeBytes": 933,
+      "sha256": "22d8b1f812430640a8295bd121ae6ae50f8da788383b0c50d1ca699004b99495",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/release_control/test_report.py",
+      "sizeBytes": 3090,
+      "sha256": "6437d2785089a9a3d0205ce9e2d0a7822756237ae01a5f017dfafaae6b9098dc",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/repository_hygiene/__init__.py",
+      "sizeBytes": 39,
+      "sha256": "76b55a67cb6ac0109f6421ed4bc6596e166f17fe47bdb6c5d67587dce883bbb0",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/repository_hygiene/test_allowlist.py",
+      "sizeBytes": 601,
+      "sha256": "a91a1dc1616da65964be3b85dbdc04337ab1240ba174a0bda221b17ebbd7cab9",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/repository_hygiene/test_fixtures.py",
+      "sizeBytes": 1247,
+      "sha256": "18d0379c478bb6468630bb9b276d1218e10b869129cde858baaeeb3e092dbb2f",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/repository_hygiene/test_matching.py",
+      "sizeBytes": 488,
+      "sha256": "7fddef8ed0012c7f2fb25d860a704f819fc4e7f930cc62aff693b230aef4634b",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/repository_hygiene/test_release_235_package.py",
+      "sizeBytes": 876,
+      "sha256": "328987dde0a908575a52fba12d3dadd5a84bc9abf9e3a4f7b84e5d95e8a46b1c",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/repository_hygiene/test_scanner.py",
+      "sizeBytes": 1045,
+      "sha256": "ab8f0c923b38a5b16e3f854a0d38285813fdd7d2bf506a7a8455205c53177036",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/repository_hygiene/test_validator.py",
+      "sizeBytes": 1255,
+      "sha256": "1b3c026499059d37df088fa551557276fc42007daa788c971dcce2e581eb0ba7",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/repository_hygiene/test_workflow.py",
+      "sizeBytes": 453,
+      "sha256": "e171970c2216d2cac1a99ce6b7bb9805eadbbe2c2162475c5e163a17350bf74e",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/repository_integrity/__init__.py",
+      "sizeBytes": 41,
+      "sha256": "75f94e44d3ba71190bd1f8ab5c8ff7c38af69cb9d6a3b7d5e2cf465c193827a3",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/repository_integrity/test_allowlist.py",
+      "sizeBytes": 596,
+      "sha256": "0b04e7e5ed88164183df7ab26a8260bca112d7e280cd951ed127198f6954d2ae",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/repository_integrity/test_assets.py",
+      "sizeBytes": 726,
+      "sha256": "6623b4e938bc57701314148f1e21ead44029404ca34509601610c1f449d2a5af",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/repository_integrity/test_diff.py",
+      "sizeBytes": 466,
+      "sha256": "110f514e12fa4fb14024faea7956f664f89d770836732f92380bcfad8ba81b4c",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/repository_integrity/test_fixtures.py",
+      "sizeBytes": 1291,
+      "sha256": "7f8992e966541a5635d0d06c5529a46a506e49223f07502556839b6df25d35c6",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/repository_integrity/test_hashing.py",
+      "sizeBytes": 595,
+      "sha256": "604039088ad4c1af35a1a93205e3c02582737179f6510f86dfc96cc1619f199d",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/repository_integrity/test_inventory.py",
+      "sizeBytes": 740,
+      "sha256": "e47d311a893ef4cebe11de3b1bbf89a9f17211f3af55b90dd90f054d49ef96bc",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/repository_integrity/test_manifest.py",
+      "sizeBytes": 729,
+      "sha256": "87621a4823a217ea8acf2154810f2c520d6257b7b5f27f5d4aae953eaaf1b41b",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/repository_integrity/test_paths.py",
+      "sizeBytes": 491,
+      "sha256": "b31811adea41e0fbc1d04ea534110ae38dcd5a9c7fd1f8e0b4404dc178574f16",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/repository_integrity/test_release_236_package.py",
+      "sizeBytes": 1852,
+      "sha256": "46d188837e13e90b30d26c2eb19e5f4cff6ef0df71fff0131437db4b808c9218",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/repository_integrity/test_rules.py",
+      "sizeBytes": 888,
+      "sha256": "d295123ab6b5b58559c704f6141d50f7c3d6dad9000077fd5c5b3430f248d2cb",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/repository_integrity/test_sarif.py",
+      "sizeBytes": 503,
+      "sha256": "4b375e74dc88595e6fa7d33ee6a15d62f765790cb29ab59a383244fc4f42c982",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/route_registry/__init__.py",
+      "sizeBytes": 35,
+      "sha256": "7cc3a67e7bf0ca761c5bbda4054b6941bf6a2bcf035a768d8185cf858d0fde69",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/route_registry/test_diff.py",
+      "sizeBytes": 406,
+      "sha256": "2537e602135ecaa6764311fa4ea1b8bfbc7a1df853c049dbb98b766a66e1c674",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/route_registry/test_fingerprint.py",
+      "sizeBytes": 412,
+      "sha256": "7385fda5c3b188c45d4e792479b68a58f2b1fdf4f412b976b6e37deb13a7562d",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/route_registry/test_generator.py",
+      "sizeBytes": 1076,
+      "sha256": "4c9a182e79a7f4e4ef4f341e727d1f4073f71f21122c8361c9e27a11e0e9e87d",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/route_registry/test_provenance.py",
+      "sizeBytes": 378,
+      "sha256": "1e92fd7bb8430a1a553613d2ba43807ea0f88562bc7376587c12105b853aa85f",
+      "suffix": ".py"
+    },
+    {
+      "path": "tests/route_registry/test_validation.py",
+      "sizeBytes": 1071,
+      "sha256": "c24725dde682de6726a8809c598ed1f5edabbe1f2a4aabf3737b5ea11b6592dd",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_233_validate.py",
+      "sizeBytes": 356,
+      "sha256": "9de4ba8c614bb1cc0885bb275263ea87687ce20282968effe9a42e94e86f90e5",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_control/__init__.py",
+      "sizeBytes": 221,
+      "sha256": "6825b03a79f2dc12ff16e45fc084d3f798f640b7c24d3f3d308d2272897c2750",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_control/__main__.py",
+      "sizeBytes": 48,
+      "sha256": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_control/checks.py",
+      "sizeBytes": 1533,
+      "sha256": "be6ff9bc2b6559521130f3384107bbfb43ff32bc3ba87d5d5e083589683366a0",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_control/checks_checksums.py",
+      "sizeBytes": 1718,
+      "sha256": "ee996aa2ac079779302bef24171cdc72089b351d2364b24f3851a0460d42c2d2",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_control/checks_commit.py",
+      "sizeBytes": 3537,
+      "sha256": "817a43e60e83b910505dcfbac09ff6fe1795fb85f235e3abee70c0284ee79cc3",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_control/checks_files.py",
+      "sizeBytes": 4012,
+      "sha256": "542328599927a03b4fb93cace49e73b7a1dadc06741ae8d36c4f28b4d875d81c",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_control/checks_manifest.py",
+      "sizeBytes": 4023,
+      "sha256": "5bc443d3d63e92738e43f9861f74476bbbd142d503e8309ab2feebffba6988f1",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_control/checks_patch.py",
+      "sizeBytes": 1565,
+      "sha256": "f9848156699bd64a968d7f187089f3f920dab05edef86d62132ac1582d975690",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_control/cli.py",
+      "sizeBytes": 2133,
+      "sha256": "85e68ededf7d55c07d0487523ca535d4830b0f38bf33883e08983d658887363b",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_control/constants.py",
+      "sizeBytes": 554,
+      "sha256": "4312481237e51b53112f0496690c8c1d6d0261912eb360600e5510db833c6be2",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_control/discovery.py",
+      "sizeBytes": 1094,
+      "sha256": "8b21a17d31b4a5fffd87ff197e164e6ebd81d720eb86907a7636863811e76643",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_control/git.py",
+      "sizeBytes": 2201,
+      "sha256": "49a3484f01b9e9ddcec1db2599bf20ebb88d9e7c6b69696c9a64409ae684a744",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_control/jsonio.py",
+      "sizeBytes": 1411,
+      "sha256": "647d4e9a2eea2c765fe1739b27c4510ceff304568b864cb38a504824a54814e4",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_control/models.py",
+      "sizeBytes": 2516,
+      "sha256": "fc73a40dcce5aacb629f94c08dad5f6d67cf8d2a57c289487b35ea264577e30c",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_control/report.py",
+      "sizeBytes": 2921,
+      "sha256": "4f99da6e02b3bc5a0ce05309d92c1a21006e6e8be0c942d89da2f73eaf0587c4",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/release_validate.py",
+      "sizeBytes": 368,
+      "sha256": "edb958392a302683dae8ea9c0f77e07c1c2eb91b99dc99d9393a3296b389dde5",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_hygiene/__init__.py",
+      "sizeBytes": 172,
+      "sha256": "92f73de260eee124b0e5e928b42046943c02ee2c7f8c7aa782548d1e2a2e4978",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_hygiene/allowlist.py",
+      "sizeBytes": 744,
+      "sha256": "7ef2f2096331d22ad0a14316c96200ce196c0670815b6c94e858a3f9d86cff0a",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_hygiene/cleanup.py",
+      "sizeBytes": 1150,
+      "sha256": "c4b447f424ca85774787804a576d8105cc7237298eb7e9eb75977c8cb53db7ee",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_hygiene/constants.py",
+      "sizeBytes": 182,
+      "sha256": "608097cca846cfd85510d2845d5e8c60c5f314b2eb1c29a107b12d55beb4d91b",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_hygiene/errors.py",
+      "sizeBytes": 127,
+      "sha256": "0f6e6b483e16473056ef3818374033777893a5c566b6d74802642a1a4be7fe0d",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_hygiene/git.py",
+      "sizeBytes": 816,
+      "sha256": "c1692753e2f522527d6d02796c8aff04356f0baf2d35330fcbb2873bfdb3200a",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_hygiene/jsonio.py",
+      "sizeBytes": 588,
+      "sha256": "9d08c75421231e2b99b4214137c8f58f4755d5a4ff5e27641a6b4a279bfec5ae",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_hygiene/matching.py",
+      "sizeBytes": 545,
+      "sha256": "b025581d1898de4783ec05174c26f11eed6c9037a995406e4dfb5756e1cb17c5",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_hygiene/models.py",
+      "sizeBytes": 868,
+      "sha256": "b9b57e579593b190320b0e57b171078316aab790324bd07cf85f6ed0919551b6",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_hygiene/scanner.py",
+      "sizeBytes": 1747,
+      "sha256": "f5dd54ee33002a4ce8b7cc0e37444f29c2e40670aebdf6a44dcb72540bbae936",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_hygiene/signatures.py",
+      "sizeBytes": 452,
+      "sha256": "9a0627665be2e25e57f23fcb543451e7993ceeb3362213b64fa041284d3df7cd",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_hygiene/validate.py",
+      "sizeBytes": 1350,
+      "sha256": "ba8dbab7a08946084d488a0e0ae67fd7f5be410f033fed2331c0f9589c2be763",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_hygiene/validator.py",
+      "sizeBytes": 929,
+      "sha256": "d6601fe457372a7d57344765b6d7b0ad4ea7ff80e3efc5835b9ca8cd80cfd287",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_hygiene/workflow.py",
+      "sizeBytes": 696,
+      "sha256": "9b39092e43ebf73494cec67d8e5acbfd736b785d0088c31cea87c5e524a9c537",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_hygiene_cli.py",
+      "sizeBytes": 131,
+      "sha256": "916cf049d5813f80a283d8997539ffaf839ad33ce4c59dcf08dc1459371eabf9",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_integrity/__init__.py",
+      "sizeBytes": 196,
+      "sha256": "6cab4d51ffb7b9503bae05889306417eee7307f8812d27b1560dce175b33af48",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_integrity/allowlist.py",
+      "sizeBytes": 744,
+      "sha256": "c52f511949d21d555c677d8bfc3afbaa73f3584ee593ee2ac659fcb02278a25c",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_integrity/assets.py",
+      "sizeBytes": 596,
+      "sha256": "a61b494ef94ea573bc12b440e2cea3ecff87f47529d2afa5a0863a9140f34341",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_integrity/cleanup.py",
+      "sizeBytes": 1035,
+      "sha256": "9d9f8deb1ee85afafc247d9af6e249f602435c86700b6a4b24650558ff6958f5",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_integrity/constants.py",
+      "sizeBytes": 251,
+      "sha256": "2c7cbb4e43da0eadde7b2af304a9e5ad5c1977620bc7c3b7c3783adc38257507",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_integrity/diff.py",
+      "sizeBytes": 597,
+      "sha256": "cddd21e51a7dca54b7b858908adeae6ab48a740ae93e35de6a34710127ea8cde",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_integrity/errors.py",
+      "sizeBytes": 133,
+      "sha256": "6443904697aec1e8617ee561c4f13eacc9da49c7975fd3d2b19c416293bae1fb",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_integrity/git.py",
+      "sizeBytes": 733,
+      "sha256": "dc5f4a2bec7c376dd87d18594bae839b29a513a4b71af9dda1ad7268b561bd2b",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_integrity/hashing.py",
+      "sizeBytes": 616,
+      "sha256": "4f715f9663b0659bdef7ce64ad0e5c2a9c4e40c3001dcacc26c831da00dd16c9",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_integrity/inventory.py",
+      "sizeBytes": 806,
+      "sha256": "7b9547d2d6a6e0d5a29d71326277bd08425adcb404a1998a53484fd6e8e125a0",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_integrity/jsonio.py",
+      "sizeBytes": 594,
+      "sha256": "bf3cad578b4b2b03e64c042e5abf59a2893f3d2d2bf5d641ff3493c270c8b991",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_integrity/manifest.py",
+      "sizeBytes": 982,
+      "sha256": "99c3c57bb8b10394af448b576451596fd48dc35836ea4ac392f47159aef99224",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_integrity/models.py",
+      "sizeBytes": 980,
+      "sha256": "7395ba0f89d117713d5b7be3d2e6a3302f9b8eb1c8f0e3af4e5739c7032282b1",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_integrity/paths.py",
+      "sizeBytes": 517,
+      "sha256": "91484f7e3e3601e239de0eaad6da88b0d796635f3821249cef2b587d72943502",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_integrity/rules.py",
+      "sizeBytes": 1425,
+      "sha256": "58972a4363d5e60cd82bc883944aa5a5a06c6a8cda9bb994e2d7dd929755d91f",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_integrity/sarif.py",
+      "sizeBytes": 905,
+      "sha256": "c1c20bab6c505f3b5885ece8e9f7ec378792674c50b1aa72bedb281d5803ea95",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_integrity/validate.py",
+      "sizeBytes": 1551,
+      "sha256": "fd40192dc2496fb0d050048a2a305100b281835fdddf59333298f5f39e4c9731",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_integrity/validator.py",
+      "sizeBytes": 1590,
+      "sha256": "0851a69370427534f38e61e834d5dfa7a6bebf0d4175db030ef7e6b588d117b6",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/repository_integrity_cli.py",
+      "sizeBytes": 133,
+      "sha256": "af9219bd125b9101aa3f6595cacdba2b6c10a5c1627394dad40810ed48990fd6",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/route_registry/__init__.py",
+      "sizeBytes": 283,
+      "sha256": "eb1e01f3e10991337fd10baf81c07e5a00271dac073fb3e0026ae9d2e97bd537",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/route_registry/constants.py",
+      "sizeBytes": 733,
+      "sha256": "febea2dc26abed90a1585a2808485879a93e4d9d9225bc47eabcf6db16d0aba9",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/route_registry/diff.py",
+      "sizeBytes": 633,
+      "sha256": "623ec6ecc01d3a9c2830330fd6053f60acee0f257e647087079f0b6fa8801840",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/route_registry/errors.py",
+      "sizeBytes": 150,
+      "sha256": "218a5ca53024126ab0e5c26b47cbee0e7c4c56395817d9196d0095b68a928e81",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/route_registry/fingerprint.py",
+      "sizeBytes": 331,
+      "sha256": "027d2c1ba2468dc0ef8950468c2e920483049d39b3395db1ee4cc6069b32c386",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/route_registry/generate.py",
+      "sizeBytes": 872,
+      "sha256": "d6218070269dd21c1b9ca505947facfd9d5db5ff22d53e8fc5c2595c5cecb6ad",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/route_registry/generator.py",
+      "sizeBytes": 2429,
+      "sha256": "48ceefdbd81c5a222f1438f3408b17b32262e7d6e3251edfcb91f561e2ebaaa3",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/route_registry/jsonio.py",
+      "sizeBytes": 604,
+      "sha256": "eabfa9fd51c4debf3aadd6fe5595d3444fc9c217ac69955b93704ad0221101ff",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/route_registry/normalise.py",
+      "sizeBytes": 838,
+      "sha256": "76d56b7bad65e5de6378118c1261955d15ea976162ea6b4a8057707796d8e293",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/route_registry/provenance.py",
+      "sizeBytes": 439,
+      "sha256": "ab4a692084608d129fa72321f8597c61f8b2ee161e1eddf3aeba5758e8b1aafa",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/route_registry/validate.py",
+      "sizeBytes": 1937,
+      "sha256": "a7adeda1896e48fa36f232b9685af34a13a7dabcbb799561b54016d452859a2b",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/route_registry/validation.py",
+      "sizeBytes": 3981,
+      "sha256": "8c016517f31750e1d09c6017abee35a84915cbf4807940717073be7ebd403f4b",
+      "suffix": ".py"
+    },
+    {
+      "path": "tools/route_registry_cli.py",
+      "sizeBytes": 127,
+      "sha256": "eebdba7332b9c515a4e9c141e57cb6dc9268961e204f2005adaa4889fad102bf",
+      "suffix": ".py"
+    }
+  ],
+  "inventorySha256": "af0510ccc2af249102ef679d4b8849ceef2b2f1dad920bec233a4d1d543c1e48"
+}

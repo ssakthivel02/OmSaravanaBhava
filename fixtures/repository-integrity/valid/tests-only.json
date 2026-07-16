@@ -1,0 +1,6 @@
+{
+  "expectedStatus": "PASS",
+  "paths": [
+    "tests/unit/test_example.py"
+  ]
+}

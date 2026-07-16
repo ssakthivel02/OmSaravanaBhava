@@ -1,0 +1,6 @@
+{
+  "expectedStatus": "PASS",
+  "paths": [
+    "schemas/example.schema.json"
+  ]
+}

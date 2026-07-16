@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "path": "legacy/reference.pdf",
+      "reason": "Time-bounded migration evidence.",
+      "expires": "2026-08-15"
+    }
+  ]
+}

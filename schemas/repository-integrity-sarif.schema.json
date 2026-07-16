@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "version",
+    "runs"
+  ],
+  "properties": {
+    "version": {
+      "const": "2.1.0"
+    }
+  }
+}

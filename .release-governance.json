@@ -1,11 +1,11 @@
 {
-  "release": 235,
+  "release": 236,
   "generated": "2026-07-16",
-  "baseCommit": "d43c5ffbb240a01ddd444839c10ba61c438c85a1",
-  "requiredCommitTitle": "Release 235: repair repository hygiene and governance baseline",
-  "manifestPath": "manifest-release-235.json",
-  "checksumLedger": "RELEASE_235_SHA256SUMS.txt",
-  "patchPath": "RELEASE_235.patch",
+  "baseCommit": "d06aa0d99315344ad2c23ee3a1d98fb635f33b16",
+  "requiredCommitTitle": "Release 236: complete tracked-cache cleanup and enforce repository integrity",
+  "manifestPath": "manifest-release-236.json",
+  "checksumLedger": "RELEASE_236_SHA256SUMS.txt",
+  "patchPath": "RELEASE_236.patch",
   "attestationSchema": "schemas/release-attestation.schema.json",
   "manifestSchema": "schemas/release-manifest.schema.json",
   "filePolicy": {
@@ -29,12 +29,12 @@
     "securityBoundary": "Fallback is accepted only when the subject is an explicitly allowed GitHub browser default and the first non-empty commit-body line exactly matches required_commit_title."
   },
   "requiredEvidenceFiles": [
-    "RELEASE_235_CHANGED_FILES.txt",
-    "RELEASE_235_GITHUB_PORTAL_INSTRUCTIONS.txt",
-    "RELEASE_235_LOCAL_TEST_EVIDENCE.txt",
-    "RELEASE_235_SHA256SUMS.txt",
-    "RELEASE_235_VALIDATION_REPORT.md",
-    "RELEASE_235.patch"
+    "RELEASE_236_CHANGED_FILES.txt",
+    "RELEASE_236_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_236_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_236_SHA256SUMS.txt",
+    "RELEASE_236_VALIDATION_REPORT.md",
+    "RELEASE_236.patch"
   ],
   "allowedStatusLanguage": [
     "PASS",
@@ -77,5 +77,17 @@
     "failOnTemporaryUploadArtifacts": true,
     "failOnGeneratedBinary": true,
     "maximumTrackedViolations": 0
+  },
+  "repositoryIntegrityPolicy": {
+    "policyPath": "policies/repository-integrity.json",
+    "validator": "tools/repository_integrity/validate.py",
+    "inventoryPath": "data/repository-integrity-inventory.json",
+    "reportSchema": "schemas/repository-integrity-report.schema.json",
+    "sarifSchema": "schemas/repository-integrity-sarif.schema.json",
+    "failOnTrackedGeneratedFile": true,
+    "failOnManifestCoverageDrift": true,
+    "failOnMissingGovernanceAsset": true,
+    "failOnUnexpectedBinary": true,
+    "maximumViolations": 0
   }
 }

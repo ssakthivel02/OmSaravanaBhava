@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "status",
+    "tracked_files",
+    "violation_count",
+    "violations",
+    "inventory_sha256"
+  ],
+  "properties": {
+    "status": {
+      "enum": [
+        "PASS",
+        "FAIL"
+      ]
+    },
+    "tracked_files": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "violation_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "violations": {
+      "type": "array"
+    },
+    "inventory_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  }
+}
