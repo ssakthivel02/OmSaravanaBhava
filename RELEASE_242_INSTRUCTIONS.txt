@@ -1,0 +1,20 @@
+Release 242 publication instructions
+====================================
+
+THIS PACKAGE MUST NOT BE UPLOADED THROUGH THE GITHUB BROWSER.
+
+Reason:
+- The release contains 293 tracked deletions.
+- Browser upload only adds or replaces files and cannot execute the required Git deletion transaction.
+
+Procedure:
+1. Extract OmSaravanaBhava-Release-242.zip outside every existing Git repository.
+2. Double-click RUN_RELEASE_242_LOCALLY.cmd.
+3. Complete GitHub authentication when prompted.
+4. Keep the command window open until the push reports success.
+
+Exact base: dfef1e4e76582b1fe5995547bbfa561300fbea9b
+Exact title: Release 242: recover production baseline and remove misuploaded release packages
+Expected scope: 337 paths = 28 additions + 16 modifications + 293 deletions.
+
+The publisher stops without pushing if the base changed, a deletion target is missing, staged coverage differs, or any validation fails.

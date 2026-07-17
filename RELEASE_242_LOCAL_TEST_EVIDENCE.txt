@@ -1,0 +1,257 @@
+$ /opt/pyvenv/bin/python -B -m tools.production_baseline.validate --root . --mode staged
+{
+  "status": "PASS",
+  "release": 242,
+  "mode": "staged",
+  "findingCount": 0,
+  "declaredChangedCount": 337,
+  "declaredDeletedCount": 293,
+  "findings": []
+}
+
+
+$ node --test tests/js/content-status-audit.test.mjs tests/js/discovery-workspace.test.mjs tests/js/effective-route-registry.test.mjs tests/js/no-global-fetch-interception.test.mjs tests/js/site-directory.test.mjs
+TAP version 13
+# Subtest: effective boundary alignment uses composed status
+ok 1 - effective boundary alignment uses composed status
+  ---
+  duration_ms: 0.87553
+  type: 'test'
+  ...
+# Subtest: status counts use effective values
+ok 2 - status counts use effective values
+  ---
+  duration_ms: 8.957602
+  type: 'test'
+  ...
+# Subtest: filters and summary operate on evaluated records
+ok 3 - filters and summary operate on evaluated records
+  ---
+  duration_ms: 0.366392
+  type: 'test'
+  ...
+# Subtest: model excludes reading-ineligible and configured statuses
+ok 4 - model excludes reading-ineligible and configured statuses
+  ---
+  duration_ms: 1.361253
+  type: 'test'
+  ...
+# Subtest: filter supports audience, status and text query
+ok 5 - filter supports audience, status and text query
+  ---
+  duration_ms: 0.686604
+  type: 'test'
+  ...
+# Subtest: metrics report explicit overrides in eligible routes
+ok 6 - metrics report explicit overrides in eligible routes
+  ---
+  duration_ms: 0.463753
+  type: 'test'
+  ...
+# [OmSaravanaBhava] Effective route overrides unavailable Error: /data/site-routes-effective-overrides.json: HTTP 503
+#     at fetchJson (file:///mnt/data/OmSaravanaBhava-Release-242-simulation/current/assets/js/effective-route-registry.mjs:42:11)
+#     at async load (file:///mnt/data/OmSaravanaBhava-Release-242-simulation/current/assets/js/effective-route-registry.mjs:232:25)
+#     at async TestContext.<anonymous> (file:///mnt/data/OmSaravanaBhava-Release-242-simulation/current/tests/js/effective-route-registry.test.mjs:133:20)
+#     at async Test.run (node:internal/test_runner/test:1054:7)
+#     at async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+# Subtest: same-origin paths normalise to pathname
+ok 7 - same-origin paths normalise to pathname
+  ---
+  duration_ms: 0.768855
+  type: 'test'
+  ...
+# Subtest: historical and override validators accept canonical fixtures
+ok 8 - historical and override validators accept canonical fixtures
+  ---
+  duration_ms: 1.098332
+  type: 'test'
+  ...
+# Subtest: composition applies exact-path override and preserves metadata
+ok 9 - composition applies exact-path override and preserves metadata
+  ---
+  duration_ms: 0.514284
+  type: 'test'
+  ...
+# Subtest: unmatched overrides are reported in deterministic order
+ok 10 - unmatched overrides are reported in deterministic order
+  ---
+  duration_ms: 0.30447
+  type: 'test'
+  ...
+# Subtest: historical fallback is explicit and preserves routes
+ok 11 - historical fallback is explicit and preserves routes
+  ---
+  duration_ms: 0.603809
+  type: 'test'
+  ...
+# Subtest: loader composes explicit registry with mocked fetch
+ok 12 - loader composes explicit registry with mocked fetch
+  ---
+  duration_ms: 0.499248
+  type: 'test'
+  ...
+# Subtest: loader falls back when override request fails
+ok 13 - loader falls back when override request fails
+  ---
+  duration_ms: 1.125703
+  type: 'test'
+  ...
+# Subtest: strict loader rejects override failure
+ok 14 - strict loader rejects override failure
+  ---
+  duration_ms: 0.495579
+  type: 'test'
+  ...
+# Subtest: route consumer implementation never assigns global fetch
+ok 15 - route consumer implementation never assigns global fetch
+  ---
+  duration_ms: 41.062428
+  type: 'test'
+  ...
+# Subtest: legacy helper exposes explicit override loader
+ok 16 - legacy helper exposes explicit override loader
+  ---
+  duration_ms: 1.564454
+  type: 'test'
+  ...
+# Subtest: directory filters category and status
+ok 17 - directory filters category and status
+  ---
+  duration_ms: 0.732316
+  type: 'test'
+  ...
+# Subtest: directory search covers Tamil and English metadata
+ok 18 - directory search covers Tamil and English metadata
+  ---
+  duration_ms: 0.182335
+  type: 'test'
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 166.899062
+
+
+$ /opt/pyvenv/bin/python -B -m unittest discover -s tests -p test_*.py -v
+test_module_page_passes (deployment_conformance.test_html.HtmlTests.test_module_page_passes) ... ok
+test_stale_release_fails (deployment_conformance.test_html.HtmlTests.test_stale_release_fails) ... ok
+test_clean_module_passes (deployment_conformance.test_modules.ModuleTests.test_clean_module_passes) ... ok
+test_global_fetch_assignment_fails (deployment_conformance.test_modules.ModuleTests.test_global_fetch_assignment_fails) ... ok
+test_canonical_source_passes (deployment_conformance.test_service_worker.ServiceWorkerTests.test_canonical_source_passes) ... ok
+test_legacy_precache_fails (deployment_conformance.test_service_worker.ServiceWorkerTests.test_legacy_precache_fails) ... ok
+test_release_package_passes (deployment_conformance.test_validator.ValidatorTests.test_release_package_passes) ... ok
+test_missing_release_fails (effective_route_consumers.test_html_scan.HtmlScanTests.test_missing_release_fails) ... ok
+test_release_and_module_pass (effective_route_consumers.test_html_scan.HtmlScanTests.test_release_and_module_pass) ... ok
+test_canonical_runtime_passes (effective_route_consumers.test_runtime.RuntimeTests.test_canonical_runtime_passes) ... ok
+test_global_fetch_interception_fails (effective_route_consumers.test_runtime.RuntimeTests.test_global_fetch_interception_fails) ... ok
+test_explicit_loader_import_passes (effective_route_consumers.test_source_scan.SourceScanTests.test_explicit_loader_import_passes) ... ok
+test_global_fetch_assignment_fails (effective_route_consumers.test_source_scan.SourceScanTests.test_global_fetch_assignment_fails) ... ok
+test_legacy_directory_script_fails (effective_route_consumers.test_validator.ValidatorTests.test_legacy_directory_script_fails) ... ok
+test_release_package_passes (effective_route_consumers.test_validator.ValidatorTests.test_release_package_passes) ... ok
+test_forbidden_scope_contains_cache_and_legacy_script (production_baseline.test_contract.ContractTests.test_forbidden_scope_contains_cache_and_legacy_script) ... ok
+test_workflow_set_is_permanent (production_baseline.test_contract.ContractTests.test_workflow_set_is_permanent) ... ok
+test_identity_and_scale (production_baseline.test_package.PackageTests.test_identity_and_scale) ... ok
+test_no_browser_publisher_is_committed (production_baseline.test_package.PackageTests.test_no_browser_publisher_is_committed) ... ok
+test_expected_statuses (production_baseline.test_rules.RuleTests.test_expected_statuses) ... ok
+test_legacy_path_is_rejected (production_baseline.test_rules.RuleTests.test_legacy_path_is_rejected) ... ok
+test_wrong_parent_fails (production_baseline.test_validator.ValidatorTests.test_wrong_parent_fails) ... ok
+test_wrong_staged_status_fails (production_baseline.test_validator.ValidatorTests.test_wrong_staged_status_fails) ... ok
+test_active_entry_is_returned (repository_hygiene.test_allowlist.AllowlistTests.test_active_entry_is_returned) ... ok
+test_expired_entry_is_ignored (repository_hygiene.test_allowlist.AllowlistTests.test_expired_entry_is_ignored) ... ok
+test_invalid_fixtures_fail (repository_hygiene.test_fixtures.FixtureTests.test_invalid_fixtures_fail) ... ok
+test_valid_fixtures_pass (repository_hygiene.test_fixtures.FixtureTests.test_valid_fixtures_pass) ... ok
+test_cache_glob_matches (repository_hygiene.test_matching.MatchingTests.test_cache_glob_matches) ... ok
+test_normalise_windows_path (repository_hygiene.test_matching.MatchingTests.test_normalise_windows_path) ... ok
+test_cache_fails (repository_hygiene.test_scanner.ScannerTests.test_cache_fails) ... ok
+test_clean_source_passes (repository_hygiene.test_scanner.ScannerTests.test_clean_source_passes) ... ok
+test_allowlisted_path_is_ignored (repository_hygiene.test_validator.ValidatorTests.test_allowlisted_path_is_ignored) ... ok
+test_status_changes_on_violation (repository_hygiene.test_validator.ValidatorTests.test_status_changes_on_violation) ... ok
+test_route_registry_command_uses_policy (repository_hygiene.test_workflow.WorkflowTests.test_route_registry_command_uses_policy) ... ok
+test_active_exception (repository_integrity.test_allowlist.AllowlistTests.test_active_exception) ... ok
+test_expired_exception (repository_integrity.test_allowlist.AllowlistTests.test_expired_exception) ... ok
+test_existing_asset_passes (repository_integrity.test_assets.AssetTests.test_existing_asset_passes) ... ok
+test_missing_asset_fails (repository_integrity.test_assets.AssetTests.test_missing_asset_fails) ... ok
+test_added_removed_changed (repository_integrity.test_diff.DiffTests.test_added_removed_changed) ... ok
+test_invalid_fixtures (repository_integrity.test_fixtures.FixtureTests.test_invalid_fixtures) ... ok
+test_valid_fixtures (repository_integrity.test_fixtures.FixtureTests.test_valid_fixtures) ... ok
+test_file_hash_is_stable (repository_integrity.test_hashing.HashingTests.test_file_hash_is_stable) ... ok
+test_payload_key_order_is_stable (repository_integrity.test_hashing.HashingTests.test_payload_key_order_is_stable) ... ok
+test_inventory_is_sorted_and_counted (repository_integrity.test_inventory.InventoryTests.test_inventory_is_sorted_and_counted) ... ok
+test_duplicate_path_fails (repository_integrity.test_manifest.ManifestTests.test_duplicate_path_fails) ... ok
+test_missing_field_fails (repository_integrity.test_manifest.ManifestTests.test_missing_field_fails) ... ok
+test_nested_cache_matches (repository_integrity.test_paths.PathTests.test_nested_cache_matches) ... ok
+test_windows_separator_normalises (repository_integrity.test_paths.PathTests.test_windows_separator_normalises) ... ok
+test_cache_path_fails (repository_integrity.test_rules.RuleTests.test_cache_path_fails) ... ok
+test_clean_source_passes (repository_integrity.test_rules.RuleTests.test_clean_source_passes) ... ok
+test_violation_is_mapped (repository_integrity.test_sarif.SarifTests.test_violation_is_mapped) ... ok
+test_added_removed_changed (route_registry.test_diff.DiffTests.test_added_removed_changed) ... ok
+test_key_order_does_not_change_fingerprint (route_registry.test_fingerprint.FingerprintTests.test_key_order_does_not_change_fingerprint) ... ok
+test_value_change_changes_fingerprint (route_registry.test_fingerprint.FingerprintTests.test_value_change_changes_fingerprint) ... ok
+test_canonical_output_matches (route_registry.test_generator.GeneratorTests.test_canonical_output_matches) ... ok
+test_provenance_is_retained (route_registry.test_generator.GeneratorTests.test_provenance_is_retained) ... ok
+test_records_are_sorted (route_registry.test_generator.GeneratorTests.test_records_are_sorted) ... ok
+test_projection (route_registry.test_provenance.ProvenanceTests.test_projection) ... ok
+test_all_invalid_fixtures_fail (route_registry.test_validation.ValidationTests.test_all_invalid_fixtures_fail) ... ok
+test_canonical_boundaries_pass (route_registry.test_validation.ValidationTests.test_canonical_boundaries_pass) ... ok
+test_canonical_overrides_pass (route_registry.test_validation.ValidationTests.test_canonical_overrides_pass) ... ok
+
+----------------------------------------------------------------------
+Ran 61 tests in 0.064s
+
+OK
+
+
+$ /opt/pyvenv/bin/python -B -m tools.deployment_conformance.validate --root .
+{
+  "status": "PASS",
+  "release": 242,
+  "findingCount": 0,
+  "findings": []
+}
+
+
+$ /opt/pyvenv/bin/python -B -m tools.effective_route_consumers.validate --root .
+{
+  "status": "PASS",
+  "release": 238,
+  "findingCount": 0,
+  "findings": []
+}
+
+
+$ /opt/pyvenv/bin/python -B -m tools.repository_hygiene.validate --root .
+{
+  "status": "PASS",
+  "scanned_files": 374,
+  "violation_count": 0,
+  "violations": [],
+  "ignored_allowlist": []
+}
+
+
+$ /opt/pyvenv/bin/python -B -m tools.repository_integrity.validate --root . --manifest manifest-release-242.json
+{
+  "status": "PASS",
+  "tracked_files": 374,
+  "violation_count": 0,
+  "violations": [],
+  "inventory_sha256": "b31c2b68d54eb1a8846aa409b0e6f9ee7ce11f91ebad804286b3139a5c0329fc",
+  "ignored_allowlist": []
+}
+
+
+$ final production baseline
+{
+  "status": "PASS",
+  "release": 242,
+  "mode": "final",
+  "findingCount": 0,
+  "declaredChangedCount": 337,
+  "declaredDeletedCount": 293,
+  "findings": []
+}
