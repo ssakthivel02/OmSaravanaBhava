@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["release","theme","heroAsset","principles","motion","assets","contentBoundary"],
+  "properties": {
+    "release": {"const": 245},
+    "theme": {"type": "string"},
+    "heroAsset": {"type": "string"},
+    "principles": {"type": "array", "minItems": 5},
+    "motion": {"type": "object"},
+    "assets": {"type": "array", "minItems": 7},
+    "contentBoundary": {"type": "string"}
+  }
+}

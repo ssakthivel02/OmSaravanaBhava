@@ -1,28 +1,16 @@
 {
-  "version": 2,
-  "release": 244,
+  "version": 3,
+  "release": 245,
   "contract": "data/production-baseline.json",
-  "manifest": "manifest-release-244.json",
-  "requiredBaseCommit": "2e8b4d2d4a47931757423906015e586eafcd26a3",
-  "requiredCommitTitle": "Release 244: establish production observability and deployment attestation",
+  "manifest": "manifest-release-245.json",
+  "requiredBaseCommit": "640ab54e1028927a22c19bb4712516c2d05ba58c",
+  "requiredCommitTitle": "Release 245: deliver premium Murugan visual experience and accessible interaction",
   "hardChangedFileLimit": 500,
   "requireExactStagedCoverage": true,
   "requireNoLegacyReleaseMachinery": true,
   "requireNoTrackedPythonCache": true,
-  "requireServiceWorkerRelease": "244",
+  "requireServiceWorkerRelease": "245",
   "preserveHistoricalAuditEvidenceThroughRelease": 231,
-  "allowedRootReleaseFiles": [
-    "manifest-release-244.json",
-    "PRODUCTION_BASELINE_244.json"
-  ],
-  "forbiddenTrackedPatterns": [
-    "**/__pycache__/**",
-    "**/*.pyc",
-    "**/*.pyo",
-    "scripts/release*/**",
-    "tools/release_*/**",
-    "tests/release_*/**",
-    "docs/release-23*/**",
-    "docs/release-24*/**"
-  ]
+  "allowedRootReleaseFiles": ["manifest-release-245.json","PRODUCTION_BASELINE_245.json"],
+  "forbiddenTrackedPatterns": ["**/__pycache__/**","**/*.pyc","**/*.pyo","scripts/release*/**","tools/release_*/**","tests/release_*/**","docs/release-23*/**","docs/release-24*/**"]
 }

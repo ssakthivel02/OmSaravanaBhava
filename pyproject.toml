@@ -1,9 +1,8 @@
-
 [project]
 name = "omsaravanabhava-production-controls"
-version = "244.0.0"
+version = "245.0.0"
 requires-python = ">=3.12"
-description = "Permanent production baseline, observability, deployment attestation and repository integrity controls."
+description = "Production baseline, premium visual experience, deployment conformance and repository integrity controls."
 
 [tool.ruff]
 line-length = 100

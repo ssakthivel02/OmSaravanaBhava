@@ -1,10 +1,10 @@
 {
   "project": "OmSaravanaBhava",
-  "release": 244,
-  "baseRelease": 243,
-  "baseCommit": "2e8b4d2d4a47931757423906015e586eafcd26a3",
-  "requiredCommitTitle": "Release 244: establish production observability and deployment attestation",
-  "manifestPath": "manifest-release-244.json",
+  "release": 245,
+  "baseRelease": 244,
+  "baseCommit": "640ab54e1028927a22c19bb4712516c2d05ba58c",
+  "requiredCommitTitle": "Release 245: deliver premium Murugan visual experience and accessible interaction",
+  "manifestPath": "manifest-release-245.json",
   "mode": "github-atomic-tree-pull-request",
   "browserUploadAllowed": false,
   "warningChangedFileCount": 100,
@@ -12,9 +12,10 @@
   "forbidFillerFiles": true,
   "productionBaselinePolicy": "policies/production-baseline.json",
   "productionBaselineContract": "data/production-baseline.json",
-  "completionRecord": "PRODUCTION_BASELINE_244.json",
+  "completionRecord": "PRODUCTION_BASELINE_245.json",
   "operationsObservabilityPolicy": "policies/operations-observability.json",
   "deploymentAttestationPolicy": "policies/deployment-attestation.json",
+  "visualExperiencePolicy": "policies/visual-experience.json",
   "routeRegistryPolicy": {
     "historicalRegistry": "data/site-routes.json",
     "boundaryRegistry": "data/publication-boundaries.json",
@@ -25,7 +26,7 @@
     "requireDeterministicSort": true,
     "requireProvenance": true,
     "maximumOverrideRecords": 100,
-    "validationRelease": 244,
+    "validationRelease": 245,
     "validationGenerated": "2026-07-17"
   }
 }

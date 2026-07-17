@@ -1,5 +1,5 @@
 {
-  "release": 244,
+  "release": 245,
   "paths": [
     ".editorconfig",
     ".gitattributes",
@@ -13,17 +13,20 @@
     ".pre-commit-config.yaml",
     ".release-governance.json",
     "Makefile",
-    "PRODUCTION_BASELINE_244.json",
+    "PRODUCTION_BASELINE_245.json",
     "data/deployment-conformance.json",
-    "data/production-baseline.json",
     "data/operations/check-catalog.json",
-    "manifest-release-244.json",
+    "data/production-baseline.json",
+    "data/visual-experience.json",
+    "index.html",
+    "manifest-release-245.json",
     "operations-observability.html",
     "policies/deployment-conformance.json",
     "policies/operations-observability.json",
     "policies/production-baseline.json",
     "policies/repository-hygiene.json",
     "policies/repository-integrity.json",
+    "policies/visual-experience.json",
     "pyproject.toml",
     "service-worker.js",
     "tools/deployment_conformance/validate.py",
@@ -31,6 +34,7 @@
     "tools/operations_observability/validate.py",
     "tools/production_baseline/validate.py",
     "tools/repository_hygiene/validate.py",
-    "tools/repository_integrity/validate.py"
+    "tools/repository_integrity/validate.py",
+    "tools/visual_experience/validate.py"
   ]
 }
