@@ -1,25 +1,9 @@
 {
   "release": 243,
   "baseCommit": "c966ddd2d4367e4a619c7ac61543f786f23bf5b6",
-  "requiredCommitTitle": "Release 243: establish verified production baseline and complete repository recovery",
-  "serviceWorkerRelease": "243",
-  "manifest": "manifest-release-243.json",
-  "completionRecord": "PRODUCTION_BASELINE_243.json",
-  "approvedWorkflows": [
-    ".github/workflows/deployment-conformance.yml",
-    ".github/workflows/effective-route-consumers.yml",
-    ".github/workflows/production-baseline.yml",
-    ".github/workflows/repository-hygiene.yml",
-    ".github/workflows/repository-integrity.yml"
-  ],
-  "requiredPermanentControls": [
-    "tools/production_baseline/validate.py",
-    "tools/deployment_conformance/validate.py",
-    "tools/effective_route_consumers/validate.py",
-    "tools/repository_hygiene/validate.py",
-    "tools/repository_integrity/validate.py"
-  ],
-  "forbiddenExactPaths": [
+  "commit": "9c7631ea726ddc5eb9f7fb1b6116703996406093",
+  "expectedCount": 306,
+  "paths": [
     ".github/workflows/atomic-publish-verification.yml",
     ".github/workflows/release-232-attestation.yml",
     ".github/workflows/release-232-governance.yml",
@@ -326,13 +310,5 @@
     "RELEASE_242_VALIDATION_REPORT.md",
     "RUN_RELEASE_242_LOCALLY.cmd",
     "manifest-release-242.json"
-  ],
-  "maximumChangedPaths": 500,
-  "recovery": {
-    "sourceCommit": "c966ddd2d4367e4a619c7ac61543f786f23bf5b6",
-    "previousRecoveryDeletionTargets": 293,
-    "release242UploadPathsRemoved": 11,
-    "totalDeletedPaths": 306,
-    "additionalLegacyScriptDeletionCount": 2
-  }
+  ]
 }

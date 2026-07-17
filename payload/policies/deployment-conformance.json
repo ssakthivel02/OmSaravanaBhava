@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "release": 241,
+  "release": 243,
   "contract": "data/deployment-conformance.json",
   "serviceWorker": "service-worker.js",
   "requiredConsumerAssets": [
@@ -16,6 +16,6 @@
     "assets/js/site-directory.js"
   ],
   "forbidGlobalFetchReplacement": true,
-  "requireCacheRelease": "241",
+  "requireCacheRelease": "243",
   "requireExplicitOverrideRegistry": true
 }

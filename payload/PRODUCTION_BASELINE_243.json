@@ -1,0 +1,21 @@
+{
+  "release": 243,
+  "status": "LOCAL_VALIDATION_PASS_REMOTE_PR_PASS",
+  "baseCommit": "c966ddd2d4367e4a619c7ac61543f786f23bf5b6",
+  "requiredCommitTitle": "Release 243: establish verified production baseline and complete repository recovery",
+  "commit": "9c7631ea726ddc5eb9f7fb1b6116703996406093",
+  "pullRequest": 1,
+  "declaredChangedCount": 350,
+  "declaredAddedCount": 28,
+  "declaredModifiedCount": 16,
+  "declaredDeletedCount": 306,
+  "serviceWorkerRelease": "243",
+  "publicationMode": "github-atomic-tree-pull-request",
+  "browserUploadAllowed": false,
+  "javascriptTests": "18/18",
+  "pythonTests": "61/61",
+  "legacyDeletedCount": 295,
+  "misuploadedPackageDeletedCount": 11,
+  "branch": "release-243-production-baseline-recovery",
+  "remotePullRequestChecks": "PASS_5_OF_5"
+}

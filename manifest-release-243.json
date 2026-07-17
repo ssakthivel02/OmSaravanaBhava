@@ -1,25 +1,60 @@
 {
+  "project": "OmSaravanaBhava",
   "release": 243,
-  "baseCommit": "c966ddd2d4367e4a619c7ac61543f786f23bf5b6",
-  "requiredCommitTitle": "Release 243: establish verified production baseline and complete repository recovery",
-  "serviceWorkerRelease": "243",
-  "manifest": "manifest-release-243.json",
-  "completionRecord": "PRODUCTION_BASELINE_243.json",
-  "approvedWorkflows": [
+  "name": "Verified Production Baseline and Complete Repository Recovery",
+  "base_release": 242,
+  "base_commit": "c966ddd2d4367e4a619c7ac61543f786f23bf5b6",
+  "generated": "2026-07-17",
+  "required_commit_title": "Release 243: establish verified production baseline and complete repository recovery",
+  "added_files": [
+    ".github/workflows/production-baseline.yml",
+    "PRODUCTION_BASELINE_243.json",
+    "data/production-baseline.json",
+    "docs/production-baseline/README.md",
+    "docs/production-baseline/architecture.md",
+    "docs/production-baseline/operations.md",
+    "docs/production-baseline/publication.md",
+    "docs/production-baseline/verification.md",
+    "manifest-release-243.json",
+    "policies/production-baseline.json",
+    "schemas/production-baseline-report.schema.json",
+    "schemas/production-baseline.schema.json",
+    "scripts/verify-production-baseline.py",
+    "templates/production-release-checklist.md",
+    "tests/production_baseline/__init__.py",
+    "tests/production_baseline/test_contract.py",
+    "tests/production_baseline/test_package.py",
+    "tests/production_baseline/test_rules.py",
+    "tests/production_baseline/test_validator.py",
+    "tools/production_baseline/__init__.py",
+    "tools/production_baseline/constants.py",
+    "tools/production_baseline/git.py",
+    "tools/production_baseline/jsonio.py",
+    "tools/production_baseline/models.py",
+    "tools/production_baseline/rules.py",
+    "tools/production_baseline/validate.py",
+    "tools/production_baseline/validator.py",
+    "tools/production_baseline_cli.py"
+  ],
+  "modified_files": [
+    ".gitattributes",
     ".github/workflows/deployment-conformance.yml",
     ".github/workflows/effective-route-consumers.yml",
-    ".github/workflows/production-baseline.yml",
-    ".github/workflows/repository-hygiene.yml",
-    ".github/workflows/repository-integrity.yml"
+    ".gitignore",
+    ".pre-commit-config.yaml",
+    ".release-governance.json",
+    "Makefile",
+    "data/deployment-conformance.json",
+    "policies/deployment-conformance.json",
+    "policies/repository-integrity-required-assets.json",
+    "policies/repository-integrity.json",
+    "pyproject.toml",
+    "schemas/deployment-conformance.schema.json",
+    "service-worker.js",
+    "tests/deployment_conformance/test_service_worker.py",
+    "tests/repository_hygiene/test_workflow.py"
   ],
-  "requiredPermanentControls": [
-    "tools/production_baseline/validate.py",
-    "tools/deployment_conformance/validate.py",
-    "tools/effective_route_consumers/validate.py",
-    "tools/repository_hygiene/validate.py",
-    "tools/repository_integrity/validate.py"
-  ],
-  "forbiddenExactPaths": [
+  "deleted_files": [
     ".github/workflows/atomic-publish-verification.yml",
     ".github/workflows/release-232-attestation.yml",
     ".github/workflows/release-232-governance.yml",
@@ -327,12 +362,42 @@
     "RUN_RELEASE_242_LOCALLY.cmd",
     "manifest-release-242.json"
   ],
-  "maximumChangedPaths": 500,
-  "recovery": {
-    "sourceCommit": "c966ddd2d4367e4a619c7ac61543f786f23bf5b6",
-    "previousRecoveryDeletionTargets": 293,
-    "release242UploadPathsRemoved": 11,
-    "totalDeletedPaths": 306,
-    "additionalLegacyScriptDeletionCount": 2
-  }
+  "route_registry_changed": false,
+  "effective_route_overrides_changed": false,
+  "sitemap_changed": false,
+  "new_public_route": false,
+  "new_browser_storage_key": false,
+  "content_changes": false,
+  "service_worker_changed": true,
+  "publication": {
+    "mode": "github-atomic-tree-pull-request",
+    "branch": "release-243-production-baseline-recovery",
+    "exactBaseRequired": true,
+    "exactStagedCoverageRequired": true,
+    "pullRequestRequired": true,
+    "browserUploadAllowed": false
+  },
+  "validation_status": "LOCAL_SIMULATION_PASS_REMOTE_PR_PASS",
+  "validation_results": {
+    "changed_file_count": 350,
+    "added_file_count": 28,
+    "modified_file_count": 16,
+    "deleted_file_count": 306,
+    "legacy_and_prior_package_deletion_count": 295,
+    "release_242_upload_deletion_count": 11,
+    "javascript_tests": "PASS_18_OF_18",
+    "python_tests": "PASS_61_OF_61",
+    "production_baseline": "PASS_ZERO_FINDINGS",
+    "deployment_conformance": "PASS_ZERO_FINDINGS",
+    "effective_route_consumers": "PASS_ZERO_FINDINGS",
+    "repository_hygiene": "PASS_ZERO_VIOLATIONS",
+    "repository_integrity": "PASS_ZERO_VIOLATIONS",
+    "synthetic_staged_coverage": "PASS_350_OF_350",
+    "synthetic_deletions": "PASS_306_OF_306",
+    "remote_ci": "PASS_5_OF_5"
+  },
+  "known_limitations": [
+    "The pull request must be reviewed and merged before Release 243 becomes the production baseline.",
+    "All five pull-request workflows passed; post-merge push validation remains pending until the PR is merged."
+  ]
 }

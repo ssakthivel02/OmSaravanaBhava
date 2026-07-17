@@ -10,8 +10,8 @@ class RuleTests(unittest.TestCase):
     def test_legacy_path_is_rejected(self):
         root=Path(__file__).resolve().parents[2]
         policy={"requiredBaseCommit":"x","requiredCommitTitle":"t","hardChangedFileLimit":500,"forbiddenTrackedPatterns":["**/*.pyc"],"allowedRootReleaseFiles":[]}
-        contract={"requiredPermanentControls":[],"forbiddenExactPaths":["legacy"],"approvedWorkflows":[],"serviceWorkerRelease":"241"}
-        manifest={"release":241,"base_commit":"x","required_commit_title":"t","added_files":[],"modified_files":[],"deleted_files":[]}
+        contract={"requiredPermanentControls":[],"forbiddenExactPaths":["legacy"],"approvedWorkflows":[],"serviceWorkerRelease":"243"}
+        manifest={"release":243,"base_commit":"x","required_commit_title":"t","added_files":[],"modified_files":[],"deleted_files":[]}
         findings=static_findings(root,policy,contract,manifest,{"legacy"})
         self.assertTrue(any(f.rule=="forbidden-exact" for f in findings))
 

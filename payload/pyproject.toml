@@ -1,6 +1,6 @@
 [project]
 name = "omsaravanabhava-production-controls"
-version = "241.0.0"
+version = "243.0.0"
 requires-python = ">=3.12"
 description = "Permanent production baseline, deployment conformance and repository integrity controls."
 

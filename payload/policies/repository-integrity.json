@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "release": 241,
-  "generated": "2026-07-16",
+  "release": 243,
+  "generated": "2026-07-17",
   "requiredGovernanceAssets": [
     ".editorconfig",
     ".gitattributes",
@@ -14,10 +14,10 @@
     ".pre-commit-config.yaml",
     ".release-governance.json",
     "Makefile",
-    "PRODUCTION_BASELINE_241.json",
+    "PRODUCTION_BASELINE_243.json",
     "data/deployment-conformance.json",
     "data/production-baseline.json",
-    "manifest-release-241.json",
+    "manifest-release-243.json",
     "policies/deployment-conformance.json",
     "policies/effective-route-consumers.json",
     "policies/production-baseline.json",

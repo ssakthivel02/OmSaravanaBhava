@@ -12,14 +12,14 @@
   ],
   "properties": {
     "release": {
-      "const": 241
+      "const": 243
     },
     "baseCommit": {
       "type": "string",
       "pattern": "^[0-9a-f]{40}$"
     },
     "serviceWorkerRelease": {
-      "const": "241"
+      "const": "243"
     },
     "maximumChangedPaths": {
       "type": "integer",

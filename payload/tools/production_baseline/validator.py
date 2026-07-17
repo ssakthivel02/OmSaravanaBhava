@@ -21,7 +21,7 @@ def validate(*, root: Path, policy: dict, contract: dict, manifest: dict, mode: 
             findings.append(Finding("commit-title", "Commit subject is not exact."))
     return {
         "status": PASS if not findings else FAIL,
-        "release": 241,
+        "release": 243,
         "mode": mode,
         "findingCount": len(findings),
         "declaredChangedCount": len(expected),

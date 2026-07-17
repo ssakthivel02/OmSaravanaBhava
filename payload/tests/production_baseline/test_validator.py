@@ -7,7 +7,7 @@ class ValidatorTests(unittest.TestCase):
         return (
             {"requiredBaseCommit":"base","requiredCommitTitle":"title","hardChangedFileLimit":500,"forbiddenTrackedPatterns":[],"allowedRootReleaseFiles":[]},
             {"requiredPermanentControls":[],"forbiddenExactPaths":[],"approvedWorkflows":[]},
-            {"release":241,"base_commit":"base","required_commit_title":"title","added_files":["a"],"modified_files":[],"deleted_files":[]},
+            {"release":243,"base_commit":"base","required_commit_title":"title","added_files":["a"],"modified_files":[],"deleted_files":[]},
         )
     def test_wrong_staged_status_fails(self):
         p,c,m=self.base()
