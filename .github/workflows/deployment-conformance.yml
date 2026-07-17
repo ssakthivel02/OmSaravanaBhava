@@ -18,38 +18,20 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: "22"
-
-      - name: Validate deployment contracts
+      - name: Validate deployment contract
         env:
           PYTHONDONTWRITEBYTECODE: "1"
-        run: |
-          python -B -m tools.deployment_conformance.validate --root .
-
-      - name: Run route-consumer browser tests
+        run: python -B -m tools.deployment_conformance.validate --root .
+      - name: Run deployment tests
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
         run: |
           node --test tests/js/*.test.mjs
-
-      - name: Run deployment and transaction tests
-        env:
-          PYTHONDONTWRITEBYTECODE: "1"
-        run: |
-          python -B -m unittest discover \
-            -s tests/deployment_conformance \
-            -p "test_*.py" \
-            -v
-          python -B -m unittest discover \
-            -s tests/release_transaction \
-            -p "test_*.py" \
-            -v
+          python -B -m unittest discover -s tests/deployment_conformance -p "test_*.py" -v

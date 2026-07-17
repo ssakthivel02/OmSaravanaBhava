@@ -1,67 +1,20 @@
-# Python
 __pycache__/
 *.py[cod]
 *$py.class
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
-.coverage
-htmlcov/
-
-# Release validation output
-artifacts/
-*.attestation.json
-*.governance-report.json
-*.independent-report.json
-
-# Build and package output
-dist/
-build/
-out/
 coverage/
-*.zip
-*.tar
-*.tar.gz
-*.tgz
-
-# Local environments
-.venv/
-venv/
-env/
+htmlcov/
+artifacts/
+build/
+dist/
+*.tmp
+*.bak
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
 .env
 .env.*
 !.env.example
-
-# Editors and operating systems
-.vscode/
-.idea/
-.DS_Store
-Thumbs.db
-desktop.ini
-*.swp
-*.swo
-
-# Temporary upload/extraction folders
-*-zip-check/
-*-applycheck/
-*-patchrepo/
-*-integration/
-*-full/
-tmp/
-temp/
-
-# Repository integrity evidence
-artifacts/*.sarif
-artifacts/repository-integrity-report.json
-artifacts/repository-integrity-inventory.json
-
-# Release 237 auto-clone publisher workspaces
-
-# Release 238 finalizer temporary files
-RELEASE_238_FINALIZATION_RESULT.tmp
-
-# Release 239 fresh-clone publisher workspaces
-
-# Release 240 closure workspaces
-OmSaravanaBhava-release240/
-release240-clone/

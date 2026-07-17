@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "release": 243,
+  "contract": "data/production-baseline.json",
+  "manifest": "manifest-release-243.json",
+  "requiredBaseCommit": "c69b1ee95bbf87b95a41c51c2428249c0d74533d",
+  "requiredCommitTitle": "Release 243: establish verified production baseline and complete repository recovery",
+  "hardChangedFileLimit": 500,
+  "requireExactStagedCoverage": true,
+  "requireNoLegacyReleaseMachinery": true,
+  "requireNoTrackedPythonCache": true,
+  "requireServiceWorkerRelease": "243",
+  "preserveHistoricalAuditEvidenceThroughRelease": 231,
+  "allowedRootReleaseFiles": [
+    "manifest-release-243.json",
+    "PRODUCTION_BASELINE_243.json"
+  ],
+  "forbiddenTrackedPatterns": [
+    "**/__pycache__/**",
+    "**/*.pyc",
+    "**/*.pyo",
+    "scripts/release*/**",
+    "tools/release_*/**",
+    "tests/release_*/**",
+    "docs/release-23*/**",
+    "docs/release-24*/**"
+  ]
+}

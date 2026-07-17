@@ -1,8 +1,9 @@
 [project]
-name = "omsaravanabhava-release-governance"
-version = "240.0.0"
+name = "omsaravanabhava-production-controls"
+version = "243.0.0"
 requires-python = ">=3.12"
-description = "Self-healing release closure, deployment conformance and repository integrity."
+description = "Permanent production baseline, deployment conformance and repository integrity controls."
+
 [tool.ruff]
 line-length = 100
 target-version = "py312"

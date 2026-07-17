@@ -1,60 +1,18 @@
 {
-  "release": 240,
-  "generated": "2026-07-16",
-  "baseCommit": "546830197db7dddca9ab0cf8aaf62595ab3bc07f",
-  "requiredCommitTitle": "Release 240: complete repository cleanup and establish self-healing release closure",
-  "manifestPath": "manifest-release-240.json",
-  "checksumLedger": "RELEASE_240_SHA256SUMS.txt",
-  "patchPath": "RELEASE_240.patch",
-  "attestationSchema": "schemas/release-attestation.schema.json",
-  "manifestSchema": "schemas/release-manifest.schema.json",
-  "filePolicy": {
-    "warningThreshold": 100,
-    "hardLimit": 500,
-    "allowOverride": false,
-    "reason": "A single static-site release should remain reviewable, reversible and uploadable. File count is not a delivery KPI."
-  },
-  "commitPolicy": {
-    "mode": "browser-compatible",
-    "requireExactSubject": true,
-    "allowBrowserDescriptionFallback": true,
-    "browserFallbackSubjects": [
-      "Add files via upload"
-    ],
-    "bodyTitleMatch": "first-non-empty-line",
-    "fallbackStatus": "WARN",
-    "strictCliFlag": "--strict-commit-subject",
-    "strictEnvironmentVariable": "OSB_STRICT_COMMIT_SUBJECT",
-    "allowDescription": true,
-    "securityBoundary": "Fallback is accepted only when the subject is an explicitly allowed GitHub browser default and the first non-empty commit-body line exactly matches required_commit_title."
-  },
-  "requiredEvidenceFiles": [
-    "RELEASE_240_CHANGED_FILES.txt",
-    "RELEASE_240_GITHUB_PORTAL_INSTRUCTIONS.txt",
-    "RELEASE_240_LOCAL_TEST_EVIDENCE.txt",
-    "RELEASE_240_SHA256SUMS.txt",
-    "RELEASE_240_VALIDATION_REPORT.md",
-    "RELEASE_240.patch"
-  ],
-  "allowedStatusLanguage": [
-    "PASS",
-    "WARN",
-    "FAIL",
-    "NOT_RUN",
-    "INCONCLUSIVE",
-    "SKIPPED"
-  ],
-  "noFillerPolicy": {
-    "enabled": true,
-    "forbiddenNamePatterns": [
-      "file-0000",
-      "placeholder-",
-      "dummy-",
-      "sample-copy-",
-      "generated-empty-"
-    ],
-    "minimumNonWhitespaceBytes": 12
-  },
+  "project": "OmSaravanaBhava",
+  "release": 243,
+  "baseRelease": 242,
+  "baseCommit": "c69b1ee95bbf87b95a41c51c2428249c0d74533d",
+  "requiredCommitTitle": "Release 243: establish verified production baseline and complete repository recovery",
+  "manifestPath": "manifest-release-243.json",
+  "mode": "github-atomic-tree-pull-request",
+  "browserUploadAllowed": false,
+  "warningChangedFileCount": 100,
+  "hardChangedFileLimit": 500,
+  "forbidFillerFiles": true,
+  "productionBaselinePolicy": "policies/production-baseline.json",
+  "productionBaselineContract": "data/production-baseline.json",
+  "completionRecord": "PRODUCTION_BASELINE_243.json",
   "routeRegistryPolicy": {
     "historicalRegistry": "data/site-routes.json",
     "boundaryRegistry": "data/publication-boundaries.json",
@@ -65,62 +23,7 @@
     "requireDeterministicSort": true,
     "requireProvenance": true,
     "maximumOverrideRecords": 100,
-    "validationRelease": 234,
-    "validationGenerated": "2026-07-16"
-  },
-  "repositoryHygienePolicy": {
-    "policyPath": "policies/repository-hygiene.json",
-    "validator": "tools/repository_hygiene/validate.py",
-    "reportSchema": "schemas/repository-hygiene-report.schema.json",
-    "failOnTrackedCache": true,
-    "failOnTrackedBuildOutput": true,
-    "failOnTemporaryUploadArtifacts": true,
-    "failOnGeneratedBinary": true,
-    "maximumTrackedViolations": 0
-  },
-  "repositoryIntegrityPolicy": {
-    "policyPath": "policies/repository-integrity.json",
-    "validator": "tools/repository_integrity/validate.py",
-    "inventoryPath": "data/repository-integrity-inventory.json",
-    "reportSchema": "schemas/repository-integrity-report.schema.json",
-    "sarifSchema": "schemas/repository-integrity-sarif.schema.json",
-    "failOnTrackedGeneratedFile": true,
-    "failOnManifestCoverageDrift": true,
-    "failOnMissingGovernanceAsset": true,
-    "failOnUnexpectedBinary": true,
-    "maximumViolations": 0
-  },
-  "effectiveRouteConsumerPolicy": {
-    "policyPath": "policies/effective-route-consumers.json",
-    "runtimeContract": "data/effective-route-registry-runtime.json",
-    "validator": "tools/effective_route_consumers/validate.py",
-    "workflow": ".github/workflows/effective-route-consumers.yml",
-    "forbidGlobalFetchReplacement": true,
-    "requireExplicitLoader": true,
-    "requireHistoricalFallback": true,
-    "consumerRelease": 238
-  },
-  "publisherPolicy": {
-    "mode": "browser-stage-self-healing-finalizer",
-    "browserUploadAllowed": true,
-    "stageSubjectEnforced": false,
-    "approvedBaseCommit": "546830197db7dddca9ab0cf8aaf62595ab3bc07f",
-    "workflow": ".github/workflows/release-240-closure.yml",
-    "localPublisher": "PUBLISH_RELEASE_240.cmd"
-  },
-  "transactionState": "pending-closure",
-  "deploymentConformancePolicy": {
-    "policyPath": "policies/deployment-conformance.json",
-    "contractPath": "data/deployment-conformance.json",
-    "validator": "tools/deployment_conformance/validate.py",
-    "workflow": ".github/workflows/deployment-conformance.yml",
-    "serviceWorkerRelease": "240"
-  },
-  "closurePolicy": {
-    "policyPath": "policies/release-closure.json",
-    "contractPath": "data/release-240-closure.json",
-    "deletionPlan": "data/release-240-deletion-plan.json",
-    "validator": "tools/release_closure/validate.py",
-    "maximumTargets": 500
+    "validationRelease": 243,
+    "validationGenerated": "2026-07-17"
   }
 }
