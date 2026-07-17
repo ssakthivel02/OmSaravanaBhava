@@ -1,44 +1,102 @@
-[
-  {
-    "id": "thirupparamkundram",
-    "ta": "திருப்பரங்குன்றம்",
-    "en": "Thirupparankundram",
-    "range": "1–77",
-    "section": "திருப்பரங்குன்றம்"
-  },
-  {
-    "id": "thiruchendur",
-    "ta": "திருச்செந்தூர்",
-    "en": "Thiruchendur",
-    "range": "78–125",
-    "section": "திருச்சீரலைவாய்"
-  },
-  {
-    "id": "palani",
-    "ta": "பழனி",
-    "en": "Palani",
-    "range": "126–176",
-    "section": "திரு ஆவினன்குடி"
-  },
-  {
-    "id": "swamimalai",
-    "ta": "சுவாமிமலை",
-    "en": "Swamimalai",
-    "range": "177–189",
-    "section": "திரு ஏரகம்"
-  },
-  {
-    "id": "thiruthani",
-    "ta": "திருத்தணி",
-    "en": "Thiruthani",
-    "range": "190–217",
-    "section": "குன்றுதோறாடல் — traditional association"
-  },
-  {
-    "id": "pazhamudircholai",
-    "ta": "பழமுதிர்சோலை",
-    "en": "Pazhamudircholai",
-    "range": "218–317",
-    "section": "பழமுதிர்சோலை"
-  }
-]
+{
+  "release": 248,
+  "publication_status": "editorial_review_required",
+  "temples": [
+    {
+      "id": "tirupparankundram",
+      "order": 1,
+      "name": "Tirupparankundram",
+      "name_ta": "திருப்பரங்குன்றம்",
+      "district": "Madurai",
+      "image": "assets/images/temples/tirupparankundram.webp",
+      "theme": "Wisdom, divine union and victory",
+      "intro": "A sacred Murugan hill-temple tradition associated with divine union, courage and the beginning of the Arupadai Veedu pilgrimage journey.",
+      "highlight": "Begin the six-temple journey with humility, clarity and prayer.",
+      "practice": [
+        "Offer a quiet prayer before reading",
+        "Read one verified hymn or temple note",
+        "Record a personal reflection locally"
+      ]
+    },
+    {
+      "id": "tiruchendur",
+      "order": 2,
+      "name": "Tiruchendur",
+      "name_ta": "திருச்செந்தூர்",
+      "district": "Thoothukudi",
+      "image": "assets/images/temples/tiruchendur.webp",
+      "theme": "Protection, courage and victory over adversity",
+      "intro": "A celebrated seashore Murugan temple tradition associated with courage, protection, devotion and victory over destructive forces.",
+      "highlight": "Reflect on courage disciplined by compassion and dharma.",
+      "practice": [
+        "Listen to a Murugan chant",
+        "Read the temple publication-status note",
+        "Add the temple to the local pilgrimage list"
+      ]
+    },
+    {
+      "id": "palani",
+      "order": 3,
+      "name": "Palani",
+      "name_ta": "பழனி",
+      "district": "Dindigul",
+      "image": "assets/images/temples/palani.webp",
+      "theme": "Renunciation, humility and inner wisdom",
+      "intro": "A renowned hill-temple tradition that inspires simplicity, self-knowledge, restraint and the understanding that wisdom is greater than possession.",
+      "highlight": "Carry less, observe more and let devotion become inward clarity.",
+      "practice": [
+        "Read a short teaching slowly",
+        "Use reduced-motion mode for calm reading",
+        "Save one reflection in the browser"
+      ]
+    },
+    {
+      "id": "swamimalai",
+      "order": 4,
+      "name": "Swamimalai",
+      "name_ta": "சுவாமிமலை",
+      "district": "Thanjavur region",
+      "image": "assets/images/temples/swamimalai.webp",
+      "theme": "Knowledge, teaching and Pranava wisdom",
+      "intro": "A sacred teaching tradition in which Murugan is revered as the divine teacher, calling the devotee toward disciplined learning and humility before knowledge.",
+      "highlight": "Approach sacred knowledge as a responsibility, not merely information.",
+      "practice": [
+        "Open the source-aware reading route",
+        "Compare Tamil and English notes",
+        "Mark any unverified statement for review"
+      ]
+    },
+    {
+      "id": "tiruttani",
+      "order": 5,
+      "name": "Tiruttani",
+      "name_ta": "திருத்தணி",
+      "district": "Tiruvallur",
+      "image": "assets/images/temples/tiruttani.webp",
+      "theme": "Peace, restoration and divine grace",
+      "intro": "A hill-temple tradition associated with peace after conflict, emotional restoration, devotion and the steady return to spiritual balance.",
+      "highlight": "True victory is completed only when the mind returns to peace.",
+      "practice": [
+        "Pause for one minute of silence",
+        "Read a peace-oriented devotional verse",
+        "Continue through the temple timeline"
+      ]
+    },
+    {
+      "id": "pazhamudircholai",
+      "order": 6,
+      "name": "Pazhamudircholai",
+      "name_ta": "பழமுதிர்சோலை",
+      "district": "Madurai",
+      "image": "assets/images/temples/pazhamudircholai.webp",
+      "theme": "Grace, abundance and harmony with nature",
+      "intro": "A sacred forest and hill tradition that evokes maturity, abundance, compassion, learning and the relationship between devotion and nature.",
+      "highlight": "Complete the journey with gratitude, generosity and reverence for life.",
+      "practice": [
+        "Review all six temples",
+        "Create a browser-local pilgrimage plan",
+        "End with a gratitude reflection"
+      ]
+    }
+  ]
+}

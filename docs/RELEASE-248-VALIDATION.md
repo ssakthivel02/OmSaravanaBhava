@@ -1,0 +1,12 @@
+# Release 248 Validation
+- [ ] Release 247 is live
+- [ ] All six temple-detail query routes return HTTP 200
+- [ ] Hero image and names change correctly
+- [ ] Previous and next navigation cycles through all six
+- [ ] Temple selector highlights the active temple
+- [ ] Tabs work with keyboard
+- [ ] Pilgrimage list saves locally
+- [ ] Mobile menu works
+- [ ] No horizontal overflow at 320px
+- [ ] Reduced motion is respected
+- [ ] Cloudflare cache purged
