@@ -1,0 +1,17 @@
+@media(max-width:1000px){
+  .regional-toolbar{grid-template-columns:1fr 1fr}
+  .regional-grid{grid-template-columns:1fr}
+  .regional-method,.regional-detail-layout{grid-template-columns:1fr}
+}
+@media(max-width:680px){
+  .regional-hero{min-height:560px;padding:4rem 1.1rem 3rem;background-position:62% center}
+  .regional-hero h1,.regional-detail-hero h1{font-size:3.4rem}
+  .regional-toolbar{grid-template-columns:1fr}
+  .regional-metrics{grid-template-columns:1fr 1fr}
+  .regional-card{grid-template-columns:1fr}
+  .regional-card-visual{min-height:190px}
+  .regional-method-grid,.regional-profile-grid,.regional-pending-grid{grid-template-columns:1fr}
+}
+@media(max-width:430px){
+  .regional-metrics{grid-template-columns:1fr}
+}

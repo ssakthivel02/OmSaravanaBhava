@@ -1,0 +1,50 @@
+{
+  "release": "250A",
+  "count": 4,
+  "records": [
+    {
+      "id": "marudhamalai",
+      "name": "Marudhamalai Subramaniaswamy Temple",
+      "name_ta": "மருதமலை சுப்பிரமணியசுவாமி திருக்கோயில்",
+      "district": "Coimbatore",
+      "setting": "Hill temple",
+      "official_temple_id": "TM009762",
+      "source_status": "official",
+      "review_field_count": 8,
+      "href": "regional-temple-detail.html?id=marudhamalai"
+    },
+    {
+      "id": "viralimalai",
+      "name": "Viralimalai Subramaniyaswamy Temple",
+      "name_ta": "விராலிமலை சுப்பிரமணியசுவாமி திருக்கோயில்",
+      "district": "Pudukkottai",
+      "setting": "Hill temple",
+      "official_temple_id": "TM025691",
+      "source_status": "official",
+      "review_field_count": 8,
+      "href": "regional-temple-detail.html?id=viralimalai"
+    },
+    {
+      "id": "vallimalai",
+      "name": "Vallimalai Subramaniaswamy Temple",
+      "name_ta": "வள்ளிமலை சுப்பிரமணியசுவாமி திருக்கோயில்",
+      "district": "Vellore",
+      "setting": "Hill temple",
+      "official_temple_id": "TM001388",
+      "source_status": "official",
+      "review_field_count": 8,
+      "href": "regional-temple-detail.html?id=vallimalai"
+    },
+    {
+      "id": "thindal",
+      "name": "Thindal Velayuthasamy Temple",
+      "name_ta": "திண்டல் வேலாயுதசுவாமி திருக்கோயில்",
+      "district": "Erode",
+      "setting": "Hill temple",
+      "official_temple_id": "TM010234",
+      "source_status": "official",
+      "review_field_count": 8,
+      "href": "regional-temple-detail.html?id=thindal"
+    }
+  ]
+}

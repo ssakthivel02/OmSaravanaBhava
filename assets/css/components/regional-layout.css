@@ -1,0 +1,27 @@
+.regional-hero{
+  min-height:630px;
+  display:grid;
+  align-items:center;
+  padding:clamp(4rem,9vw,8rem) clamp(1.2rem,8vw,8rem);
+  background:
+    linear-gradient(90deg,rgba(5,7,10,.96),rgba(5,7,10,.28)),
+    url("../images/temples/temple-hero.webp") center/cover
+}
+.regional-hero-copy{max-width:860px}
+.regional-hero h1{font-size:clamp(3.5rem,8vw,7rem);line-height:.94;margin:.45rem 0 1rem}
+.regional-shell{margin-top:5rem;margin-bottom:5rem}
+.regional-heading{max-width:880px;margin:0 auto 2rem;text-align:center}
+.regional-heading h2,.regional-method h2{font-size:clamp(2.3rem,5vw,4.4rem);line-height:1.05;margin:.35rem 0}
+.regional-toolbar{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:.8rem;padding:1rem;border:1px solid var(--te-line);border-radius:20px;background:rgba(18,22,30,.9)}
+.regional-toolbar label{display:grid;gap:.35rem;font-family:system-ui,sans-serif;font-size:.83rem}
+.regional-toolbar input,.regional-toolbar select,.regional-toolbar button{width:100%;border:1px solid var(--te-line);border-radius:12px;background:#0e1218;color:#fff;padding:.8rem .9rem;font:inherit}
+.regional-toolbar button{align-self:end;cursor:pointer}
+.regional-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:1rem 0 2rem}
+.regional-metrics article{padding:1.15rem;border:1px solid var(--te-line);border-radius:18px;background:linear-gradient(145deg,rgba(28,32,41,.96),rgba(13,16,22,.96))}
+.regional-metrics strong{display:block;color:var(--te-gold-soft);font-size:2rem}
+.regional-metrics span{color:var(--te-muted);font-family:system-ui,sans-serif;font-size:.85rem}
+.regional-method{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;margin-bottom:6rem;padding:clamp(2rem,5vw,4rem);border:1px solid var(--te-line);border-radius:28px;background:linear-gradient(120deg,#151922,#3b1b29 60%,#702437)}
+.regional-method-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.regional-method-grid article{padding:1rem;border:1px solid var(--te-line);border-radius:16px;background:rgba(9,12,17,.45)}
+.regional-method-grid strong,.regional-method-grid span{display:block}
+.regional-method-grid strong{color:var(--te-gold);font-size:1.6rem}

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://omsaravanabhava.org/schemas/regional-temple.schema.json",
+  "title": "Regional Murugan Temple Record",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "name_ta",
+    "district",
+    "state",
+    "setting",
+    "official_temple_id",
+    "official_source",
+    "publication",
+    "profile",
+    "sources",
+    "pending",
+    "image"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 3
+    },
+    "name_ta": {
+      "type": "string",
+      "minLength": 2
+    },
+    "district": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "setting": {
+      "type": "string"
+    },
+    "official_temple_id": {
+      "type": "string"
+    },
+    "official_source": {
+      "type": "string",
+      "format": "uri"
+    },
+    "publication": {
+      "type": "object"
+    },
+    "profile": {
+      "type": "array"
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1
+    },
+    "pending": {
+      "type": "array"
+    },
+    "image": {
+      "type": "object"
+    }
+  }
+}

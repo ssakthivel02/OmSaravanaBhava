@@ -1,0 +1,34 @@
+{
+  "release": "250A",
+  "policy": "Only official-source starter identities are published in this phase.",
+  "sources": [
+    {
+      "temple_id": "marudhamalai",
+      "authority": "Government of Tamil Nadu HR&CE",
+      "url": "https://marudhamalaimurugan.hrce.tn.gov.in/",
+      "official_temple_id": "TM009762",
+      "last_checked": "2026-07-17"
+    },
+    {
+      "temple_id": "viralimalai",
+      "authority": "Government of Tamil Nadu HR&CE",
+      "url": "https://hrce.tn.gov.in/hrcehome/index_temple.php?tid=25691",
+      "official_temple_id": "TM025691",
+      "last_checked": "2026-07-17"
+    },
+    {
+      "temple_id": "vallimalai",
+      "authority": "Government of Tamil Nadu HR&CE",
+      "url": "https://hrce.tn.gov.in/ticketing/service_collectionindex.php?group_id=4&scode=21&sscode=1&target_type=1&tid=1388",
+      "official_temple_id": "TM001388",
+      "last_checked": "2026-07-17"
+    },
+    {
+      "temple_id": "thindal",
+      "authority": "Government of Tamil Nadu HR&CE",
+      "url": "https://hrce.tn.gov.in/hrcehome/index_temple.php?tid=10234",
+      "official_temple_id": "TM010234",
+      "last_checked": "2026-07-17"
+    }
+  ]
+}

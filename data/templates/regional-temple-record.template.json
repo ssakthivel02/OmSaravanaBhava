@@ -1,0 +1,22 @@
+{
+  "id": "lowercase-hyphenated-id",
+  "name": "Official English temple name",
+  "name_ta": "அதிகாரப்பூர்வ தமிழ் பெயர்",
+  "district": "Official district",
+  "state": "Tamil Nadu",
+  "setting": "Editorial classification",
+  "official_temple_id": "Official identifier",
+  "official_source": "Official URL",
+  "summary": "Editorial summary with no unsupported factual claims",
+  "publication": {
+    "status": "draft"
+  },
+  "profile": [],
+  "sources": [],
+  "pending": [],
+  "image": {
+    "status": "licensed_asset_required",
+    "note": ""
+  },
+  "keywords": []
+}

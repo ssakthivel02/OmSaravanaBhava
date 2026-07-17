@@ -1,0 +1,103 @@
+{
+  "id": "marudhamalai",
+  "name": "Marudhamalai Subramaniaswamy Temple",
+  "name_ta": "மருதமலை சுப்பிரமணியசுவாமி திருக்கோயில்",
+  "district": "Coimbatore",
+  "state": "Tamil Nadu",
+  "setting": "Hill temple",
+  "official_temple_id": "TM009762",
+  "official_source": "https://marudhamalaimurugan.hrce.tn.gov.in/",
+  "summary": "A regional Murugan temple record registered from the Tamil Nadu HR&CE official temple portal. Historical, architectural and visitor-detail enrichment remains under controlled editorial review.",
+  "group": "Regional Murugan Temple",
+  "publication": {
+    "status": "identity_verified_content_review_required",
+    "label": "Official identity verified; content review required",
+    "note": "Temple identity and district are linked to an official HR&CE source. Narrative and changing visitor data require separate review."
+  },
+  "profile": [
+    {
+      "label": "Temple name",
+      "value": "Marudhamalai Subramaniaswamy Temple",
+      "status": "official_source"
+    },
+    {
+      "label": "Tamil name",
+      "value": "மருதமலை சுப்பிரமணியசுவாமி திருக்கோயில்",
+      "status": "official_source"
+    },
+    {
+      "label": "District",
+      "value": "Coimbatore",
+      "status": "official_source"
+    },
+    {
+      "label": "State",
+      "value": "Tamil Nadu",
+      "status": "official_source"
+    },
+    {
+      "label": "Setting",
+      "value": "Hill temple",
+      "status": "editorial_classification"
+    },
+    {
+      "label": "Official temple ID",
+      "value": "TM009762",
+      "status": "official_source"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Tamil Nadu Hindu Religious and Charitable Endowments Department temple record",
+      "url": "https://marudhamalaimurugan.hrce.tn.gov.in/",
+      "authority": "Government of Tamil Nadu HR&CE",
+      "verification_status": "official",
+      "last_checked": "2026-07-17"
+    }
+  ],
+  "pending": [
+    {
+      "field": "verified_history",
+      "status": "review_required"
+    },
+    {
+      "field": "sthala_puranam",
+      "status": "review_required"
+    },
+    {
+      "field": "architecture",
+      "status": "review_required"
+    },
+    {
+      "field": "festival_schedule",
+      "status": "review_required"
+    },
+    {
+      "field": "official_timings_snapshot",
+      "status": "review_required"
+    },
+    {
+      "field": "contact_snapshot",
+      "status": "review_required"
+    },
+    {
+      "field": "travel_information",
+      "status": "review_required"
+    },
+    {
+      "field": "licensed_photography",
+      "status": "review_required"
+    }
+  ],
+  "image": {
+    "status": "licensed_asset_required",
+    "note": "No documentary temple photograph is bundled in Release 250A. Add only licensed, attributed and identity-verified imagery."
+  },
+  "keywords": [
+    "Marudhamalai Subramaniaswamy Temple",
+    "மருதமலை சுப்பிரமணியசுவாமி திருக்கோயில்",
+    "Coimbatore",
+    "Murugan",
+    "Tamil Nadu"
+  ]
+}

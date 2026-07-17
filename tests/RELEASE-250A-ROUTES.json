@@ -1,0 +1,9 @@
+{
+  "routes": [
+    "regional-temple-catalogue.html",
+    "regional-temple-detail.html?id=marudhamalai",
+    "regional-temple-detail.html?id=viralimalai",
+    "regional-temple-detail.html?id=vallimalai",
+    "regional-temple-detail.html?id=thindal"
+  ]
+}
