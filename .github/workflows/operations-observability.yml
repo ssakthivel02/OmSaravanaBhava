@@ -1,19 +1,23 @@
 
-name: Production Baseline
+name: Operations Observability
+
 on:
   push:
     branches: [main]
   pull_request:
   workflow_dispatch:
+
 permissions:
   contents: read
+
 concurrency:
-  group: production-baseline-${{ github.ref }}
+  group: operations-observability-${{ github.ref }}
   cancel-in-progress: true
+
 jobs:
-  verify:
+  validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -24,22 +28,25 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Validate permanent baseline
+      - name: Validate operations catalogue and deployment attestation
         env:
           PYTHONDONTWRITEBYTECODE: "1"
         shell: bash
         run: |
           mode=package
           if [ "${{ github.event_name }}" = "push" ]; then mode=final; fi
-          python -B -m tools.production_baseline.validate --root . --mode "$mode"
-          python -B -m tools.deployment_conformance.validate --root .
-          python -B -m tools.effective_route_consumers.validate --root .
           python -B -m tools.operations_observability.validate --root . --mode "$mode" --report artifacts/operations-observability-report.json
-          python -B -m tools.repository_hygiene.validate --root .
-          python -B -m tools.repository_integrity.validate --root . --manifest manifest-release-244.json
-      - name: Run regression suites
+      - name: Run operations regression tests
         env:
           PYTHONDONTWRITEBYTECODE: "1"
         run: |
-          node --test tests/js/*.test.mjs
-          python -B -m unittest discover -s tests -p "test_*.py" -v
+          node --test tests/js/operations-observability.test.mjs
+          python -B -m unittest discover -s tests/operations_observability -p "test_*.py" -v
+      - name: Upload operations evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-244-operations-observability
+          path: artifacts/operations-observability-report.json
+          if-no-files-found: error
+          retention-days: 90

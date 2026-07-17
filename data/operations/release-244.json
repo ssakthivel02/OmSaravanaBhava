@@ -1,0 +1,19 @@
+{
+  "release": 244,
+  "generated": "2026-07-17",
+  "name": "Production Observability and Deployment Attestation",
+  "baseCommit": "2e8b4d2d4a47931757423906015e586eafcd26a3",
+  "requiredCommitTitle": "Release 244: establish production observability and deployment attestation",
+  "devotionalContentChanged": false,
+  "publicRouteRegistryChanged": false,
+  "analyticsAdded": false,
+  "trackingAdded": false,
+  "backendDependencyAdded": false,
+  "operatorPageIndexed": false,
+  "checkCount": 60,
+  "knownLimitations": [
+    "The dashboard is an operator aid and not an external uptime service.",
+    "Advisory checks require human review.",
+    "No public devotional content is changed."
+  ]
+}

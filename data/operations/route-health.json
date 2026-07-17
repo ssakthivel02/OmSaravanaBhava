@@ -1,0 +1,23 @@
+{
+  "release": 244,
+  "generated": "2026-07-17",
+  "status": "monitored",
+  "historicalRegistry": "/data/site-routes.json",
+  "publicationBoundaries": "/data/publication-boundaries.json",
+  "effectiveOverrides": "/data/site-routes-effective-overrides.json",
+  "runtimeContract": "/data/effective-route-registry-runtime.json",
+  "consumers": [
+    "/content-status.html",
+    "/discovery.html",
+    "/site-directory.html"
+  ],
+  "checks": [
+    "registry-present",
+    "override-present",
+    "consumer-present",
+    "legacy-global-consumer-absent"
+  ],
+  "limitations": [
+    "Route totals are calculated in the browser from the explicit registries."
+  ]
+}

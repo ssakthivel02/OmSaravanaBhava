@@ -1,19 +1,19 @@
 {
-  "version": 1,
-  "release": 243,
+  "version": 2,
+  "release": 244,
   "contract": "data/production-baseline.json",
-  "manifest": "manifest-release-243.json",
-  "requiredBaseCommit": "c69b1ee95bbf87b95a41c51c2428249c0d74533d",
-  "requiredCommitTitle": "Release 243: establish verified production baseline and complete repository recovery",
+  "manifest": "manifest-release-244.json",
+  "requiredBaseCommit": "2e8b4d2d4a47931757423906015e586eafcd26a3",
+  "requiredCommitTitle": "Release 244: establish production observability and deployment attestation",
   "hardChangedFileLimit": 500,
   "requireExactStagedCoverage": true,
   "requireNoLegacyReleaseMachinery": true,
   "requireNoTrackedPythonCache": true,
-  "requireServiceWorkerRelease": "243",
+  "requireServiceWorkerRelease": "244",
   "preserveHistoricalAuditEvidenceThroughRelease": 231,
   "allowedRootReleaseFiles": [
-    "manifest-release-243.json",
-    "PRODUCTION_BASELINE_243.json"
+    "manifest-release-244.json",
+    "PRODUCTION_BASELINE_244.json"
   ],
   "forbiddenTrackedPatterns": [
     "**/__pycache__/**",

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Release 244 operations catalog",
+  "type": "object",
+  "required": [
+    "release",
+    "checkCount",
+    "automatedCount",
+    "advisoryCount",
+    "domains",
+    "checks"
+  ],
+  "properties": {
+    "release": {
+      "const": 244
+    },
+    "checkCount": {
+      "const": 60
+    },
+    "automatedCount": {
+      "const": 36
+    },
+    "advisoryCount": {
+      "const": 24
+    },
+    "domains": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12
+    },
+    "checks": {
+      "type": "array",
+      "minItems": 60,
+      "maxItems": 60
+    }
+  },
+  "additionalProperties": true
+}

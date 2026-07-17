@@ -1,0 +1,16 @@
+{
+  "release": 244,
+  "generated": "2026-07-17",
+  "status": "baseline-ready",
+  "checkCount": 60,
+  "automatedCount": 36,
+  "advisoryCount": 24,
+  "domains": 12,
+  "remoteValidation": "Runs in GitHub Actions on the Release 244 pull request and on main after merge.",
+  "privacy": "No analytics, cookies, personal data or external telemetry.",
+  "limitations": [
+    "The committed summary is a release baseline, not a live uptime monitor.",
+    "GitHub Actions evidence is authoritative for repository validation.",
+    "Browser diagnostics are same-origin and read-only."
+  ]
+}

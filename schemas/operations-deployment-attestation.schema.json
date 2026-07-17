@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Deployment attestation target",
+  "type": "object",
+  "required": [
+    "release",
+    "baseCommit",
+    "requiredCommitTitle",
+    "hashAlgorithm",
+    "criticalAssets"
+  ],
+  "properties": {
+    "release": {
+      "const": 244
+    },
+    "baseCommit": {
+      "const": "2e8b4d2d4a47931757423906015e586eafcd26a3"
+    },
+    "requiredCommitTitle": {
+      "const": "Release 244: establish production observability and deployment attestation"
+    },
+    "hashAlgorithm": {
+      "const": "sha256"
+    },
+    "criticalAssets": {
+      "type": "array",
+      "minItems": 5
+    }
+  },
+  "additionalProperties": true
+}
