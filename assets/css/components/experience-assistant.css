@@ -1,0 +1,16 @@
+.assistant-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:1rem}
+.assistant-layout>div:first-child{display:grid;gap:.65rem}
+.assistant-layout label{font-family:system-ui,sans-serif;font-size:.85rem}
+.assistant-layout select,.assistant-layout textarea,.assistant-layout button{
+  width:100%;
+  border:1px solid var(--te-line);
+  border-radius:14px;
+  background:#0e1218;
+  color:#fff;
+  padding:.8rem .9rem;
+  font:inherit
+}
+.assistant-layout button{background:var(--te-gold);color:#21160a;font-family:system-ui,sans-serif;font-weight:800;cursor:pointer}
+.assistant-answer{padding:1.25rem;border:1px solid var(--te-line);border-radius:18px;background:#10141b;min-height:220px}
+.assistant-answer strong{color:var(--te-gold-soft)}
+.assistant-answer ul{padding-left:1.2rem}

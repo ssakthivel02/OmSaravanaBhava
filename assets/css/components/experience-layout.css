@@ -1,0 +1,41 @@
+.experience-hero{
+  min-height:620px;
+  display:grid;
+  align-items:center;
+  padding:clamp(4rem,9vw,8rem) clamp(1.2rem,8vw,8rem);
+  background:
+    linear-gradient(90deg,rgba(5,7,10,.96),rgba(5,7,10,.28)),
+    url("../images/temples/temple-hero.webp") center/cover
+}
+.experience-hero-copy{max-width:850px}
+.experience-hero h1{font-size:clamp(3.5rem,8vw,7rem);line-height:.94;margin:.45rem 0 1rem}
+.experience-shell{margin-top:5rem;margin-bottom:6rem}
+.experience-heading{max-width:900px;margin:0 auto 2rem;text-align:center}
+.experience-heading h2{font-size:clamp(2.3rem,5vw,4.4rem);line-height:1.05;margin:.35rem 0}
+.experience-tabs{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:1rem}
+.experience-tabs button{
+  border:1px solid var(--te-line);
+  border-radius:999px;
+  background:#11151c;
+  color:#fff;
+  padding:.7rem 1rem;
+  cursor:pointer
+}
+.experience-tabs button[aria-selected="true"]{background:var(--te-gold);color:#21160a}
+.experience-panel{
+  padding:clamp(1.3rem,4vw,3rem);
+  border:1px solid var(--te-line);
+  border-radius:26px;
+  background:linear-gradient(145deg,rgba(25,29,38,.97),rgba(13,16,22,.97));
+  box-shadow:var(--te-shadow)
+}
+.panel-heading{display:flex;justify-content:space-between;gap:1rem;align-items:end;margin-bottom:1.4rem}
+.panel-heading h2{font-size:clamp(2rem,4vw,3.3rem);line-height:1.05;margin:.35rem 0}
+.panel-heading label{display:grid;gap:.35rem;min-width:220px;font-family:system-ui,sans-serif;font-size:.85rem}
+.panel-heading select,.panel-heading button{
+  border:1px solid var(--te-line);
+  border-radius:12px;
+  background:#0e1218;
+  color:#fff;
+  padding:.75rem .9rem
+}

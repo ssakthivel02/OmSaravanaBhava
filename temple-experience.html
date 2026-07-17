@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ta">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Murugan Temple Experience | Om Saravana Bhava</title>
+  <meta name="description" content="Interactive Murugan temple gallery, festival explorer and pilgrimage planner.">
+  <meta name="theme-color" content="#080b10">
+  <link rel="stylesheet" href="assets/css/temple-encyclopedia.css">
+  <link rel="stylesheet" href="assets/css/temple-experience.css">
+  <script type="module" src="assets/js/temple-experience-runtime.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="te-header">
+    <a class="te-brand" href="index.html">
+      <span class="te-brand-mark">ॐ</span>
+      <span><strong>ஓம் சரவணபவ</strong><small>Temple Experience</small></span>
+    </a>
+    <button class="te-menu" type="button" aria-expanded="false" aria-controls="te-nav">Menu</button>
+    <nav id="te-nav" class="te-nav">
+      <a href="index.html">Home</a>
+      <a href="temple-encyclopedia.html">Temple Encyclopedia</a>
+      <a href="temple-extended.html?id=tirupparankundram">Extended Guide</a>
+      <a href="audio-library.html">Audio</a>
+      <a href="ai-search.html">AI Search</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="experience-hero">
+      <div class="experience-hero-copy">
+        <p class="te-eyebrow">Release 249C · Interactive completion</p>
+        <h1>Plan, explore and experience the six sacred abodes</h1>
+        <p>Use local temple data to browse visual categories, review festival status and build a personal pilgrimage itinerary.</p>
+        <div class="te-actions">
+          <a class="te-button" href="#experience-dashboard">Open experience</a>
+          <a class="te-button te-button-secondary" href="temple-encyclopedia.html">Temple encyclopedia</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience-dashboard" class="te-shell experience-shell">
+      <div class="experience-heading">
+        <p class="te-eyebrow">Temple experience dashboard</p>
+        <h2>One place for gallery, festivals, itinerary and guided questions</h2>
+      </div>
+
+      <div class="experience-tabs" role="tablist" aria-label="Temple experience sections">
+        <button type="button" role="tab" aria-selected="true" aria-controls="gallery-panel" id="gallery-tab">Gallery</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="festival-panel" id="festival-tab">Festivals</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="planner-panel" id="planner-tab">Pilgrimage planner</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="assistant-panel" id="assistant-tab">Temple guide</button>
+      </div>
+
+      <section id="gallery-panel" role="tabpanel" aria-labelledby="gallery-tab" class="experience-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="te-eyebrow">Visual explorer</p>
+            <h2>Temple gallery categories</h2>
+          </div>
+          <label>
+            <span>Temple</span>
+            <select id="gallery-temple"></select>
+          </label>
+        </div>
+        <div id="gallery-viewer" class="gallery-viewer"></div>
+      </section>
+
+      <section id="festival-panel" role="tabpanel" aria-labelledby="festival-tab" class="experience-panel" hidden>
+        <div class="panel-heading">
+          <div>
+            <p class="te-eyebrow">Festival explorer</p>
+            <h2>Review observances by temple</h2>
+          </div>
+          <label>
+            <span>Status</span>
+            <select id="festival-status">
+              <option value="">All statuses</option>
+              <option value="review_required">Review required</option>
+              <option value="verified">Verified</option>
+            </select>
+          </label>
+        </div>
+        <div id="festival-viewer" class="festival-viewer"></div>
+      </section>
+
+      <section id="planner-panel" role="tabpanel" aria-labelledby="planner-tab" class="experience-panel" hidden>
+        <div class="panel-heading">
+          <div>
+            <p class="te-eyebrow">Pilgrimage planner</p>
+            <h2>Create your local six-temple journey</h2>
+          </div>
+          <button id="clear-itinerary" type="button">Clear itinerary</button>
+        </div>
+        <div class="planner-layout">
+          <div>
+            <h3>Available temples</h3>
+            <div id="planner-available" class="planner-list"></div>
+          </div>
+          <div>
+            <h3>Your itinerary</h3>
+            <div id="planner-itinerary" class="planner-list" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="assistant-panel" role="tabpanel" aria-labelledby="assistant-tab" class="experience-panel" hidden>
+        <div class="panel-heading">
+          <div>
+            <p class="te-eyebrow">Source-aware guide contract</p>
+            <h2>Ask a temple question</h2>
+          </div>
+        </div>
+        <div class="assistant-layout">
+          <div>
+            <label for="assistant-temple">Temple</label>
+            <select id="assistant-temple"></select>
+            <label for="assistant-question">Question</label>
+            <textarea id="assistant-question" rows="5" placeholder="For example: What information is currently verified for this temple?"></textarea>
+            <button id="assistant-submit" type="button">Review available local data</button>
+          </div>
+          <div id="assistant-answer" class="assistant-answer" aria-live="polite">
+            This local guide does not call an external AI service. It answers only from published local temple records and clearly reports missing information.
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div id="te-toast" class="te-toast" role="status" aria-live="polite"></div>
+
+  <footer class="te-footer">
+    <p>வேலவேல் முருகா!</p>
+  </footer>
+</body>
+</html>

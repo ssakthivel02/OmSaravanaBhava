@@ -1,0 +1,8 @@
+.planner-layout{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.planner-layout h3{color:var(--te-gold-soft)}
+.planner-list{display:grid;gap:.65rem}
+.planner-item{display:flex;justify-content:space-between;gap:1rem;align-items:center;padding:1rem;border:1px solid var(--te-line);border-radius:16px;background:#10141b}
+.planner-item strong,.planner-item span{display:block}
+.planner-item span{color:var(--te-muted);font-family:system-ui,sans-serif;font-size:.82rem}
+.planner-item button{border:1px solid var(--te-line);border-radius:999px;background:#171c24;color:#fff;padding:.55rem .75rem;cursor:pointer}
+.itinerary-empty{padding:1.5rem;border:1px dashed var(--te-line);border-radius:16px;color:var(--te-muted)}

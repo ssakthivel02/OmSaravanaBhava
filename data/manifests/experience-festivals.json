@@ -1,0 +1,131 @@
+{
+  "release": "249C",
+  "records": [
+    {
+      "temple_id": "tirupparankundram",
+      "temple_name": "Tirupparankundram",
+      "festival": "Skanda Sashti",
+      "status": "review_required",
+      "note": "Temple-specific dates, procedures and schedules require authoritative verification."
+    },
+    {
+      "temple_id": "tirupparankundram",
+      "temple_name": "Tirupparankundram",
+      "festival": "Vaikasi Visakam",
+      "status": "review_required",
+      "note": "Temple-specific dates, procedures and schedules require authoritative verification."
+    },
+    {
+      "temple_id": "tirupparankundram",
+      "temple_name": "Tirupparankundram",
+      "festival": "Monthly Krithigai",
+      "status": "review_required",
+      "note": "Temple-specific dates, procedures and schedules require authoritative verification."
+    },
+    {
+      "temple_id": "tiruchendur",
+      "temple_name": "Tiruchendur",
+      "festival": "Skanda Sashti",
+      "status": "review_required",
+      "note": "Temple-specific dates, procedures and schedules require authoritative verification."
+    },
+    {
+      "temple_id": "tiruchendur",
+      "temple_name": "Tiruchendur",
+      "festival": "Vaikasi Visakam",
+      "status": "review_required",
+      "note": "Temple-specific dates, procedures and schedules require authoritative verification."
+    },
+    {
+      "temple_id": "tiruchendur",
+      "temple_name": "Tiruchendur",
+      "festival": "Monthly Krithigai",
+      "status": "review_required",
+      "note": "Temple-specific dates, procedures and schedules require authoritative verification."
+    },
+    {
+      "temple_id": "palani",
+      "temple_name": "Palani",
+      "festival": "Skanda Sashti",
+      "status": "review_required",
+      "note": "Temple-specific dates, procedures and schedules require authoritative verification."
+    },
+    {
+      "temple_id": "palani",
+      "temple_name": "Palani",
+      "festival": "Vaikasi Visakam",
+      "status": "review_required",
+      "note": "Temple-specific dates, procedures and schedules require authoritative verification."
+    },
+    {
+      "temple_id": "palani",
+      "temple_name": "Palani",
+      "festival": "Monthly Krithigai",
+      "status": "review_required",
+      "note": "Temple-specific dates, procedures and schedules require authoritative verification."
+    },
+    {
+      "temple_id": "swamimalai",
+      "temple_name": "Swamimalai",
+      "festival": "Skanda Sashti",
+      "status": "review_required",
+      "note": "Temple-specific dates, procedures and schedules require authoritative verification."
+    },
+    {
+      "temple_id": "swamimalai",
+      "temple_name": "Swamimalai",
+      "festival": "Vaikasi Visakam",
+      "status": "review_required",
+      "note": "Temple-specific dates, procedures and schedules require authoritative verification."
+    },
+    {
+      "temple_id": "swamimalai",
+      "temple_name": "Swamimalai",
+      "festival": "Monthly Krithigai",
+      "status": "review_required",
+      "note": "Temple-specific dates, procedures and schedules require authoritative verification."
+    },
+    {
+      "temple_id": "tiruttani",
+      "temple_name": "Tiruttani",
+      "festival": "Skanda Sashti",
+      "status": "review_required",
+      "note": "Temple-specific dates, procedures and schedules require authoritative verification."
+    },
+    {
+      "temple_id": "tiruttani",
+      "temple_name": "Tiruttani",
+      "festival": "Vaikasi Visakam",
+      "status": "review_required",
+      "note": "Temple-specific dates, procedures and schedules require authoritative verification."
+    },
+    {
+      "temple_id": "tiruttani",
+      "temple_name": "Tiruttani",
+      "festival": "Monthly Krithigai",
+      "status": "review_required",
+      "note": "Temple-specific dates, procedures and schedules require authoritative verification."
+    },
+    {
+      "temple_id": "pazhamudircholai",
+      "temple_name": "Pazhamudircholai",
+      "festival": "Skanda Sashti",
+      "status": "review_required",
+      "note": "Temple-specific dates, procedures and schedules require authoritative verification."
+    },
+    {
+      "temple_id": "pazhamudircholai",
+      "temple_name": "Pazhamudircholai",
+      "festival": "Vaikasi Visakam",
+      "status": "review_required",
+      "note": "Temple-specific dates, procedures and schedules require authoritative verification."
+    },
+    {
+      "temple_id": "pazhamudircholai",
+      "temple_name": "Pazhamudircholai",
+      "festival": "Monthly Krithigai",
+      "status": "review_required",
+      "note": "Temple-specific dates, procedures and schedules require authoritative verification."
+    }
+  ]
+}

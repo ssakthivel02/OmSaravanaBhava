@@ -1,0 +1,18 @@
+{
+  "version": "1.0",
+  "mode": "local_source_aware",
+  "external_model_enabled": false,
+  "allowed_sources": [
+    "data/temples/index.json",
+    "data/temples/<id>.json",
+    "data/temples/extended/<id>.json",
+    "data/manifests/experience-festivals.json"
+  ],
+  "rules": [
+    "Answer only from loaded local records.",
+    "State when information is unavailable or unverified.",
+    "Do not infer temple timings, contacts, distances, dates or rituals.",
+    "Distinguish devotional tradition from historical fact.",
+    "Do not present illustrations as documentary photography."
+  ]
+}
