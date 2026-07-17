@@ -1,18 +1,26 @@
 {
-  "release": 243,
+  "release": 244,
   "serviceWorker": "/service-worker.js",
-  "expectedCacheRelease": "243",
+  "expectedCacheRelease": "244",
   "requiredPrecacheUrls": [
     "/content-status.html",
     "/discovery.html",
     "/site-directory.html",
+    "/operations-observability.html",
+    "/operations-observability-noscript.html",
     "/assets/js/effective-route-registry.mjs",
     "/assets/js/content-status-audit.mjs",
     "/assets/js/discovery-workspace.mjs",
     "/assets/js/site-directory.mjs",
+    "/assets/js/operations-observability.mjs",
+    "/assets/js/operations-observability-data.mjs",
     "/data/site-routes.json",
     "/data/site-routes-effective-overrides.json",
-    "/data/effective-route-registry-runtime.json"
+    "/data/effective-route-registry-runtime.json",
+    "/data/operations/summary.json",
+    "/data/operations/route-health.json",
+    "/data/operations/pwa-health.json",
+    "/data/operations/deployment-attestation.json"
   ],
   "forbiddenPrecacheUrls": [
     "/assets/js/site-directory.js"
@@ -20,7 +28,8 @@
   "consumerPages": {
     "/content-status.html": "/assets/js/content-status-audit.mjs",
     "/discovery.html": "/assets/js/discovery-workspace.mjs",
-    "/site-directory.html": "/assets/js/site-directory.mjs"
+    "/site-directory.html": "/assets/js/site-directory.mjs",
+    "/operations-observability.html": "/assets/js/operations-observability.mjs"
   },
   "globalFetchReplacementForbidden": true
 }

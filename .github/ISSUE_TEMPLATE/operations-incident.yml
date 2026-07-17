@@ -1,0 +1,24 @@
+
+name: Operations incident
+description: Record a production-observability or deployment-attestation failure.
+title: "ops: "
+labels: ["operations"]
+body:
+  - type: input
+    id: sha
+    attributes:
+      label: Production SHA
+    validations:
+      required: true
+  - type: textarea
+    id: checks
+    attributes:
+      label: Failed check IDs and evidence
+    validations:
+      required: true
+  - type: textarea
+    id: remediation
+    attributes:
+      label: Remediation and validation
+    validations:
+      required: true

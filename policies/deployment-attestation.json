@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "release": 244,
+  "algorithm": "sha256",
+  "baseCommit": "2e8b4d2d4a47931757423906015e586eafcd26a3",
+  "requiredCommitTitle": "Release 244: establish production observability and deployment attestation",
+  "criticalAssets": [
+    ".release-governance.json",
+    "manifest-release-244.json",
+    "PRODUCTION_BASELINE_244.json",
+    "service-worker.js",
+    "data/operations/check-catalog.json",
+    "policies/operations-observability.json",
+    "tools/operations_observability/validate.py"
+  ],
+  "requireExactParentOnPush": true,
+  "requireExactTitleOnPush": true,
+  "pullRequestMode": "package",
+  "pushMode": "final",
+  "retentionDays": 90
+}

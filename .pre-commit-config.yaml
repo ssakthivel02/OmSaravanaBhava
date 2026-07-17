@@ -1,9 +1,15 @@
+
 repos:
   - repo: local
     hooks:
       - id: production-baseline
         name: Production baseline
         entry: python -B -m tools.production_baseline.validate --root . --mode package
+        language: system
+        pass_filenames: false
+      - id: operations-observability
+        name: Operations observability
+        entry: python -B -m tools.operations_observability.validate --root . --mode package
         language: system
         pass_filenames: false
       - id: deployment-conformance

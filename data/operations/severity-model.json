@@ -1,0 +1,25 @@
+{
+  "release": 244,
+  "levels": [
+    {
+      "id": "critical",
+      "rank": 4,
+      "meaning": "Blocks release or indicates production integrity failure."
+    },
+    {
+      "id": "high",
+      "rank": 3,
+      "meaning": "Requires resolution or explicit approved exception."
+    },
+    {
+      "id": "medium",
+      "rank": 2,
+      "meaning": "Requires review and planned remediation."
+    },
+    {
+      "id": "low",
+      "rank": 1,
+      "meaning": "Operational improvement or informational finding."
+    }
+  ]
+}

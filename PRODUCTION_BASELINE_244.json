@@ -1,0 +1,24 @@
+{
+  "release": 244,
+  "status": "ready-for-pull-request-validation",
+  "baseCommit": "2e8b4d2d4a47931757423906015e586eafcd26a3",
+  "requiredCommitTitle": "Release 244: establish production observability and deployment attestation",
+  "observabilityChecks": 60,
+  "automatedChecks": 36,
+  "advisoryChecks": 24,
+  "serviceWorkerRelease": "244",
+  "devotionalContentChanged": false,
+  "analyticsAdded": false,
+  "trackingAdded": false,
+  "backendDependencyAdded": false,
+  "validation": [
+    "operations observability",
+    "production baseline",
+    "deployment conformance",
+    "effective route consumers",
+    "repository hygiene",
+    "repository integrity",
+    "JavaScript tests",
+    "Python tests"
+  ]
+}

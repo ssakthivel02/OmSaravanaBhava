@@ -1,0 +1,30 @@
+{
+  "release": 244,
+  "generated": "2026-07-17",
+  "baseCommit": "2e8b4d2d4a47931757423906015e586eafcd26a3",
+  "requiredCommitTitle": "Release 244: establish production observability and deployment attestation",
+  "status": "awaiting-pull-request-validation",
+  "hashAlgorithm": "sha256",
+  "criticalAssets": [
+    ".release-governance.json",
+    "manifest-release-244.json",
+    "PRODUCTION_BASELINE_244.json",
+    "service-worker.js",
+    "data/operations/check-catalog.json",
+    "policies/operations-observability.json",
+    "tools/operations_observability/validate.py"
+  ],
+  "remoteEvidence": "GitHub Actions artifact: release-244-operations-observability",
+  "limitations": [
+    "This committed record defines the attestation target; the workflow report records evaluated hashes."
+  ],
+  "baselineHashes": {
+    ".release-governance.json": "a9204332e9b5a382f46a698a68715fd7fcf2a8e9c083aba165c773eaafbd7841",
+    "manifest-release-244.json": "14ce67c789ddf6ef96a7a78a1c047b069c75d376ac95bd9c62aadd8e4c76df8c",
+    "PRODUCTION_BASELINE_244.json": "35a77dcd1acb919d7166a3a3c11c232f75e5d544c9eed16cbe18f43dc4221cb8",
+    "service-worker.js": "6686d8b19949a21802a091fc54e7382d3bfb05b8eb0eb117325fe44c1edec1e0",
+    "data/operations/check-catalog.json": "16ee2d562bc77aef668ab4e117e73df1b1e2baa1fdeda16c0eb09fa932bdd9da",
+    "policies/operations-observability.json": "af648e468da7ccffd7134a112e0d21f47d74bb8048709cc4f397501a27c23da3",
+    "tools/operations_observability/validate.py": "b4b002816178ccb79d37ccc015c85076b540cd9ba92ed8206278a34005c6896b"
+  }
+}
