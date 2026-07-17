@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "release": 245,
+  "contract": "data/visual-experience.json",
+  "homepage": "index.html",
+  "requiredStyles": [
+    "assets/css/premium-devotional.css",
+    "assets/css/premium-motion.css",
+    "assets/css/premium-responsive.css"
+  ],
+  "requiredModules": [
+    "assets/js/premium-home-runtime.mjs",
+    "assets/js/premium-nav.mjs",
+    "assets/js/premium-accessibility.mjs"
+  ],
+  "requiredAssets": [
+    "assets/art/murugan-mayil-hero.svg",
+    "assets/art/temple-silhouette.svg",
+    "assets/art/peacock-feather-field.svg",
+    "assets/art/sacred-lotus-pattern.svg",
+    "assets/art/vel-radiance.svg",
+    "assets/art/cloud-layer.svg",
+    "assets/art/star-particles.svg"
+  ],
+  "forbidden": [
+    "analytics",
+    "external-telemetry",
+    "autoplay-audio",
+    "motion-without-reduced-motion"
+  ]
+}

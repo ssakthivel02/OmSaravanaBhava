@@ -1,0 +1,2 @@
+const button=document.querySelector('.premium-menu-button');const links=document.querySelector('.premium-nav .links');
+if(button&&links){button.addEventListener('click',()=>{const open=links.classList.toggle('is-open');button.setAttribute('aria-expanded',String(open));});links.addEventListener('click',e=>{if(e.target.closest('a')){links.classList.remove('is-open');button.setAttribute('aria-expanded','false')}});}

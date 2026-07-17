@@ -2,30 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Deployment attestation target",
   "type": "object",
-  "required": [
-    "release",
-    "baseCommit",
-    "requiredCommitTitle",
-    "hashAlgorithm",
-    "criticalAssets"
-  ],
-  "properties": {
-    "release": {
-      "const": 244
-    },
-    "baseCommit": {
-      "const": "2e8b4d2d4a47931757423906015e586eafcd26a3"
-    },
-    "requiredCommitTitle": {
-      "const": "Release 244: establish production observability and deployment attestation"
-    },
-    "hashAlgorithm": {
-      "const": "sha256"
-    },
-    "criticalAssets": {
-      "type": "array",
-      "minItems": 5
-    }
-  },
+  "required": ["release","baseCommit","requiredCommitTitle","hashAlgorithm","criticalAssets"],
+  "properties": {"release":{"const":245},"baseCommit":{"const":"640ab54e1028927a22c19bb4712516c2d05ba58c"},"requiredCommitTitle":{"const":"Release 245: deliver premium Murugan visual experience and accessible interaction"},"hashAlgorithm":{"const":"sha256"},"criticalAssets":{"type":"array","minItems":7}},
   "additionalProperties": true
 }

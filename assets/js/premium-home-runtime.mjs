@@ -1,0 +1,6 @@
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.dataset.motion==='reduced';
+const finePointer=matchMedia('(pointer:fine)').matches;const stage=document.querySelector('.premium-hero');
+if(stage&&finePointer&&!reduced){stage.addEventListener('pointermove',e=>{const r=stage.getBoundingClientRect();const x=(e.clientX-r.left-r.width/2)*.045;const y=(e.clientY-r.top-r.height/2)*.045;stage.style.setProperty('--aura-x',`${x}px`);stage.style.setProperty('--aura-y',`${y}px`)},{passive:true});}
+const observer=!reduced&&'IntersectionObserver'in window?new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}}),{threshold:.12}):null;
+document.querySelectorAll('[data-reveal]').forEach(el=>observer?observer.observe(el):el.classList.add('is-visible'));
+if(!reduced){let ticking=false;addEventListener('scroll',()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{document.querySelectorAll('[data-parallax]').forEach(el=>{const r=el.getBoundingClientRect();const amount=Math.max(-26,Math.min(26,(innerHeight/2-r.top)*.035));el.style.setProperty('--parallax-y',`${amount}px`)});ticking=false})},{passive:true});}

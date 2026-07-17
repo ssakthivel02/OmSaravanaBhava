@@ -1,10 +1,14 @@
-
 repos:
   - repo: local
     hooks:
       - id: production-baseline
         name: Production baseline
         entry: python -B -m tools.production_baseline.validate --root . --mode package
+        language: system
+        pass_filenames: false
+      - id: visual-experience
+        name: Visual experience
+        entry: python -B -m tools.visual_experience.validate --root .
         language: system
         pass_filenames: false
       - id: operations-observability
