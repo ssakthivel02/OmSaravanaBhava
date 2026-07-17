@@ -1,0 +1,105 @@
+{
+  "id": "swamimalai",
+  "order": 4,
+  "name": "Swamimalai",
+  "name_ta": "சுவாமிமலை",
+  "district": "Thanjavur region",
+  "state": "Tamil Nadu",
+  "country": "India",
+  "group": "Arupadai Veedu",
+  "theme": "Knowledge, teaching and Pranava wisdom",
+  "image": "assets/images/temples/swamimalai.webp",
+  "summary": "Swamimalai is presented here as part of the Arupadai Veedu devotional journey. Detailed historical, architectural and ritual claims remain subject to source review.",
+  "publication": {
+    "status": "editorial_review_required",
+    "label": "Editorial review required",
+    "note": "Broad identity and devotional navigation are published. Detailed history, legends, dates, rituals and architecture require source verification."
+  },
+  "facts": [
+    {
+      "label": "Temple group",
+      "value": "Arupadai Veedu"
+    },
+    {
+      "label": "District / region",
+      "value": "Thanjavur region"
+    },
+    {
+      "label": "State",
+      "value": "Tamil Nadu"
+    },
+    {
+      "label": "Primary focus",
+      "value": "Knowledge, teaching and Pranava wisdom"
+    },
+    {
+      "label": "Image type",
+      "value": "Devotional illustration"
+    },
+    {
+      "label": "Content status",
+      "value": "Editorial review required"
+    }
+  ],
+  "gallery": [
+    {
+      "src": "assets/images/temples/swamimalai.webp",
+      "alt": "Devotional illustration representing Swamimalai Murugan Temple",
+      "caption": "Devotional temple illustration"
+    },
+    {
+      "src": "assets/images/temples/temple-hero.webp",
+      "alt": "Murugan temple landscape at sunrise",
+      "caption": "Sunrise devotional landscape"
+    },
+    {
+      "src": "assets/images/temples/swamimalai.webp",
+      "alt": "Temple experience artwork for Swamimalai",
+      "caption": "Temple journey artwork"
+    }
+  ],
+  "festivals": [
+    {
+      "name": "Skanda Sashti",
+      "status": "source_review_required"
+    },
+    {
+      "name": "Vaikasi Visakam",
+      "status": "source_review_required"
+    },
+    {
+      "name": "Monthly Krithigai",
+      "status": "source_review_required"
+    }
+  ],
+  "related": [
+    {
+      "label": "Thiruppugazh",
+      "href": "thiruppugazh.html"
+    },
+    {
+      "label": "Audio Library",
+      "href": "audio-library.html"
+    },
+    {
+      "label": "Festival Calendar",
+      "href": "festival-calendar.html"
+    },
+    {
+      "label": "Knowledge Graph",
+      "href": "knowledge-graph.html"
+    }
+  ],
+  "seo": {
+    "title": "சுவாமிமலை | Swamimalai Murugan Temple Guide",
+    "description": "Tamil-first devotional guide to Swamimalai, one of the Arupadai Veedu temples of Lord Murugan."
+  },
+  "keywords": [
+    "Swamimalai",
+    "சுவாமிமலை",
+    "Thanjavur region",
+    "Murugan",
+    "Arupadai Veedu",
+    "Tamil Nadu"
+  ]
+}

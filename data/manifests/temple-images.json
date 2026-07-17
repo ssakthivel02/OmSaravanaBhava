@@ -1,0 +1,12 @@
+{
+  "policy": "All bundled images currently referenced by this release are devotional illustrations inherited from Release 247.",
+  "required_existing_assets": [
+    "assets/images/temples/temple-hero.webp",
+    "assets/images/temples/tirupparankundram.webp",
+    "assets/images/temples/tiruchendur.webp",
+    "assets/images/temples/palani.webp",
+    "assets/images/temples/swamimalai.webp",
+    "assets/images/temples/tiruttani.webp",
+    "assets/images/temples/pazhamudircholai.webp"
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://omsaravanabhava.org/schemas/temple.schema.json",
+  "title": "OmSaravanaBhava Temple Record",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "name_ta",
+    "district",
+    "group",
+    "theme",
+    "image",
+    "publication"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "order": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 2
+    },
+    "name_ta": {
+      "type": "string",
+      "minLength": 2
+    },
+    "district": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "group": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "image": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "publication": {
+      "type": "object",
+      "required": [
+        "status",
+        "label",
+        "note"
+      ]
+    },
+    "facts": {
+      "type": "array"
+    },
+    "gallery": {
+      "type": "array"
+    },
+    "festivals": {
+      "type": "array"
+    },
+    "related": {
+      "type": "array"
+    },
+    "seo": {
+      "type": "object"
+    },
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

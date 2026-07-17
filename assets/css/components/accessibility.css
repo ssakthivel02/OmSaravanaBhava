@@ -1,0 +1,5 @@
+:focus-visible{outline:3px solid var(--te-gold);outline-offset:3px}
+[hidden]{display:none!important}
+@media(prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+}
