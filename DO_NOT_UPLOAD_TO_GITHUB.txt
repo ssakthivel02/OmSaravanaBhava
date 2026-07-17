@@ -1,8 +1,0 @@
-DO NOT UPLOAD THIS PACKAGE TO GITHUB
-
-Release 242 requires 293 Git deletions.
-GitHub browser upload cannot perform them.
-
-Extract the ZIP on Windows and double-click RUN_RELEASE_242_LOCALLY.cmd.
-The publisher requires exact remote base:
-dfef1e4e76582b1fe5995547bbfa561300fbea9b

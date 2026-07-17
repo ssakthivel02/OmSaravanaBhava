@@ -1,9 +1,14 @@
 repos:
   - repo: local
     hooks:
-      - id: release-tests
-        name: Release 240 regression suites
-        entry: python -B scripts/release240/run-release-tests.py --root .
+      - id: production-baseline
+        name: Production baseline
+        entry: python -B -m tools.production_baseline.validate --root . --mode package
+        language: system
+        pass_filenames: false
+      - id: deployment-conformance
+        name: Deployment conformance
+        entry: python -B -m tools.deployment_conformance.validate --root .
         language: system
         pass_filenames: false
       - id: repository-hygiene
@@ -11,8 +16,8 @@ repos:
         entry: python -B -m tools.repository_hygiene.validate --root .
         language: system
         pass_filenames: false
-      - id: deployment-conformance
-        name: Deployment conformance
-        entry: python -B -m tools.deployment_conformance.validate --root .
+      - id: repository-integrity
+        name: Repository integrity
+        entry: python -B -m tools.repository_integrity.validate --root .
         language: system
         pass_filenames: false
