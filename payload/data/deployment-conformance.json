@@ -1,0 +1,26 @@
+{
+  "release": 241,
+  "serviceWorker": "/service-worker.js",
+  "expectedCacheRelease": "241",
+  "requiredPrecacheUrls": [
+    "/content-status.html",
+    "/discovery.html",
+    "/site-directory.html",
+    "/assets/js/effective-route-registry.mjs",
+    "/assets/js/content-status-audit.mjs",
+    "/assets/js/discovery-workspace.mjs",
+    "/assets/js/site-directory.mjs",
+    "/data/site-routes.json",
+    "/data/site-routes-effective-overrides.json",
+    "/data/effective-route-registry-runtime.json"
+  ],
+  "forbiddenPrecacheUrls": [
+    "/assets/js/site-directory.js"
+  ],
+  "consumerPages": {
+    "/content-status.html": "/assets/js/content-status-audit.mjs",
+    "/discovery.html": "/assets/js/discovery-workspace.mjs",
+    "/site-directory.html": "/assets/js/site-directory.mjs"
+  },
+  "globalFetchReplacementForbidden": true
+}

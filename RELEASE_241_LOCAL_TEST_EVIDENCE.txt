@@ -1,0 +1,28 @@
+Release 241 Local Test Evidence
+Generated: 2026-07-16
+Approved base: b9099a1fde77bb97f5d09411ce1fc05daaab40d0
+Exact title: Release 241: establish verified production baseline and retire legacy release machinery
+
+Remote Release 240 audit:
+- Latest title: exact
+- Parent Release 239: verified
+- Compare result: stage-only additions/modifications
+- Planned 94 deletions: absent
+- Closure result commit: absent
+- Workflow evidence exposed by connector: none
+
+Release 241 synthetic transaction:
+- Changed paths: 290
+- Added: 28
+- Modified: 16
+- Deleted: 246
+- Exact staged coverage: PASS
+- JavaScript tests: PASS 18/18
+- Python tests: PASS 61/61
+- Production baseline: PASS
+- Deployment conformance: PASS
+- Effective route consumers: PASS
+- Repository hygiene: PASS
+- Repository integrity: PASS
+- Exact parent/title final validation: PASS
+- Remote CI: NOT_RUN

@@ -1,0 +1,5 @@
+PASS = "PASS"
+FAIL = "FAIL"
+POLICY_PATH = "policies/production-baseline.json"
+CONTRACT_PATH = "data/production-baseline.json"
+MANIFEST_PATH = "manifest-release-241.json"

@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "release": 241,
+  "contract": "data/production-baseline.json",
+  "manifest": "manifest-release-241.json",
+  "requiredBaseCommit": "b9099a1fde77bb97f5d09411ce1fc05daaab40d0",
+  "requiredCommitTitle": "Release 241: establish verified production baseline and retire legacy release machinery",
+  "hardChangedFileLimit": 500,
+  "requireExactStagedCoverage": true,
+  "requireNoLegacyReleaseMachinery": true,
+  "requireNoTrackedPythonCache": true,
+  "requireServiceWorkerRelease": "241",
+  "allowedRootReleaseFiles": [
+    "manifest-release-241.json",
+    "PRODUCTION_BASELINE_241.json"
+  ],
+  "forbiddenTrackedPatterns": [
+    "**/__pycache__/**",
+    "**/*.pyc",
+    "**/*.pyo",
+    "scripts/release*/**",
+    "tools/release_*/**",
+    "tests/release_*/**",
+    "docs/release-*/**",
+    "RELEASE_[0-9]*"
+  ]
+}

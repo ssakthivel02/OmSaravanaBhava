@@ -1,0 +1,23 @@
+Release 241 — local single-transaction publication
+
+DO NOT upload this extracted package through the GitHub browser.
+The payload is intentionally nested and is not a repository upload tree.
+
+Approved base:
+b9099a1fde77bb97f5d09411ce1fc05daaab40d0
+
+Exact commit title:
+Release 241: establish verified production baseline and retire legacy release machinery
+
+Windows:
+1. Extract the ZIP outside every Git repository.
+2. Double-click PUBLISH_RELEASE_241.cmd.
+3. Complete GitHub authentication when prompted.
+4. Keep the command window open until validation, commit and push complete.
+
+Optional target directory:
+PUBLISH_RELEASE_241.cmd "C:\Project\OmSaravanaBhava-release241"
+
+The publisher verifies all 246 deletion targets, applies the permanent payload,
+runs the complete test and validation suite, creates one exact commit and pushes
+only after post-commit validation succeeds.
