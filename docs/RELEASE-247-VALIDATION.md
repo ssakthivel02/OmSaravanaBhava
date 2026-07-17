@@ -1,0 +1,11 @@
+# Release 247 Validation
+- [ ] Release 246 is live
+- [ ] temples.html returns HTTP 200
+- [ ] All six cards render
+- [ ] Tiruchendur is correctly titled
+- [ ] Mobile swipe works
+- [ ] Previous and next controls work
+- [ ] All detail links open
+- [ ] Reduced-motion mode disables decorative transforms
+- [ ] No page-wide horizontal overflow
+- [ ] Cloudflare cache purged

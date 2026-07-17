@@ -1,0 +1,20 @@
+{
+  "release": 247,
+  "title": "Interactive Arupadai Veedu Temple Experience",
+  "depends_on": 246,
+  "files": [
+    "README-RELEASE-247.md",
+    "assets/css/release-247.css",
+    "assets/images/temples/palani.webp",
+    "assets/images/temples/pazhamudircholai.webp",
+    "assets/images/temples/swamimalai.webp",
+    "assets/images/temples/temple-hero.webp",
+    "assets/images/temples/tiruchendur.webp",
+    "assets/images/temples/tirupparankundram.webp",
+    "assets/images/temples/tiruttani.webp",
+    "assets/js/release-247.js",
+    "docs/RELEASE-247-VALIDATION.md",
+    "temples.html"
+  ],
+  "image_policy": "Devotional illustrations, not documentary photography."
+}
