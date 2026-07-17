@@ -1,0 +1,195 @@
+{
+  "id": "tiruttani",
+  "order": 5,
+  "name": "Tiruttani",
+  "name_ta": "திருத்தணி",
+  "district": "Tiruvallur",
+  "state": "Tamil Nadu",
+  "country": "India",
+  "group": "Arupadai Veedu",
+  "theme": "Peace, restoration and divine grace",
+  "image": "assets/images/temples/tiruttani.webp",
+  "quick_profile": [
+    {
+      "label": "Temple group",
+      "value": "Arupadai Veedu",
+      "status": "published"
+    },
+    {
+      "label": "District / region",
+      "value": "Tiruvallur",
+      "status": "published"
+    },
+    {
+      "label": "State",
+      "value": "Tamil Nadu",
+      "status": "published"
+    },
+    {
+      "label": "Primary focus",
+      "value": "Peace, restoration and divine grace",
+      "status": "editorial"
+    },
+    {
+      "label": "Temple timings",
+      "value": "Awaiting official source confirmation",
+      "status": "review_required"
+    },
+    {
+      "label": "Official contact",
+      "value": "Awaiting official source confirmation",
+      "status": "review_required"
+    }
+  ],
+  "history": {
+    "status": "source_review_required",
+    "summary": "Historical narrative is intentionally withheld until authoritative temple, epigraphic or scholarly sources are reviewed.",
+    "required_sources": [
+      "Official temple publication",
+      "Government or HR&CE source where applicable",
+      "Epigraphic or scholarly reference"
+    ]
+  },
+  "sthala_puranam": {
+    "status": "source_review_required",
+    "summary": "Sacred narrative content must be clearly separated from historically verifiable claims and reviewed before publication.",
+    "editorial_rule": "Publish as devotional tradition with source attribution, not as unsourced historical fact."
+  },
+  "architecture": [
+    {
+      "label": "Temple setting",
+      "value": "Awaiting reviewed description",
+      "status": "review_required"
+    },
+    {
+      "label": "Primary shrine",
+      "value": "Awaiting reviewed description",
+      "status": "review_required"
+    },
+    {
+      "label": "Gopuram / elevation",
+      "value": "Awaiting reviewed description",
+      "status": "review_required"
+    },
+    {
+      "label": "Sacred water body",
+      "value": "Awaiting reviewed description",
+      "status": "review_required"
+    },
+    {
+      "label": "Sacred tree",
+      "value": "Awaiting reviewed description",
+      "status": "review_required"
+    },
+    {
+      "label": "Dynastic references",
+      "value": "Awaiting epigraphic review",
+      "status": "review_required"
+    }
+  ],
+  "festivals": [
+    {
+      "name": "Skanda Sashti",
+      "note": "Festival association requires temple-specific review.",
+      "status": "review_required"
+    },
+    {
+      "name": "Vaikasi Visakam",
+      "note": "Dates and procedures must come from authoritative sources.",
+      "status": "review_required"
+    },
+    {
+      "name": "Monthly Krithigai",
+      "note": "Temple-specific schedule requires verification.",
+      "status": "review_required"
+    }
+  ],
+  "travel": [
+    {
+      "label": "Nearest railway station",
+      "value": "Awaiting verified travel metadata",
+      "status": "review_required"
+    },
+    {
+      "label": "Nearest airport",
+      "value": "Awaiting verified travel metadata",
+      "status": "review_required"
+    },
+    {
+      "label": "Bus connectivity",
+      "value": "Awaiting verified travel metadata",
+      "status": "review_required"
+    },
+    {
+      "label": "Parking",
+      "value": "Awaiting verified visitor information",
+      "status": "review_required"
+    },
+    {
+      "label": "Accessibility",
+      "value": "Awaiting verified visitor information",
+      "status": "review_required"
+    },
+    {
+      "label": "Official website",
+      "value": "Awaiting official URL verification",
+      "status": "review_required"
+    }
+  ],
+  "gallery_categories": [
+    {
+      "label": "Temple entrance",
+      "status": "asset_required"
+    },
+    {
+      "label": "Rajagopuram",
+      "status": "asset_required"
+    },
+    {
+      "label": "Sanctum approach",
+      "status": "asset_required"
+    },
+    {
+      "label": "Festival procession",
+      "status": "asset_required"
+    },
+    {
+      "label": "Hill / sea / landscape context",
+      "status": "asset_required"
+    },
+    {
+      "label": "Night illumination",
+      "status": "asset_required"
+    }
+  ],
+  "editorial": {
+    "label": "Structured record ready; factual enrichment pending",
+    "note": "This release provides the content framework. Precise factual enrichment is deliberately blocked until source review.",
+    "fields": [
+      {
+        "name": "history",
+        "status": "review_required"
+      },
+      {
+        "name": "sthala_puranam",
+        "status": "review_required"
+      },
+      {
+        "name": "architecture",
+        "status": "review_required"
+      },
+      {
+        "name": "festivals",
+        "status": "review_required"
+      },
+      {
+        "name": "travel",
+        "status": "review_required"
+      },
+      {
+        "name": "gallery",
+        "status": "asset_required"
+      }
+    ]
+  }
+}

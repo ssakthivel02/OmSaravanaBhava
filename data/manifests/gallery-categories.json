@@ -1,0 +1,27 @@
+{
+  "categories": [
+    "temple_entrance",
+    "rajagopuram",
+    "sanctum_approach",
+    "golden_vel",
+    "peacock",
+    "festival_procession",
+    "hill_view",
+    "sea_view",
+    "sunrise",
+    "sunset",
+    "temple_tank",
+    "sculpture",
+    "night_illumination"
+  ],
+  "required_metadata": [
+    "temple_id",
+    "file_name",
+    "category",
+    "source",
+    "licence",
+    "attribution",
+    "alt_text",
+    "verification_status"
+  ]
+}
