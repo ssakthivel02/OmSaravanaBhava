@@ -1,0 +1,1 @@
+export const filter=(a,q)=>a.filter(x=>JSON.stringify(x).includes(q));
