@@ -1,0 +1,128 @@
+{
+  "release": 290,
+  "title": "Temple Knowledge Graph Explorer",
+  "features": [
+    {
+      "title": "Purpose-built interface",
+      "description": "Visual patterns are tailored to this release."
+    },
+    {
+      "title": "Bilingual structured data",
+      "description": "Tamil and English records use explicit schemas."
+    },
+    {
+      "title": "Quality gates",
+      "description": "Validation, deployment and rollback guidance included."
+    }
+  ],
+  "records": [
+    {
+      "id": "temple-knowledge-graph-01",
+      "title": "Temple Knowledge Graph Explorer Feature 1",
+      "title_ta": "முருகன் தரத் தொகுதி 1",
+      "summary": "Quality-focused Release 290 record 1.",
+      "category": "Experience",
+      "status": "published",
+      "version": "290.1"
+    },
+    {
+      "id": "temple-knowledge-graph-02",
+      "title": "Temple Knowledge Graph Explorer Feature 2",
+      "title_ta": "முருகன் தரத் தொகுதி 2",
+      "summary": "Quality-focused Release 290 record 2.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "290.1"
+    },
+    {
+      "id": "temple-knowledge-graph-03",
+      "title": "Temple Knowledge Graph Explorer Feature 3",
+      "title_ta": "முருகன் தரத் தொகுதி 3",
+      "summary": "Quality-focused Release 290 record 3.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "290.1"
+    },
+    {
+      "id": "temple-knowledge-graph-04",
+      "title": "Temple Knowledge Graph Explorer Feature 4",
+      "title_ta": "முருகன் தரத் தொகுதி 4",
+      "summary": "Quality-focused Release 290 record 4.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "290.1"
+    },
+    {
+      "id": "temple-knowledge-graph-05",
+      "title": "Temple Knowledge Graph Explorer Feature 5",
+      "title_ta": "முருகன் தரத் தொகுதி 5",
+      "summary": "Quality-focused Release 290 record 5.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "290.1"
+    },
+    {
+      "id": "temple-knowledge-graph-06",
+      "title": "Temple Knowledge Graph Explorer Feature 6",
+      "title_ta": "முருகன் தரத் தொகுதி 6",
+      "summary": "Quality-focused Release 290 record 6.",
+      "category": "Validation",
+      "status": "published",
+      "version": "290.1"
+    },
+    {
+      "id": "temple-knowledge-graph-07",
+      "title": "Temple Knowledge Graph Explorer Feature 7",
+      "title_ta": "முருகன் தரத் தொகுதி 7",
+      "summary": "Quality-focused Release 290 record 7.",
+      "category": "Experience",
+      "status": "published",
+      "version": "290.1"
+    },
+    {
+      "id": "temple-knowledge-graph-08",
+      "title": "Temple Knowledge Graph Explorer Feature 8",
+      "title_ta": "முருகன் தரத் தொகுதி 8",
+      "summary": "Quality-focused Release 290 record 8.",
+      "category": "Knowledge",
+      "status": "review_required",
+      "version": "290.1"
+    },
+    {
+      "id": "temple-knowledge-graph-09",
+      "title": "Temple Knowledge Graph Explorer Feature 9",
+      "title_ta": "முருகன் தரத் தொகுதி 9",
+      "summary": "Quality-focused Release 290 record 9.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "290.1"
+    },
+    {
+      "id": "temple-knowledge-graph-10",
+      "title": "Temple Knowledge Graph Explorer Feature 10",
+      "title_ta": "முருகன் தரத் தொகுதி 10",
+      "summary": "Quality-focused Release 290 record 10.",
+      "category": "Editorial",
+      "status": "published",
+      "version": "290.1"
+    },
+    {
+      "id": "temple-knowledge-graph-11",
+      "title": "Temple Knowledge Graph Explorer Feature 11",
+      "title_ta": "முருகன் தரத் தொகுதி 11",
+      "summary": "Quality-focused Release 290 record 11.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "290.1"
+    },
+    {
+      "id": "temple-knowledge-graph-12",
+      "title": "Temple Knowledge Graph Explorer Feature 12",
+      "title_ta": "முருகன் தரத் தொகுதி 12",
+      "summary": "Quality-focused Release 290 record 12.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "290.1"
+    }
+  ]
+}

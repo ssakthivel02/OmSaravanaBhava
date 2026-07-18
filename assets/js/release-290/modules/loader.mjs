@@ -1,0 +1,1 @@
+export async function load(u){const r=await fetch(u);return r.json()}
