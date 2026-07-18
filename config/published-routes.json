@@ -1,0 +1,13 @@
+{
+  "routes": [
+    "index.html",
+    "temple-encyclopedia.html",
+    "temple-detail.html?id=palani",
+    "temple-extended.html?id=tiruchendur",
+    "temple-experience.html",
+    "regional-temple-catalogue.html",
+    "regional-temple-detail.html?id=marudhamalai",
+    "regional-temple-collections.html",
+    "regional-temple-review.html"
+  ]
+}
