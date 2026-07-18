@@ -1,0 +1,1 @@
+export function announce(message){let e=document.getElementById('live-status');if(!e){e=document.createElement('div');e.id='live-status';e.setAttribute('aria-live','polite');e.hidden=true;document.body.append(e)}e.textContent=message}

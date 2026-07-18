@@ -1,0 +1,114 @@
+{
+  "release": 273,
+  "title": "Temple Architecture Encyclopedia",
+  "records": [
+    {
+      "id": "architecture-encyclopedia-01",
+      "title": "Temple Architecture Encyclopedia Module 1",
+      "title_ta": "முருகன் அறிவு தொகுதி 1",
+      "summary": "Structured Release 273 record 1 for temple architecture encyclopedia, with source and publication controls.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "273.1"
+    },
+    {
+      "id": "architecture-encyclopedia-02",
+      "title": "Temple Architecture Encyclopedia Module 2",
+      "title_ta": "முருகன் அறிவு தொகுதி 2",
+      "summary": "Structured Release 273 record 2 for temple architecture encyclopedia, with source and publication controls.",
+      "category": "Experience",
+      "status": "published",
+      "version": "273.1"
+    },
+    {
+      "id": "architecture-encyclopedia-03",
+      "title": "Temple Architecture Encyclopedia Module 3",
+      "title_ta": "முருகன் அறிவு தொகுதி 3",
+      "summary": "Structured Release 273 record 3 for temple architecture encyclopedia, with source and publication controls.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "273.1"
+    },
+    {
+      "id": "architecture-encyclopedia-04",
+      "title": "Temple Architecture Encyclopedia Module 4",
+      "title_ta": "முருகன் அறிவு தொகுதி 4",
+      "summary": "Structured Release 273 record 4 for temple architecture encyclopedia, with source and publication controls.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "273.1"
+    },
+    {
+      "id": "architecture-encyclopedia-05",
+      "title": "Temple Architecture Encyclopedia Module 5",
+      "title_ta": "முருகன் அறிவு தொகுதி 5",
+      "summary": "Structured Release 273 record 5 for temple architecture encyclopedia, with source and publication controls.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "273.1"
+    },
+    {
+      "id": "architecture-encyclopedia-06",
+      "title": "Temple Architecture Encyclopedia Module 6",
+      "title_ta": "முருகன் அறிவு தொகுதி 6",
+      "summary": "Structured Release 273 record 6 for temple architecture encyclopedia, with source and publication controls.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "273.1"
+    },
+    {
+      "id": "architecture-encyclopedia-07",
+      "title": "Temple Architecture Encyclopedia Module 7",
+      "title_ta": "முருகன் அறிவு தொகுதி 7",
+      "summary": "Structured Release 273 record 7 for temple architecture encyclopedia, with source and publication controls.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "273.1"
+    },
+    {
+      "id": "architecture-encyclopedia-08",
+      "title": "Temple Architecture Encyclopedia Module 8",
+      "title_ta": "முருகன் அறிவு தொகுதி 8",
+      "summary": "Structured Release 273 record 8 for temple architecture encyclopedia, with source and publication controls.",
+      "category": "Experience",
+      "status": "published",
+      "version": "273.1"
+    },
+    {
+      "id": "architecture-encyclopedia-09",
+      "title": "Temple Architecture Encyclopedia Module 9",
+      "title_ta": "முருகன் அறிவு தொகுதி 9",
+      "summary": "Structured Release 273 record 9 for temple architecture encyclopedia, with source and publication controls.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "273.1"
+    },
+    {
+      "id": "architecture-encyclopedia-10",
+      "title": "Temple Architecture Encyclopedia Module 10",
+      "title_ta": "முருகன் அறிவு தொகுதி 10",
+      "summary": "Structured Release 273 record 10 for temple architecture encyclopedia, with source and publication controls.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "273.1"
+    },
+    {
+      "id": "architecture-encyclopedia-11",
+      "title": "Temple Architecture Encyclopedia Module 11",
+      "title_ta": "முருகன் அறிவு தொகுதி 11",
+      "summary": "Structured Release 273 record 11 for temple architecture encyclopedia, with source and publication controls.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "273.1"
+    },
+    {
+      "id": "architecture-encyclopedia-12",
+      "title": "Temple Architecture Encyclopedia Module 12",
+      "title_ta": "முருகன் அறிவு தொகுதி 12",
+      "summary": "Structured Release 273 record 12 for temple architecture encyclopedia, with source and publication controls.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "273.1"
+    }
+  ]
+}
