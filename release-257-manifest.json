@@ -1,0 +1,19 @@
+{
+  "release": "257",
+  "title": "Local Source-Aware Temple Guide",
+  "sequence": 8,
+  "depends_on": "256",
+  "commit_message": "Release 257: add local source-aware temple guidance interface",
+  "file_count": 9,
+  "files": [
+    "README-RELEASE-257.md",
+    "assets/css/temple-guide.css",
+    "assets/js/temple-guide.mjs",
+    "data/guide/guide-boundary.json",
+    "data/guide/local-guide-index.json",
+    "docs/RELEASE-257-ROLLBACK.md",
+    "docs/RELEASE-257-VALIDATION.md",
+    "release-257-manifest.json",
+    "temple-guide.html"
+  ]
+}

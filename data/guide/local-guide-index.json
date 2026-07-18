@@ -1,0 +1,35 @@
+{
+  "records": [
+    {
+      "id": "palani",
+      "name": "Palani",
+      "summary": "Local structured record available.",
+      "available": [
+        "name",
+        "Tamil name",
+        "district",
+        "devotional theme"
+      ],
+      "unavailable": [
+        "official timings",
+        "live contacts",
+        "verified travel duration"
+      ]
+    },
+    {
+      "id": "marudhamalai",
+      "name": "Marudhamalai",
+      "summary": "Official identity record available; narrative enrichment pending.",
+      "available": [
+        "official identity",
+        "district",
+        "official source ID"
+      ],
+      "unavailable": [
+        "verified history",
+        "festival schedule",
+        "licensed photography"
+      ]
+    }
+  ]
+}
