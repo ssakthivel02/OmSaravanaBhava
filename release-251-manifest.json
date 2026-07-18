@@ -1,0 +1,19 @@
+{
+  "release": "251",
+  "title": "Bilingual Indexed Temple Search",
+  "sequence": 2,
+  "depends_on": "250C",
+  "commit_message": "Release 251: add bilingual indexed search for Murugan temple records",
+  "file_count": 9,
+  "files": [
+    "README-RELEASE-251.md",
+    "assets/css/temple-search.css",
+    "assets/js/temple-search.mjs",
+    "data/schemas/temple-search-index.schema.json",
+    "data/search/temple-search-index.json",
+    "docs/RELEASE-251-ROLLBACK.md",
+    "docs/RELEASE-251-VALIDATION.md",
+    "release-251-manifest.json",
+    "temple-search.html"
+  ]
+}

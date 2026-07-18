@@ -1,0 +1,44 @@
+{
+  "records": [
+    {
+      "id": "tirupparankundram",
+      "name": "Tirupparankundram",
+      "name_ta": "திருப்பரங்குன்றம்",
+      "district": "Madurai",
+      "aliases": [
+        "Thiruparankundram"
+      ],
+      "href": "temple-detail.html?id=tirupparankundram"
+    },
+    {
+      "id": "tiruchendur",
+      "name": "Tiruchendur",
+      "name_ta": "திருச்செந்தூர்",
+      "district": "Thoothukudi",
+      "aliases": [
+        "Thiruchendur"
+      ],
+      "href": "temple-detail.html?id=tiruchendur"
+    },
+    {
+      "id": "palani",
+      "name": "Palani",
+      "name_ta": "பழனி",
+      "district": "Dindigul",
+      "aliases": [
+        "Pazhani"
+      ],
+      "href": "temple-detail.html?id=palani"
+    },
+    {
+      "id": "marudhamalai",
+      "name": "Marudhamalai Subramaniaswamy Temple",
+      "name_ta": "மருதமலை சுப்பிரமணியசுவாமி திருக்கோயில்",
+      "district": "Coimbatore",
+      "aliases": [
+        "Maruthamalai"
+      ],
+      "href": "regional-temple-detail.html?id=marudhamalai"
+    }
+  ]
+}
