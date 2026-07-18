@@ -1,0 +1,114 @@
+{
+  "release": 266,
+  "title": "Semantic Temple Discovery",
+  "records": [
+    {
+      "id": "semantic-temple-discovery-01",
+      "title": "Semantic Temple Discovery Module 1",
+      "title_ta": "முருகன் அறிவு தொகுதி 1",
+      "summary": "Structured Release 266 record 1 for semantic temple discovery, with source and publication controls.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "266.1"
+    },
+    {
+      "id": "semantic-temple-discovery-02",
+      "title": "Semantic Temple Discovery Module 2",
+      "title_ta": "முருகன் அறிவு தொகுதி 2",
+      "summary": "Structured Release 266 record 2 for semantic temple discovery, with source and publication controls.",
+      "category": "Experience",
+      "status": "published",
+      "version": "266.1"
+    },
+    {
+      "id": "semantic-temple-discovery-03",
+      "title": "Semantic Temple Discovery Module 3",
+      "title_ta": "முருகன் அறிவு தொகுதி 3",
+      "summary": "Structured Release 266 record 3 for semantic temple discovery, with source and publication controls.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "266.1"
+    },
+    {
+      "id": "semantic-temple-discovery-04",
+      "title": "Semantic Temple Discovery Module 4",
+      "title_ta": "முருகன் அறிவு தொகுதி 4",
+      "summary": "Structured Release 266 record 4 for semantic temple discovery, with source and publication controls.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "266.1"
+    },
+    {
+      "id": "semantic-temple-discovery-05",
+      "title": "Semantic Temple Discovery Module 5",
+      "title_ta": "முருகன் அறிவு தொகுதி 5",
+      "summary": "Structured Release 266 record 5 for semantic temple discovery, with source and publication controls.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "266.1"
+    },
+    {
+      "id": "semantic-temple-discovery-06",
+      "title": "Semantic Temple Discovery Module 6",
+      "title_ta": "முருகன் அறிவு தொகுதி 6",
+      "summary": "Structured Release 266 record 6 for semantic temple discovery, with source and publication controls.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "266.1"
+    },
+    {
+      "id": "semantic-temple-discovery-07",
+      "title": "Semantic Temple Discovery Module 7",
+      "title_ta": "முருகன் அறிவு தொகுதி 7",
+      "summary": "Structured Release 266 record 7 for semantic temple discovery, with source and publication controls.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "266.1"
+    },
+    {
+      "id": "semantic-temple-discovery-08",
+      "title": "Semantic Temple Discovery Module 8",
+      "title_ta": "முருகன் அறிவு தொகுதி 8",
+      "summary": "Structured Release 266 record 8 for semantic temple discovery, with source and publication controls.",
+      "category": "Experience",
+      "status": "published",
+      "version": "266.1"
+    },
+    {
+      "id": "semantic-temple-discovery-09",
+      "title": "Semantic Temple Discovery Module 9",
+      "title_ta": "முருகன் அறிவு தொகுதி 9",
+      "summary": "Structured Release 266 record 9 for semantic temple discovery, with source and publication controls.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "266.1"
+    },
+    {
+      "id": "semantic-temple-discovery-10",
+      "title": "Semantic Temple Discovery Module 10",
+      "title_ta": "முருகன் அறிவு தொகுதி 10",
+      "summary": "Structured Release 266 record 10 for semantic temple discovery, with source and publication controls.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "266.1"
+    },
+    {
+      "id": "semantic-temple-discovery-11",
+      "title": "Semantic Temple Discovery Module 11",
+      "title_ta": "முருகன் அறிவு தொகுதி 11",
+      "summary": "Structured Release 266 record 11 for semantic temple discovery, with source and publication controls.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "266.1"
+    },
+    {
+      "id": "semantic-temple-discovery-12",
+      "title": "Semantic Temple Discovery Module 12",
+      "title_ta": "முருகன் அறிவு தொகுதி 12",
+      "summary": "Structured Release 266 record 12 for semantic temple discovery, with source and publication controls.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "266.1"
+    }
+  ]
+}
