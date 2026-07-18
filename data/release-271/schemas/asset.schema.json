@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "required": [
+    "id",
+    "type",
+    "licence",
+    "verification_status"
+  ]
+}

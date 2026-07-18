@@ -1,0 +1,9 @@
+{
+  "features": [
+    "search",
+    "filter",
+    "metrics",
+    "responsive",
+    "reduced-motion"
+  ]
+}
