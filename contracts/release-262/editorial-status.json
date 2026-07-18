@@ -1,0 +1,11 @@
+{
+  "published_fields": [
+    "identity",
+    "category"
+  ],
+  "review_fields": [
+    "history",
+    "timings",
+    "contacts"
+  ]
+}

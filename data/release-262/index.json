@@ -1,0 +1,114 @@
+{
+  "release": 262,
+  "title": "Regional Temple Knowledge Expansion",
+  "records": [
+    {
+      "id": "regional-knowledge-expansion-01",
+      "title": "Regional Temple Knowledge Expansion Module 1",
+      "title_ta": "முருகன் அறிவு தொகுதி 1",
+      "summary": "Structured Release 262 record 1 for regional temple knowledge expansion, with source and publication controls.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "262.1"
+    },
+    {
+      "id": "regional-knowledge-expansion-02",
+      "title": "Regional Temple Knowledge Expansion Module 2",
+      "title_ta": "முருகன் அறிவு தொகுதி 2",
+      "summary": "Structured Release 262 record 2 for regional temple knowledge expansion, with source and publication controls.",
+      "category": "Experience",
+      "status": "published",
+      "version": "262.1"
+    },
+    {
+      "id": "regional-knowledge-expansion-03",
+      "title": "Regional Temple Knowledge Expansion Module 3",
+      "title_ta": "முருகன் அறிவு தொகுதி 3",
+      "summary": "Structured Release 262 record 3 for regional temple knowledge expansion, with source and publication controls.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "262.1"
+    },
+    {
+      "id": "regional-knowledge-expansion-04",
+      "title": "Regional Temple Knowledge Expansion Module 4",
+      "title_ta": "முருகன் அறிவு தொகுதி 4",
+      "summary": "Structured Release 262 record 4 for regional temple knowledge expansion, with source and publication controls.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "262.1"
+    },
+    {
+      "id": "regional-knowledge-expansion-05",
+      "title": "Regional Temple Knowledge Expansion Module 5",
+      "title_ta": "முருகன் அறிவு தொகுதி 5",
+      "summary": "Structured Release 262 record 5 for regional temple knowledge expansion, with source and publication controls.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "262.1"
+    },
+    {
+      "id": "regional-knowledge-expansion-06",
+      "title": "Regional Temple Knowledge Expansion Module 6",
+      "title_ta": "முருகன் அறிவு தொகுதி 6",
+      "summary": "Structured Release 262 record 6 for regional temple knowledge expansion, with source and publication controls.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "262.1"
+    },
+    {
+      "id": "regional-knowledge-expansion-07",
+      "title": "Regional Temple Knowledge Expansion Module 7",
+      "title_ta": "முருகன் அறிவு தொகுதி 7",
+      "summary": "Structured Release 262 record 7 for regional temple knowledge expansion, with source and publication controls.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "262.1"
+    },
+    {
+      "id": "regional-knowledge-expansion-08",
+      "title": "Regional Temple Knowledge Expansion Module 8",
+      "title_ta": "முருகன் அறிவு தொகுதி 8",
+      "summary": "Structured Release 262 record 8 for regional temple knowledge expansion, with source and publication controls.",
+      "category": "Experience",
+      "status": "published",
+      "version": "262.1"
+    },
+    {
+      "id": "regional-knowledge-expansion-09",
+      "title": "Regional Temple Knowledge Expansion Module 9",
+      "title_ta": "முருகன் அறிவு தொகுதி 9",
+      "summary": "Structured Release 262 record 9 for regional temple knowledge expansion, with source and publication controls.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "262.1"
+    },
+    {
+      "id": "regional-knowledge-expansion-10",
+      "title": "Regional Temple Knowledge Expansion Module 10",
+      "title_ta": "முருகன் அறிவு தொகுதி 10",
+      "summary": "Structured Release 262 record 10 for regional temple knowledge expansion, with source and publication controls.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "262.1"
+    },
+    {
+      "id": "regional-knowledge-expansion-11",
+      "title": "Regional Temple Knowledge Expansion Module 11",
+      "title_ta": "முருகன் அறிவு தொகுதி 11",
+      "summary": "Structured Release 262 record 11 for regional temple knowledge expansion, with source and publication controls.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "262.1"
+    },
+    {
+      "id": "regional-knowledge-expansion-12",
+      "title": "Regional Temple Knowledge Expansion Module 12",
+      "title_ta": "முருகன் அறிவு தொகுதி 12",
+      "summary": "Structured Release 262 record 12 for regional temple knowledge expansion, with source and publication controls.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "262.1"
+    }
+  ]
+}
