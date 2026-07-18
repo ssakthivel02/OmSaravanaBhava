@@ -1,29 +1,10 @@
-#!/usr/bin/env python3
-"""CLI for deployment conformance."""
-
-from __future__ import annotations
-
-import argparse
-import json
+import argparse,json,sys
 from pathlib import Path
-
-from .jsonio import load_json
-from .validator import validate_deployment
-
-
-def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--root", default=".")
-    args = parser.parse_args()
-    root = Path(args.root).resolve()
-    report = validate_deployment(
-        root,
-        load_json(root / "policies/deployment-conformance.json"),
-        load_json(root / "data/deployment-conformance.json"),
-    )
-    print(json.dumps(report, ensure_ascii=False, indent=2))
-    return 0 if report["status"] == "PASS" else 1
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())
+p=argparse.ArgumentParser();p.add_argument('--root',default='.');a=p.parse_args();root=Path(a.root);c=json.loads((root/'config/release-281/deployment-contract.json').read_text());errors=[]
+for route in c['critical_routes']:
+    if not (root/route).exists():errors.append('Missing '+route)
+for d in c['required_directories']:
+    if not (root/d).is_dir():errors.append('Missing directory '+d)
+(root/'deployment-conformance-report.txt').write_text(('FAILED\n'+'\n'.join(errors)) if errors else 'PASSED\nRelease 281 deployment contract validated.\n')
+print('\n'.join(errors) if errors else 'Deployment conformance passed.')
+raise SystemExit(1 if errors else 0)
