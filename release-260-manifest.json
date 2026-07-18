@@ -1,0 +1,19 @@
+{
+  "release": "260",
+  "title": "Production Gate and Release Consolidation",
+  "sequence": 11,
+  "depends_on": "259",
+  "commit_message": "Release 260: consolidate temple platform and enforce production release gate",
+  "file_count": 9,
+  "files": [
+    ".github/workflows/release-260-production-gate.yml",
+    "README-RELEASE-260.md",
+    "config/release-260-route-matrix.json",
+    "docs/HEALTH-REPORT-TEMPLATE.md",
+    "docs/RELEASE-260-PRODUCTION-CHECKLIST.md",
+    "docs/RELEASE-260-ROLLBACK.md",
+    "docs/RELEASE-260-VALIDATION.md",
+    "release-260-manifest.json",
+    "scripts/release-260-gate.py"
+  ]
+}

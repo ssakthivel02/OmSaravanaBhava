@@ -1,0 +1,50 @@
+{
+  "routes": [
+    {
+      "path": "index.html",
+      "critical": true
+    },
+    {
+      "path": "temple-encyclopedia.html",
+      "critical": true
+    },
+    {
+      "path": "regional-temple-catalogue.html",
+      "critical": true
+    },
+    {
+      "path": "temple-search.html",
+      "critical": false
+    },
+    {
+      "path": "temple-collections.html",
+      "critical": false
+    },
+    {
+      "path": "temple-compare.html",
+      "critical": false
+    },
+    {
+      "path": "pilgrimage-builder.html",
+      "critical": false
+    },
+    {
+      "path": "festival-knowledge.html",
+      "critical": false
+    },
+    {
+      "path": "temple-gallery.html",
+      "critical": false
+    },
+    {
+      "path": "temple-guide.html",
+      "critical": false
+    }
+  ],
+  "required_directories": [
+    "assets",
+    "data",
+    "docs",
+    "scripts"
+  ]
+}
