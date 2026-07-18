@@ -1,0 +1,97 @@
+{
+  "release": "250B",
+  "districts": [
+    {
+      "id": "coimbatore",
+      "label": "Coimbatore",
+      "count": 1,
+      "temple_ids": [
+        "marudhamalai"
+      ]
+    },
+    {
+      "id": "erode",
+      "label": "Erode",
+      "count": 2,
+      "temple_ids": [
+        "thindal",
+        "chennimalai"
+      ]
+    },
+    {
+      "id": "kancheepuram",
+      "label": "Kancheepuram",
+      "count": 3,
+      "temple_ids": [
+        "kundrathur",
+        "vallakottai",
+        "kumarakottam"
+      ]
+    },
+    {
+      "id": "nagapattinam",
+      "label": "Nagapattinam",
+      "count": 1,
+      "temple_ids": [
+        "ettukudi"
+      ]
+    },
+    {
+      "id": "pudukkottai",
+      "label": "Pudukkottai",
+      "count": 1,
+      "temple_ids": [
+        "viralimalai"
+      ]
+    },
+    {
+      "id": "thanjavur",
+      "label": "Thanjavur",
+      "count": 1,
+      "temple_ids": [
+        "pookara-street-thanjavur"
+      ]
+    },
+    {
+      "id": "vellore",
+      "label": "Vellore",
+      "count": 1,
+      "temple_ids": [
+        "vallimalai"
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "id": "hill-temple",
+      "label": "Hill temple",
+      "count": 6,
+      "temple_ids": [
+        "marudhamalai",
+        "viralimalai",
+        "vallimalai",
+        "thindal",
+        "kundrathur",
+        "chennimalai"
+      ]
+    },
+    {
+      "id": "urban-temple",
+      "label": "Urban temple",
+      "count": 2,
+      "temple_ids": [
+        "kumarakottam",
+        "pookara-street-thanjavur"
+      ]
+    },
+    {
+      "id": "village-temple",
+      "label": "Village temple",
+      "count": 2,
+      "temple_ids": [
+        "vallakottai",
+        "ettukudi"
+      ]
+    }
+  ]
+}

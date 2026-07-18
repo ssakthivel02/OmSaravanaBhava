@@ -1,16 +1,16 @@
 {
-  "id": "thindal",
-  "name": "Thindal Velayuthasamy Temple",
-  "name_ta": "திண்டல் வேலாயுதசுவாமி திருக்கோயில்",
+  "id": "chennimalai",
+  "name": "Chennimalai Subramaniyaswamy Temple",
+  "name_ta": "சென்னிமலை சுப்பிரமணியசுவாமி திருக்கோயில்",
   "district": "Erode",
   "state": "Tamil Nadu",
   "country": "India",
   "setting": "Hill temple",
-  "official_temple_id": "TM010234",
-  "official_source": "https://hrce.tn.gov.in/hrcehome/index_temple.php?tid=10234",
+  "official_temple_id": "TM010228",
+  "official_source": "https://hrce.tn.gov.in/hrcehome/index_temple.php?tid=10228",
   "group": "Regional Murugan Temple",
-  "release_origin": "250A",
-  "summary": "Thindal Velayuthasamy Temple is registered from an official Tamil Nadu HR&CE identity source. Historical, ritual, visitor and image fields remain under editorial review.",
+  "release_origin": "250B",
+  "summary": "Chennimalai Subramaniyaswamy Temple is registered from an official Tamil Nadu HR&CE identity source. Historical, ritual, visitor and image fields remain under editorial review.",
   "publication": {
     "status": "identity_verified_content_review_required",
     "label": "Official identity verified; content review required",
@@ -19,12 +19,12 @@
   "profile": [
     {
       "label": "Temple name",
-      "value": "Thindal Velayuthasamy Temple",
+      "value": "Chennimalai Subramaniyaswamy Temple",
       "status": "official_source"
     },
     {
       "label": "Tamil name",
-      "value": "திண்டல் வேலாயுதசுவாமி திருக்கோயில்",
+      "value": "சென்னிமலை சுப்பிரமணியசுவாமி திருக்கோயில்",
       "status": "official_source"
     },
     {
@@ -44,14 +44,14 @@
     },
     {
       "label": "Official temple ID",
-      "value": "TM010234",
+      "value": "TM010228",
       "status": "official_source"
     }
   ],
   "sources": [
     {
       "title": "Tamil Nadu HR&CE temple record",
-      "url": "https://hrce.tn.gov.in/hrcehome/index_temple.php?tid=10234",
+      "url": "https://hrce.tn.gov.in/hrcehome/index_temple.php?tid=10228",
       "authority": "Government of Tamil Nadu HR&CE",
       "verification_status": "official",
       "last_checked": "2026-07-17",

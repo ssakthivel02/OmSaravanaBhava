@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Regional Murugan Temple Record 250B",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "name_ta",
+    "district",
+    "state",
+    "country",
+    "setting",
+    "official_temple_id",
+    "official_source",
+    "publication",
+    "sources",
+    "pending",
+    "image",
+    "data_version"
+  ]
+}

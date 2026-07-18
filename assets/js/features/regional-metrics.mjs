@@ -1,6 +1,1 @@
-export function updateRegionalMetrics(items){
-  document.getElementById('regional-total').textContent=items.length;
-  document.getElementById('regional-district-count').textContent=new Set(items.map(x=>x.district)).size;
-  document.getElementById('regional-official-count').textContent=items.filter(x=>x.source_status==='official').length;
-  document.getElementById('regional-review-count').textContent=items.reduce((sum,x)=>sum+x.review_field_count,0);
-}
+export function updateRegionalMetrics(items){document.getElementById('regional-total').textContent=items.length;document.getElementById('regional-district-count').textContent=new Set(items.map(x=>x.district)).size;document.getElementById('regional-official-count').textContent=items.filter(x=>x.source_status==='official').length;document.getElementById('regional-review-count').textContent=items.reduce((s,x)=>s+x.review_field_count,0);}

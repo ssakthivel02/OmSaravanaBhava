@@ -1,16 +1,16 @@
 {
-  "id": "thindal",
-  "name": "Thindal Velayuthasamy Temple",
-  "name_ta": "திண்டல் வேலாயுதசுவாமி திருக்கோயில்",
-  "district": "Erode",
+  "id": "pookara-street-thanjavur",
+  "name": "Pookara Street Subramaniya Swamy Temple",
+  "name_ta": "பூக்காரத்தெரு சுப்பிரமணிய சுவாமி திருக்கோயில்",
+  "district": "Thanjavur",
   "state": "Tamil Nadu",
   "country": "India",
-  "setting": "Hill temple",
-  "official_temple_id": "TM010234",
-  "official_source": "https://hrce.tn.gov.in/hrcehome/index_temple.php?tid=10234",
+  "setting": "Urban temple",
+  "official_temple_id": "TM014103",
+  "official_source": "https://hrce.tn.gov.in/hrcehome/index_temple.php?tid=14103",
   "group": "Regional Murugan Temple",
-  "release_origin": "250A",
-  "summary": "Thindal Velayuthasamy Temple is registered from an official Tamil Nadu HR&CE identity source. Historical, ritual, visitor and image fields remain under editorial review.",
+  "release_origin": "250B",
+  "summary": "Pookara Street Subramaniya Swamy Temple is registered from an official Tamil Nadu HR&CE identity source. Historical, ritual, visitor and image fields remain under editorial review.",
   "publication": {
     "status": "identity_verified_content_review_required",
     "label": "Official identity verified; content review required",
@@ -19,17 +19,17 @@
   "profile": [
     {
       "label": "Temple name",
-      "value": "Thindal Velayuthasamy Temple",
+      "value": "Pookara Street Subramaniya Swamy Temple",
       "status": "official_source"
     },
     {
       "label": "Tamil name",
-      "value": "திண்டல் வேலாயுதசுவாமி திருக்கோயில்",
+      "value": "பூக்காரத்தெரு சுப்பிரமணிய சுவாமி திருக்கோயில்",
       "status": "official_source"
     },
     {
       "label": "District",
-      "value": "Erode",
+      "value": "Thanjavur",
       "status": "official_source"
     },
     {
@@ -39,19 +39,19 @@
     },
     {
       "label": "Setting",
-      "value": "Hill temple",
+      "value": "Urban temple",
       "status": "editorial_classification"
     },
     {
       "label": "Official temple ID",
-      "value": "TM010234",
+      "value": "TM014103",
       "status": "official_source"
     }
   ],
   "sources": [
     {
       "title": "Tamil Nadu HR&CE temple record",
-      "url": "https://hrce.tn.gov.in/hrcehome/index_temple.php?tid=10234",
+      "url": "https://hrce.tn.gov.in/hrcehome/index_temple.php?tid=14103",
       "authority": "Government of Tamil Nadu HR&CE",
       "verification_status": "official",
       "last_checked": "2026-07-17",

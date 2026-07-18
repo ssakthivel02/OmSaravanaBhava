@@ -4,15 +4,17 @@
   "name_ta": "விராலிமலை சுப்பிரமணியசுவாமி திருக்கோயில்",
   "district": "Pudukkottai",
   "state": "Tamil Nadu",
+  "country": "India",
   "setting": "Hill temple",
   "official_temple_id": "TM025691",
   "official_source": "https://hrce.tn.gov.in/hrcehome/index_temple.php?tid=25691",
-  "summary": "A regional Murugan temple record registered from the Tamil Nadu HR&CE official temple portal. Devotional tradition and historical claims require field-level source attribution before full publication.",
   "group": "Regional Murugan Temple",
+  "release_origin": "250A",
+  "summary": "Viralimalai Subramaniyaswamy Temple is registered from an official Tamil Nadu HR&CE identity source. Historical, ritual, visitor and image fields remain under editorial review.",
   "publication": {
     "status": "identity_verified_content_review_required",
     "label": "Official identity verified; content review required",
-    "note": "Temple identity and district are linked to an official HR&CE source. Narrative and changing visitor data require separate review."
+    "note": "Stable identity fields are sourced from an official HR&CE page. Time-sensitive and narrative fields remain under review."
   },
   "profile": [
     {
@@ -48,11 +50,12 @@
   ],
   "sources": [
     {
-      "title": "Tamil Nadu Hindu Religious and Charitable Endowments Department temple record",
+      "title": "Tamil Nadu HR&CE temple record",
       "url": "https://hrce.tn.gov.in/hrcehome/index_temple.php?tid=25691",
       "authority": "Government of Tamil Nadu HR&CE",
       "verification_status": "official",
-      "last_checked": "2026-07-17"
+      "last_checked": "2026-07-17",
+      "freshness_days": 90
     }
   ],
   "pending": [
@@ -91,13 +94,7 @@
   ],
   "image": {
     "status": "licensed_asset_required",
-    "note": "No documentary temple photograph is bundled in Release 250A. Add only licensed, attributed and identity-verified imagery."
+    "note": "No documentary temple photograph is bundled. Add only licensed, attributed and identity-verified imagery."
   },
-  "keywords": [
-    "Viralimalai Subramaniyaswamy Temple",
-    "விராலிமலை சுப்பிரமணியசுவாமி திருக்கோயில்",
-    "Pudukkottai",
-    "Murugan",
-    "Tamil Nadu"
-  ]
+  "data_version": "250B.1"
 }

@@ -1,0 +1,1 @@
+import {escapeHtml} from '../utils/dom.mjs';export function collectionCard(i,t){return `<button type="button" class="collection-card" data-collection-type="${escapeHtml(t)}" data-collection-id="${escapeHtml(i.id)}"><strong>${escapeHtml(i.label)}</strong><span>${i.count} temples</span></button>`;}

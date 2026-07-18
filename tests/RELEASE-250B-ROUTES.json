@@ -1,0 +1,17 @@
+{
+  "routes": [
+    "regional-temple-catalogue.html",
+    "regional-temple-collections.html",
+    "regional-temple-review.html",
+    "regional-temple-detail.html?id=marudhamalai",
+    "regional-temple-detail.html?id=viralimalai",
+    "regional-temple-detail.html?id=vallimalai",
+    "regional-temple-detail.html?id=thindal",
+    "regional-temple-detail.html?id=kundrathur",
+    "regional-temple-detail.html?id=vallakottai",
+    "regional-temple-detail.html?id=chennimalai",
+    "regional-temple-detail.html?id=ettukudi",
+    "regional-temple-detail.html?id=kumarakottam",
+    "regional-temple-detail.html?id=pookara-street-thanjavur"
+  ]
+}

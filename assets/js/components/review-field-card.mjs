@@ -1,0 +1,1 @@
+import {escapeHtml} from '../utils/dom.mjs';export function reviewFieldCard(i){return `<article class="review-field-card"><strong>${escapeHtml(i.field.replaceAll('_',' '))}</strong><span>${i.record_count} records · ${escapeHtml(i.status.replaceAll('_',' '))}</span></article>`;}

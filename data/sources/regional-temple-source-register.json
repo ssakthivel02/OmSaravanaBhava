@@ -1,34 +1,96 @@
 {
-  "release": "250A",
-  "policy": "Only official-source starter identities are published in this phase.",
-  "sources": [
+  "release": "250B",
+  "generated_on": "2026-07-17",
+  "records": [
     {
       "temple_id": "marudhamalai",
+      "official_temple_id": "TM009762",
       "authority": "Government of Tamil Nadu HR&CE",
       "url": "https://marudhamalaimurugan.hrce.tn.gov.in/",
-      "official_temple_id": "TM009762",
-      "last_checked": "2026-07-17"
+      "last_checked": "2026-07-17",
+      "freshness_days": 90,
+      "status": "current"
     },
     {
       "temple_id": "viralimalai",
+      "official_temple_id": "TM025691",
       "authority": "Government of Tamil Nadu HR&CE",
       "url": "https://hrce.tn.gov.in/hrcehome/index_temple.php?tid=25691",
-      "official_temple_id": "TM025691",
-      "last_checked": "2026-07-17"
+      "last_checked": "2026-07-17",
+      "freshness_days": 90,
+      "status": "current"
     },
     {
       "temple_id": "vallimalai",
+      "official_temple_id": "TM001388",
       "authority": "Government of Tamil Nadu HR&CE",
       "url": "https://hrce.tn.gov.in/ticketing/service_collectionindex.php?group_id=4&scode=21&sscode=1&target_type=1&tid=1388",
-      "official_temple_id": "TM001388",
-      "last_checked": "2026-07-17"
+      "last_checked": "2026-07-17",
+      "freshness_days": 90,
+      "status": "current"
     },
     {
       "temple_id": "thindal",
+      "official_temple_id": "TM010234",
       "authority": "Government of Tamil Nadu HR&CE",
       "url": "https://hrce.tn.gov.in/hrcehome/index_temple.php?tid=10234",
-      "official_temple_id": "TM010234",
-      "last_checked": "2026-07-17"
+      "last_checked": "2026-07-17",
+      "freshness_days": 90,
+      "status": "current"
+    },
+    {
+      "temple_id": "kundrathur",
+      "official_temple_id": "TM001885",
+      "authority": "Government of Tamil Nadu HR&CE",
+      "url": "https://hrce.tn.gov.in/hrcehome/index_temple.php?tid=1885",
+      "last_checked": "2026-07-17",
+      "freshness_days": 90,
+      "status": "current"
+    },
+    {
+      "temple_id": "vallakottai",
+      "official_temple_id": "TM001797",
+      "authority": "Government of Tamil Nadu HR&CE",
+      "url": "https://hrce.tn.gov.in/hrcehome/index_temple.php?tid=1797",
+      "last_checked": "2026-07-17",
+      "freshness_days": 90,
+      "status": "current"
+    },
+    {
+      "temple_id": "chennimalai",
+      "official_temple_id": "TM010228",
+      "authority": "Government of Tamil Nadu HR&CE",
+      "url": "https://hrce.tn.gov.in/hrcehome/index_temple.php?tid=10228",
+      "last_checked": "2026-07-17",
+      "freshness_days": 90,
+      "status": "current"
+    },
+    {
+      "temple_id": "ettukudi",
+      "official_temple_id": "TM014581",
+      "authority": "Government of Tamil Nadu HR&CE",
+      "url": "https://hrce.tn.gov.in/hrcehome/index_temple.php?tid=14581",
+      "last_checked": "2026-07-17",
+      "freshness_days": 90,
+      "status": "current"
+    },
+    {
+      "temple_id": "kumarakottam",
+      "official_temple_id": "TM001701",
+      "authority": "Government of Tamil Nadu HR&CE",
+      "url": "https://hrce.tn.gov.in/hrcehome/index_temple.php?tid=1701",
+      "last_checked": "2026-07-17",
+      "freshness_days": 90,
+      "status": "current"
+    },
+    {
+      "temple_id": "pookara-street-thanjavur",
+      "official_temple_id": "TM014103",
+      "authority": "Government of Tamil Nadu HR&CE",
+      "url": "https://hrce.tn.gov.in/hrcehome/index_temple.php?tid=14103",
+      "last_checked": "2026-07-17",
+      "freshness_days": 90,
+      "status": "current"
     }
   ]
 }
