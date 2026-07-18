@@ -1,0 +1,30 @@
+{
+  "base_url": "https://omsaravanabhava.org",
+  "routes": [
+    {
+      "path": "/",
+      "changefreq": "weekly",
+      "priority": 1.0
+    },
+    {
+      "path": "/temple-encyclopedia.html",
+      "changefreq": "weekly",
+      "priority": 0.9
+    },
+    {
+      "path": "/regional-temple-catalogue.html",
+      "changefreq": "weekly",
+      "priority": 0.9
+    },
+    {
+      "path": "/temple-search.html",
+      "changefreq": "weekly",
+      "priority": 0.8
+    },
+    {
+      "path": "/temple-collections.html",
+      "changefreq": "monthly",
+      "priority": 0.7
+    }
+  ]
+}

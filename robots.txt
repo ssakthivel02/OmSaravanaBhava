@@ -1,5 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /audit/
-
 Sitemap: https://omsaravanabhava.org/sitemap.xml
