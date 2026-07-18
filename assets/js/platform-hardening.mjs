@@ -1,0 +1,1 @@
+export function hardenPage(){document.querySelectorAll('img').forEach(img=>{if(!img.loading)img.loading='lazy';img.decoding='async';if(!img.alt)console.warn('Image missing alt text',img.src)});document.querySelectorAll('a[target="_blank"]').forEach(a=>{const rel=new Set((a.rel||'').split(/\s+/).filter(Boolean));rel.add('noopener');a.rel=[...rel].join(' ')})}hardenPage();
