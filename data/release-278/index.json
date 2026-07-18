@@ -1,0 +1,114 @@
+{
+  "release": 278,
+  "title": "Security and SEO Hardening",
+  "records": [
+    {
+      "id": "security-seo-01",
+      "title": "Security and SEO Hardening Module 1",
+      "title_ta": "முருகன் அறிவு தொகுதி 1",
+      "summary": "Structured Release 278 record 1 for security and seo hardening, with source and publication controls.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "278.1"
+    },
+    {
+      "id": "security-seo-02",
+      "title": "Security and SEO Hardening Module 2",
+      "title_ta": "முருகன் அறிவு தொகுதி 2",
+      "summary": "Structured Release 278 record 2 for security and seo hardening, with source and publication controls.",
+      "category": "Experience",
+      "status": "published",
+      "version": "278.1"
+    },
+    {
+      "id": "security-seo-03",
+      "title": "Security and SEO Hardening Module 3",
+      "title_ta": "முருகன் அறிவு தொகுதி 3",
+      "summary": "Structured Release 278 record 3 for security and seo hardening, with source and publication controls.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "278.1"
+    },
+    {
+      "id": "security-seo-04",
+      "title": "Security and SEO Hardening Module 4",
+      "title_ta": "முருகன் அறிவு தொகுதி 4",
+      "summary": "Structured Release 278 record 4 for security and seo hardening, with source and publication controls.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "278.1"
+    },
+    {
+      "id": "security-seo-05",
+      "title": "Security and SEO Hardening Module 5",
+      "title_ta": "முருகன் அறிவு தொகுதி 5",
+      "summary": "Structured Release 278 record 5 for security and seo hardening, with source and publication controls.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "278.1"
+    },
+    {
+      "id": "security-seo-06",
+      "title": "Security and SEO Hardening Module 6",
+      "title_ta": "முருகன் அறிவு தொகுதி 6",
+      "summary": "Structured Release 278 record 6 for security and seo hardening, with source and publication controls.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "278.1"
+    },
+    {
+      "id": "security-seo-07",
+      "title": "Security and SEO Hardening Module 7",
+      "title_ta": "முருகன் அறிவு தொகுதி 7",
+      "summary": "Structured Release 278 record 7 for security and seo hardening, with source and publication controls.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "278.1"
+    },
+    {
+      "id": "security-seo-08",
+      "title": "Security and SEO Hardening Module 8",
+      "title_ta": "முருகன் அறிவு தொகுதி 8",
+      "summary": "Structured Release 278 record 8 for security and seo hardening, with source and publication controls.",
+      "category": "Experience",
+      "status": "published",
+      "version": "278.1"
+    },
+    {
+      "id": "security-seo-09",
+      "title": "Security and SEO Hardening Module 9",
+      "title_ta": "முருகன் அறிவு தொகுதி 9",
+      "summary": "Structured Release 278 record 9 for security and seo hardening, with source and publication controls.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "278.1"
+    },
+    {
+      "id": "security-seo-10",
+      "title": "Security and SEO Hardening Module 10",
+      "title_ta": "முருகன் அறிவு தொகுதி 10",
+      "summary": "Structured Release 278 record 10 for security and seo hardening, with source and publication controls.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "278.1"
+    },
+    {
+      "id": "security-seo-11",
+      "title": "Security and SEO Hardening Module 11",
+      "title_ta": "முருகன் அறிவு தொகுதி 11",
+      "summary": "Structured Release 278 record 11 for security and seo hardening, with source and publication controls.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "278.1"
+    },
+    {
+      "id": "security-seo-12",
+      "title": "Security and SEO Hardening Module 12",
+      "title_ta": "முருகன் அறிவு தொகுதி 12",
+      "summary": "Structured Release 278 record 12 for security and seo hardening, with source and publication controls.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "278.1"
+    }
+  ]
+}
