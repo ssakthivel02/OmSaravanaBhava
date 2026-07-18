@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "required": [
+    "temple_id",
+    "src",
+    "alt",
+    "source",
+    "licence",
+    "attribution",
+    "verification_status"
+  ],
+  "properties": {
+    "verification_status": {
+      "enum": [
+        "approved",
+        "review_required"
+      ]
+    }
+  }
+}
