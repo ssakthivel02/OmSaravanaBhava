@@ -1,0 +1,114 @@
+{
+  "release": 272,
+  "title": "Audio and Chanting Experience",
+  "records": [
+    {
+      "id": "audio-chanting-01",
+      "title": "Audio and Chanting Experience Module 1",
+      "title_ta": "முருகன் அறிவு தொகுதி 1",
+      "summary": "Structured Release 272 record 1 for audio and chanting experience, with source and publication controls.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "272.1"
+    },
+    {
+      "id": "audio-chanting-02",
+      "title": "Audio and Chanting Experience Module 2",
+      "title_ta": "முருகன் அறிவு தொகுதி 2",
+      "summary": "Structured Release 272 record 2 for audio and chanting experience, with source and publication controls.",
+      "category": "Experience",
+      "status": "published",
+      "version": "272.1"
+    },
+    {
+      "id": "audio-chanting-03",
+      "title": "Audio and Chanting Experience Module 3",
+      "title_ta": "முருகன் அறிவு தொகுதி 3",
+      "summary": "Structured Release 272 record 3 for audio and chanting experience, with source and publication controls.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "272.1"
+    },
+    {
+      "id": "audio-chanting-04",
+      "title": "Audio and Chanting Experience Module 4",
+      "title_ta": "முருகன் அறிவு தொகுதி 4",
+      "summary": "Structured Release 272 record 4 for audio and chanting experience, with source and publication controls.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "272.1"
+    },
+    {
+      "id": "audio-chanting-05",
+      "title": "Audio and Chanting Experience Module 5",
+      "title_ta": "முருகன் அறிவு தொகுதி 5",
+      "summary": "Structured Release 272 record 5 for audio and chanting experience, with source and publication controls.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "272.1"
+    },
+    {
+      "id": "audio-chanting-06",
+      "title": "Audio and Chanting Experience Module 6",
+      "title_ta": "முருகன் அறிவு தொகுதி 6",
+      "summary": "Structured Release 272 record 6 for audio and chanting experience, with source and publication controls.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "272.1"
+    },
+    {
+      "id": "audio-chanting-07",
+      "title": "Audio and Chanting Experience Module 7",
+      "title_ta": "முருகன் அறிவு தொகுதி 7",
+      "summary": "Structured Release 272 record 7 for audio and chanting experience, with source and publication controls.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "272.1"
+    },
+    {
+      "id": "audio-chanting-08",
+      "title": "Audio and Chanting Experience Module 8",
+      "title_ta": "முருகன் அறிவு தொகுதி 8",
+      "summary": "Structured Release 272 record 8 for audio and chanting experience, with source and publication controls.",
+      "category": "Experience",
+      "status": "published",
+      "version": "272.1"
+    },
+    {
+      "id": "audio-chanting-09",
+      "title": "Audio and Chanting Experience Module 9",
+      "title_ta": "முருகன் அறிவு தொகுதி 9",
+      "summary": "Structured Release 272 record 9 for audio and chanting experience, with source and publication controls.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "272.1"
+    },
+    {
+      "id": "audio-chanting-10",
+      "title": "Audio and Chanting Experience Module 10",
+      "title_ta": "முருகன் அறிவு தொகுதி 10",
+      "summary": "Structured Release 272 record 10 for audio and chanting experience, with source and publication controls.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "272.1"
+    },
+    {
+      "id": "audio-chanting-11",
+      "title": "Audio and Chanting Experience Module 11",
+      "title_ta": "முருகன் அறிவு தொகுதி 11",
+      "summary": "Structured Release 272 record 11 for audio and chanting experience, with source and publication controls.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "272.1"
+    },
+    {
+      "id": "audio-chanting-12",
+      "title": "Audio and Chanting Experience Module 12",
+      "title_ta": "முருகன் அறிவு தொகுதி 12",
+      "summary": "Structured Release 272 record 12 for audio and chanting experience, with source and publication controls.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "272.1"
+    }
+  ]
+}
