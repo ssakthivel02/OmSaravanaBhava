@@ -1,0 +1,114 @@
+{
+  "release": 279,
+  "title": "Cloud Deployment Optimization",
+  "records": [
+    {
+      "id": "cloud-deployment-01",
+      "title": "Cloud Deployment Optimization Module 1",
+      "title_ta": "முருகன் அறிவு தொகுதி 1",
+      "summary": "Structured Release 279 record 1 for cloud deployment optimization, with source and publication controls.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "279.1"
+    },
+    {
+      "id": "cloud-deployment-02",
+      "title": "Cloud Deployment Optimization Module 2",
+      "title_ta": "முருகன் அறிவு தொகுதி 2",
+      "summary": "Structured Release 279 record 2 for cloud deployment optimization, with source and publication controls.",
+      "category": "Experience",
+      "status": "published",
+      "version": "279.1"
+    },
+    {
+      "id": "cloud-deployment-03",
+      "title": "Cloud Deployment Optimization Module 3",
+      "title_ta": "முருகன் அறிவு தொகுதி 3",
+      "summary": "Structured Release 279 record 3 for cloud deployment optimization, with source and publication controls.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "279.1"
+    },
+    {
+      "id": "cloud-deployment-04",
+      "title": "Cloud Deployment Optimization Module 4",
+      "title_ta": "முருகன் அறிவு தொகுதி 4",
+      "summary": "Structured Release 279 record 4 for cloud deployment optimization, with source and publication controls.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "279.1"
+    },
+    {
+      "id": "cloud-deployment-05",
+      "title": "Cloud Deployment Optimization Module 5",
+      "title_ta": "முருகன் அறிவு தொகுதி 5",
+      "summary": "Structured Release 279 record 5 for cloud deployment optimization, with source and publication controls.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "279.1"
+    },
+    {
+      "id": "cloud-deployment-06",
+      "title": "Cloud Deployment Optimization Module 6",
+      "title_ta": "முருகன் அறிவு தொகுதி 6",
+      "summary": "Structured Release 279 record 6 for cloud deployment optimization, with source and publication controls.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "279.1"
+    },
+    {
+      "id": "cloud-deployment-07",
+      "title": "Cloud Deployment Optimization Module 7",
+      "title_ta": "முருகன் அறிவு தொகுதி 7",
+      "summary": "Structured Release 279 record 7 for cloud deployment optimization, with source and publication controls.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "279.1"
+    },
+    {
+      "id": "cloud-deployment-08",
+      "title": "Cloud Deployment Optimization Module 8",
+      "title_ta": "முருகன் அறிவு தொகுதி 8",
+      "summary": "Structured Release 279 record 8 for cloud deployment optimization, with source and publication controls.",
+      "category": "Experience",
+      "status": "published",
+      "version": "279.1"
+    },
+    {
+      "id": "cloud-deployment-09",
+      "title": "Cloud Deployment Optimization Module 9",
+      "title_ta": "முருகன் அறிவு தொகுதி 9",
+      "summary": "Structured Release 279 record 9 for cloud deployment optimization, with source and publication controls.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "279.1"
+    },
+    {
+      "id": "cloud-deployment-10",
+      "title": "Cloud Deployment Optimization Module 10",
+      "title_ta": "முருகன் அறிவு தொகுதி 10",
+      "summary": "Structured Release 279 record 10 for cloud deployment optimization, with source and publication controls.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "279.1"
+    },
+    {
+      "id": "cloud-deployment-11",
+      "title": "Cloud Deployment Optimization Module 11",
+      "title_ta": "முருகன் அறிவு தொகுதி 11",
+      "summary": "Structured Release 279 record 11 for cloud deployment optimization, with source and publication controls.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "279.1"
+    },
+    {
+      "id": "cloud-deployment-12",
+      "title": "Cloud Deployment Optimization Module 12",
+      "title_ta": "முருகன் அறிவு தொகுதி 12",
+      "summary": "Structured Release 279 record 12 for cloud deployment optimization, with source and publication controls.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "279.1"
+    }
+  ]
+}
