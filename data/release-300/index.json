@@ -1,0 +1,128 @@
+{
+  "release": 300,
+  "title": "Siddhar and Saint Relationship Explorer",
+  "features": [
+    {
+      "title": "Purpose-built interface",
+      "description": "Visual patterns are tailored to this release."
+    },
+    {
+      "title": "Bilingual structured data",
+      "description": "Tamil and English records use explicit schemas."
+    },
+    {
+      "title": "Quality gates",
+      "description": "Validation, deployment and rollback guidance included."
+    }
+  ],
+  "records": [
+    {
+      "id": "saint-relationship-explorer-01",
+      "title": "Siddhar and Saint Relationship Explorer Feature 1",
+      "title_ta": "முருகன் தரத் தொகுதி 1",
+      "summary": "Quality-focused Release 300 record 1.",
+      "category": "Experience",
+      "status": "published",
+      "version": "300.1"
+    },
+    {
+      "id": "saint-relationship-explorer-02",
+      "title": "Siddhar and Saint Relationship Explorer Feature 2",
+      "title_ta": "முருகன் தரத் தொகுதி 2",
+      "summary": "Quality-focused Release 300 record 2.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "300.1"
+    },
+    {
+      "id": "saint-relationship-explorer-03",
+      "title": "Siddhar and Saint Relationship Explorer Feature 3",
+      "title_ta": "முருகன் தரத் தொகுதி 3",
+      "summary": "Quality-focused Release 300 record 3.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "300.1"
+    },
+    {
+      "id": "saint-relationship-explorer-04",
+      "title": "Siddhar and Saint Relationship Explorer Feature 4",
+      "title_ta": "முருகன் தரத் தொகுதி 4",
+      "summary": "Quality-focused Release 300 record 4.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "300.1"
+    },
+    {
+      "id": "saint-relationship-explorer-05",
+      "title": "Siddhar and Saint Relationship Explorer Feature 5",
+      "title_ta": "முருகன் தரத் தொகுதி 5",
+      "summary": "Quality-focused Release 300 record 5.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "300.1"
+    },
+    {
+      "id": "saint-relationship-explorer-06",
+      "title": "Siddhar and Saint Relationship Explorer Feature 6",
+      "title_ta": "முருகன் தரத் தொகுதி 6",
+      "summary": "Quality-focused Release 300 record 6.",
+      "category": "Validation",
+      "status": "published",
+      "version": "300.1"
+    },
+    {
+      "id": "saint-relationship-explorer-07",
+      "title": "Siddhar and Saint Relationship Explorer Feature 7",
+      "title_ta": "முருகன் தரத் தொகுதி 7",
+      "summary": "Quality-focused Release 300 record 7.",
+      "category": "Experience",
+      "status": "published",
+      "version": "300.1"
+    },
+    {
+      "id": "saint-relationship-explorer-08",
+      "title": "Siddhar and Saint Relationship Explorer Feature 8",
+      "title_ta": "முருகன் தரத் தொகுதி 8",
+      "summary": "Quality-focused Release 300 record 8.",
+      "category": "Knowledge",
+      "status": "review_required",
+      "version": "300.1"
+    },
+    {
+      "id": "saint-relationship-explorer-09",
+      "title": "Siddhar and Saint Relationship Explorer Feature 9",
+      "title_ta": "முருகன் தரத் தொகுதி 9",
+      "summary": "Quality-focused Release 300 record 9.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "300.1"
+    },
+    {
+      "id": "saint-relationship-explorer-10",
+      "title": "Siddhar and Saint Relationship Explorer Feature 10",
+      "title_ta": "முருகன் தரத் தொகுதி 10",
+      "summary": "Quality-focused Release 300 record 10.",
+      "category": "Editorial",
+      "status": "published",
+      "version": "300.1"
+    },
+    {
+      "id": "saint-relationship-explorer-11",
+      "title": "Siddhar and Saint Relationship Explorer Feature 11",
+      "title_ta": "முருகன் தரத் தொகுதி 11",
+      "summary": "Quality-focused Release 300 record 11.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "300.1"
+    },
+    {
+      "id": "saint-relationship-explorer-12",
+      "title": "Siddhar and Saint Relationship Explorer Feature 12",
+      "title_ta": "முருகன் தரத் தொகுதி 12",
+      "summary": "Quality-focused Release 300 record 12.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "300.1"
+    }
+  ]
+}
