@@ -1,0 +1,28 @@
+{
+  "collections": [
+    {
+      "id": "six-abodes",
+      "label": "Arupadai Veedu",
+      "temple_ids": [
+        "tirupparankundram",
+        "tiruchendur",
+        "palani"
+      ]
+    },
+    {
+      "id": "hill-temples",
+      "label": "Hill Temples",
+      "temple_ids": [
+        "palani",
+        "marudhamalai"
+      ]
+    },
+    {
+      "id": "madurai-region",
+      "label": "Madurai Region",
+      "temple_ids": [
+        "tirupparankundram"
+      ]
+    }
+  ]
+}
