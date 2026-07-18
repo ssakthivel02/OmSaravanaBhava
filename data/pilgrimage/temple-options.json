@@ -1,0 +1,24 @@
+{
+  "records": [
+    {
+      "id": "tirupparankundram",
+      "name": "Tirupparankundram",
+      "name_ta": "திருப்பரங்குன்றம்"
+    },
+    {
+      "id": "tiruchendur",
+      "name": "Tiruchendur",
+      "name_ta": "திருச்செந்தூர்"
+    },
+    {
+      "id": "palani",
+      "name": "Palani",
+      "name_ta": "பழனி"
+    },
+    {
+      "id": "marudhamalai",
+      "name": "Marudhamalai",
+      "name_ta": "மருதமலை"
+    }
+  ]
+}
