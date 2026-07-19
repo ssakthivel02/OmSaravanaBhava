@@ -1,0 +1,1171 @@
+[
+  {
+    "path": ".github/workflows/deployment-conformance.yml",
+    "push_trigger": true,
+    "pull_request_trigger": true,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/effective-route-consumers.yml",
+    "push_trigger": true,
+    "pull_request_trigger": true,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/operations-observability.yml",
+    "push_trigger": true,
+    "pull_request_trigger": true,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-baseline.yml",
+    "push_trigger": true,
+    "pull_request_trigger": true,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-01-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-02-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-03-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-04-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-05-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-06-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-07-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-08-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-09-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-10-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-100-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-100-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-11-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-12-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-13-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-14-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-15-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-16-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-17-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-18-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-19-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-20-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-21-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-22-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-23-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-24-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-25-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-26-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-27-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-28-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-29-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-30-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-31-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-32-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-33-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-34-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-35-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-36-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-37-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-38-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-39-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-40-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-41-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-41-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-42-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-42-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-43-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-43-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-44-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-44-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-45-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-45-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-46-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-46-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-47-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-47-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-48-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-48-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-49-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-49-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-50-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-50-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-51-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-51-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-52-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-52-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-53-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-53-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-54-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-54-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-55-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-55-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-56-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-56-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-57-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-57-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-58-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-58-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-59-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-59-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-60-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-60-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-61-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-61-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-62-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-62-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-63-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-63-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-64-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-64-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-65-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-65-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-66-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-66-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-67-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-67-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-68-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-68-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-69-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-69-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-70-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-70-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-71-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-71-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-72-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-72-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-73-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-73-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-74-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-74-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-75-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-75-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-76-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-76-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-77-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-77-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-78-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-78-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-79-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-79-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-80-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-80-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-81-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-81-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-82-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-82-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-83-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-83-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-84-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-84-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-85-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-85-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-86-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-86-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-87-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-87-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-88-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-88-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-89-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-89-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-90-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-90-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-91-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-91-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-92-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-92-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-93-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-93-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-94-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-94-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-95-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-95-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-96-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-96-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-97-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-97-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-98-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-98-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-99-manual.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-pack-99-quality.yml",
+    "push_trigger": false,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/repository-hygiene.yml",
+    "push_trigger": true,
+    "pull_request_trigger": true,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/repository-integrity.yml",
+    "push_trigger": true,
+    "pull_request_trigger": true,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/repository-quality-audit.yml",
+    "push_trigger": true,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  }
+]
