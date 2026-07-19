@@ -1,0 +1,128 @@
+{
+  "release": 310,
+  "title": "Deployment Reliability and Smoke Tests",
+  "features": [
+    {
+      "title": "Purpose-built interface",
+      "description": "Visual patterns are tailored to this release."
+    },
+    {
+      "title": "Bilingual structured data",
+      "description": "Tamil and English records use explicit schemas."
+    },
+    {
+      "title": "Quality gates",
+      "description": "Validation, deployment and rollback guidance included."
+    }
+  ],
+  "records": [
+    {
+      "id": "deployment-reliability-01",
+      "title": "Deployment Reliability and Smoke Tests Feature 1",
+      "title_ta": "முருகன் தரத் தொகுதி 1",
+      "summary": "Quality-focused Release 310 record 1.",
+      "category": "Experience",
+      "status": "published",
+      "version": "310.1"
+    },
+    {
+      "id": "deployment-reliability-02",
+      "title": "Deployment Reliability and Smoke Tests Feature 2",
+      "title_ta": "முருகன் தரத் தொகுதி 2",
+      "summary": "Quality-focused Release 310 record 2.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "310.1"
+    },
+    {
+      "id": "deployment-reliability-03",
+      "title": "Deployment Reliability and Smoke Tests Feature 3",
+      "title_ta": "முருகன் தரத் தொகுதி 3",
+      "summary": "Quality-focused Release 310 record 3.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "310.1"
+    },
+    {
+      "id": "deployment-reliability-04",
+      "title": "Deployment Reliability and Smoke Tests Feature 4",
+      "title_ta": "முருகன் தரத் தொகுதி 4",
+      "summary": "Quality-focused Release 310 record 4.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "310.1"
+    },
+    {
+      "id": "deployment-reliability-05",
+      "title": "Deployment Reliability and Smoke Tests Feature 5",
+      "title_ta": "முருகன் தரத் தொகுதி 5",
+      "summary": "Quality-focused Release 310 record 5.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "310.1"
+    },
+    {
+      "id": "deployment-reliability-06",
+      "title": "Deployment Reliability and Smoke Tests Feature 6",
+      "title_ta": "முருகன் தரத் தொகுதி 6",
+      "summary": "Quality-focused Release 310 record 6.",
+      "category": "Validation",
+      "status": "published",
+      "version": "310.1"
+    },
+    {
+      "id": "deployment-reliability-07",
+      "title": "Deployment Reliability and Smoke Tests Feature 7",
+      "title_ta": "முருகன் தரத் தொகுதி 7",
+      "summary": "Quality-focused Release 310 record 7.",
+      "category": "Experience",
+      "status": "published",
+      "version": "310.1"
+    },
+    {
+      "id": "deployment-reliability-08",
+      "title": "Deployment Reliability and Smoke Tests Feature 8",
+      "title_ta": "முருகன் தரத் தொகுதி 8",
+      "summary": "Quality-focused Release 310 record 8.",
+      "category": "Knowledge",
+      "status": "review_required",
+      "version": "310.1"
+    },
+    {
+      "id": "deployment-reliability-09",
+      "title": "Deployment Reliability and Smoke Tests Feature 9",
+      "title_ta": "முருகன் தரத் தொகுதி 9",
+      "summary": "Quality-focused Release 310 record 9.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "310.1"
+    },
+    {
+      "id": "deployment-reliability-10",
+      "title": "Deployment Reliability and Smoke Tests Feature 10",
+      "title_ta": "முருகன் தரத் தொகுதி 10",
+      "summary": "Quality-focused Release 310 record 10.",
+      "category": "Editorial",
+      "status": "published",
+      "version": "310.1"
+    },
+    {
+      "id": "deployment-reliability-11",
+      "title": "Deployment Reliability and Smoke Tests Feature 11",
+      "title_ta": "முருகன் தரத் தொகுதி 11",
+      "summary": "Quality-focused Release 310 record 11.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "310.1"
+    },
+    {
+      "id": "deployment-reliability-12",
+      "title": "Deployment Reliability and Smoke Tests Feature 12",
+      "title_ta": "முருகன் தரத் தொகுதி 12",
+      "summary": "Quality-focused Release 310 record 12.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "310.1"
+    }
+  ]
+}
