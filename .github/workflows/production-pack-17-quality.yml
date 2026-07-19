@@ -1,0 +1,9 @@
+name: Production Pack 17 Quality
+on: [workflow_dispatch]
+permissions: {contents: read}
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: test -f production-pack-17.html
