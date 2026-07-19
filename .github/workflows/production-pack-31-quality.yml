@@ -1,0 +1,9 @@
+name: Production Pack 31 Quality
+on: [workflow_dispatch]
+permissions: {contents: read}
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python scripts/pack-31/run-all.py
