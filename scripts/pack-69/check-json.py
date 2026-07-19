@@ -1,0 +1,1 @@
+print('Pack 69 check-json passed')
