@@ -1,0 +1,128 @@
+{
+  "release": 311,
+  "title": "Production Operations Dashboard",
+  "features": [
+    {
+      "title": "Purpose-built interface",
+      "description": "Visual patterns are tailored to this release."
+    },
+    {
+      "title": "Bilingual structured data",
+      "description": "Tamil and English records use explicit schemas."
+    },
+    {
+      "title": "Quality gates",
+      "description": "Validation, deployment and rollback guidance included."
+    }
+  ],
+  "records": [
+    {
+      "id": "production-operations-dashboard-01",
+      "title": "Production Operations Dashboard Feature 1",
+      "title_ta": "முருகன் தரத் தொகுதி 1",
+      "summary": "Quality-focused Release 311 record 1.",
+      "category": "Experience",
+      "status": "published",
+      "version": "311.1"
+    },
+    {
+      "id": "production-operations-dashboard-02",
+      "title": "Production Operations Dashboard Feature 2",
+      "title_ta": "முருகன் தரத் தொகுதி 2",
+      "summary": "Quality-focused Release 311 record 2.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "311.1"
+    },
+    {
+      "id": "production-operations-dashboard-03",
+      "title": "Production Operations Dashboard Feature 3",
+      "title_ta": "முருகன் தரத் தொகுதி 3",
+      "summary": "Quality-focused Release 311 record 3.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "311.1"
+    },
+    {
+      "id": "production-operations-dashboard-04",
+      "title": "Production Operations Dashboard Feature 4",
+      "title_ta": "முருகன் தரத் தொகுதி 4",
+      "summary": "Quality-focused Release 311 record 4.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "311.1"
+    },
+    {
+      "id": "production-operations-dashboard-05",
+      "title": "Production Operations Dashboard Feature 5",
+      "title_ta": "முருகன் தரத் தொகுதி 5",
+      "summary": "Quality-focused Release 311 record 5.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "311.1"
+    },
+    {
+      "id": "production-operations-dashboard-06",
+      "title": "Production Operations Dashboard Feature 6",
+      "title_ta": "முருகன் தரத் தொகுதி 6",
+      "summary": "Quality-focused Release 311 record 6.",
+      "category": "Validation",
+      "status": "published",
+      "version": "311.1"
+    },
+    {
+      "id": "production-operations-dashboard-07",
+      "title": "Production Operations Dashboard Feature 7",
+      "title_ta": "முருகன் தரத் தொகுதி 7",
+      "summary": "Quality-focused Release 311 record 7.",
+      "category": "Experience",
+      "status": "published",
+      "version": "311.1"
+    },
+    {
+      "id": "production-operations-dashboard-08",
+      "title": "Production Operations Dashboard Feature 8",
+      "title_ta": "முருகன் தரத் தொகுதி 8",
+      "summary": "Quality-focused Release 311 record 8.",
+      "category": "Knowledge",
+      "status": "review_required",
+      "version": "311.1"
+    },
+    {
+      "id": "production-operations-dashboard-09",
+      "title": "Production Operations Dashboard Feature 9",
+      "title_ta": "முருகன் தரத் தொகுதி 9",
+      "summary": "Quality-focused Release 311 record 9.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "311.1"
+    },
+    {
+      "id": "production-operations-dashboard-10",
+      "title": "Production Operations Dashboard Feature 10",
+      "title_ta": "முருகன் தரத் தொகுதி 10",
+      "summary": "Quality-focused Release 311 record 10.",
+      "category": "Editorial",
+      "status": "published",
+      "version": "311.1"
+    },
+    {
+      "id": "production-operations-dashboard-11",
+      "title": "Production Operations Dashboard Feature 11",
+      "title_ta": "முருகன் தரத் தொகுதி 11",
+      "summary": "Quality-focused Release 311 record 11.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "311.1"
+    },
+    {
+      "id": "production-operations-dashboard-12",
+      "title": "Production Operations Dashboard Feature 12",
+      "title_ta": "முருகன் தரத் தொகுதி 12",
+      "summary": "Quality-focused Release 311 record 12.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "311.1"
+    }
+  ]
+}
