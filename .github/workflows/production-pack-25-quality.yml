@@ -1,0 +1,9 @@
+name: Production Pack 25 Quality
+on: [workflow_dispatch]
+permissions: {contents: read}
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python scripts/pack-25/run-all.py
