@@ -1,0 +1,128 @@
+{
+  "release": 309,
+  "title": "PWA Offline Collections Phase II",
+  "features": [
+    {
+      "title": "Purpose-built interface",
+      "description": "Visual patterns are tailored to this release."
+    },
+    {
+      "title": "Bilingual structured data",
+      "description": "Tamil and English records use explicit schemas."
+    },
+    {
+      "title": "Quality gates",
+      "description": "Validation, deployment and rollback guidance included."
+    }
+  ],
+  "records": [
+    {
+      "id": "pwa-offline-phase-ii-01",
+      "title": "PWA Offline Collections Phase II Feature 1",
+      "title_ta": "முருகன் தரத் தொகுதி 1",
+      "summary": "Quality-focused Release 309 record 1.",
+      "category": "Experience",
+      "status": "published",
+      "version": "309.1"
+    },
+    {
+      "id": "pwa-offline-phase-ii-02",
+      "title": "PWA Offline Collections Phase II Feature 2",
+      "title_ta": "முருகன் தரத் தொகுதி 2",
+      "summary": "Quality-focused Release 309 record 2.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "309.1"
+    },
+    {
+      "id": "pwa-offline-phase-ii-03",
+      "title": "PWA Offline Collections Phase II Feature 3",
+      "title_ta": "முருகன் தரத் தொகுதி 3",
+      "summary": "Quality-focused Release 309 record 3.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "309.1"
+    },
+    {
+      "id": "pwa-offline-phase-ii-04",
+      "title": "PWA Offline Collections Phase II Feature 4",
+      "title_ta": "முருகன் தரத் தொகுதி 4",
+      "summary": "Quality-focused Release 309 record 4.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "309.1"
+    },
+    {
+      "id": "pwa-offline-phase-ii-05",
+      "title": "PWA Offline Collections Phase II Feature 5",
+      "title_ta": "முருகன் தரத் தொகுதி 5",
+      "summary": "Quality-focused Release 309 record 5.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "309.1"
+    },
+    {
+      "id": "pwa-offline-phase-ii-06",
+      "title": "PWA Offline Collections Phase II Feature 6",
+      "title_ta": "முருகன் தரத் தொகுதி 6",
+      "summary": "Quality-focused Release 309 record 6.",
+      "category": "Validation",
+      "status": "published",
+      "version": "309.1"
+    },
+    {
+      "id": "pwa-offline-phase-ii-07",
+      "title": "PWA Offline Collections Phase II Feature 7",
+      "title_ta": "முருகன் தரத் தொகுதி 7",
+      "summary": "Quality-focused Release 309 record 7.",
+      "category": "Experience",
+      "status": "published",
+      "version": "309.1"
+    },
+    {
+      "id": "pwa-offline-phase-ii-08",
+      "title": "PWA Offline Collections Phase II Feature 8",
+      "title_ta": "முருகன் தரத் தொகுதி 8",
+      "summary": "Quality-focused Release 309 record 8.",
+      "category": "Knowledge",
+      "status": "review_required",
+      "version": "309.1"
+    },
+    {
+      "id": "pwa-offline-phase-ii-09",
+      "title": "PWA Offline Collections Phase II Feature 9",
+      "title_ta": "முருகன் தரத் தொகுதி 9",
+      "summary": "Quality-focused Release 309 record 9.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "309.1"
+    },
+    {
+      "id": "pwa-offline-phase-ii-10",
+      "title": "PWA Offline Collections Phase II Feature 10",
+      "title_ta": "முருகன் தரத் தொகுதி 10",
+      "summary": "Quality-focused Release 309 record 10.",
+      "category": "Editorial",
+      "status": "published",
+      "version": "309.1"
+    },
+    {
+      "id": "pwa-offline-phase-ii-11",
+      "title": "PWA Offline Collections Phase II Feature 11",
+      "title_ta": "முருகன் தரத் தொகுதி 11",
+      "summary": "Quality-focused Release 309 record 11.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "309.1"
+    },
+    {
+      "id": "pwa-offline-phase-ii-12",
+      "title": "PWA Offline Collections Phase II Feature 12",
+      "title_ta": "முருகன் தரத் தொகுதி 12",
+      "summary": "Quality-focused Release 309 record 12.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "309.1"
+    }
+  ]
+}
