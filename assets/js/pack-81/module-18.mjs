@@ -1,0 +1,1 @@
+export const m18={pack:81,ready:true};

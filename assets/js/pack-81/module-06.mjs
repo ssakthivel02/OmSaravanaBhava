@@ -1,0 +1,1 @@
+export const m6={pack:81,ready:true};
