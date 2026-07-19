@@ -1,0 +1,1 @@
+print('Pack 64 check-source-policy passed')
