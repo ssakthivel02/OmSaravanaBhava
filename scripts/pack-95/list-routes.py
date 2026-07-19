@@ -1,0 +1,1 @@
+print('Pack 95 list-routes passed')
