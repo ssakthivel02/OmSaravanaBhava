@@ -1,0 +1,57 @@
+name: Repository Quality Audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/repository-audit/**'
+      - '.github/workflows/repository-quality-audit.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: repository-quality-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run repository audit
+        run: python tools/repository-audit/run_repository_audit.py
+
+      - name: Upload audit reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: repository-quality-audit
+          path: |
+            repository-quality-audit.json
+            route-inventory.json
+            workflow-inventory.json
+            repository-audit-summary.md
+          if-no-files-found: error
+
+      - name: Commit compact audit results
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add repository-quality-audit.json route-inventory.json workflow-inventory.json repository-audit-summary.md
+          if git diff --cached --quiet; then
+            echo 'No audit result changes.'
+          else
+            git commit -m 'chore: update repository quality audit reports'
+            git push
+          fi
