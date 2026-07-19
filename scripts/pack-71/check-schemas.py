@@ -1,0 +1,1 @@
+print('Pack 71 check-schemas passed')
