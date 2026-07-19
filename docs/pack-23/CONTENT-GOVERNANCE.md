@@ -1,0 +1,3 @@
+# CONTENT-GOVERNANCE
+
+Pack 23: Regional Temple Verification Expansion.
