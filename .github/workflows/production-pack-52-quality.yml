@@ -1,0 +1,8 @@
+name: Production Pack 52 Quality
+on: workflow_dispatch
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python scripts/pack-52/run-all.py
