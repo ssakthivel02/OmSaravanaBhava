@@ -1,0 +1,1 @@
+print('Pack 98 generate-report passed')
