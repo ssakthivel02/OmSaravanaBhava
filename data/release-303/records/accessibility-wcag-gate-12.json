@@ -1,0 +1,9 @@
+{
+  "id": "accessibility-wcag-gate-12",
+  "title": "Accessibility WCAG Production Gate Feature 12",
+  "title_ta": "முருகன் தரத் தொகுதி 12",
+  "summary": "Quality-focused Release 303 record 12.",
+  "category": "Validation",
+  "status": "review_required",
+  "version": "303.1"
+}
