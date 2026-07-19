@@ -1,0 +1,8 @@
+name: Production Pack 79 Quality
+on: workflow_dispatch
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python scripts/pack-79/run-all.py
