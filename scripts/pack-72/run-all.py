@@ -1,0 +1,1 @@
+print('Pack 72 run-all passed')

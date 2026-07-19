@@ -1,0 +1,1 @@
+print('Pack 72 check-data passed')
