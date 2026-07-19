@@ -1,0 +1,128 @@
+{
+  "release": 305,
+  "title": "Privacy and Consent Control Centre",
+  "features": [
+    {
+      "title": "Purpose-built interface",
+      "description": "Visual patterns are tailored to this release."
+    },
+    {
+      "title": "Bilingual structured data",
+      "description": "Tamil and English records use explicit schemas."
+    },
+    {
+      "title": "Quality gates",
+      "description": "Validation, deployment and rollback guidance included."
+    }
+  ],
+  "records": [
+    {
+      "id": "privacy-consent-centre-01",
+      "title": "Privacy and Consent Control Centre Feature 1",
+      "title_ta": "முருகன் தரத் தொகுதி 1",
+      "summary": "Quality-focused Release 305 record 1.",
+      "category": "Experience",
+      "status": "published",
+      "version": "305.1"
+    },
+    {
+      "id": "privacy-consent-centre-02",
+      "title": "Privacy and Consent Control Centre Feature 2",
+      "title_ta": "முருகன் தரத் தொகுதி 2",
+      "summary": "Quality-focused Release 305 record 2.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "305.1"
+    },
+    {
+      "id": "privacy-consent-centre-03",
+      "title": "Privacy and Consent Control Centre Feature 3",
+      "title_ta": "முருகன் தரத் தொகுதி 3",
+      "summary": "Quality-focused Release 305 record 3.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "305.1"
+    },
+    {
+      "id": "privacy-consent-centre-04",
+      "title": "Privacy and Consent Control Centre Feature 4",
+      "title_ta": "முருகன் தரத் தொகுதி 4",
+      "summary": "Quality-focused Release 305 record 4.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "305.1"
+    },
+    {
+      "id": "privacy-consent-centre-05",
+      "title": "Privacy and Consent Control Centre Feature 5",
+      "title_ta": "முருகன் தரத் தொகுதி 5",
+      "summary": "Quality-focused Release 305 record 5.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "305.1"
+    },
+    {
+      "id": "privacy-consent-centre-06",
+      "title": "Privacy and Consent Control Centre Feature 6",
+      "title_ta": "முருகன் தரத் தொகுதி 6",
+      "summary": "Quality-focused Release 305 record 6.",
+      "category": "Validation",
+      "status": "published",
+      "version": "305.1"
+    },
+    {
+      "id": "privacy-consent-centre-07",
+      "title": "Privacy and Consent Control Centre Feature 7",
+      "title_ta": "முருகன் தரத் தொகுதி 7",
+      "summary": "Quality-focused Release 305 record 7.",
+      "category": "Experience",
+      "status": "published",
+      "version": "305.1"
+    },
+    {
+      "id": "privacy-consent-centre-08",
+      "title": "Privacy and Consent Control Centre Feature 8",
+      "title_ta": "முருகன் தரத் தொகுதி 8",
+      "summary": "Quality-focused Release 305 record 8.",
+      "category": "Knowledge",
+      "status": "review_required",
+      "version": "305.1"
+    },
+    {
+      "id": "privacy-consent-centre-09",
+      "title": "Privacy and Consent Control Centre Feature 9",
+      "title_ta": "முருகன் தரத் தொகுதி 9",
+      "summary": "Quality-focused Release 305 record 9.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "305.1"
+    },
+    {
+      "id": "privacy-consent-centre-10",
+      "title": "Privacy and Consent Control Centre Feature 10",
+      "title_ta": "முருகன் தரத் தொகுதி 10",
+      "summary": "Quality-focused Release 305 record 10.",
+      "category": "Editorial",
+      "status": "published",
+      "version": "305.1"
+    },
+    {
+      "id": "privacy-consent-centre-11",
+      "title": "Privacy and Consent Control Centre Feature 11",
+      "title_ta": "முருகன் தரத் தொகுதி 11",
+      "summary": "Quality-focused Release 305 record 11.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "305.1"
+    },
+    {
+      "id": "privacy-consent-centre-12",
+      "title": "Privacy and Consent Control Centre Feature 12",
+      "title_ta": "முருகன் தரத் தொகுதி 12",
+      "summary": "Quality-focused Release 305 record 12.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "305.1"
+    }
+  ]
+}
