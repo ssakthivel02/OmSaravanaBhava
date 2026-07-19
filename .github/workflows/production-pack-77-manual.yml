@@ -1,0 +1,8 @@
+name: Production Pack 77 Manual
+on: workflow_dispatch
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: test -f production-pack-77.html
