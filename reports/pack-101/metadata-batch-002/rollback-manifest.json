@@ -1,0 +1,255 @@
+{
+  "pack": 101,
+  "batch": 2,
+  "purpose": "Add missing viewport and description metadata only",
+  "queue_offset": 25,
+  "batch_limit": 50,
+  "considered_count": 50,
+  "changed_count": 7,
+  "skipped_count": 43,
+  "changed": [
+    {
+      "path": "daily-murugan-section.html",
+      "before_sha256": "13136baf71e106bf2f5b470d28fc0ce609fe263a0c97685ce491532067aadebd",
+      "after_sha256": "52594aa86bdb1044933800a83a7e4fd0cb2c03fcfa9813fc3adf8c1ae3c45e50",
+      "added": [
+        "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+        "  <meta name=\"description\" content=\"Explore daily-murugan-section.html on Om Saravana Bhava, a Tamil and English Lord Murugan devotional knowledge platform.\">"
+      ]
+    },
+    {
+      "path": "festival-countdown.html",
+      "before_sha256": "2cc5041eebda7cf3d522a13c26b9530419795b579a05f3a60d2c42831c7474bb",
+      "after_sha256": "a2abc864e2dc0e4cc607216b8128e79bf16af2259f3ccda8d3de8e8ab4788ebd",
+      "added": [
+        "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+        "  <meta name=\"description\" content=\"Explore festival-countdown.html on Om Saravana Bhava, a Tamil and English Lord Murugan devotional knowledge platform.\">"
+      ]
+    },
+    {
+      "path": "festival-details.html",
+      "before_sha256": "fe8fdb1281d12cc8b13f68ad3ecb4089cce4a2e40b82a7fffa2d614debc858bb",
+      "after_sha256": "92bbfc45a400d1eb5eaac64fb9ad123e1c7e14ae6000710a5178cba16e73f3f6",
+      "added": [
+        "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+        "  <meta name=\"description\" content=\"Explore Redirecting… on Om Saravana Bhava, a Tamil and English Lord Murugan devotional knowledge platform.\">"
+      ]
+    },
+    {
+      "path": "glass-navbar-demo.html",
+      "before_sha256": "8471c7f5143d1ea01302fb3d2645e561371be019b1d0dc33a57688706280e8bc",
+      "after_sha256": "873b0acbb7fac9da2030bb7c248676f926bf50238c2803cf676834d2c2f3e568",
+      "added": [
+        "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+        "  <meta name=\"description\" content=\"Explore glass-navbar-demo.html on Om Saravana Bhava, a Tamil and English Lord Murugan devotional knowledge platform.\">"
+      ]
+    },
+    {
+      "path": "hero-murugan-experience.html",
+      "before_sha256": "f900d0fbd231134995202c98d4429e3ba6316553aa63040ad73c944b2998e2bf",
+      "after_sha256": "f254c1efc57b666783647fc32d23f3ed892980ffe388699d1b00812f8c204872",
+      "added": [
+        "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+        "  <meta name=\"description\" content=\"Explore hero-murugan-experience.html on Om Saravana Bhava, a Tamil and English Lord Murugan devotional knowledge platform.\">"
+      ]
+    },
+    {
+      "path": "image-credit-policy.html",
+      "before_sha256": "8e7bb9d5f3014ab82946f3b615049a245cb18beb5e921a6eaefbeb5348a3235b",
+      "after_sha256": "1728107b8db67eb448098f7180b1fe6152d6a79f0e592242210df00d7f91d871",
+      "added": [
+        "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+        "  <meta name=\"description\" content=\"Explore image-credit-policy.html on Om Saravana Bhava, a Tamil and English Lord Murugan devotional knowledge platform.\">"
+      ]
+    },
+    {
+      "path": "index-v2-premium.html",
+      "before_sha256": "1db4a5b27f0b8e3dd3fb743240004864754107aa3c0a8b3298fdc6710c236cd1",
+      "after_sha256": "d49e226cd5e73d1f5f409cbcb3ca8ac1bae108904307d9e3622635fbdbf35f58",
+      "added": [
+        "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+        "  <meta name=\"description\" content=\"Explore index-v2-premium.html on Om Saravana Bhava, a Tamil and English Lord Murugan devotional knowledge platform.\">"
+      ]
+    }
+  ],
+  "skipped": [
+    {
+      "path": "crossref/skanda-purana-11.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/skanda-purana-17.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/skanda-purana-23.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/skanda-purana-29.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/skanda-purana-35.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/skanda-purana-41.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/skanda-purana-47.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/skanda-purana-53.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/skanda-purana-59.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/temples-06.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/temples-12.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/temples-18.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/temples-24.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/temples-30.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/temples-36.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/temples-42.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/temples-48.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/temples-54.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/temples-60.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/thirumurugatrupadai-02.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/thirumurugatrupadai-08.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/thirumurugatrupadai-14.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/thirumurugatrupadai-20.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/thirumurugatrupadai-26.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/thirumurugatrupadai-32.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/thirumurugatrupadai-38.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/thirumurugatrupadai-44.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/thirumurugatrupadai-50.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/thirumurugatrupadai-56.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/tiruppugazh-01.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/tiruppugazh-07.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/tiruppugazh-13.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/tiruppugazh-19.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/tiruppugazh-25.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/tiruppugazh-31.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/tiruppugazh-37.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/tiruppugazh-43.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/tiruppugazh-49.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/tiruppugazh-55.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "knowledge/thiruppugazh-ai/explorer-01.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "knowledge/thiruppugazh-ai/explorer-02.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "knowledge/thiruppugazh-ai/explorer-03.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "knowledge/thiruppugazh-ai/explorer-04.html",
+      "reason": "no closing head tag"
+    }
+  ],
+  "safety": {
+    "files_deleted": 0,
+    "body_content_changed": false,
+    "main_elements_added": false,
+    "rollback": "Revert the batch commit or restore files identified by before_sha256."
+  }
+}
