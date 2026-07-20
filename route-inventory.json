@@ -220,8 +220,8 @@
     "path": "ai-assistant-entry.html",
     "title": "ai-assistant-entry.html",
     "has_main": false,
-    "has_viewport": false,
-    "has_description": false
+    "has_viewport": true,
+    "has_description": true
   },
   {
     "path": "ai-companion-pro.html",
@@ -458,8 +458,8 @@
     "path": "animation-showcase.html",
     "title": "animation-showcase.html",
     "has_main": false,
-    "has_viewport": false,
-    "has_description": false
+    "has_viewport": true,
+    "has_description": true
   },
   {
     "path": "architecture.html",
@@ -1249,8 +1249,8 @@
     "path": "audio-player-preview.html",
     "title": "audio-player-preview.html",
     "has_main": false,
-    "has_viewport": false,
-    "has_description": false
+    "has_viewport": true,
+    "has_description": true
   },
   {
     "path": "audio-production.html",
@@ -1375,8 +1375,8 @@
     "path": "card-hover-effects.html",
     "title": "card-hover-effects.html",
     "has_main": false,
-    "has_viewport": false,
-    "has_description": false
+    "has_viewport": true,
+    "has_description": true
   },
   {
     "path": "catalogue/dashboard-001.html",
@@ -2614,8 +2614,8 @@
     "path": "daily-murugan-section.html",
     "title": "daily-murugan-section.html",
     "has_main": false,
-    "has_viewport": false,
-    "has_description": false
+    "has_viewport": true,
+    "has_description": true
   },
   {
     "path": "daily-sloka-widget.html",
@@ -3412,8 +3412,8 @@
     "path": "festival-countdown.html",
     "title": "festival-countdown.html",
     "has_main": false,
-    "has_viewport": false,
-    "has_description": false
+    "has_viewport": true,
+    "has_description": true
   },
   {
     "path": "festival-day.html",
@@ -3426,8 +3426,8 @@
     "path": "festival-details.html",
     "title": "Redirecting\u2026",
     "has_main": false,
-    "has_viewport": false,
-    "has_description": false
+    "has_viewport": true,
+    "has_description": true
   },
   {
     "path": "festival-expansion-plan.html",
@@ -4161,8 +4161,8 @@
     "path": "glass-navbar-demo.html",
     "title": "glass-navbar-demo.html",
     "has_main": false,
-    "has_viewport": false,
-    "has_description": false
+    "has_viewport": true,
+    "has_description": true
   },
   {
     "path": "go-live/dashboard-001.html",
@@ -4539,8 +4539,8 @@
     "path": "hero-murugan-experience.html",
     "title": "hero-murugan-experience.html",
     "has_main": false,
-    "has_viewport": false,
-    "has_description": false
+    "has_viewport": true,
+    "has_description": true
   },
   {
     "path": "hero-murugan-production.html",
@@ -5029,8 +5029,8 @@
     "path": "image-credit-policy.html",
     "title": "image-credit-policy.html",
     "has_main": false,
-    "has_viewport": false,
-    "has_description": false
+    "has_viewport": true,
+    "has_description": true
   },
   {
     "path": "image-performance-guide.html",
@@ -5106,8 +5106,8 @@
     "path": "index-v2-premium.html",
     "title": "index-v2-premium.html",
     "has_main": false,
-    "has_viewport": false,
-    "has_description": false
+    "has_viewport": true,
+    "has_description": true
   },
   {
     "path": "index.html",

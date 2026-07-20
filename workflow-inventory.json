@@ -21,6 +21,34 @@
     "checkout_v4": true
   },
   {
+    "path": ".github/workflows/pack-101-html-metadata-batch-002.yml",
+    "push_trigger": true,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/pack-101-html-metadata-batch.yml",
+    "push_trigger": true,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/pack-101-remediation-plan.yml",
+    "push_trigger": true,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/pack-101-workflow-rationalisation-review.yml",
+    "push_trigger": true,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
     "path": ".github/workflows/production-baseline.yml",
     "push_trigger": true,
     "pull_request_trigger": true,
@@ -1163,7 +1191,7 @@
   },
   {
     "path": ".github/workflows/repository-quality-audit.yml",
-    "push_trigger": true,
+    "push_trigger": false,
     "pull_request_trigger": false,
     "workflow_dispatch": true,
     "checkout_v4": true
