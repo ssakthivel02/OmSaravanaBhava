@@ -2,7 +2,7 @@
   "release": 246,
   "generated": "2026-07-22",
   "strategy": "append-only-governed-route-additions",
-  "recordCount": 5,
+  "recordCount": 13,
   "records": [
     {
       "path": "/murugan-song-library.html",
@@ -53,6 +53,79 @@
       "summary": "Planned-versus-connected audit covering real files, governed routes, purpose-led hub visibility and production validation across the complete platform.",
       "readingEligible": false,
       "sourceDataPath": "/data/platform-capability-matrix.json"
+    },
+    {
+      "path": "/gallery.html",
+      "titleTa": "பக்தி காட்சி நூலகம்",
+      "titleEn": "Devotional Media Gallery",
+      "category": "Media",
+      "status": "published",
+      "summary": "Provenance-labelled Murugan devotional illustrations, interface art and temple imagery with explicit documentary-photography boundaries.",
+      "readingEligible": true,
+      "sourceDataPath": "/data/media-gallery.json"
+    },
+    {
+      "path": "/help-centre.html",
+      "titleTa": "உதவி மற்றும் நம்பிக்கை மையம்",
+      "titleEn": "Help and Trust Centre",
+      "category": "Community",
+      "status": "navigation",
+      "summary": "Unified support, corrections, accessibility, privacy, terms, source policy and app guidance.",
+      "readingEligible": true
+    },
+    {
+      "path": "/apps.html",
+      "titleTa": "பயன்பாடுகள் மற்றும் நிறுவல்",
+      "titleEn": "Apps and Installation",
+      "category": "Product",
+      "status": "navigation",
+      "summary": "Verified PWA installation and a governed evidence boundary for future native application and package links.",
+      "readingEligible": true
+    },
+    {
+      "path": "/about.html",
+      "titleTa": "எங்களைப் பற்றி",
+      "titleEn": "About Om Saravana Bhava",
+      "category": "Community",
+      "status": "published",
+      "summary": "Mission, Tamil-first architecture, source governance, privacy principles and independence boundary.",
+      "readingEligible": true
+    },
+    {
+      "path": "/contact.html",
+      "titleTa": "திருத்தம் மற்றும் தொடர்பு",
+      "titleEn": "Corrections and Contact",
+      "category": "Community",
+      "status": "utility",
+      "summary": "Browser-local structured correction template with page, evidence and rights fields and no automatic submission.",
+      "readingEligible": true
+    },
+    {
+      "path": "/support.html",
+      "titleTa": "தொழில்நுட்ப உதவி",
+      "titleEn": "Technical Support",
+      "category": "Community",
+      "status": "utility",
+      "summary": "Privacy-preserving browser diagnostics, cache recovery, offline guidance and route troubleshooting.",
+      "readingEligible": true
+    },
+    {
+      "path": "/faq.html",
+      "titleTa": "அடிக்கடி கேட்கப்படும் கேள்விகள்",
+      "titleEn": "Frequently Asked Questions",
+      "category": "Community",
+      "status": "published",
+      "summary": "Truthful answers about content completeness, source status, image labels, audio rights, local search and offline use.",
+      "readingEligible": true
+    },
+    {
+      "path": "/terms.html",
+      "titleTa": "பயன்பாட்டு விதிமுறைகள்",
+      "titleEn": "Terms of Use",
+      "category": "Governance",
+      "status": "published",
+      "summary": "Platform-use, source-status, content-rights, local-data, external-link and availability boundaries.",
+      "readingEligible": true
     }
   ],
   "limitations": [
