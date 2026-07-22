@@ -1,0 +1,98 @@
+name: Phase H Validated GitHub Pages Deployment
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages-production
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Checkout complete repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile Phase C-H Python tooling
+        run: |
+          python -m py_compile \
+            tools/phase-c-h/build_route_recovery.py \
+            tools/phase-c-h/build_content_completeness.py \
+            tools/phase-c-h/build_public_site.py \
+            tools/phase-c-h/validate_public_site.py
+
+      - name: Generate Phase D-E recovery evidence
+        run: python tools/phase-c-h/build_route_recovery.py
+
+      - name: Generate Phase F completeness evidence
+        run: python tools/phase-c-h/build_content_completeness.py
+
+      - name: Build deterministic public artifact
+        run: python tools/phase-c-h/build_public_site.py
+
+      - name: Validate critical JavaScript modules
+        run: |
+          node --check assets/js/release-246.js
+          node --check assets/js/murugan-song-library.js
+          node --check assets/js/advanced-search.js
+          node --check assets/js/404-suggestions.js
+          node --check assets/js/effective-route-registry.mjs
+          node --check assets/js/premium-platform-2026.mjs
+          node --check assets/js/platform-hub-2026.mjs
+          node --check assets/js/route-recovery-2026.mjs
+          node --check assets/js/content-completeness-2026.mjs
+          node --check service-worker.js
+
+      - name: Run Phase H static production gate
+        run: python tools/phase-c-h/validate_public_site.py
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - name: Upload Phase H validation evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase-h-validation-evidence
+          path: |
+            reports/phase-d-e-route-recovery
+            reports/phase-f-content-completeness
+            reports/phase-h-deployment
+            reports/phase-h-validation
+            data/route-recovery-summary.json
+            data/content-completeness.json
+            _site/deployment-manifest.json
+          if-no-files-found: error
+          retention-days: 30
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    timeout-minutes: 20
+    steps:
+      - name: Deploy validated artifact to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
