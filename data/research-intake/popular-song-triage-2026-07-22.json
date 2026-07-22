@@ -1,0 +1,259 @@
+{
+  "release": 246,
+  "generated": "2026-07-22",
+  "purpose": "Research triage for the popular Murugan song list. This file does not publish lyrics or recordings.",
+  "summary": {
+    "originalMissingTitles": 14,
+    "sourceIdentifiedNotYetIngested": 1,
+    "modernCommercialMetadataOnly": 6,
+    "classicalCompositionRightsReview": 1,
+    "ambiguousOrSourceRequired": 6,
+    "newAttachmentMetadataOnlyRecords": 2
+  },
+  "records": [
+    {
+      "slug": "kaithala-niraikani",
+      "titleTa": "கைத்தல நிறைகனி",
+      "titleEn": "Kaithala Niraikani",
+      "triageStatus": "source-identified-not-yet-ingested",
+      "classification": "Thiruppugazh — Vinayagar invocation",
+      "author": "Arunagirinathar",
+      "evidence": [
+        {
+          "sourceUrl": "https://www.projectmadurai.org/pm_etexts/utf8/pmuni0180.html",
+          "sourceNote": "Project Madurai Thiruppugazh Part I identifies it as song 1, Vinayagar invocation."
+        }
+      ],
+      "publicationDecision": "Create a source-register record first. Do not copy the full Project Madurai file or excerpt without preserving and reviewing its distribution conditions.",
+      "nextAction": "Match against the uploaded 2,191-page Thiruppugazh compilation, confirm exact numbering and text, then create a human-reviewed canonical record."
+    },
+    {
+      "slug": "aarumuga-mangalathai",
+      "titleTa": "ஆறுமுக மங்களத்தை",
+      "titleEn": "Aarumuga Mangalathai",
+      "triageStatus": "source-required-title-ambiguity",
+      "classification": "unknown",
+      "publicationDecision": "No public record beyond research queue.",
+      "nextAction": "Collect the exact opening line, singer or recording, album/film, approximate year and a source image or official listing."
+    },
+    {
+      "slug": "maruthamalai-maamaniye",
+      "titleTa": "மருதமலை மாமணியே",
+      "titleEn": "Maruthamalai Maamaniye",
+      "triageStatus": "modern-commercial-metadata-only",
+      "classification": "film devotional song",
+      "verifiedCredits": {
+        "filmOrAlbum": "Dheivam",
+        "lyricist": "Kannadasan",
+        "musicDirector": "Kunnakudi Vaidyanathan",
+        "performer": "Madurai Somasundaram",
+        "releaseYear": 1972
+      },
+      "evidence": [
+        {
+          "sourceUrl": "https://www.saregama.com/song/maruthamalai-maamaniye_4535",
+          "sourceNote": "Rights-holder catalogue credits."
+        },
+        {
+          "sourceUrl": "https://music.amazon.in/albums/B0753119TQ",
+          "sourceNote": "Commercial album metadata and 1972 release listing."
+        }
+      ],
+      "publicationDecision": "Metadata and official commercial link only; no lyrics, translation, notation or audio hosting.",
+      "nextAction": "Create a withheld-rights-review metadata record after editorial confirmation."
+    },
+    {
+      "slug": "senthil-andavan",
+      "titleTa": "செந்தில் ஆண்டவன்",
+      "titleEn": "Senthil Andavan",
+      "triageStatus": "classical-composition-rights-review",
+      "classification": "Carnatic devotional composition",
+      "candidateAttribution": "Papanasam Sivan",
+      "publicationDecision": "Metadata only until the exact composition, edition, raga/tala source and literary rights status are confirmed.",
+      "nextAction": "Provide the exact incipit or recording so the correct Papanasam Sivan composition can be distinguished from similarly titled works."
+    },
+    {
+      "slug": "muruga-muruga-endral",
+      "titleTa": "முருகா முருகா என்றால்",
+      "titleEn": "Muruga Muruga Endral",
+      "triageStatus": "source-required",
+      "classification": "unknown devotional song",
+      "publicationDecision": "No lyrics or authorship claim.",
+      "nextAction": "Collect an authoritative printed source, official release credits or a rights-holder page."
+    },
+    {
+      "slug": "kandhan-karunai-purivaan",
+      "titleTa": "கந்தன் கருணை புரிவான்",
+      "titleEn": "Kandhan Karunai Purivaan",
+      "triageStatus": "source-required",
+      "classification": "unknown devotional song",
+      "publicationDecision": "No lyrics or credits published.",
+      "nextAction": "Collect exact opening line, singer, composer/lyricist, album/film and release evidence."
+    },
+    {
+      "slug": "pazham-neeyappa",
+      "titleTa": "பழம் நீயப்பா",
+      "titleEn": "Pazham Neeyappa",
+      "triageStatus": "modern-commercial-metadata-only",
+      "classification": "film devotional song",
+      "verifiedCredits": {
+        "filmOrAlbum": "Thiruvilaiyadal",
+        "lyricist": "Kannadasan",
+        "musicDirector": "K. V. Mahadevan",
+        "performer": "K. B. Sundarambal",
+        "releaseYear": 1965
+      },
+      "evidence": [
+        {
+          "sourceUrl": "https://www.saregama.com/song-lyrics/pazham-neeyappa_5618",
+          "sourceNote": "Rights-holder catalogue credits. Lyrics displayed by the provider are not copied into this repository."
+        },
+        {
+          "sourceUrl": "https://www.saregama.com/album/thiruvilaiyadal_15984",
+          "sourceNote": "Commercial album and performer listing."
+        }
+      ],
+      "publicationDecision": "Metadata and official commercial link only; no lyrics, translation or audio hosting.",
+      "nextAction": "Create a withheld-rights-review metadata record after editorial confirmation."
+    },
+    {
+      "slug": "chinna-chinna-muruga",
+      "titleTa": "சின்ன சின்ன முருகா",
+      "titleEn": "Chinna Chinna Muruga",
+      "triageStatus": "source-required-multiple-works",
+      "classification": "ambiguous bhajan or modern devotional song",
+      "publicationDecision": "No canonical identity selected because multiple distinct songs use similar titles.",
+      "nextAction": "Provide the recording or first four lines, singer, album and approximate year."
+    },
+    {
+      "slug": "kundrathile-kumaranukku",
+      "titleTa": "குன்றத்திலே குமரனுக்கு",
+      "titleEn": "Kundrathile Kumaranukku",
+      "triageStatus": "modern-commercial-metadata-only",
+      "classification": "film devotional song",
+      "verifiedCredits": {
+        "filmOrAlbum": "Dheivam",
+        "lyricist": "Kannadasan",
+        "musicDirector": "Kunnakudi Vaidyanathan",
+        "performer": "Bangalore A. R. Ramani Ammal",
+        "releaseYear": 1972
+      },
+      "evidence": [
+        {
+          "sourceUrl": "https://music.amazon.in/albums/B0753119TQ",
+          "sourceNote": "Commercial album metadata and credits."
+        }
+      ],
+      "publicationDecision": "Metadata and official commercial link only; no lyrics or hosted audio.",
+      "nextAction": "Create a withheld-rights-review metadata record after editorial confirmation."
+    },
+    {
+      "slug": "vadivel-muruganukku-arohara",
+      "titleTa": "வடிவேல் முருகனுக்கு அரோகரா",
+      "titleEn": "Vadivel Muruganukku Arohara",
+      "triageStatus": "source-required-refrain-ambiguity",
+      "classification": "refrain, slogan or song title not yet distinguished",
+      "publicationDecision": "Do not create a standalone song record yet.",
+      "nextAction": "Provide the exact recording or surrounding lyrics to distinguish a refrain from a canonical song title."
+    },
+    {
+      "slug": "thiruchenduril-por-purindhu",
+      "titleTa": "திருச்செந்தூரில் போர் புரிந்து",
+      "titleEn": "Thiruchenduril Por Purindhu",
+      "triageStatus": "modern-commercial-metadata-only",
+      "classification": "film devotional song",
+      "verifiedCredits": {
+        "filmOrAlbum": "Dheivam",
+        "lyricist": "Kannadasan",
+        "musicDirector": "Kunnakudi Vaidyanathan",
+        "performer": "Radha Jayalakshmi",
+        "releaseYear": 1972
+      },
+      "evidence": [
+        {
+          "sourceUrl": "https://music.amazon.in/albums/B0753119TQ",
+          "sourceNote": "The commercial album lists the track in shortened form as Thiruchenduril with the relevant credits. Exact title wording still requires release-art confirmation."
+        }
+      ],
+      "publicationDecision": "Metadata-only candidate; exact canonical commercial title must be confirmed before registration.",
+      "nextAction": "Verify original label artwork or rights-holder catalogue title."
+    },
+    {
+      "slug": "palani-malai-vaasa",
+      "titleTa": "பழனி மலை வாசா",
+      "titleEn": "Palani Malai Vaasa",
+      "triageStatus": "source-required",
+      "classification": "unknown devotional song",
+      "publicationDecision": "No lyrics, credits or audio published.",
+      "nextAction": "Collect exact recording, first lines, singer, label and release date."
+    },
+    {
+      "slug": "azhagendra-sollukku-muruga",
+      "titleTa": "அழகென்ற சொல்லுக்கு முருகா",
+      "titleEn": "Azhagendra Sollukku Muruga",
+      "triageStatus": "modern-commercial-metadata-only",
+      "classification": "commercial devotional recording",
+      "publicationDecision": "Metadata-only; no lyrics, translation or audio hosting until authoritative credits and rights are recorded.",
+      "nextAction": "Obtain original label/album credits or a rights-holder catalogue record for lyricist, composer, performer and release date."
+    },
+    {
+      "slug": "karpanai-endralum",
+      "titleTa": "கற்பனை என்றாலும்",
+      "titleEn": "Karpanai Endralum",
+      "triageStatus": "modern-commercial-metadata-only",
+      "classification": "commercial devotional recording",
+      "candidateAttribution": "Vaalee is widely credited as lyricist; exact original-release evidence is still required.",
+      "publicationDecision": "Metadata-only; no lyrics or hosted audio.",
+      "nextAction": "Confirm original label credits, composer, performer and release date from a rights-holder source."
+    },
+    {
+      "slug": "ullam-uruguthada-muruga",
+      "titleTa": "உள்ளம் உருகுதடா முருகா",
+      "titleEn": "Ullam Uruguthada Muruga",
+      "triageStatus": "new-attachment-metadata-only-rights-withheld",
+      "classification": "modern devotional composition",
+      "verifiedCredits": {
+        "author": "Andavan Pichai",
+        "raga": "Attana",
+        "compositionYear": 1952
+      },
+      "evidence": [
+        {
+          "sourceUrl": "https://www.andavanpichai.com/music",
+          "sourceNote": "Official archive and rights-holder source."
+        }
+      ],
+      "publicationDecision": "Metadata only; permission required for lyrics, translation, notation, tune and audio.",
+      "nextAction": "Request written permission from the official archive/rights holder."
+    },
+    {
+      "slug": "nee-manamirangi-vandarulvai",
+      "titleTa": "நீ மனமிரங்கி வந்தருள்வாய்",
+      "titleEn": "Nee Manamirangi Vandarulvai",
+      "triageStatus": "new-attachment-metadata-only-rights-withheld",
+      "classification": "Bharatanatyam pada varnam",
+      "verifiedCredits": {
+        "lyrics": "Andavan Pichai and Kamakshi Kuppuswamy",
+        "music": "Kamakshi Kuppuswamy",
+        "raga": "Lathangi",
+        "tala": "Adi",
+        "recordingYear": 1995
+      },
+      "evidence": [
+        {
+          "sourceUrl": "https://www.andavanpichai.com/latangi-varnam-nee-manam-irangi",
+          "sourceNote": "Official archive and rights-holder source."
+        }
+      ],
+      "publicationDecision": "Metadata only; permission required for protected text, notation, choreography and audio.",
+      "nextAction": "Request separate permissions for each protected layer."
+    }
+  ],
+  "safetyRules": [
+    "A title match is not enough to publish lyrics.",
+    "Film, album and modern devotional compositions remain metadata-only unless rights are documented.",
+    "Ambiguous titles require an exact incipit or recording before canonical identity is assigned.",
+    "Project Madurai source files retain their header and distribution conditions; extracted texts require separate editorial and rights review.",
+    "Every audio recording requires a recording-level rights record independent of the underlying text."
+  ]
+}
