@@ -33,13 +33,14 @@ jobs:
         run: |
           python -m py_compile \
             tools/phase-c-h/build_route_recovery.py \
+            tools/phase-c-h/run_route_recovery.py \
             tools/phase-c-h/build_content_completeness.py \
             tools/phase-c-h/build_capability_matrix.py \
             tools/phase-c-h/build_public_site.py \
             tools/phase-c-h/validate_public_site.py
 
       - name: Generate Phase D-E recovery evidence
-        run: python tools/phase-c-h/build_route_recovery.py
+        run: python tools/phase-c-h/run_route_recovery.py
 
       - name: Generate Phase F completeness evidence
         run: python tools/phase-c-h/build_content_completeness.py
