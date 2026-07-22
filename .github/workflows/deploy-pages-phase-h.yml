@@ -77,6 +77,12 @@ jobs:
       - name: Build deterministic public artifact
         run: python tools/phase-c-h/build_public_site.py
 
+      - name: Stage governed research data in public artifact
+        run: |
+          mkdir -p _site/data/research-intake
+          cp data/research-intake/popular-song-triage-2026-07-22.json \
+            _site/data/research-intake/popular-song-triage-2026-07-22.json
+
       - name: Validate research data is in public artifact
         run: |
           test -s _site/data/research-intake/popular-song-triage-2026-07-22.json
