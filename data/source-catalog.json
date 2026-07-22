@@ -30,5 +30,21 @@
     "sourceType": "Skanda Guru Kavasam section inside a mixed user-uploaded Murugan devotional compilation",
     "fileName": "திருமுருகாற்றுப்படை.docx",
     "qualityNote": "The container filename does not define this work's authorship. The internal heading attributes Skanda Guru Kavasam to Srimath Sadguru Santhananda Swamigal. Release 151 publishes only the verified opening extract."
+  },
+  {
+    "id": "src-sivaya-thiruppugazh-6",
+    "titleTa": "திருப்புகழ் 6 — முத்தைத்தரு",
+    "titleEn": "Sivaya Thiruppugazh Sequence 6 — Muththaiththaru",
+    "sourceType": "Authoritative secondary digital index",
+    "url": "https://www.sivaya.org/thiruppugazh_song.php?lang=tamil&sequence_no=6",
+    "qualityNote": "Used only to corroborate sequence number 6, Thiruvarunai association and the displayed Chandam opening. It is not treated as a substitute for the repository's manually checked source text or as proof of unrestricted redistribution rights."
+  },
+  {
+    "id": "src-tamilvu-thiruppugazh-structure",
+    "titleTa": "திருப்புகழ் தொகுப்பு அமைப்பு",
+    "titleEn": "Tamil Virtual Academy — Thiruppugazh Collection Structure",
+    "sourceType": "Government-supported academic reference",
+    "url": "https://www.tamilvu.org/courses/degree/p202/p2021/html/p202153.htm",
+    "qualityNote": "Used to explain that Kaithalam Niraikani appears first among special introductory verses while Muththaiththaru is placed at the beginning of the main book. This supports an edition-structure note and does not justify overwriting the repository's source-specific number 6."
   }
 ]
