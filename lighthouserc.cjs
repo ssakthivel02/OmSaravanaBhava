@@ -6,6 +6,7 @@ module.exports = {
         'http://127.0.0.1:4173/',
         'http://127.0.0.1:4173/murugan-song-library.html',
         'http://127.0.0.1:4173/platform-hub.html',
+        'http://127.0.0.1:4173/platform-roadmap.html',
         'http://127.0.0.1:4173/temples.html',
         'http://127.0.0.1:4173/ai-search.html',
         'http://127.0.0.1:4173/content-completeness.html'
