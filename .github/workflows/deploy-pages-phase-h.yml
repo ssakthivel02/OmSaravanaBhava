@@ -17,7 +17,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 150
     steps:
       - name: Checkout complete repository
         uses: actions/checkout@v4
@@ -34,6 +34,7 @@ jobs:
           python -m py_compile \
             tools/phase-c-h/build_route_recovery.py \
             tools/phase-c-h/build_content_completeness.py \
+            tools/phase-c-h/build_capability_matrix.py \
             tools/phase-c-h/build_public_site.py \
             tools/phase-c-h/validate_public_site.py
 
@@ -42,6 +43,9 @@ jobs:
 
       - name: Generate Phase F completeness evidence
         run: python tools/phase-c-h/build_content_completeness.py
+
+      - name: Reconcile planned versus connected capabilities
+        run: python tools/phase-c-h/build_capability_matrix.py
 
       - name: Build deterministic public artifact
         run: python tools/phase-c-h/build_public_site.py
@@ -57,6 +61,7 @@ jobs:
           node --check assets/js/platform-hub-2026.mjs
           node --check assets/js/route-recovery-2026.mjs
           node --check assets/js/content-completeness-2026.mjs
+          node --check assets/js/platform-roadmap-2026.mjs
           node --check service-worker.js
 
       - name: Run Phase H static production gate
@@ -77,10 +82,12 @@ jobs:
           path: |
             reports/phase-d-e-route-recovery
             reports/phase-f-content-completeness
+            reports/phase-c-h-capability-matrix
             reports/phase-h-deployment
             reports/phase-h-validation
             data/route-recovery-summary.json
             data/content-completeness.json
+            data/platform-capability-matrix.json
             _site/deployment-manifest.json
           if-no-files-found: error
           retention-days: 30
