@@ -22,22 +22,25 @@ REPORT = ROOT / 'reports/phase-h-validation'
 
 CRITICAL_HTML = [
     'index.html', '404.html', 'offline.html', 'murugan-song-library.html',
-    'platform-hub.html', 'route-recovery.html', 'content-completeness.html',
-    'site-directory.html', 'ai-search.html', 'thiruppugazh.html',
-    'temples.html', 'audio-library.html'
+    'platform-hub.html', 'platform-roadmap.html', 'route-recovery.html',
+    'content-completeness.html', 'site-directory.html', 'ai-search.html',
+    'thiruppugazh.html', 'temples.html', 'audio-library.html'
 ]
 REQUIRED_FILES = CRITICAL_HTML + [
-    'service-worker.js', 'manifest.json', 'robots.txt', 'sitemap.xml', 'CNAME',
+    'service-worker.js', 'manifest.json', 'robots.txt', 'sitemap.xml',
+    'sitemap-songs.xml', 'sitemap-platform.xml', 'CNAME',
     'assets/css/release-246.css', 'assets/css/premium-platform-2026.css',
     'assets/js/release-246.js', 'assets/js/premium-platform-2026.mjs',
     'assets/js/effective-route-registry.mjs',
     'assets/js/murugan-song-library.js',
     'assets/js/platform-hub-2026.mjs',
+    'assets/js/platform-roadmap-2026.mjs',
     'assets/js/route-recovery-2026.mjs',
     'assets/js/content-completeness-2026.mjs',
     'data/site-routes.json', 'data/site-routes-additions.json',
     'data/site-routes-effective-overrides.json', 'data/route-aliases.json',
     'data/route-recovery-summary.json', 'data/content-completeness.json',
+    'data/platform-capability-matrix.json',
     'data/murugan-song-library.json', 'data/search-index.json',
     'data/thiruppugazh.json', 'data/audio-catalog.json',
     'schemas/murugan-song-record.schema.json', 'deployment-manifest.json'
@@ -86,7 +89,10 @@ class PageParser(HTMLParser):
                 self.viewport = True
             elif name == 'description':
                 self.description = values.get('content', '')
-        elif tag == 'link' and 'canonical' in values.get('rel', '').lower().split():
+        elif (
+            tag == 'link' and
+            'canonical' in values.get('rel', '').lower().split()
+        ):
             self.canonical = values.get('href', '')
         elif tag == 'main':
             self.main_count += 1
@@ -188,7 +194,8 @@ def validate_page(key: str) -> tuple[list[str], list[str], dict[str, object]]:
         errors.append(f'{key}: missing canonical link')
     if parser.main_count != 1:
         errors.append(
-            f'{key}: expected exactly one main element, found {parser.main_count}'
+            f'{key}: expected exactly one main element, found '
+            f'{parser.main_count}'
         )
     if parser.h1_count != 1:
         errors.append(
@@ -250,7 +257,9 @@ def main() -> None:
     page_results: dict[str, object] = {}
 
     if not SITE.is_dir():
-        raise SystemExit('_site does not exist; run build_public_site.py first')
+        raise SystemExit(
+            '_site does not exist; run build_public_site.py first'
+        )
 
     missing = [key for key in REQUIRED_FILES if not (SITE / key).is_file()]
     errors.extend(f'Missing required public file: {key}' for key in missing)
@@ -269,10 +278,15 @@ def main() -> None:
             json.loads(read_text(path))
             json_checked += 1
         except json.JSONDecodeError as error:
-            errors.append(f'{path.relative_to(SITE)}: invalid JSON: {error}')
+            errors.append(
+                f'{path.relative_to(SITE)}: invalid JSON: {error}'
+            )
 
     xml_checked = 0
-    for key in ('sitemap.xml', 'sitemap-songs.xml', 'browserconfig.xml'):
+    for key in (
+        'sitemap.xml', 'sitemap-songs.xml', 'sitemap-platform.xml',
+        'browserconfig.xml'
+    ):
         path = SITE / key
         if not path.is_file():
             continue
@@ -283,7 +297,9 @@ def main() -> None:
             errors.append(f'{key}: invalid XML: {error}')
 
     try:
-        deployment = json.loads(read_text(SITE / 'deployment-manifest.json'))
+        deployment = json.loads(
+            read_text(SITE / 'deployment-manifest.json')
+        )
         if deployment.get('repositoryFilesDeleted') != 0:
             errors.append(
                 'deployment-manifest.json: repositoryFilesDeleted must be zero'
@@ -300,12 +316,13 @@ def main() -> None:
         text = read_text(service_worker)
         for required in (
             'murugan-song-library.html', 'platform-hub.html',
-            'route-recovery.html', 'content-completeness.html',
-            'premium-platform-2026'
+            'platform-roadmap.html', 'route-recovery.html',
+            'content-completeness.html', 'premium-platform-2026'
         ):
             if required not in text:
                 warnings.append(
-                    f'service-worker.js does not explicitly precache {required}'
+                    'service-worker.js does not explicitly precache '
+                    f'{required}'
                 )
 
     cname = (
@@ -359,7 +376,9 @@ def main() -> None:
         'This static gate does not claim formal WCAG certification or field Core Web Vitals. Those require additional automated and real-user measurement.',
     ]
     if errors:
-        lines += ['', '## Errors', ''] + [f'- {item}' for item in errors[:200]]
+        lines += ['', '## Errors', ''] + [
+            f'- {item}' for item in errors[:200]
+        ]
     if warnings:
         lines += ['', '## Warnings', ''] + [
             f'- {item}' for item in warnings[:200]
