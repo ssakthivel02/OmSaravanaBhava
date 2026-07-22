@@ -1,7 +1,8 @@
-export const CONSUMER_RELEASE = 238;
+export const CONSUMER_RELEASE = 246;
 export const HISTORICAL_REGISTRY_PATH = '/data/site-routes.json';
 export const EFFECTIVE_OVERRIDES_PATH =
   '/data/site-routes-effective-overrides.json';
+export const ROUTE_ADDITIONS_PATH = '/data/site-routes-additions.json';
 export const CANONICAL_ORIGIN = 'https://omsaravanabhava.org';
 
 const DEFAULT_FETCH_OPTIONS = Object.freeze({
@@ -108,6 +109,42 @@ export const validateEffectiveOverrides = payload => {
   return errors;
 };
 
+export const validateRouteAdditions = payload => {
+  const errors = [];
+  if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
+    return ['Route additions must be an object.'];
+  }
+  if (!Array.isArray(payload.records)) {
+    errors.push('Route additions records must be an array.');
+  }
+  if (
+    Array.isArray(payload.records) &&
+    Number(payload.recordCount) !== payload.records.length
+  ) {
+    errors.push('Route additions recordCount does not match records length.');
+  }
+  const seen = new Set();
+  (Array.isArray(payload.records) ? payload.records : []).forEach(
+    (record, index) => {
+      const path = normaliseRoutePath(record?.path);
+      if (!path) {
+        errors.push(`Route addition ${index} has an invalid path.`);
+      } else if (seen.has(path)) {
+        errors.push(`Route addition ${path} is duplicated.`);
+      } else {
+        seen.add(path);
+      }
+      if (!String(record?.titleEn || record?.titleTa || '').trim()) {
+        errors.push(`Route addition ${path || index} has no title.`);
+      }
+      if (!normaliseStatus(record?.status)) {
+        errors.push(`Route addition ${path || index} has no status.`);
+      }
+    }
+  );
+  return errors;
+};
+
 export const buildOverrideMap = payload => new Map(
   (Array.isArray(payload?.records) ? payload.records : [])
     .map(record => [normaliseRoutePath(record?.path), record])
@@ -119,7 +156,8 @@ export const mergeRouteRecord = (record, override) => {
   if (!override || typeof override !== 'object') {
     return {
       ...base,
-      path: normaliseRoutePath(base.path) || String(base.path ?? '')
+      path: normaliseRoutePath(base.path) || String(base.path ?? ''),
+      readingEligible: base.readingEligible !== false
     };
   }
   return {
@@ -148,28 +186,66 @@ export const mergeRouteRecord = (record, override) => {
   };
 };
 
+const emptyAdditions = () => ({
+  release: 0,
+  generated: '',
+  recordCount: 0,
+  records: []
+});
+
 export const composeEffectiveRegistry = (
   historicalPayload,
-  overridesPayload
+  overridesPayload,
+  additionsPayload = emptyAdditions()
 ) => {
   const historicalErrors = validateHistoricalRegistry(historicalPayload);
   const overrideErrors = validateEffectiveOverrides(overridesPayload);
-  if (historicalErrors.length || overrideErrors.length) {
+  const additionErrors = validateRouteAdditions(additionsPayload);
+  if (
+    historicalErrors.length ||
+    overrideErrors.length ||
+    additionErrors.length
+  ) {
     throw new Error(
-      [...historicalErrors, ...overrideErrors].join(' ')
+      [...historicalErrors, ...overrideErrors, ...additionErrors].join(' ')
     );
   }
 
   const overrides = buildOverrideMap(overridesPayload);
-  const matched = new Set();
+  const matchedOverrides = new Set();
+  const seenPaths = new Set();
   const routes = historicalPayload.routes.map(record => {
     const path = normaliseRoutePath(record?.path);
     const override = overrides.get(path);
-    if (override) matched.add(path);
+    seenPaths.add(path);
+    if (override) matchedOverrides.add(path);
     return mergeRouteRecord(record, override);
   });
+
+  const duplicateAdditions = [];
+  const appliedAdditions = [];
+  additionsPayload.records.forEach(record => {
+    const path = normaliseRoutePath(record?.path);
+    if (seenPaths.has(path)) {
+      duplicateAdditions.push(path);
+      return;
+    }
+    const override = overrides.get(path);
+    if (override) matchedOverrides.add(path);
+    const merged = mergeRouteRecord(record, override);
+    routes.push({
+      ...merged,
+      path,
+      routeAdditionApplied: true,
+      routeAdditionSource: ROUTE_ADDITIONS_PATH,
+      routeAdditionRelease: Number(additionsPayload.release) || 0
+    });
+    seenPaths.add(path);
+    appliedAdditions.push(path);
+  });
+
   const unmatchedOverrides = [...overrides.keys()]
-    .filter(path => !matched.has(path))
+    .filter(path => !matchedOverrides.has(path))
     .sort();
 
   return {
@@ -180,16 +256,24 @@ export const composeEffectiveRegistry = (
     effectiveRegistryGenerated: String(
       overridesPayload.generated || ''
     ),
-    effectiveRegistryMode: 'explicit-overrides',
+    routeAdditionsRelease: Number(additionsPayload.release) || 0,
+    routeAdditionsGenerated: String(additionsPayload.generated || ''),
+    effectiveRegistryMode: 'overrides-and-append-only-additions',
     effectiveRegistrySources: {
       historical: HISTORICAL_REGISTRY_PATH,
-      overrides: EFFECTIVE_OVERRIDES_PATH
+      overrides: EFFECTIVE_OVERRIDES_PATH,
+      additions: ROUTE_ADDITIONS_PATH
     },
     effectiveRegistryDiagnostics: {
       historicalCount: historicalPayload.routes.length,
       overrideCount: overrides.size,
-      appliedCount: matched.size,
-      unmatchedOverrides
+      appliedOverrideCount: matchedOverrides.size,
+      additionCount: additionsPayload.records.length,
+      appliedAdditionCount: appliedAdditions.length,
+      appliedAdditions,
+      duplicateAdditions,
+      unmatchedOverrides,
+      totalEffectiveRoutes: routes.length
     },
     routes
   };
@@ -202,19 +286,26 @@ export const createHistoricalFallback = (
   ...historicalPayload,
   effectiveRelease: CONSUMER_RELEASE,
   effectiveRegistryRelease: 0,
+  routeAdditionsRelease: 0,
   effectiveRegistryMode: 'historical-fallback',
   effectiveRegistrySources: {
     historical: HISTORICAL_REGISTRY_PATH,
-    overrides: EFFECTIVE_OVERRIDES_PATH
+    overrides: EFFECTIVE_OVERRIDES_PATH,
+    additions: ROUTE_ADDITIONS_PATH
   },
   effectiveRegistryDiagnostics: {
     historicalCount: Array.isArray(historicalPayload?.routes)
       ? historicalPayload.routes.length
       : 0,
     overrideCount: 0,
-    appliedCount: 0,
+    appliedOverrideCount: 0,
+    additionCount: 0,
+    appliedAdditionCount: 0,
+    totalEffectiveRoutes: Array.isArray(historicalPayload?.routes)
+      ? historicalPayload.routes.length
+      : 0,
     unmatchedOverrides: [],
-    warning: String(error?.message || error || 'Overrides unavailable')
+    warning: String(error?.message || error || 'Registry extensions unavailable')
   }
 });
 
@@ -233,9 +324,19 @@ export const loadEffectiveRouteRegistry = async ({
         EFFECTIVE_OVERRIDES_PATH,
         fetcher
       );
+      let additions = emptyAdditions();
+      try {
+        additions = await fetchJson(ROUTE_ADDITIONS_PATH, fetcher);
+      } catch (additionError) {
+        console.warn(
+          '[OmSaravanaBhava] Optional route additions unavailable',
+          additionError
+        );
+      }
       const effective = composeEffectiveRegistry(
         historical,
-        overrides
+        overrides,
+        additions
       );
       globalThis.document?.documentElement?.setAttribute(
         'data-effective-route-registry',
@@ -245,7 +346,10 @@ export const loadEffectiveRouteRegistry = async ({
         new CustomEvent('osb:effective-route-registry-ready', {
           detail: {
             release: CONSUMER_RELEASE,
-            overrides: effective.effectiveRegistryDiagnostics.appliedCount,
+            overrides:
+              effective.effectiveRegistryDiagnostics.appliedOverrideCount,
+            additions:
+              effective.effectiveRegistryDiagnostics.appliedAdditionCount,
             mode: effective.effectiveRegistryMode
           }
         })
@@ -254,7 +358,7 @@ export const loadEffectiveRouteRegistry = async ({
     } catch (error) {
       if (strict) throw error;
       console.warn(
-        '[OmSaravanaBhava] Effective route overrides unavailable',
+        '[OmSaravanaBhava] Effective route registry unavailable',
         error
       );
       globalThis.document?.documentElement?.setAttribute(
@@ -281,8 +385,11 @@ export const clearEffectiveRouteRegistryCache = () => {
 
 export const registryStatusMessage = registry => {
   const diagnostics = registry?.effectiveRegistryDiagnostics || {};
-  if (registry?.effectiveRegistryMode === 'explicit-overrides') {
-    return `Effective registry loaded: ${diagnostics.historicalCount || 0} routes, ${diagnostics.appliedCount || 0} canonical overrides.`;
+  if (
+    registry?.effectiveRegistryMode ===
+    'overrides-and-append-only-additions'
+  ) {
+    return `Effective registry loaded: ${diagnostics.totalEffectiveRoutes || 0} routes, ${diagnostics.appliedOverrideCount || 0} canonical overrides and ${diagnostics.appliedAdditionCount || 0} governed additions.`;
   }
-  return `Historical registry fallback: ${diagnostics.historicalCount || 0} routes. Canonical overrides were unavailable.`;
+  return `Historical registry fallback: ${diagnostics.historicalCount || 0} routes. Registry extensions were unavailable.`;
 };
