@@ -38,6 +38,26 @@ POPULAR = [
     ('karpanai-endralum', 'கற்பனை என்றாலும்', 'Karpanai Endralum'),
 ]
 
+POPULAR_ALIASES = {
+    'kanda-sashti-kavasam': [
+        'kanda sashti kavacham', 'skanda sashti kavacham',
+        'கந்த சஷ்டி கவசம்', 'கந்தர் சஷ்டி கவசம்'
+    ],
+    'vel-maaral': ['vel maral', 'vel maaral', 'வேல் மாறல்'],
+    'kanda-guru-kavasam': [
+        'skanda guru kavasam', 'skanda guru kavacham',
+        'ஸ்கந்த குரு கவசம்', 'கந்த குரு கவசம்'
+    ],
+    'muthai-tharu-pathi-thirunagai': [
+        'muththaiththaru', 'muththaiththaru pathi thirunagai',
+        'muthai tharu', 'முத்தைத்தரு', 'முத்தைத்தரு பத்தித் திருநகை'
+    ],
+    'saravana-bhava': [
+        'om saravana bhava', 'saravanabhava mantra',
+        'ஓம் சரவணபவ', 'சரவணபவ மந்திரம்'
+    ],
+}
+
 PLACEHOLDER_MARKERS = (
     'placeholder', 'quality-focused', 'feature 1', 'canonical text should be added',
     'needs review', 'starter record', 'generated record'
@@ -163,19 +183,12 @@ def main() -> None:
                 'reason': 'Placeholder or review-only directory record; not canonical song text.'
             })
 
-    searchable = []
-    for row in canonical:
-        searchable.append({
-            'recordType': row.get('recordType'),
-            'path': row.get('route'),
-            'normalised': normalise(' '.join(str(row.get(key, '')) for key in ('id', 'titleTa', 'titleEn', 'collection'))),
-        })
-
     coverage = []
     for slug, title_ta, title_en in POPULAR:
         targets = {normalise(slug), normalise(title_ta), normalise(title_en)}
+        targets.update(normalise(alias) for alias in POPULAR_ALIASES.get(slug, []))
         matches = []
-        for index, row in enumerate(canonical):
+        for row in canonical:
             haystack = normalise(' '.join(str(row.get(key, '')) for key in ('id', 'titleTa', 'titleEn', 'collection')))
             if any(target and target in haystack for target in targets):
                 matches.append({
