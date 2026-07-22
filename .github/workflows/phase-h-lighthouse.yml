@@ -15,7 +15,7 @@ concurrency:
 jobs:
   lighthouse:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 150
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -31,6 +31,7 @@ jobs:
         run: |
           python tools/phase-c-h/build_route_recovery.py
           python tools/phase-c-h/build_content_completeness.py
+          python tools/phase-c-h/build_capability_matrix.py
 
       - name: Build deterministic public site
         run: python tools/phase-c-h/build_public_site.py
@@ -63,6 +64,8 @@ jobs:
             reports/phase-h-lighthouse
             reports/phase-h-validation
             reports/phase-h-deployment
+            reports/phase-c-h-capability-matrix
+            data/platform-capability-matrix.json
             _site/deployment-manifest.json
             /tmp/osb-http.log
           if-no-files-found: warn
