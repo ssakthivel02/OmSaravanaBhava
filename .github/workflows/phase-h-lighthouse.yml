@@ -1,0 +1,69 @@
+name: Phase H Lighthouse Quality Audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 2 * * 1'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: phase-h-lighthouse
+  cancel-in-progress: true
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Generate current governed evidence
+        run: |
+          python tools/phase-c-h/build_route_recovery.py
+          python tools/phase-c-h/build_content_completeness.py
+
+      - name: Build deterministic public site
+        run: python tools/phase-c-h/build_public_site.py
+
+      - name: Validate static production artifact
+        run: python tools/phase-c-h/validate_public_site.py
+
+      - name: Start local static server
+        run: |
+          python -m http.server 4173 --directory _site > /tmp/osb-http.log 2>&1 &
+          echo $! > /tmp/osb-http.pid
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/osb-http.log
+          exit 1
+
+      - name: Run Lighthouse CI
+        run: npx -y @lhci/cli@0.15.1 autorun --config=lighthouserc.cjs
+
+      - name: Upload Lighthouse and validation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase-h-lighthouse-evidence
+          path: |
+            reports/phase-h-lighthouse
+            reports/phase-h-validation
+            reports/phase-h-deployment
+            _site/deployment-manifest.json
+            /tmp/osb-http.log
+          if-no-files-found: warn
+          retention-days: 30
