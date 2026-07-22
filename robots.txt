@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 Sitemap: https://omsaravanabhava.org/sitemap.xml
 Sitemap: https://omsaravanabhava.org/sitemap-songs.xml
+Sitemap: https://omsaravanabhava.org/sitemap-platform.xml
