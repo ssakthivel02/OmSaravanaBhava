@@ -1,0 +1,53 @@
+{
+  "release": 246,
+  "generated": "2026-07-22",
+  "strategy": "append-only-governed-route-additions",
+  "recordCount": 4,
+  "records": [
+    {
+      "path": "/murugan-song-library.html",
+      "titleTa": "முருகன் பாடல் நூலகம்",
+      "titleEn": "Murugan Song Library",
+      "category": "Devotional",
+      "status": "navigation",
+      "summary": "Governed entry point for Thiruppugazh, Kavasam works, Arunagirinathar literature, prayer records, reading formats and rights-aware audio status.",
+      "readingEligible": true,
+      "sourceDataPath": "/data/murugan-song-library.json"
+    },
+    {
+      "path": "/platform-hub.html",
+      "titleTa": "முழுமையான தள மையம்",
+      "titleEn": "Complete Platform Hub",
+      "category": "Platform",
+      "status": "navigation",
+      "summary": "Unified, searchable gateway to verified devotional modules, directories, learning, personal browser-local tools and operational-quality records.",
+      "readingEligible": true,
+      "sourceDataPath": "/data/site-routes.json"
+    },
+    {
+      "path": "/route-recovery.html",
+      "titleTa": "வழித்தட மீட்பு மையம்",
+      "titleEn": "Route Recovery Centre",
+      "category": "Platform",
+      "status": "directory",
+      "summary": "Transparent Phase D and E view of canonical routes, release-showcase pages, placeholders, duplicate-name candidates and unresolved-link remediation.",
+      "readingEligible": false,
+      "sourceDataPath": "/data/route-recovery-summary.json"
+    },
+    {
+      "path": "/content-completeness.html",
+      "titleTa": "உள்ளடக்க நிறைவு மையம்",
+      "titleEn": "Content Completeness Centre",
+      "category": "Sources",
+      "status": "source-register",
+      "summary": "Collection-by-collection publication coverage for original Tamil, easy-reading Tamil, transliteration, meaning, audio rights and source verification.",
+      "readingEligible": false,
+      "sourceDataPath": "/data/content-completeness.json"
+    }
+  ],
+  "limitations": [
+    "An addition is appended only when its path is not already present in the historical route registry.",
+    "Route existence does not imply complete devotional text, verified translation or recording rights.",
+    "No historical route record is deleted or overwritten by this file."
+  ]
+}
