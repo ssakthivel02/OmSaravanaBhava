@@ -1,23 +1,56 @@
 <!doctype html>
-<html lang="en">
+<html lang="ta">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gallery | Om Saravana Bhava</title>
-  <meta name="description" content="Om Saravana Bhava - Murugan devotion, Arupadai Veedu, festivals, slokas and spiritual learning.">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>பக்தி காட்சி நூலகம் | Devotional Media Gallery</title>
+  <meta name="description" content="Browse provenance-labelled Murugan devotional illustrations, temple interface art and pilgrimage imagery without presenting illustrations as documentary photography.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://omsaravanabhava.org/gallery.html">
+  <meta property="og:title" content="Devotional Media Gallery | Om Saravana Bhava">
+  <meta property="og:description" content="A source-aware gallery of Murugan devotional illustrations and interface artwork.">
+  <meta property="og:image" content="https://omsaravanabhava.org/assets/images/murugan-divine.webp">
+  <meta name="theme-color" content="#120c18">
   <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="preload" as="image" href="assets/images/murugan-divine.webp" fetchpriority="high">
+  <link rel="stylesheet" href="assets/css/release-246.css">
+  <link rel="stylesheet" href="assets/css/premium-platform-2026.css">
+  <link rel="stylesheet" href="assets/css/media-gallery-2026.css">
+  <script defer src="assets/js/release-246.js"></script>
+  <script type="module" src="assets/js/premium-platform-2026.mjs"></script>
+  <script type="module" src="assets/js/media-gallery-2026.mjs"></script>
 </head>
-<body class="">
-<a class="skip-link" href="#main">Skip to main content</a>
-<header class="site-header">
-  <div class="topbar">🛕 ஓம் சரவணபவ · May Lord Murugan bless you with wisdom, courage and divine protection.</div>
-  <div class="nav-wrap"><a class="brand" href="index.html">ஓம் சரவணபவ</a><button class="menu-toggle" aria-label="Toggle navigation">☰</button><nav class="main-nav"><a href="index.html">Home</a><a href="temples.html">Temples</a><a href="slokas.html">Slokas</a><a href="festivals.html">Festivals</a><a href="gallery.html">Gallery</a><a href="ai.html">AI Guide</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav></div>
+<body class="premium-page">
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<header class="site-header" data-header>
+  <a class="brand" href="index.html" aria-label="Om Saravana Bhava home"><span class="brand-mark" aria-hidden="true">ॐ</span><span><strong>ஓம் சரவணபவ</strong><small>Om Saravana Bhava</small></span></a>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+  <nav id="site-nav" class="site-nav" aria-label="Primary navigation"><a href="index.html">Home</a><a href="murugan-song-library.html">Songs</a><a href="temples.html">Temples</a><a class="active" href="gallery.html">Gallery</a><a href="ai-search.html">Search</a><a href="platform-hub.html">All Tools</a><a href="platform-roadmap.html">Roadmap</a></nav>
 </header>
-<main id="main">
-<section class="hero small-hero"><div class="container"><h1>Gallery</h1><p>Symbolic gallery for Lord Murugan devotion and heritage.</p></div></section>
-<section class="section"><div class="container grid" id="gallery-list"></div></section>
+<main id="main-content">
+  <section class="premium-hero" style="--premium-hero-image:url('../assets/images/murugan-divine.webp')">
+    <div class="premium-hero-content">
+      <p class="premium-eyebrow">காட்சி · ஆதாரம் · உரிமை நிலை</p>
+      <h1 class="premium-title">Devotional Media Gallery</h1>
+      <p class="premium-lead">A Tamil-first visual library where every image is labelled as devotional illustration, interface art or documentary photography. Existing illustrations are never presented as official temple photographs.</p>
+      <div class="premium-actions"><a class="premium-button" href="#media-library">Browse governed media</a><a class="premium-button secondary" href="temples.html">Open temple journey</a><a class="premium-button secondary" href="sources.html">Source policy</a></div>
+    </div>
+  </section>
+  <div class="premium-shell">
+    <section class="premium-metrics" aria-label="Media metrics"><article class="premium-metric"><strong id="mediaCount">…</strong><span>Provenance-labelled media items</span></article><article class="premium-metric"><strong>3</strong><span>Explicit media classifications</span></article><article class="premium-metric"><strong>0</strong><span>Unlabelled documentary claims</span></article><article class="premium-metric"><strong>100%</strong><span>Related-module connectivity</span></article></section>
+    <section class="media-boundary" aria-label="Media publication boundary">
+      <article class="premium-card"><p class="premium-eyebrow">Truthful visual publishing</p><h2>Beautiful imagery must still be accurately described.</h2><p>Temple illustrations, devotional artwork and decorative interface images are valuable parts of the experience, but they are not evidence of a temple’s current appearance. Future real photographs require photographer, source, licence and attribution metadata.</p></article>
+      <aside class="premium-card media-legend"><div><strong>Devotional illustration</strong><small>Artistic representation for devotional experience.</small></div><div><strong>Interface art</strong><small>Visual asset created for navigation or page identity.</small></div><div><strong>Documentary photography</strong><small>Real-world photograph with source and usage rights. None is claimed unless explicitly labelled.</small></div></aside>
+    </section>
+    <section id="media-library" aria-labelledby="media-heading">
+      <p class="premium-eyebrow">Governed media registry</p><h2 id="media-heading">Find a visual by Tamil title, category or media type.</h2>
+      <div class="premium-toolbar"><label for="mediaQuery">Search media<input id="mediaQuery" type="search" placeholder="முருகன், Palani, temple, Vel…" autocomplete="off"></label><label for="mediaCategory">Category<select id="mediaCategory"><option value="All">All categories</option></select></label><label for="mediaType">Media type<select id="mediaType"><option value="All">All media types</option></select></label><button id="mediaClear" type="button">Clear</button></div>
+      <p id="mediaStatus" class="premium-status" role="status" aria-live="polite">Loading provenance-labelled media…</p>
+      <div id="mediaGrid" class="media-grid"><article class="premium-card">Loading media registry…</article></div>
+    </section>
+    <section class="premium-card"><p class="premium-eyebrow">Future photography queue</p><h2>Real temple photography requires a separate evidence workflow.</h2><p>For each future photograph collect: temple/place identity, photographer or official source, original URL/file, capture or publication date where known, licence or written permission, required attribution, allowed transformations and a human confirmation that the image matches the stated location.</p><a class="premium-button secondary" href="content-completeness.html">Review evidence queues</a></section>
+  </div>
 </main>
-<footer class="site-footer"><div class="container footer-grid"><div><h2>ஓம் சரவணபவ</h2><p>A devotional platform dedicated to Lord Murugan, Arupadai Veedu, slokas, festivals and spiritual learning.</p></div><div><h3>Quick Links</h3><a href="temples.html">Temples</a><a href="slokas.html">Slokas</a><a href="festivals.html">Festivals</a><a href="gallery.html">Gallery</a></div><div><h3>Support</h3><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="accessibility.html">Accessibility</a><a href="support.html">Support</a></div></div><p class="copyright">© 2026 Om Saravana Bhava. All rights reserved.</p></footer>
-<script src="script.js"></script>
-</body></html>
+<footer><p>வேலவேல் முருகா! அருள்புரிவாய்!</p><nav aria-label="Footer navigation"><a href="index.html">Home</a><a href="temples.html">Temples</a><a href="platform-hub.html">All Tools</a><a href="platform-roadmap.html">Roadmap</a><a href="sources.html">Sources</a><a href="privacy.html">Privacy</a></nav><small>© 2026 Om Saravana Bhava</small></footer>
+</body>
+</html>
