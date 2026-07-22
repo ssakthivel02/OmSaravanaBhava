@@ -30,7 +30,7 @@
       <p class="premium-eyebrow">Phase F · source-aware expansion</p>
       <h1 class="premium-title">Content Completeness Centre</h1>
       <p class="premium-lead">A truthful view of what is present, what is partial and what still needs verified source evidence—across Tamil text, easy-reading format, transliteration, meaning and audio rights.</p>
-      <div class="premium-actions"><a class="premium-button" href="#collection-coverage">Review collection coverage</a><a class="premium-button secondary" href="murugan-song-library.html">Open Song Library</a></div>
+      <div class="premium-actions"><a class="premium-button" href="#collection-coverage">Review collection coverage</a><a class="premium-button secondary" href="#popular-song-triage">Popular-song research</a><a class="premium-button secondary" href="murugan-song-library.html">Open Song Library</a></div>
     </div>
   </section>
   <div class="premium-shell">
@@ -58,6 +58,14 @@
       <div id="completenessGrid" class="premium-grid"><article class="premium-card">Loading governed collections…</article></div>
     </section>
 
+    <section id="popular-song-triage" aria-labelledby="popular-song-triage-heading">
+      <p class="premium-eyebrow">Popular-song verification queue</p>
+      <h2 id="popular-song-triage-heading">Every requested title now has a controlled research decision.</h2>
+      <p>Modern film and album songs remain metadata-only. Ambiguous titles require an exact recording or opening line. A source identification does not automatically permit full-text or audio publication.</p>
+      <p id="triageStatus" class="premium-status" role="status" aria-live="polite">Loading popular-song research decisions…</p>
+      <div id="popularSongTriage" class="premium-grid"><article class="premium-card">Loading title triage…</article></div>
+    </section>
+
     <section aria-labelledby="research-heading">
       <p class="premium-eyebrow">External research queue</p>
       <h2 id="research-heading">Gemini and Manus work is source collection—not automatic publication.</h2>
@@ -68,11 +76,11 @@
       <p class="premium-eyebrow">Controlled ingestion contract</p>
       <h2 id="ingestion-heading">Every new song follows the same publication sequence.</h2>
       <p><strong>Source evidence → canonical Tamil → easy-reading Tamil → transliteration → meaning → audio rights → human review → route, search, sitemap and PWA integration.</strong></p>
-      <p>The machine-readable contract is stored at <code>/schemas/murugan-song-record.schema.json</code>. Records that fail source, rights or human-review checks remain in draft or source-required status.</p>
+      <p>The machine-readable contract is stored at <code>/schemas/murugan-song-record.schema.json</code>. Records that fail source, rights or human-review checks remain in draft, source-required or withheld-rights-review status.</p>
       <a class="premium-button secondary" href="sources.html">Open source policy</a>
     </section>
   </div>
 </main>
-<footer><p>வேலவேல் முருகா! அருள்புரிவாய்!</p><nav><a href="platform-hub.html">Platform Hub</a><a href="route-recovery.html">Recovery</a><a href="sources.html">Sources</a><a href="accessibility.html">Accessibility</a></nav><small>© 2026 Om Saravana Bhava</small></footer>
+<footer><p>வேலவேல் முருகா! அருள்புரிவாய்!</p><nav aria-label="Footer navigation"><a href="platform-hub.html">Platform Hub</a><a href="route-recovery.html">Recovery</a><a href="sources.html">Sources</a><a href="accessibility.html">Accessibility</a></nav><small>© 2026 Om Saravana Bhava</small></footer>
 </body>
 </html>
