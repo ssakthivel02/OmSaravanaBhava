@@ -1,0 +1,15 @@
+{
+  "pack": 101,
+  "stage": "strict-canonical-song-registry",
+  "safety": {
+    "filesDeleted": 0,
+    "productionFilesModifiedByAudit": 0
+  },
+  "canonicalFullSongRecords": 12,
+  "governedCollectionRecords": 12,
+  "audioStatusRecords": 14,
+  "placeholderOrReviewOnlyRecords": 60,
+  "popularSongsFound": 4,
+  "popularSongsMissing": 15,
+  "allCanonicalRoutesExist": true
+}

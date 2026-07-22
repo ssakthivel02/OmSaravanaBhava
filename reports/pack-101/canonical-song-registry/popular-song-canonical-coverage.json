@@ -1,0 +1,195 @@
+[
+  {
+    "slug": "kanda-sashti-kavasam",
+    "titleTa": "கந்த சஷ்டி கவசம்",
+    "titleEn": "Kanda Sashti Kavasam",
+    "foundInCanonicalRegistry": true,
+    "matches": [
+      {
+        "recordType": "collection",
+        "id": "kanda-sashti-kavasam",
+        "titleTa": "கந்த சஷ்டி கவசம்",
+        "titleEn": "Kanda Sashti Kavasam",
+        "route": "literature/kanda-sashti-kavasam-edition.html",
+        "publicationStatus": "partial-reviewed"
+      },
+      {
+        "recordType": "audio-status",
+        "id": "kanda-sashti-kavasam",
+        "titleTa": "கந்த சஷ்டி கவசம்",
+        "titleEn": "Kanda Sashti Kavasam",
+        "route": "slokas/kanda-sashti-kavasam.html",
+        "publicationStatus": "reviewed-opening-extract"
+      }
+    ]
+  },
+  {
+    "slug": "vel-maaral",
+    "titleTa": "வேல் மாறல்",
+    "titleEn": "Vel Maaral",
+    "foundInCanonicalRegistry": true,
+    "matches": [
+      {
+        "recordType": "collection",
+        "id": "vel-maaral",
+        "titleTa": "வேல் மாறல்",
+        "titleEn": "Vel Maaral",
+        "route": "literature/vel-maaral.html",
+        "publicationStatus": "source-register"
+      },
+      {
+        "recordType": "audio-status",
+        "id": "vel-maaral-maha-manthiram",
+        "titleTa": "வேல் மாறல் மகா மந்திரம்",
+        "titleEn": "Vel Maaral Maha Manthiram",
+        "route": "audio-library.html",
+        "publicationStatus": "source-review-required"
+      }
+    ]
+  },
+  {
+    "slug": "kanda-guru-kavasam",
+    "titleTa": "கந்த குரு கவசம்",
+    "titleEn": "Kanda Guru Kavasam",
+    "foundInCanonicalRegistry": true,
+    "matches": [
+      {
+        "recordType": "collection",
+        "id": "skanda-guru-kavasam",
+        "titleTa": "ஸ்கந்த குரு கவசம்",
+        "titleEn": "Skanda Guru Kavasam",
+        "route": "slokas/skanda-guru-kavasam.html",
+        "publicationStatus": "partial-reviewed"
+      },
+      {
+        "recordType": "audio-status",
+        "id": "skanda-guru-kavasam",
+        "titleTa": "ஸ்கந்த குரு கவசம்",
+        "titleEn": "Skanda Guru Kavasam",
+        "route": "slokas/skanda-guru-kavasam.html",
+        "publicationStatus": "reviewed-opening-extract"
+      }
+    ]
+  },
+  {
+    "slug": "muthai-tharu-pathi-thirunagai",
+    "titleTa": "முத்தைத்தரு பத்தித் திருநகை",
+    "titleEn": "Muthai Tharu Pathi Thirunagai",
+    "foundInCanonicalRegistry": false,
+    "matches": []
+  },
+  {
+    "slug": "kaithala-niraikani",
+    "titleTa": "கைத்தல நிறைகனி",
+    "titleEn": "Kaithala Niraikani",
+    "foundInCanonicalRegistry": false,
+    "matches": []
+  },
+  {
+    "slug": "aarumuga-mangalathai",
+    "titleTa": "ஆறுமுக மங்களத்தை",
+    "titleEn": "Aarumuga Mangalathai",
+    "foundInCanonicalRegistry": false,
+    "matches": []
+  },
+  {
+    "slug": "maruthamalai-maamaniye",
+    "titleTa": "மருதமலை மாமணியே",
+    "titleEn": "Maruthamalai Maamaniye",
+    "foundInCanonicalRegistry": false,
+    "matches": []
+  },
+  {
+    "slug": "senthil-andavan",
+    "titleTa": "செந்தில் ஆண்டவன்",
+    "titleEn": "Senthil Andavan",
+    "foundInCanonicalRegistry": false,
+    "matches": []
+  },
+  {
+    "slug": "muruga-muruga-endral",
+    "titleTa": "முருகா முருகா என்றால்",
+    "titleEn": "Muruga Muruga Endral",
+    "foundInCanonicalRegistry": false,
+    "matches": []
+  },
+  {
+    "slug": "kandhan-karunai-purivaan",
+    "titleTa": "கந்தன் கருணை புரிவான்",
+    "titleEn": "Kandhan Karunai Purivaan",
+    "foundInCanonicalRegistry": false,
+    "matches": []
+  },
+  {
+    "slug": "pazham-neeyappa",
+    "titleTa": "பழம் நீயப்பா",
+    "titleEn": "Pazham Neeyappa",
+    "foundInCanonicalRegistry": false,
+    "matches": []
+  },
+  {
+    "slug": "chinna-chinna-muruga",
+    "titleTa": "சின்ன சின்ன முருகா",
+    "titleEn": "Chinna Chinna Muruga",
+    "foundInCanonicalRegistry": false,
+    "matches": []
+  },
+  {
+    "slug": "kundrathile-kumaranukku",
+    "titleTa": "குன்றத்திலே குமரனுக்கு",
+    "titleEn": "Kundrathile Kumaranukku",
+    "foundInCanonicalRegistry": false,
+    "matches": []
+  },
+  {
+    "slug": "saravana-bhava",
+    "titleTa": "சரவண பவ",
+    "titleEn": "Saravana Bhava",
+    "foundInCanonicalRegistry": true,
+    "matches": [
+      {
+        "recordType": "audio-status",
+        "id": "saravanabhava-mantra",
+        "titleTa": "சரவணபவ மந்திரம்",
+        "titleEn": "Saravanabhava Mantra",
+        "route": "slokas/om-saravana-bhava.html",
+        "publicationStatus": "published"
+      }
+    ]
+  },
+  {
+    "slug": "vadivel-muruganukku-arohara",
+    "titleTa": "வடிவேல் முருகனுக்கு அரோகரா",
+    "titleEn": "Vadivel Muruganukku Arohara",
+    "foundInCanonicalRegistry": false,
+    "matches": []
+  },
+  {
+    "slug": "thiruchenduril-por-purindhu",
+    "titleTa": "திருச்செந்தூரில் போர் புரிந்து",
+    "titleEn": "Thiruchenduril Por Purindhu",
+    "foundInCanonicalRegistry": false,
+    "matches": []
+  },
+  {
+    "slug": "palani-malai-vaasa",
+    "titleTa": "பழனி மலை வாசா",
+    "titleEn": "Palani Malai Vaasa",
+    "foundInCanonicalRegistry": false,
+    "matches": []
+  },
+  {
+    "slug": "azhagendra-sollukku-muruga",
+    "titleTa": "அழகென்ற சொல்லுக்கு முருகா",
+    "titleEn": "Azhagendra Sollukku Muruga",
+    "foundInCanonicalRegistry": false,
+    "matches": []
+  },
+  {
+    "slug": "karpanai-endralum",
+    "titleTa": "கற்பனை என்றாலும்",
+    "titleEn": "Karpanai Endralum",
+    "foundInCanonicalRegistry": false,
+    "matches": []
+  }
+]
