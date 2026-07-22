@@ -1,0 +1,152 @@
+{
+  "release": 246,
+  "generated": "2026-07-22",
+  "researchStatus": "PARTIALLY_VERIFIED",
+  "subject": {
+    "internalId": "0006",
+    "canonicalTamilTitle": "முத்தைத்தரு பத்தித் திருநகை",
+    "shortTamilTitle": "முத்தைத்தரு",
+    "canonicalRomanTitle": "Muththaiththaru Pathi Thirunagai",
+    "author": "அருணகிரிநாதர் / Arunagirinathar",
+    "corpus": "திருப்புகழ் / Thiruppugazh"
+  },
+  "productionDecision": {
+    "keepCurrentInternalId": true,
+    "keepCurrentSourceSpecificNumber": true,
+    "currentSourceSpecificNumber": 6,
+    "keepPublishedTamilTextUnchanged": true,
+    "safePublicationStatus": "published-source-linked",
+    "humanReviewRequired": true,
+    "reason": "The repository source and Sivaya sequence both identify this record as number 6. Tamil Virtual Academy explains that Kaithalam Niraikani appears first among introductory or special verses, while Muththaiththaru appears at the beginning of the main book. These statements support an edition-structure note, not renumbering."
+  },
+  "verifiedFindings": [
+    {
+      "claim": "The current production source-specific number is 6.",
+      "status": "VERIFIED_FOR_CURRENT_EDITION",
+      "evidence": [
+        {
+          "sourceId": "src-thiruppugazh-valluvar-vallalar-vattam",
+          "sourceType": "repository-primary-text-compilation",
+          "locator": "பாடல் 6 (நூல்)",
+          "note": "The Tamil text was manually checked against the uploaded compilation."
+        },
+        {
+          "sourceId": "src-sivaya-thiruppugazh-6",
+          "sourceType": "authoritative-secondary-digital-index",
+          "url": "https://www.sivaya.org/thiruppugazh_song.php?lang=tamil&sequence_no=6",
+          "locator": "Sequence 6",
+          "note": "The page identifies Muththaiththaru as number 6 and also displays alternative index references."
+        }
+      ]
+    },
+    {
+      "claim": "Kaithalam Niraikani precedes Muththaiththaru in at least one established structural description.",
+      "status": "VERIFIED_AS_EDITION_STRUCTURE",
+      "evidence": [
+        {
+          "sourceId": "src-tamilvu-thiruppugazh-structure",
+          "sourceType": "government-supported-academic-resource",
+          "url": "https://www.tamilvu.org/courses/degree/p202/p2021/html/p202153.htm",
+          "locator": "Thiruppugazh collection structure",
+          "note": "Tamil Virtual Academy states that Kaithalam Niraikani appears first among the special introductory verses and that Muththaiththaru is placed at the beginning of the book."
+        }
+      ]
+    },
+    {
+      "claim": "Muththaiththaru uses the Chandam opening தத்தத்தன தத்தத் தனதன.",
+      "status": "VERIFIED_FOR_CURRENT_TEXTUAL_WITNESSES",
+      "evidence": [
+        {
+          "sourceId": "src-thiruppugazh-valluvar-vallalar-vattam",
+          "sourceType": "repository-primary-text-compilation",
+          "locator": "பாடல் 6 (நூல்)"
+        },
+        {
+          "sourceId": "src-sivaya-thiruppugazh-6",
+          "sourceType": "authoritative-secondary-digital-index",
+          "url": "https://www.sivaya.org/thiruppugazh_song.php?lang=tamil&sequence_no=6",
+          "locator": "Rhythmic opening"
+        }
+      ]
+    }
+  ],
+  "traditionalClaims": [
+    {
+      "claim": "Muththaiththaru is traditionally treated as the first Murugan-given or first-composed verse.",
+      "classification": "TRADITIONAL_HAGIOGRAPHY",
+      "publicationRule": "May be presented only with an explicit traditional-attribution label and a suitable scholarly or traditional source."
+    },
+    {
+      "claim": "The Tiruvannamalai rescue and divine-initiation narrative is the historical origin of this exact verse.",
+      "classification": "TRADITIONAL_HAGIOGRAPHY",
+      "publicationRule": "Do not present as independently proven historical fact."
+    }
+  ],
+  "claimsStillRequiringResearch": [
+    {
+      "claim": "The exact earliest printed edition year is 1895.",
+      "status": "SOURCE_REQUIRED",
+      "reason": "The submitted research uses inconsistent 1894, 1895 and 1901 references and relies partly on Wikipedia. A library catalogue or scan of the edition is required."
+    },
+    {
+      "claim": "Arunagirinathar and this specific composition can be dated precisely to 1430–1450.",
+      "status": "SOURCE_REQUIRED",
+      "reason": "A reliable academic or epigraphic source with page-level evidence is required."
+    },
+    {
+      "claim": "Bouli, Hamsadhvani and Shanmukhapriya are established ragas for this composition.",
+      "status": "SOURCE_REQUIRED",
+      "reason": "Each raga claim must be tied to an identifiable arrangement, performer, publication or recording."
+    },
+    {
+      "claim": "The underlying text is public domain internationally.",
+      "status": "REJECTED_AS_OVERBROAD",
+      "reason": "Rights must be assessed by jurisdiction and by layer. India Section 22 supports a life-plus-sixty term for published literary works, but this does not by itself establish a universal international conclusion or clear modern editions, translations, arrangements and recordings."
+    }
+  ],
+  "rightsBoundary": {
+    "jurisdictionReviewed": "India only for statutory term reference",
+    "underlyingLiteraryText": {
+      "status": "LIKELY_OUT_OF_TERM_IN_INDIA_SUBJECT_TO_IDENTITY_AND_PUBLICATION_HISTORY",
+      "humanOrLegalReviewRequired": true,
+      "basis": "Copyright Act, 1957, Section 22 provides a life-plus-sixty-year term for published literary works."
+    },
+    "repositoryDigitalCompilation": {
+      "status": "USE_UNDER_REPOSITORY_SOURCE_POLICY",
+      "humanReviewRequired": true,
+      "note": "Preserve source attribution and do not imply that OCR, commentary or modern editorial additions are unrestricted."
+    },
+    "easyReadingTamil": {
+      "status": "CREATE_INDEPENDENTLY_AND_COMPARE_WITH_CANONICAL_TEXT",
+      "humanReviewRequired": true
+    },
+    "transliteration": {
+      "status": "CREATE_INDEPENDENTLY_USING_DOCUMENTED_SCHEME",
+      "humanReviewRequired": true
+    },
+    "translationAndMeaning": {
+      "status": "WRITE_OR_COMMISSION_ORIGINAL_TEXT",
+      "humanReviewRequired": true,
+      "withhold": ["Unlicensed modern translations", "Copied scholarly commentary"]
+    },
+    "modernArrangementNotationPerformanceAndRecording": {
+      "status": "PERMISSION_OR_ORIGINAL_COMMISSION_REQUIRED",
+      "humanReviewRequired": true,
+      "withhold": ["Third-party recordings", "Unlicensed notation", "Unverified arrangement credits"]
+    }
+  },
+  "sourceQualityCorrectionsApplied": [
+    "The submitted JSON was treated as research input, not production truth.",
+    "Wikipedia, personal blogs and commercial catalogues were not accepted as sufficient evidence for high-confidence historical or legal claims.",
+    "No fabricated confidence percentages were retained.",
+    "Human review remains required for every metadata and rights change.",
+    "The current song number and Tamil text were not changed."
+  ],
+  "remainingActions": [
+    "Locate a scanned early edition or authoritative library catalogue for the first-print chronology.",
+    "Obtain page-level academic evidence for Arunagirinathar dating and Deva Raya references.",
+    "Document edition-specific numbering schemes, including any source that calls the work Song 1.",
+    "Research each modern musical arrangement separately with rights-holder evidence.",
+    "Create easy-reading Tamil and transliteration only through controlled human review."
+  ]
+}
