@@ -52,20 +52,28 @@ jobs:
         run: |
           python -m json.tool data/research-intake/attachment-song-evidence-2026-07-22.json > /dev/null
           python -m json.tool data/research-intake/popular-song-triage-2026-07-22.json > /dev/null
+          python -m json.tool data/research-intake/muththaiththaru-numbering-reconciliation-2026-07-22.json > /dev/null
           python - <<'PY'
           import json
           from pathlib import Path
 
           attachment = json.loads(Path('data/research-intake/attachment-song-evidence-2026-07-22.json').read_text(encoding='utf-8'))
           triage = json.loads(Path('data/research-intake/popular-song-triage-2026-07-22.json').read_text(encoding='utf-8'))
+          muththaiththaru = json.loads(Path('data/research-intake/muththaiththaru-numbering-reconciliation-2026-07-22.json').read_text(encoding='utf-8'))
           assert attachment['attachmentReview']['htmlFilesAcceptedAsProductionPages'] == 0
           assert attachment['attachmentReview']['recordsTriaged'] == 5
           assert len(triage['records']) >= 16
           assert all(record.get('triageStatus') for record in triage['records'])
           assert all(record.get('publicationDecision') for record in triage['records'])
+          assert muththaiththaru['productionDecision']['keepCurrentInternalId'] is True
+          assert muththaiththaru['productionDecision']['keepCurrentSourceSpecificNumber'] is True
+          assert muththaiththaru['productionDecision']['currentSourceSpecificNumber'] == 6
+          assert muththaiththaru['productionDecision']['keepPublishedTamilTextUnchanged'] is True
+          assert muththaiththaru['productionDecision']['humanReviewRequired'] is True
           print(json.dumps({
             'attachmentRecords': len(attachment['records']),
             'triageRecords': len(triage['records']),
+            'muththaiththaruNumber': muththaiththaru['productionDecision']['currentSourceSpecificNumber'],
             'protectedLyricsPublished': 0,
             'unlicensedAudioPublished': 0
           }, ensure_ascii=False, indent=2))
@@ -82,11 +90,15 @@ jobs:
           mkdir -p _site/data/research-intake
           cp data/research-intake/popular-song-triage-2026-07-22.json \
             _site/data/research-intake/popular-song-triage-2026-07-22.json
+          cp data/research-intake/muththaiththaru-numbering-reconciliation-2026-07-22.json \
+            _site/data/research-intake/muththaiththaru-numbering-reconciliation-2026-07-22.json
 
       - name: Validate research data is in public artifact
         run: |
           test -s _site/data/research-intake/popular-song-triage-2026-07-22.json
+          test -s _site/data/research-intake/muththaiththaru-numbering-reconciliation-2026-07-22.json
           python -m json.tool _site/data/research-intake/popular-song-triage-2026-07-22.json > /dev/null
+          python -m json.tool _site/data/research-intake/muththaiththaru-numbering-reconciliation-2026-07-22.json > /dev/null
 
       - name: Validate critical JavaScript modules
         run: |
@@ -125,6 +137,7 @@ jobs:
             reports/phase-h-deployment
             reports/phase-h-validation
             research-prompts/MISSING-MURUGAN-SONGS-VERIFICATION-BATCH-02.md
+            research-prompts/MUTHTHAITHTHARU-REMAINING-EVIDENCE.md
             data/research-intake
             data/route-recovery-summary.json
             data/content-completeness.json
