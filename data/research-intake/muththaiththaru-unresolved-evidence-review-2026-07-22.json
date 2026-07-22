@@ -1,0 +1,136 @@
+{
+  "release": 246,
+  "generated": "2026-07-22",
+  "subject": {
+    "internalId": "0006",
+    "canonicalTamilTitle": "முத்தைத்தரு பத்தித் திருநகை",
+    "canonicalRomanTitle": "Muththaiththaru Pathi Thirunagai",
+    "currentSourceSpecificNumber": 6
+  },
+  "inputReview": {
+    "fileName": "Muththaiththaru Pathi Thirunagai Unresolved Evidence Research.docx",
+    "reviewStatus": "RESEARCH_DRAFT_NOT_PRODUCTION_READY",
+    "acceptedAsProductionPage": false,
+    "acceptedAsPrimarySource": false,
+    "publishedTamilTextChanged": false,
+    "songNumberChanged": false,
+    "humanReviewRequired": true
+  },
+  "acceptedFindings": [
+    {
+      "claim": "Muththaiththaru is indexed as sequence 6 in the current production source and Sivaya digital index.",
+      "status": "ACCEPTED",
+      "evidence": [
+        "repository source heading: பாடல் 6 (நூல்)",
+        "https://www.sivaya.org/thiruppugazh_song.php?lang=tamil&sequence_no=6"
+      ],
+      "productionAction": "Keep internal ID 0006 and source-specific number 6."
+    },
+    {
+      "claim": "The Chandam opening is தத்தத்தன தத்தத் தனதன.",
+      "status": "ACCEPTED_FOR_CURRENT_TEXTUAL_WITNESSES",
+      "evidence": [
+        "repository source heading: பாடல் 6 (நூல்)",
+        "https://www.sivaya.org/thiruppugazh_song.php?lang=tamil&sequence_no=6"
+      ],
+      "productionAction": "Retain current meter metadata."
+    },
+    {
+      "claim": "A 1964 Arunagirinathar film soundtrack contains a track titled Muthaitharu performed by T. M. Soundararajan with music credited to T. R. Papa.",
+      "status": "ACCEPTED_AS_MODERN_RECORDING_METADATA_ONLY",
+      "evidence": [
+        "https://www.saregama.com/song/muthaitharu_1827",
+        "https://www.saregama.com/album/arunagirinathar_89382"
+      ],
+      "productionAction": "Metadata and official external link may be recorded; do not host or copy the recording."
+    }
+  ],
+  "claimsRejectedOrDowngraded": [
+    {
+      "claim": "Arunagirinathar is definitively dated to 1430–1450 through Deva Raya II evidence.",
+      "decision": "DOWNGRADED_TO_CONTESTED_SCHOLARLY_CHRONOLOGY",
+      "reason": "Institut Français de Pondichéry notes that the dating problem is difficult, Praudhadevaraya may refer to multiple rulers, and the synchronism depends partly on legendary material."
+    },
+    {
+      "claim": "The Arunachala Puranam is the earliest authoritative source that explicitly corroborates the modern rescue narrative.",
+      "decision": "REJECTED_AS_UNSUPPORTED",
+      "reason": "Institut Français de Pondichéry distinguishes later hagiographic versions from sixteenth-century temple puranas and states that the latter do not substantially corroborate the modern detailed legend."
+    },
+    {
+      "claim": "The 1895 and 1901 editions, page numbers, library identifiers and archive.org URLs supplied in the report are verified.",
+      "decision": "SOURCE_REQUIRED",
+      "reason": "The named archive identifiers and URLs could not be independently located, and no scan or institutional catalogue record was supplied."
+    },
+    {
+      "claim": "Tolkappiyam directly proves the exact heavy/light mapping asserted for this song.",
+      "decision": "DOWNGRADED_TO_INTERPRETIVE_PROSODY_ANALYSIS",
+      "reason": "A general prosody framework is not sufficient evidence for the song-specific scansion without a cited page-level specialist analysis."
+    },
+    {
+      "claim": "Hamsadhvani and Bouli are established standard arrangements with the named performers and rights holders.",
+      "decision": "SOURCE_REQUIRED",
+      "reason": "No authoritative recording, album, catalogue or rights-holder evidence was supplied for these specific arrangements."
+    },
+    {
+      "claim": "The 1964 film arrangement is verified as Shanmukhapriya.",
+      "decision": "SOURCE_REQUIRED",
+      "reason": "Official Saregama metadata verifies the track, singer, album and music director but does not state the raga."
+    },
+    {
+      "claim": "The underlying literary text and early editions are indisputably public domain worldwide.",
+      "decision": "REJECTED_AS_OVERBROAD",
+      "reason": "Rights must be assessed by jurisdiction and layer. Modern editions, transcriptions, translations, arrangements, performances, recordings and scans may have separate rights."
+    },
+    {
+      "claim": "The 1964 sound recording automatically entered the public domain in India on 1 January 2025 and may therefore be reused.",
+      "decision": "NOT_APPROVED_FOR_REUSE",
+      "reason": "Even where a statutory term calculation is relevant, chain of title, publication facts, amendments, neighbouring rights, contractual rights, platform territories and current rights-holder claims require legal review. Saregama continues to present and license the track."
+    }
+  ],
+  "sourceQualityAssessment": {
+    "strongerSources": [
+      "Current repository primary-text compilation",
+      "Sivaya sequence index for song 6",
+      "Tamil Virtual Academy structural description",
+      "Institut Français de Pondichéry scholarly study",
+      "India Code statutory text",
+      "Saregama official track and album catalogue"
+    ],
+    "insufficientAsFinalAuthority": [
+      "Grokipedia",
+      "Wikipedia",
+      "personal blogs without page-level primary evidence",
+      "Scribd catalogues",
+      "commercial book synopses",
+      "unresolved archive identifiers",
+      "generic music-history articles"
+    ]
+  },
+  "productionDecision": {
+    "keepCurrentInternalId": true,
+    "keepCurrentSongNumber": true,
+    "keepPublishedTamilTextUnchanged": true,
+    "safePublicationStatus": "published-source-linked",
+    "metadataAllowedNow": [
+      "Record the existence of the 1964 Saregama soundtrack track as metadata only.",
+      "Retain the numbering reconciliation note.",
+      "Retain the verified Chandam opening."
+    ],
+    "metadataBlocked": [
+      "Exact first-print dates without scans or catalogue records",
+      "Definitive historical dating",
+      "Detailed rescue narrative as proven history",
+      "Unverified raga assignments",
+      "Worldwide public-domain claims",
+      "Hosting or copying third-party sound recordings"
+    ],
+    "humanReviewRequired": true
+  },
+  "nextResearchPriorities": [
+    "Locate institutional scans or catalogue records for the claimed 1894, 1895 and 1901 editions.",
+    "Find a page-level scholarly treatment of Arunagirinathar chronology and the Praudhadevaraya references.",
+    "Trace the earliest textual witness for the detailed Tiruvannamalai rescue narrative.",
+    "Verify each claimed raga through an identifiable recording or notation publication.",
+    "Obtain legal or rights-holder review before any reuse of the 1964 recording or melody."
+  ]
+}
