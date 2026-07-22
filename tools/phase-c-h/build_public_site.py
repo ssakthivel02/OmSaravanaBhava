@@ -5,7 +5,7 @@ The repository remains the complete source/evidence store. The `_site` artifact 
 root public HTML routes, governed nested routes, sitemap routes, runtime essentials, and
 all statically discoverable local dependencies. Internal reports, tools, tests and Git
 metadata are never copied into the Pages artifact unless a public file explicitly and
-validly depends on them (which is treated as an error by validation).
+validly depends on them, which is treated as an error by validation.
 """
 
 from __future__ import annotations
@@ -31,8 +31,8 @@ EXCLUDED_PREFIXES = (
 SPECIAL_ROOT_FILES = {
     'CNAME', '.nojekyll', 'robots.txt', 'service-worker.js', 'sw.js',
     'manifest.json', 'site.webmanifest', 'browserconfig.xml',
-    'sitemap.xml', 'sitemap-songs.xml', 'favicon.svg', 'favicon.ico',
-    'deployment-info.json'
+    'sitemap.xml', 'sitemap-songs.xml', 'sitemap-platform.xml',
+    'favicon.svg', 'favicon.ico', 'deployment-info.json'
 }
 ROOT_PUBLIC_SUFFIXES = {
     '.html', '.htm', '.xml', '.webmanifest', '.svg', '.ico'
@@ -62,7 +62,10 @@ def rel(path: Path) -> str:
 
 def excluded(key: str) -> bool:
     clean = key.lstrip('./')
-    return any(clean == prefix.rstrip('/') or clean.startswith(prefix) for prefix in EXCLUDED_PREFIXES)
+    return any(
+        clean == prefix.rstrip('/') or clean.startswith(prefix)
+        for prefix in EXCLUDED_PREFIXES
+    )
 
 
 def load_json(relative: str, default):
@@ -107,7 +110,9 @@ def add_if_public(key: str, selected: set[str], queue: deque[str]) -> bool:
 
 def candidate_keys(source_key: str, raw: str) -> list[str]:
     value = str(raw or '').strip()
-    if not value or value.startswith(('#', 'mailto:', 'tel:', 'javascript:', 'data:', '//')):
+    if not value or value.startswith(
+        ('#', 'mailto:', 'tel:', 'javascript:', 'data:', '//')
+    ):
         return []
     parsed = urlsplit(value)
     if parsed.scheme or parsed.netloc:
@@ -116,7 +121,11 @@ def candidate_keys(source_key: str, raw: str) -> list[str]:
     if not path_text:
         return []
     source = ROOT / source_key
-    target = ROOT / path_text.lstrip('/') if path_text.startswith('/') else source.parent / path_text
+    target = (
+        ROOT / path_text.lstrip('/')
+        if path_text.startswith('/')
+        else source.parent / path_text
+    )
     try:
         target = target.resolve()
         target.relative_to(ROOT)
@@ -151,7 +160,10 @@ def initial_selection() -> tuple[set[str], deque[str]]:
     for path in ROOT.iterdir():
         if not path.is_file():
             continue
-        if path.name in SPECIAL_ROOT_FILES or path.suffix.lower() in ROOT_PUBLIC_SUFFIXES:
+        if (
+            path.name in SPECIAL_ROOT_FILES or
+            path.suffix.lower() in ROOT_PUBLIC_SUFFIXES
+        ):
             add_if_public(path.name, selected, queue)
 
     # Add all governed historical/addition/override routes and source data paths.
@@ -161,25 +173,30 @@ def initial_selection() -> tuple[set[str], deque[str]]:
         ('data/site-routes-effective-overrides.json', 'records'),
     ):
         payload = load_json(registry_path, {})
-        for record in payload.get(array_key, []) if isinstance(payload, dict) else []:
+        records = payload.get(array_key, []) if isinstance(payload, dict) else []
+        for record in records:
             add_if_public(route_to_key(record.get('path')), selected, queue)
             source_data = route_to_key(record.get('sourceDataPath'))
             if source_data:
                 add_if_public(source_data, selected, queue)
 
-    # Add sitemap routes explicitly.
-    for sitemap_name in ('sitemap.xml', 'sitemap-songs.xml'):
+    # Add all explicit sitemap routes.
+    for sitemap_name in (
+        'sitemap.xml', 'sitemap-songs.xml', 'sitemap-platform.xml'
+    ):
         sitemap = ROOT / sitemap_name
         if not sitemap.is_file():
             continue
         try:
-            root = ET.fromstring(sitemap.read_text(encoding='utf-8', errors='ignore'))
+            root = ET.fromstring(
+                sitemap.read_text(encoding='utf-8', errors='ignore')
+            )
         except (OSError, ET.ParseError):
             continue
         for node in root.findall('.//{*}loc'):
             add_if_public(route_to_key(node.text), selected, queue)
 
-    # Essential route/data dependencies that can be loaded dynamically.
+    # Essential data dependencies that are loaded dynamically.
     for key in (
         'data/site-routes.json',
         'data/site-routes-additions.json',
@@ -187,6 +204,7 @@ def initial_selection() -> tuple[set[str], deque[str]]:
         'data/route-aliases.json',
         'data/route-recovery-summary.json',
         'data/content-completeness.json',
+        'data/platform-capability-matrix.json',
         'data/murugan-song-library.json',
         'data/search-index.json',
         'data/thiruppugazh.json',
@@ -200,7 +218,10 @@ def initial_selection() -> tuple[set[str], deque[str]]:
     return selected, queue
 
 
-def discover_dependencies(selected: set[str], queue: deque[str]) -> list[dict[str, str]]:
+def discover_dependencies(
+    selected: set[str],
+    queue: deque[str]
+) -> list[dict[str, str]]:
     unresolved: list[dict[str, str]] = []
     while queue:
         source_key = queue.popleft()
@@ -215,10 +236,11 @@ def discover_dependencies(selected: set[str], queue: deque[str]) -> list[dict[st
             continue
         for reference in extract_references(text):
             candidates = candidate_keys(source_key, reference)
-            existing = [key for key in candidates if (ROOT / key).is_file() and not excluded(key)]
+            existing = [
+                key for key in candidates
+                if (ROOT / key).is_file() and not excluded(key)
+            ]
             if existing:
-                # Prefer the first exact/normalised candidate; include all existing alternatives only
-                # when a source literally resolves to them.
                 add_if_public(existing[0], selected, queue)
             elif candidates:
                 unresolved.append({
@@ -262,18 +284,25 @@ def main() -> None:
     file_count, bytes_total = copy_selected(selected)
 
     critical = [
-        'index.html', '404.html', 'offline.html', 'murugan-song-library.html',
-        'platform-hub.html', 'route-recovery.html', 'content-completeness.html',
-        'site-directory.html', 'ai-search.html', 'thiruppugazh.html',
-        'temples.html', 'audio-library.html', 'service-worker.js', 'manifest.json',
-        'robots.txt', 'sitemap.xml', 'CNAME'
+        'index.html', '404.html', 'offline.html',
+        'murugan-song-library.html', 'platform-hub.html',
+        'platform-roadmap.html', 'route-recovery.html',
+        'content-completeness.html', 'site-directory.html', 'ai-search.html',
+        'thiruppugazh.html', 'temples.html', 'audio-library.html',
+        'service-worker.js', 'manifest.json', 'robots.txt', 'sitemap.xml',
+        'sitemap-platform.xml', 'CNAME'
     ]
-    missing_critical = [key for key in critical if not (OUT / key).is_file()]
+    missing_critical = [
+        key for key in critical if not (OUT / key).is_file()
+    ]
 
     manifest = {
         'release': 246,
         'generatedBy': 'tools/phase-c-h/build_public_site.py',
-        'strategy': 'root-public-routes-plus-governed-routes-plus-recursive-local-dependencies',
+        'strategy': (
+            'root-public-routes-plus-governed-routes-plus-'
+            'recursive-local-dependencies'
+        ),
         'repositoryFilesDeleted': 0,
         'selectedFiles': file_count,
         'selectedBytes': bytes_total,
@@ -282,7 +311,11 @@ def main() -> None:
         'criticalFiles': {
             key: {
                 'present': (OUT / key).is_file(),
-                'sha256': sha256_file(OUT / key) if (OUT / key).is_file() else None
+                'sha256': (
+                    sha256_file(OUT / key)
+                    if (OUT / key).is_file()
+                    else None
+                )
             }
             for key in critical
         },
@@ -311,7 +344,11 @@ def main() -> None:
 
     REPORT.mkdir(parents=True, exist_ok=True)
     (REPORT / 'unresolved-deployment-dependencies.json').write_text(
-        json.dumps(unresolved[:5000], ensure_ascii=False, indent=2) + '\n',
+        json.dumps(
+            unresolved[:5000],
+            ensure_ascii=False,
+            indent=2
+        ) + '\n',
         encoding='utf-8'
     )
     (REPORT / 'SUMMARY.md').write_text(
@@ -322,7 +359,10 @@ def main() -> None:
             f'- Files selected for Pages artifact: **{file_count}**',
             f'- Artifact bytes before compression: **{bytes_total}**',
             f'- Missing critical files: **{len(missing_critical)}**',
-            f'- Unresolved statically discoverable dependencies: **{len(unresolved)}**',
+            (
+                '- Unresolved statically discoverable dependencies: '
+                f'**{len(unresolved)}**'
+            ),
             '',
             'The build preserves root public routes and recursively copies their actual local dependencies. Internal evidence remains in GitHub but outside the public artifact.',
         ]) + '\n',
@@ -330,7 +370,9 @@ def main() -> None:
     )
 
     if missing_critical:
-        raise SystemExit(f'Missing critical public files: {missing_critical}')
+        raise SystemExit(
+            f'Missing critical public files: {missing_critical}'
+        )
     print(json.dumps(manifest, ensure_ascii=False, indent=2))
 
 
