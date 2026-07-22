@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Validate the Phase H `_site` artifact before GitHub Pages deployment.
 
-This is a deterministic static gate. It validates critical-route semantics, required
-assets/data, local references, JSON/XML syntax, manifest integrity and safe deployment
-boundaries. It does not claim formal WCAG certification or field Core Web Vitals.
+This deterministic static gate checks critical-route semantics, required assets/data,
+local references, JSON/XML syntax and deployment boundaries. It does not claim formal
+WCAG certification or field Core Web Vitals.
 """
 
 from __future__ import annotations
@@ -42,8 +42,12 @@ REQUIRED_FILES = CRITICAL_HTML + [
     'data/thiruppugazh.json', 'data/audio-catalog.json',
     'schemas/murugan-song-record.schema.json', 'deployment-manifest.json'
 ]
-TEXT_REFERENCE_RE = re.compile(
+REFERENCE_RE = re.compile(
     r'''(?:href|src|poster|action|data-src|data-href)\s*=\s*["']([^"']+)["']''',
+    re.IGNORECASE
+)
+PLACEHOLDER_LINK_RE = re.compile(
+    r'''href\s*=\s*["']#["']''',
     re.IGNORECASE
 )
 
@@ -61,59 +65,67 @@ class PageParser(HTMLParser):
         self.h1_count = 0
         self.ids: list[str] = []
         self.images: list[dict[str, str]] = []
-        self.buttons_without_name = 0
-        self.links_without_name = 0
-        self._interactive_stack: list[tuple[str, bool]] = []
+        self._interactive: list[dict[str, object]] = []
+        self.unnamed_links = 0
+        self.unnamed_buttons = 0
 
-    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
-        values = {str(k).lower(): str(v or '') for k, v in attrs}
+    def handle_starttag(
+        self,
+        tag: str,
+        attrs: list[tuple[str, str | None]]
+    ) -> None:
+        values = {str(key).lower(): str(value or '') for key, value in attrs}
         tag = tag.lower()
         if tag == 'html':
             self.lang = values.get('lang', '')
-        if tag == 'title':
+        elif tag == 'title':
             self._in_title = True
-        if tag == 'meta':
+        elif tag == 'meta':
             name = values.get('name', '').lower()
             if name == 'viewport' and values.get('content'):
                 self.viewport = True
-            if name == 'description':
+            elif name == 'description':
                 self.description = values.get('content', '')
-        if tag == 'link' and 'canonical' in values.get('rel', '').lower().split():
+        elif tag == 'link' and 'canonical' in values.get('rel', '').lower().split():
             self.canonical = values.get('href', '')
-        if tag == 'main':
+        elif tag == 'main':
             self.main_count += 1
-        if tag == 'h1':
+        elif tag == 'h1':
             self.h1_count += 1
+        elif tag == 'img':
+            self.images.append(values)
+
         if values.get('id'):
             self.ids.append(values['id'])
-        if tag == 'img':
-            self.images.append(values)
         if tag in {'a', 'button'}:
-            named = bool(
-                values.get('aria-label') or
-                values.get('title') or
-                (tag == 'a' and values.get('href', '').startswith('#'))
-            )
-            self._interactive_stack.append((tag, named))
+            self._interactive.append({
+                'tag': tag,
+                'named': bool(values.get('aria-label') or values.get('title'))
+            })
 
     def handle_data(self, data: str) -> None:
         if self._in_title:
             self.title += data
-        if self._interactive_stack and data.strip():
-            tag, _ = self._interactive_stack[-1]
-            self._interactive_stack[-1] = (tag, True)
+        if data.strip():
+            for item in self._interactive:
+                item['named'] = True
 
     def handle_endtag(self, tag: str) -> None:
         tag = tag.lower()
         if tag == 'title':
             self._in_title = False
-        if tag in {'a', 'button'} and self._interactive_stack:
-            open_tag, named = self._interactive_stack.pop()
-            if open_tag == tag and not named:
-                if tag == 'a':
-                    self.links_without_name += 1
-                else:
-                    self.buttons_without_name += 1
+        if tag in {'a', 'button'}:
+            for index in range(len(self._interactive) - 1, -1, -1):
+                item = self._interactive[index]
+                if item['tag'] != tag:
+                    continue
+                self._interactive.pop(index)
+                if not item['named']:
+                    if tag == 'a':
+                        self.unnamed_links += 1
+                    else:
+                        self.unnamed_buttons += 1
+                break
 
 
 def read_text(path: Path) -> str:
@@ -122,7 +134,9 @@ def read_text(path: Path) -> str:
 
 def resolve_reference(source: Path, raw: str) -> Path | None:
     value = raw.strip()
-    if not value or value.startswith(('#', 'mailto:', 'tel:', 'javascript:', 'data:', '//')):
+    if not value or value.startswith(
+        ('#', 'mailto:', 'tel:', 'javascript:', 'data:', '//')
+    ):
         return None
     parsed = urlsplit(value)
     if parsed.scheme or parsed.netloc:
@@ -130,8 +144,11 @@ def resolve_reference(source: Path, raw: str) -> Path | None:
     path_text = unquote(parsed.path or '')
     if not path_text:
         return None
-    target = SITE / path_text.lstrip('/') if path_text.startswith('/') else source.parent / path_text
-    target = target.resolve()
+    target = (
+        SITE / path_text.lstrip('/')
+        if path_text.startswith('/')
+        else source.parent / path_text
+    ).resolve()
     try:
         target.relative_to(SITE.resolve())
     except ValueError:
@@ -152,8 +169,8 @@ def validate_page(key: str) -> tuple[list[str], list[str], dict[str, object]]:
     errors: list[str] = []
     warnings: list[str] = []
     path = SITE / key
-    parser = PageParser()
     text = read_text(path)
+    parser = PageParser()
     try:
         parser.feed(text)
     except Exception as error:
@@ -170,35 +187,51 @@ def validate_page(key: str) -> tuple[list[str], list[str], dict[str, object]]:
     if key not in {'404.html', 'offline.html'} and not parser.canonical:
         errors.append(f'{key}: missing canonical link')
     if parser.main_count != 1:
-        errors.append(f'{key}: expected exactly one main element, found {parser.main_count}')
+        errors.append(
+            f'{key}: expected exactly one main element, found {parser.main_count}'
+        )
     if parser.h1_count != 1:
-        errors.append(f'{key}: expected exactly one h1, found {parser.h1_count}')
-    duplicate_ids = [item for item, count in Counter(parser.ids).items() if count > 1]
+        errors.append(
+            f'{key}: expected exactly one h1, found {parser.h1_count}'
+        )
+
+    duplicate_ids = [
+        item for item, count in Counter(parser.ids).items() if count > 1
+    ]
     if duplicate_ids:
         errors.append(f'{key}: duplicate IDs: {duplicate_ids[:20]}')
-    if parser.links_without_name or parser.buttons_without_name:
+    if parser.unnamed_links or parser.unnamed_buttons:
         errors.append(
-            f'{key}: unnamed links={parser.links_without_name}, buttons={parser.buttons_without_name}'
+            f'{key}: unnamed links={parser.unnamed_links}, '
+            f'buttons={parser.unnamed_buttons}'
         )
 
     for image in parser.images:
         if 'alt' not in image:
-            errors.append(f'{key}: image missing alt: {image.get("src", "unknown")[:160]}')
+            errors.append(
+                f'{key}: image missing alt: '
+                f'{image.get("src", "unknown")[:160]}'
+            )
         if image.get('loading') == 'lazy' and not image.get('src'):
             errors.append(f'{key}: lazy image missing src')
 
     broken = []
-    for match in TEXT_REFERENCE_RE.finditer(text):
+    for match in REFERENCE_RE.finditer(text):
         reference = match.group(1)
         target = resolve_reference(path, reference)
         if target is not None and not target.is_file():
             broken.append(reference)
     if broken:
-        errors.append(f'{key}: {len(broken)} broken local references: {broken[:20]}')
+        errors.append(
+            f'{key}: {len(broken)} broken local references: {broken[:20]}'
+        )
 
-    if re.search(r'href\s*=\s*["']#["']', text, re.IGNORECASE):
+    if PLACEHOLDER_LINK_RE.search(text):
         warnings.append(f'{key}: contains href="#" placeholder link')
-    if any(marker in text.lower() for marker in ('lorem ipsum', 'todo: replace', 'dummy content')):
+    if any(
+        marker in text.lower()
+        for marker in ('lorem ipsum', 'todo: replace', 'dummy content')
+    ):
         errors.append(f'{key}: contains prohibited placeholder marker')
 
     return errors, warnings, {
@@ -252,9 +285,13 @@ def main() -> None:
     try:
         deployment = json.loads(read_text(SITE / 'deployment-manifest.json'))
         if deployment.get('repositoryFilesDeleted') != 0:
-            errors.append('deployment-manifest.json: repositoryFilesDeleted must be zero')
+            errors.append(
+                'deployment-manifest.json: repositoryFilesDeleted must be zero'
+            )
         if deployment.get('missingCriticalFiles'):
-            errors.append('deployment-manifest.json reports missing critical files')
+            errors.append(
+                'deployment-manifest.json reports missing critical files'
+            )
     except (OSError, json.JSONDecodeError) as error:
         errors.append(f'deployment-manifest.json unavailable: {error}')
 
@@ -267,11 +304,21 @@ def main() -> None:
             'premium-platform-2026'
         ):
             if required not in text:
-                warnings.append(f'service-worker.js does not explicitly precache {required}')
+                warnings.append(
+                    f'service-worker.js does not explicitly precache {required}'
+                )
 
-    cname = (SITE / 'CNAME').read_text(encoding='utf-8', errors='ignore').strip() if (SITE / 'CNAME').is_file() else ''
+    cname = (
+        (SITE / 'CNAME').read_text(
+            encoding='utf-8', errors='ignore'
+        ).strip()
+        if (SITE / 'CNAME').is_file()
+        else ''
+    )
     if cname != 'omsaravanabhava.org':
-        errors.append(f'CNAME must be omsaravanabhava.org, found {cname!r}')
+        errors.append(
+            f'CNAME must be omsaravanabhava.org, found {cname!r}'
+        )
 
     summary = {
         'release': 246,
@@ -288,7 +335,15 @@ def main() -> None:
     }
     REPORT.mkdir(parents=True, exist_ok=True)
     (REPORT / 'validation-result.json').write_text(
-        json.dumps({**summary, 'errorDetails': errors, 'warningDetails': warnings}, ensure_ascii=False, indent=2) + '\n',
+        json.dumps(
+            {
+                **summary,
+                'errorDetails': errors,
+                'warningDetails': warnings
+            },
+            ensure_ascii=False,
+            indent=2
+        ) + '\n',
         encoding='utf-8'
     )
     lines = [
@@ -306,11 +361,18 @@ def main() -> None:
     if errors:
         lines += ['', '## Errors', ''] + [f'- {item}' for item in errors[:200]]
     if warnings:
-        lines += ['', '## Warnings', ''] + [f'- {item}' for item in warnings[:200]]
-    (REPORT / 'SUMMARY.md').write_text('\n'.join(lines) + '\n', encoding='utf-8')
+        lines += ['', '## Warnings', ''] + [
+            f'- {item}' for item in warnings[:200]
+        ]
+    (REPORT / 'SUMMARY.md').write_text(
+        '\n'.join(lines) + '\n',
+        encoding='utf-8'
+    )
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     if errors:
-        raise SystemExit(f'Phase H validation failed with {len(errors)} error(s)')
+        raise SystemExit(
+            f'Phase H validation failed with {len(errors)} error(s)'
+        )
 
 
 if __name__ == '__main__':
