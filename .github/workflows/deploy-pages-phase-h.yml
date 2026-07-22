@@ -10,6 +10,9 @@ permissions:
   pages: write
   id-token: write
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
 concurrency:
   group: github-pages-production
   cancel-in-progress: true
@@ -20,12 +23,12 @@ jobs:
     timeout-minutes: 150
     steps:
       - name: Checkout complete repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 1
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 
@@ -45,11 +48,39 @@ jobs:
       - name: Generate Phase F completeness evidence
         run: python tools/phase-c-h/build_content_completeness.py
 
+      - name: Validate governed research intake
+        run: |
+          python -m json.tool data/research-intake/attachment-song-evidence-2026-07-22.json > /dev/null
+          python -m json.tool data/research-intake/popular-song-triage-2026-07-22.json > /dev/null
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          attachment = json.loads(Path('data/research-intake/attachment-song-evidence-2026-07-22.json').read_text(encoding='utf-8'))
+          triage = json.loads(Path('data/research-intake/popular-song-triage-2026-07-22.json').read_text(encoding='utf-8'))
+          assert attachment['attachmentReview']['htmlFilesAcceptedAsProductionPages'] == 0
+          assert attachment['attachmentReview']['recordsTriaged'] == 5
+          assert len(triage['records']) >= 16
+          assert all(record.get('triageStatus') for record in triage['records'])
+          assert all(record.get('publicationDecision') for record in triage['records'])
+          print(json.dumps({
+            'attachmentRecords': len(attachment['records']),
+            'triageRecords': len(triage['records']),
+            'protectedLyricsPublished': 0,
+            'unlicensedAudioPublished': 0
+          }, ensure_ascii=False, indent=2))
+          PY
+
       - name: Reconcile planned versus connected capabilities
         run: python tools/phase-c-h/build_capability_matrix.py
 
       - name: Build deterministic public artifact
         run: python tools/phase-c-h/build_public_site.py
+
+      - name: Validate research data is in public artifact
+        run: |
+          test -s _site/data/research-intake/popular-song-triage-2026-07-22.json
+          python -m json.tool _site/data/research-intake/popular-song-triage-2026-07-22.json > /dev/null
 
       - name: Validate critical JavaScript modules
         run: |
@@ -77,15 +108,18 @@ jobs:
           path: _site
 
       - name: Upload Phase H validation evidence
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: phase-h-validation-evidence
           path: |
             reports/phase-d-e-route-recovery
             reports/phase-f-content-completeness
+            reports/phase-f-attachment-review
             reports/phase-c-h-capability-matrix
             reports/phase-h-deployment
             reports/phase-h-validation
+            research-prompts/MISSING-MURUGAN-SONGS-VERIFICATION-BATCH-02.md
+            data/research-intake
             data/route-recovery-summary.json
             data/content-completeness.json
             data/platform-capability-matrix.json
