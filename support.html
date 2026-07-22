@@ -1,23 +1,38 @@
 <!doctype html>
-<html lang="en">
+<html lang="ta">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Support | Om Saravana Bhava</title>
-  <meta name="description" content="Om Saravana Bhava - Murugan devotion, Arupadai Veedu, festivals, slokas and spiritual learning.">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>தொழில்நுட்ப உதவி | Technical Support</title>
+  <meta name="description" content="Troubleshoot Om Saravana Bhava cache, offline, installation, missing-route, browser-local data and accessibility issues with privacy-preserving diagnostics.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://omsaravanabhava.org/support.html">
+  <meta name="theme-color" content="#120c18">
   <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="assets/css/release-246.css">
+  <link rel="stylesheet" href="assets/css/premium-platform-2026.css">
+  <script defer src="assets/js/release-246.js"></script>
+  <script type="module" src="assets/js/premium-platform-2026.mjs"></script>
+  <script type="module" src="assets/js/support-tools-2026.mjs"></script>
 </head>
-<body class="">
-<a class="skip-link" href="#main">Skip to main content</a>
-<header class="site-header">
-  <div class="topbar">🛕 ஓம் சரவணபவ · May Lord Murugan bless you with wisdom, courage and divine protection.</div>
-  <div class="nav-wrap"><a class="brand" href="index.html">ஓம் சரவணபவ</a><button class="menu-toggle" aria-label="Toggle navigation">☰</button><nav class="main-nav"><a href="index.html">Home</a><a href="temples.html">Temples</a><a href="slokas.html">Slokas</a><a href="festivals.html">Festivals</a><a href="gallery.html">Gallery</a><a href="ai.html">AI Guide</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav></div>
-</header>
-<main id="main">
-<section class="hero small-hero"><div class="container"><h1>Support</h1><p>Om Saravana Bhava</p></div></section>
-<section class="section"><div class="container narrow"><article class="info-card"><p>This website provides devotional information for learning and cultural awareness.</p></article></div></section>
+<body class="premium-page">
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<header class="site-header" data-header><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">ॐ</span><span><strong>ஓம் சரவணபவ</strong><small>Om Saravana Bhava</small></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button><nav id="site-nav" class="site-nav" aria-label="Primary navigation"><a href="index.html">Home</a><a href="help-centre.html">Help</a><a class="active" href="support.html">Support</a><a href="faq.html">FAQ</a><a href="contact.html">Corrections</a><a href="maintenance.html">Maintenance</a></nav></header>
+<main id="main-content">
+  <section class="premium-hero" style="--premium-hero-image:url('../assets/images/sacred-temple.webp')"><div class="premium-hero-content"><p class="premium-eyebrow">Offline · Cache · Install · Route · Local Data</p><h1 class="premium-title">Technical Support</h1><p class="premium-lead">Diagnose common website problems locally, recover missing routes and refresh cached content without sending browser diagnostics to a server.</p><div class="premium-actions"><a class="premium-button" href="#diagnostics">Run local diagnostics</a><a class="premium-button secondary" href="maintenance.html">Maintenance centre</a><a class="premium-button secondary" href="route-recovery.html">Route recovery</a></div></div></section>
+  <div class="premium-shell">
+    <section id="diagnostics" aria-labelledby="diagnostics-heading"><p class="premium-eyebrow">Privacy-preserving diagnostics</p><h2 id="diagnostics-heading">Current browser status</h2><p id="supportDiagnosticStatus" class="premium-status" role="status" aria-live="polite">Checking this browser locally…</p><div id="supportDiagnostics" class="premium-grid"><article class="premium-card">Loading diagnostics…</article></div></section>
+    <section aria-labelledby="quick-fixes-heading"><p class="premium-eyebrow">Safe quick fixes</p><h2 id="quick-fixes-heading">Use the smallest recovery action first.</h2><div class="premium-grid">
+      <article class="premium-card"><h3>Old homepage or old styles</h3><p>Reload once. When an old service-worker cache persists, clear only runtime/data caches before removing the full site storage.</p><button id="clearRuntimeCaches" class="premium-button secondary" type="button">Clear runtime caches</button></article>
+      <article class="premium-card"><h3>Page did not refresh</h3><p>Reload the current route after cache clearing. A hard refresh may be required when a proxy or CDN retains an earlier asset.</p><button id="reloadCurrentPage" class="premium-button secondary" type="button">Reload page</button></article>
+      <article class="premium-card"><h3>Missing or renamed route</h3><p>The 404 page checks an exact alias registry, then suggests related governed routes without fuzzy automatic redirects.</p><a class="premium-button secondary" href="site-directory.html">Open directory</a></article>
+      <article class="premium-card"><h3>Offline page unavailable</h3><p>Open the site once online so core routes and assets can enter the PWA cache. Optional routes may still require a network connection.</p><a class="premium-button secondary" href="offline.html">Open offline guide</a></article>
+      <article class="premium-card"><h3>Notes or favourites missing</h3><p>Browser-local data is tied to the browser profile and site storage. Restore a prior export where available.</p><a class="premium-button secondary" href="personal-data.html">Personal data tools</a></article>
+      <article class="premium-card"><h3>Content looks incorrect</h3><p>Do not overwrite a source-controlled text from memory. Prepare a correction with page, edition and evidence.</p><a class="premium-button secondary" href="contact.html">Prepare correction</a></article>
+    </div><p id="supportActionStatus" class="premium-status" role="status" aria-live="polite"></p></section>
+    <section class="premium-card"><h2>Escalation information to include</h2><p>Page URL, approximate time, browser/device, online/offline state, visible error, expected result, steps to reproduce and whether a cache refresh changed the behaviour. Never include passwords, private notes or unnecessary personal data.</p></section>
+  </div>
 </main>
-<footer class="site-footer"><div class="container footer-grid"><div><h2>ஓம் சரவணபவ</h2><p>A devotional platform dedicated to Lord Murugan, Arupadai Veedu, slokas, festivals and spiritual learning.</p></div><div><h3>Quick Links</h3><a href="temples.html">Temples</a><a href="slokas.html">Slokas</a><a href="festivals.html">Festivals</a><a href="gallery.html">Gallery</a></div><div><h3>Support</h3><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="accessibility.html">Accessibility</a><a href="support.html">Support</a></div></div><p class="copyright">© 2026 Om Saravana Bhava. All rights reserved.</p></footer>
-<script src="script.js"></script>
-</body></html>
+<footer><p>வேலவேல் முருகா! அருள்புரிவாய்!</p><nav aria-label="Footer navigation"><a href="help-centre.html">Help</a><a href="faq.html">FAQ</a><a href="contact.html">Corrections</a><a href="maintenance.html">Maintenance</a><a href="privacy.html">Privacy</a></nav><small>© 2026 Om Saravana Bhava</small></footer>
+</body>
+</html>
