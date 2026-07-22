@@ -4,21 +4,20 @@ These titles were not found as exact canonical song records in the governed regi
 
 ## Requested titles
 
-1. **முத்தைத்தரு பத்தித் திருநகை — Muthai Tharu Pathi Thirunagai** (`muthai-tharu-pathi-thirunagai`)
-2. **கைத்தல நிறைகனி — Kaithala Niraikani** (`kaithala-niraikani`)
-3. **ஆறுமுக மங்களத்தை — Aarumuga Mangalathai** (`aarumuga-mangalathai`)
-4. **மருதமலை மாமணியே — Maruthamalai Maamaniye** (`maruthamalai-maamaniye`)
-5. **செந்தில் ஆண்டவன் — Senthil Andavan** (`senthil-andavan`)
-6. **முருகா முருகா என்றால் — Muruga Muruga Endral** (`muruga-muruga-endral`)
-7. **கந்தன் கருணை புரிவான் — Kandhan Karunai Purivaan** (`kandhan-karunai-purivaan`)
-8. **பழம் நீயப்பா — Pazham Neeyappa** (`pazham-neeyappa`)
-9. **சின்ன சின்ன முருகா — Chinna Chinna Muruga** (`chinna-chinna-muruga`)
-10. **குன்றத்திலே குமரனுக்கு — Kundrathile Kumaranukku** (`kundrathile-kumaranukku`)
-11. **வடிவேல் முருகனுக்கு அரோகரா — Vadivel Muruganukku Arohara** (`vadivel-muruganukku-arohara`)
-12. **திருச்செந்தூரில் போர் புரிந்து — Thiruchenduril Por Purindhu** (`thiruchenduril-por-purindhu`)
-13. **பழனி மலை வாசா — Palani Malai Vaasa** (`palani-malai-vaasa`)
-14. **அழகென்ற சொல்லுக்கு முருகா — Azhagendra Sollukku Muruga** (`azhagendra-sollukku-muruga`)
-15. **கற்பனை என்றாலும் — Karpanai Endralum** (`karpanai-endralum`)
+1. **கைத்தல நிறைகனி — Kaithala Niraikani** (`kaithala-niraikani`)
+2. **ஆறுமுக மங்களத்தை — Aarumuga Mangalathai** (`aarumuga-mangalathai`)
+3. **மருதமலை மாமணியே — Maruthamalai Maamaniye** (`maruthamalai-maamaniye`)
+4. **செந்தில் ஆண்டவன் — Senthil Andavan** (`senthil-andavan`)
+5. **முருகா முருகா என்றால் — Muruga Muruga Endral** (`muruga-muruga-endral`)
+6. **கந்தன் கருணை புரிவான் — Kandhan Karunai Purivaan** (`kandhan-karunai-purivaan`)
+7. **பழம் நீயப்பா — Pazham Neeyappa** (`pazham-neeyappa`)
+8. **சின்ன சின்ன முருகா — Chinna Chinna Muruga** (`chinna-chinna-muruga`)
+9. **குன்றத்திலே குமரனுக்கு — Kundrathile Kumaranukku** (`kundrathile-kumaranukku`)
+10. **வடிவேல் முருகனுக்கு அரோகரா — Vadivel Muruganukku Arohara** (`vadivel-muruganukku-arohara`)
+11. **திருச்செந்தூரில் போர் புரிந்து — Thiruchenduril Por Purindhu** (`thiruchenduril-por-purindhu`)
+12. **பழனி மலை வாசா — Palani Malai Vaasa** (`palani-malai-vaasa`)
+13. **அழகென்ற சொல்லுக்கு முருகா — Azhagendra Sollukku Muruga** (`azhagendra-sollukku-muruga`)
+14. **கற்பனை என்றாலும் — Karpanai Endralum** (`karpanai-endralum`)
 
 ## Source-collection prompt for Gemini or Manus
 

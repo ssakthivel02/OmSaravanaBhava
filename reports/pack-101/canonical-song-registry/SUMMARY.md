@@ -5,7 +5,7 @@
 - Governed collection records: **12**
 - Audio-status records: **14**
 - Placeholder/review-only records separated: **60**
-- Popular-song titles found canonically: **4/19**
-- Popular-song titles needing source identification: **15**
+- Popular-song titles found canonically: **5/19**
+- Popular-song titles needing source identification: **14**
 
 This strict registry intentionally excludes release READMEs, checksums, manifests, generic generated records and incidental mentions.

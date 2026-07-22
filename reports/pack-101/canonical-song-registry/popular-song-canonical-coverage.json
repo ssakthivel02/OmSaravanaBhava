@@ -75,8 +75,17 @@
     "slug": "muthai-tharu-pathi-thirunagai",
     "titleTa": "முத்தைத்தரு பத்தித் திருநகை",
     "titleEn": "Muthai Tharu Pathi Thirunagai",
-    "foundInCanonicalRegistry": false,
-    "matches": []
+    "foundInCanonicalRegistry": true,
+    "matches": [
+      {
+        "recordType": "song",
+        "id": "0006",
+        "titleTa": "முத்தைத்தரு",
+        "titleEn": "Muththaiththaru",
+        "route": "thiruppugazh/0006-muththaiththaru.html",
+        "publicationStatus": "published-source-linked"
+      }
+    ]
   },
   {
     "slug": "kaithala-niraikani",
