@@ -11,8 +11,12 @@
   <meta property="og:image" content="https://omsaravanabhava.org/assets/images/hero-sunrise.webp">
   <link rel="canonical" href="https://omsaravanabhava.org/">
   <link rel="manifest" href="manifest.json">
+  <link rel="preload" as="image" href="assets/images/hero-sunrise.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/images/murugan-divine.webp" fetchpriority="high">
   <link rel="stylesheet" href="assets/css/release-246.css">
+  <link rel="stylesheet" href="assets/css/premium-platform-2026.css">
   <script defer src="assets/js/release-246.js"></script>
+  <script type="module" src="assets/js/premium-platform-2026.mjs"></script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -40,8 +44,8 @@
 <main id="main-content">
   <section class="hero">
     <div class="hero-overlay"></div>
-    <img class="hero-temple-art" src="assets/images/sunrise-temple.webp" alt="" aria-hidden="true">
-    <img class="hero-murugan-art" src="assets/images/murugan-divine.webp" alt="Artistic devotional representation of Lord Murugan holding the Vel">
+    <img class="hero-temple-art" src="assets/images/sunrise-temple.webp" alt="" aria-hidden="true" decoding="async">
+    <img class="hero-murugan-art" src="assets/images/murugan-divine.webp" alt="Artistic devotional representation of Lord Murugan holding the Vel" decoding="async" fetchpriority="high">
     <div class="hero-copy">
       <p class="eyebrow">வேல் · மயில் · அருள்</p>
       <h1>ஓம் சரவணபவ</h1>
@@ -54,19 +58,19 @@
       </form>
       <div class="quick-links" aria-label="Featured destinations">
         <a href="murugan-song-library.html"><span>🎼</span><b>Murugan Songs</b><small>Collections &amp; reading</small></a>
-        <a href="thiruppugazh.html"><span>📖</span><b>Thiruppugazh</b><small>10 volumes</small></a>
+        <a href="thiruppugazh.html"><span>📖</span><b>Thiruppugazh</b><small>Verified songs</small></a>
         <a href="temples.html"><span>🛕</span><b>Sacred Temples</b><small>Pilgrimage guide</small></a>
         <a href="audio-library.html"><span>♫</span><b>Audio Library</b><small>Listen and meditate</small></a>
-        <a href="ai-search.html"><span>✦</span><b>AI Guide</b><small>Ask respectfully</small></a>
+        <a href="ai-search.html"><span>✦</span><b>AI Guide</b><small>Private local search</small></a>
       </div>
     </div>
   </section>
 
   <section class="metrics" aria-label="Platform highlights">
-    <article><span>📚</span><strong>10</strong><p>Thiruppugazh volumes</p></article>
+    <article><span>📚</span><strong>12</strong><p>Canonical full-song records</p></article>
     <article><span>🛕</span><strong>50+</strong><p>Sacred temple records</p></article>
-    <article><span>♫</span><strong>100+</strong><p>Devotional audio entries</p></article>
-    <article><span>✦</span><strong>500+</strong><p>Knowledge connections</p></article>
+    <article><span>♫</span><strong>14</strong><p>Governed audio-status records</p></article>
+    <article><span>✦</span><strong>100+</strong><p>Governed public routes</p></article>
   </section>
 
   <section class="section">
@@ -77,23 +81,23 @@
     </div>
     <div class="collection-grid">
       <a class="collection-card" href="murugan-song-library.html">
-        <img src="assets/images/hero-sunrise.webp" alt="Sunrise devotional landscape representing the Murugan song library">
+        <img src="assets/images/hero-sunrise.webp" alt="Sunrise devotional landscape representing the Murugan song library" loading="lazy" decoding="async">
         <span><strong>Murugan Song Library</strong><small>Collections, reading formats, audio and source status</small></span>
       </a>
       <a class="collection-card" href="thiruppugazh.html">
-        <img src="assets/images/murugan-peacock.webp" alt="Lord Murugan with peacock at sunrise">
+        <img src="assets/images/murugan-peacock.webp" alt="Lord Murugan with peacock at sunrise" loading="lazy" decoding="async">
         <span><strong>Thiruppugazh</strong><small>Sacred Tamil hymns and meanings</small></span>
       </a>
       <a class="collection-card" href="temples.html">
-        <img src="assets/images/sacred-temple.webp" alt="Traditional Murugan temple architecture">
+        <img src="assets/images/sacred-temple.webp" alt="Traditional Murugan temple architecture" loading="lazy" decoding="async">
         <span><strong>Sacred Temples</strong><small>Arupadai Veedu and pilgrimage guides</small></span>
       </a>
       <a class="collection-card" href="sloka-library.html">
-        <img src="assets/images/divine-shrine.webp" alt="Golden devotional shrine">
+        <img src="assets/images/divine-shrine.webp" alt="Golden devotional shrine" loading="lazy" decoding="async">
         <span><strong>Slokas &amp; Prayers</strong><small>Tamil, transliteration and meaning</small></span>
       </a>
       <a class="collection-card" href="murugan-timeline.html">
-        <img src="assets/images/palani-hills.webp" alt="Sacred mountain landscape associated with Murugan pilgrimage">
+        <img src="assets/images/palani-hills.webp" alt="Sacred mountain landscape associated with Murugan pilgrimage" loading="lazy" decoding="async">
         <span><strong>Murugan Timeline</strong><small>Stories, traditions and sacred places</small></span>
       </a>
     </div>
@@ -103,7 +107,7 @@
     <div class="section-heading">
       <p class="eyebrow">Restored complete navigation</p>
       <h2 id="platform-tools-heading">All existing tools remain available.</h2>
-      <p>The premium homepage now restores direct access to reading, personal-library, discovery, accessibility and maintenance routes that were less visible after the visual redesign.</p>
+      <p>The premium homepage restores reading, personal-library, discovery, accessibility, recovery and content-quality routes that became less visible after earlier visual redesigns.</p>
     </div>
     <div class="platform-tool-grid">
       <a href="discovery.html"><span>⌕</span><strong>Discover</strong><small>Purpose-led route discovery</small></a>
@@ -119,6 +123,8 @@
       <a href="audio-history.html"><span>♫</span><strong>Audio History</strong><small>Device read-aloud activity</small></a>
       <a href="maintenance.html"><span>⚙</span><strong>Maintenance</strong><small>Local cache and recovery</small></a>
       <a href="site-directory.html"><span>☷</span><strong>Site Directory</strong><small>Complete governed routes</small></a>
+      <a href="route-recovery.html"><span>↺</span><strong>Route Recovery</strong><small>Phase D–E connectivity evidence</small></a>
+      <a href="content-completeness.html"><span>◎</span><strong>Content Completeness</strong><small>Phase F source and format gaps</small></a>
       <a href="platform-hub.html"><span>✦</span><strong>Platform Hub</strong><small>All integrated releases</small></a>
     </div>
   </section>
@@ -134,17 +140,17 @@
   </section>
 
   <section class="features section">
-    <article><span>⌕</span><h3>Semantic Search</h3><p>Search across published devotional records.</p></article>
-    <article><span>↧</span><h3>Offline Access</h3><p>Core pages remain available through the PWA.</p></article>
-    <article><span>அ</span><h3>Tamil First</h3><p>Tamil-first navigation with clear English support.</p></article>
-    <article><span>◐</span><h3>Accessible</h3><p>Readable contrast, reduced motion and keyboard access.</p></article>
+    <article><span>⌕</span><h3>Command Search</h3><p>Press Ctrl/Command + K to search every governed route privately in the browser.</p></article>
+    <article><span>↧</span><h3>Offline Access</h3><p>Core pages remain available through the PWA and browser-local tools.</p></article>
+    <article><span>அ</span><h3>Tamil First</h3><p>Tamil-first navigation with clear English support and learner formats.</p></article>
+    <article><span>◐</span><h3>Accessible Motion</h3><p>Keyboard access, visible focus and reduced-motion preferences remain respected.</p></article>
   </section>
 </main>
 
 <footer>
   <p>வேலவேல் முருகா! அருள்புரிவாய்!</p>
   <nav aria-label="Footer navigation">
-    <a href="murugan-song-library.html">Songs</a><a href="platform-hub.html">All Tools</a><a href="about.html">About</a><a href="sources.html">Sources</a><a href="accessibility.html">Accessibility</a><a href="privacy.html">Privacy</a>
+    <a href="murugan-song-library.html">Songs</a><a href="platform-hub.html">All Tools</a><a href="route-recovery.html">Recovery</a><a href="content-completeness.html">Completeness</a><a href="about.html">About</a><a href="sources.html">Sources</a><a href="accessibility.html">Accessibility</a><a href="privacy.html">Privacy</a>
   </nav>
   <small>© 2026 Om Saravana Bhava</small>
 </footer>
