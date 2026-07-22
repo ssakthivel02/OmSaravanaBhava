@@ -53,6 +53,7 @@ jobs:
           python -m json.tool data/research-intake/attachment-song-evidence-2026-07-22.json > /dev/null
           python -m json.tool data/research-intake/popular-song-triage-2026-07-22.json > /dev/null
           python -m json.tool data/research-intake/muththaiththaru-numbering-reconciliation-2026-07-22.json > /dev/null
+          python -m json.tool data/research-intake/muththaiththaru-unresolved-evidence-review-2026-07-22.json > /dev/null
           python - <<'PY'
           import json
           from pathlib import Path
@@ -60,6 +61,8 @@ jobs:
           attachment = json.loads(Path('data/research-intake/attachment-song-evidence-2026-07-22.json').read_text(encoding='utf-8'))
           triage = json.loads(Path('data/research-intake/popular-song-triage-2026-07-22.json').read_text(encoding='utf-8'))
           muththaiththaru = json.loads(Path('data/research-intake/muththaiththaru-numbering-reconciliation-2026-07-22.json').read_text(encoding='utf-8'))
+          unresolved_review = json.loads(Path('data/research-intake/muththaiththaru-unresolved-evidence-review-2026-07-22.json').read_text(encoding='utf-8'))
+
           assert attachment['attachmentReview']['htmlFilesAcceptedAsProductionPages'] == 0
           assert attachment['attachmentReview']['recordsTriaged'] == 5
           assert len(triage['records']) >= 16
@@ -70,10 +73,20 @@ jobs:
           assert muththaiththaru['productionDecision']['currentSourceSpecificNumber'] == 6
           assert muththaiththaru['productionDecision']['keepPublishedTamilTextUnchanged'] is True
           assert muththaiththaru['productionDecision']['humanReviewRequired'] is True
+          assert unresolved_review['inputReview']['acceptedAsProductionPage'] is False
+          assert unresolved_review['inputReview']['acceptedAsPrimarySource'] is False
+          assert unresolved_review['inputReview']['publishedTamilTextChanged'] is False
+          assert unresolved_review['inputReview']['songNumberChanged'] is False
+          assert unresolved_review['productionDecision']['keepCurrentInternalId'] is True
+          assert unresolved_review['productionDecision']['keepCurrentSongNumber'] is True
+          assert unresolved_review['productionDecision']['keepPublishedTamilTextUnchanged'] is True
+          assert unresolved_review['productionDecision']['humanReviewRequired'] is True
+
           print(json.dumps({
             'attachmentRecords': len(attachment['records']),
             'triageRecords': len(triage['records']),
             'muththaiththaruNumber': muththaiththaru['productionDecision']['currentSourceSpecificNumber'],
+            'unresolvedEvidenceReview': unresolved_review['inputReview']['reviewStatus'],
             'protectedLyricsPublished': 0,
             'unlicensedAudioPublished': 0
           }, ensure_ascii=False, indent=2))
@@ -133,11 +146,13 @@ jobs:
             reports/phase-d-e-route-recovery
             reports/phase-f-content-completeness
             reports/phase-f-attachment-review
+            reports/phase-f-muththaiththaru-unresolved-evidence-review
             reports/phase-c-h-capability-matrix
             reports/phase-h-deployment
             reports/phase-h-validation
             research-prompts/MISSING-MURUGAN-SONGS-VERIFICATION-BATCH-02.md
             research-prompts/MUTHTHAITHTHARU-REMAINING-EVIDENCE.md
+            research-prompts/MUTHTHAITHTHARU-PRIMARY-EVIDENCE-BATCH-04.md
             data/research-intake
             data/route-recovery-summary.json
             data/content-completeness.json
