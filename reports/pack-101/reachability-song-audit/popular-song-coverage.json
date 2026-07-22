@@ -1,0 +1,224 @@
+[
+  {
+    "title": "Kanda Sashti Kavasam",
+    "found": true,
+    "candidate_paths": [
+      "BATCH41_README.txt",
+      "BATCH42_README_UPLOAD.txt",
+      "BATCH43_README_UPLOAD.txt",
+      "README_BATCH16_19_HOTFIX.txt",
+      "RELEASE_145_1_CHANGED_FILES.txt",
+      "RELEASE_145_1_SHA256.txt",
+      "RELEASE_145_GITHUB_DESKTOP_INSTRUCTIONS.txt",
+      "RELEASE_145_SHA256.txt",
+      "RELEASE_146_CHANGED_FILES.txt",
+      "RELEASE_146_SHA256.txt",
+      "RELEASE_147_CHANGED_FILES.txt",
+      "RELEASE_147_SHA256.txt",
+      "RELEASE_147_VALIDATION_REPORT.md",
+      "RELEASE_148_ROUTE_MATRIX.csv",
+      "RELEASE_148_VALIDATION_REPORT.md",
+      "RELEASE_150_AUDIO_RIGHTS_MATRIX.csv",
+      "RELEASE_150_CHANGED_FILES.txt",
+      "RELEASE_150_SHA256.txt",
+      "RELEASE_151_VALIDATION_REPORT.md",
+      "RELEASE_152_PLAYLIST_MATRIX.csv"
+    ],
+    "candidate_count": 95
+  },
+  {
+    "title": "Vel Maaral",
+    "found": true,
+    "candidate_paths": [
+      "RELEASE_150_AUDIO_RIGHTS_MATRIX.csv",
+      "RELEASE_162_CHANGED_FILES.txt",
+      "RELEASE_162_GITHUB_PORTAL_INSTRUCTIONS.txt",
+      "RELEASE_162_SHA256.txt",
+      "RELEASE_162_VALIDATION_REPORT.md",
+      "data/audio-catalog.json",
+      "data/devotional-dictionary.json",
+      "data/navigation-sections.json",
+      "data/publication-boundaries.json",
+      "data/reading-workspace.json",
+      "data/repository-integrity-inventory.json",
+      "data/search-index.json",
+      "data/search-recommendations.json",
+      "data/site-routes-effective-overrides.json",
+      "data/site-routes.json",
+      "data/sloka_details.json",
+      "data/slokas/details/vel-maral.json",
+      "data/slokas/index.json",
+      "data/vel-maaral.json",
+      "fixtures/route-registry/canonical/publication-boundaries.json"
+    ],
+    "candidate_count": 41
+  },
+  {
+    "title": "Kanda Guru Kavasam",
+    "found": true,
+    "candidate_paths": [
+      "RELEASE_150_AUDIO_RIGHTS_MATRIX.csv",
+      "RELEASE_151_CHANGED_FILES.txt",
+      "RELEASE_151_GITHUB_PORTAL_INSTRUCTIONS.txt",
+      "RELEASE_151_SHA256.txt",
+      "RELEASE_151_VALIDATION_REPORT.md",
+      "RELEASE_152_PLAYLIST_MATRIX.csv",
+      "RELEASE_153_CHANGED_FILES.txt",
+      "RELEASE_153_SHA256.txt",
+      "RELEASE_163_CHANGED_FILES.txt",
+      "RELEASE_163_GITHUB_PORTAL_INSTRUCTIONS.txt",
+      "RELEASE_163_SHA256.txt",
+      "RELEASE_163_VALIDATION_REPORT.md",
+      "data/audio-albums.json",
+      "data/audio-catalog.json",
+      "data/audio-collections.json",
+      "data/content-publication.json",
+      "data/knowledge-graph-explorer.json",
+      "data/knowledge-graph.json",
+      "data/learning-paths.json",
+      "data/publication-history.json"
+    ],
+    "candidate_count": 40
+  },
+  {
+    "title": "Muthai Tharu Pathi Thirunagai",
+    "found": true,
+    "candidate_paths": [
+      "RELEASE_149_CHANGED_FILES.txt",
+      "RELEASE_149_SHA256.txt",
+      "RELEASE_149_SOURCE_MATRIX.csv",
+      "RELEASE_149_VALIDATION_REPORT.md",
+      "RELEASE_150_CHANGED_FILES.txt",
+      "RELEASE_150_SHA256.txt",
+      "RELEASE_152_PLAYLIST_MATRIX.csv",
+      "RELEASE_153_CHANGED_FILES.txt",
+      "RELEASE_153_SHA256.txt",
+      "ai-search.html",
+      "assets/js/osb44.js",
+      "data/content-publication.json",
+      "data/read-aloud-playlist.json",
+      "data/search-index.json",
+      "data/site-routes.json",
+      "data/thiruppugazh.json",
+      "manifest-release-149.json",
+      "manifest-release-150.json",
+      "manifest-release-153.json",
+      "sitemap.xml"
+    ],
+    "candidate_count": 22
+  },
+  {
+    "title": "Kaithala Niraikani",
+    "found": false,
+    "candidate_paths": [],
+    "candidate_count": 0
+  },
+  {
+    "title": "Aarumuga Mangalathai",
+    "found": false,
+    "candidate_paths": [],
+    "candidate_count": 0
+  },
+  {
+    "title": "Maruthamalai Maamaniye",
+    "found": false,
+    "candidate_paths": [],
+    "candidate_count": 0
+  },
+  {
+    "title": "Senthil Andavan",
+    "found": false,
+    "candidate_paths": [],
+    "candidate_count": 0
+  },
+  {
+    "title": "Muruga Muruga Endral",
+    "found": false,
+    "candidate_paths": [],
+    "candidate_count": 0
+  },
+  {
+    "title": "Kandhan Karunai Purivaan",
+    "found": false,
+    "candidate_paths": [],
+    "candidate_count": 0
+  },
+  {
+    "title": "Pazham Neeyappa",
+    "found": false,
+    "candidate_paths": [],
+    "candidate_count": 0
+  },
+  {
+    "title": "Chinna Chinna Muruga",
+    "found": true,
+    "candidate_paths": [
+      "data/literature/kandar-sashti-kavacham/english-meaning.json",
+      "data/literature/kandar-sashti-kavacham/transliteration.json"
+    ],
+    "candidate_count": 2
+  },
+  {
+    "title": "Kundrathile Kumaranukku",
+    "found": false,
+    "candidate_paths": [],
+    "candidate_count": 0
+  },
+  {
+    "title": "Saravana Bhava",
+    "found": true,
+    "candidate_paths": [
+      "404.html",
+      "README_UPLOAD_BATCH10.txt",
+      "RELEASE_145_1_CHANGED_FILES.txt",
+      "RELEASE_145_1_SHA256.txt",
+      "RELEASE_145_GITHUB_DESKTOP_INSTRUCTIONS.txt",
+      "RELEASE_145_SHA256.txt",
+      "RELEASE_146_CHANGED_FILES.txt",
+      "RELEASE_146_SHA256.txt",
+      "RELEASE_147_VALIDATION_REPORT.md",
+      "RELEASE_148_ROUTE_MATRIX.csv",
+      "RELEASE_148_VALIDATION_REPORT.md",
+      "RELEASE_149_GITHUB_PORTAL_INSTRUCTIONS.txt",
+      "RELEASE_149_VALIDATION_REPORT.md",
+      "RELEASE_150_AUDIO_RIGHTS_MATRIX.csv",
+      "RELEASE_150_CHANGED_FILES.txt",
+      "RELEASE_150_SHA256.txt",
+      "RELEASE_150_VALIDATION_REPORT.md",
+      "RELEASE_151_GITHUB_PORTAL_INSTRUCTIONS.txt",
+      "RELEASE_151_VALIDATION_REPORT.md",
+      "RELEASE_152_PLAYLIST_MATRIX.csv"
+    ],
+    "candidate_count": 675
+  },
+  {
+    "title": "Vadivel Muruganukku Arohara",
+    "found": false,
+    "candidate_paths": [],
+    "candidate_count": 0
+  },
+  {
+    "title": "Thiruchenduril Por Purindhu",
+    "found": false,
+    "candidate_paths": [],
+    "candidate_count": 0
+  },
+  {
+    "title": "Palani Malai Vaasa",
+    "found": false,
+    "candidate_paths": [],
+    "candidate_count": 0
+  },
+  {
+    "title": "Azhagendra Sollukku Muruga",
+    "found": false,
+    "candidate_paths": [],
+    "candidate_count": 0
+  },
+  {
+    "title": "Karpanai Endralum",
+    "found": false,
+    "candidate_paths": [],
+    "candidate_count": 0
+  }
+]

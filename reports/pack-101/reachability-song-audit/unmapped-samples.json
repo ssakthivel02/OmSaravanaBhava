@@ -1,0 +1,3008 @@
+{
+  "unmapped_public_sample": [
+    ".release-governance.json",
+    "404.html.html",
+    "BATCH41_README.txt",
+    "BATCH42_README_UPLOAD.txt",
+    "BATCH43_README_UPLOAD.txt",
+    "BATCH_08_UPLOAD_MANIFEST.json",
+    "CNAME.txt",
+    "COMMIT_MESSAGE.txt",
+    "CONTENT_POLICY_NOTE.txt",
+    "NEXT_BATCH_PLAN.txt",
+    "PRODUCTION_BASELINE_245.json",
+    "README.txt",
+    "README_BATCH16_19_HOTFIX.txt",
+    "README_BATCH17.txt",
+    "README_BATCH18.txt",
+    "README_BATCH19.txt",
+    "README_BATCH44_UPLOAD.txt",
+    "README_DATA_FOLDER_FIX.txt",
+    "README_UPLOAD_BATCH02.txt",
+    "README_UPLOAD_BATCH03.txt",
+    "README_UPLOAD_BATCH04.txt",
+    "README_UPLOAD_BATCH05.txt",
+    "README_UPLOAD_BATCH06A.txt",
+    "README_UPLOAD_BATCH06B.txt",
+    "README_UPLOAD_BATCH06C.txt",
+    "README_UPLOAD_BATCH07.txt",
+    "README_UPLOAD_BATCH08.txt",
+    "README_UPLOAD_BATCH09.txt",
+    "README_UPLOAD_BATCH10.txt",
+    "README_UPLOAD_BATCH10A_HOTFIX.txt",
+    "README_UPLOAD_BATCH11.txt",
+    "README_UPLOAD_BATCH11A_HOTFIX.txt",
+    "README_UPLOAD_BATCH11B_HOTFIX.txt",
+    "README_UPLOAD_BATCH12.txt",
+    "README_UPLOAD_BATCH13_MERGED.txt",
+    "README_UPLOAD_BATCH14.txt",
+    "README_UPLOAD_BATCH15.txt",
+    "README_UPLOAD_BATCH16.txt",
+    "README_UPLOAD_BATCH20.txt",
+    "README_UPLOAD_BATCH21.txt",
+    "README_UPLOAD_BATCH22.txt",
+    "README_UPLOAD_BATCH23.txt",
+    "README_UPLOAD_BATCH24.txt",
+    "README_UPLOAD_BATCH25.txt",
+    "README_UPLOAD_BATCH26.txt",
+    "README_UPLOAD_BATCH27.txt",
+    "README_UPLOAD_BATCH28.txt",
+    "README_UPLOAD_BATCH29.txt",
+    "README_UPLOAD_BATCH30.txt",
+    "README_UPLOAD_BATCH31.txt",
+    "README_UPLOAD_BATCH32.txt",
+    "README_UPLOAD_BATCH33.txt",
+    "README_UPLOAD_BATCH34_PRODUCTION.txt",
+    "README_UPLOAD_BATCH35.txt",
+    "README_UPLOAD_BATCH36.txt",
+    "README_UPLOAD_BATCH37.txt",
+    "README_UPLOAD_NEXT.txt",
+    "RELEASE_145_1_CHANGED_FILES.txt",
+    "RELEASE_145_1_SHA256.txt",
+    "RELEASE_145_GITHUB_DESKTOP_INSTRUCTIONS.txt",
+    "RELEASE_145_SHA256.txt",
+    "RELEASE_145_VALIDATION.json",
+    "RELEASE_146_CHANGED_FILES.txt",
+    "RELEASE_146_GITHUB_DESKTOP_INSTRUCTIONS.txt",
+    "RELEASE_146_SHA256.txt",
+    "RELEASE_147_CHANGED_FILES.txt",
+    "RELEASE_147_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_147_SHA256.txt",
+    "RELEASE_148_ACCESSIBILITY_AUDIT.csv",
+    "RELEASE_148_CHANGED_FILES.txt",
+    "RELEASE_148_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_148_PERFORMANCE_PWA_AUDIT.csv",
+    "RELEASE_148_ROUTE_MATRIX.csv",
+    "RELEASE_148_SHA256.txt",
+    "RELEASE_149_CHANGED_FILES.txt",
+    "RELEASE_149_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_149_SHA256.txt",
+    "RELEASE_149_SOURCE_MATRIX.csv",
+    "RELEASE_150_AUDIO_RIGHTS_MATRIX.csv",
+    "RELEASE_150_CHANGED_FILES.txt",
+    "RELEASE_150_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_150_QA_MATRIX.csv",
+    "RELEASE_150_SHA256.txt",
+    "RELEASE_151_CHANGED_FILES.txt",
+    "RELEASE_151_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_151_SHA256.txt",
+    "RELEASE_151_SOURCE_MATRIX.csv",
+    "RELEASE_152_CHANGED_FILES.txt",
+    "RELEASE_152_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_152_PLAYLIST_MATRIX.csv",
+    "RELEASE_152_QA_MATRIX.csv",
+    "RELEASE_152_SHA256.txt",
+    "RELEASE_153_CHANGED_FILES.txt",
+    "RELEASE_153_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_153_SHA256.txt",
+    "RELEASE_154_CHANGED_FILES.txt",
+    "RELEASE_154_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_154_SEARCH_MATRIX.csv",
+    "RELEASE_154_SHA256.txt",
+    "RELEASE_155_CHANGED_FILES.txt",
+    "RELEASE_155_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_155_SHA256.txt",
+    "RELEASE_155_SOURCE_MATRIX.csv",
+    "RELEASE_156_CHANGED_FILES.txt",
+    "RELEASE_156_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_156_SHA256.txt",
+    "RELEASE_157_CHANGED_FILES.txt",
+    "RELEASE_157_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_157_SHA256.txt",
+    "RELEASE_158_CHANGED_FILES.txt",
+    "RELEASE_158_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_158_SHA256.txt",
+    "RELEASE_159_CHANGED_FILES.txt",
+    "RELEASE_159_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_159_SHA256.txt",
+    "RELEASE_160_CHANGED_FILES.txt",
+    "RELEASE_160_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_160_SHA256.txt",
+    "RELEASE_161_CHANGED_FILES.txt",
+    "RELEASE_161_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_161_SHA256.txt",
+    "RELEASE_162_CHANGED_FILES.txt",
+    "RELEASE_162_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_162_SHA256.txt",
+    "RELEASE_163_CHANGED_FILES.txt",
+    "RELEASE_163_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_163_SHA256.txt",
+    "RELEASE_164_CHANGED_FILES.txt",
+    "RELEASE_164_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_164_SHA256.txt",
+    "RELEASE_165_CHANGED_FILES.txt",
+    "RELEASE_165_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_165_SHA256.txt",
+    "RELEASE_166_CHANGED_FILES.txt",
+    "RELEASE_166_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_166_SHA256.txt",
+    "RELEASE_167_CHANGED_FILES.txt",
+    "RELEASE_167_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_167_SHA256.txt",
+    "RELEASE_168_CHANGED_FILES.txt",
+    "RELEASE_168_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_168_SHA256.txt",
+    "RELEASE_169_CHANGED_FILES.txt",
+    "RELEASE_169_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_169_SHA256.txt",
+    "RELEASE_170_CHANGED_FILES.txt",
+    "RELEASE_170_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_170_SHA256.txt",
+    "RELEASE_171_CHANGED_FILES.txt",
+    "RELEASE_171_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_171_SHA256.txt",
+    "RELEASE_172_CHANGED_FILES.txt",
+    "RELEASE_172_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_172_SHA256.txt",
+    "RELEASE_173_CHANGED_FILES.txt",
+    "RELEASE_173_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_173_SHA256.txt",
+    "RELEASE_174_CHANGED_FILES.txt",
+    "RELEASE_174_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_174_SHA256.txt",
+    "RELEASE_175_CHANGED_FILES.txt",
+    "RELEASE_175_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_175_SHA256.txt",
+    "RELEASE_176_CHANGED_FILES.txt",
+    "RELEASE_176_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_176_SHA256.txt",
+    "RELEASE_177_CHANGED_FILES.txt",
+    "RELEASE_177_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_177_SHA256.txt",
+    "RELEASE_178_CHANGED_FILES.txt",
+    "RELEASE_178_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_178_SHA256.txt",
+    "RELEASE_179_CHANGED_FILES.txt",
+    "RELEASE_179_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_179_SHA256.txt",
+    "RELEASE_180_CHANGED_FILES.txt",
+    "RELEASE_180_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_180_SHA256.txt",
+    "RELEASE_181_CHANGED_FILES.txt",
+    "RELEASE_181_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_181_SHA256.txt",
+    "RELEASE_182_CHANGED_FILES.txt",
+    "RELEASE_182_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_182_SHA256.txt",
+    "RELEASE_183_CHANGED_FILES.txt",
+    "RELEASE_183_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_183_SHA256.txt",
+    "RELEASE_184_CHANGED_FILES.txt",
+    "RELEASE_184_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_184_SHA256.txt",
+    "RELEASE_185_CHANGED_FILES.txt",
+    "RELEASE_185_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_185_SHA256.txt",
+    "RELEASE_186_CHANGED_FILES.txt",
+    "RELEASE_186_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_186_SHA256.txt",
+    "RELEASE_187_CHANGED_FILES.txt",
+    "RELEASE_187_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_187_SHA256.txt",
+    "RELEASE_188_CHANGED_FILES.txt",
+    "RELEASE_188_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_188_SHA256.txt",
+    "RELEASE_189_CHANGED_FILES.txt",
+    "RELEASE_189_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_189_SHA256.txt",
+    "RELEASE_190_CHANGED_FILES.txt",
+    "RELEASE_190_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_190_SHA256.txt",
+    "RELEASE_191_CHANGED_FILES.txt",
+    "RELEASE_191_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_191_SHA256.txt",
+    "RELEASE_192_CHANGED_FILES.txt",
+    "RELEASE_192_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_192_SHA256.txt",
+    "RELEASE_193_CHANGED_FILES.txt",
+    "RELEASE_193_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_193_SHA256.txt",
+    "RELEASE_194_CHANGED_FILES.txt",
+    "RELEASE_194_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_194_SHA256.txt",
+    "RELEASE_195_CHANGED_FILES.txt",
+    "RELEASE_195_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_195_SHA256.txt",
+    "RELEASE_196_CHANGED_FILES.txt",
+    "RELEASE_196_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_196_SHA256.txt",
+    "RELEASE_197_CHANGED_FILES.txt",
+    "RELEASE_197_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_197_SHA256.txt",
+    "RELEASE_198_CHANGED_FILES.txt",
+    "RELEASE_198_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_198_SHA256.txt",
+    "RELEASE_199_CHANGED_FILES.txt",
+    "RELEASE_199_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_199_SHA256.txt",
+    "RELEASE_200_CHANGED_FILES.txt",
+    "RELEASE_200_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_200_SHA256.txt",
+    "RELEASE_201_CHANGED_FILES.txt",
+    "RELEASE_201_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_201_SHA256.txt",
+    "RELEASE_202_CHANGED_FILES.txt",
+    "RELEASE_202_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_202_SHA256.txt",
+    "RELEASE_203_CHANGED_FILES.txt",
+    "RELEASE_203_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_203_SHA256.txt",
+    "RELEASE_204_CHANGED_FILES.txt",
+    "RELEASE_204_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_204_SHA256.txt",
+    "RELEASE_205_CHANGED_FILES.txt",
+    "RELEASE_205_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_205_SHA256.txt",
+    "RELEASE_206_CHANGED_FILES.txt",
+    "RELEASE_206_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_206_SHA256.txt",
+    "RELEASE_207_CHANGED_FILES.txt",
+    "RELEASE_207_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_207_SHA256.txt",
+    "RELEASE_209_CHANGED_FILES.txt",
+    "RELEASE_209_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_209_SHA256.txt",
+    "RELEASE_210_CHANGED_FILES.txt",
+    "RELEASE_210_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_210_SHA256.txt",
+    "RELEASE_211_CHANGED_FILES.txt",
+    "RELEASE_211_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_211_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_211_SHA256SUMS.txt",
+    "RELEASE_212_CHANGED_FILES.txt",
+    "RELEASE_212_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_212_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_212_SHA256SUMS.txt",
+    "RELEASE_213_CHANGED_FILES.txt",
+    "RELEASE_213_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_213_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_213_SHA256SUMS.txt",
+    "RELEASE_214_CHANGED_FILES.txt",
+    "RELEASE_214_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_214_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_214_SHA256SUMS.txt",
+    "RELEASE_215_CHANGED_FILES.txt",
+    "RELEASE_215_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_215_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_215_SHA256SUMS.txt",
+    "RELEASE_216_CHANGED_FILES.txt",
+    "RELEASE_216_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_216_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_216_SHA256SUMS.txt",
+    "RELEASE_217_CHANGED_FILES.txt",
+    "RELEASE_217_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_217_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_217_SHA256SUMS.txt",
+    "RELEASE_218_CHANGED_FILES.txt",
+    "RELEASE_218_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_218_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_218_SHA256SUMS.txt",
+    "RELEASE_219_CHANGED_FILES.txt",
+    "RELEASE_219_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_219_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_219_SHA256SUMS.txt",
+    "RELEASE_220_CHANGED_FILES.txt",
+    "RELEASE_220_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_220_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_220_SHA256SUMS.txt",
+    "RELEASE_221_CHANGED_FILES.txt",
+    "RELEASE_221_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_221_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_221_SHA256SUMS.txt",
+    "RELEASE_222_CHANGED_FILES.txt",
+    "RELEASE_222_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_222_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_222_SHA256SUMS.txt",
+    "RELEASE_223_CHANGED_FILES.txt",
+    "RELEASE_223_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_223_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_223_SHA256SUMS.txt",
+    "RELEASE_224_CHANGED_FILES.txt",
+    "RELEASE_224_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_224_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_224_SHA256SUMS.txt",
+    "RELEASE_225_CHANGED_FILES.txt",
+    "RELEASE_225_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_225_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_225_SHA256SUMS.txt",
+    "RELEASE_226_CHANGED_FILES.txt",
+    "RELEASE_226_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_226_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_226_SHA256SUMS.txt",
+    "RELEASE_227_CHANGED_FILES.txt",
+    "RELEASE_227_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_227_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_227_SHA256SUMS.txt",
+    "RELEASE_228_CHANGED_FILES.txt",
+    "RELEASE_228_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_228_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_228_SHA256SUMS.txt",
+    "RELEASE_229_CHANGED_FILES.txt",
+    "RELEASE_229_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_229_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_229_SHA256SUMS.txt",
+    "RELEASE_230_CHANGED_FILES.txt",
+    "RELEASE_230_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_230_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_230_SHA256SUMS.txt",
+    "RELEASE_231_CHANGED_FILES.txt",
+    "RELEASE_231_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_231_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_231_SHA256SUMS.txt",
+    "RELEASE_232_CHANGED_FILES.txt",
+    "RELEASE_232_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_232_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_232_SHA256SUMS.txt",
+    "ROLLBACK_NOTE.txt",
+    "TEST_URLS.txt",
+    "acceptance/report-001.html",
+    "acceptance/report-002.html",
+    "acceptance/report-003.html",
+    "acceptance/report-004.html",
+    "acceptance/report-005.html",
+    "acceptance/report-006.html",
+    "acceptance/report-007.html",
+    "acceptance/report-008.html",
+    "acceptance/report-009.html",
+    "acceptance/report-010.html",
+    "acceptance/report-011.html",
+    "acceptance/report-012.html",
+    "acceptance/report-013.html",
+    "acceptance/report-014.html",
+    "acceptance/report-015.html",
+    "acceptance/report-016.html",
+    "acceptance/report-017.html",
+    "acceptance/report-018.html",
+    "acceptance/report-019.html",
+    "acceptance/report-020.html",
+    "acceptance/report-021.html",
+    "acceptance/report-022.html",
+    "acceptance/report-023.html",
+    "acceptance/report-024.html",
+    "acceptance/report-025.html",
+    "accessibility-audit-pro.html",
+    "admin.html",
+    "ai-assistant-entry.html",
+    "ai-companion-pro.html",
+    "ai-full-site-test-prompt.html",
+    "ai-search-production.html",
+    "ai-test-console.html",
+    "analytics.html",
+    "analytics/dashboard-001.html",
+    "analytics/dashboard-002.html",
+    "analytics/dashboard-003.html",
+    "analytics/dashboard-004.html",
+    "analytics/dashboard-005.html",
+    "analytics/dashboard-006.html",
+    "analytics/dashboard-007.html",
+    "analytics/dashboard-008.html",
+    "analytics/dashboard-009.html",
+    "analytics/dashboard-010.html",
+    "analytics/dashboard-011.html",
+    "analytics/dashboard-012.html",
+    "analytics/dashboard-013.html",
+    "analytics/dashboard-014.html",
+    "analytics/dashboard-015.html",
+    "analytics/dashboard-016.html",
+    "analytics/dashboard-017.html",
+    "analytics/dashboard-018.html",
+    "analytics/dashboard-019.html",
+    "analytics/dashboard-020.html",
+    "analytics/dashboard-021.html",
+    "analytics/dashboard-022.html",
+    "analytics/dashboard-023.html",
+    "analytics/dashboard-024.html",
+    "analytics/dashboard-025.html",
+    "animation-guidelines.html",
+    "animation-showcase.html",
+    "apple-touch-icon.png.txt",
+    "architecture.html",
+    "artists.html",
+    "arunagirinathar-saritham/chapters/birth-context.html",
+    "arunagirinathar-saritham/chapters/devotional-themes.html",
+    "arunagirinathar-saritham/chapters/murugan-grace.html",
+    "arunagirinathar-saritham/chapters/poetic-style.html",
+    "arunagirinathar-saritham/chapters/six-abodes.html",
+    "arunagirinathar-saritham/chapters/source-safety.html",
+    "arunagirinathar-saritham/chapters/thiruppugazh-path.html",
+    "arunagirinathar-saritham/chapters/tiruvannamalai.html",
+    "arunagirinathar-saritham/chapters/turning-point.html",
+    "arunagirinathar-saritham/chapters/works-overview.html",
+    "arunagirinathar-saritham/index.html",
+    "arunagirinathar-saritham/themes/theme-01.html",
+    "arunagirinathar-saritham/themes/theme-02.html",
+    "arunagirinathar-saritham/themes/theme-03.html",
+    "arunagirinathar-saritham/themes/theme-04.html",
+    "arunagirinathar-saritham/themes/theme-05.html",
+    "arunagirinathar-saritham/themes/theme-06.html",
+    "arunagirinathar-saritham/themes/theme-07.html",
+    "arunagirinathar-saritham/themes/theme-08.html",
+    "arunagirinathar-saritham/themes/theme-09.html",
+    "arunagirinathar-saritham/themes/theme-10.html",
+    "arunagirinathar-saritham/themes/theme-11.html",
+    "arunagirinathar-saritham/themes/theme-12.html",
+    "arunagirinathar-saritham/themes/theme-13.html",
+    "arunagirinathar-saritham/themes/theme-14.html",
+    "arunagirinathar-saritham/themes/theme-15.html",
+    "arunagirinathar-saritham/themes/theme-16.html",
+    "arunagirinathar-saritham/timeline/event-01.html",
+    "arunagirinathar-saritham/timeline/event-02.html",
+    "arunagirinathar-saritham/timeline/event-03.html",
+    "arunagirinathar-saritham/timeline/event-04.html",
+    "arunagirinathar-saritham/timeline/event-05.html",
+    "arunagirinathar-saritham/timeline/event-06.html",
+    "arunagirinathar-saritham/timeline/event-07.html",
+    "arunagirinathar-saritham/timeline/event-08.html",
+    "arunagirinathar-saritham/timeline/event-09.html",
+    "arunagirinathar-saritham/timeline/event-10.html",
+    "arunagirinathar-saritham/timeline/event-11.html",
+    "arunagirinathar-saritham/timeline/event-12.html",
+    "arunagirinathar-saritham/timeline/event-13.html",
+    "arunagirinathar-saritham/timeline/event-14.html",
+    "arunagirinathar-saritham/timeline/event-15.html",
+    "arunagirinathar-saritham/timeline/event-16.html",
+    "arunagirinathar-saritham/timeline/event-17.html",
+    "arunagirinathar-saritham/timeline/event-18.html",
+    "arunagirinathar-saritham/timeline/event-19.html",
+    "arunagirinathar-saritham/timeline/event-20.html",
+    "arupadai-veedu/index.html",
+    "arupadai-veedu/palani/history.html",
+    "arupadai-veedu/palani/index.html",
+    "arupadai-veedu/palani/travel.html",
+    "arupadai-veedu/palani/worship.html",
+    "arupadai-veedu/pazhamudircholai/history.html",
+    "arupadai-veedu/pazhamudircholai/index.html",
+    "arupadai-veedu/pazhamudircholai/travel.html",
+    "arupadai-veedu/pazhamudircholai/worship.html",
+    "arupadai-veedu/swamimalai/history.html",
+    "arupadai-veedu/swamimalai/index.html",
+    "arupadai-veedu/swamimalai/travel.html",
+    "arupadai-veedu/swamimalai/worship.html",
+    "arupadai-veedu/thiruparankundram/history.html",
+    "arupadai-veedu/thiruparankundram/index.html",
+    "arupadai-veedu/thiruparankundram/travel.html",
+    "arupadai-veedu/thiruparankundram/worship.html",
+    "arupadai-veedu/tiruchendur/history.html",
+    "arupadai-veedu/tiruchendur/index.html",
+    "arupadai-veedu/tiruchendur/travel.html",
+    "arupadai-veedu/tiruchendur/worship.html",
+    "arupadai-veedu/tiruttani/history.html",
+    "arupadai-veedu/tiruttani/index.html",
+    "arupadai-veedu/tiruttani/travel.html",
+    "arupadai-veedu/tiruttani/worship.html",
+    "assets/css/anuboothi.css",
+    "assets/css/arunagirinathar-print.css",
+    "assets/css/arunagirinathar-saritham.css",
+    "assets/css/arupadai-veedu.css",
+    "assets/css/audio-parayanam.css",
+    "assets/css/commentary-reader.css",
+    "assets/css/control.css",
+    "assets/css/daily-wisdom.css",
+    "assets/css/dashboard.css",
+    "assets/css/festival-encyclopedia.css"
+  ],
+  "unreachable_html_sample": [
+    "404.html.html",
+    "acceptance/report-001.html",
+    "acceptance/report-002.html",
+    "acceptance/report-003.html",
+    "acceptance/report-004.html",
+    "acceptance/report-005.html",
+    "acceptance/report-006.html",
+    "acceptance/report-007.html",
+    "acceptance/report-008.html",
+    "acceptance/report-009.html",
+    "acceptance/report-010.html",
+    "acceptance/report-011.html",
+    "acceptance/report-012.html",
+    "acceptance/report-013.html",
+    "acceptance/report-014.html",
+    "acceptance/report-015.html",
+    "acceptance/report-016.html",
+    "acceptance/report-017.html",
+    "acceptance/report-018.html",
+    "acceptance/report-019.html",
+    "acceptance/report-020.html",
+    "acceptance/report-021.html",
+    "acceptance/report-022.html",
+    "acceptance/report-023.html",
+    "acceptance/report-024.html",
+    "acceptance/report-025.html",
+    "accessibility-audit-pro.html",
+    "admin.html",
+    "ai-assistant-entry.html",
+    "ai-companion-pro.html",
+    "ai-full-site-test-prompt.html",
+    "ai-search-production.html",
+    "ai-test-console.html",
+    "analytics.html",
+    "analytics/dashboard-001.html",
+    "analytics/dashboard-002.html",
+    "analytics/dashboard-003.html",
+    "analytics/dashboard-004.html",
+    "analytics/dashboard-005.html",
+    "analytics/dashboard-006.html",
+    "analytics/dashboard-007.html",
+    "analytics/dashboard-008.html",
+    "analytics/dashboard-009.html",
+    "analytics/dashboard-010.html",
+    "analytics/dashboard-011.html",
+    "analytics/dashboard-012.html",
+    "analytics/dashboard-013.html",
+    "analytics/dashboard-014.html",
+    "analytics/dashboard-015.html",
+    "analytics/dashboard-016.html",
+    "analytics/dashboard-017.html",
+    "analytics/dashboard-018.html",
+    "analytics/dashboard-019.html",
+    "analytics/dashboard-020.html",
+    "analytics/dashboard-021.html",
+    "analytics/dashboard-022.html",
+    "analytics/dashboard-023.html",
+    "analytics/dashboard-024.html",
+    "analytics/dashboard-025.html",
+    "animation-guidelines.html",
+    "animation-showcase.html",
+    "architecture.html",
+    "artists.html",
+    "arunagirinathar-saritham/chapters/birth-context.html",
+    "arunagirinathar-saritham/chapters/devotional-themes.html",
+    "arunagirinathar-saritham/chapters/murugan-grace.html",
+    "arunagirinathar-saritham/chapters/poetic-style.html",
+    "arunagirinathar-saritham/chapters/six-abodes.html",
+    "arunagirinathar-saritham/chapters/source-safety.html",
+    "arunagirinathar-saritham/chapters/thiruppugazh-path.html",
+    "arunagirinathar-saritham/chapters/tiruvannamalai.html",
+    "arunagirinathar-saritham/chapters/turning-point.html",
+    "arunagirinathar-saritham/chapters/works-overview.html",
+    "arunagirinathar-saritham/index.html",
+    "arunagirinathar-saritham/themes/theme-01.html",
+    "arunagirinathar-saritham/themes/theme-02.html",
+    "arunagirinathar-saritham/themes/theme-03.html",
+    "arunagirinathar-saritham/themes/theme-04.html",
+    "arunagirinathar-saritham/themes/theme-05.html",
+    "arunagirinathar-saritham/themes/theme-06.html",
+    "arunagirinathar-saritham/themes/theme-07.html",
+    "arunagirinathar-saritham/themes/theme-08.html",
+    "arunagirinathar-saritham/themes/theme-09.html",
+    "arunagirinathar-saritham/themes/theme-10.html",
+    "arunagirinathar-saritham/themes/theme-11.html",
+    "arunagirinathar-saritham/themes/theme-12.html",
+    "arunagirinathar-saritham/themes/theme-13.html",
+    "arunagirinathar-saritham/themes/theme-14.html",
+    "arunagirinathar-saritham/themes/theme-15.html",
+    "arunagirinathar-saritham/themes/theme-16.html",
+    "arunagirinathar-saritham/timeline/event-01.html",
+    "arunagirinathar-saritham/timeline/event-02.html",
+    "arunagirinathar-saritham/timeline/event-03.html",
+    "arunagirinathar-saritham/timeline/event-04.html",
+    "arunagirinathar-saritham/timeline/event-05.html",
+    "arunagirinathar-saritham/timeline/event-06.html",
+    "arunagirinathar-saritham/timeline/event-07.html",
+    "arunagirinathar-saritham/timeline/event-08.html",
+    "arunagirinathar-saritham/timeline/event-09.html",
+    "arunagirinathar-saritham/timeline/event-10.html",
+    "arunagirinathar-saritham/timeline/event-11.html",
+    "arunagirinathar-saritham/timeline/event-12.html",
+    "arunagirinathar-saritham/timeline/event-13.html",
+    "arunagirinathar-saritham/timeline/event-14.html",
+    "arunagirinathar-saritham/timeline/event-15.html",
+    "arunagirinathar-saritham/timeline/event-16.html",
+    "arunagirinathar-saritham/timeline/event-17.html",
+    "arunagirinathar-saritham/timeline/event-18.html",
+    "arunagirinathar-saritham/timeline/event-19.html",
+    "arunagirinathar-saritham/timeline/event-20.html",
+    "arupadai-veedu/index.html",
+    "arupadai-veedu/palani/history.html",
+    "arupadai-veedu/palani/index.html",
+    "arupadai-veedu/palani/travel.html",
+    "arupadai-veedu/palani/worship.html",
+    "arupadai-veedu/pazhamudircholai/history.html",
+    "arupadai-veedu/pazhamudircholai/index.html",
+    "arupadai-veedu/pazhamudircholai/travel.html",
+    "arupadai-veedu/pazhamudircholai/worship.html",
+    "arupadai-veedu/swamimalai/history.html",
+    "arupadai-veedu/swamimalai/index.html",
+    "arupadai-veedu/swamimalai/travel.html",
+    "arupadai-veedu/swamimalai/worship.html",
+    "arupadai-veedu/thiruparankundram/history.html",
+    "arupadai-veedu/thiruparankundram/index.html",
+    "arupadai-veedu/thiruparankundram/travel.html",
+    "arupadai-veedu/thiruparankundram/worship.html",
+    "arupadai-veedu/tiruchendur/history.html",
+    "arupadai-veedu/tiruchendur/index.html",
+    "arupadai-veedu/tiruchendur/travel.html",
+    "arupadai-veedu/tiruchendur/worship.html",
+    "arupadai-veedu/tiruttani/history.html",
+    "arupadai-veedu/tiruttani/index.html",
+    "arupadai-veedu/tiruttani/travel.html",
+    "arupadai-veedu/tiruttani/worship.html",
+    "audio-parayanam/arupadai-veedu-parayanam/index.html",
+    "audio-parayanam/arupadai-veedu-parayanam/links.html",
+    "audio-parayanam/arupadai-veedu-parayanam/schedule.html",
+    "audio-parayanam/arupadai-veedu-parayanam/tracks.html",
+    "audio-parayanam/daily-parayanam/index.html",
+    "audio-parayanam/daily-parayanam/links.html",
+    "audio-parayanam/daily-parayanam/schedule.html",
+    "audio-parayanam/daily-parayanam/tracks.html",
+    "audio-parayanam/festival-parayanam/index.html",
+    "audio-parayanam/festival-parayanam/links.html",
+    "audio-parayanam/festival-parayanam/schedule.html",
+    "audio-parayanam/festival-parayanam/tracks.html",
+    "audio-parayanam/index.html",
+    "audio-parayanam/kandar-alangaram-audio/index.html",
+    "audio-parayanam/kandar-alangaram-audio/links.html",
+    "audio-parayanam/kandar-alangaram-audio/schedule.html",
+    "audio-parayanam/kandar-alangaram-audio/tracks.html",
+    "audio-parayanam/kandar-anuboothi-audio/index.html",
+    "audio-parayanam/kandar-anuboothi-audio/links.html",
+    "audio-parayanam/kandar-anuboothi-audio/schedule.html",
+    "audio-parayanam/kandar-anuboothi-audio/tracks.html",
+    "audio-parayanam/kandar-sashti-kavacham/index.html",
+    "audio-parayanam/kandar-sashti-kavacham/links.html",
+    "audio-parayanam/kandar-sashti-kavacham/schedule.html",
+    "audio-parayanam/kandar-sashti-kavacham/tracks.html",
+    "audio-parayanam/kids-devotional-audio/index.html",
+    "audio-parayanam/kids-devotional-audio/links.html",
+    "audio-parayanam/kids-devotional-audio/schedule.html",
+    "audio-parayanam/kids-devotional-audio/tracks.html",
+    "audio-parayanam/thiruppugazh-audio/index.html",
+    "audio-parayanam/thiruppugazh-audio/links.html",
+    "audio-parayanam/thiruppugazh-audio/schedule.html",
+    "audio-parayanam/thiruppugazh-audio/tracks.html",
+    "audio-player-preview.html",
+    "audio-production.html",
+    "audio-rights-checklist.html",
+    "audio.html",
+    "batch42-known-fixes.html",
+    "batch42-live-check.html",
+    "batch42-test-plan.html",
+    "batch42-upload-guide.html",
+    "batch43-commit-note.html",
+    "batch43-dynamic-test.html",
+    "batch43-upload-guide.html",
+    "batch44-test.html",
+    "books.html",
+    "broken-link-audit.html",
+    "broken-link-checker.html",
+    "browser-test-matrix.html",
+    "cache-bust-guide.html",
+    "calendar-export.html",
+    "card-hover-effects.html",
+    "catalogue/dashboard-001.html",
+    "catalogue/dashboard-002.html",
+    "catalogue/dashboard-003.html",
+    "catalogue/dashboard-004.html",
+    "catalogue/dashboard-005.html",
+    "catalogue/dashboard-006.html",
+    "catalogue/dashboard-007.html",
+    "catalogue/dashboard-008.html",
+    "catalogue/dashboard-009.html",
+    "catalogue/dashboard-010.html",
+    "catalogue/dashboard-011.html",
+    "catalogue/dashboard-012.html",
+    "catalogue/dashboard-013.html",
+    "catalogue/dashboard-014.html",
+    "catalogue/dashboard-015.html",
+    "catalogue/dashboard-016.html",
+    "catalogue/dashboard-017.html",
+    "catalogue/dashboard-018.html",
+    "catalogue/dashboard-019.html",
+    "catalogue/dashboard-020.html",
+    "catalogue/dashboard-021.html",
+    "catalogue/dashboard-022.html",
+    "catalogue/dashboard-023.html",
+    "catalogue/dashboard-024.html",
+    "catalogue/dashboard-025.html",
+    "citations/report-001.html",
+    "citations/report-002.html",
+    "citations/report-003.html",
+    "citations/report-004.html",
+    "citations/report-005.html",
+    "citations/report-006.html",
+    "citations/report-007.html",
+    "citations/report-008.html",
+    "citations/report-009.html",
+    "citations/report-010.html",
+    "citations/report-011.html",
+    "citations/report-012.html",
+    "citations/report-013.html",
+    "citations/report-014.html",
+    "citations/report-015.html",
+    "citations/report-016.html",
+    "citations/report-017.html",
+    "citations/report-018.html",
+    "citations/report-019.html",
+    "citations/report-020.html",
+    "citations/report-021.html",
+    "citations/report-022.html",
+    "citations/report-023.html",
+    "citations/report-024.html",
+    "citations/report-025.html",
+    "claude-gemini-master-test.html",
+    "claude-gemini-test-prompt.html",
+    "claude-test-prompt.html",
+    "cms.html",
+    "content-completion-board.html",
+    "content-import-template.html",
+    "content-review.html",
+    "content-roadmap.html",
+    "content-source-review.html",
+    "contributors/dashboard-001.html",
+    "contributors/dashboard-002.html",
+    "contributors/dashboard-003.html",
+    "contributors/dashboard-004.html",
+    "contributors/dashboard-005.html",
+    "contributors/dashboard-006.html",
+    "contributors/dashboard-007.html",
+    "contributors/dashboard-008.html",
+    "contributors/dashboard-009.html",
+    "contributors/dashboard-010.html",
+    "contributors/dashboard-011.html",
+    "contributors/dashboard-012.html",
+    "contributors/dashboard-013.html",
+    "contributors/dashboard-014.html",
+    "contributors/dashboard-015.html",
+    "contributors/dashboard-016.html",
+    "contributors/dashboard-017.html",
+    "contributors/dashboard-018.html",
+    "contributors/dashboard-019.html",
+    "contributors/dashboard-020.html",
+    "contributors/dashboard-021.html",
+    "contributors/dashboard-022.html",
+    "contributors/dashboard-023.html",
+    "contributors/dashboard-024.html",
+    "contributors/dashboard-025.html",
+    "correction-request.html",
+    "crawl/report-001.html",
+    "crawl/report-002.html",
+    "crawl/report-003.html",
+    "crawl/report-004.html",
+    "crawl/report-005.html",
+    "crawl/report-006.html",
+    "crawl/report-007.html",
+    "crawl/report-008.html",
+    "crawl/report-009.html",
+    "crawl/report-010.html",
+    "crawl/report-011.html",
+    "crawl/report-012.html",
+    "crawl/report-013.html",
+    "crawl/report-014.html",
+    "crawl/report-015.html",
+    "crawl/report-016.html",
+    "crawl/report-017.html",
+    "crawl/report-018.html",
+    "crawl/report-019.html",
+    "crawl/report-020.html",
+    "crawl/report-021.html",
+    "crawl/report-022.html",
+    "crawl/report-023.html",
+    "crawl/report-024.html",
+    "crawl/report-025.html",
+    "crossref/kandar-alangaram-04.html",
+    "crossref/kandar-alangaram-10.html",
+    "crossref/kandar-alangaram-16.html",
+    "crossref/kandar-alangaram-22.html",
+    "crossref/kandar-alangaram-28.html",
+    "crossref/kandar-alangaram-34.html",
+    "crossref/kandar-alangaram-40.html",
+    "crossref/kandar-alangaram-46.html",
+    "crossref/kandar-alangaram-52.html",
+    "crossref/kandar-alangaram-58.html",
+    "crossref/kandar-anuboothi-03.html",
+    "crossref/kandar-anuboothi-09.html",
+    "crossref/kandar-anuboothi-15.html",
+    "crossref/kandar-anuboothi-21.html",
+    "crossref/kandar-anuboothi-27.html",
+    "crossref/kandar-anuboothi-33.html",
+    "crossref/kandar-anuboothi-39.html",
+    "crossref/kandar-anuboothi-45.html",
+    "crossref/kandar-anuboothi-51.html",
+    "crossref/kandar-anuboothi-57.html",
+    "crossref/skanda-purana-05.html",
+    "crossref/skanda-purana-11.html",
+    "crossref/skanda-purana-17.html",
+    "crossref/skanda-purana-23.html",
+    "crossref/skanda-purana-29.html",
+    "crossref/skanda-purana-35.html",
+    "crossref/skanda-purana-41.html",
+    "crossref/skanda-purana-47.html",
+    "crossref/skanda-purana-53.html",
+    "crossref/skanda-purana-59.html",
+    "crossref/temples-06.html",
+    "crossref/temples-12.html",
+    "crossref/temples-18.html",
+    "crossref/temples-24.html",
+    "crossref/temples-30.html",
+    "crossref/temples-36.html",
+    "crossref/temples-42.html",
+    "crossref/temples-48.html",
+    "crossref/temples-54.html",
+    "crossref/temples-60.html",
+    "crossref/thirumurugatrupadai-02.html",
+    "crossref/thirumurugatrupadai-08.html",
+    "crossref/thirumurugatrupadai-14.html",
+    "crossref/thirumurugatrupadai-20.html",
+    "crossref/thirumurugatrupadai-26.html",
+    "crossref/thirumurugatrupadai-32.html",
+    "crossref/thirumurugatrupadai-38.html",
+    "crossref/thirumurugatrupadai-44.html",
+    "crossref/thirumurugatrupadai-50.html",
+    "crossref/thirumurugatrupadai-56.html",
+    "crossref/tiruppugazh-01.html",
+    "crossref/tiruppugazh-07.html",
+    "crossref/tiruppugazh-13.html",
+    "crossref/tiruppugazh-19.html",
+    "crossref/tiruppugazh-25.html",
+    "crossref/tiruppugazh-31.html",
+    "crossref/tiruppugazh-37.html",
+    "crossref/tiruppugazh-43.html",
+    "crossref/tiruppugazh-49.html",
+    "crossref/tiruppugazh-55.html",
+    "daily-devotion-preview.html",
+    "daily-murugan-dashboard.html",
+    "daily-murugan-section.html",
+    "daily-sloka-widget.html",
+    "daily-wisdom/index.html",
+    "daily-wisdom/wisdom-01.html",
+    "daily-wisdom/wisdom-02.html",
+    "daily-wisdom/wisdom-03.html",
+    "daily-wisdom/wisdom-04.html",
+    "daily-wisdom/wisdom-05.html",
+    "daily-wisdom/wisdom-06.html",
+    "daily-wisdom/wisdom-07.html",
+    "daily-wisdom/wisdom-08.html",
+    "daily-wisdom/wisdom-09.html",
+    "daily-wisdom/wisdom-10.html",
+    "daily-wisdom/wisdom-11.html",
+    "daily-wisdom/wisdom-12.html",
+    "daily-wisdom/wisdom-13.html",
+    "daily-wisdom/wisdom-14.html",
+    "daily-wisdom/wisdom-15.html",
+    "daily-wisdom/wisdom-16.html",
+    "daily-wisdom/wisdom-17.html",
+    "daily-wisdom/wisdom-18.html",
+    "daily-wisdom/wisdom-19.html",
+    "daily-wisdom/wisdom-20.html",
+    "daily-wisdom/wisdom-21.html",
+    "daily-wisdom/wisdom-22.html",
+    "daily-wisdom/wisdom-23.html",
+    "daily-wisdom/wisdom-24.html",
+    "daily-wisdom/wisdom-25.html",
+    "daily-wisdom/wisdom-26.html",
+    "daily-wisdom/wisdom-27.html",
+    "daily-wisdom/wisdom-28.html",
+    "daily-wisdom/wisdom-29.html",
+    "daily-wisdom/wisdom-30.html",
+    "daily-wisdom/wisdom-31.html",
+    "daily-wisdom/wisdom-32.html",
+    "daily-wisdom/wisdom-33.html",
+    "daily-wisdom/wisdom-34.html",
+    "daily-wisdom/wisdom-35.html",
+    "daily-wisdom/wisdom-36.html",
+    "daily-wisdom/wisdom-37.html",
+    "daily-wisdom/wisdom-38.html",
+    "daily-wisdom/wisdom-39.html",
+    "daily-wisdom/wisdom-40.html",
+    "daily-wisdom/wisdom-41.html",
+    "daily-wisdom/wisdom-42.html",
+    "daily-wisdom/wisdom-43.html",
+    "daily-wisdom/wisdom-44.html",
+    "daily-wisdom/wisdom-45.html",
+    "daily-wisdom/wisdom-46.html",
+    "daily-wisdom/wisdom-47.html",
+    "daily.html",
+    "dark-mode-audit.html",
+    "dependencies/dashboard-001.html",
+    "dependencies/dashboard-002.html",
+    "dependencies/dashboard-003.html",
+    "dependencies/dashboard-004.html",
+    "dependencies/dashboard-005.html",
+    "dependencies/dashboard-006.html",
+    "dependencies/dashboard-007.html",
+    "dependencies/dashboard-008.html",
+    "dependencies/dashboard-009.html",
+    "dependencies/dashboard-010.html",
+    "dependencies/dashboard-011.html",
+    "dependencies/dashboard-012.html",
+    "dependencies/dashboard-013.html",
+    "dependencies/dashboard-014.html",
+    "dependencies/dashboard-015.html",
+    "dependencies/dashboard-016.html",
+    "dependencies/dashboard-017.html",
+    "dependencies/dashboard-018.html",
+    "dependencies/dashboard-019.html",
+    "dependencies/dashboard-020.html",
+    "dependencies/dashboard-021.html",
+    "dependencies/dashboard-022.html",
+    "dependencies/dashboard-023.html",
+    "dependencies/dashboard-024.html",
+    "dependencies/dashboard-025.html",
+    "devotional-books.html",
+    "dynamic-loader-note.html",
+    "external-ai-test-prompt.html",
+    "external-ai-test.html",
+    "faq.html",
+    "featured-temples-preview.html",
+    "feedback/dashboard-001.html",
+    "feedback/dashboard-002.html",
+    "feedback/dashboard-003.html",
+    "feedback/dashboard-004.html",
+    "feedback/dashboard-005.html",
+    "feedback/dashboard-006.html",
+    "feedback/dashboard-007.html",
+    "feedback/dashboard-008.html",
+    "feedback/dashboard-009.html",
+    "feedback/dashboard-010.html",
+    "feedback/dashboard-011.html",
+    "feedback/dashboard-012.html",
+    "feedback/dashboard-013.html",
+    "feedback/dashboard-014.html",
+    "feedback/dashboard-015.html",
+    "feedback/dashboard-016.html",
+    "feedback/dashboard-017.html",
+    "feedback/dashboard-018.html",
+    "feedback/dashboard-019.html",
+    "feedback/dashboard-020.html",
+    "feedback/dashboard-021.html",
+    "feedback/dashboard-022.html",
+    "feedback/dashboard-023.html",
+    "feedback/dashboard-024.html",
+    "feedback/dashboard-025.html",
+    "festival-countdown.html",
+    "festival-day.html",
+    "festival-details.html",
+    "festival-expansion-plan.html",
+    "festival-knowledge.html",
+    "festival-month.html",
+    "festival-source-board.html",
+    "festival-year.html",
+    "festivals-production.html",
+    "festivals/encyclopedia/aadi-kiruthigai/index.html",
+    "festivals/encyclopedia/aadi-kiruthigai/rituals.html",
+    "festivals/encyclopedia/aadi-kiruthigai/temple-links.html",
+    "festivals/encyclopedia/chitra-pournami/index.html",
+    "festivals/encyclopedia/chitra-pournami/rituals.html",
+    "festivals/encyclopedia/chitra-pournami/temple-links.html",
+    "festivals/encyclopedia/index.html",
+    "festivals/encyclopedia/kanda-sashti/index.html",
+    "festivals/encyclopedia/kanda-sashti/literature-links.html",
+    "festivals/encyclopedia/kanda-sashti/rituals.html",
+    "festivals/encyclopedia/kanda-sashti/temple-links.html",
+    "festivals/encyclopedia/karthigai-deepam/index.html",
+    "festivals/encyclopedia/karthigai-deepam/rituals.html",
+    "festivals/encyclopedia/karthigai-deepam/temple-links.html",
+    "festivals/encyclopedia/kiruthigai-monthly/index.html",
+    "festivals/encyclopedia/kiruthigai-monthly/rituals.html",
+    "festivals/encyclopedia/kiruthigai-monthly/temple-links.html",
+    "festivals/encyclopedia/panguni-uthiram/index.html",
+    "festivals/encyclopedia/panguni-uthiram/literature-links.html",
+    "festivals/encyclopedia/panguni-uthiram/rituals.html",
+    "festivals/encyclopedia/panguni-uthiram/temple-links.html",
+    "festivals/encyclopedia/skanda-jayanthi/index.html",
+    "festivals/encyclopedia/skanda-jayanthi/rituals.html",
+    "festivals/encyclopedia/skanda-jayanthi/temple-links.html"
+  ],
+  "unresolved_reference_sample": [
+    {
+      "source": "arunagirinathar-saritham/chapters/birth-context.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/birth-context.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/birth-context.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/birth-context.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/birth-context.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/devotional-themes.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/devotional-themes.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/devotional-themes.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/devotional-themes.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/devotional-themes.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/murugan-grace.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/murugan-grace.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/murugan-grace.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/murugan-grace.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/murugan-grace.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/poetic-style.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/poetic-style.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/poetic-style.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/poetic-style.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/poetic-style.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/six-abodes.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/six-abodes.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/six-abodes.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/six-abodes.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/six-abodes.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/source-safety.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/source-safety.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/source-safety.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/source-safety.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/source-safety.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/thiruppugazh-path.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/thiruppugazh-path.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/thiruppugazh-path.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/thiruppugazh-path.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/thiruppugazh-path.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/tiruvannamalai.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/tiruvannamalai.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/tiruvannamalai.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/tiruvannamalai.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/tiruvannamalai.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/turning-point.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/turning-point.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/turning-point.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/turning-point.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/turning-point.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/works-overview.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/works-overview.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/works-overview.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/works-overview.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/chapters/works-overview.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/index.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-01.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-01.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-01.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-01.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-01.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-02.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-02.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-02.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-02.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-02.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-03.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-03.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-03.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-03.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-03.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-04.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-04.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-04.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-04.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-04.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-05.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-05.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-05.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-05.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-05.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-06.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-06.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-06.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-06.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-06.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-07.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-07.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-07.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-07.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-07.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-08.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-08.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-08.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-08.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-08.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-09.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-09.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-09.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-09.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-09.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-10.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-10.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-10.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-10.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-10.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-11.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-11.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-11.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-11.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-11.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-12.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-12.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-12.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-12.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-12.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-13.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-13.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-13.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-13.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-13.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-14.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-14.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-14.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-14.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-14.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-15.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-15.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-15.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-15.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-15.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-16.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-16.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-16.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-16.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/themes/theme-16.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-01.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-01.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-01.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-01.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-01.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-02.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-02.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-02.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-02.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-02.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-03.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-03.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-03.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-03.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-03.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-04.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-04.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-04.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-04.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-04.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-05.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-05.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-05.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-05.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-05.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-06.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-06.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-06.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-06.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-06.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-07.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-07.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-07.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-07.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-07.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-08.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-08.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-08.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-08.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-08.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-09.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-09.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-09.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-09.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-09.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-10.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-10.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-10.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-10.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-10.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-11.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-11.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-11.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-11.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-11.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-12.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-12.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-12.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-12.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-12.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-13.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-13.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-13.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-13.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-13.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-14.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-14.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-14.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-14.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-14.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-15.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-15.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-15.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-15.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-15.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-16.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-16.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-16.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-16.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-16.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-17.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-17.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-17.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-17.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-17.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-18.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-18.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-18.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-18.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-18.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-19.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-19.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-19.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-19.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-19.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-20.html",
+      "reference": "../assets/css/arunagirinathar-saritham.css"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-20.html",
+      "reference": "index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-20.html",
+      "reference": "../literature/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-20.html",
+      "reference": "../ai-search/index.html"
+    },
+    {
+      "source": "arunagirinathar-saritham/timeline/event-20.html",
+      "reference": "../assets/js/arunagirinathar-reader.js"
+    },
+    {
+      "source": "assets/css/components/experience-layout.css",
+      "reference": "../images/temples/temple-hero.webp"
+    },
+    {
+      "source": "assets/css/components/hero.css",
+      "reference": "../images/temples/temple-hero.webp"
+    },
+    {
+      "source": "assets/css/components/regional-layout.css",
+      "reference": "../images/temples/temple-hero.webp"
+    },
+    {
+      "source": "assets/js/404-suggestions.js",
+      "reference": "site-directory.html"
+    },
+    {
+      "source": "assets/js/advanced-search.js",
+      "reference": "${e(x.route)}"
+    },
+    {
+      "source": "assets/js/audio-collections.js",
+      "reference": "audio-library.html?track=${id}"
+    },
+    {
+      "source": "assets/js/audio-history.mjs",
+      "reference": "value, `${CANONICAL_ORIGIN}/`"
+    },
+    {
+      "source": "assets/js/audio-history.mjs",
+      "reference": "audio-library.html"
+    },
+    {
+      "source": "assets/js/audio-history.mjs",
+      "reference": "blob"
+    },
+    {
+      "source": "assets/js/audio-history.mjs",
+      "reference": "url"
+    },
+    {
+      "source": "assets/js/audio-library.js",
+      "reference": "${escapeHtml(item.textRoute)}"
+    },
+    {
+      "source": "assets/js/components/experience-gallery.mjs",
+      "reference": "${escapeHtml(item.src)}"
+    },
+    {
+      "source": "assets/js/components/gallery.mjs",
+      "reference": "${escapeHtml(item.src)}"
+    },
+    {
+      "source": "assets/js/components/regional-card.mjs",
+      "reference": "${escapeHtml(item.href)}"
+    },
+    {
+      "source": "assets/js/components/regional-sources.mjs",
+      "reference": "${escapeHtml(item.url)}"
+    },
+    {
+      "source": "assets/js/components/related.mjs",
+      "reference": "${escapeHtml(item.href)}"
+    },
+    {
+      "source": "assets/js/components/temple-card.mjs",
+      "reference": "${escapeHtml(record.image)}"
+    },
+    {
+      "source": "assets/js/components/temple-card.mjs",
+      "reference": "${escapeHtml(record.href)}"
+    },
+    {
+      "source": "assets/js/components/temple-switcher.mjs",
+      "reference": "temple-detail.html?id=${encodeURIComponent(item.id)}"
+    },
+    {
+      "source": "assets/js/daily-wisdom.js",
+      "reference": "../data/daily-wisdom-index.json"
+    },
+    {
+      "source": "assets/js/devotional-collections.mjs",
+      "reference": "raw, `${CANONICAL_ORIGIN}/`"
+    },
+    {
+      "source": "assets/js/devotional-collections.mjs",
+      "reference": "route, CANONICAL_ORIGIN"
+    },
+    {
+      "source": "assets/js/devotional-practice-planner.mjs",
+      "reference": "raw, `${CANONICAL_ORIGIN}/`"
+    },
+    {
+      "source": "assets/js/devotional-practice-planner.mjs",
+      "reference": "route, CANONICAL_ORIGIN"
+    },
+    {
+      "source": "assets/js/effective-route-registry.mjs",
+      "reference": "raw, `${origin}/`"
+    },
+    {
+      "source": "assets/js/explore-navigation.js",
+      "reference": "site-directory.html"
+    },
+    {
+      "source": "assets/js/kandar-andhadhi-reader.js",
+      "reference": "${x.href}"
+    },
+    {
+      "source": "assets/js/knowledge-graph-explorer.mjs",
+      "reference": "route, `${CANONICAL_ORIGIN}/`"
+    },
+    {
+      "source": "assets/js/literature/thiruppugazh-search.js",
+      "reference": "${x.url}"
+    },
+    {
+      "source": "assets/js/maintenance-centre.mjs",
+      "reference": "origin"
+    },
+    {
+      "source": "assets/js/maintenance-centre.mjs",
+      "reference": "raw, `${base.origin}/`"
+    },
+    {
+      "source": "assets/js/maintenance-centre.mjs",
+      "reference": "blob"
+    },
+    {
+      "source": "assets/js/maintenance-centre.mjs",
+      "reference": "url"
+    },
+    {
+      "source": "assets/js/media-session-player.js",
+      "reference": "${escapeHtml(track.route)}"
+    },
+    {
+      "source": "assets/js/operations-observability-data.mjs",
+      "reference": "path, window.location.origin"
+    },
+    {
+      "source": "assets/js/osb42.js",
+      "reference": "temple-details.html?id=${t.id}"
+    },
+    {
+      "source": "assets/js/osb42.js",
+      "reference": "sloka-reader.html?id=${s.id}"
+    },
+    {
+      "source": "assets/js/osb42.js",
+      "reference": "festival-details.html?id=${f.id}"
+    },
+    {
+      "source": "assets/js/osb42.js",
+      "reference": "${t.map}"
+    },
+    {
+      "source": "assets/js/osb42.js",
+      "reference": "${x.url}"
+    },
+    {
+      "source": "assets/js/osb43.js",
+      "reference": "temple-details.html?id=${t.id}"
+    },
+    {
+      "source": "assets/js/osb43.js",
+      "reference": "sloka-reader.html?id=${s.id}"
+    },
+    {
+      "source": "assets/js/osb43.js",
+      "reference": "festival-details.html?id=${f.id}"
+    },
+    {
+      "source": "assets/js/osb43.js",
+      "reference": "${t.map}"
+    },
+    {
+      "source": "assets/js/osb43.js",
+      "reference": "sloka-library.html"
+    },
+    {
+      "source": "assets/js/osb43.js",
+      "reference": "${x.url}"
+    },
+    {
+      "source": "assets/js/osb44.js",
+      "reference": "temples/${OSB.slug(temple.id)}.html"
+    },
+    {
+      "source": "assets/js/osb44.js",
+      "reference": "slokas/${OSB.slug(sloka.id)}.html"
+    },
+    {
+      "source": "assets/js/osb44.js",
+      "reference": "${OSB.escape(song.route)}"
+    },
+    {
+      "source": "assets/js/osb44.js",
+      "reference": "festivals/${OSB.slug(festival.id)}.html"
+    },
+    {
+      "source": "assets/js/osb44.js",
+      "reference": "${item.url}"
+    },
+    {
+      "source": "assets/js/osb44.js",
+      "reference": "link.href, location.href"
+    },
+    {
+      "source": "assets/js/personal-data.mjs",
+      "reference": "raw, `${CANONICAL_ORIGIN}/`"
+    },
+    {
+      "source": "assets/js/personal-data.mjs",
+      "reference": "route, CANONICAL_ORIGIN"
+    },
+    {
+      "source": "assets/js/personal-data.mjs",
+      "reference": "route, CANONICAL_ORIGIN"
+    },
+    {
+      "source": "assets/js/personal-data.mjs",
+      "reference": "item.route, CANONICAL_ORIGIN"
+    },
+    {
+      "source": "assets/js/personal-data.mjs",
+      "reference": "route, CANONICAL_ORIGIN"
+    },
+    {
+      "source": "assets/js/personal-data.mjs",
+      "reference": "blob"
+    },
+    {
+      "source": "assets/js/personal-data.mjs",
+      "reference": "url"
+    },
+    {
+      "source": "assets/js/personal-library.mjs",
+      "reference": "raw, `${CANONICAL_ORIGIN}/`"
+    },
+    {
+      "source": "assets/js/personal-library.mjs",
+      "reference": "route, CANONICAL_ORIGIN"
+    },
+    {
+      "source": "assets/js/print-support.mjs",
+      "reference": "path,"
+    },
+    {
+      "source": "assets/js/print-support.mjs",
+      "reference": "value, `${origin.replace(/\\/$/,"
+    },
+    {
+      "source": "assets/js/print-support.mjs",
+      "reference": "origin"
+    },
+    {
+      "source": "assets/js/production.js",
+      "reference": "temple-details.html?id=${t.id}"
+    },
+    {
+      "source": "assets/js/production.js",
+      "reference": "sloka-reader.html?id=${s.id}"
+    },
+    {
+      "source": "assets/js/production.js",
+      "reference": "festival-details.html?id=${f.id}"
+    },
+    {
+      "source": "assets/js/production.js",
+      "reference": "${x.url}"
+    },
+    {
+      "source": "assets/js/production.js",
+      "reference": "${t.map}"
+    },
+    {
+      "source": "assets/js/read-aloud.js",
+      "reference": "play"
+    },
+    {
+      "source": "assets/js/read-aloud.js",
+      "reference": "pause"
+    },
+    {
+      "source": "assets/js/read-aloud.js",
+      "reference": "stop"
+    },
+    {
+      "source": "assets/js/reader-experience.js",
+      "reference": "raw, `${CANONICAL_ORIGIN}/`"
+    },
+    {
+      "source": "assets/js/reader-experience.js",
+      "reference": "route, CANONICAL_ORIGIN"
+    },
+    {
+      "source": "assets/js/reading-list.mjs",
+      "reference": "origin"
+    },
+    {
+      "source": "assets/js/reading-list.mjs",
+      "reference": "value, `${base.origin}/`"
+    },
+    {
+      "source": "assets/js/reading-list.mjs",
+      "reference": "normalised, CANONICAL_ORIGIN"
+    },
+    {
+      "source": "assets/js/reading-list.mjs",
+      "reference": "normalised, CANONICAL_ORIGIN"
+    },
+    {
+      "source": "assets/js/reading-list.mjs",
+      "reference": "search-facets.html"
+    },
+    {
+      "source": "assets/js/reading-list.mjs",
+      "reference": "blob"
+    },
+    {
+      "source": "assets/js/reading-list.mjs",
+      "reference": "url"
+    },
+    {
+      "source": "assets/js/reading-notes.mjs",
+      "reference": "raw, `${CANONICAL_ORIGIN}/`"
+    },
+    {
+      "source": "assets/js/reading-notes.mjs",
+      "reference": "route, CANONICAL_ORIGIN"
+    },
+    {
+      "source": "assets/js/reading-notes.mjs",
+      "reference": "blob"
+    },
+    {
+      "source": "assets/js/reading-notes.mjs",
+      "reference": "url"
+    },
+    {
+      "source": "assets/js/reading-workspace-desktop.mjs",
+      "reference": "String(path ||"
+    },
+    {
+      "source": "assets/js/reading-workspace-desktop.mjs",
+      "reference": "record.path"
+    },
+    {
+      "source": "assets/js/release-248.js",
+      "reference": "${c.image}"
+    },
+    {
+      "source": "assets/js/release-248.js",
+      "reference": "temple-detail.html?id=${x.id}"
+    },
+    {
+      "source": "assets/js/release-281.mjs",
+      "reference": "${esc(x.route)}"
+    },
+    {
+      "source": "assets/js/route-status-reconciliation.js",
+      "reference": "raw, `${base}/`"
+    },
+    {
+      "source": "assets/js/search-facets.mjs",
+      "reference": "ai-search.html"
+    },
+    {
+      "source": "assets/js/temple-collections.mjs",
+      "reference": "${x.href}"
+    },
+    {
+      "source": "assets/js/temple-detail-runtime.mjs",
+      "reference": "${record.image}"
+    },
+    {
+      "source": "assets/js/temple-extended-runtime.mjs",
+      "reference": "${record.image}"
+    },
+    {
+      "source": "assets/js/temple-gallery.mjs",
+      "reference": "${x.src}"
+    },
+    {
+      "source": "assets/js/temple-search.mjs",
+      "reference": "${x.href}"
+    },
+    {
+      "source": "assets/js/thiruppugazh-volume-03.js",
+      "reference": "${item.url}"
+    },
+    {
+      "source": "assets/js/thiruppugazh-volume-04.js",
+      "reference": "${item.url}"
+    },
+    {
+      "source": "browserconfig.xml.xml",
+      "reference": "apple-touch-icon.png"
+    },
+    {
+      "source": "content-review.html",
+      "reference": "${i.url}"
+    },
+    {
+      "source": "daily-wisdom/index.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-01.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-02.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-03.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-04.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-05.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-06.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-07.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-08.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-09.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-10.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-11.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-12.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-13.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-14.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-15.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-16.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-17.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-18.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-19.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-20.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-21.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-22.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-23.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-24.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-25.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-26.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-27.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-28.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-29.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-30.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-31.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-32.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-33.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-34.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-35.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-36.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-37.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-38.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-39.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-40.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-41.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-42.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-43.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-44.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-45.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-46.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "daily-wisdom/wisdom-47.html",
+      "reference": "../assets/css/style.css"
+    },
+    {
+      "source": "data/deployment-conformance.json",
+      "reference": "/assets/js/site-directory.js"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/hymns/hymn-0041.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0041.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/hymns/hymn-0042.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0042.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/hymns/hymn-0043.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0043.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/hymns/hymn-0044.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0044.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/hymns/hymn-0045.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0045.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/hymns/hymn-0046.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0046.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/hymns/hymn-0047.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0047.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/hymns/hymn-0048.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0048.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/hymns/hymn-0049.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0049.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/hymns/hymn-0050.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0050.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/hymns/hymn-0051.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0051.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/hymns/hymn-0052.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0052.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/hymns/hymn-0053.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0053.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/hymns/hymn-0054.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0054.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/hymns/hymn-0055.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0055.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0041.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0042.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0043.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0044.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0045.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0046.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0047.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0048.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0049.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0050.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0051.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0052.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0053.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0054.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0055.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0056.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0057.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0058.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0059.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0060.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0061.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0062.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0063.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0064.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0065.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0066.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0067.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0068.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0069.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0070.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0071.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0072.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0073.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0074.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0075.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0076.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0077.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0078.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0079.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/catalog.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0080.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0041.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0042.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0043.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0044.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0045.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0046.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0047.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0048.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0049.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0050.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0051.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0052.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0053.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0054.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0055.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0056.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0057.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0058.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0059.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0060.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0061.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0062.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0063.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0064.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0065.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0066.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0067.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0068.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0069.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0070.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0071.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0072.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0073.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0074.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0075.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0076.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0077.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0078.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0079.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/needs-proofread.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0080.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0041.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0042.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0043.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0044.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0045.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0046.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0047.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0048.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0049.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0050.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0051.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0052.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0053.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0054.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0055.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0056.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0057.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0058.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0059.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0060.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0061.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0062.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0063.html"
+    },
+    {
+      "source": "data/literature/thiruppugazh/volume-02/indexes/reader-routes.json",
+      "reference": "../../../../literature/thiruppugazh/volume-02/hymn-0064.html"
+    }
+  ]
+}

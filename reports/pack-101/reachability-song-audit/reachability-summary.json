@@ -1,0 +1,63 @@
+{
+  "pack": 101,
+  "stage": "full-reachability-and-song-inventory",
+  "safety": {
+    "files_deleted": 0,
+    "production_files_modified": 0
+  },
+  "total_files": 217530,
+  "public_files": 200528,
+  "html_routes": 4006,
+  "entrypoints": [
+    "ai-search.html",
+    "audio-library.html",
+    "devotional-collections.html",
+    "explore.html",
+    "festivals.html",
+    "index.html",
+    "knowledge-graph.html",
+    "learning-center.html",
+    "murugan-timeline.html",
+    "platform-hub.html",
+    "regional-temple-catalogue.html",
+    "search.html",
+    "site-directory.html",
+    "sitemap.xml",
+    "sloka-library.html",
+    "temple-encyclopedia.html",
+    "thiruppugazh.html"
+  ],
+  "reachable_files": 346,
+  "registry_mapped_files": 116,
+  "sitemap_mapped_files": 0,
+  "service_worker_mapped_files": 52,
+  "unmapped_public_candidates": 200180,
+  "unreachable_html_candidates": 3878,
+  "unresolved_local_references": 2387,
+  "song_candidate_files": 5090,
+  "song_collection_counts": {
+    "Thiruppugazh": 3665,
+    "Kandar Anubhuti": 947,
+    "Thirumurugatruppadai": 561,
+    "Kandar Alankaram": 423,
+    "Kandar Andhadhi": 176,
+    "Kanda Sashti Kavasam": 95,
+    "Shanmuga Kavasam": 42,
+    "Vel Maaral": 42,
+    "Skanda Guru Kavasam": 40,
+    "Vel Mayil Virutham": 28,
+    "Subramanya Bhujangam": 13,
+    "Murugan General Songs": 1
+  },
+  "song_field_coverage": {
+    "source_or_edition": 3775,
+    "publication_status": 2588,
+    "meaning_or_translation": 1277,
+    "tamil_original": 4064,
+    "transliteration": 926,
+    "easy_tamil": 424
+  },
+  "popular_song_found_count": 6,
+  "popular_song_missing_count": 13,
+  "duplicate_groups_with_mapped_files": 5
+}
