@@ -64,6 +64,47 @@ const collectionCard = item => {
   return article;
 };
 
+const humanise = value => String(value || '').replaceAll('-', ' ');
+
+const triageCard = item => {
+  const article = create('article', 'premium-card');
+  article.setAttribute('data-spotlight', '');
+  const pills = create('div', 'premium-pills');
+  pills.appendChild(create('span', 'premium-pill', humanise(item.triageStatus || 'source required')));
+  if (item.classification) {
+    pills.appendChild(create('span', 'premium-pill', item.classification));
+  }
+  const title = item.titleTa
+    ? `${item.titleTa} · ${item.titleEn || ''}`
+    : item.titleEn || item.slug;
+  article.append(
+    pills,
+    create('h3', '', title),
+    create('p', '', item.publicationDecision || 'No public publication decision recorded.'),
+    create('h4', '', 'Next evidence action'),
+    create('p', '', item.nextAction || 'Human source review required.')
+  );
+  const credits = item.verifiedCredits || {};
+  const creditText = Object.entries(credits)
+    .map(([key, value]) => `${humanise(key)}: ${value}`)
+    .join(' · ');
+  if (creditText) {
+    article.append(create('p', '', `Verified metadata: ${creditText}`));
+  } else if (item.candidateAttribution) {
+    article.append(create('p', '', `Candidate attribution: ${item.candidateAttribution}`));
+  }
+  const evidence = Array.isArray(item.evidence) ? item.evidence : [];
+  if (evidence.length) {
+    const source = evidence[0];
+    const link = create('a', 'premium-button secondary', 'Open external evidence');
+    link.href = source.sourceUrl;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    article.append(link);
+  }
+  return article;
+};
+
 const initialise = async () => {
   const metrics = byId('completenessMetrics');
   const grid = byId('completenessGrid');
@@ -72,15 +113,25 @@ const initialise = async () => {
   const missingFormat = byId('missingFormat');
   const clear = byId('completenessClear');
   const queue = byId('researchQueue');
-  if (!metrics || !grid || !status || !query || !missingFormat || !clear || !queue) return;
+  const triageGrid = byId('popularSongTriage');
+  const triageStatus = byId('triageStatus');
+  if (!metrics || !grid || !status || !query || !missingFormat || !clear || !queue || !triageGrid || !triageStatus) return;
   try {
-    const data = await fetchJson('/data/content-completeness.json');
+    const [data, triage] = await Promise.all([
+      fetchJson('/data/content-completeness.json'),
+      fetchJson('/data/research-intake/popular-song-triage-2026-07-22.json')
+    ]);
     const collections = Array.isArray(data.collections) ? data.collections : [];
+    const triageRecords = Array.isArray(triage.records) ? triage.records : [];
+    const metadataOnly = triageRecords.filter(item =>
+      String(item.triageStatus || '').includes('metadata-only') ||
+      String(item.triageStatus || '').includes('rights-withheld')
+    ).length;
     metrics.replaceChildren(
       metric(data.governedCollections || 0, 'Governed collections'),
       metric(data.canonicalFullSongRecords || 0, 'Canonical full-song records'),
-      metric(data.popularSourceRequests || 0, 'Popular source requests'),
-      metric(data.audioCatalogueRecords || 0, 'Audio-status records')
+      metric(triageRecords.length, 'Popular/research titles triaged'),
+      metric(metadataOnly, 'Metadata-only or rights-withheld titles')
     );
     Object.entries(labels).forEach(([value, label]) => missingFormat.add(new Option(label, value)));
     const state = {query: '', missing: 'All'};
@@ -116,6 +167,11 @@ const initialise = async () => {
       render();
       query.focus();
     });
+
+    triageGrid.replaceChildren();
+    triageRecords.forEach(item => triageGrid.appendChild(triageCard(item)));
+    triageStatus.textContent = `${triageRecords.length} requested or attachment-derived titles classified. Protected lyrics and recordings remain unpublished.`;
+
     queue.replaceChildren();
     (data.priorityResearchTasks || []).forEach(item => {
       const article = create('article', 'premium-card');
@@ -132,7 +188,9 @@ const initialise = async () => {
   } catch (error) {
     console.error(error);
     status.textContent = 'Content completeness evidence is still being generated. No unreviewed text has been published.';
+    triageStatus.textContent = 'Popular-song triage evidence is temporarily unavailable.';
     grid.innerHTML = '<article class="premium-card" role="alert">Completeness data is temporarily unavailable.</article>';
+    triageGrid.innerHTML = '<article class="premium-card" role="alert">Research triage data is temporarily unavailable.</article>';
   }
 };
 
