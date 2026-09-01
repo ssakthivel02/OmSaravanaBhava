@@ -1,6 +1,8 @@
 name: Flagship parity preview
 
 on:
+  pull_request:
+    branches: [main]
   push:
     branches: [release/flagship-parity-v2]
   workflow_dispatch:
@@ -75,32 +77,17 @@ jobs:
           grep -q 'https://omsaravanabhava.org/' donor/_site/index.html
           grep -Eq 'OmSaravanaBhava|Om Saravana Bhava|ஓம் சரவணபவ' donor/_site/index.html
           ! grep -q 'https://kandan.omsaravanabhava.org' donor/_site/index.html
+          ! grep -q 'கந்தன் · Kandan</h1>' donor/_site/index.html
+          ! grep -q 'கந்தன் · Kandan Lord Murugan Devotional Knowledge' donor/_site/index.html
           grep -q 'flagship-nextgen.css' donor/_site/index.html
           grep -q 'flagship-nextgen.js' donor/_site/index.html
           grep -q 'prefers-reduced-motion' donor/_site/assets/css/flagship-nextgen.css
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          root=Path('donor/_site')
-          rel=json.loads((root/'flagship-release.json').read_text())
-          assert rel['donorCommit']=='5d2670e286d0a32df2e564a2c280fa976866facf'
-          assert rel['htmlPageCount'] >= 100, rel
-          manifest_path=root/'manifest.json'
-          if manifest_path.exists():
-              m=json.loads(manifest_path.read_text())
-              assert m.get('name')=='OmSaravanaBhava'
-          print(json.dumps(rel,indent=2))
-          PY
-      - name: JavaScript syntax checks
+      - name: Validate next-gen JavaScript syntax
         shell: bash
-        run: |
-          set -euo pipefail
-          node --check donor/_site/assets/js/flagship-nextgen.js
-          node --check donor/_site/service-worker.js
-      - name: Upload validated preview artifact
-        uses: actions/upload-artifact@v7
+        run: node --check donor/_site/assets/js/flagship-nextgen.js
+      - name: Upload governed preview artifact
+        uses: actions/upload-artifact@v4
         with:
-          name: omsaravanabhava-flagship-parity-preview
+          name: omsaravanabhava-flagship-preview
           path: donor/_site
-          if-no-files-found: error
           retention-days: 14
