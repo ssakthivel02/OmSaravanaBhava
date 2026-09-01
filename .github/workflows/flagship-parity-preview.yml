@@ -65,7 +65,7 @@ jobs:
           set -euo pipefail
           test -s donor/_site/index.html
           test -s donor/_site/temples.html
-          test -s donor/_site/songs.html
+          test -s donor/_site/murugan-song-library.html
           test -s donor/_site/thiruppugazh.html
           test -s donor/_site/ai-search.html
           test -s donor/_site/site-directory.html
@@ -73,7 +73,7 @@ jobs:
           test -s donor/_site/assets/js/flagship-nextgen.js
           test -s donor/_site/flagship-release.json
           grep -q 'https://omsaravanabhava.org/' donor/_site/index.html
-          grep -q 'OmSaravanaBhava' donor/_site/index.html
+          grep -Eq 'OmSaravanaBhava|Om Saravana Bhava|ஓம் சரவணபவ' donor/_site/index.html
           ! grep -q 'https://kandan.omsaravanabhava.org' donor/_site/index.html
           grep -q 'flagship-nextgen.css' donor/_site/index.html
           grep -q 'flagship-nextgen.js' donor/_site/index.html
