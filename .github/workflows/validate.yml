@@ -1,0 +1,40 @@
+name: Validate flagship
+
+on:
+  pull_request:
+  push:
+    branches: [main, release/flagship-v1]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Structural and safety validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f index.html
+          test -f assets/styles.css
+          test -f assets/app.js
+          test -f manifest.webmanifest
+          test -f sw.js
+          test -f offline.html
+          test -f 404.html
+          test -f robots.txt
+          test -f sitemap.xml
+          grep -q 'OmSaravanaBhava' index.html
+          grep -q 'https://omsaravanabhava.org/' index.html
+          grep -q 'prefers-reduced-motion' assets/styles.css
+          grep -q 'serviceWorker' assets/app.js
+          grep -q 'No miracle guarantees' index.html
+          ! grep -RniE 'api[_-]?key[[:space:]]*[:=]|secret[[:space:]]*[:=]|password[[:space:]]*[:=]' . --exclude-dir=.git --exclude='validate.yml'
+          ! grep -Rni 'Access-Control-Allow-Origin: \*' . --exclude-dir=.git
+      - name: HTML reference smoke
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in assets/styles.css assets/app.js manifest.webmanifest; do test -f "$f"; done

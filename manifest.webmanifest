@@ -1,0 +1,11 @@
+{
+  "name": "OmSaravanaBhava",
+  "short_name": "OSB",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090612",
+  "theme_color": "#0a0713",
+  "lang": "ta",
+  "description": "Tamil-first Murugan devotional knowledge and learning experience.",
+  "icons": []
+}
