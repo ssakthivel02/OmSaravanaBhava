@@ -1,0 +1,58 @@
+name: Import Kandan donor parity
+
+on:
+  push:
+    branches: [integration/kandan-parity]
+    paths: [.github/workflows/import-kandan-parity.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout flagship integration branch
+        uses: actions/checkout@v4
+        with:
+          ref: integration/kandan-parity
+          fetch-depth: 0
+
+      - name: Checkout validated Kandan donor
+        uses: actions/checkout@v4
+        with:
+          repository: ssakthivel02/kandan-legacy
+          ref: 5d2670e286d0a32df2e564a2c280fa976866facf
+          path: .donor
+          persist-credentials: false
+
+      - name: Import production feature/content parity without legacy deployment ownership
+        shell: bash
+        run: |
+          set -euo pipefail
+          rsync -a --delete \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='CNAME' \
+            --exclude='README.md' \
+            --exclude='RELEASE_CONTRACT.md' \
+            --exclude='.donor/' \
+            .donor/ ./
+          rm -rf .donor
+          printf '%s\n' '5d2670e286d0a32df2e564a2c280fa976866facf' > KANDAN_DONOR_COMMIT.txt
+          test -f index.html
+          test -f manifest.webmanifest
+
+      - name: Commit imported parity snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No donor parity changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Import validated Kandan feature and content parity snapshot'
+          git push origin HEAD:integration/kandan-parity
