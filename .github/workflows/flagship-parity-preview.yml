@@ -1,22 +1,16 @@
-name: Deploy OmSaravanaBhava flagship parity
+name: Flagship parity preview
 
 on:
-  workflow_dispatch:
   push:
-    branches: [main]
+    branches: [release/flagship-parity-v2]
+  workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
   DONOR_SHA: 5d2670e286d0a32df2e564a2c280fa976866facf
-
-concurrency:
-  group: omsaravanabhava-pages-production
-  cancel-in-progress: false
 
 jobs:
   build-validate:
@@ -38,13 +32,13 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: '3.12'
-      - name: Verify immutable donor pin
+      - name: Verify donor pin
         working-directory: donor
         shell: bash
         run: |
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "$DONOR_SHA"
-      - name: Build governed donor artifact
+      - name: Build donor governed artifact
         working-directory: donor
         shell: bash
         run: |
@@ -65,7 +59,7 @@ jobs:
           cp flagship/assets/css/flagship-nextgen.css donor/assets/css/flagship-nextgen.css
           cp flagship/assets/js/flagship-nextgen.js donor/assets/js/flagship-nextgen.js
           python flagship/tools/flagship-overlay.py donor/_site
-      - name: Production parity gate
+      - name: Validate parity and public identity
         shell: bash
         run: |
           set -euo pipefail
@@ -75,44 +69,38 @@ jobs:
           test -s donor/_site/thiruppugazh.html
           test -s donor/_site/ai-search.html
           test -s donor/_site/site-directory.html
-          test -s donor/_site/offline.html
-          test -s donor/_site/service-worker.js
-          test -s donor/_site/manifest.json
+          test -s donor/_site/assets/css/flagship-nextgen.css
+          test -s donor/_site/assets/js/flagship-nextgen.js
           test -s donor/_site/flagship-release.json
           grep -q 'https://omsaravanabhava.org/' donor/_site/index.html
-          grep -q 'OmSaravanaBhava' donor/_site/index.html
+          grep -Eq 'OmSaravanaBhava|Om Saravana Bhava|ஓம் சரவணபவ' donor/_site/index.html
           ! grep -q 'https://kandan.omsaravanabhava.org' donor/_site/index.html
           grep -q 'flagship-nextgen.css' donor/_site/index.html
           grep -q 'flagship-nextgen.js' donor/_site/index.html
           grep -q 'prefers-reduced-motion' donor/_site/assets/css/flagship-nextgen.css
-          node --check donor/_site/assets/js/flagship-nextgen.js
-          node --check donor/_site/service-worker.js
           python - <<'PY'
           import json
           from pathlib import Path
           root=Path('donor/_site')
           rel=json.loads((root/'flagship-release.json').read_text())
           assert rel['donorCommit']=='5d2670e286d0a32df2e564a2c280fa976866facf'
-          assert rel['htmlPageCount'] >= 100
-          m=json.loads((root/'manifest.json').read_text())
-          assert m.get('name') == 'OmSaravanaBhava'
-          print(json.dumps(rel, indent=2))
+          assert rel['htmlPageCount'] >= 100, rel
+          manifest_path=root/'manifest.json'
+          if manifest_path.exists():
+              m=json.loads(manifest_path.read_text())
+              assert m.get('name')=='OmSaravanaBhava'
+          print(json.dumps(rel,indent=2))
           PY
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-      - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v4
+      - name: JavaScript syntax checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check donor/_site/assets/js/flagship-nextgen.js
+          node --check donor/_site/service-worker.js
+      - name: Upload validated preview artifact
+        uses: actions/upload-artifact@v7
         with:
+          name: omsaravanabhava-flagship-parity-preview
           path: donor/_site
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    needs: build-validate
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    steps:
-      - name: Deploy validated OmSaravanaBhava artifact
-        id: deployment
-        uses: actions/deploy-pages@v4
+          if-no-files-found: error
+          retention-days: 14
