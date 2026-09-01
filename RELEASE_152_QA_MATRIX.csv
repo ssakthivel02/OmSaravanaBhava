@@ -1,0 +1,10 @@
+check,status,evidence
+Baseline commit,PASS,8d0ee72942b1949ae63f3c78565859c3a76aac97
+Verified queue items,PASS,14
+Requested mantra/Kavasam items,PASS,4
+Thiruppugazh items,PASS,10
+Third-party recordings,PASS,0
+Media Session handlers,PASS,"play,pause,stop,nexttrack,previoustrack"
+Seek/progress simulation,PASS,not implemented
+External CDNs,PASS,0
+Service worker cache,PASS,v152

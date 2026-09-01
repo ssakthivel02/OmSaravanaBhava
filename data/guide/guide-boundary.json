@@ -1,0 +1,9 @@
+{
+  "mode": "local_only",
+  "rules": [
+    "No external model call",
+    "No invented facts",
+    "Report missing data",
+    "Do not infer timings or contacts"
+  ]
+}

@@ -1,0 +1,5 @@
+data/platform-status.json
+index.html
+platform.html
+service-worker.js
+sitemap.xml

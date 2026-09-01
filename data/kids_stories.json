@@ -1,0 +1,18 @@
+[
+  {
+    "id": "kids-palani",
+    "title": "The Wisdom of Palani",
+    "titleTa": "பழனியின் ஞானம்",
+    "summary": "A simple story teaching humility, wisdom and devotion through the Palani tradition.",
+    "summaryTa": "பழனி மரபின் மூலம் தாழ்மை, ஞானம், பக்தி ஆகியவற்றை குழந்தைகளுக்கு எளிமையாக சொல்லும் கதை.",
+    "moral": "True wisdom is greater than possession."
+  },
+  {
+    "id": "kids-vel",
+    "title": "The Bright Vel",
+    "titleTa": "ஒளி தரும் வேல்",
+    "summary": "A child learns that courage means doing the right thing with kindness.",
+    "summaryTa": "தைரியம் என்பது நல்லதை கருணையுடன் செய்வது என்பதை குழந்தை அறியும் கதை.",
+    "moral": "Courage and kindness must go together."
+  }
+]

@@ -1,0 +1,27 @@
+Release 229 — Premium Desktop Literature Navigator
+Base commit: 513949e743a9cab67281fbea7d379bf4c0d06d66
+
+M  reading-workspace.html
+M  service-worker.js
+A  assets/css/reading-workspace-desktop.css
+A  assets/js/reading-workspace-desktop.mjs
+A  tests/reading-workspace-desktop.test.mjs
+A  tools/release_229_validate.py
+A  .github/workflows/release-229-integrity.yml
+A  .github/workflows/release-229-production-smoke.yml
+A  manifest-release-229.json
+
+Evidence files included:
+A  RELEASE_229_CHANGED_FILES.txt
+A  RELEASE_229_GITHUB_PORTAL_INSTRUCTIONS.txt
+A  RELEASE_229_LOCAL_TEST_EVIDENCE.txt
+A  RELEASE_229_SHA256SUMS.txt
+A  RELEASE_229_VALIDATION_REPORT.md
+A  RELEASE_229.patch
+
+Deliberately unchanged:
+- data/site-routes.json — no new route
+- sitemap.xml — canonical route already exists
+- devotional content and source registries — no content change
+- browser personal-data schemas — no new storage key or record type
+- service-worker cache generation — remains 228; only two additive precache entries are added

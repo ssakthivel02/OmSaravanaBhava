@@ -1,0 +1,155 @@
+{
+  "batch": 80,
+  "items": [
+    {
+      "title_ta": "தல அறிமுகம்",
+      "slug": "overview",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "ஸ்தல வரலாறு",
+      "slug": "history",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "புராண மரபு",
+      "slug": "mythology",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "மூலவர் மற்றும் திருக்கோலம்",
+      "slug": "deity",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "கோவில் கட்டிடக்கலை",
+      "slug": "architecture",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "வழிபாடு மற்றும் சடங்குகள்",
+      "slug": "rituals",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "முக்கிய திருவிழாக்கள்",
+      "slug": "festivals",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "இலக்கியச் சான்றுகள்",
+      "slug": "literature",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "திருப்புகழ் தொடர்புகள்",
+      "slug": "thiruppugazh",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "யாத்திரை வழிகாட்டி",
+      "slug": "pilgrimage",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "சின்னங்கள் மற்றும் அடையாளங்கள்",
+      "slug": "symbols",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "உள்ளூர் மரபுகள்",
+      "slug": "traditions",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "தீர்த்தங்கள்",
+      "slug": "theertham",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "ஸ்தல விருட்சம்",
+      "slug": "sacred-tree",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "அருகிலுள்ள புனிதத் தலங்கள்",
+      "slug": "nearby",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "குடும்ப யாத்திரை",
+      "slug": "family-guide",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "குழந்தைகள் அறிமுகம்",
+      "slug": "kids-guide",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "அணுகல்திறன் வழிகாட்டி",
+      "slug": "accessibility",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "அடிக்கடி கேட்கப்படும் கேள்விகள்",
+      "slug": "faq",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "ஆதாரங்கள் மற்றும் சரிபார்ப்பு",
+      "slug": "sources",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "விழா இணைப்புகள்",
+      "slug": "festival-map",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "ஸ்லோகா இணைப்புகள்",
+      "slug": "sloka-map",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "பாராயணம் மற்றும் ஆடியோ",
+      "slug": "audio-map",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "வரலாற்றுக் காலவரிசை",
+      "slug": "timeline",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "படத்தொகுப்பு metadata",
+      "slug": "gallery-map",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "SEO சுருக்கம்",
+      "slug": "seo-summary",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "AI knowledge graph",
+      "slug": "ai-knowledge",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "பயண checklist",
+      "slug": "travel-checklist",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "பக்தி நடைமுறை",
+      "slug": "devotional-practice",
+      "temple": "சென்னிமலை"
+    },
+    {
+      "title_ta": "தொடர்புடைய முருகன் தலங்கள்",
+      "slug": "related-temples",
+      "temple": "சென்னிமலை"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+(()=>{'use strict';window.OSBConceptSearch={async expand(query){const data=await fetch('data/search-concepts.json').then(r=>r.json());const q=String(query||'').toLocaleLowerCase();const hit=data.find(x=>x.terms.some(t=>q.includes(t.toLocaleLowerCase())));return hit?hit.terms:[query]}}})();

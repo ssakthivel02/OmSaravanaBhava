@@ -1,0 +1,176 @@
+--- release152/assets/css/osb44.css
++++ release153/assets/css/osb44.css
+@@ -179,3 +179,6 @@
+   .player-status{grid-column:auto}
+   .player-art{width:52px;height:52px;flex-basis:52px}
+ }
++/* Release 153 — verified text player links */
++.player-launch-link{display:inline-flex;align-items:center;gap:.45rem}
++.card .player-launch-link{margin-top:.5rem}
+--- release152/assets/js/osb44.js
++++ release153/assets/js/osb44.js
+@@ -1,6 +1,6 @@
+ window.OSB = {};
+ 
+-OSB.RELEASE = '150';
++OSB.RELEASE = '153';
+ 
+ OSB.byId = id => document.getElementById(id);
+ 
+--- release152/service-worker.js
++++ release153/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '152';
++const RELEASE = '153';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+--- release152/slokas/kanda-sashti-kavasam.html
++++ release153/slokas/kanda-sashti-kavasam.html
+@@ -26,4 +26,4 @@
+ <button type="button" class="btn secondary" data-speech-action="pause">Pause</button>
+ <button type="button" class="btn secondary" data-speech-action="stop">Stop</button>
+ <p data-speech-status role="status" aria-live="polite">Uses the Tamil voice installed on this device. No recording is downloaded.</p>
+-</div><div class="grid"><article class="card"><h3>தமிழ் வெளியீட்டு குறிப்பு</h3><p>இந்த வெளியீடு பதிவேற்றப்பட்ட மூலத் தொகுப்பில் உள்ள தொடக்கப் பகுதியை மட்டும் ஆதாரத்துடன் வெளியிடுகிறது. முழுமையான விமர்சனப் பதிப்பு இதுவரை வெளியிடப்படவில்லை.</p></article><article class="card"><h3>English publication note</h3><p>This release publishes only the source-linked opening extract found in the uploaded compilation. It is not yet a complete critical edition.</p></article></div><h3>Traditional devotional themes</h3><ul><li>Devotional protection theme</li><li>Courage theme</li><li>Sashti reflection</li></ul><div class="card"><strong>Indexing status:</strong> This page remains <code>noindex,follow</code> until a complete, consistently reviewed edition is prepared. The extract above is source linked; completeness is not claimed.</div></section><section class="grid" style="margin-top:22px"><article class="card"><h2>Six temple-linked sections</h2><ul><li><a href="../temples/thirupparamkundram.html">Thirupparamkundram Murugan Temple</a></li><li><a href="../temples/thiruchendur.html">Thiruchendur Murugan Temple</a></li><li><a href="../temples/palani.html">Palani Murugan Temple</a></li><li><a href="../temples/swamimalai.html">Swamimalai Murugan Temple</a></li><li><a href="../temples/thiruthani.html">Thiruthani Murugan Temple</a></li><li><a href="../temples/pazhamudircholai.html">Pazhamudircholai Murugan Temple</a></li></ul></article><article class="card"><h2>Source record</h2><p>The uploaded compilation identifies “கந்தர் கவசங்கள் ஆறு” and attributes it to Sri Devaraya Swamigal.</p><p><a class="btn secondary" href="../sources.html#src-kandar-kavasangal-aaru">View source record</a></p></article><article class="card"><h2>Related festival</h2><p><a href="../festivals/skanda-sashti.html">Skanda Sashti</a></p></article></section><p><a class="btn secondary" href="../sloka-library.html">Back to Slokas</a></p></main><footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer></body></html>+</div><div class="grid"><article class="card"><h3>தமிழ் வெளியீட்டு குறிப்பு</h3><p>இந்த வெளியீடு பதிவேற்றப்பட்ட மூலத் தொகுப்பில் உள்ள தொடக்கப் பகுதியை மட்டும் ஆதாரத்துடன் வெளியிடுகிறது. முழுமையான விமர்சனப் பதிப்பு இதுவரை வெளியிடப்படவில்லை.</p></article><article class="card"><h3>English publication note</h3><p>This release publishes only the source-linked opening extract found in the uploaded compilation. It is not yet a complete critical edition.</p></article></div><h3>Traditional devotional themes</h3><ul><li>Devotional protection theme</li><li>Courage theme</li><li>Sashti reflection</li></ul><div class="card"><strong>Indexing status:</strong> This page remains <code>noindex,follow</code> until a complete, consistently reviewed edition is prepared. The extract above is source linked; completeness is not claimed.</div></section><section class="grid" style="margin-top:22px"><article class="card"><h2>Six temple-linked sections</h2><ul><li><a href="../temples/thirupparamkundram.html">Thirupparamkundram Murugan Temple</a></li><li><a href="../temples/thiruchendur.html">Thiruchendur Murugan Temple</a></li><li><a href="../temples/palani.html">Palani Murugan Temple</a></li><li><a href="../temples/swamimalai.html">Swamimalai Murugan Temple</a></li><li><a href="../temples/thiruthani.html">Thiruthani Murugan Temple</a></li><li><a href="../temples/pazhamudircholai.html">Pazhamudircholai Murugan Temple</a></li></ul></article><article class="card"><h2>Source record</h2><p>The uploaded compilation identifies “கந்தர் கவசங்கள் ஆறு” and attributes it to Sri Devaraya Swamigal.</p><p><a class="btn secondary" href="../sources.html#src-kandar-kavasangal-aaru">View source record</a></p></article><article class="card"><h2>Related festival</h2><p><a href="../festivals/skanda-sashti.html">Skanda Sashti</a></p></article></section><p><a class="btn secondary" href="../sloka-library.html">Back to Slokas</a></p><p><a class="btn player-launch-link" href="../audio-library.html?track=kanda-sashti-kavasam">▶ Open in read-aloud player</a></p></main><footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer></body></html>--- release152/slokas/om-saravana-bhava.html
++++ release153/slokas/om-saravana-bhava.html
+@@ -51,7 +51,7 @@
+ 
+ </section>
+ <p><a class="btn secondary" href="../sloka-library.html">Back to Slokas</a></p>
+-</main>
++<p><a class="btn player-launch-link" href="../audio-library.html?track=saravanabhava-mantra">▶ Open in read-aloud player</a></p></main>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+ </html>
+--- release152/slokas/skanda-guru-kavasam.html
++++ release153/slokas/skanda-guru-kavasam.html
+@@ -92,7 +92,7 @@
+ <article class="card"><h2>Related devotion</h2><ul><li><a href="kanda-sashti-kavasam.html">Kanda Sashti Kavasam</a></li><li><a href="om-saravana-bhava.html">Saravanabhava Mantra</a></li><li><a href="../thiruppugazh.html">Thiruppugazh Library</a></li></ul></article>
+ </section>
+ <p><a class="btn secondary" href="../sloka-library.html">Back to Sloka Library</a></p>
+-</main>
++<p><a class="btn player-launch-link" href="../audio-library.html?track=skanda-guru-kavasam">▶ Open in read-aloud player</a></p></main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+--- release152/slokas/subramanya-gayatri.html
++++ release153/slokas/subramanya-gayatri.html
+@@ -51,7 +51,7 @@
+ 
+ </section>
+ <p><a class="btn secondary" href="../sloka-library.html">Back to Slokas</a></p>
+-</main>
++<p><a class="btn player-launch-link" href="../audio-library.html?track=kanda-gayatri">▶ Open in read-aloud player</a></p></main>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+ </html>
+--- release152/thiruppugazh/0006-muththaiththaru.html
++++ release153/thiruppugazh/0006-muththaiththaru.html
+@@ -83,7 +83,7 @@
+ <article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 6 (நூல்)</p><p>The Tamil song text was manually checked before publication. OCR-only material was excluded.</p><p><a class="btn secondary" href="../sources.html#src-thiruppugazh-valluvar-vallalar-vattam">Open source record</a></p></article>
+ </section>
+ <nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0007-arukku-mangkaiyar.html">அருக்கு மங்கையர் →</a></nav>
+-</main>
++<p><a class="btn player-launch-link" href="../audio-library.html?track=thiruppugazh-0006">▶ Open in read-aloud player</a></p></main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+--- release152/thiruppugazh/0007-arukku-mangkaiyar.html
++++ release153/thiruppugazh/0007-arukku-mangkaiyar.html
+@@ -83,7 +83,7 @@
+ <article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 7 (திருப்பரங்குன்றம்)</p><p>The Tamil song text was manually checked before publication. OCR-only material was excluded.</p><p><a class="btn secondary" href="../sources.html#src-thiruppugazh-valluvar-vallalar-vattam">Open source record</a></p></article>
+ </section>
+ <nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0006-muththaiththaru.html">← முத்தைத்தரு</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0008-unaith-thinam.html">உனைத் தினம் →</a></nav>
+-</main>
++<p><a class="btn player-launch-link" href="../audio-library.html?track=thiruppugazh-0007">▶ Open in read-aloud player</a></p></main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+--- release152/thiruppugazh/0008-unaith-thinam.html
++++ release153/thiruppugazh/0008-unaith-thinam.html
+@@ -83,7 +83,7 @@
+ <article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 8 (திருப்பரங்குன்றம்)</p><p>The Tamil song text was manually checked before publication. OCR-only material was excluded.</p><p><a class="btn secondary" href="../sources.html#src-thiruppugazh-valluvar-vallalar-vattam">Open source record</a></p></article>
+ </section>
+ <nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0007-arukku-mangkaiyar.html">← அருக்கு மங்கையர்</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0009-karuvadaindhu.html">கருவடைந்து →</a></nav>
+-</main>
++<p><a class="btn player-launch-link" href="../audio-library.html?track=thiruppugazh-0008">▶ Open in read-aloud player</a></p></main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+--- release152/thiruppugazh/0009-karuvadaindhu.html
++++ release153/thiruppugazh/0009-karuvadaindhu.html
+@@ -83,7 +83,7 @@
+ <article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 9 (திருப்பரங்குன்றம்)</p><p>The Tamil song text was manually checked before publication. OCR-only material was excluded.</p><p><a class="btn secondary" href="../sources.html#src-thiruppugazh-valluvar-vallalar-vattam">Open source record</a></p></article>
+ </section>
+ <nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0008-unaith-thinam.html">← உனைத் தினம்</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0010-karukkum-anjana.html">கறுக்கும் அஞ்சன →</a></nav>
+-</main>
++<p><a class="btn player-launch-link" href="../audio-library.html?track=thiruppugazh-0009">▶ Open in read-aloud player</a></p></main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+--- release152/thiruppugazh/0010-karukkum-anjana.html
++++ release153/thiruppugazh/0010-karukkum-anjana.html
+@@ -83,7 +83,7 @@
+ <article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 10 (திருப்பரங்குன்றம்)</p><p>The Tamil song text was manually checked before publication. OCR-only material was excluded.</p><p><a class="btn secondary" href="../sources.html#src-thiruppugazh-valluvar-vallalar-vattam">Open source record</a></p></article>
+ </section>
+ <nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0009-karuvadaindhu.html">← கருவடைந்து</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0012-kadhadarungkayal.html">காதடருங்கயல் →</a></nav>
+-</main>
++<p><a class="btn player-launch-link" href="../audio-library.html?track=thiruppugazh-0010">▶ Open in read-aloud player</a></p></main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+--- release152/thiruppugazh/0012-kadhadarungkayal.html
++++ release153/thiruppugazh/0012-kadhadarungkayal.html
+@@ -83,7 +83,7 @@
+ <article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 12 (திருப்பரங்குன்றம்)</p><p>The Tamil song text was manually checked before publication. OCR-only material was excluded.</p><p><a class="btn secondary" href="../sources.html#src-thiruppugazh-valluvar-vallalar-vattam">Open source record</a></p></article>
+ </section>
+ <nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0010-karukkum-anjana.html">← கறுக்கும் அஞ்சன</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0013-sandhadham-bandha.html">சந்ததம் பந்த →</a></nav>
+-</main>
++<p><a class="btn player-launch-link" href="../audio-library.html?track=thiruppugazh-0012">▶ Open in read-aloud player</a></p></main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+--- release152/thiruppugazh/0013-sandhadham-bandha.html
++++ release153/thiruppugazh/0013-sandhadham-bandha.html
+@@ -63,7 +63,7 @@
+ <article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 13 (திருப்பரங்குன்றம்)</p><p>The Tamil song text was manually checked before publication. OCR-only material was excluded.</p><p><a class="btn secondary" href="../sources.html#src-thiruppugazh-valluvar-vallalar-vattam">Open source record</a></p></article>
+ </section>
+ <nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0012-kadhadarungkayal.html">← காதடருங்கயல்</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0015-thadakkai-pangkayam.html">தடக்கைப் பங்கயம் →</a></nav>
+-</main>
++<p><a class="btn player-launch-link" href="../audio-library.html?track=thiruppugazh-0013">▶ Open in read-aloud player</a></p></main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+--- release152/thiruppugazh/0015-thadakkai-pangkayam.html
++++ release153/thiruppugazh/0015-thadakkai-pangkayam.html
+@@ -75,7 +75,7 @@
+ <article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 15 (திருப்பரங்குன்றம்)</p><p>The Tamil song text was manually checked before publication. OCR-only material was excluded.</p><p><a class="btn secondary" href="../sources.html#src-thiruppugazh-valluvar-vallalar-vattam">Open source record</a></p></article>
+ </section>
+ <nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0013-sandhadham-bandha.html">← சந்ததம் பந்த</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0016-padhiththa-senchandha.html">பதித்த செஞ்சந்த →</a></nav>
+-</main>
++<p><a class="btn player-launch-link" href="../audio-library.html?track=thiruppugazh-0015">▶ Open in read-aloud player</a></p></main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+--- release152/thiruppugazh/0016-padhiththa-senchandha.html
++++ release153/thiruppugazh/0016-padhiththa-senchandha.html
+@@ -83,7 +83,7 @@
+ <article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 16 (திருப்பரங்குன்றம்)</p><p>The Tamil song text was manually checked before publication. OCR-only material was excluded.</p><p><a class="btn secondary" href="../sources.html#src-thiruppugazh-valluvar-vallalar-vattam">Open source record</a></p></article>
+ </section>
+ <nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0015-thadakkai-pangkayam.html">← தடக்கைப் பங்கயம்</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0017-poruppurung.html">பொருப்புறுங் →</a></nav>
+-</main>
++<p><a class="btn player-launch-link" href="../audio-library.html?track=thiruppugazh-0016">▶ Open in read-aloud player</a></p></main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+--- release152/thiruppugazh/0017-poruppurung.html
++++ release153/thiruppugazh/0017-poruppurung.html
+@@ -75,7 +75,7 @@
+ <article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 17 (திருப்பரங்குன்றம்)</p><p>The Tamil song text was manually checked before publication. OCR-only material was excluded.</p><p><a class="btn secondary" href="../sources.html#src-thiruppugazh-valluvar-vallalar-vattam">Open source record</a></p></article>
+ </section>
+ <nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0016-padhiththa-senchandha.html">← பதித்த செஞ்சந்த</a><a class="btn" href="../thiruppugazh.html">All songs</a></nav>
+-</main>
++<p><a class="btn player-launch-link" href="../audio-library.html?track=thiruppugazh-0017">▶ Open in read-aloud player</a></p></main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
+ </body>

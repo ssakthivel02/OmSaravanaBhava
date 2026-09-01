@@ -1,0 +1,44 @@
+{
+  "items": [
+    {
+      "label": "Murugan Literature Library",
+      "url": "/literature/index.html"
+    },
+    {
+      "label": "Thiruppugazh Foundation",
+      "url": "/literature/thiruppugazh.html"
+    },
+    {
+      "label": "Kandar Anubhuti",
+      "url": "/literature/kandar-anubhuti.html"
+    },
+    {
+      "label": "Kandar Alankaram",
+      "url": "/literature/kandar-alankaram.html"
+    },
+    {
+      "label": "Kandar Sashti Kavasam",
+      "url": "/literature/kandar-sashti-kavasam.html"
+    },
+    {
+      "label": "Subramanya Bhujangam",
+      "url": "/literature/subramanya-bhujangam.html"
+    },
+    {
+      "label": "Murugan in Sangam Literature",
+      "url": "/literature/sangam-murugan.html"
+    },
+    {
+      "label": "Reader Guide",
+      "url": "/literature/reader-guide.html"
+    },
+    {
+      "label": "Murugan Literature Glossary",
+      "url": "/literature/glossary.html"
+    },
+    {
+      "label": "Sources Review Queue",
+      "url": "/literature/sources-review.html"
+    }
+  ]
+}

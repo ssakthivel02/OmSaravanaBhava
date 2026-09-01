@@ -1,0 +1,11 @@
+{
+  "release": "238",
+  "required": [
+    "/assets/js/effective-route-registry.mjs",
+    "/assets/js/site-directory.mjs"
+  ],
+  "forbidden": [
+    "/assets/js/site-directory.js"
+  ],
+  "expected": "PASS"
+}

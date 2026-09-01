@@ -1,0 +1,22 @@
+[
+  {
+    "area": "Slokas",
+    "missing": "Full canonical verses for kavachams",
+    "priority": "High"
+  },
+  {
+    "area": "Temples",
+    "missing": "Tamil history for all temple detail pages",
+    "priority": "High"
+  },
+  {
+    "area": "Audio",
+    "missing": "Licensed audio files and rights metadata",
+    "priority": "Medium"
+  },
+  {
+    "area": "Knowledge graph",
+    "missing": "More entities and relationships",
+    "priority": "High"
+  }
+]

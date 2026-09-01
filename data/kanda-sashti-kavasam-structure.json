@@ -1,0 +1,22 @@
+[
+  {
+    "id": "kaappu",
+    "titleTa": "காப்பு",
+    "status": "reviewed-opening"
+  },
+  {
+    "id": "nool",
+    "titleTa": "நூல்",
+    "status": "reviewed-opening"
+  },
+  {
+    "id": "protection-map",
+    "titleTa": "உடல் பாதுகாப்பு அமைப்பு",
+    "status": "structural-register"
+  },
+  {
+    "id": "closing",
+    "titleTa": "நிறைவு",
+    "status": "source-review-required"
+  }
+]

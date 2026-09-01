@@ -1,0 +1,311 @@
+Release 224 — Local Test Evidence
+Generated: 2026-07-14
+Base commit: 03f8c23e50aea1323211d2ca44cf4cddcf0deec4
+
+LOCAL PACKAGE RESULT: PASS
+GITHUB ACTIONS RESULT: NOT RUN
+DEPLOYED PRODUCTION RESULT: NOT RUN
+
+$ node --check assets/js/reading-notes.mjs
+Exit code: 0
+
+
+$ node --check assets/js/reader-experience.js
+Exit code: 0
+
+
+$ node --check assets/js/pwa-register.js
+Exit code: 0
+
+
+$ node --check assets/js/maintenance-centre.mjs
+Exit code: 0
+
+
+$ node --test tests/reading-notes.test.mjs
+Exit code: 0
+TAP version 13
+# Subtest: release and storage identities are stable
+ok 1 - release and storage identities are stable
+  ---
+  duration_ms: 0.909601
+  type: 'test'
+  ...
+# Subtest: same-origin note routes are accepted and external URLs rejected
+ok 2 - same-origin note routes are accepted and external URLs rejected
+  ---
+  duration_ms: 0.182576
+  type: 'test'
+  ...
+# Subtest: heading ids are deterministic and bounded
+ok 3 - heading ids are deterministic and bounded
+  ---
+  duration_ms: 1.798241
+  type: 'test'
+  ...
+# Subtest: records require a note or section bookmark
+ok 4 - records require a note or section bookmark
+  ---
+  duration_ms: 0.355856
+  type: 'test'
+  ...
+# Subtest: selected devotional text and page content fields are discarded
+ok 5 - selected devotional text and page content fields are discarded
+  ---
+  duration_ms: 0.175524
+  type: 'test'
+  ...
+# Subtest: note length and kind are bounded by configuration
+ok 6 - note length and kind are bounded by configuration
+  ---
+  duration_ms: 0.162705
+  type: 'test'
+  ...
+# Subtest: upsert edits one id without duplicating it
+ok 7 - upsert edits one id without duplicating it
+  ---
+  duration_ms: 0.345621
+  type: 'test'
+  ...
+# Subtest: storage roundtrip applies capacity and removal
+ok 8 - storage roundtrip applies capacity and removal
+  ---
+  duration_ms: 35.200582
+  type: 'test'
+  ...
+# Subtest: filters, metrics and section href use local records
+ok 9 - filters, metrics and section href use local records
+  ---
+  duration_ms: 1.125587
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 158.399792
+
+$ node --test tests/reader-experience.test.mjs
+Exit code: 0
+TAP version 13
+# Subtest: release and storage identities are stable
+ok 1 - release and storage identities are stable
+  ---
+  duration_ms: 1.245381
+  type: 'test'
+  ...
+# Subtest: same-origin route normalisation rejects external URLs
+ok 2 - same-origin route normalisation rejects external URLs
+  ---
+  duration_ms: 0.209506
+  type: 'test'
+  ...
+# Subtest: eligible routes require allowed status and configured path
+ok 3 - eligible routes require allowed status and configured path
+  ---
+  duration_ms: 0.551912
+  type: 'test'
+  ...
+# Subtest: eligible route normalisation excludes drafts and unrelated pages
+ok 4 - eligible route normalisation excludes drafts and unrelated pages
+  ---
+  duration_ms: 7.372601
+  type: 'test'
+  ...
+# Subtest: progress calculation and restoration are bounded
+ok 5 - progress calculation and restoration are bounded
+  ---
+  duration_ms: 0.272831
+  type: 'test'
+  ...
+# Subtest: progress storage keeps no devotional text field
+ok 6 - progress storage keeps no devotional text field
+  ---
+  duration_ms: 0.218079
+  type: 'test'
+  ...
+# Subtest: upsert deduplicates routes and marks completion at threshold
+ok 7 - upsert deduplicates routes and marks completion at threshold
+  ---
+  duration_ms: 0.354985
+  type: 'test'
+  ...
+# Subtest: storage roundtrip respects capacity and recency
+ok 8 - storage roundtrip respects capacity and recency
+  ---
+  duration_ms: 8.673482
+  type: 'test'
+  ...
+# Subtest: workspace filters and metrics use route and local progress data
+ok 9 - workspace filters and metrics use route and local progress data
+  ---
+  duration_ms: 0.908138
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 141.282078
+
+$ node --test tests/maintenance-centre.test.mjs
+Exit code: 0
+TAP version 13
+# Subtest: release and registry identities are stable
+ok 1 - release and registry identities are stable
+  ---
+  duration_ms: 0.973206
+  type: 'test'
+  ...
+# Subtest: same-origin path normalisation rejects external resources
+ok 2 - same-origin path normalisation rejects external resources
+  ---
+  duration_ms: 0.263847
+  type: 'test'
+  ...
+# Subtest: JSON path lookup and equality checks are deterministic
+ok 3 - JSON path lookup and equality checks are deterministic
+  ---
+  duration_ms: 0.69638
+  type: 'test'
+  ...
+# Subtest: route registry requires one maintenance route and no duplicates
+ok 4 - route registry requires one maintenance route and no duplicates
+  ---
+  duration_ms: 0.241014
+  type: 'test'
+  ...
+# Subtest: audit configuration requires the current release and files
+ok 5 - audit configuration requires the current release and files
+  ---
+  duration_ms: 0.334625
+  type: 'test'
+  ...
+# Subtest: text count checks require exactly one sitemap entry
+ok 6 - text count checks require exactly one sitemap entry
+  ---
+  duration_ms: 0.173741
+  type: 'test'
+  ...
+# Subtest: check payload supports all configured check modes
+ok 7 - check payload supports all configured check modes
+  ---
+  duration_ms: 0.268044
+  type: 'test'
+  ...
+# Subtest: resource checks record HTTP and marker results
+ok 8 - resource checks record HTTP and marker results
+  ---
+  duration_ms: 0.316787
+  type: 'test'
+  ...
+# Subtest: path auditing preserves independent failures
+ok 9 - path auditing preserves independent failures
+  ---
+  duration_ms: 0.729149
+  type: 'test'
+  ...
+# Subtest: transient cache cleanup preserves static and user caches
+ok 10 - transient cache cleanup preserves static and user caches
+  ---
+  duration_ms: 0.582959
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 113.213781
+
+$ python -m py_compile tools/production_smoke.py tools/release_224_validate.py tests/test_site_audit.py
+Exit code: 0
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/generated/interface/models.py", line 30820, in hydrate_crdt_from_proto
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/remote.py", line 749, in __call__
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/client.py", line 150, in call
+artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
+
+$ python tools/release_224_validate.py --root . --package-mode --report artifacts/release-224-package-validation.json
+Exit code: 0
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/generated/interface/models.py", line 30820, in hydrate_crdt_from_proto
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/remote.py", line 749, in __call__
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/client.py", line 150, in call
+artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
+{
+  "release": 224,
+  "base_commit": "03f8c23e50aea1323211d2ca44cf4cddcf0deec4",
+  "mode": "package",
+  "status": "PASS",
+  "errors": [],
+  "checks": [
+    "exists: reading-notes.html",
+    "exists: assets/css/reading-notes.css",
+    "exists: assets/js/reading-notes.mjs",
+    "exists: data/reading-notes.json",
+    "exists: data/reading-workspace.json",
+    "exists: assets/js/pwa-register.js",
+    "exists: assets/js/reader-experience.js",
+    "exists: index.html",
+    "exists: platform.html",
+    "exists: discovery.html",
+    "exists: reading-workspace.html",
+    "exists: maintenance.html",
+    "exists: assets/js/maintenance-centre.mjs",
+    "exists: data/maintenance-checks.json",
+    "exists: data/site-routes.json",
+    "exists: sitemap.xml",
+    "exists: service-worker.js",
+    "exists: quality/site-audit-config.json",
+    "exists: tools/production_smoke.py",
+    "exists: tests/test_site_audit.py",
+    "exists: tests/reading-notes.test.mjs",
+    "exists: tests/reader-experience.test.mjs",
+    "exists: tests/maintenance-centre.test.mjs",
+    "exists: .github/workflows/static-site-integrity.yml",
+    "exists: .github/workflows/production-smoke.yml",
+    "exists: manifest-release-224.json"
+  ],
+  "github_actions": "NOT_RUN",
+  "deployed_production": "NOT_RUN"
+}
+
+$ git apply --check release.patch
+Exit code: 0
+
+
+JSON files parsed: 7
+Sitemap XML parsed: PASS
+Same-origin note-route enforcement: PASS
+One-hundred-record storage cap: PASS
+Five-hundred-character note cap: PASS
+Section-bookmark-only records: PASS
+Duplicate-id update handling: PASS
+Tamil and English note filtering: PASS
+Selected devotional text storage: ABSENT
+Page-body content storage: ABSENT
+Protected browser-state separation: PASS
+Optional service-worker caching: PASS
+Reader-toolbar event integration: PASS

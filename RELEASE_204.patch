@@ -1,0 +1,103 @@
+--- before/knowledge-graph-phase-4.html
++++ release204/knowledge-graph-phase-4.html
+@@ -0,0 +1,24 @@
++<!doctype html><html lang="ta"><head>
++<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Murugan Knowledge Graph Phase 4 | Om Saravana Bhava</title>
++<meta name="description" content="Expanded relationship graph covering Murugan, consorts, symbols, temples, festivals and literature.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/knowledge-graph-phase-4.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++</head><body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Verified Murugan digital platform</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Murugan Knowledge Graph Phase 4</span></p></nav>
++<section class="card"><h1 class="section-title" lang="ta">முருகன் அறிவுக் கோப்பு கட்டம் 4</h1><h2>Murugan Knowledge Graph Phase 4</h2><p>Expanded relationship graph covering Murugan, consorts, symbols, temples, festivals and literature.</p></section>
++<section class="card"><h2>Graph summary</h2><p>13 nodes and 12 relationships.</p></section>
++</main>
++<footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body></html>--- before/data/knowledge-graph.json
++++ release204/data/knowledge-graph.json
+@@ -59,6 +59,24 @@
+       "type": "Saint",
+       "labelTa": "அருணகிரிநாதர்",
+       "labelEn": "Arunagirinathar"
++    },
++    {
++      "id": "valli",
++      "type": "Deity",
++      "labelTa": "வள்ளி",
++      "labelEn": "Valli"
++    },
++    {
++      "id": "deivanai",
++      "type": "Deity",
++      "labelTa": "தெய்வானை",
++      "labelEn": "Deivanai"
++    },
++    {
++      "id": "seval",
++      "type": "Symbol",
++      "labelTa": "சேவல்",
++      "labelEn": "Rooster"
+     }
+   ],
+   "edges": [
+@@ -106,7 +124,22 @@
+       "from": "arunagirinathar",
+       "to": "thiruppugazh",
+       "relation": "author-of"
++    },
++    {
++      "from": "murugan",
++      "to": "valli",
++      "relation": "consort-of"
++    },
++    {
++      "from": "murugan",
++      "to": "deivanai",
++      "relation": "consort-of"
++    },
++    {
++      "from": "murugan",
++      "to": "seval",
++      "relation": "emblem-associated-with"
+     }
+   ],
+-  "release": 197
++  "release": 204
+ }
+--- before/service-worker.js
++++ release204/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '203';
++const RELEASE = '204';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -156,7 +156,8 @@
+   "/data/version-3-status.json",
+   "/thiruppugazh-volume-6.html",
+   "/thiruppugazh-volume-7.html",
+-  "/temple-travel-guidance.html"
++  "/temple-travel-guidance.html",
++  "/knowledge-graph-phase-4.html"
+ ];
+ 
+ self.addEventListener('install', event => {
+--- before/sitemap.xml
++++ release204/sitemap.xml
+@@ -238,4 +238,5 @@
+   <url><loc>https://omsaravanabhava.org/thiruppugazh-volume-6.html</loc><lastmod>2026-07-13</lastmod><priority>0.6</priority></url>
+   <url><loc>https://omsaravanabhava.org/thiruppugazh-volume-7.html</loc><lastmod>2026-07-13</lastmod><priority>0.6</priority></url>
+   <url><loc>https://omsaravanabhava.org/temple-travel-guidance.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
++  <url><loc>https://omsaravanabhava.org/knowledge-graph-phase-4.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+ </urlset>

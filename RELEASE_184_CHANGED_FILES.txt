@@ -1,0 +1,4 @@
+data/publication-history.json
+publication-history.html
+service-worker.js
+sitemap.xml

@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://omsaravanabhava.org/schemas/murugan-song-record.schema.json",
+  "title": "OmSaravanaBhava Governed Murugan Song Record",
+  "description": "A source-aware record for Murugan devotional songs. Canonical text, learner-friendly text, meaning and audio rights are separate evidence fields.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "collectionId",
+    "titleTa",
+    "titleEn",
+    "author",
+    "publicationStatus",
+    "source",
+    "rights",
+    "review"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{1,119}$"
+    },
+    "collectionId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{1,79}$"
+    },
+    "sequence": {
+      "type": ["integer", "null"],
+      "minimum": 1
+    },
+    "titleTa": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "titleEn": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "alternateTitles": {
+      "type": "array",
+      "maxItems": 30,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1, "maxLength": 240}
+    },
+    "author": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["displayName", "verificationStatus"],
+      "properties": {
+        "displayName": {"type": "string", "minLength": 1, "maxLength": 240},
+        "nameTa": {"type": "string", "maxLength": 240},
+        "nameEn": {"type": "string", "maxLength": 240},
+        "verificationStatus": {
+          "enum": ["verified", "traditional-attribution", "disputed", "source-required"]
+        },
+        "evidenceNote": {"type": "string", "maxLength": 2000}
+      }
+    },
+    "canonicalTamil": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["text", "verificationStatus"],
+      "properties": {
+        "text": {"type": "string", "minLength": 1},
+        "meterOrRhythm": {"type": "string", "maxLength": 1000},
+        "venueOrTemple": {"type": "string", "maxLength": 500},
+        "verificationStatus": {
+          "enum": ["verified", "partial-reviewed", "ocr-review-required", "source-required"]
+        }
+      }
+    },
+    "easyReadingTamil": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["text", "method", "humanReviewed"],
+      "properties": {
+        "text": {"type": "string", "minLength": 1},
+        "method": {
+          "const": "word-spacing-and-punctuation-only"
+        },
+        "changeNotes": {
+          "type": "array",
+          "items": {"type": "string", "maxLength": 1000}
+        },
+        "humanReviewed": {"type": "boolean"}
+      }
+    },
+    "transliteration": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["system", "text", "humanReviewed"],
+      "properties": {
+        "system": {
+          "enum": ["ISO-15919", "learner-friendly-roman", "other-documented"]
+        },
+        "text": {"type": "string", "minLength": 1},
+        "humanReviewed": {"type": "boolean"}
+      }
+    },
+    "meaning": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "literalTa": {"type": "string"},
+        "devotionalTa": {"type": "string"},
+        "summaryEn": {"type": "string"},
+        "commentaryRightsStatus": {
+          "enum": ["original-site-summary", "licensed", "public-domain", "permission-required", "not-included"]
+        },
+        "humanReviewed": {"type": "boolean"}
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["verificationStatus", "sourceIds"],
+      "properties": {
+        "verificationStatus": {
+          "enum": ["verified-primary", "verified-secondary", "edition-selection-required", "source-required"]
+        },
+        "sourceIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1, "maxLength": 240}
+        },
+        "editionTitle": {"type": "string", "maxLength": 1000},
+        "publisher": {"type": "string", "maxLength": 500},
+        "publicationYear": {"type": ["integer", "null"], "minimum": 1, "maximum": 2100},
+        "pageOrSection": {"type": "string", "maxLength": 500},
+        "sourceUrls": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "format": "uri"}
+        },
+        "notes": {"type": "string", "maxLength": 4000}
+      }
+    },
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["textRightsStatus", "audioRightsStatus"],
+      "properties": {
+        "textRightsStatus": {
+          "enum": ["public-domain", "licensed", "permission-confirmed", "quotation-only", "permission-required", "unknown"]
+        },
+        "audioRightsStatus": {
+          "enum": ["owned", "licensed", "permission-confirmed", "device-tts-only", "permission-required", "not-available"]
+        },
+        "rightsEvidence": {"type": "string", "maxLength": 4000}
+      }
+    },
+    "audio": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "enum": ["owned-recording", "licensed-recording", "device-tts", "not-published"]
+        },
+        "url": {"type": "string", "format": "uri-reference"},
+        "durationSeconds": {"type": ["number", "null"], "minimum": 0},
+        "performer": {"type": "string", "maxLength": 500},
+        "synchronisedLyrics": {"type": "boolean"},
+        "rightsRecordId": {"type": "string", "maxLength": 240}
+      }
+    },
+    "route": {
+      "type": ["string", "null"],
+      "pattern": "^(?:/|[a-zA-Z0-9])"
+    },
+    "publicationStatus": {
+      "enum": [
+        "draft",
+        "source-required",
+        "ocr-review-required",
+        "partial-reviewed",
+        "published-source-linked",
+        "withheld-rights-review"
+      ]
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["humanReviewRequired", "editorialStatus"],
+      "properties": {
+        "humanReviewRequired": {"type": "boolean"},
+        "editorialStatus": {
+          "enum": ["not-started", "source-check", "tamil-proofread", "meaning-review", "rights-review", "approved"]
+        },
+        "reviewedBy": {"type": "array", "items": {"type": "string", "maxLength": 240}},
+        "reviewedAt": {"type": ["string", "null"], "format": "date-time"},
+        "notes": {"type": "string", "maxLength": 4000}
+      }
+    }
+  }
+}

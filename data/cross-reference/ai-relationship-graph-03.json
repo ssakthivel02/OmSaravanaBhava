@@ -1,0 +1,33 @@
+{
+  "batch": 25,
+  "type": "ai-relationship-graph",
+  "nodes": [
+    {
+      "id": "work-2",
+      "label": "கந்தர் அனுபூதி",
+      "kind": "literature"
+    },
+    {
+      "id": "temple-2",
+      "label": "பழனி",
+      "kind": "temple"
+    },
+    {
+      "id": "festival-2",
+      "label": "வைகாசி விசாகம்",
+      "kind": "festival"
+    }
+  ],
+  "edges": [
+    {
+      "from": "work-2",
+      "to": "temple-2",
+      "relationship": "linked_to"
+    },
+    {
+      "from": "work-2",
+      "to": "festival-2",
+      "relationship": "associated_with"
+    }
+  ]
+}

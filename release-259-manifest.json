@@ -1,0 +1,19 @@
+{
+  "release": "259",
+  "title": "Accessibility and Performance Hardening",
+  "sequence": 10,
+  "depends_on": "258",
+  "commit_message": "Release 259: harden accessibility performance and resilient loading",
+  "file_count": 9,
+  "files": [
+    "README-RELEASE-259.md",
+    "assets/css/platform-hardening.css",
+    "assets/js/platform-hardening.mjs",
+    "docs/ACCESSIBILITY-CHECKLIST.md",
+    "docs/PERFORMANCE-BUDGET.md",
+    "docs/RELEASE-259-ROLLBACK.md",
+    "docs/RELEASE-259-VALIDATION.md",
+    "release-259-manifest.json",
+    "scripts/audit-static-html.py"
+  ]
+}

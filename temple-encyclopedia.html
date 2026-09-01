@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ta">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Murugan Temple Encyclopedia | Om Saravana Bhava</title>
+  <meta name="description" content="Explore Murugan temples through a Tamil-first, source-aware and interactive temple encyclopedia.">
+  <meta name="theme-color" content="#080b10">
+  <link rel="canonical" href="https://omsaravanabhava.org/temple-encyclopedia.html">
+  <link rel="stylesheet" href="assets/css/temple-encyclopedia.css">
+  <script type="module" src="assets/js/temple-encyclopedia.mjs"></script>
+  <link rel="stylesheet" href="assets/css/global-experience-2026.css?v=20260727-1">
+  <link rel="stylesheet" href="assets/css/phase7-sacred-places-2026.css?v=20260727-1">
+</head>
+<body class="osb-phase7">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="te-header">
+    <a class="te-brand" href="index.html" aria-label="Om Saravana Bhava home">
+      <span class="te-brand-mark" aria-hidden="true">ॐ</span>
+      <span><strong>ஓம் சரவணபவ</strong><small>Temple Encyclopedia</small></span>
+    </a>
+    <button class="te-menu" type="button" aria-expanded="false" aria-controls="te-nav">Menu</button>
+    <nav id="te-nav" class="te-nav" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+      <a href="thiruppugazh.html">Thiruppugazh</a>
+      <a class="active" href="temple-encyclopedia.html">Temple Encyclopedia</a>
+      <a href="audio-library.html">Audio</a>
+      <a href="ai-search.html">AI Search</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="te-hero">
+      <div class="te-hero-overlay"></div>
+      <div class="te-hero-copy">
+        <p class="te-eyebrow">தமிழ்நாட்டின் முருகன் திருத்தலங்கள்</p>
+        <h1>Murugan Temple Encyclopedia</h1>
+        <p>A reusable, data-driven foundation for Arupadai Veedu and future Murugan temple records.</p>
+        <div class="te-actions">
+          <a class="te-button" href="#temple-browser">Explore temples</a>
+          <a class="te-button te-button-secondary" href="temple-detail.html?id=tiruchendur">Open Tiruchendur</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="temple-browser" class="te-shell">
+      <div class="te-section-heading">
+        <p class="te-eyebrow">Temple browser</p>
+        <h2>Search, filter and continue your pilgrimage</h2>
+        <p>Browse by sacred abode, district or devotional theme. Saved temples remain in this browser.</p>
+      </div>
+
+      <div class="te-toolbar" aria-label="Temple filters">
+        <label>
+          <span>Search temples</span>
+          <input type="search" id="temple-search" placeholder="Search Tamil or English temple name">
+        </label>
+        <label>
+          <span>District</span>
+          <select id="district-filter">
+            <option value="">All districts</option>
+          </select>
+        </label>
+        <label>
+          <span>Temple group</span>
+          <select id="group-filter">
+            <option value="">All groups</option>
+            <option value="Arupadai Veedu">Arupadai Veedu</option>
+          </select>
+        </label>
+        <button id="clear-filters" type="button">Clear filters</button>
+      </div>
+
+      <div class="te-metrics" aria-label="Temple encyclopedia summary">
+        <article><strong id="metric-total">0</strong><span>Published temple records</span></article>
+        <article><strong id="metric-districts">0</strong><span>Districts represented</span></article>
+        <article><strong id="metric-saved">0</strong><span>Saved pilgrimage temples</span></article>
+        <article><strong id="metric-review">0</strong><span>Records awaiting review</span></article>
+      </div>
+
+      <div id="temple-results" class="te-grid" aria-live="polite"></div>
+      <p id="empty-state" class="te-empty" hidden>No temples match the current filters.</p>
+    </section>
+
+    <section class="te-shell te-feature-band">
+      <div>
+        <p class="te-eyebrow">Data-driven foundation</p>
+        <h2>One engine. Many temple experiences.</h2>
+        <p>Release 249A separates temple data, presentation and interaction so future releases can add more temples without duplicating entire pages.</p>
+      </div>
+      <ul>
+        <li>Structured temple JSON records</li>
+        <li>Reusable detail-page components</li>
+        <li>Gallery, festivals and pilgrimage modules</li>
+        <li>SEO and publication-status metadata</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="te-footer">
+    <p>வேலவேல் முருகா! அருள்புரிவாய்!</p>
+    <a href="sources.html">Sources and publication policy</a>
+  </footer>
+  <script defer src="assets/js/global-experience-2026.js?v=20260728-vel2"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "temple_id": "tiruchendur",
+  "temple_name_ta": "திருச்செந்தூர்",
+  "literature": "திருப்புகழ்",
+  "mapped_song_range": "Batch 16 foundation mapping",
+  "review_status": "needs_source_cross_reference",
+  "related_song_ids": [
+    "thiruppugazh-002",
+    "thiruppugazh-012",
+    "thiruppugazh-022",
+    "thiruppugazh-032"
+  ]
+}

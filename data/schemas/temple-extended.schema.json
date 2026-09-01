@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://omsaravanabhava.org/schemas/temple-extended.schema.json",
+  "title": "OmSaravanaBhava Extended Temple Record",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "name_ta",
+    "district",
+    "group",
+    "theme",
+    "image",
+    "quick_profile",
+    "history",
+    "sthala_puranam",
+    "architecture",
+    "festivals",
+    "travel",
+    "gallery_categories",
+    "editorial"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "order": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "name": {
+      "type": "string"
+    },
+    "name_ta": {
+      "type": "string"
+    },
+    "district": {
+      "type": "string"
+    },
+    "group": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "image": {
+      "type": "string"
+    },
+    "quick_profile": {
+      "type": "array"
+    },
+    "history": {
+      "type": "object"
+    },
+    "sthala_puranam": {
+      "type": "object"
+    },
+    "architecture": {
+      "type": "array"
+    },
+    "festivals": {
+      "type": "array"
+    },
+    "travel": {
+      "type": "array"
+    },
+    "gallery_categories": {
+      "type": "array"
+    },
+    "editorial": {
+      "type": "object"
+    }
+  }
+}

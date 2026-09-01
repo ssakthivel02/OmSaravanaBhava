@@ -1,0 +1,3572 @@
+diff --git a/devotional-practice-planner.html b/devotional-practice-planner.html
+new file mode 100644
+--- /dev/null
++++ b/devotional-practice-planner.html
+@@ -0,0 +1,119 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Devotional Practice Planner | Om Saravana Bhava</title>
++<meta name="description" content="Create bounded browser-local devotional practice plans from current published routes and collections, with local organisational check-ins and no reminders or analytics.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/devotional-practice-planner.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="stylesheet" href="assets/css/devotional-practice-planner.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++<script type="module" src="assets/js/devotional-practice-planner.mjs"></script>
++</head>
++<body data-release="228">
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Browser-local devotional practice organisation</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="personal-library.html">My Library</a><a href="devotional-collections.html">Collections</a><a href="devotional-practice-planner.html" aria-current="page">Practice Planner</a><a href="reading-workspace.html">Reading</a><a href="personal-data.html">Backup</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="devotional-collections.html">Collections</a> › <span aria-current="page">Practice Planner</span></p></nav>
++
++<section class="card planner-hero">
++<div>
++<span class="pill">Release 228 · Local planning and check-ins</span>
++<h1 class="section-title" lang="ta">பக்தி பயிற்சி திட்டம்</h1>
++<h2>Devotional Practice Planner</h2>
++<p>Create bounded plans from existing collections or eligible published routes. Weekdays are planning guidance only; local check-ins are organisational markers and do not claim spiritual completion.</p>
++</div>
++<div class="planner-metric"><strong id="plannerPlanCount">0</strong><span>plans</span></div>
++<div class="planner-metric"><strong id="plannerRouteCount">0</strong><span>valid routes</span></div>
++<div class="planner-metric"><strong id="plannerDueCount">0</strong><span>planned today</span></div>
++<div class="planner-metric"><strong id="plannerCheckedCount">0</strong><span>checked in today</span></div>
++<div class="planner-metric"><strong id="plannerIgnoredCount">0</strong><span>stale routes</span></div>
++</section>
++
++<p id="plannerStatus" role="status" aria-live="polite">Loading local practice plans…</p>
++
++<section class="planner-layout">
++<aside class="planner-sidebar">
++<article class="card">
++<h2>Create a plan</h2>
++<form id="plannerCreateForm">
++<label for="plannerName">Plan name
++<input id="plannerName" required maxlength="60" placeholder="Morning literature, Friday temple study…">
++</label>
++<label for="plannerDescription">Description
++<textarea id="plannerDescription" rows="4" maxlength="240" placeholder="Optional organisational purpose"></textarea>
++</label>
++<label for="plannerSourceCollection">Start from collection
++<select id="plannerSourceCollection"><option value="">Start with an empty plan</option></select>
++</label>
++<fieldset>
++<legend>Planned weekdays</legend>
++<div id="plannerWeekdays" class="planner-weekdays"></div>
++<p>Leave every day unchecked to make the plan available on any day.</p>
++</fieldset>
++<button class="btn" type="submit">Create plan locally</button>
++</form>
++</article>
++<article class="card">
++<h2>Find a plan</h2>
++<label for="plannerSearch">Search plans
++<input id="plannerSearch" type="search" placeholder="Tamil, English, route or category…" autocomplete="off">
++</label>
++</article>
++<article class="card">
++<h2>Capacity</h2>
++<p>Maximum 12 plans, 50 routes per plan and 180 dated check-ins per plan.</p>
++<p><a class="btn secondary" href="personal-data.html">Back up practice plans</a></p>
++</article>
++</aside>
++<div id="plannerPlans" class="planner-plans" aria-label="Devotional practice plans">
++<article class="card">Loading plans…</article>
++</div>
++</section>
++
++<section class="card planner-route-browser">
++<div>
++<span class="pill">Current published route directory</span>
++<h2>Add routes to a plan</h2>
++<p>Utility, draft, private, unpublished, archived, navigation, directory and milestone routes are excluded.</p>
++</div>
++<div class="planner-route-controls">
++<label for="plannerRouteSearch">Search eligible routes
++<input id="plannerRouteSearch" type="search" placeholder="Thiruppugazh, temple, festival, கந்தர்…" autocomplete="off">
++</label>
++<label for="plannerRouteTarget">Target plan
++<select id="plannerRouteTarget"><option value="">Create a plan first</option></select>
++</label>
++<button class="btn secondary" id="plannerRouteReset" type="button">Reset route search</button>
++</div>
++<div id="plannerRouteResults" class="grid planner-route-results" aria-label="Eligible route results">
++<article class="card">Loading eligible routes…</article>
++</div>
++</section>
++
++<section class="card planner-boundary">
++<h2>Interpretation and privacy boundary</h2>
++<ul>
++<li>Plan storage contains only identifiers, names, descriptions, weekday numbers, same-origin route references, bounded check-ins and timestamps.</li>
++<li>A local check-in records a date and route reference; it does not prove that the route was completely read, recited or spiritually completed.</li>
++<li>Weekdays do not create notifications, calendar events, alarms or background monitoring.</li>
++<li>Devotional text, selected passages, page bodies, images and audio files are not copied into plan storage.</li>
++<li>Practice plans are registered as the seventh bounded dataset in the Personal Data Centre.</li>
++<li>No streaks, scores, spiritual-outcome claims, analytics, recommendations, cloud synchronization or accounts are used.</li>
++</ul>
++</section>
++
++<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>Browser-local practice planning requires JavaScript. Published routes remain available through <a href="discovery.html">Discovery</a>.</p></section></noscript>
++</main>
++<footer>© Om Saravana Bhava · <a href="devotional-practice-planner.html">Practice Planner</a> · <a href="devotional-collections.html">Collections</a> · <a href="personal-library.html">My Library</a> · <a href="personal-data.html">Backup</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>
+diff --git a/assets/css/devotional-practice-planner.css b/assets/css/devotional-practice-planner.css
+new file mode 100644
+--- /dev/null
++++ b/assets/css/devotional-practice-planner.css
+@@ -0,0 +1 @@
++.planner-hero{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(5,minmax(92px,.25fr));gap:13px;align-items:center}.planner-metric{display:grid;place-items:center;min-height:106px;border:1px solid var(--line);border-radius:21px;background:var(--surface-strong,#fff);padding:11px;text-align:center}.planner-metric strong{font-size:clamp(1.7rem,4.5vw,3.35rem);line-height:1;color:var(--red)}.planner-metric span{font-size:.78rem;font-weight:850}.planner-layout{display:grid;grid-template-columns:minmax(270px,.45fr) minmax(0,1.55fr);gap:18px;align-items:start}.planner-sidebar{position:sticky;top:86px;display:grid;gap:16px}.planner-sidebar form{display:grid;gap:12px}.planner-sidebar label,.planner-route-controls label{display:grid;gap:6px;font-weight:850}.planner-weekdays{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.planner-weekday{display:flex!important;align-items:center;gap:8px;padding:8px;border:1px solid var(--line);border-radius:12px}.planner-plans{display:grid;gap:16px}.planner-plan-card{display:grid;gap:14px}.planner-plan-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}.planner-plan-heading h2{margin:0}.planner-badges,.planner-actions,.planner-row-actions{display:flex;flex-wrap:wrap;gap:8px}.planner-current-route{display:grid;gap:8px;padding:15px;border:1px solid var(--line);border-radius:17px;background:var(--surface-strong,#fff)}.planner-current-route h3{margin:0}.planner-route-list{display:grid;gap:8px;margin:0;padding-left:1.3rem}.planner-route-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:11px;border:1px solid var(--line);border-radius:15px;background:var(--surface-strong,#fff)}.planner-route-row.is-current{border-left:5px solid var(--orange)}.planner-route-row>div:first-child{display:grid;gap:4px}.planner-meta{font-size:.84rem;color:#6a4638}.planner-history{padding:10px;border:1px solid var(--line);border-radius:14px}.planner-history summary{font-weight:850;cursor:pointer}.planner-route-browser{display:grid;gap:14px}.planner-route-controls{display:grid;grid-template-columns:minmax(220px,1fr) minmax(190px,.55fr) auto;gap:12px;align-items:end}.planner-route-results{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}.planner-route-card{display:flex;flex-direction:column;gap:10px}.planner-route-card h3{margin:0}.planner-route-card .planner-actions{margin-top:auto}.planner-boundary{border-left:5px solid var(--orange)}.home-planner-228{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center}.home-planner-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:9px}body.dark .planner-meta{color:#f4d9c8}@media(max-width:1220px){.planner-hero{grid-template-columns:repeat(3,minmax(0,1fr))}.planner-hero>div:first-child{grid-column:1/-1}.planner-route-results{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:920px){.planner-layout{grid-template-columns:1fr}.planner-sidebar{position:static}.planner-route-controls{grid-template-columns:1fr}.home-planner-228{grid-template-columns:1fr}.home-planner-actions{justify-content:flex-start}}@media(max-width:680px){.planner-hero,.planner-route-results{grid-template-columns:1fr}.planner-hero>div:first-child{grid-column:auto}.planner-plan-heading,.planner-route-row{display:grid;grid-template-columns:1fr}.planner-actions,.planner-row-actions,.home-planner-actions{flex-direction:column}.planner-actions .btn,.planner-row-actions .btn,.home-planner-actions .btn{width:100%}.planner-weekdays{grid-template-columns:1fr}}@media print{.planner-sidebar,.planner-route-browser,.planner-actions,.planner-row-actions,#plannerStatus{display:none!important}.planner-layout{display:block!important}.planner-plan-card{break-inside:avoid}}
+diff --git a/assets/js/devotional-practice-planner.mjs b/assets/js/devotional-practice-planner.mjs
+new file mode 100644
+--- /dev/null
++++ b/assets/js/devotional-practice-planner.mjs
+@@ -0,0 +1,1052 @@
++export const RELEASE = 228;
++export const CONFIG_PATH = '/data/devotional-practice-planner.json';
++export const ROUTES_PATH = '/data/site-routes.json';
++export const STORAGE_KEY = 'osb-devotional-practice-plans-v1';
++export const COLLECTIONS_STORAGE_KEY = 'osb-devotional-collections-v1';
++export const CANONICAL_ORIGIN = 'https://omsaravanabhava.org';
++
++const safeStorage = storage => {
++  if (storage) return storage;
++  try { return globalThis.localStorage; } catch { return null; }
++};
++const cleanText = (value, maximum) =>
++  String(value ?? '').trim().slice(0, maximum);
++
++export const normalisePlannerRoute = value => {
++  const raw = String(value ?? '').trim();
++  if (!raw) return '';
++  try {
++    const url = new URL(raw, `${CANONICAL_ORIGIN}/`);
++    if (url.origin !== CANONICAL_ORIGIN) return '';
++    return `${url.pathname}${url.search}${url.hash}`;
++  } catch { return ''; }
++};
++
++export const routePath = value => {
++  const route = normalisePlannerRoute(value);
++  if (!route) return '';
++  try { return new URL(route, CANONICAL_ORIGIN).pathname; }
++  catch { return ''; }
++};
++
++export const normaliseIsoDate = value => {
++  const raw = String(value ?? '').trim();
++  if (!raw) return '';
++  const date = new Date(raw);
++  return Number.isNaN(date.getTime()) ? '' : date.toISOString();
++};
++
++export const normaliseLocalDate = value => {
++  const raw = String(value ?? '').trim();
++  return /^\d{4}-\d{2}-\d{2}$/.test(raw) ? raw : '';
++};
++
++export const localDateString = date => {
++  const value = date instanceof Date ? date : new Date(date);
++  if (Number.isNaN(value.getTime())) return '';
++  return `${value.getFullYear()}-${String(value.getMonth() + 1).padStart(2, '0')}-${String(value.getDate()).padStart(2, '0')}`;
++};
++
++export const sanitiseWeekdays = value => {
++  const seen = new Set();
++  return (Array.isArray(value) ? value : [])
++    .map(Number)
++    .filter(day =>
++      Number.isInteger(day) && day >= 0 && day <= 6 &&
++      !seen.has(day) && seen.add(day)
++    )
++    .sort((a, b) => a - b);
++};
++
++export const sanitisePlan = (
++  value,
++  {
++    maximumRoutesPerPlan = 50,
++    maximumCheckInsPerPlan = 180,
++    maximumNameLength = 60,
++    maximumDescriptionLength = 240,
++    timestamp = new Date().toISOString()
++  } = {}
++) => {
++  if (!value || typeof value !== 'object') return null;
++  const id = cleanText(value.id, 180);
++  const name = cleanText(value.name, maximumNameLength);
++  if (!id || !name) return null;
++
++  const routeSeen = new Set();
++  const routes = [];
++  (Array.isArray(value.routes) ? value.routes : []).forEach(record => {
++    if (!record || typeof record !== 'object') return;
++    const route = normalisePlannerRoute(record.route);
++    const path = routePath(route);
++    if (!route || !path || routeSeen.has(path)) return;
++    routeSeen.add(path);
++    routes.push({
++      route,
++      addedAt: normaliseIsoDate(record.addedAt) || timestamp
++    });
++  });
++  const validRoutes = routes.slice(
++    0, Math.max(1, Number(maximumRoutesPerPlan) || 50)
++  );
++  const validPaths = new Set(validRoutes.map(item => routePath(item.route)));
++
++  const checkInByDate = new Map();
++  (Array.isArray(value.checkIns) ? value.checkIns : []).forEach(record => {
++    if (!record || typeof record !== 'object') return;
++    const date = normaliseLocalDate(record.date);
++    const route = normalisePlannerRoute(record.route);
++    if (!date || !route || !validPaths.has(routePath(route))) return;
++    const item = {
++      date,
++      route,
++      completedAt: normaliseIsoDate(record.completedAt) || timestamp
++    };
++    const previous = checkInByDate.get(date);
++    if (!previous || item.completedAt >= previous.completedAt) {
++      checkInByDate.set(date, item);
++    }
++  });
++  const checkIns = [...checkInByDate.values()]
++    .sort((a, b) =>
++      String(b.date).localeCompare(String(a.date)) ||
++      String(b.completedAt).localeCompare(String(a.completedAt))
++    )
++    .slice(0, Math.max(1, Number(maximumCheckInsPerPlan) || 180));
++
++  const rawIndex = Number(value.currentIndex);
++  const currentIndex = validRoutes.length
++    ? Math.max(0, Math.min(
++        validRoutes.length - 1,
++        Number.isInteger(rawIndex) ? rawIndex : 0
++      ))
++    : 0;
++
++  return {
++    id,
++    name,
++    description: cleanText(value.description, maximumDescriptionLength),
++    sourceCollectionId: cleanText(value.sourceCollectionId, 180),
++    weekdays: sanitiseWeekdays(value.weekdays),
++    routes: validRoutes,
++    currentIndex,
++    checkIns,
++    createdAt: normaliseIsoDate(value.createdAt) || timestamp,
++    updatedAt:
++      normaliseIsoDate(value.updatedAt) ||
++      normaliseIsoDate(value.createdAt) ||
++      timestamp
++  };
++};
++
++export const loadPlans = (storage, config) => {
++  const target = safeStorage(storage);
++  if (!target) return [];
++  try {
++    const parsed = JSON.parse(target.getItem(STORAGE_KEY) || '[]');
++    if (!Array.isArray(parsed)) return [];
++    const seen = new Set();
++    return parsed
++      .map(record => sanitisePlan(record, {
++        maximumRoutesPerPlan: config?.maximumRoutesPerPlan,
++        maximumCheckInsPerPlan: config?.maximumCheckInsPerPlan,
++        maximumNameLength: config?.maximumNameLength,
++        maximumDescriptionLength: config?.maximumDescriptionLength,
++        timestamp:
++          record?.updatedAt || record?.createdAt || new Date().toISOString()
++      }))
++      .filter(plan => {
++        if (!plan || seen.has(plan.id)) return false;
++        seen.add(plan.id);
++        return true;
++      })
++      .sort((a, b) => String(b.updatedAt).localeCompare(String(a.updatedAt)))
++      .slice(0, Math.max(1, Number(config?.maximumPlans) || 12));
++  } catch { return []; }
++};
++
++export const savePlans = (plans, storage, config) => {
++  const target = safeStorage(storage);
++  if (!target) return false;
++  try {
++    const seen = new Set();
++    const clean = (Array.isArray(plans) ? plans : [])
++      .map(record => sanitisePlan(record, {
++        maximumRoutesPerPlan: config?.maximumRoutesPerPlan,
++        maximumCheckInsPerPlan: config?.maximumCheckInsPerPlan,
++        maximumNameLength: config?.maximumNameLength,
++        maximumDescriptionLength: config?.maximumDescriptionLength,
++        timestamp:
++          record?.updatedAt || record?.createdAt || new Date().toISOString()
++      }))
++      .filter(plan => {
++        if (!plan || seen.has(plan.id)) return false;
++        seen.add(plan.id);
++        return true;
++      })
++      .slice(0, Math.max(1, Number(config?.maximumPlans) || 12));
++    target.setItem(STORAGE_KEY, JSON.stringify(clean));
++    return true;
++  } catch { return false; }
++};
++
++export const loadCollections = (
++  storage,
++  storageKey = COLLECTIONS_STORAGE_KEY
++) => {
++  const target = safeStorage(storage);
++  if (!target) return [];
++  try {
++    const parsed = JSON.parse(target.getItem(storageKey) || '[]');
++    return Array.isArray(parsed)
++      ? parsed.filter(item =>
++          item && typeof item === 'object' &&
++          cleanText(item.id, 180) && cleanText(item.name, 60)
++        )
++      : [];
++  } catch { return []; }
++};
++
++export const createPlan = (
++  plans,
++  {
++    id,
++    name,
++    description = '',
++    sourceCollection = null,
++    weekdays = [],
++    timestamp = new Date().toISOString()
++  },
++  config
++) => {
++  const previous = Array.isArray(plans) ? [...plans] : [];
++  if (previous.length >= Math.max(1, Number(config?.maximumPlans) || 12)) {
++    return previous;
++  }
++  const generatedId =
++    cleanText(id, 180) ||
++    globalThis.crypto?.randomUUID?.() ||
++    `plan-${timestamp.replace(/[^0-9]/g, '')}`;
++  const routes = (
++    sourceCollection && Array.isArray(sourceCollection.items)
++      ? sourceCollection.items
++      : []
++  ).map(item => ({route: item.route, addedAt: timestamp}));
++
++  const plan = sanitisePlan({
++    id: generatedId,
++    name,
++    description,
++    sourceCollectionId: cleanText(sourceCollection?.id, 180),
++    weekdays,
++    routes,
++    currentIndex: 0,
++    checkIns: [],
++    createdAt: timestamp,
++    updatedAt: timestamp
++  }, {
++    maximumRoutesPerPlan: config?.maximumRoutesPerPlan,
++    maximumCheckInsPerPlan: config?.maximumCheckInsPerPlan,
++    maximumNameLength: config?.maximumNameLength,
++    maximumDescriptionLength: config?.maximumDescriptionLength,
++    timestamp
++  });
++  if (!plan) return previous;
++  return [plan, ...previous.filter(item => item.id !== plan.id)]
++    .slice(0, Math.max(1, Number(config?.maximumPlans) || 12));
++};
++
++export const updatePlan = (
++  plans, id, changes, config,
++  timestamp = new Date().toISOString()
++) => {
++  const targetId = cleanText(id, 180);
++  return (Array.isArray(plans) ? plans : []).map(record => {
++    if (record.id !== targetId) return record;
++    return sanitisePlan({
++      ...record,
++      name: changes?.name === undefined ? record.name : changes.name,
++      description:
++        changes?.description === undefined
++          ? record.description
++          : changes.description,
++      weekdays:
++        changes?.weekdays === undefined
++          ? record.weekdays
++          : changes.weekdays,
++      updatedAt: timestamp
++    }, {
++      maximumRoutesPerPlan: config?.maximumRoutesPerPlan,
++      maximumCheckInsPerPlan: config?.maximumCheckInsPerPlan,
++      maximumNameLength: config?.maximumNameLength,
++      maximumDescriptionLength: config?.maximumDescriptionLength,
++      timestamp
++    }) || record;
++  });
++};
++
++export const deletePlan = (plans, id) => {
++  const targetId = cleanText(id, 180);
++  return (Array.isArray(plans) ? plans : [])
++    .filter(record => record.id !== targetId);
++};
++
++export const addRouteToPlan = (
++  plans, planId, route, config,
++  timestamp = new Date().toISOString()
++) => {
++  const path = routePath(route);
++  if (!path) return Array.isArray(plans) ? [...plans] : [];
++  return (Array.isArray(plans) ? plans : []).map(record => {
++    if (record.id !== planId) return record;
++    const existing = Array.isArray(record.routes) ? record.routes : [];
++    if (
++      existing.some(item => routePath(item.route) === path) ||
++      existing.length >= Math.max(1, Number(config?.maximumRoutesPerPlan) || 50)
++    ) return record;
++    return {
++      ...record,
++      routes: [
++        ...existing,
++        {route: normalisePlannerRoute(route), addedAt: timestamp}
++      ],
++      updatedAt: timestamp
++    };
++  });
++};
++
++export const removeRouteFromPlan = (
++  plans, planId, route, config,
++  timestamp = new Date().toISOString()
++) => {
++  const path = routePath(route);
++  return (Array.isArray(plans) ? plans : []).map(record => {
++    if (record.id !== planId) return record;
++    const routes = (record.routes || [])
++      .filter(item => routePath(item.route) !== path);
++    const paths = new Set(routes.map(item => routePath(item.route)));
++    return sanitisePlan({
++      ...record,
++      routes,
++      checkIns: (record.checkIns || [])
++        .filter(item => paths.has(routePath(item.route))),
++      currentIndex:
++        routes.length
++          ? Math.min(record.currentIndex || 0, routes.length - 1)
++          : 0,
++      updatedAt: timestamp
++    }, {
++      maximumRoutesPerPlan: config?.maximumRoutesPerPlan,
++      maximumCheckInsPerPlan: config?.maximumCheckInsPerPlan,
++      maximumNameLength: config?.maximumNameLength,
++      maximumDescriptionLength: config?.maximumDescriptionLength,
++      timestamp
++    }) || record;
++  });
++};
++
++export const moveCurrentRoute = (
++  plans, planId, direction,
++  timestamp = new Date().toISOString()
++) => {
++  const delta = direction === 'previous' ? -1 : 1;
++  return (Array.isArray(plans) ? plans : []).map(record => {
++    if (record.id !== planId || !record.routes?.length) return record;
++    const length = record.routes.length;
++    const current = Number.isInteger(record.currentIndex)
++      ? record.currentIndex
++      : 0;
++    return {
++      ...record,
++      currentIndex: (current + delta + length) % length,
++      updatedAt: timestamp
++    };
++  });
++};
++
++export const isPlanDueOnDate = (plan, date = new Date()) => {
++  const weekdays = sanitiseWeekdays(plan?.weekdays);
++  if (!weekdays.length) return true;
++  const value = date instanceof Date ? date : new Date(date);
++  return !Number.isNaN(value.getTime()) && weekdays.includes(value.getDay());
++};
++
++export const checkInPlan = (
++  plans, planId,
++  {
++    date = localDateString(new Date()),
++    timestamp = new Date().toISOString()
++  } = {},
++  config
++) => {
++  const localDate = normaliseLocalDate(date);
++  if (!localDate) return Array.isArray(plans) ? [...plans] : [];
++  return (Array.isArray(plans) ? plans : []).map(record => {
++    if (record.id !== planId || !record.routes?.length) return record;
++    const index = Math.max(0, Math.min(
++      record.routes.length - 1,
++      Number.isInteger(record.currentIndex) ? record.currentIndex : 0
++    ));
++    const current = record.routes[index];
++    return sanitisePlan({
++      ...record,
++      currentIndex: (index + 1) % record.routes.length,
++      checkIns: [
++        {date: localDate, route: current.route, completedAt: timestamp},
++        ...(record.checkIns || []).filter(item => item.date !== localDate)
++      ],
++      updatedAt: timestamp
++    }, {
++      maximumRoutesPerPlan: config?.maximumRoutesPerPlan,
++      maximumCheckInsPerPlan: config?.maximumCheckInsPerPlan,
++      maximumNameLength: config?.maximumNameLength,
++      maximumDescriptionLength: config?.maximumDescriptionLength,
++      timestamp
++    }) || record;
++  });
++};
++
++export const removeCheckIn = (
++  plans, planId, date, config,
++  timestamp = new Date().toISOString()
++) => {
++  const localDate = normaliseLocalDate(date);
++  return (Array.isArray(plans) ? plans : []).map(record => {
++    if (record.id !== planId) return record;
++    return sanitisePlan({
++      ...record,
++      checkIns: (record.checkIns || [])
++        .filter(item => item.date !== localDate),
++      updatedAt: timestamp
++    }, {
++      maximumRoutesPerPlan: config?.maximumRoutesPerPlan,
++      maximumCheckInsPerPlan: config?.maximumCheckInsPerPlan,
++      maximumNameLength: config?.maximumNameLength,
++      maximumDescriptionLength: config?.maximumDescriptionLength,
++      timestamp
++    }) || record;
++  });
++};
++
++export const normaliseEligibleRoutes = (payload, config) => {
++  const allowed = new Set(
++    (config?.allowedRouteStatuses || [])
++      .map(value => String(value).trim().toLocaleLowerCase())
++  );
++  const excluded = new Set(
++    (config?.excludedRouteStatuses || [])
++      .map(value => String(value).trim().toLocaleLowerCase())
++  );
++  const excludedCategories = new Set(
++    (config?.excludedCategories || [])
++      .map(value => String(value).trim().toLocaleLowerCase())
++  );
++  const seen = new Set();
++  const routes = [];
++  (Array.isArray(payload?.routes) ? payload.routes : []).forEach(record => {
++    const path = routePath(record?.path);
++    const status = String(record?.status ?? '')
++      .trim().toLocaleLowerCase();
++    const category = String(record?.category ?? '').trim();
++    if (
++      !path || seen.has(path) || excluded.has(status) ||
++      (allowed.size && !allowed.has(status)) ||
++      excludedCategories.has(category.toLocaleLowerCase())
++    ) return;
++    seen.add(path);
++    routes.push({
++      path,
++      route: path,
++      titleTa: cleanText(record.titleTa, 180),
++      titleEn: cleanText(record.titleEn || path, 180) || path,
++      category: cleanText(category || 'Published route', 100),
++      status: status || 'published',
++      summary: cleanText(record.summary, 500)
++    });
++  });
++  return routes.sort((a, b) =>
++    a.category.localeCompare(b.category) ||
++    a.titleEn.localeCompare(b.titleEn)
++  );
++};
++
++export const resolvePlans = (plans, eligibleRoutes) => {
++  const routeMap = new Map(
++    (eligibleRoutes || []).map(route => [route.path, route])
++  );
++  let ignoredRoutes = 0;
++  const resolved = (plans || []).map(plan => {
++    const routes = [];
++    (plan.routes || []).forEach(item => {
++      const route = routeMap.get(routePath(item.route));
++      if (!route) {
++        ignoredRoutes += 1;
++        return;
++      }
++      routes.push({...item, ...route});
++    });
++    const validPaths = new Set(routes.map(item => item.path));
++    const checkIns = (plan.checkIns || [])
++      .filter(item => validPaths.has(routePath(item.route)));
++    const currentIndex = routes.length
++      ? Math.min(plan.currentIndex || 0, routes.length - 1)
++      : 0;
++    return {
++      ...plan,
++      routes,
++      checkIns,
++      currentIndex,
++      currentRoute: routes[currentIndex] || null,
++      ignoredRouteCount: (plan.routes || []).length - routes.length
++    };
++  });
++  return {plans: resolved, ignoredRoutes};
++};
++
++export const buildPlannerMetrics = (
++  plans, eligibleRoutes, config, date = new Date()
++) => {
++  const resolved = resolvePlans(plans, eligibleRoutes);
++  const today = localDateString(date);
++  return {
++    plans: resolved.plans.length,
++    routes: resolved.plans.reduce(
++      (total, plan) => total + plan.routes.length, 0
++    ),
++    dueToday: resolved.plans.filter(
++      plan => plan.routes.length && isPlanDueOnDate(plan, date)
++    ).length,
++    checkedInToday: resolved.plans.filter(
++      plan => plan.checkIns.some(item => item.date === today)
++    ).length,
++    ignoredRoutes: resolved.ignoredRoutes,
++    maximumPlans: Number(config?.maximumPlans) || 12
++  };
++};
++
++export const filterPlans = (plans, query) => {
++  const needle = String(query).trim().toLocaleLowerCase();
++  if (!needle) return [...(plans || [])];
++  return (plans || []).filter(plan =>
++    [
++      plan.name,
++      plan.description,
++      ...(plan.routes || []).flatMap(route => [
++        route.titleTa, route.titleEn, route.category
++      ])
++    ].join(' ').toLocaleLowerCase().includes(needle)
++  );
++};
++
++export const filterEligibleRoutes = (routes, query) => {
++  const needle = String(query).trim().toLocaleLowerCase();
++  if (!needle) return [...(routes || [])];
++  return (routes || []).filter(route =>
++    [
++      route.titleTa, route.titleEn, route.category,
++      route.status, route.summary
++    ].join(' ').toLocaleLowerCase().includes(needle)
++  );
++};
++
++const fetchJson = async path => {
++  const response = await fetch(path, {
++    cache: 'default',
++    credentials: 'same-origin',
++    headers: {'Accept': 'application/json'}
++  });
++  if (!response.ok) {
++    throw new Error(`${path} returned HTTP ${response.status}`);
++  }
++  return response.json();
++};
++
++const createText = (parent, tag, text, className) => {
++  const element = document.createElement(tag);
++  if (className) element.className = className;
++  element.textContent = String(text);
++  parent.appendChild(element);
++  return element;
++};
++
++const displayTitle = route =>
++  route?.titleTa && route?.titleEn
++    ? `${route.titleTa} · ${route.titleEn}`
++    : route?.titleTa || route?.titleEn || route?.path || route?.route || '';
++
++const formatDate = value => {
++  try { return new Date(value).toLocaleString(); }
++  catch { return String(value || ''); }
++};
++
++const initialise = async () => {
++  const ids = [
++    'plannerStatus', 'plannerCreateForm', 'plannerName',
++    'plannerDescription', 'plannerSourceCollection',
++    'plannerWeekdays', 'plannerSearch', 'plannerPlans',
++    'plannerRouteSearch', 'plannerRouteTarget',
++    'plannerRouteResults', 'plannerRouteReset'
++  ];
++  const elements = Object.fromEntries(
++    ids.map(id => [id, document.getElementById(id)])
++  );
++  if (Object.values(elements).some(value => !value)) return;
++
++  const {
++    plannerStatus: status,
++    plannerCreateForm: createForm,
++    plannerName: nameInput,
++    plannerDescription: descriptionInput,
++    plannerSourceCollection: collectionSelect,
++    plannerWeekdays: weekdayHost,
++    plannerSearch: planSearch,
++    plannerPlans: planHost,
++    plannerRouteSearch: routeSearch,
++    plannerRouteTarget: routeTarget,
++    plannerRouteResults: routeHost,
++    plannerRouteReset: routeReset
++  } = elements;
++
++  let config;
++  let eligibleRoutes;
++  let collections;
++  let plans;
++
++  try {
++    const [loadedConfig, routesPayload] = await Promise.all([
++      fetchJson(CONFIG_PATH),
++      fetchJson(ROUTES_PATH)
++    ]);
++    config = loadedConfig;
++    eligibleRoutes = normaliseEligibleRoutes(routesPayload, config);
++    collections = loadCollections(
++      undefined,
++      config.collectionsStorageKey || COLLECTIONS_STORAGE_KEY
++    );
++    plans = loadPlans(undefined, config);
++  } catch (error) {
++    status.textContent =
++      `Practice Planner unavailable: ${String(error?.message || error)}`;
++    return;
++  }
++
++  (config.weekdays || []).forEach(day => {
++    const label = document.createElement('label');
++    label.className = 'planner-weekday';
++    const input = document.createElement('input');
++    input.type = 'checkbox';
++    input.value = String(day.id);
++    label.append(input, document.createTextNode(day.label));
++    weekdayHost.appendChild(label);
++  });
++
++  const saveAndRender = next => {
++    plans = next;
++    if (!savePlans(plans, undefined, config)) {
++      status.textContent = 'Browser storage is unavailable.';
++      return false;
++    }
++    window.dispatchEvent(new CustomEvent('osb:practice-plans-updated'));
++    render();
++    return true;
++  };
++
++  const renderSourceCollections = () => {
++    collectionSelect.replaceChildren();
++    const empty = document.createElement('option');
++    empty.value = '';
++    empty.textContent = 'Start with an empty plan';
++    collectionSelect.appendChild(empty);
++    collections.forEach(collection => {
++      const option = document.createElement('option');
++      option.value = collection.id;
++      option.textContent =
++        `${collection.name} (${(collection.items || []).length} routes)`;
++      collectionSelect.appendChild(option);
++    });
++  };
++
++  const renderTargetPlans = () => {
++    const selected = routeTarget.value;
++    routeTarget.replaceChildren();
++    const empty = document.createElement('option');
++    empty.value = '';
++    empty.textContent = plans.length ? 'Choose a plan' : 'Create a plan first';
++    routeTarget.appendChild(empty);
++    plans.forEach(plan => {
++      const option = document.createElement('option');
++      option.value = plan.id;
++      option.textContent = `${plan.name} (${plan.routes.length})`;
++      routeTarget.appendChild(option);
++    });
++    routeTarget.value =
++      plans.some(plan => plan.id === selected) ? selected : '';
++  };
++
++  const createPlanCard = plan => {
++    const article = document.createElement('article');
++    article.className = 'card planner-plan-card';
++
++    const heading = document.createElement('div');
++    heading.className = 'planner-plan-heading';
++    const title = document.createElement('div');
++    createText(title, 'h2', plan.name);
++    if (plan.description) createText(title, 'p', plan.description);
++    heading.appendChild(title);
++    const badges = document.createElement('div');
++    badges.className = 'planner-badges';
++    createText(badges, 'span',
++      `${plan.routes.length} route${plan.routes.length === 1 ? '' : 's'}`,
++      'pill');
++    createText(badges, 'span',
++      isPlanDueOnDate(plan, new Date()) ? 'Planned today' : 'Not planned today',
++      'pill');
++    if (plan.ignoredRouteCount) {
++      createText(badges, 'span', `${plan.ignoredRouteCount} stale`, 'pill');
++    }
++    heading.appendChild(badges);
++    article.appendChild(heading);
++
++    const weekdayLabels = (plan.weekdays || [])
++      .map(day => config.weekdays.find(item => item.id === day)?.label)
++      .filter(Boolean);
++    createText(
++      article, 'p',
++      weekdayLabels.length
++        ? `Planned days: ${weekdayLabels.join(', ')}`
++        : 'Planned days: any day',
++      'planner-meta'
++    );
++
++    if (plan.currentRoute) {
++      const current = document.createElement('div');
++      current.className = 'planner-current-route';
++      createText(current, 'span', 'Current route', 'pill');
++      createText(current, 'h3', displayTitle(plan.currentRoute));
++      createText(current, 'p',
++        `${plan.currentRoute.category} · ${plan.currentRoute.status}`);
++      const open = document.createElement('a');
++      open.className = 'btn';
++      open.href = plan.currentRoute.path;
++      open.textContent = 'Open current route';
++      current.appendChild(open);
++      article.appendChild(current);
++    } else {
++      createText(article, 'p',
++        'No currently valid route is assigned to this plan.');
++    }
++
++    const today = localDateString(new Date());
++    const todayCheck = (plan.checkIns || [])
++      .find(item => item.date === today);
++    const actions = document.createElement('div');
++    actions.className = 'planner-actions';
++
++    const button = (label, handler, disabled = false) => {
++      const item = document.createElement('button');
++      item.type = 'button';
++      item.className = label.includes('Record') ? 'btn' : 'btn secondary';
++      item.textContent = label;
++      item.disabled = disabled;
++      item.addEventListener('click', handler);
++      actions.appendChild(item);
++    };
++
++    button('Previous route', () =>
++      saveAndRender(moveCurrentRoute(plans, plan.id, 'previous')),
++      !plan.routes.length);
++    button('Next route', () =>
++      saveAndRender(moveCurrentRoute(plans, plan.id, 'next')),
++      !plan.routes.length);
++    button(
++      todayCheck ? 'Replace today check-in' : 'Record today check-in',
++      () => {
++        if (!confirm(
++          'Record today’s local check-in for the current route? This is an organisational marker only.'
++        )) return;
++        saveAndRender(checkInPlan(
++          plans, plan.id,
++          {date: today, timestamp: new Date().toISOString()},
++          config
++        ));
++      },
++      !plan.routes.length
++    );
++    if (todayCheck) {
++      button('Remove today check-in', () =>
++        saveAndRender(removeCheckIn(plans, plan.id, today, config)));
++    }
++    button('Edit plan', () => {
++      const name = prompt('Plan name', plan.name);
++      if (name === null) return;
++      const description = prompt('Plan description', plan.description);
++      if (description === null) return;
++      const days = prompt(
++        'Weekday numbers separated by commas: Sunday 0 through Saturday 6. Leave blank for any day.',
++        (plan.weekdays || []).join(',')
++      );
++      if (days === null) return;
++      saveAndRender(updatePlan(
++        plans, plan.id,
++        {
++          name,
++          description,
++          weekdays: days.trim()
++            ? days.split(',').map(value => Number(value.trim()))
++            : []
++        },
++        config
++      ));
++    });
++    if (plan.ignoredRouteCount) {
++      button('Remove stale routes', () => {
++        const valid = new Set(eligibleRoutes.map(route => route.path));
++        saveAndRender(plans.map(record => {
++          if (record.id !== plan.id) return record;
++          const routes = record.routes
++            .filter(item => valid.has(routePath(item.route)));
++          const paths = new Set(routes.map(item => routePath(item.route)));
++          return {
++            ...record,
++            routes,
++            checkIns: record.checkIns
++              .filter(item => paths.has(routePath(item.route))),
++            currentIndex:
++              routes.length
++                ? Math.min(record.currentIndex || 0, routes.length - 1)
++                : 0,
++            updatedAt: new Date().toISOString()
++          };
++        }));
++      });
++    }
++    button('Delete plan', () => {
++      if (confirm(`Delete “${plan.name}”?`)) {
++        saveAndRender(deletePlan(plans, plan.id));
++      }
++    });
++    article.appendChild(actions);
++
++    const list = document.createElement('ol');
++    list.className = 'planner-route-list';
++    if (!plan.routes.length) {
++      const empty = document.createElement('li');
++      empty.textContent = 'No valid routes in this plan.';
++      list.appendChild(empty);
++    } else {
++      plan.routes.forEach((route, index) => {
++        const row = document.createElement('li');
++        row.className =
++          index === plan.currentIndex
++            ? 'planner-route-row is-current'
++            : 'planner-route-row';
++        const body = document.createElement('div');
++        createText(body, 'strong', displayTitle(route));
++        createText(body, 'span',
++          `${route.category} · ${route.status}`, 'planner-meta');
++        row.appendChild(body);
++
++        const rowActions = document.createElement('div');
++        rowActions.className = 'planner-row-actions';
++        const open = document.createElement('a');
++        open.className = 'btn secondary';
++        open.href = route.path;
++        open.textContent = 'Open';
++        rowActions.appendChild(open);
++        const remove = document.createElement('button');
++        remove.type = 'button';
++        remove.className = 'btn secondary';
++        remove.textContent = 'Remove';
++        remove.addEventListener('click', () =>
++          saveAndRender(removeRouteFromPlan(
++            plans, plan.id, route.route, config
++          )));
++        rowActions.appendChild(remove);
++        row.appendChild(rowActions);
++        list.appendChild(row);
++      });
++    }
++    article.appendChild(list);
++
++    if (plan.checkIns.length) {
++      const details = document.createElement('details');
++      details.className = 'planner-history';
++      const summary = document.createElement('summary');
++      summary.textContent = `Recent check-ins (${plan.checkIns.length})`;
++      details.appendChild(summary);
++      const history = document.createElement('ul');
++      plan.checkIns.slice(0, 14).forEach(checkIn => {
++        const item = document.createElement('li');
++        const route = plan.routes.find(
++          record => routePath(record.route) === routePath(checkIn.route)
++        );
++        item.textContent =
++          `${checkIn.date} · ${displayTitle(route || checkIn)} · ${formatDate(checkIn.completedAt)}`;
++        history.appendChild(item);
++      });
++      details.appendChild(history);
++      article.appendChild(details);
++    }
++
++    return article;
++  };
++
++  const renderPlans = () => {
++    const resolved = resolvePlans(plans, eligibleRoutes);
++    const filtered = filterPlans(resolved.plans, planSearch.value);
++    planHost.replaceChildren();
++    if (!filtered.length) {
++      const empty = document.createElement('article');
++      empty.className = 'card';
++      createText(empty, 'h2',
++        plans.length ? 'No plans match' : 'No local plans yet');
++      createText(empty, 'p',
++        plans.length
++          ? 'Change the plan search.'
++          : 'Create a plan from an existing collection or begin with an empty plan.');
++      planHost.appendChild(empty);
++    } else {
++      filtered.forEach(plan => planHost.appendChild(createPlanCard(plan)));
++    }
++  };
++
++  const renderRoutes = () => {
++    const records = filterEligibleRoutes(
++      eligibleRoutes, routeSearch.value
++    ).slice(0, 30);
++    routeHost.replaceChildren();
++    if (!records.length) {
++      const empty = document.createElement('article');
++      empty.className = 'card';
++      createText(empty, 'h3', 'No eligible routes match');
++      createText(empty, 'p',
++        'Try Tamil or English title, category or publication state.');
++      routeHost.appendChild(empty);
++      return;
++    }
++    records.forEach(route => {
++      const card = document.createElement('article');
++      card.className = 'card planner-route-card';
++      const badges = document.createElement('div');
++      badges.className = 'planner-badges';
++      createText(badges, 'span', route.category, 'pill');
++      createText(badges, 'span', route.status, 'pill');
++      card.appendChild(badges);
++      createText(card, 'h3', displayTitle(route));
++      if (route.summary) createText(card, 'p', route.summary);
++      const actions = document.createElement('div');
++      actions.className = 'planner-actions';
++      const open = document.createElement('a');
++      open.className = 'btn secondary';
++      open.href = route.path;
++      open.textContent = 'Open route';
++      actions.appendChild(open);
++      const add = document.createElement('button');
++      add.type = 'button';
++      add.className = 'btn';
++      add.textContent = 'Add to selected plan';
++      add.disabled = !plans.length;
++      add.addEventListener('click', () => {
++        const planId = routeTarget.value;
++        if (!planId) {
++          status.textContent = 'Choose a target plan first.';
++          routeTarget.focus();
++          return;
++        }
++        const next = addRouteToPlan(plans, planId, route.path, config);
++        if (JSON.stringify(next) === JSON.stringify(plans)) {
++          status.textContent =
++            'That route is already present or the plan is full.';
++          return;
++        }
++        saveAndRender(next);
++      });
++      actions.appendChild(add);
++      card.appendChild(actions);
++      routeHost.appendChild(card);
++    });
++  };
++
++  const render = () => {
++    const metrics = buildPlannerMetrics(
++      plans, eligibleRoutes, config, new Date()
++    );
++    const values = {
++      plannerPlanCount: metrics.plans,
++      plannerRouteCount: metrics.routes,
++      plannerDueCount: metrics.dueToday,
++      plannerCheckedCount: metrics.checkedInToday,
++      plannerIgnoredCount: metrics.ignoredRoutes
++    };
++    Object.entries(values).forEach(([id, value]) => {
++      const element = document.getElementById(id);
++      if (element) element.textContent = String(value);
++    });
++    renderTargetPlans();
++    renderPlans();
++    renderRoutes();
++    status.textContent =
++      'Practice plans and check-ins remain in this browser. No notification or spiritual outcome is implied.';
++  };
++
++  createForm.addEventListener('submit', event => {
++    event.preventDefault();
++    const sourceCollection = collections.find(
++      item => item.id === collectionSelect.value
++    ) || null;
++    const weekdays = [
++      ...weekdayHost.querySelectorAll('input:checked')
++    ].map(input => Number(input.value));
++    const next = createPlan(
++      plans,
++      {
++        name: nameInput.value,
++        description: descriptionInput.value,
++        sourceCollection,
++        weekdays
++      },
++      config
++    );
++    if (next.length === plans.length) {
++      status.textContent =
++        plans.length >= Number(config.maximumPlans)
++          ? 'Maximum plan count reached.'
++          : 'Enter a valid plan name.';
++      return;
++    }
++    if (saveAndRender(next)) {
++      createForm.reset();
++      weekdayHost.querySelectorAll('input')
++        .forEach(input => { input.checked = false; });
++    }
++  });
++
++  planSearch.addEventListener('input', renderPlans);
++  routeSearch.addEventListener('input', renderRoutes);
++  routeTarget.addEventListener('change', renderRoutes);
++  routeReset.addEventListener('click', () => {
++    routeSearch.value = '';
++    renderRoutes();
++    routeSearch.focus();
++  });
++  window.addEventListener('storage', event => {
++    if (event.key === STORAGE_KEY) {
++      plans = loadPlans(undefined, config);
++      render();
++    }
++    if (event.key === COLLECTIONS_STORAGE_KEY) {
++      collections = loadCollections(
++        undefined,
++        config.collectionsStorageKey || COLLECTIONS_STORAGE_KEY
++      );
++      renderSourceCollections();
++    }
++  });
++
++  renderSourceCollections();
++  render();
++};
++
++if (typeof document !== 'undefined') {
++  document.addEventListener('DOMContentLoaded', initialise);
++}
+diff --git a/data/devotional-practice-planner.json b/data/devotional-practice-planner.json
+new file mode 100644
+--- /dev/null
++++ b/data/devotional-practice-planner.json
+@@ -0,0 +1,71 @@
++{
++  "release": 228,
++  "generated": "2026-07-14",
++  "builtAgainstCommit": "25598978c0fc330e15da527b54ac51594a204435",
++  "title": "OmSaravanaBhava Browser-Local Devotional Practice Planner",
++  "storageKey": "osb-devotional-practice-plans-v1",
++  "collectionsStorageKey": "osb-devotional-collections-v1",
++  "maximumPlans": 12,
++  "maximumRoutesPerPlan": 50,
++  "maximumCheckInsPerPlan": 180,
++  "maximumNameLength": 60,
++  "maximumDescriptionLength": 240,
++  "allowedRouteStatuses": [
++    "published",
++    "partial-reviewed",
++    "source-register",
++    "framework"
++  ],
++  "excludedRouteStatuses": [
++    "draft",
++    "private",
++    "unpublished",
++    "archived",
++    "utility",
++    "navigation",
++    "directory",
++    "milestone"
++  ],
++  "excludedCategories": [
++    "Platform",
++    "Maintenance",
++    "Navigation"
++  ],
++  "weekdays": [
++    {
++      "id": 0,
++      "label": "Sunday"
++    },
++    {
++      "id": 1,
++      "label": "Monday"
++    },
++    {
++      "id": 2,
++      "label": "Tuesday"
++    },
++    {
++      "id": 3,
++      "label": "Wednesday"
++    },
++    {
++      "id": 4,
++      "label": "Thursday"
++    },
++    {
++      "id": 5,
++      "label": "Friday"
++    },
++    {
++      "id": 6,
++      "label": "Saturday"
++    }
++  ],
++  "limitations": [
++    "Schedules are planning guidance only and do not create notifications or alarms.",
++    "A check-in records only a local date, route reference and timestamp.",
++    "Devotional text, selected passages and page-body content are never copied into plan storage.",
++    "Completion check-ins do not prove that a work was fully read, recited or spiritually completed.",
++    "No streaks, scores, spiritual-outcome claims, analytics, cloud synchronization or user accounts are provided."
++  ]
++}
+diff --git a/assets/js/personal-data.mjs b/assets/js/personal-data.mjs
+--- a/assets/js/personal-data.mjs
++++ b/assets/js/personal-data.mjs
+@@ -1,8 +1,9 @@
+-export const RELEASE = 227;
++export const RELEASE = 228;
+ export const REGISTRY_PATH = '/data/personal-data-registry.json';
+ export const BACKUP_SCHEMA = 'osb-personal-data-backup-v1';
+ export const CANONICAL_ORIGIN = 'https://omsaravanabhava.org';
+ export const COLLECTIONS_STORAGE_KEY = 'osb-devotional-collections-v1';
++export const PRACTICE_PLANS_STORAGE_KEY = 'osb-devotional-practice-plans-v1';
+ 
+ export const DATASET_IDS = Object.freeze([
+   'readingList',
+@@ -10,7 +11,8 @@
+   'readingNotes',
+   'accessibility',
+   'audioHistory',
+-  'collections'
++  'collections',
++  'practicePlans'
+ ]);
+ 
+ const safeStorage = storage => {
+@@ -233,6 +235,127 @@
+   );
+ };
+ 
++
++export const sanitisePracticePlans = (
++  value,
++  maximumItems = 12,
++  maximumRoutesPerPlan = 50,
++  maximumCheckInsPerPlan = 180
++) => {
++  const seenPlans = new Set();
++  const plans = [];
++
++  (Array.isArray(value) ? value : []).forEach(record => {
++    if (!record || typeof record !== 'object') return;
++    const id = cleanText(record.id, 180);
++    const name = cleanText(record.name, 60);
++    if (!id || !name || seenPlans.has(id)) return;
++
++    const routeSeen = new Set();
++    const routes = [];
++    (Array.isArray(record.routes) ? record.routes : []).forEach(item => {
++      if (!item || typeof item !== 'object') return;
++      const route = normaliseSameOriginRoute(item.route);
++      const path = route
++        ? new URL(route, CANONICAL_ORIGIN).pathname
++        : '';
++      if (!route || !path || routeSeen.has(path)) return;
++      routeSeen.add(path);
++      routes.push({
++        route,
++        addedAt:
++          normaliseIsoDate(item.addedAt) ||
++          new Date(0).toISOString()
++      });
++    });
++
++    const validRoutes = routes.slice(
++      0,
++      Math.max(1, Number(maximumRoutesPerPlan) || 50)
++    );
++    const validPaths = new Set(
++      validRoutes.map(item =>
++        new URL(item.route, CANONICAL_ORIGIN).pathname
++      )
++    );
++
++    const checkInByDate = new Map();
++    (Array.isArray(record.checkIns) ? record.checkIns : []).forEach(item => {
++      if (!item || typeof item !== 'object') return;
++      const date = /^\d{4}-\d{2}-\d{2}$/.test(
++        String(item.date ?? '').trim()
++      ) ? String(item.date).trim() : '';
++      const route = normaliseSameOriginRoute(item.route);
++      const path = route
++        ? new URL(route, CANONICAL_ORIGIN).pathname
++        : '';
++      if (!date || !route || !validPaths.has(path)) return;
++      const checkIn = {
++        date,
++        route,
++        completedAt:
++          normaliseIsoDate(item.completedAt) ||
++          new Date(0).toISOString()
++      };
++      const previous = checkInByDate.get(date);
++      if (!previous || checkIn.completedAt >= previous.completedAt) {
++        checkInByDate.set(date, checkIn);
++      }
++    });
++
++    const rawIndex = Number(record.currentIndex);
++    const currentIndex = validRoutes.length
++      ? Math.max(
++          0,
++          Math.min(
++            validRoutes.length - 1,
++            Number.isInteger(rawIndex) ? rawIndex : 0
++          )
++        )
++      : 0;
++
++    seenPlans.add(id);
++    plans.push({
++      id,
++      name,
++      description: cleanText(record.description, 240),
++      sourceCollectionId: cleanText(record.sourceCollectionId, 180),
++      weekdays: [...new Set(
++        (Array.isArray(record.weekdays) ? record.weekdays : [])
++          .map(Number)
++          .filter(value =>
++            Number.isInteger(value) &&
++            value >= 0 &&
++            value <= 6
++          )
++      )].sort((a, b) => a - b),
++      routes: validRoutes,
++      currentIndex,
++      checkIns: [...checkInByDate.values()]
++        .sort((a, b) =>
++          String(b.date).localeCompare(String(a.date)) ||
++          String(b.completedAt).localeCompare(String(a.completedAt))
++        )
++        .slice(
++          0,
++          Math.max(1, Number(maximumCheckInsPerPlan) || 180)
++        ),
++      createdAt:
++        normaliseIsoDate(record.createdAt) ||
++        new Date(0).toISOString(),
++      updatedAt:
++        normaliseIsoDate(record.updatedAt) ||
++        normaliseIsoDate(record.createdAt) ||
++        new Date(0).toISOString()
++    });
++  });
++
++  return plans.slice(
++    0,
++    Math.max(1, Number(maximumItems) || 12)
++  );
++};
++
+ export const registryMap = registry =>
+   new Map(
+     (Array.isArray(registry?.datasets) ? registry.datasets : [])
+@@ -263,6 +386,14 @@
+       value,
+       definition.maximumItems,
+       definition.maximumRoutesPerCollection
++    );
++  }
++  if (id === 'practicePlans') {
++    return sanitisePracticePlans(
++      value,
++      definition.maximumItems,
++      definition.maximumRoutesPerPlan,
++      definition.maximumCheckInsPerPlan
+     );
+   }
+   return undefined;
+diff --git a/data/personal-data-registry.json b/data/personal-data-registry.json
+--- a/data/personal-data-registry.json
++++ b/data/personal-data-registry.json
+@@ -1,12 +1,12 @@
+ {
+-  "release": 227,
++  "release": 228,
+   "generated": "2026-07-14",
+-  "builtAgainstCommit": "a241ba10ff7fc319a4347d616e2f0c6bb816cbd7",
++  "builtAgainstCommit": "25598978c0fc330e15da527b54ac51594a204435",
+   "schema": "osb-personal-data-backup-v1",
+   "canonicalOrigin": "https://omsaravanabhava.org",
+   "maximumImportBytes": 1048576,
+   "title": "OmSaravanaBhava Browser-Local Personal Data Registry",
+-  "scope": "Six explicitly registered browser-local datasets only. Cache contents, devotional page bodies, selected source text, credentials and unrelated localStorage keys are excluded.",
++  "scope": "Seven explicitly registered browser-local datasets only. Cache contents, devotional page bodies, selected source text, credentials and unrelated localStorage keys are excluded.",
+   "datasets": [
+     {
+       "id": "readingList",
+@@ -66,6 +66,18 @@
+       "uniqueBy": "id",
+       "timestampField": "updatedAt",
+       "mergeSupported": true
++    },
++    {
++      "id": "practicePlans",
++      "label": "Devotional Practice Plans",
++      "storageKey": "osb-devotional-practice-plans-v1",
++      "shape": "array",
++      "maximumItems": 12,
++      "maximumRoutesPerPlan": 50,
++      "maximumCheckInsPerPlan": 180,
++      "uniqueBy": "id",
++      "timestampField": "updatedAt",
++      "mergeSupported": true
+     }
+   ],
+   "excluded": [
+diff --git a/index.html b/index.html
+--- a/index.html
++++ b/index.html
+@@ -19,6 +19,7 @@
+ <link rel="stylesheet" href="assets/css/personal-data.css">
+ <link rel="stylesheet" href="assets/css/personal-library.css">
+ <link rel="stylesheet" href="assets/css/devotional-collections.css">
++<link rel="stylesheet" href="assets/css/devotional-practice-planner.css">
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+ <meta name="theme-color" content="#a51d17">
+ <meta name="mobile-web-app-capable" content="yes">
+@@ -33,22 +34,33 @@
+ <script type="module" src="assets/js/discovery-workspace.mjs"></script>
+ <script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body data-release="227">
++<body data-release="228">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Verified Murugan digital heritage platform</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Read</a><a href="reading-notes.html">Notes</a><a href="personal-library.html">My Library</a><a href="devotional-collections.html">Collections</a><a href="personal-data.html">Data</a><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div>
++<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Read</a><a href="reading-notes.html">Notes</a><a href="personal-library.html">My Library</a><a href="devotional-collections.html">Collections</a><a href="devotional-practice-planner.html">Planner</a><a href="personal-data.html">Data</a><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">OmSaravanaBhava Home</span></p></nav>
+ <section class="home-stage">
+-<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 227</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="discovery.html">Open discovery workspace</a><a class="btn secondary" href="explore.html">Explore all modules</a><a class="btn secondary" href="ai-search.html">Search knowledge</a><a class="btn secondary" href="search-facets.html">Browse by content type</a><a class="btn secondary" href="reading-list.html">Reading list</a><a class="btn secondary" href="accessibility.html">Accessibility</a><a class="btn secondary" href="print-pdf.html">Print &amp; PDF</a><a class="btn secondary" href="audio-history.html">Audio history</a><a class="btn secondary" href="knowledge-graph-explorer.html">Knowledge graph</a><a class="btn secondary" href="maintenance.html">Maintenance</a></div></div>
++<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 228</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="discovery.html">Open discovery workspace</a><a class="btn secondary" href="explore.html">Explore all modules</a><a class="btn secondary" href="ai-search.html">Search knowledge</a><a class="btn secondary" href="search-facets.html">Browse by content type</a><a class="btn secondary" href="reading-list.html">Reading list</a><a class="btn secondary" href="accessibility.html">Accessibility</a><a class="btn secondary" href="print-pdf.html">Print &amp; PDF</a><a class="btn secondary" href="audio-history.html">Audio history</a><a class="btn secondary" href="knowledge-graph-explorer.html">Knowledge graph</a><a class="btn secondary" href="maintenance.html">Maintenance</a></div></div>
+ <div class="home-stage-panel" aria-label="Published platform data">
+ <div class="home-metric"><span>Search records</span><strong data-count-source="data/search-index.json" aria-live="polite">…</strong></div>
+ <div class="home-metric"><span>Source records</span><strong data-count-source="data/sources.json" aria-live="polite">…</strong></div>
+ <div class="home-metric"><span>Device read-aloud entries</span><strong data-count-source="data/read-aloud-playlist.json" aria-live="polite">…</strong></div>
+ </div></section>
++<section class="card home-planner-228">
++<div>
++<span class="pill">Release 228 · Devotional Practice Planner</span>
++<h2>Turn your collections into a bounded local practice plan</h2>
++<p>Choose planning weekdays, organise current routes and record simple local check-ins without alarms, streaks or spiritual-outcome claims.</p>
++</div>
++<div class="home-planner-actions">
++<a class="btn" href="devotional-practice-planner.html">Open Practice Planner</a>
++<a class="btn secondary" href="devotional-collections.html">Open Collections</a>
++</div>
++</section>
+ <section class="card home-collections-227">
+ <div>
+ <span class="pill">Release 227 · Devotional collections</span>
+@@ -125,6 +137,6 @@
+ <section class="card" aria-labelledby="integrity-heading"><h2 id="integrity-heading">Publication integrity</h2><p>Repository releases, deployed pages and runtime behaviour are separate evidence layers. Content and feature claims remain bounded until automated checks and production observation confirm them.</p><p><a class="btn secondary" href="production-audit.html">Open production audit</a> <a class="btn secondary" href="content-status.html">Open content status</a></p></section>
+ <noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>All primary modules remain available through the navigation links. Live data counts are unavailable without JavaScript.</p></section></noscript>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="devotional-collections.html">Collections</a> · <a href="personal-library.html">My Library</a> · <a href="personal-data.html">Personal Data</a> · <a href="reading-notes.html">Reading Notes</a> · <a href="reading-workspace.html">Reading Workspace</a> · <a href="discovery.html">Discover</a> · <a href="maintenance.html">Maintenance</a> · <a href="knowledge-graph-explorer.html">Knowledge graph</a> · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
++<footer>© Om Saravana Bhava · <a href="devotional-practice-planner.html">Practice Planner</a> · <a href="devotional-collections.html">Collections</a> · <a href="personal-library.html">My Library</a> · <a href="personal-data.html">Personal Data</a> · <a href="reading-notes.html">Reading Notes</a> · <a href="reading-workspace.html">Reading Workspace</a> · <a href="discovery.html">Discover</a> · <a href="maintenance.html">Maintenance</a> · <a href="knowledge-graph-explorer.html">Knowledge graph</a> · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
+ </body>
+ </html>
+diff --git a/platform.html b/platform.html
+--- a/platform.html
++++ b/platform.html
+@@ -10,10 +10,10 @@
+ <meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
+ <script defer src="assets/js/pwa-register.js"></script><script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body data-release="227">
++<body data-release="228">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Digital Murugan knowledge platform</div>
+-<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Read</a><a href="reading-notes.html">Notes</a><a href="personal-library.html">My Library</a><a href="devotional-collections.html">Collections</a><a href="personal-data.html">Data</a><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div></div></nav>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Read</a><a href="reading-notes.html">Notes</a><a href="personal-library.html">My Library</a><a href="devotional-collections.html">Collections</a><a href="devotional-practice-planner.html">Planner</a><a href="personal-data.html">Data</a><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div></div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">OmSaravanaBhava Platform Hub</span></p></nav>
+ <section class="card"><h1 class="section-title" lang="ta">ஓம் சரவணபவ தளம்</h1><h2>OmSaravanaBhava Platform Hub</h2><p>Unified gateway to the source-aware devotional, literature, temple, search, graph and reading modules.</p></section>
+@@ -37,6 +37,7 @@
+ <article class="card"><h2>Reading Notes &amp; Section Bookmarks</h2><p>Manage browser-local user-authored notes and heading bookmarks without storing selected devotional text.</p><a class="btn" href="reading-notes.html">Open reading notes</a></article>
+ <article class="card"><h2>Personal Library Dashboard</h2><p>Aggregate actual browser-local reading, notes, accessibility and listening activity without writing analytics.</p><a class="btn" href="personal-library.html">Open personal library</a></article>
+ <article class="card"><h2>Devotional Collections Centre</h2><p>Create browser-local named collections containing route references only, with sixth-dataset backup support.</p><a class="btn" href="devotional-collections.html">Open collections</a></article>
++<article class="card"><h2>Devotional Practice Planner</h2><p>Create bounded local plans from collections or eligible published routes, with simple dated check-ins and no notification claims.</p><a class="btn" href="devotional-practice-planner.html">Open practice planner</a></article>
+ <article class="card"><h2>Personal Data Backup &amp; Restore</h2><p>Export, validate, preview and restore the five registered browser-local datasets without cloud accounts.</p><a class="btn" href="personal-data.html">Open personal data centre</a></article>
+ <article class="card"><h2>Maintenance Centre</h2><p>Run same-origin release checks, route audits, required-file checks and safe transient-cache cleanup.</p><a class="btn" href="maintenance.html">Open maintenance tools</a></article>
+ <article class="card"><h2>Knowledge Graph</h2><a class="btn" href="knowledge-graph-phase-4.html">Open module</a></article>
+diff --git a/discovery.html b/discovery.html
+--- a/discovery.html
++++ b/discovery.html
+@@ -15,12 +15,12 @@
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script type="module" src="assets/js/discovery-workspace.mjs"></script>
+ </head>
+-<body data-release="227">
++<body data-release="228">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Local published-route discovery workspace</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="discovery.html" aria-current="page">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="reading-notes.html">Notes</a><a href="personal-library.html">My Library</a><a href="devotional-collections.html">Collections</a><a href="personal-data.html">Data</a><a href="explore.html">Explore</a><a href="search-facets.html">Facets</a><a href="site-directory.html">Directory</a><a href="platform.html">Platform</a></div>
++<div class="links"><a href="discovery.html" aria-current="page">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="reading-notes.html">Notes</a><a href="personal-library.html">My Library</a><a href="devotional-collections.html">Collections</a><a href="devotional-practice-planner.html">Planner</a><a href="personal-data.html">Data</a><a href="explore.html">Explore</a><a href="search-facets.html">Facets</a><a href="site-directory.html">Directory</a><a href="platform.html">Platform</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Discovery Workspace</span></p></nav>
+@@ -74,6 +74,8 @@
+ 
+ <section class="card"><h2>Devotional collections</h2><p>Organise eligible published routes into named browser-local collections without copying source text.</p><a class="btn" href="devotional-collections.html">Open Collections</a></section>
+ 
++<section class="card"><h2>Devotional Practice Planner</h2><p>Use eligible discovery routes in bounded browser-local plans with organisational check-ins.</p><a class="btn" href="devotional-practice-planner.html">Open Practice Planner</a></section>
++
+ <section class="card discovery-boundary">
+ <h2>Publication and recommendation boundary</h2>
+ <ul>
+diff --git a/reading-workspace.html b/reading-workspace.html
+--- a/reading-workspace.html
++++ b/reading-workspace.html
+@@ -14,12 +14,12 @@
+ <link rel="manifest" href="manifest.json">
+ <script defer src="assets/js/pwa-register.js"></script>
+ </head>
+-<body data-release="227">
++<body data-release="228">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Browser-local premium literature reading workspace</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html" aria-current="page">Reading Workspace</a><a href="reading-notes.html">Notes</a><a href="personal-library.html">My Library</a><a href="devotional-collections.html">Collections</a><a href="personal-data.html">Data Backup</a><a href="reading-list.html">Reading List</a><a href="print-pdf.html">Print &amp; PDF</a><a href="accessibility.html">Accessibility</a></div>
++<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html" aria-current="page">Reading Workspace</a><a href="reading-notes.html">Notes</a><a href="personal-library.html">My Library</a><a href="devotional-collections.html">Collections</a><a href="devotional-practice-planner.html">Planner</a><a href="personal-data.html">Data Backup</a><a href="reading-list.html">Reading List</a><a href="print-pdf.html">Print &amp; PDF</a><a href="accessibility.html">Accessibility</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Reading Workspace</span></p></nav>
+@@ -71,6 +71,8 @@
+ 
+ <section class="card"><h2>Build devotional collections</h2><p>Add eligible literature and other published routes to named local collections.</p><a class="btn" href="devotional-collections.html">Open Collections</a></section>
+ 
++<section class="card"><h2>Practice planning</h2><p>Build a route sequence from current reading materials and record bounded local check-ins.</p><a class="btn" href="devotional-practice-planner.html">Open Practice Planner</a></section>
++
+ <section class="card reading-workspace-boundary">
+ <h2>Reading and evidence boundary</h2>
+ <ul>
+diff --git a/reading-notes.html b/reading-notes.html
+--- a/reading-notes.html
++++ b/reading-notes.html
+@@ -14,12 +14,12 @@
+ <link rel="manifest" href="manifest.json">
+ <script defer src="assets/js/pwa-register.js"></script>
+ </head>
+-<body data-release="227">
++<body data-release="228">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Browser-local reading notes and section bookmarks</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="reading-notes.html" aria-current="page">Notes</a><a href="personal-library.html">My Library</a><a href="devotional-collections.html">Collections</a><a href="personal-data.html">Data Backup</a><a href="reading-list.html">Reading List</a><a href="print-pdf.html">Print &amp; PDF</a></div>
++<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="reading-notes.html" aria-current="page">Notes</a><a href="personal-library.html">My Library</a><a href="devotional-collections.html">Collections</a><a href="devotional-practice-planner.html">Planner</a><a href="personal-data.html">Data Backup</a><a href="reading-list.html">Reading List</a><a href="print-pdf.html">Print &amp; PDF</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="reading-workspace.html">Reading Workspace</a> › <span aria-current="page">Reading Notes</span></p></nav>
+@@ -67,6 +67,8 @@
+ 
+ <section class="card"><h2>Collections alongside notes</h2><p>Group the current published routes connected to your reading and notes into named collections.</p><a class="btn" href="devotional-collections.html">Open Collections</a></section>
+ 
++<section class="card"><h2>Practice plans</h2><p>Connect your published reading routes with bounded weekday guidance and local check-ins.</p><a class="btn" href="devotional-practice-planner.html">Open Practice Planner</a></section>
++
+ <section class="card reading-notes-boundary-card">
+ <h2>Privacy and publication boundary</h2>
+ <ul>
+diff --git a/personal-library.html b/personal-library.html
+--- a/personal-library.html
++++ b/personal-library.html
+@@ -15,12 +15,12 @@
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script type="module" src="assets/js/personal-library.mjs"></script>
+ </head>
+-<body data-release="227">
++<body data-release="228">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Read-only browser-local personal library</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="discovery.html">Discover</a><a href="personal-library.html" aria-current="page">My Library</a><a href="devotional-collections.html">Collections</a><a href="reading-workspace.html">Reading</a><a href="reading-notes.html">Notes</a><a href="audio-history.html">Listening</a><a href="personal-data.html">Backup</a></div>
++<div class="links"><a href="discovery.html">Discover</a><a href="personal-library.html" aria-current="page">My Library</a><a href="devotional-collections.html">Collections</a><a href="devotional-practice-planner.html">Planner</a><a href="reading-workspace.html">Reading</a><a href="reading-notes.html">Notes</a><a href="audio-history.html">Listening</a><a href="personal-data.html">Backup</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Personal Library</span></p></nav>
+@@ -129,6 +129,8 @@
+ 
+ <section class="card"><h2>Devotional collections</h2><p>Create named route-only collections from the current published directory and include them in local backup.</p><a class="btn" href="devotional-collections.html">Open Collections</a></section>
+ 
++<section class="card"><h2>Devotional Practice Planner</h2><p>Convert a collection or published route sequence into a bounded local plan.</p><a class="btn" href="devotional-practice-planner.html">Open Practice Planner</a></section>
++
+ <section class="card personal-library-boundary">
+ <h2>Privacy and interpretation boundary</h2>
+ <ul>
+diff --git a/devotional-collections.html b/devotional-collections.html
+--- a/devotional-collections.html
++++ b/devotional-collections.html
+@@ -15,12 +15,12 @@
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script type="module" src="assets/js/devotional-collections.mjs"></script>
+ </head>
+-<body data-release="227">
++<body data-release="228">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Browser-local route collections</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="discovery.html">Discover</a><a href="personal-library.html">My Library</a><a href="devotional-collections.html" aria-current="page">Collections</a><a href="reading-workspace.html">Reading</a><a href="personal-data.html">Backup</a></div>
++<div class="links"><a href="discovery.html">Discover</a><a href="personal-library.html">My Library</a><a href="devotional-collections.html" aria-current="page">Collections</a><a href="devotional-practice-planner.html">Practice Planner</a><a href="reading-workspace.html">Reading</a><a href="personal-data.html">Backup</a></div>
+ </div></nav>
+ 
+ <main id="main-content" class="wrap">
+@@ -101,6 +101,8 @@
+ </div>
+ </section>
+ 
++<section class="card"><h2>Create a practice plan</h2><p>Use an existing collection as the starting route sequence for a bounded local plan.</p><a class="btn" href="devotional-practice-planner.html">Open Practice Planner</a></section>
++
+ <section class="card collections-boundary">
+ <h2>Data and editorial boundary</h2>
+ <ul>
+diff --git a/personal-data.html b/personal-data.html
+--- a/personal-data.html
++++ b/personal-data.html
+@@ -15,12 +15,12 @@
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script type="module" src="assets/js/personal-data.mjs"></script>
+ </head>
+-<body data-release="227">
++<body data-release="228">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Explicit browser-local data portability</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="platform.html">Platform</a><a href="reading-workspace.html">Reading</a><a href="reading-notes.html">Notes</a><a href="accessibility.html">Accessibility</a><a href="personal-library.html">My Library</a><a href="devotional-collections.html">Collections</a><a href="personal-data.html" aria-current="page">Personal Data</a></div>
++<div class="links"><a href="platform.html">Platform</a><a href="reading-workspace.html">Reading</a><a href="reading-notes.html">Notes</a><a href="accessibility.html">Accessibility</a><a href="personal-library.html">My Library</a><a href="devotional-collections.html">Collections</a><a href="devotional-practice-planner.html">Planner</a><a href="personal-data.html" aria-current="page">Personal Data</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Personal Data Centre</span></p></nav>
+@@ -82,10 +82,12 @@
+ 
+ <section class="card"><h2>Collections are now portable</h2><p>Release 227 registers devotional collections as the sixth bounded browser-local backup dataset.</p><a class="btn" href="devotional-collections.html">Open Collections</a></section>
+ 
++<section class="card"><h2>Practice plans are portable</h2><p>Release 228 registers bounded devotional practice plans as the seventh browser-local backup dataset.</p><a class="btn" href="devotional-practice-planner.html">Open Practice Planner</a></section>
++
+ <section class="card personal-data-boundary">
+ <h2>Data and safety boundary</h2>
+ <ul>
+-<li>Only six explicitly registered local datasets are supported: reading list, reading progress, reading notes, accessibility preferences, audio listening history and devotional collections.</li>
++<li>Only seven explicitly registered local datasets are supported: reading list, reading progress, reading notes, accessibility preferences, audio listening history, devotional collections and devotional practice plans.</li>
+ <li>Unknown datasets and invalid or duplicate records are ignored during validation.</li>
+ <li>Selected devotional text, published page bodies, offline cache contents, credentials and unrelated browser-storage keys are excluded.</li>
+ <li>Merge uses each dataset’s stable identifier and newest valid timestamp. Accessibility preferences are replaced as one bounded object.</li>
+diff --git a/maintenance.html b/maintenance.html
+--- a/maintenance.html
++++ b/maintenance.html
+@@ -15,12 +15,12 @@
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script type="module" src="assets/js/maintenance-centre.mjs"></script>
+ </head>
+-<body data-release="227">
++<body data-release="228">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Static-platform maintenance and local diagnostics</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="reading-notes.html">Notes</a><a href="personal-library.html">My Library</a><a href="devotional-collections.html">Collections</a><a href="personal-data.html">Data</a><a href="explore.html">Explore</a><a href="platform.html">Platform</a><a href="knowledge-graph-explorer.html">Graph Explorer</a><a href="maintenance.html" aria-current="page">Maintenance</a></div>
++<div class="links"><a href="discovery.html">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="reading-notes.html">Notes</a><a href="personal-library.html">My Library</a><a href="devotional-collections.html">Collections</a><a href="devotional-practice-planner.html">Planner</a><a href="personal-data.html">Data</a><a href="explore.html">Explore</a><a href="platform.html">Platform</a><a href="knowledge-graph-explorer.html">Graph Explorer</a><a href="maintenance.html" aria-current="page">Maintenance</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Maintenance Centre</span></p></nav>
+@@ -81,6 +81,8 @@
+ 
+ <section class="card"><h2>Collections integrity</h2><p>Validate the route-only collections page, configuration, backup registry and current route registration.</p><a class="btn" href="devotional-collections.html">Open Collections</a></section>
+ 
++<section class="card"><h2>Practice Planner integrity</h2><p>Validate the planner page, route-only schedule storage, seventh backup dataset and release identities.</p><a class="btn" href="devotional-practice-planner.html">Open Practice Planner</a></section>
++
+ <section class="card maintenance-boundary">
+ <h2>Evidence and safety boundary</h2>
+ <ul>
+diff --git a/assets/js/maintenance-centre.mjs b/assets/js/maintenance-centre.mjs
+--- a/assets/js/maintenance-centre.mjs
++++ b/assets/js/maintenance-centre.mjs
+@@ -1,4 +1,4 @@
+-export const RELEASE = 227;
++export const RELEASE = 228;
+ export const CONFIG_PATH = '/data/maintenance-checks.json';
+ export const DEFAULT_TRANSIENT_CACHE_PREFIXES = Object.freeze([
+   'osb-runtime-v',
+diff --git a/data/maintenance-checks.json b/data/maintenance-checks.json
+--- a/data/maintenance-checks.json
++++ b/data/maintenance-checks.json
+@@ -1,25 +1,25 @@
+ {
+-  "release": 227,
++  "release": 228,
+   "generated": "2026-07-14",
+-  "builtAgainstCommit": "a241ba10ff7fc319a4347d616e2f0c6bb816cbd7",
++  "builtAgainstCommit": "25598978c0fc330e15da527b54ac51594a204435",
+   "title": "OmSaravanaBhava Browser Maintenance Check Registry",
+-  "scope": "Same-origin Release 227 devotional-collections, personal-data, route, audit and maintenance continuity checks. This registry does not prove GitHub Actions status or repository certification.",
++  "scope": "Same-origin Release 228 devotional-practice-planner, personal-data, route, audit and maintenance continuity checks. This registry does not prove GitHub Actions status or repository certification.",
+   "checks": [
+     {
+       "id": "service-worker-release",
+       "label": "Service-worker release identity",
+       "path": "/service-worker.js",
+       "mode": "textIncludes",
+-      "expected": "const RELEASE = '227';",
++      "expected": "const RELEASE = '228';",
+       "severity": "critical"
+     },
+     {
+       "id": "release-manifest",
+       "label": "Release manifest identity",
+-      "path": "/manifest-release-227.json",
++      "path": "/manifest-release-228.json",
+       "mode": "jsonEquals",
+       "jsonPath": "release",
+-      "expected": 227,
++      "expected": 228,
+       "severity": "critical"
+     },
+     {
+@@ -27,8 +27,8 @@
+       "label": "Route directory integrity",
+       "path": "/data/site-routes.json",
+       "mode": "routeRegistry",
+-      "expectedRelease": 227,
+-      "requiredRoute": "/devotional-collections.html",
++      "expectedRelease": 228,
++      "requiredRoute": "/devotional-practice-planner.html",
+       "severity": "critical"
+     },
+     {
+@@ -36,48 +36,48 @@
+       "label": "Static-audit configuration",
+       "path": "/quality/site-audit-config.json",
+       "mode": "auditConfig",
+-      "expectedRelease": "227",
++      "expectedRelease": "228",
+       "requiredFiles": [
+-        "devotional-collections.html",
+-        "assets/css/devotional-collections.css",
+-        "assets/js/devotional-collections.mjs",
+-        "data/devotional-collections.json",
+-        "manifest-release-227.json"
++        "devotional-practice-planner.html",
++        "assets/css/devotional-practice-planner.css",
++        "assets/js/devotional-practice-planner.mjs",
++        "data/devotional-practice-planner.json",
++        "manifest-release-228.json"
+       ],
+       "severity": "critical"
+     },
+     {
+       "id": "sitemap-route",
+-      "label": "Collections sitemap registration",
++      "label": "Practice Planner sitemap registration",
+       "path": "/sitemap.xml",
+       "mode": "textCount",
+-      "expected": "https://omsaravanabhava.org/devotional-collections.html",
++      "expected": "https://omsaravanabhava.org/devotional-practice-planner.html",
+       "expectedCount": 1,
+       "severity": "important"
+     },
+     {
+-      "id": "collections-page",
+-      "label": "Devotional Collections page",
+-      "path": "/devotional-collections.html",
++      "id": "planner-page",
++      "label": "Devotional Practice Planner page",
++      "path": "/devotional-practice-planner.html",
+       "mode": "textIncludes",
+-      "expected": "data-release=\"227\"",
++      "expected": "data-release=\"228\"",
+       "severity": "critical"
+     },
+     {
+-      "id": "collections-module",
+-      "label": "Devotional Collections browser module",
+-      "path": "/assets/js/devotional-collections.mjs",
++      "id": "planner-module",
++      "label": "Devotional Practice Planner browser module",
++      "path": "/assets/js/devotional-practice-planner.mjs",
+       "mode": "textIncludes",
+-      "expected": "export const RELEASE = 227;",
++      "expected": "export const RELEASE = 228;",
+       "severity": "critical"
+     },
+     {
+       "id": "personal-data-registry",
+-      "label": "Six-dataset personal-data registry",
++      "label": "Seven-dataset personal-data registry",
+       "path": "/data/personal-data-registry.json",
+       "mode": "jsonEquals",
+       "jsonPath": "release",
+-      "expected": 227,
++      "expected": 228,
+       "severity": "important"
+     }
+   ],
+@@ -101,7 +101,8 @@
+     "/maintenance.html",
+     "/personal-data.html",
+     "/personal-library.html",
+-    "/devotional-collections.html"
++    "/devotional-collections.html",
++    "/devotional-practice-planner.html"
+   ],
+   "transientCachePrefixes": [
+     "osb-runtime-v",
+diff --git a/data/site-routes.json b/data/site-routes.json
+--- a/data/site-routes.json
++++ b/data/site-routes.json
+@@ -1,5 +1,5 @@
+ {
+-  "release": 227,
++  "release": 228,
+   "generated": "2026-07-14",
+   "scope": "Public HTML routes represented by the Release 215 sitemap and route directory.",
+   "statusMeaning": {
+@@ -614,6 +614,14 @@
+       "summary": "Browser-local named collections containing bounded same-origin route references only, with explicit stale-route reporting and backup support."
+     },
+     {
++      "path": "/devotional-practice-planner.html",
++      "titleTa": "பக்தி பயிற்சி திட்டம்",
++      "titleEn": "Devotional Practice Planner",
++      "category": "Platform",
++      "status": "utility",
++      "summary": "Browser-local bounded practice plans using current same-origin route references, weekday guidance and organisational dated check-ins."
++    },
++    {
+       "path": "/accessibility.html",
+       "titleTa": "அணுகல்தன்மை மையம்",
+       "titleEn": "Accessibility Centre",
+diff --git a/sitemap.xml b/sitemap.xml
+--- a/sitemap.xml
++++ b/sitemap.xml
+@@ -594,4 +594,10 @@
+     <changefreq>weekly</changefreq>
+     <priority>0.8</priority>
+   </url>
++  <url>
++    <loc>https://omsaravanabhava.org/devotional-practice-planner.html</loc>
++    <lastmod>2026-07-14</lastmod>
++    <changefreq>weekly</changefreq>
++    <priority>0.8</priority>
++  </url>
+ </urlset>
+diff --git a/service-worker.js b/service-worker.js
+--- a/service-worker.js
++++ b/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '227';
++const RELEASE = '228';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -246,7 +246,12 @@
+   "/assets/css/devotional-collections.css",
+   "/assets/js/devotional-collections.mjs",
+   "/data/devotional-collections.json",
+-  "/manifest-release-227.json"
++  "/manifest-release-227.json",
++  "/devotional-practice-planner.html",
++  "/assets/css/devotional-practice-planner.css",
++  "/assets/js/devotional-practice-planner.mjs",
++  "/data/devotional-practice-planner.json",
++  "/manifest-release-228.json"
+ ];
+ 
+ const cacheOptionalAssets = async cache => {
+diff --git a/quality/site-audit-config.json b/quality/site-audit-config.json
+--- a/quality/site-audit-config.json
++++ b/quality/site-audit-config.json
+@@ -1,5 +1,5 @@
+ {
+-  "expectedRelease": "227",
++  "expectedRelease": "228",
+   "canonicalOrigin": "https://omsaravanabhava.org",
+   "requiredFiles": [
+     "index.html",
+@@ -77,7 +77,12 @@
+     "assets/css/devotional-collections.css",
+     "assets/js/devotional-collections.mjs",
+     "data/devotional-collections.json",
+-    "manifest-release-227.json"
++    "manifest-release-227.json",
++    "devotional-practice-planner.html",
++    "assets/css/devotional-practice-planner.css",
++    "assets/js/devotional-practice-planner.mjs",
++    "data/devotional-practice-planner.json",
++    "manifest-release-228.json"
+   ],
+   "canonicalOptional": [
+     "404.html",
+diff --git a/tools/production_smoke.py b/tools/production_smoke.py
+--- a/tools/production_smoke.py
++++ b/tools/production_smoke.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Observe the deployed custom domain and fail when Release 227 is not live."""
++"""Observe the deployed custom domain and fail when Release 228 is not live."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -10,8 +10,8 @@
+ from pathlib import Path
+ 
+ CHECKS = [
+-    ("/", 'data-release="227"'),
+-    ("/service-worker.js", "const RELEASE = '227';"),
++    ("/", 'data-release="228"'),
++    ("/service-worker.js", "const RELEASE = '228';"),
+     ("/search-facets.html", "Published-Content Search Facets"),
+     ("/assets/js/search-facets.mjs", "export const RELEASE = 216;"),
+     ("/data/site-routes.json", '"/search-facets.html"'),
+@@ -38,49 +38,57 @@
+     ("/assets/js/knowledge-graph-explorer.mjs", "export const RELEASE = 220"),
+     ("/data/knowledge-graph-explorer.json", "\"release\": 220"),
+     ("/sitemap.xml", "https://omsaravanabhava.org/knowledge-graph-explorer.html"),
+-    ("/maintenance.html", "data-release=\"226\""),
+-    ("/assets/js/maintenance-centre.mjs", "export const RELEASE = 227"),
+-    ("/data/maintenance-checks.json", "\"release\": 227"),
+-    ("/manifest-release-227.json", "\"release\": 227"),
++    ("/maintenance.html", "data-release=\"228\""),
++    ("/assets/js/maintenance-centre.mjs", "export const RELEASE = 228"),
++    ("/data/maintenance-checks.json", "\"release\": 228"),
++    ("/manifest-release-228.json", "\"release\": 228"),
+     ("/data/site-routes.json", "\"/maintenance.html\""),
+     ("/sitemap.xml", "https://omsaravanabhava.org/maintenance.html"),
+-    ("/discovery.html", "data-release=\"226\""),
++    ("/discovery.html", "data-release=\"228\""),
+     ("/assets/js/discovery-workspace.mjs", "export const RELEASE = 222"),
+     ("/data/discovery-lenses.json", "\"release\": 222"),
+     ("/data/site-routes.json", "\"/discovery.html\""),
+     ("/sitemap.xml", "https://omsaravanabhava.org/discovery.html"),
+-    ("/reading-workspace.html", "data-release=\"226\""),
++    ("/reading-workspace.html", "data-release=\"228\""),
+     ("/assets/js/reader-experience.js", "export const RELEASE = 224"),
+     ("/assets/js/pwa-register.js", "reader-experience.js"),
+     ("/data/reading-workspace.json", "\"release\": 224"),
+     ("/data/site-routes.json", "\"/reading-workspace.html\""),
+     ("/sitemap.xml", "https://omsaravanabhava.org/reading-workspace.html"),
+-    ("/reading-notes.html", "data-release=\"226\""),
++    ("/reading-notes.html", "data-release=\"228\""),
+     ("/assets/js/reading-notes.mjs", "export const RELEASE = 224"),
+     ("/assets/js/pwa-register.js", "reading-notes.mjs"),
+     ("/data/reading-notes.json", "\"release\": 224"),
+     ("/data/site-routes.json", "\"/reading-notes.html\""),
+     ("/sitemap.xml", "https://omsaravanabhava.org/reading-notes.html"),
+-    ("/personal-data.html", "data-release=\"226\""),
+-    ("/assets/js/personal-data.mjs", "export const RELEASE = 227"),
+-    ("/data/personal-data-registry.json", "\"release\": 227"),
++    ("/personal-data.html", "data-release=\"228\""),
++    ("/assets/js/personal-data.mjs", "export const RELEASE = 228"),
++    ("/data/personal-data-registry.json", "\"release\": 228"),
+     ("/manifest-release-225.json", "\"release\": 225"),
+     ("/data/site-routes.json", "\"/personal-data.html\""),
+     ("/sitemap.xml", "https://omsaravanabhava.org/personal-data.html"),
+-    ("/personal-library.html", "data-release=\"226\""),
++    ("/personal-library.html", "data-release=\"228\""),
+     ("/assets/js/personal-library.mjs", "export const RELEASE = 226"),
+     ("/data/personal-library.json", "\"release\": 226"),
+     ("/manifest-release-226.json", "\"release\": 226"),
+     ("/data/site-routes.json", "\"/personal-library.html\""),
+     ("/sitemap.xml", "https://omsaravanabhava.org/personal-library.html"),
+-    ("/devotional-collections.html", "data-release=\"227\""),
++    ("/devotional-collections.html", "data-release=\"228\""),
+     ("/assets/js/devotional-collections.mjs", "export const RELEASE = 227"),
+     ("/data/devotional-collections.json", "\"release\": 227"),
+     ("/assets/js/personal-data.mjs", "'collections'"),
+     ("/data/personal-data-registry.json", "\"id\": \"collections\""),
+     ("/manifest-release-227.json", "\"release\": 227"),
+     ("/data/site-routes.json", "\"/devotional-collections.html\""),
+-    ("/sitemap.xml", "https://omsaravanabhava.org/devotional-collections.html")
++    ("/sitemap.xml", "https://omsaravanabhava.org/devotional-collections.html"),
++    ("/devotional-practice-planner.html", "data-release=\"228\""),
++    ("/assets/js/devotional-practice-planner.mjs", "export const RELEASE = 228"),
++    ("/data/devotional-practice-planner.json", "\"release\": 228"),
++    ("/assets/js/personal-data.mjs", "'practicePlans'"),
++    ("/data/personal-data-registry.json", "\"id\": \"practicePlans\""),
++    ("/manifest-release-228.json", "\"release\": 228"),
++    ("/data/site-routes.json", "\"/devotional-practice-planner.html\""),
++    ("/sitemap.xml", "https://omsaravanabhava.org/devotional-practice-planner.html")
+ ]
+ 
+ 
+@@ -88,7 +96,7 @@
+     request = urllib.request.Request(
+         url,
+         headers={
+-            "User-Agent": "OmSaravanaBhava-Production-Smoke/227",
++            "User-Agent": "OmSaravanaBhava-Production-Smoke/228",
+             "Cache-Control": "no-cache"
+         }
+     )
+@@ -128,7 +136,7 @@
+     parser.add_argument("--retries", type=int, default=18)
+     parser.add_argument("--delay", type=int, default=20)
+     parser.add_argument("--timeout", type=int, default=20)
+-    parser.add_argument("--report", type=Path, default=Path("artifacts/release-227-production-smoke.json"))
++    parser.add_argument("--report", type=Path, default=Path("artifacts/release-228-production-smoke.json"))
+     args = parser.parse_args()
+     report = run(args.origin, args.retries, args.delay, args.timeout)
+     args.report.parent.mkdir(parents=True, exist_ok=True)
+diff --git a/tests/devotional-practice-planner.test.mjs b/tests/devotional-practice-planner.test.mjs
+new file mode 100644
+--- /dev/null
++++ b/tests/devotional-practice-planner.test.mjs
+@@ -0,0 +1,382 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import fs from 'node:fs';
++
++import {
++  RELEASE,
++  STORAGE_KEY,
++  addRouteToPlan,
++  buildPlannerMetrics,
++  checkInPlan,
++  createPlan,
++  deletePlan,
++  filterEligibleRoutes,
++  filterPlans,
++  isPlanDueOnDate,
++  loadPlans,
++  localDateString,
++  moveCurrentRoute,
++  normaliseEligibleRoutes,
++  normalisePlannerRoute,
++  removeCheckIn,
++  removeRouteFromPlan,
++  resolvePlans,
++  sanitisePlan,
++  savePlans,
++  updatePlan
++} from '../assets/js/devotional-practice-planner.mjs';
++
++class MemoryStorage {
++  constructor(initial = {}) {
++    this.values = new Map(Object.entries(initial));
++  }
++  getItem(key) {
++    return this.values.has(key) ? this.values.get(key) : null;
++  }
++  setItem(key, value) {
++    this.values.set(key, String(value));
++  }
++}
++
++const config = JSON.parse(
++  fs.readFileSync(
++    new URL('../data/devotional-practice-planner.json', import.meta.url),
++    'utf8'
++  )
++);
++
++const routesPayload = {
++  release: 228,
++  routes: [
++    {
++      path: '/literature/a.html',
++      titleTa: 'அ',
++      titleEn: 'Literature A',
++      category: 'Literature',
++      status: 'published',
++      summary: 'Published'
++    },
++    {
++      path: '/temples/a.html',
++      titleTa: 'கோவில்',
++      titleEn: 'Temple A',
++      category: 'Temples',
++      status: 'partial-reviewed',
++      summary: 'Bounded'
++    },
++    {
++      path: '/personal-data.html',
++      titleEn: 'Personal Data',
++      category: 'Platform',
++      status: 'utility'
++    },
++    {
++      path: '/draft.html',
++      titleEn: 'Draft',
++      category: 'Literature',
++      status: 'draft'
++    }
++  ]
++};
++
++test('release and capacities are stable', () => {
++  assert.equal(RELEASE, 228);
++  assert.equal(config.release, 228);
++  assert.equal(STORAGE_KEY, 'osb-devotional-practice-plans-v1');
++  assert.equal(config.maximumPlans, 12);
++  assert.equal(config.maximumRoutesPerPlan, 50);
++  assert.equal(config.maximumCheckInsPerPlan, 180);
++});
++
++test('same-origin route normalisation rejects external routes', () => {
++  assert.equal(
++    normalisePlannerRoute('/literature/a.html'),
++    '/literature/a.html'
++  );
++  assert.equal(
++    normalisePlannerRoute('https://example.com/a.html'),
++    ''
++  );
++});
++
++test('sanitiser stores bounded route and check-in metadata only', () => {
++  const plan = sanitisePlan({
++    id: 'p1',
++    name: 'Morning',
++    weekdays: [1, 3, 3, 9],
++    routes: [
++      {
++        route: '/literature/a.html',
++        content: 'must not be stored'
++      },
++      {route: '/literature/a.html'},
++      {route: 'https://example.com/out.html'}
++    ],
++    checkIns: [
++      {
++        date: '2026-07-14',
++        route: '/literature/a.html',
++        selectedText: 'must not be stored'
++      }
++    ],
++    pageBody: 'must not be stored'
++  }, {
++    ...config,
++    timestamp: '2026-07-14T12:00:00Z'
++  });
++
++  assert.deepEqual(plan.weekdays, [1, 3]);
++  assert.equal(plan.routes.length, 1);
++  assert.deepEqual(
++    Object.keys(plan.routes[0]),
++    ['route', 'addedAt']
++  );
++  assert.equal(plan.checkIns.length, 1);
++  assert.deepEqual(
++    Object.keys(plan.checkIns[0]),
++    ['date', 'route', 'completedAt']
++  );
++  assert.equal('pageBody' in plan, false);
++});
++
++test('eligible routes exclude utility and draft pages', () => {
++  const routes = normaliseEligibleRoutes(routesPayload, config);
++  assert.deepEqual(
++    routes.map(route => route.path).sort(),
++    ['/literature/a.html', '/temples/a.html']
++  );
++});
++
++test('plan creation copies collection route references', () => {
++  const plans = createPlan(
++    [],
++    {
++      id: 'p1',
++      name: 'Collection Plan',
++      sourceCollection: {
++        id: 'c1',
++        name: 'Collection',
++        items: [
++          {route: '/literature/a.html'},
++          {route: '/temples/a.html'}
++        ]
++      },
++      weekdays: [1, 5],
++      timestamp: '2026-07-14T10:00:00Z'
++    },
++    config
++  );
++  assert.equal(plans.length, 1);
++  assert.equal(plans[0].sourceCollectionId, 'c1');
++  assert.equal(plans[0].routes.length, 2);
++  assert.deepEqual(plans[0].weekdays, [1, 5]);
++});
++
++test('duplicate route prevention and removal cleanup', () => {
++  let plans = createPlan(
++    [],
++    {
++      id: 'p1',
++      name: 'Plan',
++      timestamp: '2026-07-14T10:00:00Z'
++    },
++    config
++  );
++  plans = addRouteToPlan(
++    plans, 'p1', '/literature/a.html', config,
++    '2026-07-14T10:10:00Z'
++  );
++  plans = addRouteToPlan(
++    plans, 'p1', '/literature/a.html', config,
++    '2026-07-14T10:20:00Z'
++  );
++  assert.equal(plans[0].routes.length, 1);
++
++  plans = checkInPlan(
++    plans, 'p1',
++    {
++      date: '2026-07-14',
++      timestamp: '2026-07-14T11:00:00Z'
++    },
++    config
++  );
++  assert.equal(plans[0].checkIns.length, 1);
++
++  plans = removeRouteFromPlan(
++    plans, 'p1', '/literature/a.html', config,
++    '2026-07-14T12:00:00Z'
++  );
++  assert.equal(plans[0].routes.length, 0);
++  assert.equal(plans[0].checkIns.length, 0);
++});
++
++test('one same-date check-in is replaced and route advances', () => {
++  let plans = [{
++    id: 'p1',
++    name: 'Plan',
++    description: '',
++    sourceCollectionId: '',
++    weekdays: [],
++    routes: [
++      {route: '/literature/a.html'},
++      {route: '/temples/a.html'}
++    ],
++    currentIndex: 0,
++    checkIns: [],
++    createdAt: '2026-07-14T09:00:00Z',
++    updatedAt: '2026-07-14T09:00:00Z'
++  }];
++
++  plans = checkInPlan(
++    plans, 'p1',
++    {
++      date: '2026-07-14',
++      timestamp: '2026-07-14T10:00:00Z'
++    },
++    config
++  );
++  assert.equal(plans[0].checkIns.length, 1);
++  assert.equal(plans[0].checkIns[0].route, '/literature/a.html');
++  assert.equal(plans[0].currentIndex, 1);
++
++  plans = checkInPlan(
++    plans, 'p1',
++    {
++      date: '2026-07-14',
++      timestamp: '2026-07-14T11:00:00Z'
++    },
++    config
++  );
++  assert.equal(plans[0].checkIns.length, 1);
++  assert.equal(plans[0].checkIns[0].route, '/temples/a.html');
++  assert.equal(plans[0].currentIndex, 0);
++
++  plans = removeCheckIn(
++    plans, 'p1', '2026-07-14', config,
++    '2026-07-14T12:00:00Z'
++  );
++  assert.equal(plans[0].checkIns.length, 0);
++});
++
++test('route movement wraps and weekday guidance is deterministic', () => {
++  let plans = [{
++    id: 'p1',
++    name: 'Plan',
++    routes: [
++      {route: '/literature/a.html'},
++      {route: '/temples/a.html'}
++    ],
++    currentIndex: 0
++  }];
++  plans = moveCurrentRoute(plans, 'p1', 'previous');
++  assert.equal(plans[0].currentIndex, 1);
++  plans = moveCurrentRoute(plans, 'p1', 'next');
++  assert.equal(plans[0].currentIndex, 0);
++
++  const monday = new Date('2026-07-13T12:00:00');
++  assert.equal(isPlanDueOnDate({weekdays: [1, 5]}, monday), true);
++  assert.equal(isPlanDueOnDate({weekdays: [2]}, monday), false);
++  assert.equal(isPlanDueOnDate({weekdays: []}, monday), true);
++  assert.equal(localDateString(monday), '2026-07-13');
++});
++
++test('resolution reports stale routes and actual metrics', () => {
++  const eligible = normaliseEligibleRoutes(routesPayload, config);
++  const plans = [{
++    id: 'p1',
++    name: 'Mixed',
++    weekdays: [],
++    routes: [
++      {route: '/literature/a.html'},
++      {route: '/removed.html'}
++    ],
++    currentIndex: 0,
++    checkIns: []
++  }];
++  const resolved = resolvePlans(plans, eligible);
++  assert.equal(resolved.plans[0].routes.length, 1);
++  assert.equal(resolved.ignoredRoutes, 1);
++
++  const metrics = buildPlannerMetrics(
++    plans, eligible, config,
++    new Date('2026-07-14T12:00:00')
++  );
++  assert.equal(metrics.plans, 1);
++  assert.equal(metrics.routes, 1);
++  assert.equal(metrics.dueToday, 1);
++  assert.equal(metrics.ignoredRoutes, 1);
++});
++
++test('Tamil and English filtering remains local', () => {
++  const eligible = normaliseEligibleRoutes(routesPayload, config);
++  assert.equal(
++    filterEligibleRoutes(eligible, 'கோவில்')[0].path,
++    '/temples/a.html'
++  );
++  const resolved = resolvePlans([{
++    id: 'p1',
++    name: 'காலை',
++    description: 'Morning',
++    weekdays: [],
++    routes: [{route: '/literature/a.html'}],
++    currentIndex: 0,
++    checkIns: []
++  }], eligible).plans;
++  assert.equal(filterPlans(resolved, 'காலை').length, 1);
++});
++
++test('storage capacity, update and deletion are bounded', () => {
++  const storage = new MemoryStorage();
++  const plans = [];
++  for (let index = 0; index < 15; index += 1) {
++    plans.push({
++      id: `p${index}`,
++      name: `Plan ${index}`,
++      routes: [],
++      checkIns: [],
++      weekdays: [],
++      createdAt: `2026-07-14T10:${String(index).padStart(2, '0')}:00Z`,
++      updatedAt: `2026-07-14T10:${String(index).padStart(2, '0')}:00Z`
++    });
++  }
++  assert.equal(savePlans(plans, storage, config), true);
++  let loaded = loadPlans(storage, config);
++  assert.equal(loaded.length, 12);
++
++  const id = loaded[0].id;
++  loaded = updatePlan(
++    loaded, id,
++    {name: 'Updated', weekdays: [2]},
++    config,
++    '2026-07-14T12:00:00Z'
++  );
++  assert.equal(
++    loaded.find(plan => plan.id === id).weekdays[0],
++    2
++  );
++  loaded = deletePlan(loaded, id);
++  assert.equal(loaded.length, 11);
++});
++
++test('module has no notification, tracking or source capture', () => {
++  const source = fs.readFileSync(
++    new URL(
++      '../assets/js/devotional-practice-planner.mjs',
++      import.meta.url
++    ),
++    'utf8'
++  );
++  for (const marker of [
++    'Notification.requestPermission',
++    'showNotification',
++    'navigator.sendBeacon',
++    'gtag(',
++    'document.body.innerText',
++    'document.body.textContent',
++    'selectedText:',
++    'pageBody:',
++    'streak'
++  ]) {
++    assert.equal(source.includes(marker), false, marker);
++  }
++});
+diff --git a/tests/personal-data.test.mjs b/tests/personal-data.test.mjs
+--- a/tests/personal-data.test.mjs
++++ b/tests/personal-data.test.mjs
+@@ -12,12 +12,7 @@
+   datasetCount,
+   mergeArrayDataset,
+   normaliseSameOriginRoute,
+-  sanitiseAccessibility,
+-  sanitiseAudioHistory,
+-  sanitiseCollections,
+-  sanitiseReadingList,
+-  sanitiseReadingNotes,
+-  sanitiseReadingProgress,
++  sanitisePracticePlans,
+   validateBackup
+ } from '../assets/js/personal-data.mjs';
+ 
+@@ -26,211 +21,122 @@
+     this.values = new Map(Object.entries(initial));
+   }
+   getItem(key) {
+-    return this.values.has(key)
+-      ? this.values.get(key)
+-      : null;
++    return this.values.has(key) ? this.values.get(key) : null;
+   }
+   setItem(key, value) {
+     this.values.set(key, String(value));
+   }
+-  removeItem(key) {
+-    this.values.delete(key);
+-  }
+ }
+ 
+ const registry = JSON.parse(
+   fs.readFileSync(
+-    new URL(
+-      '../data/personal-data-registry.json',
+-      import.meta.url
+-    ),
++    new URL('../data/personal-data-registry.json', import.meta.url),
+     'utf8'
+   )
+ );
+ 
+-test('release, schema and six registered datasets are stable', () => {
+-  assert.equal(RELEASE, 227);
+-  assert.equal(registry.release, 227);
+-  assert.equal(
+-    BACKUP_SCHEMA,
+-    'osb-personal-data-backup-v1'
+-  );
++test('release, schema and seven datasets are stable', () => {
++  assert.equal(RELEASE, 228);
++  assert.equal(registry.release, 228);
++  assert.equal(BACKUP_SCHEMA, 'osb-personal-data-backup-v1');
+   assert.deepEqual(
+     registry.datasets.map(item => item.id),
+     DATASET_IDS
+   );
+-  assert.equal(DATASET_IDS.length, 6);
+-  assert.equal(DATASET_IDS.at(-1), 'collections');
+-});
+-
+-test('same-origin routes are accepted and external routes rejected', () => {
+-  assert.equal(
+-    normaliseSameOriginRoute(
+-      '/literature/kandar-anubhuti.html'
+-    ),
+-    '/literature/kandar-anubhuti.html'
+-  );
+-  assert.equal(
+-    normaliseSameOriginRoute(
+-      'https://example.com/page.html'
+-    ),
++  assert.equal(DATASET_IDS.length, 7);
++  assert.equal(DATASET_IDS.at(-1), 'practicePlans');
++});
++
++test('same-origin route validation remains active', () => {
++  assert.equal(
++    normaliseSameOriginRoute('/literature/a.html'),
++    '/literature/a.html'
++  );
++  assert.equal(
++    normaliseSameOriginRoute('https://example.com/a.html'),
+     ''
+   );
+ });
+ 
+-test('reading records remain bounded and source body fields are discarded', () => {
+-  const list = sanitiseReadingList([
++test('practice plan backup stores bounded metadata only', () => {
++  const plans = sanitisePracticePlans([
+     {
+-      route: '/a.html',
+-      titleEn: 'A',
+-      savedAt: '2026-07-14T10:00:00Z'
+-    },
+-    {
+-      route: '/a.html',
+-      titleEn: 'Duplicate'
+-    },
+-    {
+-      route: 'https://example.com/b.html'
+-    }
+-  ]);
+-  assert.equal(list.length, 1);
+-
+-  const progress = sanitiseReadingProgress([{
+-    route: '/literature/a.html',
+-    percent: 150,
+-    content: 'must not be stored'
+-  }]);
+-  assert.equal(progress[0].percent, 100);
+-  assert.equal('content' in progress[0], false);
+-
+-  const notes = sanitiseReadingNotes([{
+-    id: 'n1',
+-    route: '/literature/a.html',
+-    note: 'My reflection',
+-    selectedText: 'not allowed',
+-    pageBody: 'not allowed'
+-  }]);
+-  assert.equal(notes.length, 1);
+-  assert.equal('selectedText' in notes[0], false);
+-  assert.equal('pageBody' in notes[0], false);
+-});
+-
+-test('accessibility and audio schemas remain bounded', () => {
+-  assert.deepEqual(
+-    sanitiseAccessibility({
+-      largeText: true,
+-      highContrast: 1,
+-      reducedMotion: true,
+-      unknown: true
+-    }),
+-    {
+-      largeText: true,
+-      highContrast: false,
+-      reducedMotion: true,
+-      underlinedLinks: false
+-    }
+-  );
+-  const history = sanitiseAudioHistory([{
+-    id: 'track-1',
+-    route: '/slokas/a.html',
+-    playCount: -3
+-  }]);
+-  assert.equal(history.length, 1);
+-  assert.equal(history[0].playCount, 1);
+-});
+-
+-test('collections store bounded route references only', () => {
+-  const collections = sanitiseCollections([
+-    {
+-      id: 'c1',
++      id: 'p1',
+       name: 'Morning',
+-      description: 'Daily routes',
+-      items: [
++      description: 'Plan',
++      sourceCollectionId: 'c1',
++      weekdays: [1, 3, 3, 9],
++      routes: [
+         {
+           route: '/literature/a.html',
+-          addedAt: '2026-07-14T10:00:00Z',
+-          titleEn: 'must not be stored',
+           content: 'must not be stored'
+         },
+-        {
+-          route: '/literature/a.html'
+-        },
+-        {
+-          route: 'https://example.com/outside.html'
++        {route: '/literature/a.html'},
++        {route: 'https://example.com/out.html'}
++      ],
++      currentIndex: 99,
++      checkIns: [
++        {
++          date: '2026-07-14',
++          route: '/literature/a.html',
++          selectedText: 'must not be stored'
+         }
+       ],
+-      selectedText: 'must not be stored',
+-      pageBody: 'must not be stored',
+-      updatedAt: '2026-07-14T11:00:00Z'
+-    }
+-  ], 20, 50);
+-
+-  assert.equal(collections.length, 1);
+-  assert.equal(collections[0].items.length, 1);
+-  assert.deepEqual(
+-    Object.keys(collections[0].items[0]),
++      pageBody: 'must not be stored'
++    }
++  ], 12, 50, 180);
++
++  assert.equal(plans.length, 1);
++  assert.deepEqual(plans[0].weekdays, [1, 3]);
++  assert.equal(plans[0].routes.length, 1);
++  assert.deepEqual(
++    Object.keys(plans[0].routes[0]),
+     ['route', 'addedAt']
+   );
+-  assert.equal('selectedText' in collections[0], false);
+-  assert.equal('pageBody' in collections[0], false);
++  assert.equal(plans[0].currentIndex, 0);
++  assert.equal(plans[0].checkIns.length, 1);
++  assert.deepEqual(
++    Object.keys(plans[0].checkIns[0]),
++    ['date', 'route', 'completedAt']
++  );
++  assert.equal('pageBody' in plans[0], false);
+ });
+ 
+ test('inventory and export include only registered keys', () => {
+   const storage = new MemoryStorage({
+-    'osb-devotional-collections-v1':
+-      JSON.stringify([
+-        {
+-          id: 'c1',
+-          name: 'Morning',
+-          items: []
+-        }
+-      ]),
+-    'unregistered-secret':
+-      JSON.stringify({secret: true})
++    'osb-devotional-practice-plans-v1': JSON.stringify([
++      {id: 'p1', name: 'Plan', routes: [], checkIns: []}
++    ]),
++    'unregistered-secret': JSON.stringify({secret: true})
+   });
+-
+-  const inventory = buildInventory(
+-    registry,
+-    storage
+-  );
++  const inventory = buildInventory(registry, storage);
+   assert.equal(inventory.totalRecords, 1);
+ 
+   const backup = createBackup(
+     registry,
+-    ['collections'],
++    ['practicePlans'],
+     storage,
+     '2026-07-14T10:00:00Z'
+   );
+   assert.deepEqual(
+     Object.keys(backup.datasets),
+-    ['collections']
+-  );
+-  assert.equal(
+-    'unregistered-secret' in backup.datasets,
+-    false
+-  );
+-});
+-
+-test('backup validation ignores unknown datasets and validates collections', () => {
+-  const wrong = validateBackup({
+-    schema: 'wrong',
+-    origin: registry.canonicalOrigin,
+-    datasets: {}
+-  }, registry);
+-  assert.equal(wrong.ok, false);
+-
++    ['practicePlans']
++  );
++  assert.equal('unregistered-secret' in backup.datasets, false);
++});
++
++test('backup validation ignores unknown datasets', () => {
+   const valid = validateBackup({
+     schema: registry.schema,
+-    release: 227,
++    release: 228,
+     origin: registry.canonicalOrigin,
+     datasets: {
+-      collections: [
+-        {
+-          id: 'c1',
+-          name: 'Study',
+-          items: [
+-            {route: '/literature/a.html'}
+-          ]
++      practicePlans: [
++        {
++          id: 'p1',
++          name: 'Plan',
++          routes: [{route: '/literature/a.html'}],
++          checkIns: []
+         }
+       ],
+       unknown: {secret: true}
+@@ -240,28 +146,28 @@
+   assert.equal(valid.ok, true);
+   assert.deepEqual(
+     Object.keys(valid.backup.datasets),
+-    ['collections']
++    ['practicePlans']
+   );
+   assert.equal(valid.warnings.length, 1);
+ });
+ 
+-test('generic merge keeps newer collection by id', () => {
++test('generic merge keeps newer plan by id', () => {
+   const merged = mergeArrayDataset(
+     [
+       {
+-        id: 'c1',
++        id: 'p1',
+         name: 'Old',
+         updatedAt: '2026-07-14T09:00:00Z'
+       }
+     ],
+     [
+       {
+-        id: 'c1',
++        id: 'p1',
+         name: 'New',
+         updatedAt: '2026-07-14T10:00:00Z'
+       },
+       {
+-        id: 'c2',
++        id: 'p2',
+         name: 'Second',
+         updatedAt: '2026-07-14T08:00:00Z'
+       }
+@@ -269,34 +175,33 @@
+     {
+       uniqueBy: 'id',
+       timestampField: 'updatedAt',
+-      maximumItems: 20
++      maximumItems: 12
+     }
+   );
+   assert.equal(merged.length, 2);
+   assert.equal(
+-    merged.find(item => item.id === 'c1').name,
++    merged.find(item => item.id === 'p1').name,
+     'New'
+   );
+ });
+ 
+-test('validated restore changes only selected registered datasets', () => {
++test('restore changes only selected registered datasets', () => {
+   const storage = new MemoryStorage({
+-    'osb-devotional-collections-v1':
+-      JSON.stringify([
+-        {
+-          id: 'c1',
+-          name: 'Existing',
+-          items: [],
+-          updatedAt: '2026-07-14T09:00:00Z'
+-        }
+-      ]),
+-    'osb-accessibility-preferences-v1':
+-      JSON.stringify({
+-        largeText: false,
+-        highContrast: false,
+-        reducedMotion: false,
+-        underlinedLinks: false
+-      }),
++    'osb-devotional-practice-plans-v1': JSON.stringify([
++      {
++        id: 'p1',
++        name: 'Existing',
++        routes: [],
++        checkIns: [],
++        updatedAt: '2026-07-14T09:00:00Z'
++      }
++    ]),
++    'osb-accessibility-preferences-v1': JSON.stringify({
++      largeText: false,
++      highContrast: false,
++      reducedMotion: false,
++      underlinedLinks: false
++    }),
+     'unregistered-secret': 'preserve-me'
+   });
+ 
+@@ -304,19 +209,16 @@
+     schema: registry.schema,
+     origin: registry.canonicalOrigin,
+     datasets: {
+-      collections: [
+-        {
+-          id: 'c2',
++      practicePlans: [
++        {
++          id: 'p2',
+           name: 'Imported',
+-          items: [
+-            {route: '/literature/a.html'}
+-          ],
++          routes: [{route: '/literature/a.html'}],
++          checkIns: [],
+           updatedAt: '2026-07-14T10:00:00Z'
+         }
+       ],
+-      accessibility: {
+-        largeText: true
+-      }
++      accessibility: {largeText: true}
+     }
+   }, registry);
+ 
+@@ -324,37 +226,27 @@
+     validation,
+     registry,
+     {
+-      selectedIds: ['collections'],
++      selectedIds: ['practicePlans'],
+       mode: 'merge',
+       storage
+     }
+   );
+-
+   assert.equal(result.ok, true);
+   assert.equal(
+     JSON.parse(
+-      storage.getItem(
+-        'osb-devotional-collections-v1'
+-      )
++      storage.getItem('osb-devotional-practice-plans-v1')
+     ).length,
+     2
+   );
+   assert.equal(
+     JSON.parse(
+-      storage.getItem(
+-        'osb-accessibility-preferences-v1'
+-      )
++      storage.getItem('osb-accessibility-preferences-v1')
+     ).largeText,
+     false
+   );
+-  assert.equal(
+-    storage.getItem('unregistered-secret'),
+-    'preserve-me'
+-  );
+-  assert.equal(
+-    datasetCount(
+-      validation.backup.datasets.accessibility
+-    ),
++  assert.equal(storage.getItem('unregistered-secret'), 'preserve-me');
++  assert.equal(
++    datasetCount(validation.backup.datasets.accessibility),
+     1
+   );
+ });
+diff --git a/tests/maintenance-centre.test.mjs b/tests/maintenance-centre.test.mjs
+--- a/tests/maintenance-centre.test.mjs
++++ b/tests/maintenance-centre.test.mjs
+@@ -25,8 +25,8 @@
+ );
+ 
+ test('release and registry identities are stable', () => {
+-  assert.equal(RELEASE, 227);
+-  assert.equal(registry.release, 227);
++  assert.equal(RELEASE, 228);
++  assert.equal(registry.release, 228);
+   assert.equal(registry.builtAgainstCommit.length, 40);
+   assert.equal(registry.checks.length, 8);
+ });
+@@ -49,51 +49,51 @@
+ });
+ 
+ test('JSON path lookup and equality checks are deterministic', () => {
+-  const value = {release: 227, nested: {state: 'ready'}};
++  const value = {release: 228, nested: {state: 'ready'}};
+   assert.equal(readJsonPath(value, 'nested.state'), 'ready');
+   assert.equal(readJsonPath(value, 'nested.missing'), undefined);
+   assert.deepEqual(
+-    evaluateJsonEquals(value, 'release', 227),
+-    {ok: true, actual: 227}
++    evaluateJsonEquals(value, 'release', 228),
++    {ok: true, actual: 228}
+   );
+ });
+ 
+ test('route registry requires one maintenance route and no duplicates', () => {
+   const valid = evaluateRouteRegistry({
+-    release: 227,
++    release: 228,
+     routes: [
+       {path: '/index.html'},
+-      {path: '/devotional-collections.html'}
++      {path: '/devotional-practice-planner.html'}
+     ]
+-  }, 227, '/devotional-collections.html');
++  }, 228, '/devotional-practice-planner.html');
+   assert.equal(valid.ok, true);
+ 
+   const duplicate = evaluateRouteRegistry({
+-    release: 227,
++    release: 228,
+     routes: [
+-      {path: '/devotional-collections.html'},
+-      {path: '/devotional-collections.html'}
++      {path: '/devotional-practice-planner.html'},
++      {path: '/devotional-practice-planner.html'}
+     ]
+-  }, 227, '/devotional-collections.html');
++  }, 228, '/devotional-practice-planner.html');
+   assert.equal(duplicate.ok, false);
+   assert.equal(duplicate.actual.duplicateCount, 1);
+ });
+ 
+ test('audit configuration requires the current release and files', () => {
+   const result = evaluateAuditConfig({
+-    expectedRelease: '227',
+-    requiredFiles: ['devotional-collections.html', 'manifest-release-227.json']
+-  }, '227', ['devotional-collections.html', 'manifest-release-227.json']);
++    expectedRelease: '228',
++    requiredFiles: ['devotional-practice-planner.html', 'manifest-release-228.json']
++  }, '228', ['devotional-practice-planner.html', 'manifest-release-228.json']);
+   assert.equal(result.ok, true);
+ 
+   const missing = evaluateAuditConfig({
+-    expectedRelease: '227',
+-    requiredFiles: ['devotional-collections.html']
+-  }, '227', ['devotional-collections.html', 'manifest-release-227.json']);
++    expectedRelease: '228',
++    requiredFiles: ['devotional-practice-planner.html']
++  }, '228', ['devotional-practice-planner.html', 'manifest-release-228.json']);
+   assert.equal(missing.ok, false);
+   assert.deepEqual(
+     missing.actual.missing,
+-    ['manifest-release-227.json']
++    ['manifest-release-228.json']
+   );
+ });
+ 
+@@ -123,8 +123,8 @@
+   const result = evaluateCheckPayload(
+     routeCheck,
+     JSON.stringify({
+-      release: 227,
+-      routes: [{path: '/devotional-collections.html'}]
++      release: 228,
++      routes: [{path: '/devotional-practice-planner.html'}]
+     })
+   );
+   assert.equal(result.ok, true);
+@@ -136,14 +136,14 @@
+     status: 200,
+     async text() {
+       return path === '/service-worker.js'
+-        ? "const RELEASE = '227';"
++        ? "const RELEASE = '228';"
+         : '';
+     }
+   });
+   const result = await runResourceCheck({
+     path: '/service-worker.js',
+     mode: 'textIncludes',
+-    expected: "const RELEASE = '227';"
++    expected: "const RELEASE = '228';"
+   }, fetcher);
+   assert.equal(result.ok, true);
+   assert.equal(result.status, 200);
+@@ -174,7 +174,7 @@
+ 
+ test('transient cache cleanup preserves static and user caches', async () => {
+   const names = [
+-    'osb-static-v227',
++    'osb-static-v228',
+     'osb-runtime-v220',
+     'osb-data-v219',
+     'osb-user-reading-v1'
+diff --git a/tools/release_228_validate.py b/tools/release_228_validate.py
+new file mode 100644
+--- /dev/null
++++ b/tools/release_228_validate.py
+@@ -0,0 +1,358 @@
++#!/usr/bin/env python3
++"""Validate Release 228 without claiming remote CI or deployment results."""
++from __future__ import annotations
++
++import argparse
++import json
++import re
++import sys
++import xml.etree.ElementTree as ET
++from pathlib import Path
++
++RELEASE = "228"
++BASE_COMMIT = "25598978c0fc330e15da527b54ac51594a204435"
++ROUTE = "/devotional-practice-planner.html"
++
++REQUIRED = [
++    "devotional-practice-planner.html",
++    "assets/css/devotional-practice-planner.css",
++    "assets/js/devotional-practice-planner.mjs",
++    "data/devotional-practice-planner.json",
++    "assets/js/personal-data.mjs",
++    "data/personal-data-registry.json",
++    "index.html",
++    "platform.html",
++    "discovery.html",
++    "reading-workspace.html",
++    "reading-notes.html",
++    "personal-library.html",
++    "devotional-collections.html",
++    "personal-data.html",
++    "maintenance.html",
++    "assets/js/maintenance-centre.mjs",
++    "data/maintenance-checks.json",
++    "data/site-routes.json",
++    "sitemap.xml",
++    "service-worker.js",
++    "quality/site-audit-config.json",
++    "tools/production_smoke.py",
++    "tests/test_site_audit.py",
++    "tests/devotional-practice-planner.test.mjs",
++    "tests/personal-data.test.mjs",
++    "tests/maintenance-centre.test.mjs",
++    ".github/workflows/static-site-integrity.yml",
++    ".github/workflows/production-smoke.yml",
++    "manifest-release-228.json",
++]
++
++def read(root: Path, relative: str) -> str:
++    return (root / relative).read_text(encoding="utf-8")
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", type=Path, default=Path.cwd())
++    parser.add_argument("--package-mode", action="store_true")
++    parser.add_argument(
++        "--report",
++        type=Path,
++        default=Path("artifacts/release-228-validation.json")
++    )
++    args = parser.parse_args()
++    root = args.root.resolve()
++    errors: list[str] = []
++    checks: list[str] = []
++
++    for relative in REQUIRED:
++        if not (root / relative).is_file():
++            errors.append(f"missing required file: {relative}")
++        else:
++            checks.append(f"exists: {relative}")
++
++    if not errors:
++        manifest = json.loads(read(root, "manifest-release-228.json"))
++        planner = json.loads(read(root, "data/devotional-practice-planner.json"))
++        personal = json.loads(read(root, "data/personal-data-registry.json"))
++        routes = json.loads(read(root, "data/site-routes.json"))
++        maintenance = json.loads(read(root, "data/maintenance-checks.json"))
++        audit = json.loads(read(root, "quality/site-audit-config.json"))
++        ET.fromstring(read(root, "sitemap.xml"))
++
++        if manifest.get("release") != 228:
++            errors.append("manifest release is not 228")
++        if manifest.get("base_commit") != BASE_COMMIT:
++            errors.append("manifest base commit does not match Release 227 head")
++
++        expected_planner = {
++            "release": 228,
++            "builtAgainstCommit": BASE_COMMIT,
++            "storageKey": "osb-devotional-practice-plans-v1",
++            "maximumPlans": 12,
++            "maximumRoutesPerPlan": 50,
++            "maximumCheckInsPerPlan": 180,
++        }
++        for key, expected in expected_planner.items():
++            if planner.get(key) != expected:
++                errors.append(f"planner {key} is incorrect")
++
++        dataset_ids = [
++            item.get("id")
++            for item in personal.get("datasets", [])
++            if isinstance(item, dict)
++        ]
++        expected_ids = [
++            "readingList",
++            "readingProgress",
++            "readingNotes",
++            "accessibility",
++            "audioHistory",
++            "collections",
++            "practicePlans",
++        ]
++        if personal.get("release") != 228:
++            errors.append("personal-data registry release is not 228")
++        if personal.get("builtAgainstCommit") != BASE_COMMIT:
++            errors.append("personal-data registry base commit is incorrect")
++        if dataset_ids != expected_ids:
++            errors.append(f"personal-data dataset order differs: {dataset_ids}")
++
++        practice_dataset = next(
++            (
++                item for item in personal.get("datasets", [])
++                if item.get("id") == "practicePlans"
++            ),
++            None
++        )
++        if not practice_dataset:
++            errors.append("practicePlans backup dataset is missing")
++        else:
++            for key, expected in {
++                "storageKey": "osb-devotional-practice-plans-v1",
++                "maximumItems": 12,
++                "maximumRoutesPerPlan": 50,
++                "maximumCheckInsPerPlan": 180,
++            }.items():
++                if practice_dataset.get(key) != expected:
++                    errors.append(f"practicePlans {key} is incorrect")
++
++        if routes.get("release") != 228:
++            errors.append("route directory release is not 228")
++        if maintenance.get("release") != 228:
++            errors.append("maintenance registry release is not 228")
++        if maintenance.get("builtAgainstCommit") != BASE_COMMIT:
++            errors.append("maintenance registry base commit is incorrect")
++
++        route_records = routes.get("routes", [])
++        route_paths = [
++            item.get("path")
++            for item in route_records
++            if isinstance(item, dict)
++        ]
++        if route_paths.count(ROUTE) != 1:
++            errors.append("planner route must appear exactly once")
++        if len(route_paths) != len(set(route_paths)):
++            errors.append("duplicate route-directory paths detected")
++        record = next(
++            (item for item in route_records if item.get("path") == ROUTE),
++            None
++        )
++        if record and record.get("status") != "utility":
++            errors.append("planner route must remain utility")
++
++        if audit.get("expectedRelease") != RELEASE:
++            errors.append("site-audit expectedRelease is not 228")
++        required_audit = (
++            "devotional-practice-planner.html",
++            "assets/css/devotional-practice-planner.css",
++            "assets/js/devotional-practice-planner.mjs",
++            "data/devotional-practice-planner.json",
++            "manifest-release-228.json",
++            "assets/js/personal-data.mjs",
++            "data/personal-data-registry.json",
++        )
++        for relative in required_audit:
++            if relative not in audit.get("requiredFiles", []):
++                errors.append(f"site audit does not require {relative}")
++
++        sitemap = read(root, "sitemap.xml")
++        planner_url = (
++            "https://omsaravanabhava.org/"
++            "devotional-practice-planner.html"
++        )
++        if sitemap.count(planner_url) != 1:
++            errors.append("sitemap must contain planner route once")
++
++        worker = read(root, "service-worker.js")
++        if "const RELEASE = '228';" not in worker:
++            errors.append("service-worker identity is not 228")
++        core_match = re.search(
++            r"const CORE_PRECACHE_URLS = \[(.*?)\];",
++            worker,
++            re.S
++        )
++        optional_match = re.search(
++            r"const PRECACHE_URLS = \[(.*?)\];",
++            worker,
++            re.S
++        )
++        core = core_match.group(1) if core_match else ""
++        optional = optional_match.group(1) if optional_match else ""
++        new_assets = (
++            "/devotional-practice-planner.html",
++            "/assets/css/devotional-practice-planner.css",
++            "/assets/js/devotional-practice-planner.mjs",
++            "/data/devotional-practice-planner.json",
++            "/manifest-release-228.json",
++        )
++        for asset in new_assets:
++            if f'"{asset}"' not in optional:
++                errors.append(f"optional precache missing {asset}")
++            if f'"{asset}"' in core:
++                errors.append(
++                    f"planner asset incorrectly blocks installation: {asset}"
++                )
++        if "cacheOptionalAssets" not in worker:
++            errors.append("resilient optional caching is missing")
++
++        module = read(root, "assets/js/devotional-practice-planner.mjs")
++        for marker in (
++            "export const RELEASE = 228;",
++            "osb-devotional-practice-plans-v1",
++            "sanitisePlan",
++            "normaliseEligibleRoutes",
++            "createPlan",
++            "checkInPlan",
++            "isPlanDueOnDate",
++            "resolvePlans",
++            "buildPlannerMetrics",
++            "No notification or spiritual outcome is implied",
++        ):
++            if marker not in module:
++                errors.append(f"planner module missing marker: {marker}")
++        for marker in (
++            "Notification.requestPermission",
++            "showNotification",
++            "navigator.sendBeacon",
++            "gtag(",
++            "google-analytics",
++            "api.openai.com",
++            "localStorage.clear(",
++            "document.body.innerText",
++            "document.body.textContent",
++            "selectedText:",
++            "pageBody:",
++            "streak",
++        ):
++            if marker in module:
++                errors.append(
++                    f"prohibited notification, tracking or claim marker found: {marker}"
++                )
++
++        personal_module = read(root, "assets/js/personal-data.mjs")
++        for marker in (
++            "export const RELEASE = 228;",
++            "'practicePlans'",
++            "sanitisePracticePlans",
++            "osb-devotional-practice-plans-v1",
++        ):
++            if marker not in personal_module:
++                errors.append(
++                    f"personal-data module missing planner marker: {marker}"
++                )
++
++        page = read(root, "devotional-practice-planner.html")
++        for marker in (
++            'data-release="228"',
++            "Devotional Practice Planner",
++            "planning guidance only",
++            "organisational markers",
++            "seventh bounded dataset",
++            "No streaks, scores, spiritual-outcome claims",
++        ):
++            if marker not in page:
++                errors.append(f"planner page missing marker: {marker}")
++
++        current_pages = (
++            "index.html",
++            "platform.html",
++            "discovery.html",
++            "reading-workspace.html",
++            "reading-notes.html",
++            "personal-library.html",
++            "devotional-collections.html",
++            "personal-data.html",
++            "maintenance.html",
++        )
++        for html in current_pages:
++            body = read(root, html)
++            if 'data-release="228"' not in body:
++                errors.append(f"{html} does not expose data-release 228")
++            if "devotional-practice-planner.html" not in body:
++                errors.append(f"{html} does not link to Practice Planner")
++            if re.search(
++                r'data-release="(222|223|224|225|226|227)"',
++                body
++            ):
++                errors.append(f"{html} contains stale data-release identity")
++
++        maintenance_module = read(
++            root,
++            "assets/js/maintenance-centre.mjs"
++        )
++        if "export const RELEASE = 228;" not in maintenance_module:
++            errors.append("maintenance module did not advance to 228")
++
++        checks_registry = maintenance.get("checks", [])
++        if len(checks_registry) != 8:
++            errors.append("maintenance registry must contain eight checks")
++        if not any(
++            item.get("path") == ROUTE
++            for item in checks_registry
++        ):
++            errors.append("maintenance registry does not check Practice Planner")
++
++        smoke = read(root, "tools/production_smoke.py")
++        for marker in (
++            'data-release="228"',
++            "const RELEASE = '228';",
++            "/devotional-practice-planner.html",
++            "export const RELEASE = 228",
++            "devotional-practice-planner.json",
++            "personal-data-registry.json",
++            "manifest-release-228.json",
++            "release-228-production-smoke.json",
++        ):
++            if marker not in smoke:
++                errors.append(f"production smoke missing marker: {marker}")
++
++        for workflow in (
++            ".github/workflows/static-site-integrity.yml",
++            ".github/workflows/production-smoke.yml",
++        ):
++            text = read(root, workflow)
++            if "228" not in text or "release-228-" not in text:
++                errors.append(f"{workflow} has stale release identity")
++
++    report = {
++        "release": 228,
++        "base_commit": BASE_COMMIT,
++        "mode": "package" if args.package_mode else "repository",
++        "status": "FAIL" if errors else "PASS",
++        "errors": errors,
++        "checks": checks,
++        "github_actions": "NOT_RUN",
++        "deployed_production": "NOT_RUN",
++    }
++    report_path = (
++        args.report if args.report.is_absolute()
++        else root / args.report
++    )
++    report_path.parent.mkdir(parents=True, exist_ok=True)
++    report_path.write_text(
++        json.dumps(report, ensure_ascii=False, indent=2) + "\n",
++        encoding="utf-8"
++    )
++    print(json.dumps(report, ensure_ascii=False, indent=2))
++    return 1 if errors else 0
++
++if __name__ == "__main__":
++    sys.exit(main())
+diff --git a/.github/workflows/static-site-integrity.yml b/.github/workflows/static-site-integrity.yml
+--- a/.github/workflows/static-site-integrity.yml
++++ b/.github/workflows/static-site-integrity.yml
+@@ -1,4 +1,4 @@
+-name: Release 227 Static Site Integrity
++name: Release 228 Static Site Integrity
+ 
+ on:
+   push:
+@@ -12,7 +12,7 @@
+ 
+ jobs:
+   integrity:
+-    name: Release 227 repository validation
++    name: Release 228 repository validation
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repository
+@@ -28,11 +28,12 @@
+         with:
+           node-version: "20"
+ 
+-      - name: Validate Release 227 identities and route-only boundaries
+-        run: python tools/release_227_validate.py --root . --report artifacts/release-227-overlay-validation.json
++      - name: Validate Release 228 identities and planner boundaries
++        run: python tools/release_228_validate.py --root . --report artifacts/release-228-overlay-validation.json
+ 
+       - name: Check browser modules
+         run: |
++          node --check assets/js/devotional-practice-planner.mjs
+           node --check assets/js/devotional-collections.mjs
+           node --check assets/js/personal-data.mjs
+           node --check assets/js/personal-library.mjs
+@@ -49,18 +50,18 @@
+           node --check assets/js/search-facets.mjs
+ 
+       - name: Run browser-local feature unit tests
+-        run: node --test tests/devotional-collections.test.mjs tests/personal-data.test.mjs tests/personal-library.test.mjs tests/reading-notes.test.mjs tests/reader-experience.test.mjs tests/maintenance-centre.test.mjs tests/discovery-workspace.test.mjs tests/knowledge-graph-explorer.test.mjs tests/audio-history.test.mjs tests/print-support.test.mjs tests/accessibility-preferences.test.mjs tests/reading-list.test.mjs tests/search-facets.test.mjs
++        run: node --test tests/devotional-practice-planner.test.mjs tests/devotional-collections.test.mjs tests/personal-data.test.mjs tests/personal-library.test.mjs tests/reading-notes.test.mjs tests/reader-experience.test.mjs tests/maintenance-centre.test.mjs tests/discovery-workspace.test.mjs tests/knowledge-graph-explorer.test.mjs tests/audio-history.test.mjs tests/print-support.test.mjs tests/accessibility-preferences.test.mjs tests/reading-list.test.mjs tests/search-facets.test.mjs
+ 
+       - name: Run site-audit unit tests
+         run: python -m unittest discover -s tests -p 'test_site_audit.py'
+ 
+       - name: Run repository-wide static audit
+-        run: python tools/site_audit.py --root . --json-report artifacts/release-227-site-audit.json --markdown-report artifacts/release-227-site-audit.md
++        run: python tools/site_audit.py --root . --json-report artifacts/release-228-site-audit.json --markdown-report artifacts/release-228-site-audit.md
+ 
+-      - name: Upload Release 227 integrity evidence
++      - name: Upload Release 228 integrity evidence
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+-          name: release-227-static-integrity-${{ github.sha }}
++          name: release-228-static-integrity-${{ github.sha }}
+           path: artifacts/
+           if-no-files-found: error
+diff --git a/.github/workflows/production-smoke.yml b/.github/workflows/production-smoke.yml
+--- a/.github/workflows/production-smoke.yml
++++ b/.github/workflows/production-smoke.yml
+@@ -1,4 +1,4 @@
+-name: Release 227 Production Smoke
++name: Release 228 Production Smoke
+ 
+ on:
+   push:
+@@ -11,12 +11,12 @@
+   contents: read
+ 
+ concurrency:
+-  group: release-227-production-smoke
++  group: release-228-production-smoke
+   cancel-in-progress: true
+ 
+ jobs:
+   smoke:
+-    name: Observe deployed Release 227
++    name: Observe deployed Release 228
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repository
+@@ -32,12 +32,12 @@
+         run: sleep 90
+ 
+       - name: Run deployed production smoke checks
+-        run: python tools/production_smoke.py --retries 18 --delay 20 --report artifacts/release-227-production-smoke.json
++        run: python tools/production_smoke.py --retries 18 --delay 20 --report artifacts/release-228-production-smoke.json
+ 
+-      - name: Upload Release 227 production evidence
++      - name: Upload Release 228 production evidence
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+-          name: release-227-production-smoke-${{ github.sha }}
+-          path: artifacts/release-227-production-smoke.json
++          name: release-228-production-smoke-${{ github.sha }}
++          path: artifacts/release-228-production-smoke.json
+           if-no-files-found: error
+diff --git a/manifest-release-228.json b/manifest-release-228.json
+new file mode 100644
+--- /dev/null
++++ b/manifest-release-228.json
+@@ -0,0 +1,76 @@
++{
++  "project": "OmSaravanaBhava",
++  "release": 228,
++  "name": "Browser-Local Devotional Practice Planner",
++  "base_commit": "25598978c0fc330e15da527b54ac51594a204435",
++  "generated": "2026-07-14",
++  "required_commit_title": "Release 228: add browser-local devotional practice planner",
++  "validation_status": "LOCAL_PACKAGE_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
++  "production_files": [
++    "devotional-practice-planner.html",
++    "assets/css/devotional-practice-planner.css",
++    "assets/js/devotional-practice-planner.mjs",
++    "data/devotional-practice-planner.json",
++    "assets/js/personal-data.mjs",
++    "data/personal-data-registry.json",
++    "index.html",
++    "platform.html",
++    "discovery.html",
++    "reading-workspace.html",
++    "reading-notes.html",
++    "personal-library.html",
++    "devotional-collections.html",
++    "personal-data.html",
++    "maintenance.html",
++    "assets/js/maintenance-centre.mjs",
++    "data/maintenance-checks.json",
++    "data/site-routes.json",
++    "sitemap.xml",
++    "service-worker.js"
++  ],
++  "ci_alignment_files": [
++    "quality/site-audit-config.json",
++    "tools/production_smoke.py",
++    "tests/test_site_audit.py",
++    "tests/devotional-practice-planner.test.mjs",
++    "tests/personal-data.test.mjs",
++    "tests/maintenance-centre.test.mjs",
++    "tools/release_228_validate.py",
++    ".github/workflows/static-site-integrity.yml",
++    ".github/workflows/production-smoke.yml"
++  ],
++  "claims": {
++    "storage_key": "osb-devotional-practice-plans-v1",
++    "maximum_plans": 12,
++    "maximum_routes_per_plan": 50,
++    "maximum_check_ins_per_plan": 180,
++    "collection_import": true,
++    "same_origin_route_enforcement": true,
++    "weekday_guidance": true,
++    "notifications": false,
++    "calendar_events": false,
++    "one_check_in_per_plan_per_date": true,
++    "route_only_storage": true,
++    "devotional_text_stored": false,
++    "selected_text_stored": false,
++    "page_body_stored": false,
++    "spiritual_completion_claim": false,
++    "streaks_or_scores": false,
++    "personal_data_registered_datasets": 7,
++    "backup_merge_supported": true,
++    "backup_replace_supported": true,
++    "cloud_sync": false,
++    "analytics": false,
++    "recommendation_engine": false,
++    "server_account": false,
++    "service_worker_release": 228,
++    "new_optional_cache_assets": 5
++  },
++  "limitations": [
++    "Weekdays are planning guidance only and do not create notifications.",
++    "Check-ins are organisational markers, not evidence of complete reading or spiritual completion.",
++    "Plans remain in the current browser profile unless exported.",
++    "Stored route references can become stale after route or publication changes.",
++    "GitHub Actions and deployed production checks remain pending."
++  ]
++}

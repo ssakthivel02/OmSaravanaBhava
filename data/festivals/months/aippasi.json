@@ -1,0 +1,82 @@
+[
+  {
+    "id": "skanda-sashti",
+    "titleEn": "Skanda Sashti",
+    "titleTa": "ஸ்கந்த சஷ்டி",
+    "tamilMonth": "Aippasi",
+    "type": "Murugan",
+    "summary": "Six-day remembrance of Murugan’s victory over Surapadman.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Sashti",
+      "Soorasamharam"
+    ]
+  },
+  {
+    "id": "monthly-sashti",
+    "titleEn": "Monthly Sashti",
+    "titleTa": "மாத சஷ்டி",
+    "tamilMonth": "All",
+    "type": "Vratham",
+    "summary": "Monthly Sashti observance for Murugan devotees.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Vratham"
+    ]
+  },
+  {
+    "id": "monthly-karthigai",
+    "titleEn": "Monthly Karthigai",
+    "titleTa": "மாத கார்த்திகை",
+    "tamilMonth": "All",
+    "type": "Vratham",
+    "summary": "Monthly Karthigai star observance.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Deepam",
+      "Murugan"
+    ]
+  },
+  {
+    "id": "aippasi-festival-1",
+    "titleEn": "Aippasi Devotional Day 1",
+    "titleTa": "ஐப்பசி பக்தி நாள் 1",
+    "tamilMonth": "Aippasi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Aippasi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Aippasi",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "aippasi-festival-2",
+    "titleEn": "Aippasi Devotional Day 2",
+    "titleTa": "ஐப்பசி பக்தி நாள் 2",
+    "tamilMonth": "Aippasi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Aippasi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Aippasi",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "aippasi-festival-3",
+    "titleEn": "Aippasi Devotional Day 3",
+    "titleTa": "ஐப்பசி பக்தி நாள் 3",
+    "tamilMonth": "Aippasi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Aippasi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Aippasi",
+      "Tamil month",
+      "Devotion"
+    ]
+  }
+]

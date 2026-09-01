@@ -1,0 +1,128 @@
+{
+  "release": 295,
+  "title": "Kandha Sashti and Prayer Library",
+  "features": [
+    {
+      "title": "Purpose-built interface",
+      "description": "Visual patterns are tailored to this release."
+    },
+    {
+      "title": "Bilingual structured data",
+      "description": "Tamil and English records use explicit schemas."
+    },
+    {
+      "title": "Quality gates",
+      "description": "Validation, deployment and rollback guidance included."
+    }
+  ],
+  "records": [
+    {
+      "id": "prayer-library-01",
+      "title": "Kandha Sashti and Prayer Library Feature 1",
+      "title_ta": "முருகன் தரத் தொகுதி 1",
+      "summary": "Quality-focused Release 295 record 1.",
+      "category": "Experience",
+      "status": "published",
+      "version": "295.1"
+    },
+    {
+      "id": "prayer-library-02",
+      "title": "Kandha Sashti and Prayer Library Feature 2",
+      "title_ta": "முருகன் தரத் தொகுதி 2",
+      "summary": "Quality-focused Release 295 record 2.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "295.1"
+    },
+    {
+      "id": "prayer-library-03",
+      "title": "Kandha Sashti and Prayer Library Feature 3",
+      "title_ta": "முருகன் தரத் தொகுதி 3",
+      "summary": "Quality-focused Release 295 record 3.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "295.1"
+    },
+    {
+      "id": "prayer-library-04",
+      "title": "Kandha Sashti and Prayer Library Feature 4",
+      "title_ta": "முருகன் தரத் தொகுதி 4",
+      "summary": "Quality-focused Release 295 record 4.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "295.1"
+    },
+    {
+      "id": "prayer-library-05",
+      "title": "Kandha Sashti and Prayer Library Feature 5",
+      "title_ta": "முருகன் தரத் தொகுதி 5",
+      "summary": "Quality-focused Release 295 record 5.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "295.1"
+    },
+    {
+      "id": "prayer-library-06",
+      "title": "Kandha Sashti and Prayer Library Feature 6",
+      "title_ta": "முருகன் தரத் தொகுதி 6",
+      "summary": "Quality-focused Release 295 record 6.",
+      "category": "Validation",
+      "status": "published",
+      "version": "295.1"
+    },
+    {
+      "id": "prayer-library-07",
+      "title": "Kandha Sashti and Prayer Library Feature 7",
+      "title_ta": "முருகன் தரத் தொகுதி 7",
+      "summary": "Quality-focused Release 295 record 7.",
+      "category": "Experience",
+      "status": "published",
+      "version": "295.1"
+    },
+    {
+      "id": "prayer-library-08",
+      "title": "Kandha Sashti and Prayer Library Feature 8",
+      "title_ta": "முருகன் தரத் தொகுதி 8",
+      "summary": "Quality-focused Release 295 record 8.",
+      "category": "Knowledge",
+      "status": "review_required",
+      "version": "295.1"
+    },
+    {
+      "id": "prayer-library-09",
+      "title": "Kandha Sashti and Prayer Library Feature 9",
+      "title_ta": "முருகன் தரத் தொகுதி 9",
+      "summary": "Quality-focused Release 295 record 9.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "295.1"
+    },
+    {
+      "id": "prayer-library-10",
+      "title": "Kandha Sashti and Prayer Library Feature 10",
+      "title_ta": "முருகன் தரத் தொகுதி 10",
+      "summary": "Quality-focused Release 295 record 10.",
+      "category": "Editorial",
+      "status": "published",
+      "version": "295.1"
+    },
+    {
+      "id": "prayer-library-11",
+      "title": "Kandha Sashti and Prayer Library Feature 11",
+      "title_ta": "முருகன் தரத் தொகுதி 11",
+      "summary": "Quality-focused Release 295 record 11.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "295.1"
+    },
+    {
+      "id": "prayer-library-12",
+      "title": "Kandha Sashti and Prayer Library Feature 12",
+      "title_ta": "முருகன் தரத் தொகுதி 12",
+      "summary": "Quality-focused Release 295 record 12.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "295.1"
+    }
+  ]
+}

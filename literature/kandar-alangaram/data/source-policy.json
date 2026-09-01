@@ -1,0 +1,8 @@
+{
+  "rules": [
+    "Exclude modern contact details from public content pages",
+    "Use author/source references only in internal attribution metadata where legally safe",
+    "Mark scanned OCR as needs_review until proofread",
+    "Prefer verified Tamil text before translation/commentary"
+  ]
+}

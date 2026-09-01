@@ -1,0 +1,10 @@
+Upload only after all previous releases are committed.
+
+1. Extract this ZIP.
+2. Select everything inside the extracted folder.
+3. Upload to the repository root.
+4. Do not create a Release199, package, output or cleanup parent folder.
+5. In the small upper commit-title field enter:
+   Release 199: add digital research library
+6. Leave the large lower description blank.
+7. Commit directly to main.

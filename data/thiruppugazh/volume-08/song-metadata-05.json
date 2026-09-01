@@ -1,0 +1,33 @@
+{
+  "batch": 42,
+  "volume": 8,
+  "type": "song-metadata",
+  "items": [
+    {
+      "number": 284,
+      "slug": "song-0284",
+      "title_ta": "திருப்புகழ் பாடல் 284",
+      "title_en": "Thiruppugazh Hymn 284",
+      "original_tamil": "",
+      "word_split": "",
+      "metre": "",
+      "raga": "",
+      "tala": "",
+      "temple": "",
+      "status": "source-verification-required"
+    },
+    {
+      "number": 285,
+      "slug": "song-0285",
+      "title_ta": "திருப்புகழ் பாடல் 285",
+      "title_en": "Thiruppugazh Hymn 285",
+      "original_tamil": "",
+      "word_split": "",
+      "metre": "",
+      "raga": "",
+      "tala": "",
+      "temple": "",
+      "status": "source-verification-required"
+    }
+  ]
+}

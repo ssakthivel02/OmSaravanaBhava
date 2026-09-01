@@ -1,0 +1,1 @@
+document.addEventListener('DOMContentLoaded',()=>{const q=new URLSearchParams(location.search).get('q');if(q){document.querySelectorAll('.kavacham-verse').forEach(e=>{e.innerHTML=e.innerHTML.replace(new RegExp(q,'gi'),m=>`<mark>${m}</mark>`);});}});

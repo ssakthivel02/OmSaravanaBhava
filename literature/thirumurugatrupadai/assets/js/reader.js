@@ -1,0 +1,1 @@
+async function loadPoem(path,target){const r=await fetch(path);const d=await r.json();document.querySelector(target).textContent=d.text_ta||d.content||'';}function toggleLarge(){document.body.classList.toggle('large-text')}function toggleCompact(){document.body.classList.toggle('compact-text')}

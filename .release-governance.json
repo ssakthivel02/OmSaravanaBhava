@@ -1,0 +1,32 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 245,
+  "baseRelease": 244,
+  "baseCommit": "640ab54e1028927a22c19bb4712516c2d05ba58c",
+  "requiredCommitTitle": "Release 245: deliver premium Murugan visual experience and accessible interaction",
+  "manifestPath": "manifest-release-245.json",
+  "mode": "github-atomic-tree-pull-request",
+  "browserUploadAllowed": false,
+  "warningChangedFileCount": 100,
+  "hardChangedFileLimit": 500,
+  "forbidFillerFiles": true,
+  "productionBaselinePolicy": "policies/production-baseline.json",
+  "productionBaselineContract": "data/production-baseline.json",
+  "completionRecord": "PRODUCTION_BASELINE_245.json",
+  "operationsObservabilityPolicy": "policies/operations-observability.json",
+  "deploymentAttestationPolicy": "policies/deployment-attestation.json",
+  "visualExperiencePolicy": "policies/visual-experience.json",
+  "routeRegistryPolicy": {
+    "historicalRegistry": "data/site-routes.json",
+    "boundaryRegistry": "data/publication-boundaries.json",
+    "effectiveOverrides": "data/site-routes-effective-overrides.json",
+    "generator": "tools/route_registry/generate.py",
+    "validator": "tools/route_registry/validate.py",
+    "failOnDrift": true,
+    "requireDeterministicSort": true,
+    "requireProvenance": true,
+    "maximumOverrideRecords": 100,
+    "validationRelease": 245,
+    "validationGenerated": "2026-07-17"
+  }
+}

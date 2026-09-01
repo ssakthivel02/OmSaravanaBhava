@@ -1,0 +1,15 @@
+{
+  "generated": "2026-07-13",
+  "htmlFiles": 71,
+  "jsonFiles": 86,
+  "checks": {
+    "desktopLayout": true,
+    "serviceWorkerVersion": 189,
+    "sourceCatalog": true,
+    "privacyPage": true
+  },
+  "limitations": [
+    "No live-browser Lighthouse run included",
+    "No claim of zero broken links without deployed crawl"
+  ]
+}

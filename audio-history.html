@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ta">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Audio Listening History | Om Saravana Bhava</title>
+<meta name="description" content="Browser-local history of actual device read-aloud starts from the verified OmSaravanaBhava Tamil text queue.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://omsaravanabhava.org/audio-history.html">
+<link rel="stylesheet" href="assets/css/osb44.css">
+<link rel="stylesheet" href="assets/css/audio-history.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#a51d17">
+<link rel="manifest" href="manifest.json">
+<script defer src="assets/js/pwa-register.js"></script>
+<script type="module" src="assets/js/audio-history.mjs"></script>
+</head>
+<body data-release="219">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="top">🛕 ஓம் சரவணபவ · Browser-local device read-aloud history</div>
+<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+<div class="links"><a href="explore.html">Explore</a><a href="audio-library.html">Audio</a><a href="audio-history.html" aria-current="page">History</a><a href="reading-list.html">Reading List</a><a href="accessibility.html">Accessibility</a></div>
+</div></nav>
+<main id="main-content" class="wrap">
+<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="audio-library.html">Audio Library</a> › <span aria-current="page">Listening History</span></p></nav>
+
+<section class="card audio-history-summary">
+<div>
+<span class="pill">Release 219 · Local playback evidence</span>
+<h1 class="section-title" lang="ta">கேட்பு வரலாறு</h1>
+<h2>Audio Listening History</h2>
+<p>Review recent verified-text read-aloud items that actually started through your device’s speech engine. Nothing is uploaded or synchronized.</p>
+</div>
+<div class="audio-history-metric">
+<strong id="audioHistoryUnique">0</strong>
+<span>unique items</span>
+</div>
+<div class="audio-history-metric">
+<strong id="audioHistoryStarts">0</strong>
+<span>actual starts</span>
+</div>
+</section>
+
+<section class="card">
+<h2>Local history controls</h2>
+<div class="audio-history-toolbar">
+<a class="btn" href="audio-library.html">Open verified read-aloud queue</a>
+<button class="btn secondary" id="audioHistoryExport" type="button">Export JSON</button>
+<button class="btn secondary" id="audioHistoryClear" type="button">Clear history</button>
+</div>
+<p id="audioHistoryStatus" role="status" aria-live="polite">Loading browser-local history…</p>
+</section>
+
+<section id="audioHistoryItems" class="grid audio-history-grid" aria-label="Recent device read-aloud items">
+<article class="card">Loading listening history…</article>
+</section>
+
+<section class="card audio-history-boundary">
+<h2>Evidence boundary</h2>
+<ul>
+<li>A history record is added only when the browser reports that the first speech section has started.</li>
+<li>Selecting a track without starting device speech does not create a history record.</li>
+<li>No synthetic duration, completion percentage or human-performance claim is stored.</li>
+<li>The list contains at most 20 unique recent items and remains in this browser profile.</li>
+<li>Each item retains its publication status, playback mode and recording-rights statement.</li>
+</ul>
+</section>
+
+<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>Browser-local listening history requires JavaScript. The verified source texts remain accessible from the <a href="audio-library.html">Audio Library</a>.</p></section></noscript>
+</main>
+<footer>© Om Saravana Bhava · <a href="audio-library.html">Audio</a> · <a href="audio-history.html">History</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
+</body>
+</html>

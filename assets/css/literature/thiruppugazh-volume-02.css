@@ -1,0 +1,15 @@
+/* OmSaravanaBhava Batch 17 — Thiruppugazh Volume 2 */
+:root{--osb-bg:#fff8ef;--osb-card:#fffdf8;--osb-text:#3b1d08;--osb-muted:#7a563a;--osb-gold:#b7791f;--osb-border:#ead8ba}
+.osb-literature{max-width:1120px;margin:0 auto;padding:24px;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--osb-text)}
+.osb-hero{border:1px solid var(--osb-border);border-radius:24px;padding:28px;background:linear-gradient(135deg,#fff8ef,#fffdf8)}
+.osb-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:24px}
+.osb-card{border:1px solid var(--osb-border);background:var(--osb-card);border-radius:18px;padding:18px;box-shadow:0 8px 22px rgba(59,29,8,.06)}
+.osb-card h2,.osb-card h3{margin:0 0 10px;color:var(--osb-text)}
+.osb-meta{color:var(--osb-muted);font-size:.95rem;line-height:1.55}
+.osb-badge{display:inline-block;border:1px solid var(--osb-border);border-radius:999px;padding:4px 10px;margin:4px 4px 4px 0;color:var(--osb-muted);font-size:.85rem}
+.osb-actions a{display:inline-block;margin:8px 8px 0 0;text-decoration:none;border-radius:999px;padding:8px 12px;border:1px solid var(--osb-gold);color:var(--osb-text)}
+.osb-reader{white-space:pre-wrap;line-height:1.9;font-size:1.08rem}
+.osb-warning{border-left:4px solid var(--osb-gold);padding:12px 14px;background:#fff6df;border-radius:12px;color:#5a360e}
+.osb-search-input{width:100%;padding:12px 14px;border-radius:14px;border:1px solid var(--osb-border);font-size:1rem}
+.osb-result{padding:12px 0;border-bottom:1px solid var(--osb-border)}
+@media(max-width:640px){.osb-literature{padding:16px}.osb-hero{padding:20px}.osb-reader{font-size:1rem}}

@@ -1,0 +1,11 @@
+check,result,evidence
+Exactly one H1 per HTML route,PASS,28 HTML routes checked
+Skip-to-content link,PASS,Every checked route contains .skip-link
+Form controls have accessible names,PASS,All inputs/buttons checked
+Explicit button types,PASS,All static buttons checked
+Keyboard focus visibility,PASS,Global 3px focus outline
+Reduced-motion support,PASS,Smooth scrolling and transitions reduced
+Core text contrast,PASS,Primary ink on light background 15.97:1; Brand red on light background 7.09:1; Accessible orange on light background 5.19:1; White on brand red 7.53:1; White on accessible orange gradient endpoint 5.52:1; Dark-mode text on dark background 17.41:1; Dark-mode orange on dark background 9.75:1
+No-JavaScript guidance,PASS,Five dynamic collection/search pages checked
+Dynamic loading state,PASS,Five dynamic collection/search pages checked
+Source-policy discoverability,PASS,Every HTML route links the publication policy

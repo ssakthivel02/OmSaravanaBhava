@@ -1,0 +1,15 @@
+{
+  "project": "OmSaravanaBhava GitHub Pages",
+  "batch": "Batch 08 - Daily Murugan Wisdom Expansion",
+  "type": "additive_static_module",
+  "rules": [
+    "GitHub Pages compatible",
+    "HTML CSS JS JSON only",
+    "no server-side code",
+    "no placeholders",
+    "exactly 99 files"
+  ],
+  "upload_root": "repository root",
+  "file_count": 99,
+  "safe_upload_note": "This batch adds new /daily-wisdom content, data, CSS, and JS. It does not require deleting existing files."
+}

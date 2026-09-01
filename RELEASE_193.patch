@@ -1,0 +1,105 @@
+--- before/skanda-purana-graph.html
++++ release193/skanda-purana-graph.html
+@@ -0,0 +1,24 @@
++<!doctype html><html lang="ta"><head>
++<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Skanda Purana Knowledge Graph Phase 2 | Om Saravana Bhava</title>
++<meta name="description" content="High-level traditional relationship register pending chapter-level source verification.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/skanda-purana-graph.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++</head><body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Digital Murugan heritage platform</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Skanda Purana Knowledge Graph Phase 2</span></p></nav>
++<section class="card"><h1 class="section-title" lang="ta">ஸ்கந்த புராண அறிவுக் கோப்பு</h1><h2>Skanda Purana Knowledge Graph Phase 2</h2><p>High-level traditional relationship register pending chapter-level source verification.</p></section>
++<section class="grid"><article class="card"><h2>skanda</h2><p>Deity</p></article><article class="card"><h2>siva</h2><p>Deity</p></article><article class="card"><h2>parvati</h2><p>Deity</p></article><article class="card"><h2>surapadman</h2><p>Character</p></article><article class="card"><h2>vel</h2><p>Weapon</p></article></section><section class="card"><p>High-level traditional relationships only; chapter-level claims require source verification.</p></section>
++</main>
++<footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body></html>--- before/data/skanda-purana-graph.json
++++ release193/data/skanda-purana-graph.json
+@@ -0,0 +1,49 @@
++{
++  "release": 193,
++  "status": "source-register",
++  "nodes": [
++    {
++      "id": "skanda",
++      "type": "Deity"
++    },
++    {
++      "id": "siva",
++      "type": "Deity"
++    },
++    {
++      "id": "parvati",
++      "type": "Deity"
++    },
++    {
++      "id": "surapadman",
++      "type": "Character"
++    },
++    {
++      "id": "vel",
++      "type": "Weapon"
++    }
++  ],
++  "edges": [
++    {
++      "from": "siva",
++      "to": "skanda",
++      "relation": "father-of"
++    },
++    {
++      "from": "parvati",
++      "to": "skanda",
++      "relation": "mother-of"
++    },
++    {
++      "from": "skanda",
++      "to": "vel",
++      "relation": "bears"
++    },
++    {
++      "from": "skanda",
++      "to": "surapadman",
++      "relation": "defeats-in-traditional-narrative"
++    }
++  ],
++  "note": "High-level traditional relationships only; chapter-level claims require source verification."
++}
+--- before/service-worker.js
++++ release193/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '192';
++const RELEASE = '193';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -140,7 +140,9 @@
+   "/production-audit.html",
+   "/data/production-audit.json",
+   "/thiruppugazh-volume-4.html",
+-  "/thiruppugazh-volume-5.html"
++  "/thiruppugazh-volume-5.html",
++  "/skanda-purana-graph.html",
++  "/data/skanda-purana-graph.json"
+ ];
+ 
+ self.addEventListener('install', event => {
+--- before/sitemap.xml
++++ release193/sitemap.xml
+@@ -227,4 +227,5 @@
+   <url><loc>https://omsaravanabhava.org/production-audit.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+   <url><loc>https://omsaravanabhava.org/thiruppugazh-volume-4.html</loc><lastmod>2026-07-13</lastmod><priority>0.6</priority></url>
+   <url><loc>https://omsaravanabhava.org/thiruppugazh-volume-5.html</loc><lastmod>2026-07-13</lastmod><priority>0.6</priority></url>
++  <url><loc>https://omsaravanabhava.org/skanda-purana-graph.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+ </urlset>

@@ -1,0 +1,643 @@
+--- release153/ai-search.html
++++ release154/ai-search.html
+@@ -1,41 +1 @@
+-<!doctype html>
+-<html lang="ta">
+-<head>
+-<meta charset="utf-8">
+-<meta name="viewport" content="width=device-width,initial-scale=1">
+-<title>Search Murugan Knowledge | Om Saravana Bhava</title>
+-<meta name="description" content="Search the Om Saravana Bhava static knowledge collection for Murugan temples, slokas and festivals in Tamil and English.">
+-<meta name="robots" content="index,follow">
+-<link rel="canonical" href="https://omsaravanabhava.org/ai-search.html">
+-<meta property="og:site_name" content="Om Saravana Bhava">
+-<meta property="og:type" content="website">
+-<meta property="og:title" content="Search Murugan Knowledge | Om Saravana Bhava">
+-<meta property="og:description" content="Search the Om Saravana Bhava static knowledge collection for Murugan temples, slokas and festivals in Tamil and English.">
+-<meta property="og:url" content="https://omsaravanabhava.org/ai-search.html">
+-<meta name="twitter:card" content="summary">
+-<link rel="stylesheet" href="assets/css/osb44.css">
+-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"SearchResultsPage","@id":"https://omsaravanabhava.org/ai-search.html#webpage","url":"https://omsaravanabhava.org/ai-search.html","name":"AI Search","description":"Search the Om Saravana Bhava static knowledge collection for Murugan temples, slokas and festivals in Tamil and English.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"AI Search","item":"https://omsaravanabhava.org/ai-search.html"}]}]}</script>
+-<script defer src="assets/js/osb44.js"></script>
+-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+-<meta name="theme-color" content="#a51d17">
+-<meta name="mobile-web-app-capable" content="yes">
+-<meta name="apple-mobile-web-app-capable" content="yes">
+-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+-<meta name="apple-mobile-web-app-title" content="Om Saravana Bhava">
+-<link rel="manifest" href="manifest.json">
+-<link rel="apple-touch-icon" href="icons/icon-192.png">
+-<script defer src="assets/js/pwa-register.js"></script>
+-</head>
+-<body data-module="search">
+-<a href="#main-content" class="skip-link">Skip to main content</a>
+-<div class="top">🛕 ஓம் சரவணபவ · Verified Murugan devotional knowledge platform</div>
+-<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav>
+-<main id="main-content" class="wrap">
+-<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">AI Search</span></p></nav>
+-<section class="card"><div class="eyebrow">Local AI Search</div><h1 class="section-title">Search Murugan knowledge</h1><form class="searchbar" action="ai-search.html" method="get" role="search"><input type="search" id="q" name="q" aria-label="Search Murugan knowledge" placeholder="Palani, Vadapalani, Vel, Sashti, Valli" autocomplete="off" enterkeyhint="search"><button type="submit" class="btn">Search</button></form></section><section id="results" class="list" style="margin-top:22px" role="status" aria-live="polite" aria-busy="true" tabindex="-1"><div class="loading">Loading search...</div></section>
+-<noscript><div class="card" role="status" style="margin-top:22px">Local search requires JavaScript. Browse <a href="temples.html">Temples</a>, <a href="sloka-library.html">Slokas</a>, <a href="festivals.html">Festivals</a>, or <a href="literature/thirumurugatruppadai.html">Literature</a>.</div></noscript>
+-</main>
+-<div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+-<footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="sources.html">Sources &amp; publication policy</a></footer>
+-</body>
+-</html>
++<!doctype html><html lang="ta"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Advanced Tamil–English Search | Om Saravana Bhava</title><meta name="description" content="Search verified Murugan temples, slokas, literature, festivals, Thiruppugazh and audio records entirely in the browser."><meta name="robots" content="index,follow"><link rel="canonical" href="https://omsaravanabhava.org/ai-search.html"><link rel="stylesheet" href="assets/css/osb44.css"><script defer src="assets/js/osb44.js"></script><script defer src="assets/js/advanced-search.js"></script><link rel="icon" href="favicon.svg"><meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json"><script defer src="assets/js/pwa-register.js"></script></head><body><a href="#main-content" class="skip-link">Skip to main content</a><div class="top">🛕 ஓம் சரவணபவ · Verified local knowledge search</div><nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html" aria-current="page">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav><main id="main-content" class="wrap"><nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Advanced Search</span></p></nav><section class="card"><span class="pill">Private browser search</span><h1 class="section-title">மேம்பட்ட தமிழ்–ஆங்கில தேடல்</h1><h2>Advanced Tamil–English Search</h2><p>Search verified Murugan temples, slokas, literature, festivals, Thiruppugazh and audio records entirely in the browser.</p><p>This is deterministic local search, not a remote AI chatbot. Queries are not sent to a server.</p><form id="advancedSearchForm" class="advanced-search-form" role="search"><label for="q">Search words</label><input id="q" name="q" type="search" placeholder="Palani, பழனி, முத்தைத்தரு, Sashti..." autocomplete="off"><label for="searchType">Content type</label><select id="searchType"><option value="All">All content</option></select><button class="btn" type="submit">Search</button></form><div id="searchSuggestions" class="search-suggestions" aria-label="Recent searches"></div></section><p id="resultCount" role="status" aria-live="polite"></p><section id="results" class="grid" tabindex="-1"></section><noscript><div class="card">JavaScript is required for local search.</div></noscript></main><footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer></body></html>--- release153/assets/css/osb44.css
++++ release154/assets/css/osb44.css
+@@ -182,3 +182,8 @@
+ /* Release 153 — verified text player links */
+ .player-launch-link{display:inline-flex;align-items:center;gap:.45rem}
+ .card .player-launch-link{margin-top:.5rem}
++/* Release 154 — advanced local search */
++.advanced-search-form{display:grid;grid-template-columns:auto minmax(240px,1fr) auto minmax(150px,.55fr) auto;gap:12px;align-items:center}
++.advanced-search-form input,.advanced-search-form select{min-height:46px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surface-strong);color:var(--ink);font:inherit}
++.search-suggestions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.search-suggestion{cursor:pointer}
++@media(max-width:760px){.advanced-search-form{grid-template-columns:1fr}}
+--- release153/assets/js/advanced-search.js
++++ release154/assets/js/advanced-search.js
+@@ -0,0 +1,26 @@
++(() => {
++'use strict';
++const n=v=>String(v??'').normalize('NFKC').toLocaleLowerCase();
++const e=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
++const score=(x,terms)=>terms.reduce((s,t)=>s+(n(`${x.titleTa} ${x.titleEn}`).includes(t)?30:0)+(n((x.tags||[]).join(' ')).includes(t)?15:0)+(n(`${x.summary} ${x.kind}`).includes(t)?8:0),0);
++document.addEventListener('DOMContentLoaded',async()=>{
++ const form=document.getElementById('advancedSearchForm'),q=document.getElementById('q'),type=document.getElementById('searchType'),results=document.getElementById('results'),count=document.getElementById('resultCount'),recentBox=document.getElementById('searchSuggestions');
++ if(!form||!q||!results)return;
++ try{
++  const r=await fetch('data/search-index.json',{cache:'default'}); if(!r.ok)throw Error(`HTTP ${r.status}`); const index=await r.json();
++  const types=[...new Set(index.map(x=>x.kind))].sort(); type.innerHTML='<option value="All">All content</option>'+types.map(x=>`<option>${e(x)}</option>`).join('');
++  const render=()=>{
++   const query=q.value.trim(),terms=n(query).split(/\s+/).filter(Boolean),selected=type.value;
++   const found=index.filter(x=>selected==='All'||x.kind===selected).map(x=>({...x,_score:terms.length?score(x,terms):1})).filter(x=>x._score>0).sort((a,b)=>b._score-a._score||a.titleEn.localeCompare(b.titleEn)).slice(0,60);
++   results.innerHTML=found.length?found.map(x=>`<article class="card result"><span class="pill">${e(x.kind)}</span><h2 lang="ta">${e(x.titleTa)}</h2><h3>${e(x.titleEn)}</h3><p>${e(x.summary)}</p><a class="btn" href="${e(x.route)}">Open</a></article>`).join(''):'<div class="card">No published result matched.</div>';
++   count.textContent=`${found.length} result${found.length===1?'':'s'} shown.`;
++   if(query){const old=JSON.parse(localStorage.getItem('osb-search-history')||'[]');localStorage.setItem('osb-search-history',JSON.stringify([query,...old.filter(x=>x!==query)].slice(0,6)));}
++   const recent=JSON.parse(localStorage.getItem('osb-search-history')||'[]');recentBox.innerHTML=recent.map(x=>`<button type="button" class="pill search-suggestion" data-query="${e(x)}">${e(x)}</button>`).join('');
++  };
++  form.addEventListener('submit',ev=>{ev.preventDefault();render();results.focus();});
++  type.addEventListener('change',render);
++  document.addEventListener('click',ev=>{const b=ev.target.closest('[data-query]');if(b){q.value=b.dataset.query;render();}});
++  const params=new URLSearchParams(location.search); if(params.has('q'))q.value=params.get('q')||''; render();
++ }catch(err){console.error(err);results.innerHTML='<div class="card" role="alert">The local search index could not be loaded.</div>';}
++});
++})();--- release153/data/search-index.json
++++ release154/data/search-index.json
+@@ -0,0 +1,538 @@
++[
++  {
++    "kind": "Temple",
++    "id": "palani",
++    "titleTa": "பழனி முருகன் கோவில்",
++    "titleEn": "Palani Murugan Temple",
++    "summary": "Wisdom, renunciation and Dhandayuthapani worship. Palani, Dindigul",
++    "route": "temples/palani.html",
++    "tags": [
++      "palani",
++      "murugan",
++      "arupadai-veedu"
++    ],
++    "status": "published-source-linked"
++  },
++  {
++    "kind": "Temple",
++    "id": "thiruchendur",
++    "titleTa": "திருச்செந்தூர் முருகன் கோவில்",
++    "titleEn": "Thiruchendur Murugan Temple",
++    "summary": "Sea-side shrine connected with victory and Skanda Sashti. Thiruchendur, Thoothukudi",
++    "route": "temples/thiruchendur.html",
++    "tags": [
++      "thiruchendur",
++      "murugan",
++      "arupadai-veedu"
++    ],
++    "status": "published-source-linked"
++  },
++  {
++    "kind": "Temple",
++    "id": "thirupparamkundram",
++    "titleTa": "திருப்பரங்குன்றம் முருகன் கோவில்",
++    "titleEn": "Thirupparamkundram Murugan Temple",
++    "summary": "Ancient cave shrine connected with Murugan worship and divine marriage. Madurai",
++    "route": "temples/thirupparamkundram.html",
++    "tags": [
++      "thirupparamkundram",
++      "murugan",
++      "arupadai-veedu"
++    ],
++    "status": "published-source-linked"
++  },
++  {
++    "kind": "Temple",
++    "id": "swamimalai",
++    "titleTa": "சுவாமிமலை முருகன் கோவில்",
++    "titleEn": "Swamimalai Murugan Temple",
++    "summary": "Wisdom shrine where Murugan is revered as teacher of Pranava. Kumbakonam",
++    "route": "temples/swamimalai.html",
++    "tags": [
++      "swamimalai",
++      "murugan",
++      "arupadai-veedu"
++    ],
++    "status": "published-source-linked"
++  },
++  {
++    "kind": "Temple",
++    "id": "thiruthani",
++    "titleTa": "திருத்தணி முருகன் கோவில்",
++    "titleEn": "Thiruthani Murugan Temple",
++    "summary": "Hill shrine associated with peace, courage and inner calm. Tiruttani",
++    "route": "temples/thiruthani.html",
++    "tags": [
++      "thiruthani",
++      "murugan",
++      "arupadai-veedu"
++    ],
++    "status": "published-source-linked"
++  },
++  {
++    "kind": "Temple",
++    "id": "pazhamudircholai",
++    "titleTa": "பழமுதிர்சோலை முருகன் கோவில்",
++    "titleEn": "Pazhamudircholai Murugan Temple",
++    "summary": "Forest shrine linked with grace, learning and devotion. Madurai",
++    "route": "temples/pazhamudircholai.html",
++    "tags": [
++      "pazhamudircholai",
++      "murugan",
++      "arupadai-veedu"
++    ],
++    "status": "published-source-linked"
++  },
++  {
++    "kind": "Sloka",
++    "id": "om-saravana-bhava",
++    "titleTa": "ஓம் சரவணபவ",
++    "titleEn": "Om Saravana Bhava",
++    "summary": "A devotional mantra for protection, clarity and spiritual focus.",
++    "route": "slokas/om-saravana-bhava.html",
++    "tags": [
++      "Mantra"
++    ],
++    "status": "published"
++  },
++  {
++    "kind": "Sloka",
++    "id": "kanda-sashti-kavasam",
++    "titleTa": "கந்த சஷ்டி கவசம்",
++    "titleEn": "Kanda Sashti Kavasam",
++    "summary": "This release publishes only the source-linked opening extract found in the uploaded compilation. It is not yet a complete critical edition.",
++    "route": "slokas/kanda-sashti-kavasam.html",
++    "tags": [
++      "Kavacham"
++    ],
++    "status": "partial-reviewed"
++  },
++  {
++    "kind": "Sloka",
++    "id": "subramanya-gayatri",
++    "titleTa": "சுப்பிரமண்ய காயத்ரி",
++    "titleEn": "Subramanya Gayatri",
++    "summary": "A prayer invoking Lord Shanmukha’s wisdom and guidance.",
++    "route": "slokas/subramanya-gayatri.html",
++    "tags": [
++      "Gayatri"
++    ],
++    "status": "published"
++  },
++  {
++    "kind": "Sloka",
++    "id": "vel-vel",
++    "titleTa": "வேல் வேல் முருகா",
++    "titleEn": "Vel Vel Muruga",
++    "summary": "A chant invoking the Vel as wisdom, protection and victory.",
++    "route": "slokas/vel-vel.html",
++    "tags": [
++      "Chant"
++    ],
++    "status": "published"
++  },
++  {
++    "kind": "Sloka",
++    "id": "skanda-guru-kavasam",
++    "titleTa": "ஸ்கந்த குரு கவசம்",
++    "titleEn": "Skanda Guru Kavasam",
++    "summary": "Only the source-checked opening extract is published. This is not a complete edition.",
++    "route": "slokas/skanda-guru-kavasam.html",
++    "tags": [
++      "Kavacham"
++    ],
++    "status": "partial-reviewed"
++  },
++  {
++    "kind": "Festival",
++    "id": "thai-poosam",
++    "titleTa": "தைப்பூசம்",
++    "titleEn": "Thai Poosam",
++    "summary": "Major Murugan festival connected with Vel worship, kavadi and devotion.",
++    "route": "festivals/thai-poosam.html",
++    "tags": [
++      "thai",
++      "poosam",
++      "vel",
++      "kavadi"
++    ],
++    "status": "published"
++  },
++  {
++    "kind": "Festival",
++    "id": "skanda-sashti",
++    "titleTa": "ஸ்கந்த சஷ்டி",
++    "titleEn": "Skanda Sashti",
++    "summary": "Six-day observance remembering Lord Murugan’s victory over Surapadman.",
++    "route": "festivals/skanda-sashti.html",
++    "tags": [
++      "sashti",
++      "victory",
++      "thiruchendur"
++    ],
++    "status": "published"
++  },
++  {
++    "kind": "Festival",
++    "id": "panguni-uthiram",
++    "titleTa": "பங்குனி உத்திரம்",
++    "titleEn": "Panguni Uthiram",
++    "summary": "Sacred festival connected with divine marriage and Murugan worship.",
++    "route": "festivals/panguni-uthiram.html",
++    "tags": [
++      "panguni",
++      "uthiram",
++      "marriage"
++    ],
++    "status": "published"
++  },
++  {
++    "kind": "Festival",
++    "id": "aadi-krittikai",
++    "titleTa": "ஆடி கிருத்திகை",
++    "titleEn": "Aadi Krittikai",
++    "summary": "A special day for Murugan worship connected with Krittika nakshatra.",
++    "route": "festivals/aadi-krittikai.html",
++    "tags": [
++      "aadi",
++      "krittikai",
++      "murugan"
++    ],
++    "status": "published"
++  },
++  {
++    "kind": "Literature",
++    "id": "thirumurugatruppadai",
++    "titleTa": "திருமுருகாற்றுப்படை",
++    "titleEn": "Thirumurugatruppadai",
++    "summary": "A foundational Tamil poem guiding a devotee through Murugan’s sacred landscapes, worship and divine qualities.",
++    "route": "literature/thirumurugatruppadai.html",
++    "tags": [
++      "Tamil guide poem and Murugan devotional literature",
++      "நக்கீரர் / Nakkirar"
++    ],
++    "status": "published-source-linked"
++  },
++  {
++    "kind": "Thiruppugazh",
++    "id": "0006",
++    "titleTa": "முத்தைத்தரு",
++    "titleEn": "Muththaiththaru",
++    "summary": "திருவருணை · A prayer to Murugan as the supreme guru and protector, joining the teaching of sacred wisdom with vivid images of divine victory.",
++    "route": "thiruppugazh/0006-muththaiththaru.html",
++    "tags": [
++      "Thiruvarunai",
++      "தத்தத்தன தத்தத் தனதன",
++      "6"
++    ],
++    "status": "published-source-linked"
++  },
++  {
++    "kind": "Thiruppugazh",
++    "id": "0007",
++    "titleTa": "அருக்கு மங்கையர்",
++    "titleEn": "Arukku Mangkaiyar",
++    "summary": "திருப்பரங்குன்றம் · A confession of sensual entanglement that turns toward Murugan, Tamil poetry and the saving presence of Tirupparankundram.",
++    "route": "thiruppugazh/0007-arukku-mangkaiyar.html",
++    "tags": [
++      "Thirupparankundram",
++      "தனத்த தந்தன தனதன தனதன",
++      "7"
++    ],
++    "status": "published-source-linked"
++  },
++  {
++    "kind": "Thiruppugazh",
++    "id": "0008",
++    "titleTa": "உனைத் தினம்",
++    "titleEn": "Unaith Thinam",
++    "summary": "திருப்பரங்குன்றம் · A candid admission of neglected worship and a plea that Murugan arrive on the peacock when fear and mortality close in.",
++    "route": "thiruppugazh/0008-unaith-thinam.html",
++    "tags": [
++      "Thirupparankundram",
++      "தனத்த தந்தன தனதன தனதன",
++      "8"
++    ],
++    "status": "published-source-linked"
++  },
++  {
++    "kind": "Thiruppugazh",
++    "id": "0009",
++    "titleTa": "கருவடைந்து",
++    "titleEn": "Karuvadaindhu",
++    "summary": "திருப்பரங்குன்றம் · A reflection on birth, growth, desire and suffering that asks when Murugan’s grace will finally settle in the heart.",
++    "route": "thiruppugazh/0009-karuvadaindhu.html",
++    "tags": [
++      "Thirupparankundram",
++      "தனனதந்த தத்தத்த தந்த",
++      "9"
++    ],
++    "status": "published-source-linked"
++  },
++  {
++    "kind": "Thiruppugazh",
++    "id": "0010",
++    "titleTa": "கறுக்கும் அஞ்சன",
++    "titleEn": "Karukkum Anjana",
++    "summary": "திருப்பரங்குன்றம் · A plea for release from deceptive attraction, followed by praise of Murugan’s radiant spear and victorious power.",
++    "route": "thiruppugazh/0010-karukkum-anjana.html",
++    "tags": [
++      "Thirupparankundram",
++      "தந்தன தனதன தனதன",
++      "10"
++    ],
++    "status": "published-source-linked"
++  },
++  {
++    "kind": "Thiruppugazh",
++    "id": "0012",
++    "titleTa": "காதடருங்கயல்",
++    "titleEn": "Kadhadarungkayal",
++    "summary": "திருப்பரங்குன்றம் · A prayer to escape the turbulence of desire and receive Murugan’s ankleted feet as the stable centre of devotion.",
++    "route": "thiruppugazh/0012-kadhadarungkayal.html",
++    "tags": [
++      "Thirupparankundram",
++      "தானன தந்தன தந்தனந் தந்தன",
++      "12"
++    ],
++    "status": "published-source-linked"
++  },
++  {
++    "kind": "Thiruppugazh",
++    "id": "0013",
++    "titleTa": "சந்ததம் பந்த",
++    "titleEn": "Sandhadham Bandha",
++    "summary": "திருப்பரங்குன்றம் · A compact prayer to leave the restless chain of attachment and behold Kandan every day with sustained love.",
++    "route": "thiruppugazh/0013-sandhadham-bandha.html",
++    "tags": [
++      "Thirupparankundram",
++      "தந்தனந் தந்தத் தனதான",
++      "13"
++    ],
++    "status": "published-source-linked"
++  },
++  {
++    "kind": "Thiruppugazh",
++    "id": "0015",
++    "titleTa": "தடக்கைப் பங்கயம்",
++    "titleEn": "Thadakkai Pangkayam",
++    "summary": "திருப்பரங்குன்றம் · A prayer to end the exhausting cycle of worldly dependence and establish a life of service at Murugan’s ankleted feet.",
++    "route": "thiruppugazh/0015-thadakkai-pangkayam.html",
++    "tags": [
++      "Thirupparankundram",
++      "தனத்தத் தந்தனந் தனத்தத் தந்தனந்",
++      "15"
++    ],
++    "status": "published-source-linked"
++  },
++  {
++    "kind": "Thiruppugazh",
++    "id": "0016",
++    "titleTa": "பதித்த செஞ்சந்த",
++    "titleEn": "Padhiththa Senchandha",
++    "summary": "திருப்பரங்குன்றம் · A confession of mental delusion that asks for Murugan’s lotus feet, framed by images of Surapadman, Deivayanai and Valli.",
++    "route": "thiruppugazh/0016-padhiththa-senchandha.html",
++    "tags": [
++      "Thirupparankundram",
++      "தனத்ததந் தந்தத் தத்தன தத்தந்",
++      "16"
++    ],
++    "status": "published-source-linked"
++  },
++  {
++    "kind": "Thiruppugazh",
++    "id": "0017",
++    "titleTa": "பொருப்புறுங்",
++    "titleEn": "Poruppurung",
++    "summary": "திருப்பரங்குன்றம் · An appeal to turn from destructive attachment toward Murugan’s gracious lotus feet and the sanctuary of Tirupparankundram.",
++    "route": "thiruppugazh/0017-poruppurung.html",
++    "tags": [
++      "Thirupparankundram",
++      "தனத்தனந் தந்தன தனத்தனந் தந்தன",
++      "17"
++    ],
++    "status": "published-source-linked"
++  },
++  {
++    "kind": "Audio",
++    "id": "vel-maaral-maha-manthiram",
++    "titleTa": "வேல் மாறல் மகா மந்திரம்",
++    "titleEn": "Vel Maaral Maha Manthiram",
++    "summary": "Requested for the Murugan audio collection. Full Tamil text and recording provenance must be verified before publication.",
++    "route": "audio-library.html?track=vel-maaral-maha-manthiram",
++    "tags": [
++      "Mantra",
++      "not-published"
++    ],
++    "status": "source-review-required"
++  },
++  {
++    "kind": "Audio",
++    "id": "kanda-sashti-kavasam",
++    "titleTa": "கந்த சஷ்டி கவசம்",
++    "titleEn": "Kanda Sashti Kavasam",
++    "summary": "A source-linked opening extract is available for Tamil device read-aloud. A complete reviewed edition is not yet claimed.",
++    "route": "audio-library.html?track=kanda-sashti-kavasam",
++    "tags": [
++      "Kavacham",
++      "device-tts"
++    ],
++    "status": "reviewed-opening-extract"
++  },
++  {
++    "kind": "Audio",
++    "id": "skanda-guru-kavasam",
++    "titleTa": "ஸ்கந்த குரு கவசம்",
++    "titleEn": "Skanda Guru Kavasam",
++    "summary": "A source-checked opening extract is available for Tamil device read-aloud. The complete work and any human recording remain under review.",
++    "route": "audio-library.html?track=skanda-guru-kavasam",
++    "tags": [
++      "Kavacham",
++      "device-tts"
++    ],
++    "status": "reviewed-opening-extract"
++  },
++  {
++    "kind": "Audio",
++    "id": "shanmuga-kavasam",
++    "titleTa": "சண்முக கவசம்",
++    "titleEn": "Shanmuga Kavasam",
++    "summary": "Requested for the six-Kavasam collection. Text identity and complete source boundaries must be verified before publication.",
++    "route": "audio-library.html?track=shanmuga-kavasam",
++    "tags": [
++      "Kavacham",
++      "not-published"
++    ],
++    "status": "uploaded-collection-review"
++  },
++  {
++    "kind": "Audio",
++    "id": "kandar-anubhuti",
++    "titleTa": "கந்தர் அனுபூதி",
++    "titleEn": "Kandar Anubhuti",
++    "summary": "An uploaded source is available. Original verses must be separated from copyrighted modern commentary and translation.",
++    "route": "audio-library.html?track=kandar-anubhuti",
++    "tags": [
++      "Arunagirinathar",
++      "not-published"
++    ],
++    "status": "uploaded-source-identified"
++  },
++  {
++    "kind": "Audio",
++    "id": "kandar-alangaram",
++    "titleTa": "கந்தர் அலங்காரம்",
++    "titleEn": "Kandar Alangaram",
++    "summary": "Requested for the digital library. A verified complete Tamil source is required before read-aloud publication.",
++    "route": "audio-library.html?track=kandar-alangaram",
++    "tags": [
++      "Arunagirinathar",
++      "not-published"
++    ],
++    "status": "source-review-required"
++  },
++  {
++    "kind": "Audio",
++    "id": "kandar-andhathi",
++    "titleTa": "கந்தர் அந்தாதி",
++    "titleEn": "Kandar Andhathi",
++    "summary": "Requested for the digital library. A verified complete Tamil source is required before read-aloud publication.",
++    "route": "audio-library.html?track=kandar-andhathi",
++    "tags": [
++      "Arunagirinathar",
++      "not-published"
++    ],
++    "status": "source-review-required"
++  },
++  {
++    "kind": "Audio",
++    "id": "kandar-kalivenba",
++    "titleTa": "கந்தர் கலிவெண்பா",
++    "titleEn": "Kandar Kalivenba",
++    "summary": "Requested for the digital library. Authorship, edition and full text must be verified.",
++    "route": "audio-library.html?track=kandar-kalivenba",
++    "tags": [
++      "Murugan Literature",
++      "not-published"
++    ],
++    "status": "source-review-required"
++  },
++  {
++    "kind": "Audio",
++    "id": "vel-virutham",
++    "titleTa": "வேல் விருத்தம்",
++    "titleEn": "Vel Virutham",
++    "summary": "The uploaded Arunagirinathar research material identifies this work. A complete primary text still requires verification.",
++    "route": "audio-library.html?track=vel-virutham",
++    "tags": [
++      "Arunagirinathar",
++      "not-published"
++    ],
++    "status": "uploaded-reference-identified"
++  },
++  {
++    "kind": "Audio",
++    "id": "mayil-virutham",
++    "titleTa": "மயில் விருத்தம்",
++    "titleEn": "Mayil Virutham",
++    "summary": "The uploaded Arunagirinathar research material identifies this work. A complete primary text still requires verification.",
++    "route": "audio-library.html?track=mayil-virutham",
++    "tags": [
++      "Arunagirinathar",
++      "not-published"
++    ],
++    "status": "uploaded-reference-identified"
++  },
++  {
++    "kind": "Audio",
++    "id": "subramanya-bhujangam",
++    "titleTa": "சுப்பிரமணிய புஜங்கம்",
++    "titleEn": "Subramanya Bhujangam",
++    "summary": "Tamil text or transliteration will be published only after a verified source and edition are selected.",
++    "route": "audio-library.html?track=subramanya-bhujangam",
++    "tags": [
++      "Stotra",
++      "not-published"
++    ],
++    "status": "source-review-required"
++  },
++  {
++    "kind": "Audio",
++    "id": "kanda-gayatri",
++    "titleTa": "கந்த காயத்ரி",
++    "titleEn": "Kanda Gayatri",
++    "summary": "The verified mantra text is available for Tamil device read-aloud.",
++    "route": "audio-library.html?track=kanda-gayatri",
++    "tags": [
++      "Gayatri",
++      "device-tts"
++    ],
++    "status": "published"
++  },
++  {
++    "kind": "Audio",
++    "id": "saravanabhava-mantra",
++    "titleTa": "சரவணபவ மந்திரம்",
++    "titleEn": "Saravanabhava Mantra",
++    "summary": "The verified mantra text is available for Tamil device read-aloud.",
++    "route": "audio-library.html?track=saravanabhava-mantra",
++    "tags": [
++      "Mantra",
++      "device-tts"
++    ],
++    "status": "published"
++  },
++  {
++    "kind": "Audio",
++    "id": "arupadai-veedu-thuthigal",
++    "titleTa": "ஆறுபடை வீடு துதிகள்",
++    "titleEn": "Arupadai Veedu Thuthigal",
++    "summary": "Source-linked literary sections are available, but a dedicated complete hymn collection has not yet been established.",
++    "route": "audio-library.html?track=arupadai-veedu-thuthigal",
++    "tags": [
++      "Temple Devotion",
++      "not-published"
++    ],
++    "status": "source-linked-sections-available"
++  }
++]
+--- release153/service-worker.js
++++ release154/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '153';
++const RELEASE = '154';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -64,7 +64,9 @@
+   "/slokas/skanda-guru-kavasam.html",
+   "/data/skanda-guru-kavasam.json",
+   "/assets/js/media-session-player.js",
+-  "/data/read-aloud-playlist.json"
++  "/data/read-aloud-playlist.json",
++  "/assets/js/advanced-search.js",
++  "/data/search-index.json"
+ ];
+ 
+ self.addEventListener('install', event => {

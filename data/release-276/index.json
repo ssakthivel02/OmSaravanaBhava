@@ -1,0 +1,114 @@
+{
+  "release": 276,
+  "title": "Internationalization and Accessibility",
+  "records": [
+    {
+      "id": "i18n-accessibility-01",
+      "title": "Internationalization and Accessibility Module 1",
+      "title_ta": "முருகன் அறிவு தொகுதி 1",
+      "summary": "Structured Release 276 record 1 for internationalization and accessibility, with source and publication controls.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "276.1"
+    },
+    {
+      "id": "i18n-accessibility-02",
+      "title": "Internationalization and Accessibility Module 2",
+      "title_ta": "முருகன் அறிவு தொகுதி 2",
+      "summary": "Structured Release 276 record 2 for internationalization and accessibility, with source and publication controls.",
+      "category": "Experience",
+      "status": "published",
+      "version": "276.1"
+    },
+    {
+      "id": "i18n-accessibility-03",
+      "title": "Internationalization and Accessibility Module 3",
+      "title_ta": "முருகன் அறிவு தொகுதி 3",
+      "summary": "Structured Release 276 record 3 for internationalization and accessibility, with source and publication controls.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "276.1"
+    },
+    {
+      "id": "i18n-accessibility-04",
+      "title": "Internationalization and Accessibility Module 4",
+      "title_ta": "முருகன் அறிவு தொகுதி 4",
+      "summary": "Structured Release 276 record 4 for internationalization and accessibility, with source and publication controls.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "276.1"
+    },
+    {
+      "id": "i18n-accessibility-05",
+      "title": "Internationalization and Accessibility Module 5",
+      "title_ta": "முருகன் அறிவு தொகுதி 5",
+      "summary": "Structured Release 276 record 5 for internationalization and accessibility, with source and publication controls.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "276.1"
+    },
+    {
+      "id": "i18n-accessibility-06",
+      "title": "Internationalization and Accessibility Module 6",
+      "title_ta": "முருகன் அறிவு தொகுதி 6",
+      "summary": "Structured Release 276 record 6 for internationalization and accessibility, with source and publication controls.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "276.1"
+    },
+    {
+      "id": "i18n-accessibility-07",
+      "title": "Internationalization and Accessibility Module 7",
+      "title_ta": "முருகன் அறிவு தொகுதி 7",
+      "summary": "Structured Release 276 record 7 for internationalization and accessibility, with source and publication controls.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "276.1"
+    },
+    {
+      "id": "i18n-accessibility-08",
+      "title": "Internationalization and Accessibility Module 8",
+      "title_ta": "முருகன் அறிவு தொகுதி 8",
+      "summary": "Structured Release 276 record 8 for internationalization and accessibility, with source and publication controls.",
+      "category": "Experience",
+      "status": "published",
+      "version": "276.1"
+    },
+    {
+      "id": "i18n-accessibility-09",
+      "title": "Internationalization and Accessibility Module 9",
+      "title_ta": "முருகன் அறிவு தொகுதி 9",
+      "summary": "Structured Release 276 record 9 for internationalization and accessibility, with source and publication controls.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "276.1"
+    },
+    {
+      "id": "i18n-accessibility-10",
+      "title": "Internationalization and Accessibility Module 10",
+      "title_ta": "முருகன் அறிவு தொகுதி 10",
+      "summary": "Structured Release 276 record 10 for internationalization and accessibility, with source and publication controls.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "276.1"
+    },
+    {
+      "id": "i18n-accessibility-11",
+      "title": "Internationalization and Accessibility Module 11",
+      "title_ta": "முருகன் அறிவு தொகுதி 11",
+      "summary": "Structured Release 276 record 11 for internationalization and accessibility, with source and publication controls.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "276.1"
+    },
+    {
+      "id": "i18n-accessibility-12",
+      "title": "Internationalization and Accessibility Module 12",
+      "title_ta": "முருகன் அறிவு தொகுதி 12",
+      "summary": "Structured Release 276 record 12 for internationalization and accessibility, with source and publication controls.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "276.1"
+    }
+  ]
+}

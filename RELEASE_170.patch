@@ -1,0 +1,118 @@
+--- before/assets/css/osb44.css
++++ release170/assets/css/osb44.css
+@@ -187,3 +187,10 @@
+ .advanced-search-form input,.advanced-search-form select{min-height:46px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surface-strong);color:var(--ink);font:inherit}
+ .search-suggestions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.search-suggestion{cursor:pointer}
+ @media(max-width:760px){.advanced-search-form{grid-template-columns:1fr}}
++/* Release 170 — premium progressive interaction */
++:root{--mouse-x:50%;--mouse-y:20%}
++body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(600px circle at var(--mouse-x) var(--mouse-y),rgba(176,141,87,.12),transparent 55%);transition:opacity .25s ease}
++.card{transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
++.card:hover{transform:translateY(-3px);box-shadow:0 24px 65px rgba(104,45,18,.15);border-color:rgba(176,141,87,.45)}
++.reading-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#a51d17,#b08d57);width:0;z-index:200}
++@media(prefers-reduced-motion:reduce){body::before{display:none}.card{transition:none}.card:hover{transform:none}}
+--- before/assets/js/premium-interactions.js
++++ release170/assets/js/premium-interactions.js
+@@ -0,0 +1,11 @@
++(() => {
++'use strict';
++document.addEventListener('DOMContentLoaded',()=>{
++ const bar=document.createElement('div');bar.className='reading-progress';bar.setAttribute('aria-hidden','true');document.body.appendChild(bar);
++ const update=()=>{const max=document.documentElement.scrollHeight-innerHeight;bar.style.width=(max>0?Math.min(100,scrollY/max*100):0)+'%';};
++ addEventListener('scroll',update,{passive:true});update();
++ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
++  addEventListener('pointermove',e=>{document.documentElement.style.setProperty('--mouse-x',e.clientX+'px');document.documentElement.style.setProperty('--mouse-y',e.clientY+'px');},{passive:true});
++ }
++});
++})();--- before/service-worker.js
++++ release170/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '169';
++const RELEASE = '170';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -94,7 +94,8 @@
+   "/literature/vel-mayil-virutham.html",
+   "/data/vel-mayil-virutham.json",
+   "/knowledge-graph.html",
+-  "/data/knowledge-graph.json"
++  "/data/knowledge-graph.json",
++  "/assets/js/premium-interactions.js"
+ ];
+ 
+ self.addEventListener('install', event => {
+--- before/index.html
++++ release170/index.html
+@@ -25,6 +25,7 @@
+ <link rel="manifest" href="manifest.json">
+ <link rel="apple-touch-icon" href="icons/icon-192.png">
+ <script defer src="assets/js/pwa-register.js"></script>
++<script defer src="assets/js/premium-interactions.js"></script>
+ </head>
+ <body data-module="home">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- before/temples.html
++++ release170/temples.html
+@@ -25,6 +25,7 @@
+ <link rel="manifest" href="manifest.json">
+ <link rel="apple-touch-icon" href="icons/icon-192.png">
+ <script defer src="assets/js/pwa-register.js"></script>
++<script defer src="assets/js/premium-interactions.js"></script>
+ </head>
+ <body data-module="temples">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- before/sloka-library.html
++++ release170/sloka-library.html
+@@ -25,6 +25,7 @@
+ <link rel="manifest" href="manifest.json">
+ <link rel="apple-touch-icon" href="icons/icon-192.png">
+ <script defer src="assets/js/pwa-register.js"></script>
++<script defer src="assets/js/premium-interactions.js"></script>
+ </head>
+ <body data-module="slokas">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- before/thiruppugazh.html
++++ release170/thiruppugazh.html
+@@ -25,6 +25,7 @@
+ <link rel="manifest" href="manifest.json">
+ <link rel="apple-touch-icon" href="icons/icon-192.png">
+ <script defer src="assets/js/pwa-register.js"></script>
++<script defer src="assets/js/premium-interactions.js"></script>
+ </head>
+ <body data-module="thiruppugazh">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- before/festivals.html
++++ release170/festivals.html
+@@ -25,6 +25,7 @@
+ <link rel="manifest" href="manifest.json">
+ <link rel="apple-touch-icon" href="icons/icon-192.png">
+ <script defer src="assets/js/pwa-register.js"></script>
++<script defer src="assets/js/premium-interactions.js"></script>
+ </head>
+ <body data-module="festivals">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- before/ai-search.html
++++ release170/ai-search.html
+@@ -1 +1,2 @@
+-<!doctype html><html lang="ta"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Advanced Tamil–English Search | Om Saravana Bhava</title><meta name="description" content="Search verified Murugan temples, slokas, literature, festivals, Thiruppugazh and audio records entirely in the browser."><meta name="robots" content="index,follow"><link rel="canonical" href="https://omsaravanabhava.org/ai-search.html"><link rel="stylesheet" href="assets/css/osb44.css"><script defer src="assets/js/osb44.js"></script><script defer src="assets/js/advanced-search.js"></script><link rel="icon" href="favicon.svg"><meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json"><script defer src="assets/js/pwa-register.js"></script></head><body><a href="#main-content" class="skip-link">Skip to main content</a><div class="top">🛕 ஓம் சரவணபவ · Verified local knowledge search</div><nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html" aria-current="page">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav><main id="main-content" class="wrap"><nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Advanced Search</span></p></nav><section class="card"><span class="pill">Private browser search</span><h1 class="section-title">மேம்பட்ட தமிழ்–ஆங்கில தேடல்</h1><h2>Advanced Tamil–English Search</h2><p>Search verified Murugan temples, slokas, literature, festivals, Thiruppugazh and audio records entirely in the browser.</p><p>This is deterministic local search, not a remote AI chatbot. Queries are not sent to a server.</p><form id="advancedSearchForm" class="advanced-search-form" role="search"><label for="q">Search words</label><input id="q" name="q" type="search" placeholder="Palani, பழனி, முத்தைத்தரு, Sashti..." autocomplete="off"><label for="searchType">Content type</label><select id="searchType"><option value="All">All content</option></select><button class="btn" type="submit">Search</button></form><div id="searchSuggestions" class="search-suggestions" aria-label="Recent searches"></div></section><p id="resultCount" role="status" aria-live="polite"></p><section id="results" class="grid" tabindex="-1"></section><noscript><div class="card">JavaScript is required for local search.</div></noscript></main><footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer></body></html>+<!doctype html><html lang="ta"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Advanced Tamil–English Search | Om Saravana Bhava</title><meta name="description" content="Search verified Murugan temples, slokas, literature, festivals, Thiruppugazh and audio records entirely in the browser."><meta name="robots" content="index,follow"><link rel="canonical" href="https://omsaravanabhava.org/ai-search.html"><link rel="stylesheet" href="assets/css/osb44.css"><script defer src="assets/js/osb44.js"></script><script defer src="assets/js/advanced-search.js"></script><link rel="icon" href="favicon.svg"><meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json"><script defer src="assets/js/pwa-register.js"></script><script defer src="assets/js/premium-interactions.js"></script>
++</head><body><a href="#main-content" class="skip-link">Skip to main content</a><div class="top">🛕 ஓம் சரவணபவ · Verified local knowledge search</div><nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html" aria-current="page">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav><main id="main-content" class="wrap"><nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Advanced Search</span></p></nav><section class="card"><span class="pill">Private browser search</span><h1 class="section-title">மேம்பட்ட தமிழ்–ஆங்கில தேடல்</h1><h2>Advanced Tamil–English Search</h2><p>Search verified Murugan temples, slokas, literature, festivals, Thiruppugazh and audio records entirely in the browser.</p><p>This is deterministic local search, not a remote AI chatbot. Queries are not sent to a server.</p><form id="advancedSearchForm" class="advanced-search-form" role="search"><label for="q">Search words</label><input id="q" name="q" type="search" placeholder="Palani, பழனி, முத்தைத்தரு, Sashti..." autocomplete="off"><label for="searchType">Content type</label><select id="searchType"><option value="All">All content</option></select><button class="btn" type="submit">Search</button></form><div id="searchSuggestions" class="search-suggestions" aria-label="Recent searches"></div></section><p id="resultCount" role="status" aria-live="polite"></p><section id="results" class="grid" tabindex="-1"></section><noscript><div class="card">JavaScript is required for local search.</div></noscript></main><footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer></body></html>--- before/audio-library.html
++++ release170/audio-library.html
+@@ -27,6 +27,7 @@
+ <link rel="manifest" href="manifest.json">
+ <link rel="apple-touch-icon" href="icons/icon-192.png">
+ <script defer src="assets/js/pwa-register.js"></script>
++<script defer src="assets/js/premium-interactions.js"></script>
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+--- before/knowledge-graph.html
++++ release170/knowledge-graph.html
+@@ -10,6 +10,7 @@
+ <meta name="theme-color" content="#a51d17">
+ <link rel="manifest" href="manifest.json">
+ <script defer src="assets/js/pwa-register.js"></script>
++<script defer src="assets/js/premium-interactions.js"></script>
+ </head><body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Source-controlled devotional edition</div>

@@ -1,0 +1,19 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 156,
+  "name": "Thiruppugazh Volume 3 Source-Controlled Register",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 5,
+  "modified": [
+    "thiruppugazh.html",
+    "service-worker.js",
+    "sitemap.xml"
+  ],
+  "added": [
+    "data/thiruppugazh-volumes.json",
+    "thiruppugazh-volume-3.html"
+  ],
+  "deleted": [],
+  "issues": []
+}

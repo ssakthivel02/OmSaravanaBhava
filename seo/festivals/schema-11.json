@@ -1,0 +1,7 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "கந்த சஷ்டி",
+  "description": "Soorasamharam, fasting, devotion, victory of dharma.",
+  "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode"
+}

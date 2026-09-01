@@ -1,0 +1,47 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 218,
+  "name": "Clean Print and PDF Support",
+  "base_commit": "512a2ecccb15c0ef79c5a22fa3afe0c624cb349b",
+  "generated": "2026-07-14",
+  "required_commit_title": "Release 218: add clean print and PDF support",
+  "validation_status": "LOCAL_PACKAGE_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
+  "production_files": [
+    "print-pdf.html",
+    "assets/css/print-support.css",
+    "assets/js/print-support.mjs",
+    "assets/js/pwa-register.js",
+    "index.html",
+    "platform.html",
+    "data/site-routes.json",
+    "sitemap.xml",
+    "service-worker.js"
+  ],
+  "ci_alignment_files": [
+    "quality/site-audit-config.json",
+    "tools/production_smoke.py",
+    "tests/test_site_audit.py",
+    "tests/print-support.test.mjs",
+    "tools/release_218_validate.py",
+    ".github/workflows/static-site-integrity.yml",
+    ".github/workflows/production-smoke.yml"
+  ],
+  "claims": {
+    "browser_print_dialog": true,
+    "browser_save_as_pdf": true,
+    "server_generated_pdf": false,
+    "server_storage": false,
+    "remote_analytics": false,
+    "shared_site_bootstrap": "assets/js/pwa-register.js",
+    "service_worker_release": 218,
+    "new_optional_cache_assets": 3,
+    "navigation_and_controls_hidden_in_print": true,
+    "canonical_print_header": true
+  },
+  "limitations": [
+    "PDF output depends on the user's browser or operating-system print destination.",
+    "Pagination and font rendering can vary by browser, printer driver and installed fonts.",
+    "A browser-generated copy does not alter source, review, copyright or completeness status.",
+    "GitHub Actions and production checks remain pending until the release is committed."
+  ]
+}

@@ -1,0 +1,56 @@
+Release 221 — GitHub browser upload instructions
+
+Repository:
+https://github.com/ssakthivel02/OmSaravanaBhava
+
+Verified corrected Release 220 base head:
+a3bebc4f28059e0147d9ddcb8cfa3372b36b2ebb
+
+Required commit title — enter this in the SMALL UPPER FIELD:
+Release 221: add static platform maintenance centre
+
+Leave the large commit-description field blank.
+
+UPLOAD
+1. Download and extract OmSaravanaBhava-Release-221.zip.
+2. Enable Windows View > Show > Hidden items.
+3. Open the extracted package folder.
+4. In GitHub main, select Add file > Upload files.
+5. Drag the CONTENTS of the extracted folder, not the outer folder.
+6. Preserve all directory paths.
+7. Confirm these exact paths appear before committing:
+   .github/workflows/static-site-integrity.yml
+   .github/workflows/production-smoke.yml
+   maintenance.html
+   assets/css/maintenance-centre.css
+   assets/js/maintenance-centre.mjs
+   data/maintenance-checks.json
+   manifest-release-221.json
+   tools/release_221_validate.py
+8. Enter the required title in the small upper field.
+9. Leave the large description field completely blank.
+10. Commit directly to main.
+
+POST-COMMIT VERIFICATION
+1. Copy the new main commit SHA.
+2. Confirm service-worker.js contains:
+   const RELEASE = '221';
+3. Open maintenance.html.
+4. Run “Run release checks”.
+5. Run “Audit critical routes”.
+6. Run “Audit required files”.
+7. Confirm “Clear transient caches” states that user data is preserved.
+8. Confirm data/site-routes.json contains /maintenance.html once.
+9. Confirm sitemap.xml contains the maintenance URL once.
+10. Wait for:
+    Release 221 Static Site Integrity
+    Release 221 Production Smoke
+11. Do not proceed to Release 222 until Release 221 is verified.
+
+DO NOT
+- Do not upload only maintenance.html.
+- Do not upload the outer package directory.
+- Do not omit hidden .github workflow files.
+- Do not rename an older ZIP.
+- Do not clear all browser storage or all Cache API entries.
+- Do not mark GitHub Actions or production as passed before they run.

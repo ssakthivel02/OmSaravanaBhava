@@ -1,0 +1,229 @@
+{
+  "release": 281,
+  "records": [
+    {
+      "release": "250",
+      "title": "Regional Temple Catalogue",
+      "category": "Temples",
+      "route": "regional-temple-catalogue.html",
+      "status": "published"
+    },
+    {
+      "release": "251",
+      "title": "Bilingual Temple Search",
+      "category": "Discovery",
+      "route": "temple-search.html",
+      "status": "published"
+    },
+    {
+      "release": "252",
+      "title": "Temple Collections",
+      "category": "Discovery",
+      "route": "temple-collections.html",
+      "status": "published"
+    },
+    {
+      "release": "253",
+      "title": "Temple Comparison",
+      "category": "Temples",
+      "route": "temple-compare.html",
+      "status": "published"
+    },
+    {
+      "release": "254",
+      "title": "Pilgrimage Builder",
+      "category": "Pilgrimage",
+      "route": "pilgrimage-builder.html",
+      "status": "published"
+    },
+    {
+      "release": "255",
+      "title": "Festival Knowledge",
+      "category": "Festivals",
+      "route": "festival-knowledge.html",
+      "status": "published"
+    },
+    {
+      "release": "256",
+      "title": "Temple Gallery",
+      "category": "Media",
+      "route": "temple-gallery.html",
+      "status": "published"
+    },
+    {
+      "release": "257",
+      "title": "Source-Aware Temple Guide",
+      "category": "AI and Search",
+      "route": "temple-guide.html",
+      "status": "published"
+    },
+    {
+      "release": "258",
+      "title": "SEO and Structured Discovery",
+      "category": "Platform",
+      "route": "sitemap.xml",
+      "status": "published"
+    },
+    {
+      "release": "259",
+      "title": "Accessibility and Performance",
+      "category": "Accessibility",
+      "route": "platform-hub.html",
+      "status": "published"
+    },
+    {
+      "release": "260",
+      "title": "Production Gate",
+      "category": "Platform",
+      "route": "platform-hub.html",
+      "status": "published"
+    },
+    {
+      "release": "261",
+      "title": "Temple Encyclopedia Phase II",
+      "category": "Temples",
+      "route": "release-261.html",
+      "status": "published"
+    },
+    {
+      "release": "262",
+      "title": "Regional Temple Knowledge Expansion",
+      "category": "Temples",
+      "route": "release-262.html",
+      "status": "published"
+    },
+    {
+      "release": "263",
+      "title": "Interactive Temple Map Explorer",
+      "category": "Pilgrimage",
+      "route": "release-263.html",
+      "status": "published"
+    },
+    {
+      "release": "264",
+      "title": "Temple History and Dynasty Timeline",
+      "category": "History",
+      "route": "release-264.html",
+      "status": "published"
+    },
+    {
+      "release": "265",
+      "title": "Murugan Literature Library",
+      "category": "Literature",
+      "route": "release-265.html",
+      "status": "published"
+    },
+    {
+      "release": "266",
+      "title": "Semantic Temple Discovery",
+      "category": "AI and Search",
+      "route": "release-266.html",
+      "status": "published"
+    },
+    {
+      "release": "267",
+      "title": "Immersive Multimedia Framework",
+      "category": "Media",
+      "route": "release-267.html",
+      "status": "published"
+    },
+    {
+      "release": "268",
+      "title": "Festival and Panchangam Knowledge",
+      "category": "Festivals",
+      "route": "release-268.html",
+      "status": "published"
+    },
+    {
+      "release": "269",
+      "title": "Family Learning and Gamification",
+      "category": "Learning",
+      "route": "release-269.html",
+      "status": "published"
+    },
+    {
+      "release": "270",
+      "title": "Offline PWA Knowledge Platform",
+      "category": "Platform",
+      "route": "release-270.html",
+      "status": "published"
+    },
+    {
+      "release": "271",
+      "title": "Devotee Personal Dashboard",
+      "category": "Personalization",
+      "route": "release-271.html",
+      "status": "published"
+    },
+    {
+      "release": "272",
+      "title": "Audio and Chanting Experience",
+      "category": "Audio",
+      "route": "release-272.html",
+      "status": "published"
+    },
+    {
+      "release": "273",
+      "title": "Temple Architecture Encyclopedia",
+      "category": "Architecture",
+      "route": "release-273.html",
+      "status": "published"
+    },
+    {
+      "release": "274",
+      "title": "Siddhar and Saint Lineages",
+      "category": "Spiritual Lineages",
+      "route": "release-274.html",
+      "status": "published"
+    },
+    {
+      "release": "275",
+      "title": "Service and Volunteer Framework",
+      "category": "Service",
+      "route": "release-275.html",
+      "status": "published"
+    },
+    {
+      "release": "276",
+      "title": "Internationalization and Accessibility",
+      "category": "Accessibility",
+      "route": "release-276.html",
+      "status": "published"
+    },
+    {
+      "release": "277",
+      "title": "Analytics and Content Quality",
+      "category": "Analytics",
+      "route": "release-277.html",
+      "status": "published"
+    },
+    {
+      "release": "278",
+      "title": "Security and SEO Hardening",
+      "category": "Security",
+      "route": "release-278.html",
+      "status": "published"
+    },
+    {
+      "release": "279",
+      "title": "Cloud Deployment Optimization",
+      "category": "Deployment",
+      "route": "release-279.html",
+      "status": "published"
+    },
+    {
+      "release": "280",
+      "title": "Production Release Candidate",
+      "category": "Platform",
+      "route": "release-280.html",
+      "status": "published"
+    },
+    {
+      "release": "281",
+      "title": "Platform Integration Hub and Workflow Recovery",
+      "category": "Platform",
+      "route": "platform-hub.html",
+      "status": "published"
+    }
+  ]
+}

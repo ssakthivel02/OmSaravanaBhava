@@ -1,0 +1,54 @@
+{
+  "release": "249B",
+  "count": 6,
+  "records": [
+    {
+      "id": "tirupparankundram",
+      "order": 1,
+      "name": "Tirupparankundram",
+      "name_ta": "திருப்பரங்குன்றம்",
+      "district": "Madurai",
+      "href": "temple-extended.html?id=tirupparankundram"
+    },
+    {
+      "id": "tiruchendur",
+      "order": 2,
+      "name": "Tiruchendur",
+      "name_ta": "திருச்செந்தூர்",
+      "district": "Thoothukudi",
+      "href": "temple-extended.html?id=tiruchendur"
+    },
+    {
+      "id": "palani",
+      "order": 3,
+      "name": "Palani",
+      "name_ta": "பழனி",
+      "district": "Dindigul",
+      "href": "temple-extended.html?id=palani"
+    },
+    {
+      "id": "swamimalai",
+      "order": 4,
+      "name": "Swamimalai",
+      "name_ta": "சுவாமிமலை",
+      "district": "Thanjavur region",
+      "href": "temple-extended.html?id=swamimalai"
+    },
+    {
+      "id": "tiruttani",
+      "order": 5,
+      "name": "Tiruttani",
+      "name_ta": "திருத்தணி",
+      "district": "Tiruvallur",
+      "href": "temple-extended.html?id=tiruttani"
+    },
+    {
+      "id": "pazhamudircholai",
+      "order": 6,
+      "name": "Pazhamudircholai",
+      "name_ta": "பழமுதிர்சோலை",
+      "district": "Madurai",
+      "href": "temple-extended.html?id=pazhamudircholai"
+    }
+  ]
+}

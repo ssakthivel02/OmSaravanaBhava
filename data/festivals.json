@@ -1,0 +1,51 @@
+[
+  {
+    "id": "thai-poosam",
+    "nameTa": "தைப்பூசம்",
+    "nameEn": "Thai Poosam",
+    "month": "Thai",
+    "summary": "Major Murugan festival connected with Vel worship, kavadi and devotion.",
+    "tags": [
+      "thai",
+      "poosam",
+      "vel",
+      "kavadi"
+    ]
+  },
+  {
+    "id": "skanda-sashti",
+    "nameTa": "ஸ்கந்த சஷ்டி",
+    "nameEn": "Skanda Sashti",
+    "month": "Aippasi",
+    "summary": "Six-day observance remembering Lord Murugan’s victory over Surapadman.",
+    "tags": [
+      "sashti",
+      "victory",
+      "thiruchendur"
+    ]
+  },
+  {
+    "id": "panguni-uthiram",
+    "nameTa": "பங்குனி உத்திரம்",
+    "nameEn": "Panguni Uthiram",
+    "month": "Panguni",
+    "summary": "Sacred festival connected with divine marriage and Murugan worship.",
+    "tags": [
+      "panguni",
+      "uthiram",
+      "marriage"
+    ]
+  },
+  {
+    "id": "aadi-krittikai",
+    "nameTa": "ஆடி கிருத்திகை",
+    "nameEn": "Aadi Krittikai",
+    "month": "Aadi",
+    "summary": "A special day for Murugan worship connected with Krittika nakshatra.",
+    "tags": [
+      "aadi",
+      "krittikai",
+      "murugan"
+    ]
+  }
+]

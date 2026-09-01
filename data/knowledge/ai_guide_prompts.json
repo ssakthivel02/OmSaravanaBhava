@@ -1,0 +1,12 @@
+{
+  "safeMode": true,
+  "intro": "I can guide you through verified Murugan content in this website. I do not replace a guru, temple authority, panchangam expert, or scripture scholar.",
+  "fallback": "I could not find a verified source in this website yet. Please check the temple page, sources page, or a trusted traditional reference.",
+  "suggestions": [
+    "Start with Lord Murugan and the Vel",
+    "Explore the six Arupadai Veedu temples",
+    "Learn the meaning of Om Saravana Bhava",
+    "Prepare for Thai Poosam",
+    "Read about Skanda Sashti and Kanda Sashti Kavasam"
+  ]
+}

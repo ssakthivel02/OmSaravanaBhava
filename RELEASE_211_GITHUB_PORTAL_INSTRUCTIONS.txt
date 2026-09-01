@@ -1,0 +1,21 @@
+Release 211 — Production Integrity Recovery
+
+Base verified before packaging:
+6ff49f60695fb3a970fa8b294d2f744c00768487
+
+1. Do not upload the ZIP itself into the repository.
+2. Extract OmSaravanaBhava_Release_211.zip on your computer.
+3. Open the extracted OmSaravanaBhava_Release_211 folder.
+4. Select every file and folder inside it, including the hidden .github folder.
+5. Upload the selected contents to the ROOT of ssakthivel02/OmSaravanaBhava.
+6. Confirm GitHub shows paths such as .github/workflows/static-site-integrity.yml and tools/site_audit.py. Do not create an OmSaravanaBhava_Release_211 parent folder in the repository.
+7. In the SMALL commit-title field enter exactly:
+   Release 211: recover production integrity and add CI gate
+8. Leave the larger optional description field blank.
+9. Commit directly to main.
+10. Open the Actions tab. Release 211 is not complete until:
+    - Static site integrity is green; and
+    - Production smoke is green and reports Release 211 from the custom domain.
+11. After the first green Static site integrity run, protect main and require the "Static site integrity" check before merge.
+
+Do not start Release 212 merely because the upload succeeds.

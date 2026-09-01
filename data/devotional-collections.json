@@ -1,0 +1,39 @@
+{
+  "release": 227,
+  "generated": "2026-07-14",
+  "builtAgainstCommit": "a241ba10ff7fc319a4347d616e2f0c6bb816cbd7",
+  "title": "OmSaravanaBhava Browser-Local Devotional Collections",
+  "storageKey": "osb-devotional-collections-v1",
+  "maximumCollections": 20,
+  "maximumRoutesPerCollection": 50,
+  "maximumNameLength": 60,
+  "maximumDescriptionLength": 240,
+  "allowedRouteStatuses": [
+    "published",
+    "partial-reviewed",
+    "source-register",
+    "framework"
+  ],
+  "excludedRouteStatuses": [
+    "draft",
+    "private",
+    "unpublished",
+    "archived",
+    "utility",
+    "navigation",
+    "directory",
+    "milestone"
+  ],
+  "excludedCategories": [
+    "Platform",
+    "Maintenance",
+    "Navigation"
+  ],
+  "limitations": [
+    "Only same-origin route references are stored.",
+    "Devotional text, page body content and selected source text are never copied into collection storage.",
+    "Route titles and publication metadata are resolved from the current site route directory.",
+    "Collections remain in the current browser profile unless explicitly exported through the Personal Data Centre.",
+    "No account, cloud synchronization, analytics or recommendation engine is provided."
+  ]
+}

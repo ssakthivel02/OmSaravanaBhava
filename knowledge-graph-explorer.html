@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ta">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Knowledge Graph Explorer | Om Saravana Bhava</title>
+<meta name="description" content="Explore existing local OmSaravanaBhava graph registers, explicit source-page nodes and published relationship counts without inferred theological edges.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://omsaravanabhava.org/knowledge-graph-explorer.html">
+<link rel="stylesheet" href="assets/css/osb44.css">
+<link rel="stylesheet" href="assets/css/knowledge-graph-explorer.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#a51d17">
+<link rel="manifest" href="manifest.json">
+<script defer src="assets/js/pwa-register.js"></script>
+<script type="module" src="assets/js/knowledge-graph-explorer.mjs"></script>
+</head>
+<body data-release="220">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="top">🛕 ஓம் சரவணபவ · Source-controlled local graph explorer</div>
+<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+<div class="links"><a href="explore.html">Explore</a><a href="knowledge-graph.html">Phase 1 Graph</a><a href="knowledge-graph-explorer.html" aria-current="page">Graph Explorer</a><a href="search-facets.html">Facets</a><a href="platform.html">Platform</a></div>
+</div></nav>
+<main id="main-content" class="wrap">
+<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="explore.html">Explore</a> › <span aria-current="page">Knowledge Graph Explorer</span></p></nav>
+
+<section class="card graph-hero">
+<div>
+<span class="pill">Release 220 · Existing local graph evidence</span>
+<h1 class="section-title" lang="ta">அறிவு தொடர்பு ஆராய்வி</h1>
+<h2>Knowledge Graph Explorer</h2>
+<p>Explore existing graph registers and explicitly visible source-page nodes. Reported domain-relationship totals remain separate from the metadata edges used to navigate this explorer.</p>
+</div>
+<div class="graph-metric"><strong id="graphDatasetCount">0</strong><span>graph registers</span></div>
+<div class="graph-metric"><strong id="graphExplicitNodeCount">0</strong><span>explicit entities</span></div>
+<div class="graph-metric"><strong id="graphReportedRelationshipCount">0</strong><span>reported relationships</span></div>
+<div class="graph-metric"><strong id="graphUnspecifiedCount">0</strong><span>registers without a published relationship count</span></div>
+</section>
+
+<section class="card graph-toolbar" aria-label="Knowledge graph filters">
+<label for="graphSearch">Search Tamil or English
+<input type="search" id="graphSearch" placeholder="Murugan, Vel, Bogar…" autocomplete="off">
+</label>
+<label for="graphDataset">Graph register
+<select id="graphDataset"><option>Loading…</option></select>
+</label>
+<label for="graphKind">Node kind
+<select id="graphKind"><option>Loading…</option></select>
+</label>
+<label for="graphBoundary">Publication boundary
+<select id="graphBoundary"><option>Loading…</option></select>
+</label>
+<button type="button" class="btn secondary" id="graphReset">Reset</button>
+</section>
+<p id="graphStatus" role="status" aria-live="polite">Loading local graph evidence…</p>
+
+<section class="graph-workspace">
+<article class="card graph-visual">
+<h2>Interactive metadata map</h2>
+<p id="graphVisualStatus">Preparing graph…</p>
+<div class="graph-canvas-shell">
+<svg id="knowledgeGraphSvg" role="group" aria-label="Interactive graph-register map"></svg>
+</div>
+</article>
+<aside class="card graph-details" id="graphNodeDetails">
+<h2>Select a node</h2>
+<p>Choose a visual node or an accessible result card to inspect its local source and graph-register membership.</p>
+</aside>
+</section>
+
+<section class="card">
+<h2>Explorer relationship types</h2>
+<p>These are metadata relationships used by this interface. They are not replacements for the domain-relationship totals reported by the source graph pages.</p>
+<div id="graphRelationshipTypes"></div>
+</section>
+
+<section>
+<h2>Accessible node list</h2>
+<div id="graphNodeList" class="grid graph-node-list" aria-live="polite"></div>
+</section>
+
+<section>
+<h2>Source graph register</h2>
+<div id="graphDatasetRegister" class="grid graph-dataset-register"></div>
+</section>
+
+<section class="card graph-boundary">
+<h2>Evidence boundary</h2>
+<ul>
+<li>The explorer contains only existing graph pages, their explicitly visible node cards and their published summary counts.</li>
+<li>Phase 3 and Phase 4 publish totals but do not expose node-level records on their current pages; those missing records are not fabricated.</li>
+<li>The Siddhar register remains source-review material.</li>
+<li>The Skanda Purana register remains high-level and pending chapter-level verification.</li>
+<li>This release does not claim complete Murugan literature, theology or relationship coverage.</li>
+</ul>
+</section>
+
+<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>The interactive explorer requires JavaScript. The source pages remain available through <a href="knowledge-graph.html">the Phase 1 graph</a>, <a href="knowledge-graph-phase-3.html">Phase 3</a>, <a href="knowledge-graph-phase-4.html">Phase 4</a>, <a href="siddhar-knowledge-graph.html">the Siddhar graph</a> and <a href="skanda-purana-graph.html">the Skanda Purana graph</a>.</p></section></noscript>
+</main>
+<footer>© Om Saravana Bhava · <a href="knowledge-graph-explorer.html">Graph Explorer</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
+</body>
+</html>

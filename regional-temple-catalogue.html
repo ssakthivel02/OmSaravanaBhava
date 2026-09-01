@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ta">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Regional Murugan Temple Catalogue | Om Saravana Bhava</title>
+  <meta name="description" content="Explore Murugan temples beyond the Arupadai Veedu through a structured, source-aware regional catalogue.">
+  <meta name="theme-color" content="#080b10">
+  <link rel="stylesheet" href="assets/css/temple-encyclopedia.css">
+  <link rel="stylesheet" href="assets/css/regional-temple-catalogue.css">
+  <script type="module" src="assets/js/regional-temple-catalogue.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="te-header">
+    <a class="te-brand" href="index.html">
+      <span class="te-brand-mark">ॐ</span>
+      <span><strong>ஓம் சரவணபவ</strong><small>Regional Temple Catalogue</small></span>
+    </a>
+    <button class="te-menu" type="button" aria-expanded="false" aria-controls="te-nav">Menu</button>
+    <nav id="te-nav" class="te-nav">
+      <a href="index.html">Home</a>
+      <a href="temple-encyclopedia.html">Arupadai Veedu</a>
+      <a href="temple-experience.html">Temple Experience</a>
+      <a class="active" href="regional-temple-catalogue.html">Regional Temples</a>
+      <a href="audio-library.html">Audio</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="regional-hero">
+      <div class="regional-hero-copy">
+        <p class="te-eyebrow">Release 250A · Catalogue expansion</p>
+        <h1>Murugan temples beyond the six sacred abodes</h1>
+        <p>Explore a scalable regional catalogue built around official-source references, publication status and reusable temple records.</p>
+        <div class="te-actions">
+          <a class="te-button" href="#regional-browser">Browse catalogue</a>
+          <a class="te-button te-button-secondary" href="temple-encyclopedia.html">Arupadai Veedu</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="regional-browser" class="te-shell regional-shell">
+      <div class="regional-heading">
+        <p class="te-eyebrow">Regional discovery</p>
+        <h2>Search verified starter records</h2>
+        <p>This phase publishes only a controlled starter set. Additional temples can be added through the included import template and editorial workflow.</p>
+      </div>
+
+      <div class="regional-toolbar">
+        <label>
+          <span>Search</span>
+          <input id="regional-search" type="search" placeholder="Temple, Tamil name or district">
+        </label>
+        <label>
+          <span>District</span>
+          <select id="regional-district"><option value="">All districts</option></select>
+        </label>
+        <label>
+          <span>Setting</span>
+          <select id="regional-setting"><option value="">All settings</option></select>
+        </label>
+        <button id="regional-clear" type="button">Clear filters</button>
+      </div>
+
+      <div class="regional-metrics">
+        <article><strong id="regional-total">0</strong><span>Starter records</span></article>
+        <article><strong id="regional-district-count">0</strong><span>Districts</span></article>
+        <article><strong id="regional-official-count">0</strong><span>Official-source records</span></article>
+        <article><strong id="regional-review-count">0</strong><span>Fields under review</span></article>
+      </div>
+
+      <div id="regional-results" class="regional-grid" aria-live="polite"></div>
+      <p id="regional-empty" class="te-empty" hidden>No regional temples match the current filters.</p>
+    </section>
+
+    <section class="te-shell regional-method">
+      <div>
+        <p class="te-eyebrow">Controlled expansion</p>
+        <h2>Designed for careful growth</h2>
+        <p>Every temple record separates official identity, editorial narrative, changing visitor information and image licensing status.</p>
+      </div>
+      <div class="regional-method-grid">
+        <article><strong>1</strong><span>Register official identity</span></article>
+        <article><strong>2</strong><span>Attach authoritative sources</span></article>
+        <article><strong>3</strong><span>Review narratives and images</span></article>
+        <article><strong>4</strong><span>Publish with visible status</span></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="te-footer">
+    <p>வேலவேல் முருகா!</p>
+  </footer>
+</body>
+</html>

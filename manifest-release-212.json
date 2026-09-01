@@ -1,0 +1,30 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 212,
+  "name": "CI Workflow Activation and Complete Site Route Directory",
+  "generated": "2026-07-14",
+  "baseCommit": "407b8c23687f999ba12865c3ecbcdaa3654f97e1",
+  "validationStatus": "LOCAL_PACKAGE_PASS_REPOSITORY_CI_PENDING",
+  "productionFiles": [
+    ".github/workflows/static-site-integrity.yml",
+    ".github/workflows/production-smoke.yml",
+    "index.html",
+    "platform.html",
+    "site-directory.html",
+    "data/site-routes.json",
+    "assets/js/site-directory.js",
+    "assets/css/site-directory.css",
+    "sitemap.xml",
+    "service-worker.js",
+    "quality/site-audit-config.json",
+    "tools/site_audit.py",
+    "tools/production_smoke.py",
+    "tests/test_site_audit.py"
+  ],
+  "routeCount": 85,
+  "notes": [
+    "Activates workflows omitted from the Release 211 portal upload.",
+    "Route listing proves publication, not content completeness.",
+    "Smart 404 recovery is deferred to Release 213."
+  ]
+}

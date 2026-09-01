@@ -1,0 +1,35 @@
+Release 225 — Browser-Local Personal Data Backup and Restore Centre
+Base commit: 3600bf1b301d2240f3bdb7f8edbcbe8e552e916c
+
+M  .github/workflows/production-smoke.yml
+M  .github/workflows/static-site-integrity.yml
+A  assets/css/personal-data.css
+M  assets/js/maintenance-centre.mjs
+A  assets/js/personal-data.mjs
+M  data/maintenance-checks.json
+A  data/personal-data-registry.json
+M  data/site-routes.json
+M  discovery.html
+M  index.html
+M  maintenance.html
+A  manifest-release-225.json
+A  personal-data.html
+M  platform.html
+M  quality/site-audit-config.json
+M  reading-notes.html
+M  reading-workspace.html
+M  service-worker.js
+M  sitemap.xml
+M  tests/maintenance-centre.test.mjs
+A  tests/personal-data.test.mjs
+M  tests/test_site_audit.py
+M  tools/production_smoke.py
+A  tools/release_225_validate.py
+
+Evidence files included:
+A  RELEASE_225_CHANGED_FILES.txt
+A  RELEASE_225_GITHUB_PORTAL_INSTRUCTIONS.txt
+A  RELEASE_225_LOCAL_TEST_EVIDENCE.txt
+A  RELEASE_225_SHA256SUMS.txt
+A  RELEASE_225_VALIDATION_REPORT.md
+A  RELEASE_225.patch

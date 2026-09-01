@@ -1,0 +1,28 @@
+Release 219 — Browser-Local Audio Listening History
+Base commit: c21007e2038823990f8858ab299f0865de4b78ce
+
+M  .github/workflows/production-smoke.yml
+M  .github/workflows/static-site-integrity.yml
+A  assets/css/audio-history.css
+A  assets/js/audio-history.mjs
+A  audio-history.html
+M  audio-library.html
+M  data/site-routes.json
+M  index.html
+A  manifest-release-219.json
+M  platform.html
+M  quality/site-audit-config.json
+M  service-worker.js
+M  sitemap.xml
+A  tests/audio-history.test.mjs
+M  tests/test_site_audit.py
+M  tools/production_smoke.py
+A  tools/release_219_validate.py
+
+Evidence files included:
+A  RELEASE_219_CHANGED_FILES.txt
+A  RELEASE_219_GITHUB_PORTAL_INSTRUCTIONS.txt
+A  RELEASE_219_LOCAL_TEST_EVIDENCE.txt
+A  RELEASE_219_SHA256SUMS.txt
+A  RELEASE_219_VALIDATION_REPORT.md
+A  RELEASE_219.patch

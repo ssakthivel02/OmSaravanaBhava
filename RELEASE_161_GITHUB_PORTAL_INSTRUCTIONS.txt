@@ -1,0 +1,12 @@
+OmSaravanaBhava Release 161
+
+Upload only after all earlier releases are committed.
+
+1. Extract this ZIP.
+2. Select everything inside the extracted folder.
+3. Upload to repository root.
+4. No Release161, package, output or cleanup parent folder.
+5. Small upper commit title:
+   Release 161: add Kanda Sashti Kavasam structured reviewed edition
+6. Leave lower description blank.
+7. Commit directly to main.

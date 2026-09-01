@@ -1,0 +1,40 @@
+Release 227 — Browser-Local Devotional Collections Centre
+Base commit: a241ba10ff7fc319a4347d616e2f0c6bb816cbd7
+
+M  .github/workflows/production-smoke.yml
+M  .github/workflows/static-site-integrity.yml
+A  assets/css/devotional-collections.css
+A  assets/js/devotional-collections.mjs
+M  assets/js/maintenance-centre.mjs
+M  assets/js/personal-data.mjs
+A  data/devotional-collections.json
+M  data/maintenance-checks.json
+M  data/personal-data-registry.json
+M  data/site-routes.json
+A  devotional-collections.html
+M  discovery.html
+M  index.html
+M  maintenance.html
+A  manifest-release-227.json
+M  personal-data.html
+M  personal-library.html
+M  platform.html
+M  quality/site-audit-config.json
+M  reading-notes.html
+M  reading-workspace.html
+M  service-worker.js
+M  sitemap.xml
+A  tests/devotional-collections.test.mjs
+M  tests/maintenance-centre.test.mjs
+M  tests/personal-data.test.mjs
+M  tests/test_site_audit.py
+M  tools/production_smoke.py
+A  tools/release_227_validate.py
+
+Evidence files included:
+A  RELEASE_227_CHANGED_FILES.txt
+A  RELEASE_227_GITHUB_PORTAL_INSTRUCTIONS.txt
+A  RELEASE_227_LOCAL_TEST_EVIDENCE.txt
+A  RELEASE_227_SHA256SUMS.txt
+A  RELEASE_227_VALIDATION_REPORT.md
+A  RELEASE_227.patch

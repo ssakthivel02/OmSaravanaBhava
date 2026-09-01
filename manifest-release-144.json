@@ -1,0 +1,13 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 144,
+  "module": "Static Routes & Navigation Consolidation",
+  "generated": "2026-07-11",
+  "file_count": 27,
+  "replace_files": [
+    "assets/js/osb44.js",
+    "temple-details.html",
+    "sloka-reader.html",
+    "festival-details.html"
+  ]
+}

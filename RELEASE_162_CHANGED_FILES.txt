@@ -1,0 +1,4 @@
+data/search-index.json
+data/vel-maaral.json
+literature/vel-maaral.html
+service-worker.js

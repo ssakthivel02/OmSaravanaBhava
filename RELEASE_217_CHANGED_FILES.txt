@@ -1,0 +1,28 @@
+Release 217 — Accessibility Centre
+Base commit: 6d5df24f611e0f8164834544a9e92521e4cf5c27
+
+M  .github/workflows/production-smoke.yml
+M  .github/workflows/static-site-integrity.yml
+A  accessibility.html
+A  assets/css/accessibility-preferences.css
+A  assets/js/accessibility-preferences.mjs
+M  assets/js/pwa-register.js
+M  data/site-routes.json
+M  index.html
+A  manifest-release-217.json
+M  platform.html
+M  quality/site-audit-config.json
+M  service-worker.js
+M  sitemap.xml
+A  tests/accessibility-preferences.test.mjs
+M  tests/test_site_audit.py
+M  tools/production_smoke.py
+A  tools/release_217_validate.py
+
+Evidence files included:
+A  RELEASE_217_CHANGED_FILES.txt
+A  RELEASE_217_GITHUB_PORTAL_INSTRUCTIONS.txt
+A  RELEASE_217_LOCAL_TEST_EVIDENCE.txt
+A  RELEASE_217_SHA256SUMS.txt
+A  RELEASE_217_VALIDATION_REPORT.md
+A  RELEASE_217.patch

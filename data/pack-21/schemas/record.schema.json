@@ -1,0 +1,1 @@
+{"type": "object", "required": ["id", "title", "title_ta", "status"]}

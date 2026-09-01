@@ -1,0 +1,12 @@
+{
+  "batch": 25,
+  "type": "festival-literature-map",
+  "items": [
+    {
+      "festival": "ஆடி கிருத்திகை",
+      "work": "கந்தர் அந்தாதி",
+      "relationship": "festival_parayanam_or_devotional_theme",
+      "status": "review_required"
+    }
+  ]
+}

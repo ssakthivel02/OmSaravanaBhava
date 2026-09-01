@@ -1,0 +1,14 @@
+{
+  "batch": 21,
+  "type": "festival-map",
+  "items": [
+    {
+      "festival": "கந்த சஷ்டி",
+      "related_temple": "திருச்செந்தூர்"
+    },
+    {
+      "festival": "தைப்பூசம்",
+      "related_temple": "பழனி"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 230,
+  "name": "Literature Publication Boundary Enforcement",
+  "base_commit": "292f9f8b2a481f1aab43db2e75d31ccf0a0ffd81",
+  "base_release": 229,
+  "generated": "2026-07-15",
+  "required_commit_title": "Release 230: enforce literature publication boundaries",
+  "validation_status": "LOCAL_PACKAGE_PASS_PATCH_CHECK_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
+  "production_objective": "Prevent source-only and navigation-only literature pages from being presented as full reading editions, and expose route-registry status mismatches through the existing Content Status route.",
+  "added_files": [
+    ".github/workflows/release-230-integrity.yml",
+    ".github/workflows/release-230-production-smoke.yml",
+    "assets/css/content-status-audit.css",
+    "assets/js/content-status-audit.mjs",
+    "data/publication-boundaries.json",
+    "tests/publication-boundaries.test.mjs",
+    "tools/release_230_validate.py",
+    "manifest-release-230.json",
+    "RELEASE_230_CHANGED_FILES.txt",
+    "RELEASE_230_GITHUB_PORTAL_INSTRUCTIONS.txt",
+    "RELEASE_230_LOCAL_TEST_EVIDENCE.txt",
+    "RELEASE_230_VALIDATION_REPORT.md",
+    "RELEASE_230_SHA256SUMS.txt",
+    "RELEASE_230.patch"
+  ],
+  "modified_files": [
+    "content-status.html",
+    "data/content-status.json",
+    "data/reading-workspace.json",
+    "assets/js/reading-workspace-desktop.mjs",
+    "service-worker.js"
+  ],
+  "deleted_files": [],
+  "merge_sensitive_files": [
+    "content-status.html",
+    "data/reading-workspace.json",
+    "assets/js/reading-workspace-desktop.mjs",
+    "service-worker.js"
+  ],
+  "route_registry_changed": false,
+  "route_registry_strategy": "Current mismatches are preserved as explicit declared-state evidence and surfaced by the audit. Consumer-side reading eligibility uses verified boundary status and exclusions.",
+  "sitemap_changed": false,
+  "new_public_route": false,
+  "new_browser_storage_key": false,
+  "content_changes": false,
+  "service_worker_cache_generation": 228,
+  "claims": {
+    "runtime_derived_status_counts": true,
+    "audited_literature_routes": 8,
+    "source_only_reading_exclusions": 7,
+    "bounded_extract_status_override": true,
+    "same_origin_page_evidence": true,
+    "new_storage_key": false,
+    "analytics": false,
+    "tracking": false,
+    "backend_dependency": false,
+    "devotional_text_modified": false,
+    "complete_work_claim_added": false
+  },
+  "validation_commands": [
+    "node --check assets/js/content-status-audit.mjs",
+    "node --check assets/js/reading-workspace-desktop.mjs",
+    "node --check service-worker.js",
+    "node --test tests/publication-boundaries.test.mjs",
+    "python tools/release_230_validate.py --root . --package-mode --report artifacts/release-230-package-validation.json",
+    "git apply --check RELEASE_230.patch"
+  ],
+  "validation_results": {
+    "local_package": "PASS",
+    "node_syntax": "PASS",
+    "node_tests": "PASS_14_OF_14",
+    "python_compile": "PASS",
+    "workflow_yaml_parse": "PASS",
+    "baseline_blob_match": "PASS",
+    "patch_check": "PASS",
+    "github_actions": "NOT_RUN",
+    "deployed_production": "NOT_RUN"
+  },
+  "known_limitations": [
+    "This release audits and enforces reading eligibility but does not silently rewrite the public route-directory status field.",
+    "Eight literature routes are covered because their page and data declarations provide explicit evidence; no broader corpus completeness claim is made.",
+    "Same-origin page evidence checks depend on network and cache availability.",
+    "GitHub Actions and deployed-production validation remain pending until upload.",
+    "The service-worker cache generation remains 228 because no cache schema or user-data migration is introduced."
+  ]
+}

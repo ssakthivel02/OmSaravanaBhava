@@ -1,0 +1,1 @@
+async function loadRelated(){const el=document.querySelector('#relatedLinks');if(!el)return;const r=await fetch('./data/nav/related.json');const d=await r.json();el.innerHTML=d.items.map(x=>`<a href='${x.href}'>${x.title}</a>`).join(' ')}document.addEventListener('DOMContentLoaded',loadRelated);

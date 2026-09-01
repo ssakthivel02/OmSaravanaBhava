@@ -1,0 +1,38 @@
+[
+  {
+    "id": "q1",
+    "question": "How many Arupadai Veedu are traditionally recognised?",
+    "options": [
+      "4",
+      "5",
+      "6",
+      "8"
+    ],
+    "answer": 2,
+    "sourceRoute": "arupadai-veedu.html"
+  },
+  {
+    "id": "q2",
+    "question": "Who is traditionally associated with Thiruppugazh?",
+    "options": [
+      "Nakkirar",
+      "Arunagirinathar",
+      "Devaraya Swamigal",
+      "Bogar"
+    ],
+    "answer": 1,
+    "sourceRoute": "thiruppugazh.html"
+  },
+  {
+    "id": "q3",
+    "question": "Which symbol is most directly associated with Murugan?",
+    "options": [
+      "Conch",
+      "Vel",
+      "Discus",
+      "Trident only"
+    ],
+    "answer": 1,
+    "sourceRoute": "knowledge-graph.html"
+  }
+]

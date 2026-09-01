@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "historicalCount",
+    "overrideCount",
+    "appliedCount",
+    "unmatchedOverrides"
+  ],
+  "properties": {
+    "historicalCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "overrideCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "appliedCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "unmatchedOverrides": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

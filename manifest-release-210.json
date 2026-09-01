@@ -1,0 +1,24 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 210,
+  "name": "Premium Desktop-First Home Experience",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 4,
+  "modified": [
+    "index.html",
+    "assets/css/osb44.css",
+    "service-worker.js"
+  ],
+  "added": [
+    "assets/js/premium-home.js"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Desktop-first hero": "Yes",
+    "Mobile preserved": "Yes",
+    "External CDN": "None",
+    "Mouse interaction": "Reduced-motion aware"
+  }
+}

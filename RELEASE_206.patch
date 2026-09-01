@@ -1,0 +1,114 @@
+--- before/murugan-timeline-v2.html
++++ release206/murugan-timeline-v2.html
+@@ -0,0 +1,25 @@
++<!doctype html><html lang="ta"><head>
++<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Murugan Timeline Version 2 | Om Saravana Bhava</title>
++<meta name="description" content="Filterable qualified timeline with explicit broad-period precision.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/murugan-timeline-v2.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++<script defer src="assets/js/timeline-filter.js"></script>
++</head><body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Verified Murugan digital platform</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Murugan Timeline Version 2</span></p></nav>
++<section class="card"><h1 class="section-title" lang="ta">முருகன் வரலாற்றுக் காலவரிசை 2</h1><h2>Murugan Timeline Version 2</h2><p>Filterable qualified timeline with explicit broad-period precision.</p></section>
++<section class="card"><label for="timelineFilter">Filter period</label><select id="timelineFilter"><option>All</option><option>15th century</option><option>17th century</option><option>19th century</option><option>19th–20th century</option><option>20th century</option><option>Sangam era</option></select></section><section class="timeline"><article class="card" data-timeline-card data-period="Sangam era"><span class="pill">Sangam era</span><h2 lang="ta">திருமுருகாற்றுப்படை</h2><h3>Thirumurugatruppadai</h3></article><article class="card" data-timeline-card data-period="15th century"><span class="pill">15th century</span><h2 lang="ta">அருணகிரிநாதர்</h2><h3>Arunagirinathar</h3></article><article class="card" data-timeline-card data-period="17th century"><span class="pill">17th century</span><h2 lang="ta">குமரகுருபரர்</h2><h3>Kumara Gurupara Swamigal</h3></article><article class="card" data-timeline-card data-period="19th century"><span class="pill">19th century</span><h2 lang="ta">தேவராய சுவாமிகள்</h2><h3>Sri Devaraya Swamigal</h3></article><article class="card" data-timeline-card data-period="19th–20th century"><span class="pill">19th–20th century</span><h2 lang="ta">பாம்பன் சுவாமிகள்</h2><h3>Pamban Swamigal</h3></article><article class="card" data-timeline-card data-period="20th century"><span class="pill">20th century</span><h2 lang="ta">வள்ளிமலை சுவாமிகள்</h2><h3>Vallimalai Swamigal</h3></article></section>
++</main>
++<footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body></html>--- before/data/murugan-timeline.json
++++ release206/data/murugan-timeline.json
+@@ -3,36 +3,48 @@
+     "period": "Sangam era",
+     "titleTa": "திருமுருகாற்றுப்படை",
+     "titleEn": "Thirumurugatruppadai",
+-    "certainty": "broad historical period"
++    "certainty": "broad historical period",
++    "precision": "broad-period",
++    "sourceStatus": "qualified"
+   },
+   {
+     "period": "15th century",
+     "titleTa": "அருணகிரிநாதர்",
+     "titleEn": "Arunagirinathar",
+-    "certainty": "traditional historical placement"
++    "certainty": "traditional historical placement",
++    "precision": "broad-period",
++    "sourceStatus": "qualified"
+   },
+   {
+     "period": "17th century",
+     "titleTa": "குமரகுருபரர்",
+     "titleEn": "Kumara Gurupara Swamigal",
+-    "certainty": "historical placement"
++    "certainty": "historical placement",
++    "precision": "broad-period",
++    "sourceStatus": "qualified"
+   },
+   {
+     "period": "19th century",
+     "titleTa": "தேவராய சுவாமிகள்",
+     "titleEn": "Sri Devaraya Swamigal",
+-    "certainty": "historical placement"
++    "certainty": "historical placement",
++    "precision": "broad-period",
++    "sourceStatus": "qualified"
+   },
+   {
+     "period": "19th–20th century",
+     "titleTa": "பாம்பன் சுவாமிகள்",
+     "titleEn": "Pamban Swamigal",
+-    "certainty": "historical placement"
++    "certainty": "historical placement",
++    "precision": "broad-period",
++    "sourceStatus": "qualified"
+   },
+   {
+     "period": "20th century",
+     "titleTa": "வள்ளிமலை சுவாமிகள்",
+     "titleEn": "Vallimalai Swamigal",
+-    "certainty": "historical placement"
++    "certainty": "historical placement",
++    "precision": "broad-period",
++    "sourceStatus": "qualified"
+   }
+ ]
+--- before/assets/js/timeline-filter.js
++++ release206/assets/js/timeline-filter.js
+@@ -0,0 +1 @@
++(()=>{'use strict';document.addEventListener('DOMContentLoaded',()=>{const cards=[...document.querySelectorAll('[data-timeline-card]')];const filter=document.getElementById('timelineFilter');if(!filter)return;filter.addEventListener('change',()=>{const v=filter.value;cards.forEach(c=>c.hidden=v!=='All'&&c.dataset.period!==v)})})})();--- before/service-worker.js
++++ release206/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '205';
++const RELEASE = '206';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -159,7 +159,9 @@
+   "/temple-travel-guidance.html",
+   "/knowledge-graph-phase-4.html",
+   "/devotional-dictionary.html",
+-  "/data/devotional-dictionary.json"
++  "/data/devotional-dictionary.json",
++  "/murugan-timeline-v2.html",
++  "/assets/js/timeline-filter.js"
+ ];
+ 
+ self.addEventListener('install', event => {
+--- before/sitemap.xml
++++ release206/sitemap.xml
+@@ -240,4 +240,5 @@
+   <url><loc>https://omsaravanabhava.org/temple-travel-guidance.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+   <url><loc>https://omsaravanabhava.org/knowledge-graph-phase-4.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+   <url><loc>https://omsaravanabhava.org/devotional-dictionary.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
++  <url><loc>https://omsaravanabhava.org/murugan-timeline-v2.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+ </urlset>

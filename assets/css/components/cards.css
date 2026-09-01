@@ -1,0 +1,13 @@
+.te-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.temple-card{position:relative;overflow:hidden;min-height:430px;border:1px solid var(--te-line);border-radius:24px;background:var(--te-panel);box-shadow:var(--te-shadow);isolation:isolate}
+.temple-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
+.temple-card:hover img{transform:scale(1.035)}
+.temple-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 25%,rgba(6,8,12,.97) 83%);z-index:1}
+.temple-card-content{position:absolute;left:1.25rem;right:1.25rem;bottom:1.25rem;z-index:2}
+.temple-card h3{margin:.2rem 0;font-size:1.9rem}
+.temple-card-ta{color:var(--te-gold-soft);font-size:1.05rem}
+.temple-card-meta{display:flex;flex-wrap:wrap;gap:.4rem;margin:.8rem 0}
+.temple-chip{padding:.25rem .5rem;border:1px solid var(--te-line);border-radius:999px;background:rgba(8,11,16,.6);font-family:system-ui,sans-serif;font-size:.72rem}
+.temple-card-actions{display:flex;flex-wrap:wrap;gap:.55rem}
+.temple-card-actions a,.temple-card-actions button{border:1px solid var(--te-line);border-radius:999px;background:rgba(8,11,16,.72);color:#fff;padding:.55rem .75rem;text-decoration:none;font-family:system-ui,sans-serif;font-size:.8rem;cursor:pointer}
+.temple-card-actions a:hover,.temple-card-actions button:hover{color:var(--te-gold-soft)}

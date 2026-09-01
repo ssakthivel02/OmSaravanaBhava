@@ -1,0 +1,10 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//OmSaravanaBhava//Festival//EN
+BEGIN:VEVENT
+UID:vaikasi-visakam@omsaravanabhava.org
+SUMMARY:Vaikasi Visakam
+DESCRIPTION:Celebrates the divine manifestation of Lord Murugan.
+DTSTART;VALUE=DATE:20260101
+END:VEVENT
+END:VCALENDAR

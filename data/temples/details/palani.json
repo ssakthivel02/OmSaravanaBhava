@@ -1,0 +1,50 @@
+{
+  "id": "palani",
+  "titleTa": "பழனி முருகன் கோவில்",
+  "titleEn": "Palani Murugan Temple",
+  "district": "Dindigul",
+  "state": "Tamil Nadu",
+  "category": "Arupadai Veedu",
+  "summary": "Hill temple dedicated to Dhandayuthapani Swamy; one of the six sacred abodes.",
+  "shortHistory": "Pazhamudircholai? no, Palani is the third abode of Murugan associated with renunciation and wisdom.",
+  "openingHours": "6:00 AM - 8:00 PM",
+  "festivals": [
+    "Thai Poosam",
+    "Panguni Uthiram"
+  ],
+  "features": [
+    "Hill climb",
+    "Winch/Rope car",
+    "Panchamirtham prasadam"
+  ],
+  "location": {
+    "lat": 10.45,
+    "lng": 77.52
+  },
+  "tags": [
+    "Arupadai Veedu",
+    "Dindigul",
+    "Murugan",
+    "Temple"
+  ],
+  "overview": "Pazhamudircholai? no, Palani is the third abode of Murugan associated with renunciation and wisdom.",
+  "architecture": "Temple architecture combines sacred orientation, mandapa layout, gopuram symbolism, and devotional circulation. This record is provided as a structured starting point and should be expanded with verified source review.",
+  "pilgrimGuide": [
+    "Check current timings before travel",
+    "Carry water for hill temples",
+    "Prefer early morning darshan on festival days",
+    "Respect temple dress and photography rules"
+  ],
+  "howToReach": {
+    "nearestCity": "Dindigul",
+    "rail": "Check nearest major railway station before travel",
+    "road": "Accessible by local road routes and buses depending on temple location",
+    "air": "Use nearest regional airport where applicable"
+  },
+  "related": [
+    "tiruchendur",
+    "swamimalai"
+  ],
+  "verificationStatus": "Needs Review",
+  "lastUpdated": "2026-07-08"
+}

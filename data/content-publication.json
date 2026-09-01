@@ -1,0 +1,81 @@
+{
+  "release": 155,
+  "generated": "2026-07-13",
+  "states": {
+    "published-source-linked": "Published with an explicit primary-text citation.",
+    "published": "Published record retained from the existing reviewed collection.",
+    "partial-reviewed": "A clearly identified reviewed extract; the full work is not claimed.",
+    "directory-review": "Directory entry only; excluded from search indexing and the offline precache."
+  },
+  "publishedTempleRoutes": [
+    "temples/thirupparamkundram.html",
+    "temples/thiruchendur.html",
+    "temples/palani.html",
+    "temples/swamimalai.html",
+    "temples/thiruthani.html",
+    "temples/pazhamudircholai.html"
+  ],
+  "directoryReviewTempleRoutes": [
+    "temples/vadapalani.html",
+    "temples/marudhamalai.html",
+    "temples/vayalur.html",
+    "temples/sikkal.html"
+  ],
+  "partialReviewedRoutes": [
+    "slokas/kanda-sashti-kavasam.html",
+    "slokas/skanda-guru-kavasam.html"
+  ],
+  "sourceRoutes": [
+    "sources.html",
+    "literature/thirumurugatruppadai.html"
+  ],
+  "thiruppugazh": {
+    "collectionRoute": "thiruppugazh.html",
+    "publishedCount": 12,
+    "publishedRoutes": [
+      "thiruppugazh/0006-muththaiththaru.html",
+      "thiruppugazh/0007-arukku-mangkaiyar.html",
+      "thiruppugazh/0008-unaith-thinam.html",
+      "thiruppugazh/0009-karuvadaindhu.html",
+      "thiruppugazh/0010-karukkum-anjana.html",
+      "thiruppugazh/0011-kanakan-thiral.html",
+      "thiruppugazh/0012-kadhadarungkayal.html",
+      "thiruppugazh/0013-sandhadham-bandha.html",
+      "thiruppugazh/0014-saruvumpadi.html",
+      "thiruppugazh/0015-thadakkai-pangkayam.html",
+      "thiruppugazh/0016-padhiththa-senchandha.html",
+      "thiruppugazh/0017-poruppurung.html"
+    ],
+    "sourceId": "src-thiruppugazh-valluvar-vallalar-vattam",
+    "policy": "Only manually checked full Tamil song texts are indexable. OCR-only records remain unpublished.",
+    "latestVolume": {
+      "release": 155,
+      "volume": 2,
+      "newSongNumbers": [
+        11,
+        14
+      ],
+      "verificationMethod": "Manual normalisation from uploaded source pages 21–22 and 26–27."
+    }
+  },
+  "skandaGuruKavasam": {
+    "route": "slokas/skanda-guru-kavasam.html",
+    "publicationStatus": "partial-reviewed",
+    "publishedRange": "Opening invocation and lines 1–20",
+    "sourceId": "src-skanda-guru-kavasam-uploaded-compilation",
+    "indexable": false,
+    "readAloud": "device-tts",
+    "recordingPolicy": "No third-party recording bundled."
+  },
+  "readAloudPlayer": {
+    "route": "audio-library.html",
+    "playlistData": "data/read-aloud-playlist.json",
+    "trackCount": 16,
+    "mode": "device-tts",
+    "mediaSession": "progressive-enhancement",
+    "autoplay": false,
+    "seekControls": false,
+    "reasonSeekDisabled": "Speech synthesis has no reliable duration or seek position model.",
+    "thirdPartyAudioFiles": 0
+  }
+}

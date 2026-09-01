@@ -1,0 +1,73 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 224,
+  "name": "Browser-Local Reading Notes and Section Bookmarks",
+  "base_commit": "03f8c23e50aea1323211d2ca44cf4cddcf0deec4",
+  "generated": "2026-07-14",
+  "required_commit_title": "Release 224: add browser-local reading notes centre",
+  "validation_status": "LOCAL_PACKAGE_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
+  "production_files": [
+    "reading-notes.html",
+    "assets/css/reading-notes.css",
+    "assets/js/reading-notes.mjs",
+    "data/reading-notes.json",
+    "data/reading-workspace.json",
+    "assets/js/pwa-register.js",
+    "assets/js/reader-experience.js",
+    "index.html",
+    "platform.html",
+    "discovery.html",
+    "reading-workspace.html",
+    "maintenance.html",
+    "assets/js/maintenance-centre.mjs",
+    "data/maintenance-checks.json",
+    "data/site-routes.json",
+    "sitemap.xml",
+    "service-worker.js"
+  ],
+  "ci_alignment_files": [
+    "quality/site-audit-config.json",
+    "tools/production_smoke.py",
+    "tests/test_site_audit.py",
+    "tests/reading-notes.test.mjs",
+    "tests/reader-experience.test.mjs",
+    "tests/maintenance-centre.test.mjs",
+    "tools/release_224_validate.py",
+    ".github/workflows/static-site-integrity.yml",
+    ".github/workflows/production-smoke.yml"
+  ],
+  "claims": {
+    "storage_key": "osb-reading-notes-v1",
+    "maximum_items": 100,
+    "maximum_note_length": 500,
+    "note_kinds": [
+      "reflection",
+      "question",
+      "practice",
+      "reference"
+    ],
+    "section_bookmarks": true,
+    "selected_devotional_text_stored": false,
+    "page_body_stored": false,
+    "browser_local_only": true,
+    "cloud_sync": false,
+    "server_account": false,
+    "analytics": false,
+    "export_json": true,
+    "protected_storage_preserved": [
+      "osb-reading-progress-v1",
+      "osb-reading-list-v1",
+      "osb-accessibility-preferences-v1",
+      "osb-audio-listening-history-v1"
+    ],
+    "service_worker_release": 224,
+    "new_optional_cache_assets": 5
+  },
+  "limitations": [
+    "Heading labels are stored only as navigation metadata.",
+    "Notes remain in the current browser profile.",
+    "Notes do not modify source, publication, copyright or completeness status.",
+    "No collaborative editing or cross-device synchronization is provided.",
+    "GitHub Actions and deployed production checks remain pending."
+  ]
+}

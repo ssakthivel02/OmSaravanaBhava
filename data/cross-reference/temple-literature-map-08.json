@@ -1,0 +1,12 @@
+{
+  "batch": 25,
+  "type": "temple-literature-map",
+  "items": [
+    {
+      "temple": "திருவண்ணாமலை",
+      "work": "திருப்புகழ்",
+      "relationship": "thematic_or_devotional",
+      "status": "review_required"
+    }
+  ]
+}

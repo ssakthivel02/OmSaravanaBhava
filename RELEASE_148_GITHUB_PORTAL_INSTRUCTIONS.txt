@@ -1,0 +1,19 @@
+OmSaravanaBhava — Release 148 GitHub Portal Upload
+
+1. Extract this ZIP into a temporary folder.
+2. Open the extracted folder and select everything inside it.
+3. Open the OmSaravanaBhava repository on GitHub, branch main.
+4. Choose Add file → Upload files.
+5. Drag the extracted contents into the upload area.
+6. Confirm there is no Release148, package, output or cleanup parent folder.
+7. In the UPPER commit-title field replace “Add files via upload” with:
+   Release 148: complete production QA accessibility and performance hardening
+8. Leave the lower description optional.
+9. Select Commit directly to the main branch.
+10. Click Commit changes.
+
+Expected:
+- 18 production files
+- 10 evidence/instruction files
+- 28 total ZIP files
+- No manifest.json, icon, devotional data or unrelated batch replacement

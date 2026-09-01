@@ -1,0 +1,37 @@
+{
+  "historical": {
+    "release": 228,
+    "routes": [
+      {
+        "path": "/a.html",
+        "status": "published"
+      },
+      {
+        "path": "/b.html",
+        "status": "published"
+      },
+      {
+        "path": "/c.html",
+        "status": "published"
+      }
+    ]
+  },
+  "overrides": {
+    "release": 234,
+    "recordCount": 2,
+    "records": [
+      {
+        "path": "/a.html",
+        "status": "navigation"
+      },
+      {
+        "path": "/c.html",
+        "status": "source-register"
+      }
+    ]
+  },
+  "expected": {
+    "historicalCount": 3,
+    "applied": 2
+  }
+}

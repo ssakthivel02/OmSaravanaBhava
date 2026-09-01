@@ -1,0 +1,22 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 161,
+  "name": "Kanda Sashti Kavasam Structured Reviewed Edition",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 4,
+  "modified": [
+    "data/search-index.json",
+    "service-worker.js"
+  ],
+  "added": [
+    "data/kanda-sashti-kavasam-structure.json",
+    "literature/kanda-sashti-kavasam-edition.html"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Complete-text claim": "No",
+    "Indexability": "noindex,follow"
+  }
+}

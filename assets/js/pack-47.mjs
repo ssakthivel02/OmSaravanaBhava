@@ -1,0 +1,1 @@
+const U='data/pack-47/index.json';fetch(U).then(r=>r.json()).then(d=>document.getElementById('results').innerHTML=d.records.slice(0,100).map(x=>`<article class=card><h2>${x.title_ta} · ${x.title}</h2><p>${x.summary}</p></article>`).join(''));

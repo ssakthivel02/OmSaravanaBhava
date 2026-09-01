@@ -1,0 +1,5 @@
+assets/js/cross-reference-aliases.js
+cross-references.html
+data/cross-reference-aliases.json
+service-worker.js
+sitemap.xml

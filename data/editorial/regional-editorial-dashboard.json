@@ -1,0 +1,144 @@
+{
+  "release": "250B",
+  "summary": {
+    "total_records": 10,
+    "official_identity_records": 10,
+    "new_records": 6,
+    "pending_field_instances": 80,
+    "licensed_photo_records": 0
+  },
+  "field_status": [
+    {
+      "field": "verified_history",
+      "record_count": 10,
+      "status": "review_required"
+    },
+    {
+      "field": "sthala_puranam",
+      "record_count": 10,
+      "status": "review_required"
+    },
+    {
+      "field": "architecture",
+      "record_count": 10,
+      "status": "review_required"
+    },
+    {
+      "field": "festival_schedule",
+      "record_count": 10,
+      "status": "review_required"
+    },
+    {
+      "field": "official_timings_snapshot",
+      "record_count": 10,
+      "status": "review_required"
+    },
+    {
+      "field": "contact_snapshot",
+      "record_count": 10,
+      "status": "review_required"
+    },
+    {
+      "field": "travel_information",
+      "record_count": 10,
+      "status": "review_required"
+    },
+    {
+      "field": "licensed_photography",
+      "record_count": 10,
+      "status": "review_required"
+    }
+  ],
+  "records": [
+    {
+      "id": "marudhamalai",
+      "name": "Marudhamalai Subramaniaswamy Temple",
+      "district": "Coimbatore",
+      "identity": "verified",
+      "narrative": "review_required",
+      "travel": "review_required",
+      "images": "licensed_asset_required"
+    },
+    {
+      "id": "viralimalai",
+      "name": "Viralimalai Subramaniyaswamy Temple",
+      "district": "Pudukkottai",
+      "identity": "verified",
+      "narrative": "review_required",
+      "travel": "review_required",
+      "images": "licensed_asset_required"
+    },
+    {
+      "id": "vallimalai",
+      "name": "Vallimalai Subramaniaswamy Temple",
+      "district": "Vellore",
+      "identity": "verified",
+      "narrative": "review_required",
+      "travel": "review_required",
+      "images": "licensed_asset_required"
+    },
+    {
+      "id": "thindal",
+      "name": "Thindal Velayuthasamy Temple",
+      "district": "Erode",
+      "identity": "verified",
+      "narrative": "review_required",
+      "travel": "review_required",
+      "images": "licensed_asset_required"
+    },
+    {
+      "id": "kundrathur",
+      "name": "Kundrathur Subramaniaswamy Temple",
+      "district": "Kancheepuram",
+      "identity": "verified",
+      "narrative": "review_required",
+      "travel": "review_required",
+      "images": "licensed_asset_required"
+    },
+    {
+      "id": "vallakottai",
+      "name": "Vallakottai Subramaniyaswamy Temple",
+      "district": "Kancheepuram",
+      "identity": "verified",
+      "narrative": "review_required",
+      "travel": "review_required",
+      "images": "licensed_asset_required"
+    },
+    {
+      "id": "chennimalai",
+      "name": "Chennimalai Subramaniyaswamy Temple",
+      "district": "Erode",
+      "identity": "verified",
+      "narrative": "review_required",
+      "travel": "review_required",
+      "images": "licensed_asset_required"
+    },
+    {
+      "id": "ettukudi",
+      "name": "Ettukudi Subramaniya Swamy Temple",
+      "district": "Nagapattinam",
+      "identity": "verified",
+      "narrative": "review_required",
+      "travel": "review_required",
+      "images": "licensed_asset_required"
+    },
+    {
+      "id": "kumarakottam",
+      "name": "Kumarakottam Subramaniya Swami Temple",
+      "district": "Kancheepuram",
+      "identity": "verified",
+      "narrative": "review_required",
+      "travel": "review_required",
+      "images": "licensed_asset_required"
+    },
+    {
+      "id": "pookara-street-thanjavur",
+      "name": "Pookara Street Subramaniya Swamy Temple",
+      "district": "Thanjavur",
+      "identity": "verified",
+      "narrative": "review_required",
+      "travel": "review_required",
+      "images": "licensed_asset_required"
+    }
+  ]
+}

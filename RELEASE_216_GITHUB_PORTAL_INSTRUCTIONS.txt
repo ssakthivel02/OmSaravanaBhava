@@ -1,0 +1,51 @@
+Release 216 — GitHub browser upload instructions
+
+Repository:
+https://github.com/ssakthivel02/OmSaravanaBhava
+
+Verified base head:
+61875883f928169df44143f9d8582ece43128138
+
+Required commit title — enter this in the SMALL UPPER FIELD:
+Release 216: add browser-local offline reading list
+
+Leave the large commit-description field blank.
+
+UPLOAD
+1. Download and extract OmSaravanaBhava-Release-216.zip.
+2. In Windows File Explorer enable View > Show > Hidden items.
+3. Open the extracted folder.
+4. In GitHub open the repository main branch.
+5. Choose Add file > Upload files.
+6. Drag the CONTENTS of the extracted folder, not the outer folder itself.
+7. Preserve all directory paths.
+8. Before committing, confirm GitHub displays:
+   .github/workflows/static-site-integrity.yml
+   .github/workflows/production-smoke.yml
+   assets/js/reading-list.mjs
+   assets/css/reading-list.css
+   reading-list.html
+   tools/release_216_validate.py
+9. Enter the required commit title in the small upper field.
+10. Leave the large description field empty.
+11. Commit directly to main.
+
+DO NOT
+- Do not rename an older ZIP to Release 216.
+- Do not omit hidden .github files.
+- Do not upload the outer OmSaravanaBhava-Release-216 folder.
+- Do not delete Release 215 evidence or manifests.
+- Do not proceed to Release 217 until Release 216 is verified.
+
+POST-COMMIT VERIFICATION
+1. Copy the new main commit SHA.
+2. Confirm service-worker.js contains:
+   const RELEASE = '216';
+3. Confirm reading-list.html opens.
+4. Confirm search-facets.html shows “Save to reading list”.
+5. Confirm data/site-routes.json contains /reading-list.html once.
+6. Confirm sitemap.xml contains the reading-list URL once.
+7. Open Actions and wait for:
+   Release 216 Static Site Integrity
+   Release 216 Production Smoke
+8. A green Pages deployment proves deployment only. It does not replace integrity or production-smoke evidence.

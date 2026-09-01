@@ -1,0 +1,82 @@
+{
+  "items": [
+    {
+      "type": "Vara",
+      "titleEn": "Weekday",
+      "titleTa": "வாரம்",
+      "meaning": "The day of the week used in panchangam reading.",
+      "note": "Depends on local date."
+    },
+    {
+      "type": "Tithi",
+      "titleEn": "Lunar day",
+      "titleTa": "திதி",
+      "meaning": "A lunar phase division used for vratham and ritual planning.",
+      "note": "Changes by moon-sun angle."
+    },
+    {
+      "type": "Nakshatra",
+      "titleEn": "Star mansion",
+      "titleTa": "நட்சத்திரம்",
+      "meaning": "The lunar mansion used in temple, family and astrological traditions.",
+      "note": "Changes with moon position."
+    },
+    {
+      "type": "Yoga",
+      "titleEn": "Yoga",
+      "titleTa": "யோகம்",
+      "meaning": "One of the five limbs of panchangam.",
+      "note": "Calculated astronomically."
+    },
+    {
+      "type": "Karana",
+      "titleEn": "Karana",
+      "titleTa": "கரணம்",
+      "meaning": "Half of a tithi; part of panchangam calculation.",
+      "note": "Changes more frequently than tithi."
+    },
+    {
+      "type": "Rahu",
+      "titleEn": "Rahu Kalam",
+      "titleTa": "ராகு காலம்",
+      "meaning": "Traditionally avoided for starting major auspicious work.",
+      "note": "Calculated from sunrise to sunset division."
+    },
+    {
+      "type": "Nalla",
+      "titleEn": "Nalla Neram",
+      "titleTa": "நல்ல நேரம்",
+      "meaning": "Favourable time windows followed in Tamil families.",
+      "note": "Use live local calculator for exact timing."
+    },
+    {
+      "type": "Gowri",
+      "titleEn": "Gowri Panchangam",
+      "titleTa": "கௌரி பஞ்சாங்கம்",
+      "meaning": "Traditional Tamil time-quality guide.",
+      "note": "Regional practice varies."
+    }
+  ],
+  "references": [
+    {
+      "name": "Tamilcube Astrology",
+      "use": "Location and time based Tamil Panchangam calculator with tithi, nakshatra, yoga, karana, Rahu Kalam and Nalla Neram.",
+      "url": "https://astrology.tamilcube.com/tamil-panchangam/"
+    },
+    {
+      "name": "Prokerala Tamil Panchangam",
+      "use": "Tamil Panchangam by date and location, including Tamil date, tithi, nakshatra and time windows.",
+      "url": "https://www.prokerala.com/astrology/tamil-panchangam/"
+    },
+    {
+      "name": "Om Tamil Calendar",
+      "use": "Tamil calendar style festival and daily panchangam reference.",
+      "url": "https://www.omtamilcalendar.com/"
+    },
+    {
+      "name": "Drik Panchang Tamil",
+      "use": "Tamil month panchangam, Gowri Panchangam and location-based calendar references.",
+      "url": "https://www.drikpanchang.com/tamil/tamil-month-panchangam.html"
+    }
+  ]
+}

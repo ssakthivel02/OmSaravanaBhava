@@ -1,0 +1,10 @@
+arupadai-veedu.html
+data/arupadai-veedu.json
+service-worker.js
+sitemap.xml
+temples/palani.html
+temples/pazhamudircholai.html
+temples/swamimalai.html
+temples/thiruchendur.html
+temples/thirupparamkundram.html
+temples/thiruthani.html

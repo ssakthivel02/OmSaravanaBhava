@@ -1,0 +1,1046 @@
+diff --git a/.github/workflows/production-smoke.yml b/.github/workflows/production-smoke.yml
+new file mode 100644
+--- /dev/null
++++ b/.github/workflows/production-smoke.yml
+@@ -0,0 +1,43 @@
++name: Release 215 Production Smoke
++
++on:
++  push:
++    branches: [main]
++  workflow_dispatch:
++  schedule:
++    - cron: "17 3 * * *"
++
++permissions:
++  contents: read
++
++concurrency:
++  group: release-215-production-smoke
++  cancel-in-progress: true
++
++jobs:
++  smoke:
++    name: Observe deployed Release 215
++    runs-on: ubuntu-latest
++    steps:
++      - name: Checkout repository
++        uses: actions/checkout@v4
++
++      - name: Set up Python
++        uses: actions/setup-python@v5
++        with:
++          python-version: "3.12"
++
++      - name: Allow GitHub Pages deployment to begin
++        if: github.event_name == 'push'
++        run: sleep 90
++
++      - name: Run deployed production smoke checks
++        run: python tools/production_smoke.py --retries 18 --delay 20 --report artifacts/release-215-production-smoke.json
++
++      - name: Upload Release 215 production evidence
++        if: always()
++        uses: actions/upload-artifact@v4
++        with:
++          name: release-215-production-smoke-${{ github.sha }}
++          path: artifacts/release-215-production-smoke.json
++          if-no-files-found: error
+diff --git a/.github/workflows/static-site-integrity.yml b/.github/workflows/static-site-integrity.yml
+new file mode 100644
+--- /dev/null
++++ b/.github/workflows/static-site-integrity.yml
+@@ -0,0 +1,52 @@
++name: Release 215 Static Site Integrity
++
++on:
++  push:
++    branches: [main]
++  pull_request:
++    branches: [main]
++  workflow_dispatch:
++
++permissions:
++  contents: read
++
++jobs:
++  integrity:
++    name: Release 215 repository validation
++    runs-on: ubuntu-latest
++    steps:
++      - name: Checkout repository
++        uses: actions/checkout@v4
++
++      - name: Set up Python
++        uses: actions/setup-python@v5
++        with:
++          python-version: "3.12"
++
++      - name: Set up Node.js
++        uses: actions/setup-node@v4
++        with:
++          node-version: "20"
++
++      - name: Validate Release 215 identities and routes
++        run: python tools/release_215_validate.py --root . --report artifacts/release-215-overlay-validation.json
++
++      - name: Check search facets JavaScript syntax
++        run: node --check assets/js/search-facets.mjs
++
++      - name: Run search facets unit tests
++        run: node --test tests/search-facets.test.mjs
++
++      - name: Run site-audit unit tests
++        run: python -m unittest discover -s tests -p 'test_site_audit.py'
++
++      - name: Run repository-wide static audit
++        run: python tools/site_audit.py --root . --json-report artifacts/release-215-site-audit.json --markdown-report artifacts/release-215-site-audit.md
++
++      - name: Upload Release 215 integrity evidence
++        if: always()
++        uses: actions/upload-artifact@v4
++        with:
++          name: release-215-static-integrity-${{ github.sha }}
++          path: artifacts/
++          if-no-files-found: error
+diff --git a/assets/css/search-facets.css b/assets/css/search-facets.css
+new file mode 100644
+--- /dev/null
++++ b/assets/css/search-facets.css
+@@ -0,0 +1 @@
++.facet-summary-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:0 0 24px}.facet-summary{display:flex;flex-direction:column;gap:8px;min-height:150px;justify-content:center}.facet-summary span{font-weight:850;color:#6a4638}.facet-summary strong{font-size:clamp(2rem,5vw,4rem);line-height:1;color:var(--red)}.facet-control-grid{display:grid;grid-template-columns:minmax(240px,1.3fr) minmax(220px,.8fr) auto;gap:14px;align-items:end;margin:20px 0}.facet-control-grid label{font-weight:900}.facet-control-grid input,.facet-control-grid select{display:block;width:100%;min-height:48px;margin-top:6px;border:1px solid var(--line);border-radius:14px;padding:10px 12px;background:var(--surface-strong,#fff);color:var(--ink);font:inherit}.facet-kind-list{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 18px}.facet-kind{display:inline-flex;align-items:center;gap:8px;min-height:44px;border:1px solid var(--line);border-radius:999px;padding:9px 14px;background:var(--surface-strong,#fff);color:var(--ink);font:inherit;font-weight:900;cursor:pointer}.facet-kind span{display:inline-grid;place-items:center;min-width:28px;height:28px;border-radius:999px;background:rgba(165,29,23,.09);color:var(--red);font-size:.82rem}.facet-kind[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#fff}.facet-kind[aria-pressed="true"] span{background:rgba(255,255,255,.2);color:#fff}.facet-results{align-items:stretch}.facet-result{display:flex;flex-direction:column;gap:10px}.facet-result h2{margin:0}.facet-result .btn{margin-top:auto;align-self:flex-start}.facet-tags{display:flex;flex-wrap:wrap;gap:7px}.facet-tag{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:4px 9px;font-size:.8rem;font-weight:800}.facet-empty{grid-column:1/-1}.facet-error{border-left:5px solid var(--red)}body.dark .facet-summary span{color:#f4d9c8}body.dark .facet-kind{background:var(--surface-strong);color:#fff1df}@media(max-width:860px){.facet-summary-grid,.facet-control-grid{grid-template-columns:1fr}.facet-control-grid .btn{width:100%}}@media print{.facet-control-grid,.facet-kind-list,#facetResultStatus{display:none!important}.facet-summary-grid{grid-template-columns:repeat(3,1fr)}.facet-result{break-inside:avoid}}
+diff --git a/assets/js/search-facets.mjs b/assets/js/search-facets.mjs
+new file mode 100644
+--- /dev/null
++++ b/assets/js/search-facets.mjs
+@@ -0,0 +1,268 @@
++export const RELEASE = 215;
++
++export const PUBLISHED_STATUSES = new Set([
++  'published',
++  'published-source-linked',
++  'partial-reviewed',
++  'reviewed-opening-extract',
++  'source-register',
++  'source-linked-sections-available'
++]);
++
++const STATUS_GROUPS = new Map([
++  ['published', 'published'],
++  ['published-source-linked', 'published'],
++  ['partial-reviewed', 'bounded'],
++  ['reviewed-opening-extract', 'bounded'],
++  ['source-linked-sections-available', 'bounded'],
++  ['source-register', 'register']
++]);
++
++export const normalise = value =>
++  String(value ?? '').trim().toLocaleLowerCase();
++
++export const normaliseRoutePath = route => {
++  const value = String(route ?? '').trim();
++  if (!value) return '';
++  const path = value.split('#', 1)[0].split('?', 1)[0];
++  return path.startsWith('/') ? path : `/${path}`;
++};
++
++export const publicationGroup = status =>
++  STATUS_GROUPS.get(normalise(status)) || 'excluded';
++
++export const isPublishedRecord = (record, routePaths) => {
++  if (!record || typeof record !== 'object') return false;
++  const status = normalise(record.status);
++  const tags = Array.isArray(record.tags) ? record.tags.map(normalise) : [];
++  const route = normaliseRoutePath(record.route);
++  return PUBLISHED_STATUSES.has(status) &&
++    !tags.includes('not-published') &&
++    Boolean(route) &&
++    routePaths.has(route);
++};
++
++export const buildFacetModel = (records, routePayload) => {
++  const routes = Array.isArray(routePayload?.routes) ? routePayload.routes : [];
++  const routePaths = new Set(routes.map(item => item?.path).filter(Boolean));
++  const items = (Array.isArray(records) ? records : [])
++    .filter(record => isPublishedRecord(record, routePaths))
++    .map(record => ({
++      ...record,
++      kind: String(record.kind || 'Other').trim() || 'Other',
++      statusGroup: publicationGroup(record.status)
++    }))
++    .sort((left, right) =>
++      left.kind.localeCompare(right.kind, 'en') ||
++      String(left.titleEn || left.titleTa || '').localeCompare(
++        String(right.titleEn || right.titleTa || ''),
++        'en'
++      )
++    );
++
++  const counts = new Map();
++  const statusCounts = new Map();
++  items.forEach(item => {
++    counts.set(item.kind, (counts.get(item.kind) || 0) + 1);
++    statusCounts.set(item.statusGroup, (statusCounts.get(item.statusGroup) || 0) + 1);
++  });
++
++  return {
++    items,
++    total: items.length,
++    kinds: [...counts.entries()].sort(([left], [right]) => left.localeCompare(right, 'en')),
++    counts,
++    statusCounts
++  };
++};
++
++export const filterFacetRecords = (model, filters = {}) => {
++  const query = normalise(filters.query);
++  const terms = query.split(/\s+/).filter(Boolean);
++  const selectedKind = String(filters.kind || 'All');
++  const selectedStatus = String(filters.status || 'all');
++
++  return model.items.filter(item => {
++    if (selectedKind !== 'All' && item.kind !== selectedKind) return false;
++    if (selectedStatus !== 'all' && item.statusGroup !== selectedStatus) return false;
++    if (!terms.length) return true;
++    const haystack = normalise([
++      item.id,
++      item.kind,
++      item.titleTa,
++      item.titleEn,
++      item.summary,
++      item.status,
++      ...(Array.isArray(item.tags) ? item.tags : [])
++    ].join(' '));
++    return terms.every(term => haystack.includes(term));
++  });
++};
++
++const createText = (parent, tag, text, className) => {
++  const element = document.createElement(tag);
++  if (className) element.className = className;
++  element.textContent = text;
++  parent.appendChild(element);
++  return element;
++};
++
++const loadJson = async path => {
++  const response = await fetch(path, {
++    cache: 'default',
++    credentials: 'same-origin',
++    headers: {'Accept': 'application/json'}
++  });
++  if (!response.ok) throw new Error(`${path} returned HTTP ${response.status}`);
++  return response.json();
++};
++
++const resultCard = record => {
++  const article = document.createElement('article');
++  article.className = 'card facet-result';
++
++  const labels = document.createElement('div');
++  labels.className = 'facet-tags';
++  createText(labels, 'span', record.kind, 'pill');
++  createText(labels, 'span', record.status, 'pill');
++  article.appendChild(labels);
++
++  const title = record.titleTa && record.titleEn
++    ? `${record.titleTa} · ${record.titleEn}`
++    : record.titleTa || record.titleEn || record.id;
++  createText(article, 'h2', title);
++  createText(article, 'p', record.summary || 'Published local record.');
++
++  if (Array.isArray(record.tags) && record.tags.length) {
++    const tags = document.createElement('div');
++    tags.className = 'facet-tags';
++    record.tags.slice(0, 4).forEach(tag => createText(tags, 'span', tag, 'facet-tag'));
++    article.appendChild(tags);
++  }
++
++  const link = document.createElement('a');
++  link.className = 'btn secondary';
++  link.href = record.route;
++  link.textContent = 'Open published route';
++  article.appendChild(link);
++  return article;
++};
++
++const initialise = async () => {
++  const total = document.getElementById('facetTotal');
++  const typeTotal = document.getElementById('facetTypeTotal');
++  const boundedTotal = document.getElementById('facetBoundedTotal');
++  const form = document.getElementById('facetForm');
++  const query = document.getElementById('facetQuery');
++  const status = document.getElementById('facetStatus');
++  const reset = document.getElementById('facetReset');
++  const kinds = document.getElementById('facetKinds');
++  const resultStatus = document.getElementById('facetResultStatus');
++  const results = document.getElementById('facetResults');
++  if (!total || !typeTotal || !boundedTotal || !form || !query || !status ||
++      !reset || !kinds || !resultStatus || !results) return;
++
++  const state = {kind: 'All'};
++  try {
++    const [records, routePayload] = await Promise.all([
++      loadJson('data/search-index.json'),
++      loadJson('data/site-routes.json')
++    ]);
++    const model = buildFacetModel(records, routePayload);
++    total.textContent = String(model.total);
++    typeTotal.textContent = String(model.kinds.length);
++    boundedTotal.textContent = String(
++      (model.statusCounts.get('bounded') || 0) +
++      (model.statusCounts.get('register') || 0)
++    );
++
++    const renderKindButtons = () => {
++      kinds.replaceChildren();
++      const choices = [['All', model.total], ...model.kinds];
++      choices.forEach(([kind, count]) => {
++        const button = document.createElement('button');
++        button.type = 'button';
++        button.className = 'facet-kind';
++        button.dataset.kind = kind;
++        button.setAttribute('aria-pressed', String(state.kind === kind));
++        button.append(document.createTextNode(kind));
++        createText(button, 'span', String(count));
++        button.addEventListener('click', () => {
++          state.kind = kind;
++          renderKindButtons();
++          renderResults();
++        });
++        kinds.appendChild(button);
++      });
++    };
++
++    const renderResults = () => {
++      const filtered = filterFacetRecords(model, {
++        query: query.value,
++        kind: state.kind,
++        status: status.value
++      });
++      results.replaceChildren();
++      filtered.forEach(record => results.appendChild(resultCard(record)));
++      if (!filtered.length) {
++        const empty = document.createElement('article');
++        empty.className = 'card facet-empty';
++        createText(empty, 'h2', 'No published record matched');
++        createText(empty, 'p', 'Clear one or more filters, or use the full local search.');
++        results.appendChild(empty);
++      }
++      results.setAttribute('aria-busy', 'false');
++      resultStatus.textContent =
++        `${filtered.length} of ${model.total} published record${model.total === 1 ? '' : 's'} shown.`;
++    };
++
++    const params = new URLSearchParams(location.search);
++    query.value = params.get('q') || '';
++    const requestedStatus = params.get('status');
++    if (['all', 'published', 'bounded', 'register'].includes(requestedStatus)) {
++      status.value = requestedStatus;
++    }
++    const requestedKind = params.get('kind');
++    if (requestedKind && (requestedKind === 'All' || model.counts.has(requestedKind))) {
++      state.kind = requestedKind;
++    }
++
++    form.addEventListener('submit', event => {
++      event.preventDefault();
++      renderResults();
++      results.focus?.();
++    });
++    query.addEventListener('input', renderResults);
++    status.addEventListener('change', renderResults);
++    reset.addEventListener('click', () => {
++      query.value = '';
++      status.value = 'all';
++      state.kind = 'All';
++      renderKindButtons();
++      renderResults();
++      query.focus();
++    });
++
++    renderKindButtons();
++    renderResults();
++  } catch (error) {
++    console.error('[OmSaravanaBhava] Search facets failed', error);
++    results.replaceChildren();
++    const failure = document.createElement('article');
++    failure.className = 'card facet-empty facet-error';
++    createText(failure, 'h2', 'Search facets are temporarily unavailable');
++    createText(failure, 'p', 'Use the full local search or site directory to continue.');
++    const link = document.createElement('a');
++    link.className = 'btn secondary';
++    link.href = 'ai-search.html';
++    link.textContent = 'Open local search';
++    failure.appendChild(link);
++    results.appendChild(failure);
++    results.setAttribute('aria-busy', 'false');
++    resultStatus.textContent = 'Published search data could not be loaded.';
++  }
++};
++
++if (typeof document !== 'undefined') {
++  document.addEventListener('DOMContentLoaded', initialise);
++}
+diff --git a/data/site-routes.json b/data/site-routes.json
+--- a/data/site-routes.json
++++ b/data/site-routes.json
+@@ -1,7 +1,7 @@
+ {
+-  "release": 214,
++  "release": 215,
+   "generated": "2026-07-14",
+-  "scope": "Public HTML routes represented by the Release 214 sitemap and route directory.",
++  "scope": "Public HTML routes represented by the Release 215 sitemap and route directory.",
+   "statusMeaning": {
+     "published": "Route exists; content-specific verification remains governed by the page and source records.",
+     "partial-reviewed": "Only a bounded reviewed extract is published.",
+@@ -533,6 +533,14 @@
+       "summary": "Published platform route in the OmSaravanaBhava static platform."
+     },
+     {
++      "path": "/search-facets.html",
++      "titleTa": "வெளியிடப்பட்ட தேடல் வடிகட்டிகள்",
++      "titleEn": "Published-Content Search Facets",
++      "category": "Platform",
++      "status": "published",
++      "summary": "Browser-local dashboard that groups published search records by genuine content type and publication boundary."
++    },
++    {
+       "path": "/pilgrimage-planner.html",
+       "titleTa": "யாத்திரை திட்டம்",
+       "titleEn": "Pilgrimage Planner",
+diff --git a/index.html b/index.html
+--- a/index.html
++++ b/index.html
+@@ -27,17 +27,17 @@
+ <script defer src="assets/js/premium-home.js"></script>
+ <script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body data-release="214">
++<body data-release="215">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Verified Murugan digital heritage platform</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div>
++<div class="links"><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">OmSaravanaBhava Home</span></p></nav>
+ <section class="home-stage">
+-<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 214</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="explore.html">Explore all modules</a><a class="btn secondary" href="ai-search.html">Search knowledge</a></div></div>
++<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 215</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="explore.html">Explore all modules</a><a class="btn secondary" href="ai-search.html">Search knowledge</a><a class="btn secondary" href="search-facets.html">Browse by content type</a></div></div>
+ <div class="home-stage-panel" aria-label="Published platform data">
+ <div class="home-metric"><span>Search records</span><strong data-count-source="data/search-index.json" aria-live="polite">…</strong></div>
+ <div class="home-metric"><span>Source records</span><strong data-count-source="data/sources.json" aria-live="polite">…</strong></div>
+diff --git a/manifest-release-215.json b/manifest-release-215.json
+new file mode 100644
+--- /dev/null
++++ b/manifest-release-215.json
+@@ -0,0 +1,55 @@
++{
++  "project": "OmSaravanaBhava",
++  "release": 215,
++  "name": "Published-Content Search Facets",
++  "base_commit": "17bd5228f38f6520e8c496fc9cd3924f562de6e2",
++  "generated": "2026-07-14",
++  "required_commit_title": "Release 215: add published-content search facets",
++  "validation_status": "LOCAL_PACKAGE_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
++  "production_files": [
++    "search-facets.html",
++    "assets/css/search-facets.css",
++    "assets/js/search-facets.mjs",
++    "index.html",
++    "platform.html",
++    "data/site-routes.json",
++    "sitemap.xml",
++    "service-worker.js"
++  ],
++  "ci_alignment_files": [
++    "quality/site-audit-config.json",
++    "tools/production_smoke.py",
++    "tests/test_site_audit.py",
++    "tools/release_215_validate.py",
++    "tests/search-facets.test.mjs",
++    ".github/workflows/static-site-integrity.yml",
++    ".github/workflows/production-smoke.yml"
++  ],
++  "source_dependencies": {
++    "data/search-index.json": {
++      "base_blob_sha": "04c02b6c1495f54b061d016e1486aa7c342c19f4",
++      "included_in_zip": false,
++      "reason": "Existing unmodified published local search data."
++    },
++    "data/site-routes.json": {
++      "base_blob_sha": "4efe1f51e7177896147f2635a70b0678b96b49ba",
++      "included_in_zip": true
++    }
++  },
++  "claims": {
++    "counts": "Derived at runtime from local JSON; no hard-coded production totals.",
++    "grouping": "Uses genuine search-index kind values.",
++    "drafts_excluded": true,
++    "route_registry_enforced": true,
++    "remote_ai": false,
++    "remote_analytics": false,
++    "server_storage": false,
++    "service_worker_release": 215,
++    "new_optional_cache_assets": 3
++  },
++  "limitations": [
++    "Search facets reflect only records already present in data/search-index.json.",
++    "Source registers and bounded reviewed extracts remain visibly labelled; they are not represented as complete editions.",
++    "GitHub Actions and deployed production validation remain pending until the commit and deployment run."
++  ]
++}
+diff --git a/platform.html b/platform.html
+--- a/platform.html
++++ b/platform.html
+@@ -10,10 +10,10 @@
+ <meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
+ <script defer src="assets/js/pwa-register.js"></script><script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body data-release="214">
++<body data-release="215">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Digital Murugan knowledge platform</div>
+-<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div></div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">OmSaravanaBhava Platform Hub</span></p></nav>
+ <section class="card"><h1 class="section-title" lang="ta">ஓம் சரவணபவ தளம்</h1><h2>OmSaravanaBhava Platform Hub</h2><p>Unified gateway to the source-aware devotional, literature, temple, search, graph and reading modules.</p></section>
+@@ -27,6 +27,7 @@
+ <article class="card"><h2>Map Index</h2><a class="btn" href="murugan-map.html">Open module</a></article>
+ <article class="card"><h2>Festival Intelligence</h2><a class="btn" href="festival-intelligence.html">Open module</a></article>
+ <article class="card"><h2>Search</h2><a class="btn" href="ai-search.html">Open module</a></article>
++<article class="card"><h2>Published Search Facets</h2><p>Browse actual local search records by content type and publication boundary.</p><a class="btn" href="search-facets.html">Open facets</a></article>
+ <article class="card"><h2>Knowledge Graph</h2><a class="btn" href="knowledge-graph-phase-4.html">Open module</a></article>
+ <article class="card"><h2>Panchangam Framework</h2><p>Verified-data contract only; no live calendar calculation.</p><a class="btn" href="panchangam-framework.html">Open framework</a></article>
+ </section>
+diff --git a/quality/site-audit-config.json b/quality/site-audit-config.json
+--- a/quality/site-audit-config.json
++++ b/quality/site-audit-config.json
+@@ -1,5 +1,5 @@
+ {
+-  "expectedRelease": "214",
++  "expectedRelease": "215",
+   "canonicalOrigin": "https://omsaravanabhava.org",
+   "requiredFiles": [
+     "index.html",
+@@ -23,7 +23,10 @@
+     ".github/workflows/production-smoke.yml",
+     "explore.html",
+     "data/navigation-sections.json",
+-    "assets/js/explore-navigation.js"
++    "assets/js/explore-navigation.js",
++    "search-facets.html",
++    "assets/css/search-facets.css",
++    "assets/js/search-facets.mjs"
+   ],
+   "canonicalOptional": [
+     "404.html",
+diff --git a/search-facets.html b/search-facets.html
+new file mode 100644
+--- /dev/null
++++ b/search-facets.html
+@@ -0,0 +1,77 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Published-Content Search Facets | Om Saravana Bhava</title>
++<meta name="description" content="Browse published OmSaravanaBhava search records by genuine content type and publication boundary using browser-local data.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/search-facets.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="stylesheet" href="assets/css/search-facets.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++<script type="module" src="assets/js/search-facets.mjs"></script>
++</head>
++<body data-release="215">
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Published local search facets</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="ai-search.html">AI Search</a><a href="search-facets.html" aria-current="page">Facets</a><a href="site-directory.html">Directory</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Search Facets</span></p></nav>
++<section class="card">
++<span class="pill">Release 215 · Browser-local discovery</span>
++<h1 class="section-title" lang="ta">வெளியிடப்பட்ட உள்ளடக்கத் தேடல் வடிகட்டிகள்</h1>
++<h2>Published-Content Search Facets</h2>
++<p>Browse the existing local search index by genuine content type. Counts are calculated in your browser from published JSON records and the public route directory.</p>
++<p>No query, preference or interaction is sent to a remote AI, analytics service or account system.</p>
++</section>
++
++<section class="facet-summary-grid" aria-label="Published search summary">
++<article class="card facet-summary"><span>Published searchable records</span><strong id="facetTotal">…</strong></article>
++<article class="card facet-summary"><span>Content types</span><strong id="facetTypeTotal">…</strong></article>
++<article class="card facet-summary"><span>Bounded extracts and registers</span><strong id="facetBoundedTotal">…</strong></article>
++</section>
++
++<section class="card" aria-labelledby="facet-controls-heading">
++<h2 id="facet-controls-heading">Filter published records</h2>
++<form id="facetForm" class="facet-control-grid" role="search">
++<label for="facetQuery">Search words
++<input id="facetQuery" name="q" type="search" autocomplete="off" placeholder="பழனி, Vel, Sashti, literature…">
++</label>
++<label for="facetStatus">Publication boundary
++<select id="facetStatus" name="status">
++<option value="all">All published boundaries</option>
++<option value="published">Published or source-linked</option>
++<option value="bounded">Reviewed extract or bounded section</option>
++<option value="register">Source register</option>
++</select>
++</label>
++<button class="btn secondary" id="facetReset" type="button">Reset filters</button>
++</form>
++<div>
++<h3>Content type</h3>
++<div id="facetKinds" class="facet-kind-list" aria-label="Content type filters"></div>
++</div>
++<p id="facetResultStatus" role="status" aria-live="polite">Loading published records…</p>
++</section>
++
++<section id="facetResults" class="grid facet-results" aria-busy="true" aria-label="Published search results">
++<article class="card">Loading the local search index…</article>
++</section>
++
++<section class="card">
++<h2>Publication boundary</h2>
++<p>Drafts, records marked not published, and records requiring source review are excluded. Source registers and reviewed extracts remain visible with their status clearly labelled because their routes are already public.</p>
++<p><a class="btn secondary" href="ai-search.html">Open full local search</a> <a class="btn secondary" href="content-status.html">Review content status</a></p>
++</section>
++<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>Use the <a href="ai-search.html">local knowledge search</a> or <a href="site-directory.html">site directory</a>.</p></section></noscript>
++</main>
++<footer>© Om Saravana Bhava · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
++</body>
++</html>
+diff --git a/service-worker.js b/service-worker.js
+--- a/service-worker.js
++++ b/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '214';
++const RELEASE = '215';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -192,7 +192,10 @@
+   "/assets/js/404-suggestions.js",
+   "/explore.html",
+   "/data/navigation-sections.json",
+-  "/assets/js/explore-navigation.js"
++  "/assets/js/explore-navigation.js",
++  "/search-facets.html",
++  "/assets/css/search-facets.css",
++  "/assets/js/search-facets.mjs"
+ ];
+ 
+ const cacheOptionalAssets = async cache => {
+diff --git a/sitemap.xml b/sitemap.xml
+--- a/sitemap.xml
++++ b/sitemap.xml
+@@ -265,6 +265,12 @@
+     <priority>0.9</priority>
+   </url>
+   <url>
++    <loc>https://omsaravanabhava.org/search-facets.html</loc>
++    <lastmod>2026-07-14</lastmod>
++    <changefreq>monthly</changefreq>
++    <priority>0.9</priority>
++  </url>
++  <url>
+     <loc>https://omsaravanabhava.org/siddhar-encyclopedia.html</loc>
+     <lastmod>2026-07-14</lastmod>
+     <changefreq>monthly</changefreq>
+diff --git a/tests/search-facets.test.mjs b/tests/search-facets.test.mjs
+new file mode 100644
+--- /dev/null
++++ b/tests/search-facets.test.mjs
+@@ -0,0 +1,111 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++
++import {
++  RELEASE,
++  buildFacetModel,
++  filterFacetRecords,
++  isPublishedRecord,
++  normaliseRoutePath,
++  publicationGroup
++} from '../assets/js/search-facets.mjs';
++
++const routes = {
++  routes: [
++    {path: '/temples/palani.html'},
++    {path: '/slokas/example.html'},
++    {path: '/literature/register.html'},
++    {path: '/audio-library.html'}
++  ]
++};
++
++const records = [
++  {
++    kind: 'Temple',
++    id: 'palani',
++    titleTa: 'பழனி',
++    titleEn: 'Palani',
++    route: 'temples/palani.html',
++    status: 'published-source-linked',
++    tags: ['murugan']
++  },
++  {
++    kind: 'Sloka',
++    id: 'opening',
++    titleTa: 'தொடக்கம்',
++    titleEn: 'Opening Extract',
++    route: 'slokas/example.html',
++    status: 'partial-reviewed',
++    tags: []
++  },
++  {
++    kind: 'Literature',
++    id: 'register',
++    titleEn: 'Source Register',
++    route: 'literature/register.html',
++    status: 'source-register',
++    tags: []
++  },
++  {
++    kind: 'Audio',
++    id: 'tts',
++    titleEn: 'Device Read Aloud',
++    route: 'audio-library.html?track=tts',
++    status: 'reviewed-opening-extract',
++    tags: ['device-tts']
++  },
++  {
++    kind: 'Audio',
++    id: 'draft',
++    titleEn: 'Draft',
++    route: 'audio-library.html?track=draft',
++    status: 'source-review-required',
++    tags: ['not-published']
++  },
++  {
++    kind: 'Temple',
++    id: 'missing',
++    titleEn: 'Missing route',
++    route: 'temples/missing.html',
++    status: 'published',
++    tags: []
++  }
++];
++
++test('release identity is 215', () => {
++  assert.equal(RELEASE, 215);
++});
++
++test('route normalisation removes query and fragment', () => {
++  assert.equal(normaliseRoutePath('audio-library.html?track=tts#part'), '/audio-library.html');
++});
++
++test('publication groups preserve bounded editorial status', () => {
++  assert.equal(publicationGroup('published-source-linked'), 'published');
++  assert.equal(publicationGroup('partial-reviewed'), 'bounded');
++  assert.equal(publicationGroup('source-register'), 'register');
++  assert.equal(publicationGroup('source-review-required'), 'excluded');
++});
++
++test('draft-like and missing-route records are excluded', () => {
++  const routePaths = new Set(routes.routes.map(item => item.path));
++  assert.equal(isPublishedRecord(records[0], routePaths), true);
++  assert.equal(isPublishedRecord(records[4], routePaths), false);
++  assert.equal(isPublishedRecord(records[5], routePaths), false);
++});
++
++test('facet counts are derived from published records', () => {
++  const model = buildFacetModel(records, routes);
++  assert.equal(model.total, 4);
++  assert.equal(model.counts.get('Audio'), 1);
++  assert.equal(model.counts.get('Temple'), 1);
++  assert.equal(model.statusCounts.get('bounded'), 2);
++  assert.equal(model.statusCounts.get('register'), 1);
++});
++
++test('Tamil query and kind filters work locally', () => {
++  const model = buildFacetModel(records, routes);
++  assert.equal(filterFacetRecords(model, {query: 'பழனி'}).length, 1);
++  assert.equal(filterFacetRecords(model, {kind: 'Audio'}).length, 1);
++  assert.equal(filterFacetRecords(model, {status: 'register'}).length, 1);
++});
+diff --git a/tests/test_site_audit.py b/tests/test_site_audit.py
+--- a/tests/test_site_audit.py
++++ b/tests/test_site_audit.py
+@@ -15,7 +15,7 @@
+         for directory in ("quality", "assets/css", "assets/js", "icons", "data"):
+             (root / directory).mkdir(parents=True, exist_ok=True)
+         config = {
+-            "expectedRelease": "214",
++            "expectedRelease": "215",
+             "canonicalOrigin": "https://omsaravanabhava.org",
+             "requiredFiles": ["index.html", "404.html", "offline.html", "manifest.json", "service-worker.js", "sitemap.xml", "favicon.svg", "assets/css/osb44.css", "assets/js/pwa-register.js", "icons/icon-192.png", "icons/icon-512.png"],
+             "canonicalOptional": ["404.html", "offline.html"],
+@@ -35,7 +35,7 @@
+         (root / "index.html").write_text('''<!doctype html><html lang="ta"><head><title>Home</title><link rel="canonical" href="https://omsaravanabhava.org/"></head><body>ஓம் <a href="about.html">About</a></body></html>''', encoding="utf-8")
+         (root / "about.html").write_text('''<!doctype html><html lang="ta"><head><title>About</title><link rel="canonical" href="https://omsaravanabhava.org/about.html"></head><body>முருகன்</body></html>''', encoding="utf-8")
+         (root / "sitemap.xml").write_text('''<?xml version="1.0"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://omsaravanabhava.org/</loc></url><url><loc>https://omsaravanabhava.org/about.html</loc></url></urlset>''', encoding="utf-8")
+-        (root / "service-worker.js").write_text('''const RELEASE = '214'; const CORE_PRECACHE_URLS = ["/", "/index.html"]; const PRECACHE_URLS = ["/", "/index.html", "/about.html"]; self.addEventListener('install', event => event.waitUntil(caches.open('x').then(cache => cache.addAll(CORE_PRECACHE_URLS)))); const cacheOptionalAssets = async cache => {};''', encoding="utf-8")
++        (root / "service-worker.js").write_text('''const RELEASE = '215'; const CORE_PRECACHE_URLS = ["/", "/index.html"]; const PRECACHE_URLS = ["/", "/index.html", "/about.html"]; self.addEventListener('install', event => event.waitUntil(caches.open('x').then(cache => cache.addAll(CORE_PRECACHE_URLS)))); const cacheOptionalAssets = async cache => {};''', encoding="utf-8")
+         return temporary, root
+ 
+     def audit(self, root: Path):
+diff --git a/tools/production_smoke.py b/tools/production_smoke.py
+--- a/tools/production_smoke.py
++++ b/tools/production_smoke.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Observe the deployed custom domain and fail when Release 214 is not live."""
++"""Observe the deployed custom domain and fail when Release 215 is not live."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -10,13 +10,13 @@
+ from pathlib import Path
+ 
+ CHECKS = [
+-    ("/", 'data-release="214"'),
+-    ("/service-worker.js", "const RELEASE = '214';"),
+-    ("/explore.html", "Explore OmSaravanaBhava"),
+-    ("/data/navigation-sections.json", '"release": 214'),
+-    ("/site-directory.html", "Complete Site Route Directory"),
+-    ("/404.html", "Local route recovery"),
+-    ("/sitemap.xml", "https://omsaravanabhava.org/explore.html")
++    ("/", 'data-release="215"'),
++    ("/service-worker.js", "const RELEASE = '215';"),
++    ("/search-facets.html", "Published-Content Search Facets"),
++    ("/assets/js/search-facets.mjs", "export const RELEASE = 215;"),
++    ("/data/site-routes.json", '"/search-facets.html"'),
++    ("/platform.html", 'href="search-facets.html"'),
++    ("/sitemap.xml", "https://omsaravanabhava.org/search-facets.html")
+ ]
+ 
+ 
+@@ -24,7 +24,7 @@
+     request = urllib.request.Request(
+         url,
+         headers={
+-            "User-Agent": "OmSaravanaBhava-Production-Smoke/214",
++            "User-Agent": "OmSaravanaBhava-Production-Smoke/215",
+             "Cache-Control": "no-cache"
+         }
+     )
+@@ -61,10 +61,10 @@
+ def main() -> int:
+     parser = argparse.ArgumentParser()
+     parser.add_argument("--origin", default="https://omsaravanabhava.org")
+-    parser.add_argument("--retries", type=int, default=12)
++    parser.add_argument("--retries", type=int, default=18)
+     parser.add_argument("--delay", type=int, default=20)
+     parser.add_argument("--timeout", type=int, default=20)
+-    parser.add_argument("--report", type=Path, default=Path("artifacts/production-smoke.json"))
++    parser.add_argument("--report", type=Path, default=Path("artifacts/release-215-production-smoke.json"))
+     args = parser.parse_args()
+     report = run(args.origin, args.retries, args.delay, args.timeout)
+     args.report.parent.mkdir(parents=True, exist_ok=True)
+diff --git a/tools/release_215_validate.py b/tools/release_215_validate.py
+new file mode 100644
+--- /dev/null
++++ b/tools/release_215_validate.py
+@@ -0,0 +1,190 @@
++#!/usr/bin/env python3
++"""Validate the Release 215 overlay without claiming GitHub or production results."""
++from __future__ import annotations
++
++import argparse
++import json
++import re
++import sys
++import xml.etree.ElementTree as ET
++from pathlib import Path
++from urllib.parse import urlsplit
++
++RELEASE = "215"
++BASE_COMMIT = "17bd5228f38f6520e8c496fc9cd3924f562de6e2"
++ROUTE = "/search-facets.html"
++ALLOWED_SEARCH_STATUSES = {
++    "published",
++    "published-source-linked",
++    "partial-reviewed",
++    "reviewed-opening-extract",
++    "source-register",
++    "source-linked-sections-available",
++}
++REQUIRED_OVERLAY = [
++    "search-facets.html",
++    "assets/css/search-facets.css",
++    "assets/js/search-facets.mjs",
++    "index.html",
++    "platform.html",
++    "data/site-routes.json",
++    "sitemap.xml",
++    "service-worker.js",
++    "quality/site-audit-config.json",
++    "tools/production_smoke.py",
++    "tests/test_site_audit.py",
++    "tests/search-facets.test.mjs",
++    ".github/workflows/static-site-integrity.yml",
++    ".github/workflows/production-smoke.yml",
++    "manifest-release-215.json",
++]
++
++
++def read(root: Path, relative: str) -> str:
++    return (root / relative).read_text(encoding="utf-8")
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", type=Path, default=Path.cwd())
++    parser.add_argument("--package-mode", action="store_true")
++    parser.add_argument("--report", type=Path, default=Path("artifacts/release-215-validation.json"))
++    args = parser.parse_args()
++    root = args.root.resolve()
++    errors: list[str] = []
++    checks: list[str] = []
++
++    for relative in REQUIRED_OVERLAY:
++        if not (root / relative).is_file():
++            errors.append(f"missing required overlay file: {relative}")
++        else:
++            checks.append(f"exists: {relative}")
++
++    if errors:
++        report = {"release": 215, "status": "FAIL", "errors": errors, "checks": checks}
++    else:
++        manifest = json.loads(read(root, "manifest-release-215.json"))
++        routes = json.loads(read(root, "data/site-routes.json"))
++        config = json.loads(read(root, "quality/site-audit-config.json"))
++        ET.fromstring(read(root, "sitemap.xml"))
++
++        if manifest.get("release") != 215:
++            errors.append("manifest release is not 215")
++        if manifest.get("base_commit") != BASE_COMMIT:
++            errors.append("manifest base commit does not match Release 214 head")
++        if routes.get("release") != 215:
++            errors.append("route directory release is not 215")
++        route_records = routes.get("routes", [])
++        route_paths = [item.get("path") for item in route_records if isinstance(item, dict)]
++        if route_paths.count(ROUTE) != 1:
++            errors.append("search facets route must appear exactly once in route directory")
++        if len(route_paths) != len(set(route_paths)):
++            errors.append("duplicate route-directory paths detected")
++        if config.get("expectedRelease") != RELEASE:
++            errors.append("site audit expectedRelease is not 215")
++        for relative in ("search-facets.html", "assets/css/search-facets.css", "assets/js/search-facets.mjs"):
++            if relative not in config.get("requiredFiles", []):
++                errors.append(f"site audit does not require {relative}")
++
++        sitemap = read(root, "sitemap.xml")
++        if sitemap.count("https://omsaravanabhava.org/search-facets.html") != 1:
++            errors.append("sitemap must contain exactly one search-facets URL")
++
++        worker = read(root, "service-worker.js")
++        if "const RELEASE = '215';" not in worker:
++            errors.append("service worker release identity is not 215")
++        core_match = re.search(r"const CORE_PRECACHE_URLS = \[(.*?)\];", worker, re.S)
++        optional_match = re.search(r"const PRECACHE_URLS = \[(.*?)\];", worker, re.S)
++        new_assets = {
++            "/search-facets.html",
++            "/assets/css/search-facets.css",
++            "/assets/js/search-facets.mjs",
++        }
++        core_text = core_match.group(1) if core_match else ""
++        optional_text = optional_match.group(1) if optional_match else ""
++        for asset in new_assets:
++            if f'"{asset}"' not in optional_text:
++                errors.append(f"optional cache is missing {asset}")
++            if f'"{asset}"' in core_text:
++                errors.append(f"new optional asset incorrectly blocks install: {asset}")
++        if "cacheOptionalAssets" not in worker or "CORE_PRECACHE_URLS" not in worker:
++            errors.append("resilient service-worker strategy is missing")
++
++        for html in ("index.html", "platform.html", "search-facets.html"):
++            body = read(root, html)
++            if 'data-release="215"' not in body:
++                errors.append(f"{html} does not expose data-release 215")
++            if "search-facets.html" not in body:
++                errors.append(f"{html} does not link to search facets")
++
++        module = read(root, "assets/js/search-facets.mjs")
++        if "export const RELEASE = 215;" not in module:
++            errors.append("search facets module release identity is not 215")
++        for prohibited in ("navigator.sendBeacon", "gtag(", "google-analytics", "api.openai.com"):
++            if prohibited in module:
++                errors.append(f"prohibited remote analytics or AI marker found: {prohibited}")
++        for status in ALLOWED_SEARCH_STATUSES:
++            if status not in module:
++                errors.append(f"published-status policy is missing {status}")
++
++        smoke = read(root, "tools/production_smoke.py")
++        for marker in (
++            'data-release="215"',
++            "const RELEASE = '215';",
++            "/search-facets.html",
++            "/assets/js/search-facets.mjs",
++        ):
++            if marker not in smoke:
++                errors.append(f"production smoke is missing marker: {marker}")
++
++        for workflow in (
++            ".github/workflows/static-site-integrity.yml",
++            ".github/workflows/production-smoke.yml",
++        ):
++            body = read(root, workflow)
++            if "215" not in body or "release-215-" not in body:
++                errors.append(f"{workflow} has stale release or artifact identity")
++
++        if not args.package_mode:
++            index_path = root / "data/search-index.json"
++            if not index_path.is_file():
++                errors.append("repository mode requires data/search-index.json")
++            else:
++                records = json.loads(index_path.read_text(encoding="utf-8"))
++                public_paths = set(route_paths)
++                included = []
++                for record in records if isinstance(records, list) else []:
++                    if not isinstance(record, dict):
++                        continue
++                    status = str(record.get("status", "")).strip().lower()
++                    tags = {str(tag).strip().lower() for tag in record.get("tags", []) if isinstance(tag, str)}
++                    raw_route = str(record.get("route", "")).strip()
++                    path = urlsplit("/" + raw_route.lstrip("/")).path
++                    if status in ALLOWED_SEARCH_STATUSES and "not-published" not in tags and path in public_paths:
++                        included.append(record)
++                if not included:
++                    errors.append("no published search records survive Release 215 policy")
++                if any(str(item.get("status", "")).lower() == "draft" for item in included):
++                    errors.append("draft search record survived publication filtering")
++                checks.append(f"repository published search records: {len(included)}")
++
++        report = {
++            "release": 215,
++            "base_commit": BASE_COMMIT,
++            "mode": "package" if args.package_mode else "repository",
++            "status": "FAIL" if errors else "PASS",
++            "errors": errors,
++            "checks": checks,
++            "github_actions": "NOT_RUN",
++            "deployed_production": "NOT_RUN",
++        }
++
++    report_path = args.report if args.report.is_absolute() else root / args.report
++    report_path.parent.mkdir(parents=True, exist_ok=True)
++    report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
++    print(json.dumps(report, ensure_ascii=False, indent=2))
++    return 1 if report["status"] == "FAIL" else 0
++
++
++if __name__ == "__main__":
++    sys.exit(main())

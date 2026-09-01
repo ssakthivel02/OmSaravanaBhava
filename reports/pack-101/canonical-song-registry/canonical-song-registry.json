@@ -1,0 +1,709 @@
+[
+  {
+    "recordType": "song",
+    "collection": "Thiruppugazh",
+    "id": "0006",
+    "titleTa": "முத்தைத்தரு",
+    "titleEn": "Muththaiththaru",
+    "author": "அருணகிரிநாதர் / Arunagirinathar",
+    "route": "thiruppugazh/0006-muththaiththaru.html",
+    "routeExists": true,
+    "publicationStatus": "published-source-linked",
+    "sourceIds": [
+      "src-thiruppugazh-valluvar-vallalar-vattam"
+    ],
+    "hasOriginalTamil": true,
+    "hasEasyTamil": false,
+    "hasTransliteration": false,
+    "hasMeaning": true,
+    "hasAudio": false,
+    "canonical": true
+  },
+  {
+    "recordType": "song",
+    "collection": "Thiruppugazh",
+    "id": "0007",
+    "titleTa": "அருக்கு மங்கையர்",
+    "titleEn": "Arukku Mangkaiyar",
+    "author": "அருணகிரிநாதர் / Arunagirinathar",
+    "route": "thiruppugazh/0007-arukku-mangkaiyar.html",
+    "routeExists": true,
+    "publicationStatus": "published-source-linked",
+    "sourceIds": [
+      "src-thiruppugazh-valluvar-vallalar-vattam"
+    ],
+    "hasOriginalTamil": true,
+    "hasEasyTamil": false,
+    "hasTransliteration": false,
+    "hasMeaning": true,
+    "hasAudio": false,
+    "canonical": true
+  },
+  {
+    "recordType": "song",
+    "collection": "Thiruppugazh",
+    "id": "0008",
+    "titleTa": "உனைத் தினம்",
+    "titleEn": "Unaith Thinam",
+    "author": "அருணகிரிநாதர் / Arunagirinathar",
+    "route": "thiruppugazh/0008-unaith-thinam.html",
+    "routeExists": true,
+    "publicationStatus": "published-source-linked",
+    "sourceIds": [
+      "src-thiruppugazh-valluvar-vallalar-vattam"
+    ],
+    "hasOriginalTamil": true,
+    "hasEasyTamil": false,
+    "hasTransliteration": false,
+    "hasMeaning": true,
+    "hasAudio": false,
+    "canonical": true
+  },
+  {
+    "recordType": "song",
+    "collection": "Thiruppugazh",
+    "id": "0009",
+    "titleTa": "கருவடைந்து",
+    "titleEn": "Karuvadaindhu",
+    "author": "அருணகிரிநாதர் / Arunagirinathar",
+    "route": "thiruppugazh/0009-karuvadaindhu.html",
+    "routeExists": true,
+    "publicationStatus": "published-source-linked",
+    "sourceIds": [
+      "src-thiruppugazh-valluvar-vallalar-vattam"
+    ],
+    "hasOriginalTamil": true,
+    "hasEasyTamil": false,
+    "hasTransliteration": false,
+    "hasMeaning": true,
+    "hasAudio": false,
+    "canonical": true
+  },
+  {
+    "recordType": "song",
+    "collection": "Thiruppugazh",
+    "id": "0010",
+    "titleTa": "கறுக்கும் அஞ்சன",
+    "titleEn": "Karukkum Anjana",
+    "author": "அருணகிரிநாதர் / Arunagirinathar",
+    "route": "thiruppugazh/0010-karukkum-anjana.html",
+    "routeExists": true,
+    "publicationStatus": "published-source-linked",
+    "sourceIds": [
+      "src-thiruppugazh-valluvar-vallalar-vattam"
+    ],
+    "hasOriginalTamil": true,
+    "hasEasyTamil": false,
+    "hasTransliteration": false,
+    "hasMeaning": true,
+    "hasAudio": false,
+    "canonical": true
+  },
+  {
+    "recordType": "song",
+    "collection": "Thiruppugazh",
+    "id": "0011",
+    "titleTa": "கனகந்திரள்",
+    "titleEn": "Kanakan Thiral",
+    "author": "அருணகிரிநாதர் / Arunagirinathar",
+    "route": "thiruppugazh/0011-kanakan-thiral.html",
+    "routeExists": true,
+    "publicationStatus": "published-source-linked",
+    "sourceIds": [
+      "src-thiruppugazh-valluvar-vallalar-vattam"
+    ],
+    "hasOriginalTamil": true,
+    "hasEasyTamil": false,
+    "hasTransliteration": false,
+    "hasMeaning": true,
+    "hasAudio": false,
+    "canonical": true
+  },
+  {
+    "recordType": "song",
+    "collection": "Thiruppugazh",
+    "id": "0012",
+    "titleTa": "காதடருங்கயல்",
+    "titleEn": "Kadhadarungkayal",
+    "author": "அருணகிரிநாதர் / Arunagirinathar",
+    "route": "thiruppugazh/0012-kadhadarungkayal.html",
+    "routeExists": true,
+    "publicationStatus": "published-source-linked",
+    "sourceIds": [
+      "src-thiruppugazh-valluvar-vallalar-vattam"
+    ],
+    "hasOriginalTamil": true,
+    "hasEasyTamil": false,
+    "hasTransliteration": false,
+    "hasMeaning": true,
+    "hasAudio": false,
+    "canonical": true
+  },
+  {
+    "recordType": "song",
+    "collection": "Thiruppugazh",
+    "id": "0013",
+    "titleTa": "சந்ததம் பந்த",
+    "titleEn": "Sandhadham Bandha",
+    "author": "அருணகிரிநாதர் / Arunagirinathar",
+    "route": "thiruppugazh/0013-sandhadham-bandha.html",
+    "routeExists": true,
+    "publicationStatus": "published-source-linked",
+    "sourceIds": [
+      "src-thiruppugazh-valluvar-vallalar-vattam"
+    ],
+    "hasOriginalTamil": true,
+    "hasEasyTamil": false,
+    "hasTransliteration": false,
+    "hasMeaning": true,
+    "hasAudio": false,
+    "canonical": true
+  },
+  {
+    "recordType": "song",
+    "collection": "Thiruppugazh",
+    "id": "0014",
+    "titleTa": "சருவும்படி",
+    "titleEn": "Saruvumpadi",
+    "author": "அருணகிரிநாதர் / Arunagirinathar",
+    "route": "thiruppugazh/0014-saruvumpadi.html",
+    "routeExists": true,
+    "publicationStatus": "published-source-linked",
+    "sourceIds": [
+      "src-thiruppugazh-valluvar-vallalar-vattam"
+    ],
+    "hasOriginalTamil": true,
+    "hasEasyTamil": false,
+    "hasTransliteration": false,
+    "hasMeaning": true,
+    "hasAudio": false,
+    "canonical": true
+  },
+  {
+    "recordType": "song",
+    "collection": "Thiruppugazh",
+    "id": "0015",
+    "titleTa": "தடக்கைப் பங்கயம்",
+    "titleEn": "Thadakkai Pangkayam",
+    "author": "அருணகிரிநாதர் / Arunagirinathar",
+    "route": "thiruppugazh/0015-thadakkai-pangkayam.html",
+    "routeExists": true,
+    "publicationStatus": "published-source-linked",
+    "sourceIds": [
+      "src-thiruppugazh-valluvar-vallalar-vattam"
+    ],
+    "hasOriginalTamil": true,
+    "hasEasyTamil": false,
+    "hasTransliteration": false,
+    "hasMeaning": true,
+    "hasAudio": false,
+    "canonical": true
+  },
+  {
+    "recordType": "song",
+    "collection": "Thiruppugazh",
+    "id": "0016",
+    "titleTa": "பதித்த செஞ்சந்த",
+    "titleEn": "Padhiththa Senchandha",
+    "author": "அருணகிரிநாதர் / Arunagirinathar",
+    "route": "thiruppugazh/0016-padhiththa-senchandha.html",
+    "routeExists": true,
+    "publicationStatus": "published-source-linked",
+    "sourceIds": [
+      "src-thiruppugazh-valluvar-vallalar-vattam"
+    ],
+    "hasOriginalTamil": true,
+    "hasEasyTamil": false,
+    "hasTransliteration": false,
+    "hasMeaning": true,
+    "hasAudio": false,
+    "canonical": true
+  },
+  {
+    "recordType": "song",
+    "collection": "Thiruppugazh",
+    "id": "0017",
+    "titleTa": "பொருப்புறுங்",
+    "titleEn": "Poruppurung",
+    "author": "அருணகிரிநாதர் / Arunagirinathar",
+    "route": "thiruppugazh/0017-poruppurung.html",
+    "routeExists": true,
+    "publicationStatus": "published-source-linked",
+    "sourceIds": [
+      "src-thiruppugazh-valluvar-vallalar-vattam"
+    ],
+    "hasOriginalTamil": true,
+    "hasEasyTamil": false,
+    "hasTransliteration": false,
+    "hasMeaning": true,
+    "hasAudio": false,
+    "canonical": true
+  },
+  {
+    "recordType": "collection",
+    "collection": "Thiruppugazh Digital Library",
+    "id": "thiruppugazh",
+    "titleTa": "திருப்புகழ்",
+    "titleEn": "Thiruppugazh Digital Library",
+    "author": "அருணகிரிநாதர் / Arunagirinathar",
+    "route": "thiruppugazh.html",
+    "routeExists": true,
+    "publicationStatus": "published-source-linked",
+    "statusLabel": "12 complete source-linked songs published",
+    "availableFormats": [
+      "original_tamil",
+      "meaning",
+      "source"
+    ],
+    "missingFormats": [
+      "easy_reading_tamil",
+      "transliteration",
+      "audio"
+    ],
+    "canonical": true
+  },
+  {
+    "recordType": "collection",
+    "collection": "Kanda Sashti Kavasam",
+    "id": "kanda-sashti-kavasam",
+    "titleTa": "கந்த சஷ்டி கவசம்",
+    "titleEn": "Kanda Sashti Kavasam",
+    "author": "தேவராய சுவாமிகள் / Devaraya Swamigal — attribution requires edition-level confirmation",
+    "route": "literature/kanda-sashti-kavasam-edition.html",
+    "routeExists": true,
+    "publicationStatus": "partial-reviewed",
+    "statusLabel": "Reviewed opening extract",
+    "availableFormats": [
+      "original_tamil",
+      "audio",
+      "source"
+    ],
+    "missingFormats": [
+      "easy_reading_tamil",
+      "transliteration",
+      "meaning"
+    ],
+    "canonical": true
+  },
+  {
+    "recordType": "collection",
+    "collection": "Skanda Guru Kavasam",
+    "id": "skanda-guru-kavasam",
+    "titleTa": "ஸ்கந்த குரு கவசம்",
+    "titleEn": "Skanda Guru Kavasam",
+    "author": "ஸ்ரீமத் சத்குரு சாந்தானந்த சுவாமிகள் — source boundary retained",
+    "route": "slokas/skanda-guru-kavasam.html",
+    "routeExists": true,
+    "publicationStatus": "partial-reviewed",
+    "statusLabel": "Reviewed opening extract",
+    "availableFormats": [
+      "original_tamil",
+      "audio",
+      "source"
+    ],
+    "missingFormats": [
+      "easy_reading_tamil",
+      "transliteration",
+      "meaning"
+    ],
+    "canonical": true
+  },
+  {
+    "recordType": "collection",
+    "collection": "Kandar Anubhuti",
+    "id": "kandar-anubhuti",
+    "titleTa": "கந்தர் அனுபூதி",
+    "titleEn": "Kandar Anubhuti",
+    "author": "அருணகிரிநாதர் / Arunagirinathar",
+    "route": "literature/kandar-anubhuti.html",
+    "routeExists": true,
+    "publicationStatus": "partial-reviewed",
+    "statusLabel": "Protection verse and verse 1 published",
+    "availableFormats": [
+      "original_tamil",
+      "source"
+    ],
+    "missingFormats": [
+      "easy_reading_tamil",
+      "transliteration",
+      "meaning",
+      "audio"
+    ],
+    "canonical": true
+  },
+  {
+    "recordType": "collection",
+    "collection": "Kandar Alangaram",
+    "id": "kandar-alangaram",
+    "titleTa": "கந்தர் அலங்காரம்",
+    "titleEn": "Kandar Alangaram",
+    "author": "அருணகிரிநாதர் / Arunagirinathar",
+    "route": "literature/kandar-alangaram.html",
+    "routeExists": true,
+    "publicationStatus": "source-register",
+    "statusLabel": "Literary identity registered",
+    "availableFormats": [
+      "source"
+    ],
+    "missingFormats": [
+      "original_tamil",
+      "easy_reading_tamil",
+      "transliteration",
+      "meaning",
+      "audio"
+    ],
+    "canonical": true
+  },
+  {
+    "recordType": "collection",
+    "collection": "Kandar Andhadhi",
+    "id": "kandar-andhadhi",
+    "titleTa": "கந்தர் அந்தாதி",
+    "titleEn": "Kandar Andhadhi",
+    "author": "அருணகிரிநாதர் / Arunagirinathar",
+    "route": "literature/kandar-andhadhi.html",
+    "routeExists": true,
+    "publicationStatus": "source-register",
+    "statusLabel": "Linked-verse form registered",
+    "availableFormats": [
+      "source"
+    ],
+    "missingFormats": [
+      "original_tamil",
+      "easy_reading_tamil",
+      "transliteration",
+      "meaning",
+      "audio"
+    ],
+    "canonical": true
+  },
+  {
+    "recordType": "collection",
+    "collection": "Shanmuga Kavasam",
+    "id": "shanmuga-kavasam",
+    "titleTa": "சண்முக கவசம்",
+    "titleEn": "Shanmuga Kavasam",
+    "author": "Work-level attribution under editorial review",
+    "route": "literature/shanmuga-kavasam.html",
+    "routeExists": true,
+    "publicationStatus": "source-register",
+    "statusLabel": "Work and structure registered",
+    "availableFormats": [
+      "source"
+    ],
+    "missingFormats": [
+      "original_tamil",
+      "easy_reading_tamil",
+      "transliteration",
+      "meaning",
+      "audio"
+    ],
+    "canonical": true
+  },
+  {
+    "recordType": "collection",
+    "collection": "Vel Maaral",
+    "id": "vel-maaral",
+    "titleTa": "வேல் மாறல்",
+    "titleEn": "Vel Maaral",
+    "author": "Edition and authorship boundary retained",
+    "route": "literature/vel-maaral.html",
+    "routeExists": true,
+    "publicationStatus": "source-register",
+    "statusLabel": "Source and structure registered",
+    "availableFormats": [
+      "source"
+    ],
+    "missingFormats": [
+      "original_tamil",
+      "easy_reading_tamil",
+      "transliteration",
+      "meaning",
+      "audio"
+    ],
+    "canonical": true
+  },
+  {
+    "recordType": "collection",
+    "collection": "Vel and Mayil Virutham",
+    "id": "vel-mayil-virutham",
+    "titleTa": "வேல் மயில் விருத்தம்",
+    "titleEn": "Vel and Mayil Virutham",
+    "author": "அருணகிரிநாதர் / Arunagirinathar — edition verification required",
+    "route": "literature/vel-mayil-virutham.html",
+    "routeExists": true,
+    "publicationStatus": "source-register",
+    "statusLabel": "Companion works registered",
+    "availableFormats": [
+      "source"
+    ],
+    "missingFormats": [
+      "original_tamil",
+      "easy_reading_tamil",
+      "transliteration",
+      "meaning",
+      "audio"
+    ],
+    "canonical": true
+  },
+  {
+    "recordType": "collection",
+    "collection": "Thirumurugatruppadai",
+    "id": "thirumurugatruppadai",
+    "titleTa": "திருமுருகாற்றுப்படை",
+    "titleEn": "Thirumurugatruppadai",
+    "author": "நக்கீரர் / Nakkirar",
+    "route": "literature/thirumurugatruppadai-complete.html",
+    "routeExists": true,
+    "publicationStatus": "navigation",
+    "statusLabel": "Six-section source-linked navigator",
+    "availableFormats": [
+      "original_tamil",
+      "meaning",
+      "source"
+    ],
+    "missingFormats": [
+      "easy_reading_tamil",
+      "transliteration",
+      "audio"
+    ],
+    "canonical": true
+  },
+  {
+    "recordType": "collection",
+    "collection": "Slokas and Prayers",
+    "id": "slokas-prayers",
+    "titleTa": "ஸ்லோகங்கள் மற்றும் பிரார்த்தனைகள்",
+    "titleEn": "Slokas and Prayers",
+    "author": "Traditional and attributed works",
+    "route": "sloka-library.html",
+    "routeExists": true,
+    "publicationStatus": "navigation",
+    "statusLabel": "Mixed-status governed directory",
+    "availableFormats": [
+      "original_tamil",
+      "meaning",
+      "audio",
+      "source"
+    ],
+    "missingFormats": [
+      "easy_reading_tamil",
+      "transliteration"
+    ],
+    "canonical": true
+  },
+  {
+    "recordType": "collection",
+    "collection": "Devotional Audio Library",
+    "id": "audio-library",
+    "titleTa": "பக்தி ஒலி நூலகம்",
+    "titleEn": "Devotional Audio Library",
+    "author": "Rights-controlled audio catalogue",
+    "route": "audio-library.html",
+    "routeExists": true,
+    "publicationStatus": "navigation",
+    "statusLabel": "Device read-aloud and rights-status catalogue",
+    "availableFormats": [
+      "audio",
+      "source"
+    ],
+    "missingFormats": [],
+    "canonical": true
+  },
+  {
+    "recordType": "audio-status",
+    "collection": "Audio Library",
+    "id": "vel-maaral-maha-manthiram",
+    "titleTa": "வேல் மாறல் மகா மந்திரம்",
+    "titleEn": "Vel Maaral Maha Manthiram",
+    "route": "audio-library.html",
+    "routeExists": true,
+    "publicationStatus": "source-review-required",
+    "playMode": "not-published",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "hasAudio": false,
+    "canonical": true
+  },
+  {
+    "recordType": "audio-status",
+    "collection": "Audio Library",
+    "id": "kanda-sashti-kavasam",
+    "titleTa": "கந்த சஷ்டி கவசம்",
+    "titleEn": "Kanda Sashti Kavasam",
+    "route": "slokas/kanda-sashti-kavasam.html",
+    "routeExists": true,
+    "publicationStatus": "reviewed-opening-extract",
+    "playMode": "device-tts",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "hasAudio": true,
+    "canonical": true
+  },
+  {
+    "recordType": "audio-status",
+    "collection": "Audio Library",
+    "id": "skanda-guru-kavasam",
+    "titleTa": "ஸ்கந்த குரு கவசம்",
+    "titleEn": "Skanda Guru Kavasam",
+    "route": "slokas/skanda-guru-kavasam.html",
+    "routeExists": true,
+    "publicationStatus": "reviewed-opening-extract",
+    "playMode": "device-tts",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "hasAudio": true,
+    "canonical": true
+  },
+  {
+    "recordType": "audio-status",
+    "collection": "Audio Library",
+    "id": "shanmuga-kavasam",
+    "titleTa": "சண்முக கவசம்",
+    "titleEn": "Shanmuga Kavasam",
+    "route": "audio-library.html",
+    "routeExists": true,
+    "publicationStatus": "uploaded-collection-review",
+    "playMode": "not-published",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "hasAudio": false,
+    "canonical": true
+  },
+  {
+    "recordType": "audio-status",
+    "collection": "Audio Library",
+    "id": "kandar-anubhuti",
+    "titleTa": "கந்தர் அனுபூதி",
+    "titleEn": "Kandar Anubhuti",
+    "route": "audio-library.html",
+    "routeExists": true,
+    "publicationStatus": "uploaded-source-identified",
+    "playMode": "not-published",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "hasAudio": false,
+    "canonical": true
+  },
+  {
+    "recordType": "audio-status",
+    "collection": "Audio Library",
+    "id": "kandar-alangaram",
+    "titleTa": "கந்தர் அலங்காரம்",
+    "titleEn": "Kandar Alangaram",
+    "route": "audio-library.html",
+    "routeExists": true,
+    "publicationStatus": "source-review-required",
+    "playMode": "not-published",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "hasAudio": false,
+    "canonical": true
+  },
+  {
+    "recordType": "audio-status",
+    "collection": "Audio Library",
+    "id": "kandar-andhathi",
+    "titleTa": "கந்தர் அந்தாதி",
+    "titleEn": "Kandar Andhathi",
+    "route": "audio-library.html",
+    "routeExists": true,
+    "publicationStatus": "source-review-required",
+    "playMode": "not-published",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "hasAudio": false,
+    "canonical": true
+  },
+  {
+    "recordType": "audio-status",
+    "collection": "Audio Library",
+    "id": "kandar-kalivenba",
+    "titleTa": "கந்தர் கலிவெண்பா",
+    "titleEn": "Kandar Kalivenba",
+    "route": "audio-library.html",
+    "routeExists": true,
+    "publicationStatus": "source-review-required",
+    "playMode": "not-published",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "hasAudio": false,
+    "canonical": true
+  },
+  {
+    "recordType": "audio-status",
+    "collection": "Audio Library",
+    "id": "vel-virutham",
+    "titleTa": "வேல் விருத்தம்",
+    "titleEn": "Vel Virutham",
+    "route": "audio-library.html",
+    "routeExists": true,
+    "publicationStatus": "uploaded-reference-identified",
+    "playMode": "not-published",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "hasAudio": false,
+    "canonical": true
+  },
+  {
+    "recordType": "audio-status",
+    "collection": "Audio Library",
+    "id": "mayil-virutham",
+    "titleTa": "மயில் விருத்தம்",
+    "titleEn": "Mayil Virutham",
+    "route": "audio-library.html",
+    "routeExists": true,
+    "publicationStatus": "uploaded-reference-identified",
+    "playMode": "not-published",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "hasAudio": false,
+    "canonical": true
+  },
+  {
+    "recordType": "audio-status",
+    "collection": "Audio Library",
+    "id": "subramanya-bhujangam",
+    "titleTa": "சுப்பிரமணிய புஜங்கம்",
+    "titleEn": "Subramanya Bhujangam",
+    "route": "audio-library.html",
+    "routeExists": true,
+    "publicationStatus": "source-review-required",
+    "playMode": "not-published",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "hasAudio": false,
+    "canonical": true
+  },
+  {
+    "recordType": "audio-status",
+    "collection": "Audio Library",
+    "id": "kanda-gayatri",
+    "titleTa": "கந்த காயத்ரி",
+    "titleEn": "Kanda Gayatri",
+    "route": "slokas/subramanya-gayatri.html",
+    "routeExists": true,
+    "publicationStatus": "published",
+    "playMode": "device-tts",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "hasAudio": true,
+    "canonical": true
+  },
+  {
+    "recordType": "audio-status",
+    "collection": "Audio Library",
+    "id": "saravanabhava-mantra",
+    "titleTa": "சரவணபவ மந்திரம்",
+    "titleEn": "Saravanabhava Mantra",
+    "route": "slokas/om-saravana-bhava.html",
+    "routeExists": true,
+    "publicationStatus": "published",
+    "playMode": "device-tts",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "hasAudio": true,
+    "canonical": true
+  },
+  {
+    "recordType": "audio-status",
+    "collection": "Audio Library",
+    "id": "arupadai-veedu-thuthigal",
+    "titleTa": "ஆறுபடை வீடு துதிகள்",
+    "titleEn": "Arupadai Veedu Thuthigal",
+    "route": "literature/thirumurugatruppadai.html",
+    "routeExists": true,
+    "publicationStatus": "source-linked-sections-available",
+    "playMode": "not-published",
+    "recordingStatus": "owned-or-licensed-recording-required",
+    "hasAudio": false,
+    "canonical": true
+  }
+]

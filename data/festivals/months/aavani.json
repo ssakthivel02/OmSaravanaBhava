@@ -1,0 +1,69 @@
+[
+  {
+    "id": "monthly-sashti",
+    "titleEn": "Monthly Sashti",
+    "titleTa": "மாத சஷ்டி",
+    "tamilMonth": "All",
+    "type": "Vratham",
+    "summary": "Monthly Sashti observance for Murugan devotees.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Vratham"
+    ]
+  },
+  {
+    "id": "monthly-karthigai",
+    "titleEn": "Monthly Karthigai",
+    "titleTa": "மாத கார்த்திகை",
+    "tamilMonth": "All",
+    "type": "Vratham",
+    "summary": "Monthly Karthigai star observance.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Deepam",
+      "Murugan"
+    ]
+  },
+  {
+    "id": "aavani-festival-1",
+    "titleEn": "Aavani Devotional Day 1",
+    "titleTa": "ஆவணி பக்தி நாள் 1",
+    "tamilMonth": "Aavani",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Aavani month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Aavani",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "aavani-festival-2",
+    "titleEn": "Aavani Devotional Day 2",
+    "titleTa": "ஆவணி பக்தி நாள் 2",
+    "tamilMonth": "Aavani",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Aavani month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Aavani",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "aavani-festival-3",
+    "titleEn": "Aavani Devotional Day 3",
+    "titleTa": "ஆவணி பக்தி நாள் 3",
+    "tamilMonth": "Aavani",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Aavani month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Aavani",
+      "Tamil month",
+      "Devotion"
+    ]
+  }
+]

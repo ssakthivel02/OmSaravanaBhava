@@ -1,0 +1,184 @@
+--- before/temple-travel-guidance.html
++++ release203/temple-travel-guidance.html
+@@ -0,0 +1,24 @@
++<!doctype html><html lang="ta"><head>
++<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Temple Travel Guidance | Om Saravana Bhava</title>
++<meta name="description" content="Source-aware travel guidance that refuses to publish stale timings or unverified visitor rules.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/temple-travel-guidance.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++</head><body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Verified Murugan digital platform</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Temple Travel Guidance</span></p></nav>
++<section class="card"><h1 class="section-title" lang="ta">கோவில் பயண வழிகாட்டி</h1><h2>Temple Travel Guidance</h2><p>Source-aware travel guidance that refuses to publish stale timings or unverified visitor rules.</p></section>
++<section class="grid"><article class="card"><h2 lang="ta">பழனி முருகன் கோவில்</h2><h3>Palani Murugan Temple</h3><p>Current timings and dress code must be checked with official temple sources.</p><a class="btn" href="temples/palani.html">Open profile</a></article><article class="card"><h2 lang="ta">திருச்செந்தூர் முருகன் கோவில்</h2><h3>Thiruchendur Murugan Temple</h3><p>Current timings and dress code must be checked with official temple sources.</p><a class="btn" href="temples/thiruchendur.html">Open profile</a></article><article class="card"><h2 lang="ta">திருப்பரங்குன்றம் முருகன் கோவில்</h2><h3>Thirupparamkundram Murugan Temple</h3><p>Current timings and dress code must be checked with official temple sources.</p><a class="btn" href="temples/thirupparamkundram.html">Open profile</a></article><article class="card"><h2 lang="ta">சுவாமிமலை முருகன் கோவில்</h2><h3>Swamimalai Murugan Temple</h3><p>Current timings and dress code must be checked with official temple sources.</p><a class="btn" href="temples/swamimalai.html">Open profile</a></article><article class="card"><h2 lang="ta">திருத்தணி முருகன் கோவில்</h2><h3>Thiruthani Murugan Temple</h3><p>Current timings and dress code must be checked with official temple sources.</p><a class="btn" href="temples/thiruthani.html">Open profile</a></article><article class="card"><h2 lang="ta">பழமுதிர்சோலை முருகன் கோவில்</h2><h3>Pazhamudircholai Murugan Temple</h3><p>Current timings and dress code must be checked with official temple sources.</p><a class="btn" href="temples/pazhamudircholai.html">Open profile</a></article><article class="card"><h2 lang="ta">வடபழனி முருகன் கோவில்</h2><h3>Vadapalani Murugan Temple</h3><p>Current timings and dress code must be checked with official temple sources.</p><a class="btn" href="temples/vadapalani.html">Open profile</a></article><article class="card"><h2 lang="ta">மருதமலை முருகன் கோவில்</h2><h3>Marudhamalai Murugan Temple</h3><p>Current timings and dress code must be checked with official temple sources.</p><a class="btn" href="temples/marudhamalai.html">Open profile</a></article><article class="card"><h2 lang="ta">வயலூர் முருகன் கோவில்</h2><h3>Vayalur Murugan Temple</h3><p>Current timings and dress code must be checked with official temple sources.</p><a class="btn" href="temples/vayalur.html">Open profile</a></article><article class="card"><h2 lang="ta">சிக்கல் சிங்காரவேலவர் கோவில்</h2><h3>Sikkal Singaravelavar Temple</h3><p>Current timings and dress code must be checked with official temple sources.</p><a class="btn" href="temples/sikkal.html">Open profile</a></article></section>
++</main>
++<footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body></html>--- before/data/temple-profiles.json
++++ release203/data/temple-profiles.json
+@@ -13,6 +13,12 @@
+       "sacredWater": "source-review-required",
+       "festivals": "linked-where-published",
+       "literature": "linked-where-published"
++    },
++    "travellerGuidance": {
++      "timings": "verify-with-official-temple-authority",
++      "dressCode": "verify-with-official-temple-authority",
++      "accessibility": "source-review-required",
++      "transport": "external-planning-required"
+     }
+   },
+   {
+@@ -29,6 +35,12 @@
+       "sacredWater": "source-review-required",
+       "festivals": "linked-where-published",
+       "literature": "linked-where-published"
++    },
++    "travellerGuidance": {
++      "timings": "verify-with-official-temple-authority",
++      "dressCode": "verify-with-official-temple-authority",
++      "accessibility": "source-review-required",
++      "transport": "external-planning-required"
+     }
+   },
+   {
+@@ -45,6 +57,12 @@
+       "sacredWater": "source-review-required",
+       "festivals": "linked-where-published",
+       "literature": "linked-where-published"
++    },
++    "travellerGuidance": {
++      "timings": "verify-with-official-temple-authority",
++      "dressCode": "verify-with-official-temple-authority",
++      "accessibility": "source-review-required",
++      "transport": "external-planning-required"
+     }
+   },
+   {
+@@ -61,6 +79,12 @@
+       "sacredWater": "source-review-required",
+       "festivals": "linked-where-published",
+       "literature": "linked-where-published"
++    },
++    "travellerGuidance": {
++      "timings": "verify-with-official-temple-authority",
++      "dressCode": "verify-with-official-temple-authority",
++      "accessibility": "source-review-required",
++      "transport": "external-planning-required"
+     }
+   },
+   {
+@@ -77,6 +101,12 @@
+       "sacredWater": "source-review-required",
+       "festivals": "linked-where-published",
+       "literature": "linked-where-published"
++    },
++    "travellerGuidance": {
++      "timings": "verify-with-official-temple-authority",
++      "dressCode": "verify-with-official-temple-authority",
++      "accessibility": "source-review-required",
++      "transport": "external-planning-required"
+     }
+   },
+   {
+@@ -93,6 +123,12 @@
+       "sacredWater": "source-review-required",
+       "festivals": "linked-where-published",
+       "literature": "linked-where-published"
++    },
++    "travellerGuidance": {
++      "timings": "verify-with-official-temple-authority",
++      "dressCode": "verify-with-official-temple-authority",
++      "accessibility": "source-review-required",
++      "transport": "external-planning-required"
+     }
+   },
+   {
+@@ -109,6 +145,12 @@
+       "sacredWater": "source-review-required",
+       "festivals": "linked-where-published",
+       "literature": "linked-where-published"
++    },
++    "travellerGuidance": {
++      "timings": "verify-with-official-temple-authority",
++      "dressCode": "verify-with-official-temple-authority",
++      "accessibility": "source-review-required",
++      "transport": "external-planning-required"
+     }
+   },
+   {
+@@ -125,6 +167,12 @@
+       "sacredWater": "source-review-required",
+       "festivals": "linked-where-published",
+       "literature": "linked-where-published"
++    },
++    "travellerGuidance": {
++      "timings": "verify-with-official-temple-authority",
++      "dressCode": "verify-with-official-temple-authority",
++      "accessibility": "source-review-required",
++      "transport": "external-planning-required"
+     }
+   },
+   {
+@@ -141,6 +189,12 @@
+       "sacredWater": "source-review-required",
+       "festivals": "linked-where-published",
+       "literature": "linked-where-published"
++    },
++    "travellerGuidance": {
++      "timings": "verify-with-official-temple-authority",
++      "dressCode": "verify-with-official-temple-authority",
++      "accessibility": "source-review-required",
++      "transport": "external-planning-required"
+     }
+   },
+   {
+@@ -157,6 +211,12 @@
+       "sacredWater": "source-review-required",
+       "festivals": "linked-where-published",
+       "literature": "linked-where-published"
++    },
++    "travellerGuidance": {
++      "timings": "verify-with-official-temple-authority",
++      "dressCode": "verify-with-official-temple-authority",
++      "accessibility": "source-review-required",
++      "transport": "external-planning-required"
+     }
+   }
+ ]
+--- before/service-worker.js
++++ release203/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '202';
++const RELEASE = '203';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -155,7 +155,8 @@
+   "/version-3.html",
+   "/data/version-3-status.json",
+   "/thiruppugazh-volume-6.html",
+-  "/thiruppugazh-volume-7.html"
++  "/thiruppugazh-volume-7.html",
++  "/temple-travel-guidance.html"
+ ];
+ 
+ self.addEventListener('install', event => {
+--- before/sitemap.xml
++++ release203/sitemap.xml
+@@ -237,4 +237,5 @@
+   <url><loc>https://omsaravanabhava.org/version-3.html</loc><lastmod>2026-07-13</lastmod><priority>1.0</priority></url>
+   <url><loc>https://omsaravanabhava.org/thiruppugazh-volume-6.html</loc><lastmod>2026-07-13</lastmod><priority>0.6</priority></url>
+   <url><loc>https://omsaravanabhava.org/thiruppugazh-volume-7.html</loc><lastmod>2026-07-13</lastmod><priority>0.6</priority></url>
++  <url><loc>https://omsaravanabhava.org/temple-travel-guidance.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+ </urlset>

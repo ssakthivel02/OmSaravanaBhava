@@ -1,0 +1,50 @@
+{
+  "id": "swamimalai",
+  "titleTa": "சுவாமிமலை சுவாமிநாத சுவாமி",
+  "titleEn": "Swamimalai Swaminatha Swamy Temple",
+  "district": "Thanjavur",
+  "state": "Tamil Nadu",
+  "category": "Arupadai Veedu",
+  "summary": "Known for the Guru aspect of Murugan as Swaminatha.",
+  "shortHistory": "Sacred site where Murugan taught the meaning of Pranava to Lord Shiva.",
+  "openingHours": "6:00 AM - 8:30 PM",
+  "festivals": [
+    "Thai Poosam",
+    "Panguni Uthiram"
+  ],
+  "features": [
+    "60 steps symbolism",
+    "Guru worship",
+    "Kaveri delta heritage"
+  ],
+  "location": {
+    "lat": 10.957,
+    "lng": 79.329
+  },
+  "tags": [
+    "Arupadai Veedu",
+    "Thanjavur",
+    "Murugan",
+    "Temple"
+  ],
+  "overview": "Sacred site where Murugan taught the meaning of Pranava to Lord Shiva.",
+  "architecture": "Temple architecture combines sacred orientation, mandapa layout, gopuram symbolism, and devotional circulation. This record is provided as a structured starting point and should be expanded with verified source review.",
+  "pilgrimGuide": [
+    "Check current timings before travel",
+    "Carry water for hill temples",
+    "Prefer early morning darshan on festival days",
+    "Respect temple dress and photography rules"
+  ],
+  "howToReach": {
+    "nearestCity": "Thanjavur",
+    "rail": "Check nearest major railway station before travel",
+    "road": "Accessible by local road routes and buses depending on temple location",
+    "air": "Use nearest regional airport where applicable"
+  },
+  "related": [
+    "palani",
+    "tiruchendur"
+  ],
+  "verificationStatus": "Needs Review",
+  "lastUpdated": "2026-07-08"
+}

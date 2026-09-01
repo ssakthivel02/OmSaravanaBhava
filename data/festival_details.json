@@ -1,0 +1,79 @@
+[
+  {
+    "id": "thai-poosam",
+    "nameTa": "தைப்பூசம்",
+    "nameEn": "Thai Poosam",
+    "month": "Thai / Jan-Feb",
+    "summary": "Thai Poosam is a major Murugan festival associated with devotion, vow fulfillment and the Vel.",
+    "meaning": "The festival reminds devotees of divine grace, discipline and courage. Many devotees observe fasting, carry kavadi and pray for inner purification.",
+    "rituals": [
+      "Kavadi offering",
+      "Milk pot procession",
+      "Vel worship",
+      "Murugan mantra chanting"
+    ],
+    "temples": [
+      "palani",
+      "tiruchendur",
+      "thiruthani"
+    ],
+    "notes": "Practices differ by region and family tradition. This page provides devotional orientation, not formal ritual instruction."
+  },
+  {
+    "id": "skanda-sashti",
+    "nameTa": "கந்த சஷ்டி",
+    "nameEn": "Skanda Sashti",
+    "month": "Aippasi / Oct-Nov",
+    "summary": "Skanda Sashti honours Lord Murugan's victory over Surapadman and the triumph of dharma.",
+    "meaning": "It is a period of prayer, discipline and courage. The Surasamharam tradition represents overcoming ego and negativity.",
+    "rituals": [
+      "Fasting",
+      "Kanda Sashti Kavacham recitation",
+      "Surasamharam observance",
+      "Temple worship"
+    ],
+    "temples": [
+      "tiruchendur",
+      "palani"
+    ],
+    "notes": "Devotees should follow health-conscious fasting practices and local temple guidance."
+  },
+  {
+    "id": "vaikasi-visakam",
+    "nameTa": "வைகாசி விசாகம்",
+    "nameEn": "Vaikasi Visakam",
+    "month": "Vaikasi / May-Jun",
+    "summary": "Vaikasi Visakam celebrates the divine birth star of Lord Murugan.",
+    "meaning": "It is a day to remember divine wisdom, youthful courage and protection.",
+    "rituals": [
+      "Special abhishekam",
+      "Alankaram",
+      "Murugan nama japa",
+      "Family prayer"
+    ],
+    "temples": [
+      "swamimalai",
+      "pazhamudircholai"
+    ],
+    "notes": "A good day for children to learn simple Murugan names and stories."
+  },
+  {
+    "id": "panguni-uthiram",
+    "nameTa": "பங்குனி உத்திரம்",
+    "nameEn": "Panguni Uthiram",
+    "month": "Panguni / Mar-Apr",
+    "summary": "Panguni Uthiram is associated with divine weddings and auspicious union.",
+    "meaning": "For Murugan devotees, it is connected with grace, family harmony and committed dharma.",
+    "rituals": [
+      "Wedding festival observance",
+      "Special puja",
+      "Family prayer",
+      "Annadanam where available"
+    ],
+    "temples": [
+      "thiruparankundram",
+      "palani"
+    ],
+    "notes": "The details of temple festivals vary by temple calendar."
+  }
+]

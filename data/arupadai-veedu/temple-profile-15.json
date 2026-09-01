@@ -1,0 +1,12 @@
+{
+  "batch": 21,
+  "type": "temple-profile",
+  "generated": "2026-07-09",
+  "items": [
+    {
+      "temple": "பழனி",
+      "slug": "palani",
+      "status": "production_foundation"
+    }
+  ]
+}

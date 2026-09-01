@@ -1,0 +1,16 @@
+{
+  "festival_id": "thaipusam",
+  "festival_name_ta": "தைப்பூசம்",
+  "literature_links": [
+    "திருப்புகழ்"
+  ],
+  "recommended_use": "festival reader and daily chanting curation",
+  "review_status": "curation_pending",
+  "candidate_song_ids": [
+    "thiruppugazh-002",
+    "thiruppugazh-010",
+    "thiruppugazh-018",
+    "thiruppugazh-026",
+    "thiruppugazh-034"
+  ]
+}

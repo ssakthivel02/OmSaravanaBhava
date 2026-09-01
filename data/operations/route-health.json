@@ -1,0 +1,32 @@
+{
+  "release": 251,
+  "baselineRelease": 245,
+  "generated": "2026-07-27",
+  "status": "PRODUCTION_VERIFIED",
+  "productionCommit": "a36f1ae17f75714be6cbce54483db8764c229c77",
+  "productionVerifiedAt": "2026-07-27T15:43:09Z",
+  "historicalRegistry": "/data/site-routes.json",
+  "publicationBoundaries": "/data/publication-boundaries.json",
+  "effectiveOverrides": "/data/site-routes-effective-overrides.json",
+  "appendOnlyAdditions": "/data/site-routes-additions.json",
+  "runtimeContract": "/data/effective-route-registry-runtime.json",
+  "consumers": [
+    "/content-status.html",
+    "/discovery.html",
+    "/site-directory.html",
+    "/route-recovery.html",
+    "/content-completeness.html"
+  ],
+  "checks": [
+    "registry-present",
+    "override-present",
+    "append-only-additions-present",
+    "consumer-present",
+    "legacy-global-consumer-absent",
+    "critical-production-routes-http-200"
+  ],
+  "limitations": [
+    "Route totals are calculated in the browser from the explicit registries.",
+    "HTTP verification is point-in-time evidence and is not continuous uptime monitoring."
+  ]
+}

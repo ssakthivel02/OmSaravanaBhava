@@ -1,0 +1,22 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 168,
+  "name": "Vel and Mayil Virutham Source Register",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 4,
+  "modified": [
+    "data/search-index.json",
+    "service-worker.js"
+  ],
+  "added": [
+    "data/vel-mayil-virutham.json",
+    "literature/vel-mayil-virutham.html"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Works registered": "2",
+    "Full text published": "No"
+  }
+}

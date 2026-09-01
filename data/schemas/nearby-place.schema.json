@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://omsaravanabhava.org/schemas/nearby-place.schema.json",
+  "title": "Nearby Place",
+  "type": "object",
+  "required": [
+    "temple_id",
+    "category",
+    "name",
+    "verification_status"
+  ],
+  "properties": {
+    "temple_id": {
+      "type": "string"
+    },
+    "category": {
+      "enum": [
+        "railway_station",
+        "airport",
+        "bus_stand",
+        "parking",
+        "hotel",
+        "restaurant",
+        "other_temple"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "distance_km": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "address": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "verification_status": {
+      "enum": [
+        "verified",
+        "review_required"
+      ]
+    }
+  }
+}

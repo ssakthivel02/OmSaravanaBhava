@@ -1,0 +1,11 @@
+{
+  "routes": [
+    "temple-encyclopedia.html",
+    "temple-detail.html?id=tirupparankundram",
+    "temple-detail.html?id=tiruchendur",
+    "temple-detail.html?id=palani",
+    "temple-detail.html?id=swamimalai",
+    "temple-detail.html?id=tiruttani",
+    "temple-detail.html?id=pazhamudircholai"
+  ]
+}

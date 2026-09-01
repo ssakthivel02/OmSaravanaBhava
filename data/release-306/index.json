@@ -1,0 +1,128 @@
+{
+  "release": 306,
+  "title": "Content Quality Editorial Workspace",
+  "features": [
+    {
+      "title": "Purpose-built interface",
+      "description": "Visual patterns are tailored to this release."
+    },
+    {
+      "title": "Bilingual structured data",
+      "description": "Tamil and English records use explicit schemas."
+    },
+    {
+      "title": "Quality gates",
+      "description": "Validation, deployment and rollback guidance included."
+    }
+  ],
+  "records": [
+    {
+      "id": "content-quality-workspace-01",
+      "title": "Content Quality Editorial Workspace Feature 1",
+      "title_ta": "முருகன் தரத் தொகுதி 1",
+      "summary": "Quality-focused Release 306 record 1.",
+      "category": "Experience",
+      "status": "published",
+      "version": "306.1"
+    },
+    {
+      "id": "content-quality-workspace-02",
+      "title": "Content Quality Editorial Workspace Feature 2",
+      "title_ta": "முருகன் தரத் தொகுதி 2",
+      "summary": "Quality-focused Release 306 record 2.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "306.1"
+    },
+    {
+      "id": "content-quality-workspace-03",
+      "title": "Content Quality Editorial Workspace Feature 3",
+      "title_ta": "முருகன் தரத் தொகுதி 3",
+      "summary": "Quality-focused Release 306 record 3.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "306.1"
+    },
+    {
+      "id": "content-quality-workspace-04",
+      "title": "Content Quality Editorial Workspace Feature 4",
+      "title_ta": "முருகன் தரத் தொகுதி 4",
+      "summary": "Quality-focused Release 306 record 4.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "306.1"
+    },
+    {
+      "id": "content-quality-workspace-05",
+      "title": "Content Quality Editorial Workspace Feature 5",
+      "title_ta": "முருகன் தரத் தொகுதி 5",
+      "summary": "Quality-focused Release 306 record 5.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "306.1"
+    },
+    {
+      "id": "content-quality-workspace-06",
+      "title": "Content Quality Editorial Workspace Feature 6",
+      "title_ta": "முருகன் தரத் தொகுதி 6",
+      "summary": "Quality-focused Release 306 record 6.",
+      "category": "Validation",
+      "status": "published",
+      "version": "306.1"
+    },
+    {
+      "id": "content-quality-workspace-07",
+      "title": "Content Quality Editorial Workspace Feature 7",
+      "title_ta": "முருகன் தரத் தொகுதி 7",
+      "summary": "Quality-focused Release 306 record 7.",
+      "category": "Experience",
+      "status": "published",
+      "version": "306.1"
+    },
+    {
+      "id": "content-quality-workspace-08",
+      "title": "Content Quality Editorial Workspace Feature 8",
+      "title_ta": "முருகன் தரத் தொகுதி 8",
+      "summary": "Quality-focused Release 306 record 8.",
+      "category": "Knowledge",
+      "status": "review_required",
+      "version": "306.1"
+    },
+    {
+      "id": "content-quality-workspace-09",
+      "title": "Content Quality Editorial Workspace Feature 9",
+      "title_ta": "முருகன் தரத் தொகுதி 9",
+      "summary": "Quality-focused Release 306 record 9.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "306.1"
+    },
+    {
+      "id": "content-quality-workspace-10",
+      "title": "Content Quality Editorial Workspace Feature 10",
+      "title_ta": "முருகன் தரத் தொகுதி 10",
+      "summary": "Quality-focused Release 306 record 10.",
+      "category": "Editorial",
+      "status": "published",
+      "version": "306.1"
+    },
+    {
+      "id": "content-quality-workspace-11",
+      "title": "Content Quality Editorial Workspace Feature 11",
+      "title_ta": "முருகன் தரத் தொகுதி 11",
+      "summary": "Quality-focused Release 306 record 11.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "306.1"
+    },
+    {
+      "id": "content-quality-workspace-12",
+      "title": "Content Quality Editorial Workspace Feature 12",
+      "title_ta": "முருகன் தரத் தொகுதி 12",
+      "summary": "Quality-focused Release 306 record 12.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "306.1"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+--- before/source-catalog.html
++++ release183/source-catalog.html
+@@ -0,0 +1,24 @@
++<!doctype html><html lang="ta"><head>
++<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Source Provenance Catalog | Om Saravana Bhava</title>
++<meta name="description" content="Machine-readable and human-readable source catalogue with explicit source type and file provenance.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/source-catalog.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++</head><body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Digital Murugan heritage platform</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Source Provenance Catalog</span></p></nav>
++<section class="card"><h1 class="section-title" lang="ta">மூல ஆதார அட்டவணை</h1><h2>Source Provenance Catalog</h2><p>Machine-readable and human-readable source catalogue with explicit source type and file provenance.</p></section>
++<section class="grid"><article class="card"><h2 lang="ta">திருமுருகாற்றுப்படை</h2><h3>Thirumurugatruppadai</h3><p>Primary Tamil literary text</p><p><code>திருமுருகாற்றுப்படை.docx</code></p></article><article class="card"><h2 lang="ta">கந்தர் கவசங்கள் ஆறு</h2><h3>Six Kandar Kavasams</h3><p>Section inside a mixed user-uploaded Murugan devotional compilation</p><p><code>திருமுருகாற்றுப்படை.docx</code></p></article><article class="card"><h2 lang="ta">அருணகிரிநாதர் அருளிய திருப்புகழ்</h2><h3>Thiruppugazh — Digital Compilation</h3><p>Primary Tamil devotional text</p><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p></article><article class="card"><h2 lang="ta">ஸ்கந்த குரு கவசம்</h2><h3>Skanda Guru Kavasam</h3><p>Skanda Guru Kavasam section inside a mixed user-uploaded Murugan devotional compilation</p><p><code>திருமுருகாற்றுப்படை.docx</code></p></article></section>
++</main>
++<footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body></html>--- before/data/source-catalog.json
++++ release183/data/source-catalog.json
+@@ -0,0 +1,34 @@
++[
++  {
++    "id": "src-thirumurugatruppadai",
++    "titleTa": "திருமுருகாற்றுப்படை",
++    "titleEn": "Thirumurugatruppadai",
++    "sourceType": "Primary Tamil literary text",
++    "fileName": "திருமுருகாற்றுப்படை.docx",
++    "qualityNote": "This uploaded file is treated as a transcription/compilation, not as a critical scholarly edition. Release 147 cites precise internal headings and verse ranges and avoids unsupported historical claims."
++  },
++  {
++    "id": "src-kandar-kavasangal-aaru",
++    "titleTa": "கந்தர் கவசங்கள் ஆறு",
++    "titleEn": "Six Kandar Kavasams",
++    "sourceType": "Section inside a mixed user-uploaded Murugan devotional compilation",
++    "fileName": "திருமுருகாற்றுப்படை.docx",
++    "qualityNote": "The filename identifies the uploaded container, not the literary identity or authorship of every work inside it. This record does not attribute Kavasam literature to Nakkirar or to Thirumurugatruppadai."
++  },
++  {
++    "id": "src-thiruppugazh-valluvar-vallalar-vattam",
++    "titleTa": "அருணகிரிநாதர் அருளிய திருப்புகழ்",
++    "titleEn": "Thiruppugazh — Digital Compilation",
++    "sourceType": "Primary Tamil devotional text",
++    "fileName": "697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf",
++    "qualityNote": "Release 149 publishes only manually checked song texts. OCR-only text and unverified commentary are not published."
++  },
++  {
++    "id": "src-skanda-guru-kavasam-uploaded-compilation",
++    "titleTa": "ஸ்கந்த குரு கவசம்",
++    "titleEn": "Skanda Guru Kavasam",
++    "sourceType": "Skanda Guru Kavasam section inside a mixed user-uploaded Murugan devotional compilation",
++    "fileName": "திருமுருகாற்றுப்படை.docx",
++    "qualityNote": "The container filename does not define this work's authorship. The internal heading attributes Skanda Guru Kavasam to Srimath Sadguru Santhananda Swamigal. Release 151 publishes only the verified opening extract."
++  }
++]
+--- before/service-worker.js
++++ release183/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '182';
++const RELEASE = '183';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -119,7 +119,9 @@
+   "/data/platform-status.json",
+   "/assets/js/desktop-layout.js",
+   "/content-status.html",
+-  "/data/content-status.json"
++  "/data/content-status.json",
++  "/source-catalog.html",
++  "/data/source-catalog.json"
+ ];
+ 
+ self.addEventListener('install', event => {
+--- before/sitemap.xml
++++ release183/sitemap.xml
+@@ -217,4 +217,5 @@
+   <url><loc>https://omsaravanabhava.org/festival-intelligence.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+   <url><loc>https://omsaravanabhava.org/platform.html</loc><lastmod>2026-07-13</lastmod><priority>0.9</priority></url>
+   <url><loc>https://omsaravanabhava.org/content-status.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
++  <url><loc>https://omsaravanabhava.org/source-catalog.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+ </urlset>

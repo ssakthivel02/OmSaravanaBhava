@@ -1,0 +1,338 @@
+[
+  {
+    "id": "palani",
+    "order": 1,
+    "nameTa": "பழனி முருகன் கோவில்",
+    "nameEn": "Palani Murugan Temple",
+    "subtitle": "Arupadai Veedu",
+    "location": "Dindigul, Tamil Nadu",
+    "category": "Arupadai Veedu",
+    "deity": "Dhandayuthapani Swamy",
+    "summary": "Hill temple dedicated to Dhandayuthapani Swamy; one of the six sacred abodes.",
+    "history": "Pazhamudircholai? no, Palani is the third abode of Murugan associated with renunciation and wisdom.",
+    "spiritualMeaning": "Hill temple dedicated to Dhandayuthapani Swamy; one of the six sacred abodes.",
+    "festivals": [
+      "Thai Poosam",
+      "Panguni Uthiram"
+    ],
+    "practices": [
+      "Check current timings before travel",
+      "Carry water for hill temples",
+      "Prefer early morning darshan on festival days",
+      "Respect temple dress and photography rules"
+    ],
+    "quickFacts": [
+      "Hill climb",
+      "Winch/Rope car",
+      "Panchamirtham prasadam"
+    ],
+    "relatedSlokas": [
+      "om-saravana-bhava",
+      "subramanya-gayatri"
+    ],
+    "map": "https://maps.google.com/?q=Palani+Murugan+Temple"
+  },
+  {
+    "id": "tiruchendur",
+    "order": 2,
+    "nameTa": "திருச்செந்தூர் முருகன் கோவில்",
+    "nameEn": "Tiruchendur Murugan Temple",
+    "subtitle": "Senthil Andavar",
+    "location": "Tiruchendur, Thoothukudi, Tamil Nadu",
+    "category": "Arupadai Veedu",
+    "deity": "Senthil Andavar",
+    "summary": "Tiruchendur is the sacred seashore abode of Lord Murugan, associated with victory over Surapadman and the triumph of dharma.",
+    "history": "The temple is traditionally linked with the divine battle against Surapadman. Its ocean-side setting makes it unique among the six abodes and symbolizes courage, purification and divine protection.",
+    "spiritualMeaning": "Tiruchendur represents the power to overcome inner negativity, fear and confusion through faith and righteous action.",
+    "festivals": [
+      "Skanda Sashti",
+      "Avani Festival",
+      "Masi Festival"
+    ],
+    "practices": [
+      "Pray for courage and protection",
+      "Recite Kanda Sashti Kavacham",
+      "Reflect on victory of dharma"
+    ],
+    "quickFacts": [
+      "Seashore temple",
+      "Associated with Surasamharam",
+      "Major Skanda Sashti centre"
+    ],
+    "relatedSlokas": [
+      "kanda-sashti-kavacham",
+      "om-saravana-bhava"
+    ],
+    "map": "https://www.google.com/maps/search/Tiruchendur+Murugan+Temple"
+  },
+  {
+    "id": "swamimalai",
+    "order": 3,
+    "nameTa": "சுவாமிமலை முருகன் கோவில்",
+    "nameEn": "Swamimalai Murugan Temple",
+    "subtitle": "Swaminatha Swamy",
+    "location": "Swamimalai, Thanjavur, Tamil Nadu",
+    "category": "Arupadai Veedu",
+    "deity": "Swaminatha Swamy",
+    "summary": "Swamimalai celebrates Lord Murugan as the divine teacher who explains the meaning of Pranava to Lord Shiva.",
+    "history": "The tradition of Swamimalai presents Murugan as Guru, showing that wisdom is not limited by age or form. The temple inspires learning, humility and respect for knowledge.",
+    "spiritualMeaning": "Swamimalai teaches that spiritual learning requires humility. Even the highest truth must be received with openness.",
+    "festivals": [
+      "Vaikasi Visakam",
+      "Thai Poosam",
+      "Skanda Sashti"
+    ],
+    "practices": [
+      "Pray before study or teaching",
+      "Chant Subramanya Gayatri",
+      "Reflect on Guru principle"
+    ],
+    "quickFacts": [
+      "Guru aspect of Murugan",
+      "Pranava teaching tradition",
+      "Sacred learning centre"
+    ],
+    "relatedSlokas": [
+      "subramanya-gayatri",
+      "om-saravana-bhava"
+    ],
+    "map": "https://www.google.com/maps/search/Swamimalai+Murugan+Temple"
+  },
+  {
+    "id": "thiruparankundram",
+    "order": 4,
+    "nameTa": "திருப்பரங்குன்றம் முருகன் கோவில்",
+    "nameEn": "Thiruparankundram Murugan Temple",
+    "subtitle": "Subramanya Swamy",
+    "location": "Madurai, Tamil Nadu",
+    "category": "Arupadai Veedu",
+    "deity": "Subramanya Swamy",
+    "summary": "Thiruparankundram is traditionally associated with the divine wedding of Lord Murugan and Deivanai.",
+    "history": "This ancient rock-cut shrine near Madurai is celebrated as a sacred place of divine union, duty and auspicious beginnings.",
+    "spiritualMeaning": "The temple reminds devotees that devotion must mature into responsibility, harmony and service.",
+    "festivals": [
+      "Panguni Uthiram",
+      "Skanda Sashti",
+      "Karthigai"
+    ],
+    "practices": [
+      "Pray for family harmony",
+      "Begin new commitments with devotion",
+      "Reflect on duty and grace"
+    ],
+    "quickFacts": [
+      "Rock-cut temple",
+      "Associated with divine wedding",
+      "Near Madurai"
+    ],
+    "relatedSlokas": [
+      "om-saravana-bhava"
+    ],
+    "map": "https://www.google.com/maps/search/Thiruparankundram+Murugan+Temple"
+  },
+  {
+    "id": "thiruthani",
+    "order": 5,
+    "nameTa": "திருத்தணி முருகன் கோவில்",
+    "nameEn": "Thiruthani Murugan Temple",
+    "subtitle": "Thanigai Murugan",
+    "location": "Thiruthani, Tiruvallur, Tamil Nadu",
+    "category": "Arupadai Veedu",
+    "deity": "Thanigai Murugan",
+    "summary": "Thiruthani represents peace after victory and the cooling of anger after battle.",
+    "history": "The hill temple is connected with Lord Murugan's calm and gracious form after the divine battle. It is a place devotees approach for mental peace and strength.",
+    "spiritualMeaning": "Thiruthani teaches that true victory includes inner peace, emotional control and forgiveness.",
+    "festivals": [
+      "Aadi Krithigai",
+      "New Year Padi Pooja",
+      "Skanda Sashti"
+    ],
+    "practices": [
+      "Pray for peace of mind",
+      "Chant Murugan names",
+      "Reflect before reacting"
+    ],
+    "quickFacts": [
+      "Hill shrine",
+      "Peace after victory",
+      "Popular for Krithigai worship"
+    ],
+    "relatedSlokas": [
+      "subramanya-gayatri"
+    ],
+    "map": "https://www.google.com/maps/search/Thiruthani+Murugan+Temple"
+  },
+  {
+    "id": "pazhamudircholai",
+    "order": 6,
+    "nameTa": "பழமுதிர்சோலை முருகன் கோவில்",
+    "nameEn": "Pazhamudircholai Murugan Temple",
+    "subtitle": "Solai Malai Murugan",
+    "location": "Alagar Hills, Madurai, Tamil Nadu",
+    "category": "Arupadai Veedu",
+    "deity": "Solai Malai Murugan",
+    "summary": "Pazhamudircholai is a green hill shrine celebrating Murugan with Valli and Deivanai.",
+    "history": "Surrounded by natural beauty, this shrine represents abundance, devotion and the unity of divine love and wisdom.",
+    "spiritualMeaning": "Pazhamudircholai reminds devotees that spiritual life can be joyful, balanced and rooted in nature.",
+    "festivals": [
+      "Skanda Sashti",
+      "Vaikasi Visakam",
+      "Karthigai"
+    ],
+    "practices": [
+      "Offer gratitude for nature",
+      "Pray for balanced family life",
+      "Read Murugan stories with children"
+    ],
+    "quickFacts": [
+      "Forest hill shrine",
+      "Murugan with Valli and Deivanai",
+      "Near Alagar Kovil"
+    ],
+    "relatedSlokas": [
+      "om-saravana-bhava"
+    ],
+    "map": "https://www.google.com/maps/search/Pazhamudircholai+Murugan+Temple"
+  },
+  {
+    "id": "thiruchendur",
+    "order": 2,
+    "nameTa": "திருச்செந்தூர் சுப்பிரமணிய சுவாமி",
+    "nameEn": "Tiruchendur Subramaniya Swamy Temple",
+    "subtitle": "Arupadai Veedu",
+    "location": "Thoothukudi, Tamil Nadu",
+    "category": "Arupadai Veedu",
+    "deity": "Senthil Andavar",
+    "summary": "One of the six abodes, uniquely located beside the sea.",
+    "history": "Seashore temple where Murugan is worshipped after victory over Surapadman.",
+    "spiritualMeaning": "One of the six abodes, uniquely located beside the sea.",
+    "festivals": [
+      "Kanda Sashti",
+      "Masi Festival"
+    ],
+    "practices": [
+      "Check current timings before travel",
+      "Carry water for hill temples",
+      "Prefer early morning darshan on festival days",
+      "Respect temple dress and photography rules"
+    ],
+    "quickFacts": [
+      "Sea-side darshan",
+      "Nazhi Kinaru",
+      "Kanda Sashti festival"
+    ],
+    "relatedSlokas": [
+      "kanda-sashti-kavacham",
+      "om-saravana-bhava"
+    ],
+    "map": "https://maps.google.com/?q=Tiruchendur+Subramaniya+Swamy+Temple"
+  },
+  {
+    "id": "vadapalani",
+    "nameTa": "Vadapalani முருகன் கோவில்",
+    "nameEn": "Vadapalani Murugan Temple",
+    "subtitle": "Regional Temple",
+    "location": "Kanchipuram, Tamil Nadu",
+    "category": "Regional Temple",
+    "summary": "A devotional Murugan temple with local history and community worship traditions.",
+    "history": "Vadapalani is a revered Murugan shrine known for devotion, local festivals, and Tamil spiritual heritage.",
+    "spiritualMeaning": "A devotional Murugan temple with local history and community worship traditions.",
+    "festivals": [
+      "Krittikai",
+      "Skanda Sashti"
+    ],
+    "practices": [
+      "Check current timings before travel",
+      "Carry water for hill temples",
+      "Prefer early morning darshan on festival days",
+      "Respect temple dress and photography rules"
+    ],
+    "quickFacts": [
+      "Murugan darshan",
+      "Local festival",
+      "Family prayer"
+    ],
+    "map": "https://maps.google.com/?q=Vadapalani+Murugan+Temple"
+  },
+  {
+    "id": "vayalur",
+    "nameTa": "Vayalur முருகன் கோவில்",
+    "nameEn": "Vayalur Murugan Temple",
+    "subtitle": "Regional Temple",
+    "location": "Nagapattinam, Tamil Nadu",
+    "category": "Regional Temple",
+    "summary": "A devotional Murugan temple with local history and community worship traditions.",
+    "history": "Vayalur is a revered Murugan shrine known for devotion, local festivals, and Tamil spiritual heritage.",
+    "spiritualMeaning": "A devotional Murugan temple with local history and community worship traditions.",
+    "festivals": [
+      "Krittikai",
+      "Skanda Sashti"
+    ],
+    "practices": [
+      "Check current timings before travel",
+      "Carry water for hill temples",
+      "Prefer early morning darshan on festival days",
+      "Respect temple dress and photography rules"
+    ],
+    "quickFacts": [
+      "Murugan darshan",
+      "Local festival",
+      "Family prayer"
+    ],
+    "map": "https://maps.google.com/?q=Vayalur+Murugan+Temple"
+  },
+  {
+    "id": "marudamalai",
+    "nameTa": "Marudamalai முருகன் கோவில்",
+    "nameEn": "Marudamalai Murugan Temple",
+    "subtitle": "Regional Temple",
+    "location": "Chennai, Tamil Nadu",
+    "category": "Regional Temple",
+    "summary": "A devotional Murugan temple with local history and community worship traditions.",
+    "history": "Marudamalai is a revered Murugan shrine known for devotion, local festivals, and Tamil spiritual heritage.",
+    "spiritualMeaning": "A devotional Murugan temple with local history and community worship traditions.",
+    "festivals": [
+      "Krittikai",
+      "Skanda Sashti"
+    ],
+    "practices": [
+      "Check current timings before travel",
+      "Carry water for hill temples",
+      "Prefer early morning darshan on festival days",
+      "Respect temple dress and photography rules"
+    ],
+    "quickFacts": [
+      "Murugan darshan",
+      "Local festival",
+      "Family prayer"
+    ],
+    "map": "https://maps.google.com/?q=Marudamalai+Murugan+Temple"
+  },
+  {
+    "id": "thirupparamkundram",
+    "nameTa": "திருப்பரங்குன்றம் முருகன் கோவில்",
+    "nameEn": "Thirupparankundram Murugan Temple",
+    "subtitle": "Arupadai Veedu",
+    "location": "Madurai, Tamil Nadu",
+    "category": "Arupadai Veedu",
+    "summary": "One of the earliest abodes, known for cave architecture.",
+    "history": "Ancient rock-cut temple associated with Murugan and Deivanai marriage.",
+    "spiritualMeaning": "One of the earliest abodes, known for cave architecture.",
+    "festivals": [
+      "Panguni Uthiram",
+      "Skanda Sashti"
+    ],
+    "practices": [
+      "Check current timings before travel",
+      "Carry water for hill temples",
+      "Prefer early morning darshan on festival days",
+      "Respect temple dress and photography rules"
+    ],
+    "quickFacts": [
+      "Rock-cut architecture",
+      "Marriage legend",
+      "Madurai heritage"
+    ],
+    "map": "https://maps.google.com/?q=Thirupparankundram+Murugan+Temple"
+  }
+]

@@ -1,0 +1,10 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//OmSaravanaBhava//Festival//EN
+BEGIN:VEVENT
+UID:thai-poosam@omsaravanabhava.org
+SUMMARY:Thai Poosam
+DESCRIPTION:Murugan receives the divine Vel; major pilgrimage and kavadi devotion.
+DTSTART;VALUE=DATE:20260101
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,33 @@
+{
+  "batch": 25,
+  "type": "ai-relationship-graph",
+  "nodes": [
+    {
+      "id": "work-5",
+      "label": "கந்தர் சஷ்டி கவசம்",
+      "kind": "literature"
+    },
+    {
+      "id": "temple-5",
+      "label": "பழமுதிர்சோலை",
+      "kind": "temple"
+    },
+    {
+      "id": "festival-5",
+      "label": "கார்த்திகை தீபம்",
+      "kind": "festival"
+    }
+  ],
+  "edges": [
+    {
+      "from": "work-5",
+      "to": "temple-5",
+      "relationship": "linked_to"
+    },
+    {
+      "from": "work-5",
+      "to": "festival-5",
+      "relationship": "associated_with"
+    }
+  ]
+}

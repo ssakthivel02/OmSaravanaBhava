@@ -1,0 +1,51 @@
+[
+  {
+    "path": ".github/workflows/deployment-conformance.yml",
+    "push_trigger": true,
+    "pull_request_trigger": true,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/effective-route-consumers.yml",
+    "push_trigger": true,
+    "pull_request_trigger": true,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/operations-observability.yml",
+    "push_trigger": true,
+    "pull_request_trigger": true,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/production-baseline.yml",
+    "push_trigger": true,
+    "pull_request_trigger": true,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/repository-hygiene.yml",
+    "push_trigger": true,
+    "pull_request_trigger": true,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/repository-integrity.yml",
+    "push_trigger": true,
+    "pull_request_trigger": true,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  },
+  {
+    "path": ".github/workflows/repository-quality-audit.yml",
+    "push_trigger": true,
+    "pull_request_trigger": false,
+    "workflow_dispatch": true,
+    "checkout_v4": true
+  }
+]

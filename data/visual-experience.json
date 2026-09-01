@@ -1,0 +1,28 @@
+{
+  "release": 245,
+  "theme": "premium-murugan-devotional",
+  "heroAsset": "/assets/art/murugan-mayil-hero.svg",
+  "principles": [
+    "Tamil-first identity",
+    "source-aware navigation",
+    "accessible motion",
+    "same-origin assets",
+    "no tracking"
+  ],
+  "motion": {
+    "reducedMotionHonoured": true,
+    "pointerEffectsFinePointerOnly": true,
+    "scrollReveal": true,
+    "parallaxMaximumPixels": 26
+  },
+  "assets": [
+    "murugan-mayil-hero.svg",
+    "temple-silhouette.svg",
+    "peacock-feather-field.svg",
+    "sacred-lotus-pattern.svg",
+    "vel-radiance.svg",
+    "cloud-layer.svg",
+    "star-particles.svg"
+  ],
+  "contentBoundary": "Presentation only; no devotional text or publication-status claims are changed."
+}

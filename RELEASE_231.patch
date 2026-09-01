@@ -1,0 +1,1560 @@
+diff --git a/.github/workflows/release-231-integrity.yml b/.github/workflows/release-231-integrity.yml
+new file mode 100644
+index 0000000000000000000000000000000000000000..c67f2811766fff12a2b3d98ac04f0e416319b5a7
+--- /dev/null
++++ b/.github/workflows/release-231-integrity.yml
+@@ -0,0 +1,84 @@
++name: Release 231 Canonical Publication Status Integrity
++
++on:
++  push:
++    branches: [main]
++    paths:
++      - "content-status.html"
++      - "discovery.html"
++      - "site-directory.html"
++      - "data/content-status.json"
++      - "data/publication-boundaries.json"
++      - "assets/css/route-status-reconciliation.css"
++      - "assets/js/content-status-audit.mjs"
++      - "assets/js/route-status-reconciliation.js"
++      - "service-worker.js"
++      - "tests/route-status-reconciliation.test.mjs"
++      - "tools/release_231_validate.py"
++      - "manifest-release-231.json"
++      - "RELEASE_231_*"
++      - ".github/workflows/release-231-integrity.yml"
++  pull_request:
++    paths:
++      - "content-status.html"
++      - "discovery.html"
++      - "site-directory.html"
++      - "data/content-status.json"
++      - "data/publication-boundaries.json"
++      - "assets/css/route-status-reconciliation.css"
++      - "assets/js/content-status-audit.mjs"
++      - "assets/js/route-status-reconciliation.js"
++      - "service-worker.js"
++      - "tests/route-status-reconciliation.test.mjs"
++      - "tools/release_231_validate.py"
++      - "manifest-release-231.json"
++      - "RELEASE_231_*"
++      - ".github/workflows/release-231-integrity.yml"
++  workflow_dispatch:
++
++permissions:
++  contents: read
++
++concurrency:
++  group: release-231-status-integrity-${{ github.ref }}
++  cancel-in-progress: true
++
++jobs:
++  validate:
++    runs-on: ubuntu-latest
++    timeout-minutes: 15
++    steps:
++      - name: Check out repository
++        uses: actions/checkout@v4
++
++      - name: Set up Node.js
++        uses: actions/setup-node@v4
++        with:
++          node-version: "22"
++
++      - name: Set up Python
++        uses: actions/setup-python@v5
++        with:
++          python-version: "3.12"
++
++      - name: Validate JavaScript syntax
++        run: |
++          node --check assets/js/route-status-reconciliation.js
++          node --check assets/js/content-status-audit.mjs
++          node --check service-worker.js
++
++      - name: Run Release 231 tests
++        run: node --test tests/route-status-reconciliation.test.mjs
++
++      - name: Run repository-mode Release 231 validator
++        run: |
++          python tools/release_231_validate.py             --root .             --report artifacts/release-231-repository-validation.json
++
++      - name: Upload validation evidence
++        if: always()
++        uses: actions/upload-artifact@v4
++        with:
++          name: release-231-canonical-status-evidence
++          path: artifacts/release-231-repository-validation.json
++          if-no-files-found: warn
++          retention-days: 30
+diff --git a/.github/workflows/release-231-production-smoke.yml b/.github/workflows/release-231-production-smoke.yml
+new file mode 100644
+index 0000000000000000000000000000000000000000..ee8b42af0c3acab0e93e8b551e429978b5b36bba
+--- /dev/null
++++ b/.github/workflows/release-231-production-smoke.yml
+@@ -0,0 +1,83 @@
++name: Release 231 Production Status Propagation Smoke
++
++on:
++  workflow_dispatch:
++  schedule:
++    - cron: "43 2 * * *"
++  workflow_run:
++    workflows: ["pages-build-deployment"]
++    types: [completed]
++
++permissions:
++  contents: read
++
++concurrency:
++  group: release-231-production-status-smoke
++  cancel-in-progress: true
++
++jobs:
++  smoke:
++    if: >-
++      github.event_name != 'workflow_run' ||
++      github.event.workflow_run.conclusion == 'success'
++    runs-on: ubuntu-latest
++    timeout-minutes: 15
++    steps:
++      - name: Verify deployed Release 231 assets and consumers
++        shell: bash
++        run: |
++          python - <<'PY'
++          import json
++          import sys
++          import time
++          import urllib.request
++
++          checks = [
++              ("https://omsaravanabhava.org/content-status.html", 'data-release="231"'),
++              ("https://omsaravanabhava.org/discovery.html", 'data-release="231"'),
++              ("https://omsaravanabhava.org/site-directory.html", 'data-release="231"'),
++              ("https://omsaravanabhava.org/assets/js/route-status-reconciliation.js", "const RELEASE = 231;"),
++              ("https://omsaravanabhava.org/assets/css/route-status-reconciliation.css", "Release 231"),
++              ("https://omsaravanabhava.org/assets/js/content-status-audit.mjs", "export const RELEASE = 231;"),
++              ("https://omsaravanabhava.org/data/content-status.json", '"mode": "runtime-derived-effective"'),
++              ("https://omsaravanabhava.org/data/publication-boundaries.json", '"release": 231'),
++              ("https://omsaravanabhava.org/manifest-release-231.json", '"release": 231'),
++              ("https://omsaravanabhava.org/service-worker.js", '"/assets/js/route-status-reconciliation.js"'),
++          ]
++
++          results = []
++          for url, marker in checks:
++              passed = False
++              status = None
++              error = ""
++              for _ in range(10):
++                  try:
++                      request = urllib.request.Request(
++                          url,
++                          headers={
++                              "User-Agent": "OmSaravanaBhava-Release-231-Smoke/1.0",
++                              "Cache-Control": "no-cache",
++                          },
++                      )
++                      with urllib.request.urlopen(request, timeout=20) as response:
++                          status = response.status
++                          text = response.read().decode("utf-8", errors="replace")
++                      if status == 200 and marker in text:
++                          passed = True
++                          break
++                      error = f"HTTP {status}; marker absent"
++                  except Exception as exc:
++                      error = str(exc)
++                  time.sleep(15)
++              results.append({
++                  "url": url,
++                  "status": status,
++                  "marker": marker,
++                  "passed": passed,
++                  "error": "" if passed else error,
++              })
++
++          print(json.dumps(results, indent=2, ensure_ascii=False))
++          if any(not item["passed"] for item in results):
++              sys.exit(1)
++          PY
+diff --git a/assets/css/route-status-reconciliation.css b/assets/css/route-status-reconciliation.css
+new file mode 100644
+index 0000000000000000000000000000000000000000..1e6069c733344de505aa1aab8c98e6b2f74b7084
+--- /dev/null
++++ b/assets/css/route-status-reconciliation.css
+@@ -0,0 +1,35 @@
++/* Release 231 — canonical publication-status propagation. */
++.route-status-reconciled {
++  border-color: var(--orange);
++  background: rgba(244, 156, 44, 0.11);
++  color: var(--red);
++  font-weight: 900;
++}
++
++html[data-route-status-policy="fallback"] .route-status-reconciled {
++  display: none;
++}
++
++html[data-route-status-policy="fallback"] body::before {
++  content: "Publication-status reconciliation is temporarily unavailable; base route labels are shown.";
++  display: block;
++  padding: 0.65rem 1rem;
++  border-bottom: 1px solid var(--line);
++  background: rgba(244, 156, 44, 0.14);
++  color: inherit;
++  font-weight: 800;
++  text-align: center;
++}
++
++@media (prefers-reduced-motion: reduce) {
++  .route-status-reconciled {
++    transition: none;
++  }
++}
++
++@media print {
++  .route-status-reconciled {
++    border: 1px solid currentColor;
++    background: transparent;
++  }
++}
+diff --git a/assets/js/content-status-audit.mjs b/assets/js/content-status-audit.mjs
+index e68d8cab6a57ecffa36218041d4318a9c43b3fc3..d2546b002395f38be6cc6f22953bfcaebf60f9c2 100644
+--- a/assets/js/content-status-audit.mjs
++++ b/assets/js/content-status-audit.mjs
+@@ -1,4 +1,4 @@
+-export const RELEASE = 230;
++export const RELEASE = 231;
+ export const CONFIG_PATH = '/data/content-status.json';
+ export const ROUTES_PATH = '/data/site-routes.json';
+ export const BOUNDARIES_PATH = '/data/publication-boundaries.json';
+@@ -290,7 +290,7 @@ const renderRecord = (record, evidence) => {
+   comparison.className = 'content-status-comparison';
+   const declared = document.createElement('div');
+   declared.className = 'content-status-state';
+-  createText(declared, 'span', 'Route registry');
++  createText(declared, 'span', 'Effective route status');
+   createText(declared, 'strong', record.declaredStatus);
+   comparison.appendChild(declared);
+   createText(comparison, 'span', '→', 'content-status-arrow');
+@@ -439,7 +439,7 @@ export const initialiseContentStatusAudit = async ({
+       });
+ 
+       message.textContent =
+-        `Registry loaded. ${summary.mismatches} audited route label${summary.mismatches === 1 ? '' : 's'} differ from verified page scope. Checking same-origin evidence…`;
++        `Canonical registry loaded. ${summary.mismatches} effective conflict${summary.mismatches === 1 ? '' : 's'} remain. Checking same-origin evidence…`;
+       render();
+ 
+       const evidence = await verifyAllPageEvidence(
+@@ -453,7 +453,7 @@ export const initialiseContentStatusAudit = async ({
+         item => item.available && item.markerFound && item.robotsFound
+       ).length;
+       message.textContent =
+-        `Audit ready: ${summary.audited} records, ${summary.mismatches} registry mismatches, ${confirmed}/${evidence.length} page declarations confirmed in this request.`;
++        `Audit ready: ${summary.audited} records, ${summary.mismatches} effective conflicts, ${confirmed}/${evidence.length} page declarations confirmed in this request.`;
+       render();
+       documentRef.documentElement.dataset.contentStatusRelease =
+         String(RELEASE);
+diff --git a/assets/js/route-status-reconciliation.js b/assets/js/route-status-reconciliation.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..11eb04d4e5c0a5aaf9cbeac07aaad34458ec39b3
+--- /dev/null
++++ b/assets/js/route-status-reconciliation.js
+@@ -0,0 +1,230 @@
++(() => {
++  'use strict';
++
++  const RELEASE = 231;
++  const ROUTES_PATH = '/data/site-routes.json';
++  const BOUNDARIES_PATH = '/data/publication-boundaries.json';
++  const CANONICAL_ORIGIN = 'https://omsaravanabhava.org';
++
++  const normaliseRoute = value => {
++    const raw = String(value ?? '').trim();
++    if (!raw) return '';
++    try {
++      const base = globalThis.location?.origin || CANONICAL_ORIGIN;
++      const url = new URL(raw, `${base}/`);
++      return url.origin === base ? url.pathname : '';
++    } catch {
++      return '';
++    }
++  };
++
++  const buildBoundaryMap = payload => new Map(
++    (Array.isArray(payload?.records) ? payload.records : [])
++      .map(record => [normaliseRoute(record?.route), record])
++      .filter(([route]) => route)
++  );
++
++  const applyCanonicalStatuses = (routesPayload, boundariesPayload) => {
++    const source = routesPayload && typeof routesPayload === 'object'
++      ? routesPayload
++      : {};
++    const boundaries = buildBoundaryMap(boundariesPayload);
++    let reconciledCount = 0;
++    const routes = (Array.isArray(source.routes) ? source.routes : [])
++      .map(record => {
++        if (!record || typeof record !== 'object') return record;
++        const path = normaliseRoute(record.path);
++        const boundary = boundaries.get(path);
++        if (!boundary) return {...record};
++        reconciledCount += 1;
++        return {
++          ...record,
++          status: String(boundary.verifiedStatus || record.status || ''),
++          summary: String(boundary.contentScope || record.summary || ''),
++          publicationStatusPrevious: String(
++            boundary.declaredRouteStatus || record.status || ''
++          ),
++          publicationStatusCanonical: String(
++            boundary.verifiedStatus || record.status || ''
++          ),
++          publicationStatusSource: BOUNDARIES_PATH,
++          publicationBoundaryRelease: Number(
++            boundariesPayload?.release
++          ) || 0,
++          readingEligible: boundary.readingEligible !== false
++        };
++      });
++    return {
++      ...source,
++      effectiveRelease: RELEASE,
++      publicationStatusRelease: Number(boundariesPayload?.release) || 0,
++      reconciliation: {
++        release: RELEASE,
++        source: BOUNDARIES_PATH,
++        reconciledCount,
++        historicalRegistryPreserved: true
++      },
++      routes
++    };
++  };
++
++  const shouldReconcileRequest = input => {
++    try {
++      const raw = typeof input === 'string' || input instanceof URL
++        ? String(input)
++        : String(input?.url || '');
++      const base = globalThis.location?.origin || CANONICAL_ORIGIN;
++      const url = new URL(raw, `${base}/`);
++      return url.origin === base && url.pathname === ROUTES_PATH;
++    } catch {
++      return false;
++    }
++  };
++
++  const transitionLabel = record => {
++    const previous = String(record?.declaredRouteStatus || '').trim();
++    const canonical = String(record?.verifiedStatus || '').trim();
++    if (!canonical) return '';
++    return previous && previous !== canonical
++      ? `${previous} → ${canonical}`
++      : canonical;
++  };
++
++  const api = Object.freeze({
++    RELEASE,
++    ROUTES_PATH,
++    BOUNDARIES_PATH,
++    CANONICAL_ORIGIN,
++    normaliseRoute,
++    buildBoundaryMap,
++    applyCanonicalStatuses,
++    shouldReconcileRequest,
++    transitionLabel
++  });
++  globalThis.OSBRouteStatusPolicy = api;
++
++  if (typeof window === 'undefined' || typeof globalThis.fetch !== 'function') {
++    return;
++  }
++
++  const originalFetch = globalThis.fetch.bind(globalThis);
++  const boundaryPromise = originalFetch(BOUNDARIES_PATH, {
++    cache: 'no-store',
++    credentials: 'same-origin',
++    headers: {'Accept': 'application/json'}
++  }).then(response => {
++    if (!response.ok) {
++      throw new Error(`${BOUNDARIES_PATH}: HTTP ${response.status}`);
++    }
++    return response.json();
++  });
++
++  globalThis.fetch = async (input, init) => {
++    if (!shouldReconcileRequest(input)) {
++      return originalFetch(input, init);
++    }
++    const response = await originalFetch(input, init);
++    if (!response.ok) return response;
++    try {
++      const [routesPayload, boundariesPayload] = await Promise.all([
++        response.clone().json(),
++        boundaryPromise
++      ]);
++      if (Number(boundariesPayload?.release) !== RELEASE) {
++        throw new Error('Publication boundary release identity mismatch');
++      }
++      const effective = applyCanonicalStatuses(
++        routesPayload,
++        boundariesPayload
++      );
++      const headers = new Headers(response.headers);
++      headers.delete('content-length');
++      headers.set('content-type', 'application/json; charset=utf-8');
++      headers.set('x-osb-publication-status-release', String(RELEASE));
++      return new Response(
++        `${JSON.stringify(effective, null, 2)}\n`,
++        {
++          status: response.status,
++          statusText: response.statusText,
++          headers
++        }
++      );
++    } catch (error) {
++      console.warn(
++        '[OmSaravanaBhava] Canonical publication status unavailable',
++        error
++      );
++      document.documentElement.dataset.routeStatusPolicy = 'fallback';
++      return response;
++    }
++  };
++
++  const annotateCards = boundaryMap => {
++    const selectors = [
++      '#discoveryResults article',
++      '#routeGrid article',
++      '#contentStatusAudit article'
++    ];
++    document.querySelectorAll(selectors.join(','))
++      .forEach(article => {
++        if (article.dataset.routeStatusAnnotated === 'true') return;
++        const routeLink = [...article.querySelectorAll('a[href]')]
++          .find(link => {
++            const path = normaliseRoute(link.getAttribute('href'));
++            return boundaryMap.has(path);
++          });
++        if (!routeLink) return;
++        const route = normaliseRoute(routeLink.getAttribute('href'));
++        const boundary = boundaryMap.get(route);
++        const host = article.querySelector(
++          '.discovery-route-meta, .route-meta, .content-status-labels'
++        );
++        if (!host || !boundary) return;
++        const badge = document.createElement('span');
++        badge.className = 'pill route-status-reconciled';
++        badge.textContent = `Canonical: ${boundary.verifiedStatus}`;
++        badge.title = `Publication status ${transitionLabel(boundary)}`;
++        badge.setAttribute(
++          'aria-label',
++          `Canonical publication status ${boundary.verifiedStatus}`
++        );
++        host.appendChild(badge);
++        article.dataset.routeStatusAnnotated = 'true';
++        article.dataset.canonicalPublicationStatus =
++          String(boundary.verifiedStatus || '');
++      });
++  };
++
++  const initialiseAnnotations = async () => {
++    try {
++      const payload = await boundaryPromise;
++      const boundaryMap = buildBoundaryMap(payload);
++      const render = () => annotateCards(boundaryMap);
++      render();
++      const observer = new MutationObserver(render);
++      observer.observe(document.body, {childList: true, subtree: true});
++      document.documentElement.dataset.routeStatusPolicy = 'ready';
++      document.documentElement.dataset.routeStatusRelease = String(RELEASE);
++      globalThis.dispatchEvent(new CustomEvent(
++        'osb:publication-status-ready',
++        {detail: {release: RELEASE, records: boundaryMap.size}}
++      ));
++    } catch (error) {
++      console.warn(
++        '[OmSaravanaBhava] Publication status annotations unavailable',
++        error
++      );
++      document.documentElement.dataset.routeStatusPolicy = 'fallback';
++    }
++  };
++
++  if (document.readyState === 'loading') {
++    document.addEventListener(
++      'DOMContentLoaded',
++      initialiseAnnotations,
++      {once: true}
++    );
++  } else {
++    initialiseAnnotations();
++  }
++})();
+diff --git a/content-status.html b/content-status.html
+index 200506da242310cefa46f52c101df9bf74e07412..d7de6d9611a713c30ae7caaedb9653af67de2455 100644
+--- a/content-status.html
++++ b/content-status.html
+@@ -13,13 +13,15 @@
+ <meta property="og:url" content="https://omsaravanabhava.org/content-status.html">
+ <link rel="stylesheet" href="assets/css/osb44.css">
+ <link rel="stylesheet" href="assets/css/content-status-audit.css">
++<link rel="stylesheet" href="assets/css/route-status-reconciliation.css">
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+ <meta name="theme-color" content="#a51d17">
+ <link rel="manifest" href="manifest.json">
++<script src="assets/js/route-status-reconciliation.js"></script>
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script type="module" src="assets/js/content-status-audit.mjs"></script>
+ </head>
+-<body data-release="230">
++<body data-release="231">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Source-responsible publication boundary audit</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+@@ -31,14 +33,14 @@
+ 
+ <section class="card content-status-hero">
+ <div>
+-<span class="pill">Release 230 · Runtime-derived editorial integrity</span>
++<span class="pill">Release 231 · Canonical publication-status propagation</span>
+ <h1 class="section-title" lang="ta">உள்ளடக்க நிலை</h1>
+ <h2>Content Publication Status and Boundary Audit</h2>
+-<p>Compare the public route directory with explicit page and data declarations. Counts are calculated from current static registries instead of copied into this page as permanent claims.</p>
++<p>Review effective canonical publication states across the route directory, page declarations and boundary registry. Historical labels remain preserved for audit traceability.</p>
+ </div>
+ <div class="content-status-metric"><strong id="contentStatusRoutes">0</strong><span>registered routes</span></div>
+ <div class="content-status-metric"><strong id="contentStatusAudited">0</strong><span>audited literature routes</span></div>
+-<div class="content-status-metric"><strong id="contentStatusMismatch">0</strong><span>status mismatches</span></div>
++<div class="content-status-metric"><strong id="contentStatusMismatch">0</strong><span>effective conflicts</span></div>
+ <div class="content-status-metric"><strong id="contentStatusExcluded">0</strong><span>source-only routes excluded</span></div>
+ </section>
+ 
+@@ -46,7 +48,7 @@
+ 
+ <section class="card" aria-labelledby="contentStatusCountsHeading">
+ <div class="content-status-heading-row">
+-<div><span class="pill">Current route registry</span><h2 id="contentStatusCountsHeading">Derived status totals</h2></div>
++<div><span class="pill">Effective canonical registry</span><h2 id="contentStatusCountsHeading">Reconciled status totals</h2></div>
+ <button id="contentStatusRefresh" class="btn secondary" type="button">Refresh audit</button>
+ </div>
+ <div id="contentStatusCounts" class="content-status-count-grid" aria-live="polite">
+@@ -58,7 +60,7 @@
+ <label for="contentStatusFilter">Audit state
+ <select id="contentStatusFilter">
+ <option value="all">All audited records</option>
+-<option value="mismatch">Registry mismatches</option>
++<option value="mismatch">Effective conflicts</option>
+ <option value="aligned">Aligned records</option>
+ <option value="reading-excluded">Excluded from reading</option>
+ </select>
+@@ -81,6 +83,7 @@
+ <section class="card content-status-boundary">
+ <h2>Interpretation boundary</h2>
+ <ul>
++<li>The Release 231 overlay converts historical generic route labels into the verified canonical status before public discovery and directory rendering.</li>
+ <li><strong>Published</strong> must not be read as “complete work” when the page itself states that only a bounded extract or structural register exists.</li>
+ <li><strong>Partial reviewed</strong> means only the displayed extract has been reviewed; it is not a completeness claim.</li>
+ <li><strong>Source register</strong> records identity, authorship, structure or source status without presenting a verified complete text.</li>
+diff --git a/data/content-status.json b/data/content-status.json
+index 3c38f1861cb49b3f7d0f62b4633df5eae5c5e486..12fd36a8c2ea32f50c38159960fb64e83eefa6fb 100644
+--- a/data/content-status.json
++++ b/data/content-status.json
+@@ -1,16 +1,20 @@
+ {
+-  "release": 230,
++  "release": 231,
+   "generated": "2026-07-15",
+-  "baseCommit": "292f9f8b2a481f1aab43db2e75d31ccf0a0ffd81",
+-  "mode": "runtime-derived",
++  "baseCommit": "2cec1d02d81aa3251da131667fabd4d24a98147a",
++  "mode": "runtime-derived-effective",
+   "routeRegistryPath": "/data/site-routes.json",
+   "boundaryRegistryPath": "/data/publication-boundaries.json",
+-  "description": "Status totals are derived from the current route registry at runtime. Audited literature mismatches are reported separately; no stale hard-coded totals are presented as current.",
++  "description": "Status totals are derived from the current route registry after the canonical publication-boundary overlay is applied. Historical labels remain visible in the boundary registry rather than being erased.",
+   "hardCodedStatusCounts": false,
+   "pageEvidenceChecks": true,
+   "limitations": [
+-    "The browser page can verify same-origin files and text markers but cannot certify editorial scholarship.",
+-    "Network or cache failures may make page-evidence checks temporarily unavailable.",
++    "The browser page validates effective same-origin metadata; it cannot certify editorial scholarship.",
++    "Historical route labels are retained in the boundary registry for audit traceability.",
++    "Network or cache failures may temporarily prevent reconciliation and page-evidence checks.",
+     "GitHub Actions status is not inferred from this static dashboard."
+-  ]
++  ],
++  "reconciliationScript": "/assets/js/route-status-reconciliation.js",
++  "effectiveStatusSource": "/data/publication-boundaries.json",
++  "historicalRouteRegistryPreserved": true
+ }
+diff --git a/data/publication-boundaries.json b/data/publication-boundaries.json
+index 8c23f48d820805a1cc153210edc62b54376fa880..a61300d64851acffc6837ff7ac01ffbf94bbf7b5 100644
+--- a/data/publication-boundaries.json
++++ b/data/publication-boundaries.json
+@@ -1,9 +1,9 @@
+ {
+-  "release": 230,
++  "release": 231,
+   "generated": "2026-07-15",
+-  "baseCommit": "292f9f8b2a481f1aab43db2e75d31ccf0a0ffd81",
+-  "title": "Audited Literature Publication Boundaries",
+-  "scope": "Crosswalk between public route-directory labels, page declarations and canonical literature data. This registry does not add or replace devotional text.",
++  "baseCommit": "2cec1d02d81aa3251da131667fabd4d24a98147a",
++  "title": "Canonical Literature Publication Status Policy",
++  "scope": "Canonical publication-status overlay for audited literature routes. It preserves the historical route-directory label while propagating the verified page scope to public discovery and directory consumers.",
+   "statusVocabulary": {
+     "partial-reviewed": "A bounded reviewed extract is available; the complete work is not claimed.",
+     "source-register": "Bibliographic, structural or authorship information is available without verified complete verse text.",
+@@ -116,9 +116,24 @@
+     }
+   ],
+   "limitations": [
+-    "The route registry is not silently rewritten by this release; mismatches are displayed explicitly.",
+-    "Reading eligibility is enforced through the existing Reading Workspace configuration and audited boundary overlay.",
+-    "A verified status describes the current page scope, not the historical completeness of the underlying literary work.",
+-    "No modern translation, commentary or copyrighted recording is introduced."
+-  ]
++    "The base route registry remains a historical directory snapshot; public consumers receive a canonical same-origin overlay.",
++    "Only the eight evidence-backed literature routes in this registry are reconciled.",
++    "A canonical status describes the current page scope and does not assert completeness of the underlying literary work.",
++    "No modern translation, commentary, copyrighted recording or missing verse is introduced.",
++    "If the boundary registry cannot be loaded, consumers fall back to the unmodified route registry and expose a warning state."
++  ],
++  "propagation": {
++    "strategy": "same-origin route-registry response reconciliation",
++    "routeRegistryPath": "/data/site-routes.json",
++    "boundaryRegistryPath": "/data/publication-boundaries.json",
++    "consumerRoutes": [
++      "/content-status.html",
++      "/discovery.html",
++      "/site-directory.html"
++    ],
++    "consumerScript": "/assets/js/route-status-reconciliation.js",
++    "historicalRouteLabelsPreserved": true,
++    "effectiveStatusField": "verifiedStatus",
++    "summaryField": "contentScope"
++  }
+ }
+diff --git a/discovery.html b/discovery.html
+index 21e144bf059b98fd512fcba6f810c82418bc7b73..9a5186a9c82a24ce77065ae331a5ca4a392b960e 100644
+--- a/discovery.html
++++ b/discovery.html
+@@ -9,15 +9,17 @@
+ <link rel="canonical" href="https://omsaravanabhava.org/discovery.html">
+ <link rel="stylesheet" href="assets/css/osb44.css">
+ <link rel="stylesheet" href="assets/css/discovery-workspace.css">
++<link rel="stylesheet" href="assets/css/route-status-reconciliation.css">
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+ <meta name="theme-color" content="#a51d17">
+ <link rel="manifest" href="manifest.json">
++<script src="assets/js/route-status-reconciliation.js"></script>
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script type="module" src="assets/js/discovery-workspace.mjs"></script>
+ </head>
+-<body data-release="228">
++<body data-release="231">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+-<div class="top">🛕 ஓம் சரவணபவ · Local published-route discovery workspace</div>
++<div class="top">🛕 ஓம் சரவணபவ · Canonical publication-status discovery workspace</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+ <div class="links"><a href="discovery.html" aria-current="page">Discover</a><a href="reading-workspace.html">Reading Workspace</a><a href="reading-notes.html">Notes</a><a href="personal-library.html">My Library</a><a href="devotional-collections.html">Collections</a><a href="devotional-practice-planner.html">Planner</a><a href="personal-data.html">Data</a><a href="explore.html">Explore</a><a href="search-facets.html">Facets</a><a href="site-directory.html">Directory</a><a href="platform.html">Platform</a></div>
+@@ -27,12 +29,12 @@
+ 
+ <section class="card discovery-hero">
+ <div>
+-<span class="pill">Release 225 · Local route composition</span>
++<span class="pill">Release 231 · Canonical route-status composition</span>
+ <h1 class="section-title" lang="ta">கண்டறியும் பணிமனை</h1>
+ <h2>Discovery Workspace</h2>
+-<p>Choose a purpose, audience or publication boundary. Every displayed count and route is derived from the local structured-navigation and route-directory JSON.</p>
++<p>Choose a purpose, audience or publication boundary. Every displayed count and route is derived from local navigation data after the audited publication-boundary policy is applied.</p>
+ </div>
+-<div class="discovery-metric"><strong id="discoveryRouteCount">0</strong><span>curated published routes</span></div>
++<div class="discovery-metric"><strong id="discoveryRouteCount">0</strong><span>canonical public routes</span></div>
+ <div class="discovery-metric"><strong id="discoverySectionCount">0</strong><span>active navigation sections</span></div>
+ <div class="discovery-metric"><strong id="discoveryCategoryCount">0</strong><span>route categories</span></div>
+ </section>
+@@ -79,7 +81,8 @@
+ <section class="card discovery-boundary">
+ <h2>Publication and recommendation boundary</h2>
+ <ul>
+-<li>Routes are shown only when they exist in the published route directory and have an allowed publication state.</li>
++<li>Routes are shown only when they exist in the route directory and their effective canonical publication state is allowed.</li>
++<li>Eight audited literature routes use the Release 231 boundary registry instead of a generic historical “published” label.</li>
+ <li>Draft, private, unpublished and archived states are excluded.</li>
+ <li>Counts are runtime calculations, not claims of complete Murugan coverage.</li>
+ <li>The route order uses local filters and deterministic sorting; it is not personalised AI.</li>
+diff --git a/manifest-release-231.json b/manifest-release-231.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..de67c4e45885d7a5329d5139b888b0d48ce1480d
+--- /dev/null
++++ b/manifest-release-231.json
+@@ -0,0 +1,80 @@
++{
++  "project": "OmSaravanaBhava",
++  "release": 231,
++  "name": "Canonical Publication Status Propagation",
++  "base_commit": "2cec1d02d81aa3251da131667fabd4d24a98147a",
++  "base_release": 230,
++  "generated": "2026-07-15",
++  "required_commit_title": "Release 231: propagate canonical publication statuses",
++  "validation_status": "LOCAL_PACKAGE_PASS_PATCH_CHECK_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
++  "production_objective": "Apply the audited literature publication-boundary registry consistently to Content Status, Discovery and Site Directory while preserving the historical base route registry and all devotional and personal data.",
++  "added_files": [
++    ".github/workflows/release-231-integrity.yml",
++    ".github/workflows/release-231-production-smoke.yml",
++    "assets/css/route-status-reconciliation.css",
++    "assets/js/route-status-reconciliation.js",
++    "tests/route-status-reconciliation.test.mjs",
++    "tools/release_231_validate.py",
++    "manifest-release-231.json",
++    "RELEASE_231_CHANGED_FILES.txt",
++    "RELEASE_231_GITHUB_PORTAL_INSTRUCTIONS.txt",
++    "RELEASE_231_LOCAL_TEST_EVIDENCE.txt",
++    "RELEASE_231_VALIDATION_REPORT.md",
++    "RELEASE_231_SHA256SUMS.txt",
++    "RELEASE_231.patch"
++  ],
++  "modified_files": [
++    "content-status.html",
++    "discovery.html",
++    "site-directory.html",
++    "data/content-status.json",
++    "data/publication-boundaries.json",
++    "assets/js/content-status-audit.mjs",
++    "service-worker.js"
++  ],
++  "deleted_files": [],
++  "merge_sensitive_files": [
++    "content-status.html",
++    "discovery.html",
++    "site-directory.html",
++    "data/publication-boundaries.json",
++    "service-worker.js"
++  ],
++  "route_registry_changed": false,
++  "route_registry_strategy": "Preserve data/site-routes.json as the historical directory snapshot and reconcile only same-origin consumer responses through the audited boundary registry.",
++  "sitemap_changed": false,
++  "new_public_route": false,
++  "new_browser_storage_key": false,
++  "content_changes": false,
++  "service_worker_cache_generation": 228,
++  "claims": {
++    "canonical_status_consumers": 3,
++    "audited_literature_routes": 8,
++    "historical_route_labels_preserved": true,
++    "fallback_to_base_registry": true,
++    "visible_reconciliation_badges": true,
++    "new_storage_key": false,
++    "analytics": false,
++    "tracking": false,
++    "backend_dependency": false,
++    "devotional_text_modified": false
++  },
++  "validation_results": {
++    "local_package": "PASS",
++    "node_syntax": "PASS",
++    "node_tests": "PASS_16_OF_16",
++    "python_compile": "PASS",
++    "workflow_yaml_parse": "PASS",
++    "baseline_blob_match": "PASS",
++    "patch_check": "PASS",
++    "github_actions": "NOT_RUN",
++    "deployed_production": "NOT_RUN"
++  },
++  "known_limitations": [
++    "The physical data/site-routes.json file remains unchanged; canonical values are propagated at the public-consumer boundary.",
++    "Only eight evidence-backed literature routes are reconciled.",
++    "If boundary loading fails, the base registry is returned with an explicit fallback state.",
++    "GitHub Actions and deployed-production validation remain pending until upload.",
++    "The service-worker cache generation remains 228 because no cache schema or personal-data migration is introduced."
++  ]
++}
+diff --git a/service-worker.js b/service-worker.js
+index b4aa3df0bd868819c94add8c973ed14ea0352d0a..4775222ce99f5673160501f979650116cf5dd486 100644
+--- a/service-worker.js
++++ b/service-worker.js
+@@ -137,7 +137,9 @@ const PRECACHE_URLS = [
+   "/assets/js/desktop-layout.js",
+   "/content-status.html",
+   "/assets/css/content-status-audit.css",
++  "/assets/css/route-status-reconciliation.css",
+   "/assets/js/content-status-audit.mjs",
++  "/assets/js/route-status-reconciliation.js",
+   "/data/content-status.json",
+   "/data/publication-boundaries.json",
+   "/source-catalog.html",
+@@ -257,7 +259,8 @@ const PRECACHE_URLS = [
+   "/assets/js/devotional-practice-planner.mjs",
+   "/data/devotional-practice-planner.json",
+   "/manifest-release-228.json",
+-  "/manifest-release-230.json"
++  "/manifest-release-230.json",
++  "/manifest-release-231.json"
+ ];
+ 
+ const cacheOptionalAssets = async cache => {
+diff --git a/site-directory.html b/site-directory.html
+index f24234d9cda3a6fa4c2db14d504701ba90f21785..78feb40a1d9922d0fcededbddc2631a8342ea8a8 100644
+--- a/site-directory.html
++++ b/site-directory.html
+@@ -9,18 +9,20 @@
+ <link rel="canonical" href="https://omsaravanabhava.org/site-directory.html">
+ <link rel="stylesheet" href="assets/css/osb44.css">
+ <link rel="stylesheet" href="assets/css/site-directory.css">
++<link rel="stylesheet" href="assets/css/route-status-reconciliation.css">
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+ <meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
++<script src="assets/js/route-status-reconciliation.js"></script>
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script defer src="assets/js/site-directory.js"></script>
+ </head>
+-<body data-release="212">
++<body data-release="231">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+-<div class="top">🛕 ஓம் சரவணபவ · Public route directory</div>
++<div class="top">🛕 ஓம் சரவணபவ · Canonical public route-status directory</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="platform.html">Platform</a></div></div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Site Route Directory</span></p></nav>
+-<section class="card"><h1 class="section-title" lang="ta">தள வழித்தட அட்டவணை</h1><h2>Complete Site Route Directory</h2><p>This directory lists the public HTML routes represented by Release 212. A route being listed proves that the page is published; it does not override the page’s own source, completeness or review status.</p></section>
++<section class="card"><span class="pill">Release 231 · Canonical publication statuses</span><h1 class="section-title" lang="ta">தள வழித்தட அட்டவணை</h1><h2>Complete Site Route Directory</h2><p>This directory lists public HTML routes and applies the audited publication-boundary registry before displaying status and summary metadata. Route existence never overrides page-level source, completeness or rights declarations.</p></section>
+ <section aria-labelledby="directory-heading"><h2 id="directory-heading" class="section-title">Find a route</h2>
+ <div class="route-controls"><label>Search routes<input id="routeSearch" type="search" autocomplete="off" placeholder="Temple, Thiruppugazh, learning, privacy…"></label><label>Category<select id="routeCategory"><option>All</option></select></label><label>Status<select id="routeStatus"><option>All</option></select></label><button id="routeReset" class="btn secondary" type="button">Reset</button></div>
+ <p id="routeCount" role="status" aria-live="polite">Loading route directory…</p>
+diff --git a/tests/route-status-reconciliation.test.mjs b/tests/route-status-reconciliation.test.mjs
+new file mode 100644
+index 0000000000000000000000000000000000000000..a7fa01053b8e7e482beb0dafce91c00abb5adf6a
+--- /dev/null
++++ b/tests/route-status-reconciliation.test.mjs
+@@ -0,0 +1,332 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import vm from 'node:vm';
++import {readFile} from 'node:fs/promises';
++
++const scriptText = await readFile(
++  new URL('../assets/js/route-status-reconciliation.js', import.meta.url),
++  'utf8'
++);
++const context = {
++  URL,
++  Headers,
++  Request,
++  Response,
++  console,
++  globalThis: null
++};
++context.globalThis = context;
++vm.createContext(context);
++vm.runInContext(scriptText, context);
++const policy = context.OSBRouteStatusPolicy;
++
++const readJson = async relative => JSON.parse(
++  await readFile(new URL(relative, import.meta.url), 'utf8')
++);
++
++const sampleRoutes = {
++  release: 228,
++  routes: [
++    {
++      path: '/literature/kandar-anubhuti.html',
++      titleEn: 'Kandar Anubhuti',
++      status: 'published',
++      summary: 'Generic published summary.'
++    },
++    {
++      path: '/literature/kandar-alangaram.html',
++      titleEn: 'Kandar Alangaram',
++      status: 'published',
++      summary: 'Generic published summary.'
++    },
++    {
++      path: '/temples/palani.html',
++      titleEn: 'Palani',
++      status: 'published',
++      summary: 'Temple route.'
++    }
++  ]
++};
++
++const sampleBoundaries = {
++  release: 231,
++  records: [
++    {
++      route: '/literature/kandar-anubhuti.html',
++      declaredRouteStatus: 'published',
++      verifiedStatus: 'partial-reviewed',
++      readingEligible: true,
++      contentScope: 'Opening protection verse and verse 1 only.'
++    },
++    {
++      route: '/literature/kandar-alangaram.html',
++      declaredRouteStatus: 'published',
++      verifiedStatus: 'source-register',
++      readingEligible: false,
++      contentScope: 'Literary identity register only.'
++    }
++  ]
++};
++
++test('classic bootstrap exposes Release 231 policy without patching Node fetch', () => {
++  assert.ok(policy);
++  assert.equal(policy.RELEASE, 231);
++  assert.equal(policy.ROUTES_PATH, '/data/site-routes.json');
++  assert.equal(policy.BOUNDARIES_PATH, '/data/publication-boundaries.json');
++});
++
++test('route normalisation accepts same-origin paths and rejects external URLs', () => {
++  assert.equal(
++    policy.normaliseRoute('/literature/kandar-anubhuti.html'),
++    '/literature/kandar-anubhuti.html'
++  );
++  assert.equal(
++    policy.normaliseRoute('https://example.com/foreign.html'),
++    ''
++  );
++});
++
++test('boundary map contains unique canonical routes', () => {
++  const map = policy.buildBoundaryMap(sampleBoundaries);
++  assert.equal(map.size, 2);
++  assert.equal(
++    map.get('/literature/kandar-alangaram.html').verifiedStatus,
++    'source-register'
++  );
++});
++
++test('canonical overlay updates status, scope and provenance', () => {
++  const result = policy.applyCanonicalStatuses(
++    sampleRoutes,
++    sampleBoundaries
++  );
++  const anubhuti = result.routes.find(
++    route => route.path === '/literature/kandar-anubhuti.html'
++  );
++  assert.equal(result.effectiveRelease, 231);
++  assert.equal(result.reconciliation.reconciledCount, 2);
++  assert.equal(anubhuti.status, 'partial-reviewed');
++  assert.equal(anubhuti.publicationStatusPrevious, 'published');
++  assert.equal(anubhuti.publicationStatusCanonical, 'partial-reviewed');
++  assert.equal(anubhuti.readingEligible, true);
++  assert.equal(
++    anubhuti.summary,
++    'Opening protection verse and verse 1 only.'
++  );
++});
++
++test('source-register route remains visible metadata but is reading-ineligible', () => {
++  const result = policy.applyCanonicalStatuses(
++    sampleRoutes,
++    sampleBoundaries
++  );
++  const alangaram = result.routes.find(
++    route => route.path === '/literature/kandar-alangaram.html'
++  );
++  assert.equal(alangaram.status, 'source-register');
++  assert.equal(alangaram.readingEligible, false);
++});
++
++test('unregistered routes remain semantically unchanged', () => {
++  const result = policy.applyCanonicalStatuses(
++    sampleRoutes,
++    sampleBoundaries
++  );
++  const palani = result.routes.find(
++    route => route.path === '/temples/palani.html'
++  );
++  assert.deepEqual(
++    JSON.parse(JSON.stringify(palani)),
++    sampleRoutes.routes[2]
++  );
++});
++
++test('overlay does not mutate input registries', () => {
++  const beforeRoutes = JSON.stringify(sampleRoutes);
++  const beforeBoundaries = JSON.stringify(sampleBoundaries);
++  policy.applyCanonicalStatuses(sampleRoutes, sampleBoundaries);
++  assert.equal(JSON.stringify(sampleRoutes), beforeRoutes);
++  assert.equal(JSON.stringify(sampleBoundaries), beforeBoundaries);
++});
++
++test('request classifier reconciles only the same-origin route registry', () => {
++  assert.equal(policy.shouldReconcileRequest('/data/site-routes.json'), true);
++  assert.equal(
++    policy.shouldReconcileRequest(
++      'https://omsaravanabhava.org/data/site-routes.json'
++    ),
++    true
++  );
++  assert.equal(
++    policy.shouldReconcileRequest('/data/publication-boundaries.json'),
++    false
++  );
++  assert.equal(
++    policy.shouldReconcileRequest('https://example.com/data/site-routes.json'),
++    false
++  );
++});
++
++test('transition labels preserve historical correction evidence', () => {
++  assert.equal(
++    policy.transitionLabel(sampleBoundaries.records[0]),
++    'published → partial-reviewed'
++  );
++  assert.equal(
++    policy.transitionLabel({verifiedStatus: 'navigation'}),
++    'navigation'
++  );
++});
++
++test('production boundary registry has eight audited records and three consumers', async () => {
++  const payload = await readJson('../data/publication-boundaries.json');
++  assert.equal(payload.release, 231);
++  assert.equal(payload.records.length, 8);
++  assert.equal(new Set(payload.records.map(item => item.route)).size, 8);
++  assert.deepEqual(payload.propagation.consumerRoutes, [
++    '/content-status.html',
++    '/discovery.html',
++    '/site-directory.html'
++  ]);
++});
++
++test('seven audited routes remain reading-ineligible and one bounded extract remains eligible', async () => {
++  const payload = await readJson('../data/publication-boundaries.json');
++  assert.equal(
++    payload.records.filter(record => record.readingEligible === false).length,
++    7
++  );
++  const eligible = payload.records.filter(
++    record => record.readingEligible !== false
++  );
++  assert.equal(eligible.length, 1);
++  assert.equal(eligible[0].route, '/literature/kandar-anubhuti.html');
++  assert.equal(eligible[0].verifiedStatus, 'partial-reviewed');
++});
++
++test('Content Status configuration identifies effective runtime mode', async () => {
++  const config = await readJson('../data/content-status.json');
++  assert.equal(config.release, 231);
++  assert.equal(config.mode, 'runtime-derived-effective');
++  assert.equal(
++    config.reconciliationScript,
++    '/assets/js/route-status-reconciliation.js'
++  );
++  assert.equal(config.historicalRouteRegistryPreserved, true);
++  assert.equal('statusCounts' in config, false);
++});
++
++test('consumer pages load reconciliation synchronously before their renderers', async () => {
++  const cases = [
++    ['../content-status.html', 'assets/js/content-status-audit.mjs'],
++    ['../discovery.html', 'assets/js/discovery-workspace.mjs'],
++    ['../site-directory.html', 'assets/js/site-directory.js']
++  ];
++  for (const [relative, consumer] of cases) {
++    const html = await readFile(new URL(relative, import.meta.url), 'utf8');
++    const policyIndex = html.indexOf('assets/js/route-status-reconciliation.js');
++    const consumerIndex = html.indexOf(consumer);
++    assert.ok(policyIndex >= 0, `${relative} policy script missing`);
++    assert.ok(consumerIndex > policyIndex, `${relative} consumer order invalid`);
++    assert.ok(html.includes('data-release="231"'));
++    assert.ok(html.includes('assets/css/route-status-reconciliation.css'));
++  }
++});
++
++test('service worker precaches Release 231 assets exactly once without cache migration', async () => {
++  const source = await readFile(
++    new URL('../service-worker.js', import.meta.url),
++    'utf8'
++  );
++  assert.ok(source.includes("const RELEASE = '228';"));
++  for (const asset of [
++    '/assets/css/route-status-reconciliation.css',
++    '/assets/js/route-status-reconciliation.js',
++    '/manifest-release-231.json'
++  ]) {
++    assert.equal(source.split(`"${asset}"`).length - 1, 1, asset);
++  }
++});
++
++test('new production script has no storage, tracking or content-generation operation', () => {
++  for (const forbidden of [
++    'localStorage.setItem',
++    'sessionStorage.setItem',
++    'indexedDB.open',
++    'navigator.sendBeacon',
++    'gtag(',
++    'mixpanel',
++    'generateVerse',
++    'innerHTML ='
++  ]) {
++    assert.equal(scriptText.includes(forbidden), false, forbidden);
++  }
++});
++
++test('browser bootstrap intercepts the route registry and returns a reconciled Response', async () => {
++  const calls = [];
++  const browserContext = {
++    URL,
++    Headers,
++    Request,
++    Response,
++    console,
++    location: {origin: 'https://omsaravanabhava.org'},
++    document: {
++      readyState: 'loading',
++      documentElement: {dataset: {}},
++      addEventListener() {}
++    },
++    MutationObserver: class {
++      observe() {}
++    },
++    CustomEvent: class {
++      constructor(type, options) {
++        this.type = type;
++        this.detail = options?.detail;
++      }
++    },
++    dispatchEvent() {},
++    fetch: async input => {
++      const url = new URL(
++        typeof input === 'string' ? input : input.url,
++        'https://omsaravanabhava.org/'
++      );
++      calls.push(url.pathname);
++      if (url.pathname === '/data/publication-boundaries.json') {
++        return new Response(JSON.stringify(sampleBoundaries), {
++          status: 200,
++          headers: {'content-type': 'application/json'}
++        });
++      }
++      if (url.pathname === '/data/site-routes.json') {
++        return new Response(JSON.stringify(sampleRoutes), {
++          status: 200,
++          headers: {'content-type': 'application/json'}
++        });
++      }
++      return new Response('not found', {status: 404});
++    },
++    globalThis: null,
++    window: null
++  };
++  browserContext.globalThis = browserContext;
++  browserContext.window = browserContext;
++  vm.createContext(browserContext);
++  vm.runInContext(scriptText, browserContext);
++  const response = await browserContext.fetch('/data/site-routes.json');
++  const payload = await response.json();
++  assert.equal(response.headers.get('x-osb-publication-status-release'), '231');
++  assert.equal(payload.reconciliation.reconciledCount, 2);
++  assert.equal(
++    payload.routes.find(
++      route => route.path === '/literature/kandar-alangaram.html'
++    ).status,
++    'source-register'
++  );
++  assert.deepEqual(calls.sort(), [
++    '/data/publication-boundaries.json',
++    '/data/site-routes.json'
++  ]);
++});
++
+diff --git a/tools/release_231_validate.py b/tools/release_231_validate.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..685e27709e826aee58d0bf00386a6e46eecf6868
+--- /dev/null
++++ b/tools/release_231_validate.py
+@@ -0,0 +1,390 @@
++#!/usr/bin/env python3
++"""Release 231 package and repository validator."""
++
++from __future__ import annotations
++
++import argparse
++import hashlib
++import json
++import subprocess
++import sys
++from html.parser import HTMLParser
++from pathlib import Path
++
++RELEASE = 231
++BASE_COMMIT = '2cec1d02d81aa3251da131667fabd4d24a98147a'
++TITLE = 'Release 231: propagate canonical publication statuses'
++REQUIRED = [
++    'content-status.html',
++    'discovery.html',
++    'site-directory.html',
++    'data/content-status.json',
++    'data/publication-boundaries.json',
++    'assets/css/route-status-reconciliation.css',
++    'assets/js/content-status-audit.mjs',
++    'assets/js/route-status-reconciliation.js',
++    'service-worker.js',
++    'tests/route-status-reconciliation.test.mjs',
++    'tools/release_231_validate.py',
++    '.github/workflows/release-231-integrity.yml',
++    '.github/workflows/release-231-production-smoke.yml',
++    'manifest-release-231.json',
++    'RELEASE_231_CHANGED_FILES.txt',
++    'RELEASE_231_GITHUB_PORTAL_INSTRUCTIONS.txt',
++    'RELEASE_231_LOCAL_TEST_EVIDENCE.txt',
++    'RELEASE_231_VALIDATION_REPORT.md',
++    'RELEASE_231.patch',
++]
++PRECACHE = [
++    '/assets/css/route-status-reconciliation.css',
++    '/assets/js/route-status-reconciliation.js',
++    '/manifest-release-231.json',
++]
++CONSUMERS = {
++    'content-status.html': 'assets/js/content-status-audit.mjs',
++    'discovery.html': 'assets/js/discovery-workspace.mjs',
++    'site-directory.html': 'assets/js/site-directory.js',
++}
++
++
++class PageParser(HTMLParser):
++    def __init__(self) -> None:
++        super().__init__(convert_charrefs=True)
++        self.lang = ''
++        self.h1 = 0
++        self.main = 0
++        self.ids: list[str] = []
++        self.status_regions = 0
++
++    def handle_starttag(self, tag, attrs):
++        values = dict(attrs)
++        if tag == 'html':
++            self.lang = values.get('lang', '')
++        if tag == 'h1':
++            self.h1 += 1
++        if tag == 'main':
++            self.main += 1
++        if values.get('id'):
++            self.ids.append(values['id'])
++        if values.get('role') == 'status':
++            self.status_regions += 1
++
++
++def sha256(path: Path) -> str:
++    digest = hashlib.sha256()
++    with path.open('rb') as handle:
++        for block in iter(lambda: handle.read(1024 * 1024), b''):
++            digest.update(block)
++    return digest.hexdigest()
++
++
++def load_json(root: Path, relative: str):
++    return json.loads((root / relative).read_text(encoding='utf-8'))
++
++
++def run(command: list[str], root: Path) -> tuple[int, str]:
++    result = subprocess.run(
++        command,
++        cwd=root,
++        text=True,
++        stdout=subprocess.PIPE,
++        stderr=subprocess.STDOUT,
++        check=False,
++    )
++    return result.returncode, result.stdout
++
++
++def validate_boundaries(root, errors, checks):
++    payload = load_json(root, 'data/publication-boundaries.json')
++    records = payload.get('records', [])
++    if payload.get('release') != RELEASE:
++        errors.append('publication boundary release mismatch')
++    if payload.get('baseCommit') != BASE_COMMIT:
++        errors.append('publication boundary base commit mismatch')
++    if len(records) != 8:
++        errors.append(f'expected 8 boundary records, found {len(records)}')
++    routes = [str(item.get('route', '')) for item in records]
++    if len(routes) != len(set(routes)):
++        errors.append('duplicate publication boundary routes')
++    if any(not route.startswith('/literature/') for route in routes):
++        errors.append('boundary route outside /literature/')
++    if sum(item.get('readingEligible') is False for item in records) != 7:
++        errors.append('expected exactly 7 reading-ineligible records')
++    propagation = payload.get('propagation', {})
++    if propagation.get('consumerRoutes') != [
++        '/content-status.html', '/discovery.html', '/site-directory.html'
++    ]:
++        errors.append('publication consumer list mismatch')
++    if propagation.get('historicalRouteLabelsPreserved') is not True:
++        errors.append('historical route-label preservation not declared')
++    checks.append('eight-record canonical boundary and propagation contract')
++
++
++def validate_content_status(root, errors, checks):
++    config = load_json(root, 'data/content-status.json')
++    if config.get('release') != RELEASE:
++        errors.append('content status release mismatch')
++    if config.get('mode') != 'runtime-derived-effective':
++        errors.append('content status mode must be runtime-derived-effective')
++    if 'statusCounts' in config:
++        errors.append('hard-coded statusCounts must not be restored')
++    if config.get('historicalRouteRegistryPreserved') is not True:
++        errors.append('content status historical-registry boundary missing')
++    module = (root / 'assets/js/content-status-audit.mjs').read_text(
++        encoding='utf-8'
++    )
++    if 'export const RELEASE = 231;' not in module:
++        errors.append('content status module release mismatch')
++    checks.append('effective Content Status configuration and module identity')
++
++
++def validate_pages(root, errors, checks):
++    policy = 'assets/js/route-status-reconciliation.js'
++    css = 'assets/css/route-status-reconciliation.css'
++    for relative, consumer in CONSUMERS.items():
++        text = (root / relative).read_text(encoding='utf-8')
++        parser = PageParser()
++        parser.feed(text)
++        if parser.lang != 'ta':
++            errors.append(f'{relative}: html lang is not ta')
++        if parser.h1 != 1:
++            errors.append(f'{relative}: expected one h1, found {parser.h1}')
++        if parser.main != 1:
++            errors.append(f'{relative}: expected one main, found {parser.main}')
++        duplicates = sorted({value for value in parser.ids if parser.ids.count(value) > 1})
++        if duplicates:
++            errors.append(f'{relative}: duplicate ids {duplicates}')
++        if 'data-release="231"' not in text:
++            errors.append(f'{relative}: Release 231 body identity missing')
++        if css not in text:
++            errors.append(f'{relative}: reconciliation CSS missing')
++        policy_index = text.find(policy)
++        consumer_index = text.find(consumer)
++        if policy_index < 0 or consumer_index <= policy_index:
++            errors.append(f'{relative}: policy script must precede {consumer}')
++    checks.append('consumer semantics and synchronous reconciliation order')
++
++
++def validate_script(root, errors, checks):
++    source = (root / 'assets/js/route-status-reconciliation.js').read_text(
++        encoding='utf-8'
++    )
++    for marker in (
++        'const RELEASE = 231;',
++        'applyCanonicalStatuses',
++        'shouldReconcileRequest',
++        'publicationStatusCanonical',
++        'historicalRegistryPreserved: true',
++        'route-status-reconciled',
++    ):
++        if marker not in source:
++            errors.append(f'reconciliation script marker missing: {marker}')
++    for forbidden in (
++        'localStorage.setItem',
++        'sessionStorage.setItem',
++        'indexedDB.open',
++        'navigator.sendBeacon',
++        'innerHTML =',
++    ):
++        if forbidden in source:
++            errors.append(f'reconciliation script forbidden operation: {forbidden}')
++    css = (root / 'assets/css/route-status-reconciliation.css').read_text(
++        encoding='utf-8'
++    )
++    for marker in (
++        '.route-status-reconciled',
++        'data-route-status-policy="fallback"',
++        '@media (prefers-reduced-motion: reduce)',
++        '@media print',
++    ):
++        if marker not in css:
++            errors.append(f'reconciliation CSS marker missing: {marker}')
++    checks.append('narrow fetch overlay, visible provenance and safe fallback')
++
++
++def validate_service_worker(root, errors, checks):
++    source = (root / 'service-worker.js').read_text(encoding='utf-8')
++    if "const RELEASE = '228';" not in source:
++        errors.append('service-worker cache generation changed unexpectedly')
++    for asset in PRECACHE:
++        count = source.count(f'"{asset}"')
++        if count != 1:
++            errors.append(f'precache {asset} count is {count}')
++    checks.append('additive precache without cache or data migration')
++
++
++def validate_manifest(root, errors, checks):
++    manifest = load_json(root, 'manifest-release-231.json')
++    expected = {
++        'release': RELEASE,
++        'base_commit': BASE_COMMIT,
++        'required_commit_title': TITLE,
++    }
++    for key, value in expected.items():
++        if manifest.get(key) != value:
++            errors.append(f'manifest {key} mismatch')
++    if manifest.get('deleted_files') != []:
++        errors.append('manifest declares deleted files')
++    if manifest.get('new_browser_storage_key') is not False:
++        errors.append('manifest must declare no new browser storage key')
++    if manifest.get('route_registry_changed') is not False:
++        errors.append('manifest unexpectedly changes physical route registry')
++    checks.append('manifest identity, strategy and limitations')
++
++
++def validate_repository_snapshot(root, errors, warnings, checks):
++    route_file = root / 'data/site-routes.json'
++    if not route_file.exists():
++        warnings.append('site-routes.json unavailable for repository snapshot check')
++        return
++    routes = load_json(root, 'data/site-routes.json').get('routes', [])
++    route_map = {
++        str(item.get('path', '')): item
++        for item in routes if isinstance(item, dict)
++    }
++    boundaries = load_json(root, 'data/publication-boundaries.json')
++    drift = []
++    for record in boundaries['records']:
++        actual = route_map.get(record['route'], {}).get('status')
++        if actual != record.get('declaredRouteStatus'):
++            drift.append({
++                'route': record['route'],
++                'expectedHistorical': record.get('declaredRouteStatus'),
++                'actual': actual,
++            })
++    if drift:
++        errors.append(f'historical route snapshot drift: {drift}')
++    checks.append('historical route registry remains covered by the boundary overlay')
++
++
++def validate_checksums(root, errors, checks):
++    ledger = root / 'RELEASE_231_SHA256SUMS.txt'
++    if not ledger.exists():
++        return
++    for line in ledger.read_text(encoding='utf-8').splitlines():
++        if not line.strip():
++            continue
++        expected, relative = line.split('  ', 1)
++        target = root / relative
++        if not target.exists():
++            errors.append(f'checksum target missing: {relative}')
++        elif sha256(target) != expected:
++            errors.append(f'checksum mismatch: {relative}')
++    checks.append('final SHA256 ledger')
++
++
++def scan_production(root, errors, checks):
++    scope = [
++        'content-status.html', 'discovery.html', 'site-directory.html',
++        'data/content-status.json', 'data/publication-boundaries.json',
++        'assets/css/route-status-reconciliation.css',
++        'assets/js/content-status-audit.mjs',
++        'assets/js/route-status-reconciliation.js',
++        'service-worker.js', 'manifest-release-231.json',
++    ]
++    forbidden = [
++        'BEGIN PRIVATE KEY', 'localhost:', '127.0.0.1:',
++        'google-analytics', 'segment.io',
++    ]
++    for relative in scope:
++        text = (root / relative).read_text(
++            encoding='utf-8', errors='replace'
++        ).lower()
++        for marker in forbidden:
++            if marker.lower() in text:
++                errors.append(f'forbidden production marker {marker!r}: {relative}')
++    checks.append('production credential, localhost and analytics marker scan')
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument('--root', default='.')
++    parser.add_argument('--package-mode', action='store_true')
++    parser.add_argument('--report')
++    args = parser.parse_args()
++    root = Path(args.root).resolve()
++
++    errors: list[str] = []
++    warnings: list[str] = []
++    checks: list[str] = []
++    skipped: list[str] = []
++
++    for relative in REQUIRED:
++        if not (root / relative).exists():
++            errors.append(f'required file missing: {relative}')
++    checks.append('required release files')
++
++    for path in root.rglob('*.json'):
++        if '.git' in path.parts:
++            continue
++        try:
++            json.loads(path.read_text(encoding='utf-8'))
++        except Exception as exc:
++            errors.append(f'invalid JSON {path.relative_to(root)}: {exc}')
++    checks.append('JSON syntax')
++
++    validate_boundaries(root, errors, checks)
++    validate_content_status(root, errors, checks)
++    validate_pages(root, errors, checks)
++    validate_script(root, errors, checks)
++    validate_service_worker(root, errors, checks)
++    validate_manifest(root, errors, checks)
++    validate_checksums(root, errors, checks)
++    scan_production(root, errors, checks)
++
++    node_available = subprocess.run(
++        ['bash', '-lc', 'command -v node >/dev/null 2>&1'],
++        cwd=root,
++        check=False,
++    ).returncode == 0
++    if node_available:
++        commands = [
++            ['node', '--check', 'assets/js/route-status-reconciliation.js'],
++            ['node', '--check', 'assets/js/content-status-audit.mjs'],
++            ['node', '--check', 'service-worker.js'],
++            ['node', '--test', 'tests/route-status-reconciliation.test.mjs'],
++        ]
++        for command in commands:
++            code, output = run(command, root)
++            if code:
++                errors.append(f"{' '.join(command)} failed:\n{output}")
++        checks.append('Node syntax and Release 231 tests')
++    else:
++        skipped.append('Node syntax/tests unavailable')
++
++    if args.package_mode:
++        skipped.extend([
++            'historical route-registry snapshot check',
++            'real browser fetch interception',
++            'same-origin deployed page evidence',
++            'GitHub Actions conclusion',
++            'deployed-production verification',
++        ])
++    else:
++        validate_repository_snapshot(root, errors, warnings, checks)
++
++    report = {
++        'release': RELEASE,
++        'base_commit': BASE_COMMIT,
++        'mode': 'package' if args.package_mode else 'repository',
++        'status': 'PASS' if not errors else 'FAIL',
++        'errors': errors,
++        'warnings': warnings,
++        'checks': checks,
++        'skipped': skipped,
++        'github_actions': 'NOT_RUN_LOCALLY',
++        'deployed_production': 'NOT_RUN_LOCALLY',
++    }
++    output = json.dumps(report, indent=2, ensure_ascii=False)
++    print(output)
++    if args.report:
++        target = Path(args.report)
++        if not target.is_absolute():
++            target = root / target
++        target.parent.mkdir(parents=True, exist_ok=True)
++        target.write_text(output + '\n', encoding='utf-8')
++    return 1 if errors else 0
++
++
++if __name__ == '__main__':
++    sys.exit(main())

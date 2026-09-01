@@ -1,0 +1,8 @@
+{
+  "expectedStatus": "PASS",
+  "paths": [
+    "tools/example.py",
+    "docs/guide.md",
+    "data/routes.json"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "module": "thiruppugazh-volume-04",
+  "batch": 19,
+  "type": "song-metadata",
+  "generated": "2026-07-09",
+  "items": [
+    {
+      "number": 122,
+      "slug": "song-0122",
+      "title_ta": "திருப்புகழ் பாடல் 122",
+      "title_en": "Thiruppugazh Hymn 122",
+      "url": "../../literature/thiruppugazh/volume-04/song-0122.html",
+      "summary_ta": "திருப்புகழ் பாடலுக்கான வாசிப்பு, குறிச்சொல், தல/விழா தொடர்பு மற்றும் AI தேடல் இணைப்பு.",
+      "proofread_status": "Needs Tamil proofread before final devotional-text publication",
+      "keywords": [
+        "திருப்புகழ்",
+        "அருணகிரிநாதர்",
+        "முருகன்",
+        "வேல்",
+        "பக்தி"
+      ]
+    },
+    {
+      "number": 123,
+      "slug": "song-0123",
+      "title_ta": "திருப்புகழ் பாடல் 123",
+      "title_en": "Thiruppugazh Hymn 123",
+      "url": "../../literature/thiruppugazh/volume-04/song-0123.html",
+      "summary_ta": "திருப்புகழ் பாடலுக்கான வாசிப்பு, குறிச்சொல், தல/விழா தொடர்பு மற்றும் AI தேடல் இணைப்பு.",
+      "proofread_status": "Needs Tamil proofread before final devotional-text publication",
+      "keywords": [
+        "திருப்புகழ்",
+        "அருணகிரிநாதர்",
+        "முருகன்",
+        "வேல்",
+        "பக்தி"
+      ]
+    }
+  ]
+}

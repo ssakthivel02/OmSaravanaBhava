@@ -1,0 +1,5 @@
+{
+  "content-status.html": "assets/js/content-status-audit.mjs",
+  "discovery.html": "assets/js/discovery-workspace.mjs",
+  "site-directory.html": "assets/js/site-directory.mjs"
+}

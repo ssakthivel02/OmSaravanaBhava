@@ -1,0 +1,22 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 162,
+  "name": "Vel Maaral Source and Structure Register",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 4,
+  "modified": [
+    "data/search-index.json",
+    "service-worker.js"
+  ],
+  "added": [
+    "data/vel-maaral.json",
+    "literature/vel-maaral.html"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Full text published": "No",
+    "Audio bundled": "No"
+  }
+}

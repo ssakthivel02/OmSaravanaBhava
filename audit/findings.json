@@ -1,0 +1,85 @@
+{
+  "project": "OmSaravanaBhava",
+  "batch": 143,
+  "generated": "2026-07-11",
+  "repository": "ssakthivel02/OmSaravanaBhava",
+  "findings": [
+    {
+      "id": "OSB-143-001",
+      "severity": "critical",
+      "area": "root-manifest",
+      "path": "manifest.json",
+      "finding": "The root manifest currently describes Batch 94 instead of the website/PWA application.",
+      "evidence": {
+        "batch": 94,
+        "module": "Murugan_Literature_Cross_Reference_Volume_06",
+        "file_count": 99
+      },
+      "risk": "PWA metadata and application identity are invalid or absent.",
+      "action": "Replace root manifest.json with one authoritative web app manifest. Keep batch manifests under versioned subfolders."
+    },
+    {
+      "id": "OSB-143-002",
+      "severity": "critical",
+      "area": "service-worker",
+      "path": "service-worker.js",
+      "finding": "The service worker deletes every cache during activation and does not cache application assets.",
+      "risk": "Offline mode is non-functional and each activation wipes prior caches.",
+      "action": "Create a versioned cache, precache verified shell assets, add runtime caching, offline fallback, and controlled cleanup."
+    },
+    {
+      "id": "OSB-143-003",
+      "severity": "high",
+      "area": "seo",
+      "path": "sitemap.xml",
+      "finding": "The sitemap contains only six top-level URLs.",
+      "risk": "Temple, sloka, festival, literature, regional, and knowledge pages are not discoverable through the sitemap.",
+      "action": "Generate the sitemap from verified published HTML routes only. Exclude framework, review-only, and placeholder pages."
+    },
+    {
+      "id": "OSB-143-004",
+      "severity": "high",
+      "area": "rendering",
+      "path": "assets/js/osb44.js",
+      "finding": "Temple, sloka, and festival detail content is injected client-side using query parameters.",
+      "risk": "Deep content has weak crawlability, weak sharing metadata, and no stable page-specific canonical title/description in source HTML.",
+      "action": "Generate one static HTML page per verified entity and retain the JSON-powered interface as progressive enhancement."
+    },
+    {
+      "id": "OSB-143-005",
+      "severity": "high",
+      "area": "content-quality",
+      "path": "data/temples.json",
+      "finding": "Temple history values explicitly contain placeholder language.",
+      "risk": "Placeholder statements may be exposed to users and indexed as production content.",
+      "action": "Mark these records as draft, remove them from public indexation, and replace them only with source-backed summaries."
+    },
+    {
+      "id": "OSB-143-006",
+      "severity": "medium",
+      "area": "cache-control",
+      "path": "assets/js/osb44.js",
+      "finding": "Every JSON request appends ?v=44 and uses cache:no-store.",
+      "risk": "The static site cannot benefit from normal browser/PWA caching, and the hard-coded version is stale after many batches.",
+      "action": "Use a release version constant and normal cache semantics with service-worker-managed invalidation."
+    },
+    {
+      "id": "OSB-143-007",
+      "severity": "medium",
+      "area": "content-normalization",
+      "path": "data/temples.json",
+      "finding": "Several tag arrays repeat the same slug twice.",
+      "risk": "Search weighting and metadata quality are degraded.",
+      "action": "Deduplicate and normalize tags during the search-index rebuild."
+    },
+    {
+      "id": "OSB-143-008",
+      "severity": "medium",
+      "area": "release-governance",
+      "path": "repository history",
+      "finding": "Recent commits use the generic message 'Add files via upload'.",
+      "risk": "It is difficult to trace which batch changed which production path or to roll back safely.",
+      "action": "Use batch-specific commit messages and release tags from Batch 143 onward."
+    }
+  ]
+}

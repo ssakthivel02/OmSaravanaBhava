@@ -1,0 +1,1165 @@
+diff --git a/reading-list.html b/reading-list.html
+new file mode 100644
+--- /dev/null
++++ b/reading-list.html
+@@ -0,0 +1,70 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Offline Reading List | Om Saravana Bhava</title>
++<meta name="description" content="Save published OmSaravanaBhava pages in this browser and cache selected routes for offline reading without an account or tracking service.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/reading-list.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="stylesheet" href="assets/css/reading-list.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++<script type="module" src="assets/js/reading-list.mjs"></script>
++</head>
++<body data-release="216">
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Browser-local offline reading list</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="reading-list.html" aria-current="page">Reading List</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Offline Reading List</span></p></nav>
++
++<section class="card reading-list-summary">
++<div>
++<span class="pill">Release 216 · Local-first reading</span>
++<h1 class="section-title" lang="ta">இணையமில்லா வாசிப்பு பட்டியல்</h1>
++<h2>Offline Reading List</h2>
++<p>Save published or clearly bounded pages in this browser. You can then cache each saved route independently for offline reading.</p>
++</div>
++<div class="reading-list-count" aria-label="Saved page count">
++<strong id="readingListCount">0</strong>
++<span>saved pages</span>
++</div>
++</section>
++
++<section class="card" aria-labelledby="reading-list-controls">
++<h2 id="reading-list-controls">Reading-list controls</h2>
++<div class="reading-list-toolbar">
++<button id="readingListCacheAll" class="btn" type="button">Make saved pages available offline</button>
++<button id="readingListExport" class="btn secondary" type="button">Export JSON</button>
++<button id="readingListClearAll" class="btn secondary" type="button">Clear list</button>
++</div>
++<p id="readingListStatus" role="status" aria-live="polite">Loading locally saved pages…</p>
++</section>
++
++<section id="readingListItems" class="grid reading-list-grid" aria-label="Saved reading pages">
++<article class="card">Loading your browser-local reading list…</article>
++</section>
++
++<section class="card reading-list-privacy">
++<h2>Privacy and offline boundary</h2>
++<ul>
++<li>The reading list is stored only in this browser using local storage.</li>
++<li>No account, analytics event or remote synchronization is used.</li>
++<li>Offline copies are created only after you select “Make saved pages available offline”.</li>
++<li>A page may still contain a bounded extract or source register; saving it does not change its publication status.</li>
++</ul>
++<p><a class="btn secondary" href="search-facets.html">Browse published content</a> <a class="btn secondary" href="privacy.html">Review privacy controls</a></p>
++</section>
++
++<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>The browser-local reading list requires JavaScript. Published routes remain available through <a href="site-directory.html">the site directory</a>.</p></section></noscript>
++</main>
++<footer>© Om Saravana Bhava · <a href="explore.html">Explore</a> · <a href="search-facets.html">Search facets</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>
+diff --git a/assets/css/reading-list.css b/assets/css/reading-list.css
+new file mode 100644
+--- /dev/null
++++ b/assets/css/reading-list.css
+@@ -0,0 +1 @@
++.reading-list-summary{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center}.reading-list-count{display:grid;place-items:center;min-width:110px;min-height:110px;border:1px solid var(--line);border-radius:24px;background:var(--surface-strong,#fff)}.reading-list-count strong{display:block;font-size:clamp(2.4rem,7vw,4.8rem);line-height:1;color:var(--red)}.reading-list-count span{font-weight:850}.reading-list-toolbar{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0}.reading-list-toolbar button:disabled{opacity:.55;cursor:not-allowed}.reading-list-grid{align-items:stretch}.reading-list-item{display:flex;flex-direction:column;gap:10px}.reading-list-item h2{margin:0}.reading-list-labels,.reading-list-actions{display:flex;flex-wrap:wrap;gap:9px}.reading-list-actions{margin-top:auto;padding-top:8px}.reading-list-meta{font-size:.9rem;color:#6a4638}.reading-list-empty{grid-column:1/-1}.reading-list-privacy{border-left:5px solid var(--orange)}body.dark .reading-list-meta{color:#f4d9c8}@media(max-width:700px){.reading-list-summary{grid-template-columns:1fr}.reading-list-count{justify-self:start}.reading-list-toolbar .btn{width:100%}}@media print{.reading-list-toolbar,.reading-list-actions,#readingListStatus{display:none!important}.reading-list-item{break-inside:avoid}}
+diff --git a/assets/js/reading-list.mjs b/assets/js/reading-list.mjs
+new file mode 100644
+--- /dev/null
++++ b/assets/js/reading-list.mjs
+@@ -0,0 +1,321 @@
++export const RELEASE = 216;
++export const STORAGE_KEY = 'osb-reading-list-v1';
++export const USER_READING_CACHE = 'osb-user-reading-v1';
++export const MAX_ITEMS = 100;
++export const CANONICAL_ORIGIN = 'https://omsaravanabhava.org';
++
++const safeStorage = storage => {
++  if (storage) return storage;
++  try {
++    return globalThis.localStorage;
++  } catch {
++    return null;
++  }
++};
++
++export const normaliseReadingRoute = (route, origin = CANONICAL_ORIGIN) => {
++  const value = String(route ?? '').trim();
++  if (!value) return '';
++  try {
++    const base = new URL(origin);
++    const url = new URL(value, `${base.origin}/`);
++    if (url.origin !== base.origin) return '';
++    return `${url.pathname}${url.search}${url.hash}`;
++  } catch {
++    return '';
++  }
++};
++
++export const routePath = route => {
++  const normalised = normaliseReadingRoute(route);
++  if (!normalised) return '';
++  try {
++    return new URL(normalised, CANONICAL_ORIGIN).pathname;
++  } catch {
++    return '';
++  }
++};
++
++export const cacheableRoute = route => {
++  const normalised = normaliseReadingRoute(route);
++  if (!normalised) return '';
++  const url = new URL(normalised, CANONICAL_ORIGIN);
++  return `${url.pathname}${url.search}`;
++};
++
++export const sanitiseReadingItem = (record, savedAt = new Date().toISOString()) => {
++  if (!record || typeof record !== 'object') return null;
++  const route = normaliseReadingRoute(record.route);
++  if (!route) return null;
++  const titleTa = String(record.titleTa ?? '').trim();
++  const titleEn = String(record.titleEn ?? '').trim();
++  const fallbackTitle = String(record.title ?? record.id ?? route).trim();
++  return {
++    route,
++    titleTa,
++    titleEn: titleEn || fallbackTitle,
++    kind: String(record.kind ?? 'Published page').trim() || 'Published page',
++    status: String(record.status ?? 'published').trim() || 'published',
++    summary: String(record.summary ?? '').trim(),
++    savedAt: String(record.savedAt ?? savedAt)
++  };
++};
++
++export const loadReadingList = storage => {
++  const target = safeStorage(storage);
++  if (!target) return [];
++  try {
++    const parsed = JSON.parse(target.getItem(STORAGE_KEY) || '[]');
++    if (!Array.isArray(parsed)) return [];
++    const seen = new Set();
++    const items = [];
++    parsed.forEach(record => {
++      const item = sanitiseReadingItem(record, record?.savedAt);
++      if (!item || seen.has(item.route)) return;
++      seen.add(item.route);
++      items.push(item);
++    });
++    return items.slice(0, MAX_ITEMS);
++  } catch {
++    return [];
++  }
++};
++
++export const saveReadingList = (items, storage) => {
++  const target = safeStorage(storage);
++  if (!target) return false;
++  try {
++    const clean = [];
++    const seen = new Set();
++    (Array.isArray(items) ? items : []).forEach(record => {
++      const item = sanitiseReadingItem(record, record?.savedAt);
++      if (!item || seen.has(item.route)) return;
++      seen.add(item.route);
++      clean.push(item);
++    });
++    target.setItem(STORAGE_KEY, JSON.stringify(clean.slice(0, MAX_ITEMS)));
++    return true;
++  } catch {
++    return false;
++  }
++};
++
++export const upsertReadingItem = (items, record, savedAt = new Date().toISOString()) => {
++  const item = sanitiseReadingItem(record, savedAt);
++  if (!item) return Array.isArray(items) ? [...items] : [];
++  const remaining = (Array.isArray(items) ? items : [])
++    .map(existing => sanitiseReadingItem(existing, existing?.savedAt))
++    .filter(Boolean)
++    .filter(existing => existing.route !== item.route);
++  return [item, ...remaining].slice(0, MAX_ITEMS);
++};
++
++export const saveReadingRecord = (record, storage) => {
++  const items = upsertReadingItem(loadReadingList(storage), record);
++  if (!saveReadingList(items, storage)) {
++    throw new Error('Browser storage is unavailable.');
++  }
++  return items;
++};
++
++export const removeReadingRoute = (route, storage) => {
++  const normalised = normaliseReadingRoute(route);
++  const items = loadReadingList(storage).filter(item => item.route !== normalised);
++  saveReadingList(items, storage);
++  return items;
++};
++
++export const isRouteSaved = (route, storage) => {
++  const normalised = normaliseReadingRoute(route);
++  return Boolean(normalised) &&
++    loadReadingList(storage).some(item => item.route === normalised);
++};
++
++export const cacheSavedRoutes = async (
++  items,
++  cacheStorage = globalThis.caches,
++  fetcher = globalThis.fetch
++) => {
++  if (!cacheStorage?.open || typeof fetcher !== 'function') {
++    return {cached: [], failed: [{route: '', reason: 'Cache API unavailable'}]};
++  }
++  const cache = await cacheStorage.open(USER_READING_CACHE);
++  const routes = [...new Set(
++    (Array.isArray(items) ? items : [])
++      .map(item => cacheableRoute(item?.route))
++      .filter(Boolean)
++  )];
++  const cached = [];
++  const failed = [];
++  for (const route of routes) {
++    try {
++      const response = await fetcher(route, {
++        cache: 'reload',
++        credentials: 'same-origin',
++        headers: {'Accept': 'text/html,application/xhtml+xml'}
++      });
++      if (!response?.ok) throw new Error(`HTTP ${response?.status ?? 'unknown'}`);
++      await cache.put(route, response.clone());
++      cached.push(route);
++    } catch (error) {
++      failed.push({route, reason: String(error?.message || error)});
++    }
++  }
++  return {cached, failed};
++};
++
++export const removeCachedRoute = async (route, cacheStorage = globalThis.caches) => {
++  if (!cacheStorage?.open) return false;
++  const target = cacheableRoute(route);
++  if (!target) return false;
++  const cache = await cacheStorage.open(USER_READING_CACHE);
++  return cache.delete(target, {ignoreSearch: false});
++};
++
++export const clearOfflineReadingCache = async (cacheStorage = globalThis.caches) => {
++  if (!cacheStorage?.delete) return false;
++  return cacheStorage.delete(USER_READING_CACHE);
++};
++
++const createText = (parent, tag, text, className) => {
++  const element = document.createElement(tag);
++  if (className) element.className = className;
++  element.textContent = text;
++  parent.appendChild(element);
++  return element;
++};
++
++const displayTitle = item =>
++  item.titleTa && item.titleEn
++    ? `${item.titleTa} · ${item.titleEn}`
++    : item.titleTa || item.titleEn || item.route;
++
++const initialiseReadingList = () => {
++  const host = document.getElementById('readingListItems');
++  const count = document.getElementById('readingListCount');
++  const status = document.getElementById('readingListStatus');
++  const cacheAll = document.getElementById('readingListCacheAll');
++  const clearAll = document.getElementById('readingListClearAll');
++  const exportButton = document.getElementById('readingListExport');
++  if (!host || !count || !status || !cacheAll || !clearAll || !exportButton) return;
++
++  const render = () => {
++    const items = loadReadingList();
++    count.textContent = String(items.length);
++    host.replaceChildren();
++    cacheAll.disabled = items.length === 0;
++    clearAll.disabled = items.length === 0;
++    exportButton.disabled = items.length === 0;
++
++    if (!items.length) {
++      const empty = document.createElement('article');
++      empty.className = 'card reading-list-empty';
++      createText(empty, 'h2', 'Your reading list is empty');
++      createText(
++        empty,
++        'p',
++        'Open Published Search Facets and save a verified or clearly bounded record.'
++      );
++      const link = document.createElement('a');
++      link.className = 'btn';
++      link.href = 'search-facets.html';
++      link.textContent = 'Browse published content';
++      empty.appendChild(link);
++      host.appendChild(empty);
++      status.textContent = 'No locally saved pages.';
++      return;
++    }
++
++    items.forEach(item => {
++      const article = document.createElement('article');
++      article.className = 'card reading-list-item';
++
++      const labels = document.createElement('div');
++      labels.className = 'reading-list-labels';
++      createText(labels, 'span', item.kind, 'pill');
++      createText(labels, 'span', item.status, 'pill');
++      article.appendChild(labels);
++
++      createText(article, 'h2', displayTitle(item));
++      if (item.summary) createText(article, 'p', item.summary);
++      createText(
++        article,
++        'p',
++        `Saved locally ${new Date(item.savedAt).toLocaleDateString()}`,
++        'reading-list-meta'
++      );
++
++      const actions = document.createElement('div');
++      actions.className = 'reading-list-actions';
++
++      const open = document.createElement('a');
++      open.className = 'btn';
++      open.href = item.route;
++      open.textContent = 'Open page';
++      actions.appendChild(open);
++
++      const remove = document.createElement('button');
++      remove.type = 'button';
++      remove.className = 'btn secondary';
++      remove.textContent = 'Remove';
++      remove.addEventListener('click', async () => {
++        removeReadingRoute(item.route);
++        await removeCachedRoute(item.route).catch(() => false);
++        render();
++      });
++      actions.appendChild(remove);
++
++      article.appendChild(actions);
++      host.appendChild(article);
++    });
++
++    status.textContent =
++      `${items.length} page${items.length === 1 ? '' : 's'} saved in this browser.`;
++  };
++
++  cacheAll.addEventListener('click', async () => {
++    const items = loadReadingList();
++    if (!items.length) return;
++    cacheAll.disabled = true;
++    status.textContent = 'Caching saved pages independently…';
++    const result = await cacheSavedRoutes(items);
++    status.textContent = result.failed.length
++      ? `${result.cached.length} cached; ${result.failed.length} could not be cached.`
++      : `${result.cached.length} saved page${result.cached.length === 1 ? '' : 's'} available offline.`;
++    cacheAll.disabled = false;
++  });
++
++  clearAll.addEventListener('click', async () => {
++    if (!confirm('Remove every locally saved page and its offline copies?')) return;
++    saveReadingList([]);
++    await clearOfflineReadingCache().catch(() => false);
++    render();
++  });
++
++  exportButton.addEventListener('click', () => {
++    const items = loadReadingList();
++    const blob = new Blob(
++      [JSON.stringify({version: 1, exportedAt: new Date().toISOString(), items}, null, 2)],
++      {type: 'application/json'}
++    );
++    const url = URL.createObjectURL(blob);
++    const link = document.createElement('a');
++    link.href = url;
++    link.download = 'omsaravanabhava-reading-list.json';
++    document.body.appendChild(link);
++    link.click();
++    link.remove();
++    URL.revokeObjectURL(url);
++    status.textContent = 'Reading list exported as JSON.';
++  });
++
++  window.addEventListener('storage', event => {
++    if (event.key === STORAGE_KEY) render();
++  });
++
++  render();
++};
++
++if (typeof document !== 'undefined') {
++  document.addEventListener('DOMContentLoaded', initialiseReadingList);
++}
+diff --git a/search-facets.html b/search-facets.html
+--- a/search-facets.html
++++ b/search-facets.html
+@@ -15,7 +15,7 @@
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script type="module" src="assets/js/search-facets.mjs"></script>
+ </head>
+-<body data-release="215">
++<body data-release="216">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Published local search facets</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+@@ -25,11 +25,12 @@
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Search Facets</span></p></nav>
+ <section class="card">
+-<span class="pill">Release 215 · Browser-local discovery</span>
++<span class="pill">Release 216 · Browser-local discovery and saving</span>
+ <h1 class="section-title" lang="ta">வெளியிடப்பட்ட உள்ளடக்கத் தேடல் வடிகட்டிகள்</h1>
+ <h2>Published-Content Search Facets</h2>
+ <p>Browse the existing local search index by genuine content type. Counts are calculated in your browser from published JSON records and the public route directory.</p>
+ <p>No query, preference or interaction is sent to a remote AI, analytics service or account system.</p>
++<p><a class="btn secondary" href="reading-list.html">Open offline reading list</a></p>
+ </section>
+ 
+ <section class="facet-summary-grid" aria-label="Published search summary">
+@@ -72,6 +73,6 @@
+ </section>
+ <noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>Use the <a href="ai-search.html">local knowledge search</a> or <a href="site-directory.html">site directory</a>.</p></section></noscript>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
++<footer>© Om Saravana Bhava · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
+ </body>
+ </html>
+diff --git a/assets/css/search-facets.css b/assets/css/search-facets.css
+--- a/assets/css/search-facets.css
++++ b/assets/css/search-facets.css
+@@ -1 +1 @@
+-.facet-summary-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:0 0 24px}.facet-summary{display:flex;flex-direction:column;gap:8px;min-height:150px;justify-content:center}.facet-summary span{font-weight:850;color:#6a4638}.facet-summary strong{font-size:clamp(2rem,5vw,4rem);line-height:1;color:var(--red)}.facet-control-grid{display:grid;grid-template-columns:minmax(240px,1.3fr) minmax(220px,.8fr) auto;gap:14px;align-items:end;margin:20px 0}.facet-control-grid label{font-weight:900}.facet-control-grid input,.facet-control-grid select{display:block;width:100%;min-height:48px;margin-top:6px;border:1px solid var(--line);border-radius:14px;padding:10px 12px;background:var(--surface-strong,#fff);color:var(--ink);font:inherit}.facet-kind-list{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 18px}.facet-kind{display:inline-flex;align-items:center;gap:8px;min-height:44px;border:1px solid var(--line);border-radius:999px;padding:9px 14px;background:var(--surface-strong,#fff);color:var(--ink);font:inherit;font-weight:900;cursor:pointer}.facet-kind span{display:inline-grid;place-items:center;min-width:28px;height:28px;border-radius:999px;background:rgba(165,29,23,.09);color:var(--red);font-size:.82rem}.facet-kind[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#fff}.facet-kind[aria-pressed="true"] span{background:rgba(255,255,255,.2);color:#fff}.facet-results{align-items:stretch}.facet-result{display:flex;flex-direction:column;gap:10px}.facet-result h2{margin:0}.facet-result .btn{margin-top:auto;align-self:flex-start}.facet-tags{display:flex;flex-wrap:wrap;gap:7px}.facet-tag{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:4px 9px;font-size:.8rem;font-weight:800}.facet-empty{grid-column:1/-1}.facet-error{border-left:5px solid var(--red)}body.dark .facet-summary span{color:#f4d9c8}body.dark .facet-kind{background:var(--surface-strong);color:#fff1df}@media(max-width:860px){.facet-summary-grid,.facet-control-grid{grid-template-columns:1fr}.facet-control-grid .btn{width:100%}}@media print{.facet-control-grid,.facet-kind-list,#facetResultStatus{display:none!important}.facet-summary-grid{grid-template-columns:repeat(3,1fr)}.facet-result{break-inside:avoid}}
++.facet-summary-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:0 0 24px}.facet-summary{display:flex;flex-direction:column;gap:8px;min-height:150px;justify-content:center}.facet-summary span{font-weight:850;color:#6a4638}.facet-summary strong{font-size:clamp(2rem,5vw,4rem);line-height:1;color:var(--red)}.facet-control-grid{display:grid;grid-template-columns:minmax(240px,1.3fr) minmax(220px,.8fr) auto;gap:14px;align-items:end;margin:20px 0}.facet-control-grid label{font-weight:900}.facet-control-grid input,.facet-control-grid select{display:block;width:100%;min-height:48px;margin-top:6px;border:1px solid var(--line);border-radius:14px;padding:10px 12px;background:var(--surface-strong,#fff);color:var(--ink);font:inherit}.facet-kind-list{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 18px}.facet-kind{display:inline-flex;align-items:center;gap:8px;min-height:44px;border:1px solid var(--line);border-radius:999px;padding:9px 14px;background:var(--surface-strong,#fff);color:var(--ink);font:inherit;font-weight:900;cursor:pointer}.facet-kind span{display:inline-grid;place-items:center;min-width:28px;height:28px;border-radius:999px;background:rgba(165,29,23,.09);color:var(--red);font-size:.82rem}.facet-kind[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#fff}.facet-kind[aria-pressed="true"] span{background:rgba(255,255,255,.2);color:#fff}.facet-results{align-items:stretch}.facet-result{display:flex;flex-direction:column;gap:10px}.facet-result h2{margin:0}.facet-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:auto;padding-top:8px}.facet-result .btn{align-self:flex-start}.facet-save[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#fff}.facet-tags{display:flex;flex-wrap:wrap;gap:7px}.facet-tag{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:4px 9px;font-size:.8rem;font-weight:800}.facet-empty{grid-column:1/-1}.facet-error{border-left:5px solid var(--red)}body.dark .facet-summary span{color:#f4d9c8}body.dark .facet-kind{background:var(--surface-strong);color:#fff1df}@media(max-width:860px){.facet-summary-grid,.facet-control-grid{grid-template-columns:1fr}.facet-control-grid .btn{width:100%}}@media print{.facet-control-grid,.facet-kind-list,#facetResultStatus{display:none!important}.facet-summary-grid{grid-template-columns:repeat(3,1fr)}.facet-result{break-inside:avoid}}
+diff --git a/assets/js/search-facets.mjs b/assets/js/search-facets.mjs
+--- a/assets/js/search-facets.mjs
++++ b/assets/js/search-facets.mjs
+@@ -1,4 +1,6 @@
+-export const RELEASE = 215;
++import {isRouteSaved, saveReadingRecord} from './reading-list.mjs';
++
++export const RELEASE = 216;
+ 
+ export const PUBLISHED_STATUSES = new Set([
+   'published',
+@@ -140,11 +142,37 @@
+     article.appendChild(tags);
+   }
+ 
++  const actions = document.createElement('div');
++  actions.className = 'facet-actions';
++
+   const link = document.createElement('a');
+   link.className = 'btn secondary';
+   link.href = record.route;
+   link.textContent = 'Open published route';
+-  article.appendChild(link);
++  actions.appendChild(link);
++
++  const save = document.createElement('button');
++  save.type = 'button';
++  save.className = 'btn secondary facet-save';
++  const updateSaveState = () => {
++    const saved = isRouteSaved(record.route);
++    save.setAttribute('aria-pressed', String(saved));
++    save.textContent = saved ? 'Saved to reading list' : 'Save to reading list';
++  };
++  save.addEventListener('click', () => {
++    try {
++      saveReadingRecord(record);
++      updateSaveState();
++    } catch (error) {
++      console.error('[OmSaravanaBhava] Reading-list save failed', error);
++      save.textContent = 'Browser storage unavailable';
++      save.disabled = true;
++    }
++  });
++  updateSaveState();
++  actions.appendChild(save);
++
++  article.appendChild(actions);
+   return article;
+ };
+ 
+diff --git a/index.html b/index.html
+--- a/index.html
++++ b/index.html
+@@ -27,7 +27,7 @@
+ <script defer src="assets/js/premium-home.js"></script>
+ <script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body data-release="215">
++<body data-release="216">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Verified Murugan digital heritage platform</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+@@ -37,7 +37,7 @@
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">OmSaravanaBhava Home</span></p></nav>
+ <section class="home-stage">
+-<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 215</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="explore.html">Explore all modules</a><a class="btn secondary" href="ai-search.html">Search knowledge</a><a class="btn secondary" href="search-facets.html">Browse by content type</a></div></div>
++<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 216</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="explore.html">Explore all modules</a><a class="btn secondary" href="ai-search.html">Search knowledge</a><a class="btn secondary" href="search-facets.html">Browse by content type</a><a class="btn secondary" href="reading-list.html">Reading list</a></div></div>
+ <div class="home-stage-panel" aria-label="Published platform data">
+ <div class="home-metric"><span>Search records</span><strong data-count-source="data/search-index.json" aria-live="polite">…</strong></div>
+ <div class="home-metric"><span>Source records</span><strong data-count-source="data/sources.json" aria-live="polite">…</strong></div>
+@@ -52,6 +52,6 @@
+ <section class="card" aria-labelledby="integrity-heading"><h2 id="integrity-heading">Publication integrity</h2><p>Repository releases, deployed pages and runtime behaviour are separate evidence layers. Content and feature claims remain bounded until automated checks and production observation confirm them.</p><p><a class="btn secondary" href="production-audit.html">Open production audit</a> <a class="btn secondary" href="content-status.html">Open content status</a></p></section>
+ <noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>All primary modules remain available through the navigation links. Live data counts are unavailable without JavaScript.</p></section></noscript>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
++<footer>© Om Saravana Bhava · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
+ </body>
+ </html>
+diff --git a/platform.html b/platform.html
+--- a/platform.html
++++ b/platform.html
+@@ -10,7 +10,7 @@
+ <meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
+ <script defer src="assets/js/pwa-register.js"></script><script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body data-release="215">
++<body data-release="216">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Digital Murugan knowledge platform</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div></div></nav>
+@@ -28,12 +28,13 @@
+ <article class="card"><h2>Festival Intelligence</h2><a class="btn" href="festival-intelligence.html">Open module</a></article>
+ <article class="card"><h2>Search</h2><a class="btn" href="ai-search.html">Open module</a></article>
+ <article class="card"><h2>Published Search Facets</h2><p>Browse actual local search records by content type and publication boundary.</p><a class="btn" href="search-facets.html">Open facets</a></article>
++<article class="card"><h2>Offline Reading List</h2><p>Save published routes locally and cache selected pages independently for offline reading.</p><a class="btn" href="reading-list.html">Open reading list</a></article>
+ <article class="card"><h2>Knowledge Graph</h2><a class="btn" href="knowledge-graph-phase-4.html">Open module</a></article>
+ <article class="card"><h2>Panchangam Framework</h2><p>Verified-data contract only; no live calendar calculation.</p><a class="btn" href="panchangam-framework.html">Open framework</a></article>
+ </section>
+ <section class="card"><h2>Milestone boundary</h2><p>The platform hub connects published modules. It does not certify complete Murugan literature, licensed human audio, live Panchangam computation or server-side accounts.</p></section>
+ <section class="card"><h2>Version 3 milestone</h2><a class="btn" href="version-3.html">Open milestone dashboard</a></section>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
++<footer>© Om Saravana Bhava · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
+ </body>
+ </html>
+diff --git a/data/site-routes.json b/data/site-routes.json
+--- a/data/site-routes.json
++++ b/data/site-routes.json
+@@ -1,5 +1,5 @@
+ {
+-  "release": 215,
++  "release": 216,
+   "generated": "2026-07-14",
+   "scope": "Public HTML routes represented by the Release 215 sitemap and route directory.",
+   "statusMeaning": {
+@@ -9,7 +9,8 @@
+     "framework": "Architecture or data contract only; no live computation is claimed.",
+     "milestone": "Checkpoint or audit page, not independent production certification.",
+     "directory": "Navigation and route-discovery utility.",
+-    "navigation": "Information-architecture gateway to existing published routes."
++    "navigation": "Information-architecture gateway to existing published routes.",
++    "utility": "Browser-local utility route; stored preferences or lists remain on the current device."
+   },
+   "routes": [
+     {
+@@ -541,6 +542,14 @@
+       "summary": "Browser-local dashboard that groups published search records by genuine content type and publication boundary."
+     },
+     {
++      "path": "/reading-list.html",
++      "titleTa": "இணையமில்லா வாசிப்பு பட்டியல்",
++      "titleEn": "Offline Reading List",
++      "category": "Platform",
++      "status": "utility",
++      "summary": "Browser-local list for saving published routes and explicitly caching selected pages for offline reading."
++    },
++    {
+       "path": "/pilgrimage-planner.html",
+       "titleTa": "யாத்திரை திட்டம்",
+       "titleEn": "Pilgrimage Planner",
+diff --git a/sitemap.xml b/sitemap.xml
+--- a/sitemap.xml
++++ b/sitemap.xml
+@@ -522,4 +522,10 @@
+     <changefreq>monthly</changefreq>
+     <priority>0.9</priority>
+   </url>
++  <url>
++    <loc>https://omsaravanabhava.org/reading-list.html</loc>
++    <lastmod>2026-07-14</lastmod>
++    <changefreq>monthly</changefreq>
++    <priority>0.8</priority>
++  </url>
+ </urlset>
+diff --git a/service-worker.js b/service-worker.js
+--- a/service-worker.js
++++ b/service-worker.js
+@@ -1,8 +1,9 @@
+-const RELEASE = '215';
++const RELEASE = '216';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+ const CACHE_PREFIX = 'osb-';
++const USER_READING_CACHE = 'osb-user-reading-v1';
+ const OFFLINE_URL = '/offline.html';
+ const MAX_RUNTIME_ENTRIES = 60;
+ const MAX_DATA_ENTRIES = 20;
+@@ -195,7 +196,10 @@
+   "/assets/js/explore-navigation.js",
+   "/search-facets.html",
+   "/assets/css/search-facets.css",
+-  "/assets/js/search-facets.mjs"
++  "/assets/js/search-facets.mjs",
++  "/reading-list.html",
++  "/assets/css/reading-list.css",
++  "/assets/js/reading-list.mjs"
+ ];
+ 
+ const cacheOptionalAssets = async cache => {
+@@ -229,7 +233,7 @@
+     caches.keys()
+       .then(keys => Promise.all(
+         keys
+-          .filter(key => key.startsWith(CACHE_PREFIX) && ![STATIC_CACHE, RUNTIME_CACHE, DATA_CACHE].includes(key))
++          .filter(key => key.startsWith(CACHE_PREFIX) && ![STATIC_CACHE, RUNTIME_CACHE, DATA_CACHE, USER_READING_CACHE].includes(key))
+           .map(key => caches.delete(key))
+       ))
+       .then(() => self.clients.claim())
+diff --git a/quality/site-audit-config.json b/quality/site-audit-config.json
+--- a/quality/site-audit-config.json
++++ b/quality/site-audit-config.json
+@@ -1,5 +1,5 @@
+ {
+-  "expectedRelease": "215",
++  "expectedRelease": "216",
+   "canonicalOrigin": "https://omsaravanabhava.org",
+   "requiredFiles": [
+     "index.html",
+@@ -26,7 +26,10 @@
+     "assets/js/explore-navigation.js",
+     "search-facets.html",
+     "assets/css/search-facets.css",
+-    "assets/js/search-facets.mjs"
++    "assets/js/search-facets.mjs",
++    "reading-list.html",
++    "assets/css/reading-list.css",
++    "assets/js/reading-list.mjs"
+   ],
+   "canonicalOptional": [
+     "404.html",
+diff --git a/tools/production_smoke.py b/tools/production_smoke.py
+--- a/tools/production_smoke.py
++++ b/tools/production_smoke.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Observe the deployed custom domain and fail when Release 215 is not live."""
++"""Observe the deployed custom domain and fail when Release 216 is not live."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -10,13 +10,16 @@
+ from pathlib import Path
+ 
+ CHECKS = [
+-    ("/", 'data-release="215"'),
+-    ("/service-worker.js", "const RELEASE = '215';"),
++    ("/", 'data-release="216"'),
++    ("/service-worker.js", "const RELEASE = '216';"),
+     ("/search-facets.html", "Published-Content Search Facets"),
+     ("/assets/js/search-facets.mjs", "export const RELEASE = 215;"),
+     ("/data/site-routes.json", '"/search-facets.html"'),
+     ("/platform.html", 'href="search-facets.html"'),
+-    ("/sitemap.xml", "https://omsaravanabhava.org/search-facets.html")
++    ("/sitemap.xml", "https://omsaravanabhava.org/search-facets.html"),
++    ("/reading-list.html", "Offline Reading List"),
++    ("/assets/js/reading-list.mjs", "export const RELEASE = 216"),
++    ("/sitemap.xml", "https://omsaravanabhava.org/reading-list.html")
+ ]
+ 
+ 
+@@ -24,7 +27,7 @@
+     request = urllib.request.Request(
+         url,
+         headers={
+-            "User-Agent": "OmSaravanaBhava-Production-Smoke/215",
++            "User-Agent": "OmSaravanaBhava-Production-Smoke/216",
+             "Cache-Control": "no-cache"
+         }
+     )
+diff --git a/tests/search-facets.test.mjs b/tests/search-facets.test.mjs
+--- a/tests/search-facets.test.mjs
++++ b/tests/search-facets.test.mjs
+@@ -72,8 +72,8 @@
+   }
+ ];
+ 
+-test('release identity is 215', () => {
+-  assert.equal(RELEASE, 215);
++test('release identity is 216', () => {
++  assert.equal(RELEASE, 216);
+ });
+ 
+ test('route normalisation removes query and fragment', () => {
+diff --git a/tests/reading-list.test.mjs b/tests/reading-list.test.mjs
+new file mode 100644
+--- /dev/null
++++ b/tests/reading-list.test.mjs
+@@ -0,0 +1,94 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++
++import {
++  RELEASE,
++  STORAGE_KEY,
++  USER_READING_CACHE,
++  cacheSavedRoutes,
++  cacheableRoute,
++  isRouteSaved,
++  loadReadingList,
++  normaliseReadingRoute,
++  removeReadingRoute,
++  saveReadingRecord,
++  upsertReadingItem
++} from '../assets/js/reading-list.mjs';
++
++class MemoryStorage {
++  constructor() { this.values = new Map(); }
++  getItem(key) { return this.values.has(key) ? this.values.get(key) : null; }
++  setItem(key, value) { this.values.set(key, String(value)); }
++}
++
++test('release and storage identities are stable', () => {
++  assert.equal(RELEASE, 216);
++  assert.equal(STORAGE_KEY, 'osb-reading-list-v1');
++  assert.equal(USER_READING_CACHE, 'osb-user-reading-v1');
++});
++
++test('same-origin routes are normalised and external routes are rejected', () => {
++  assert.equal(
++    normaliseReadingRoute('temples/palani.html?view=full#main'),
++    '/temples/palani.html?view=full#main'
++  );
++  assert.equal(normaliseReadingRoute('https://example.com/page.html'), '');
++  assert.equal(cacheableRoute('/temples/palani.html?view=full#main'), '/temples/palani.html?view=full');
++});
++
++test('upsert deduplicates a saved route and keeps the newest record first', () => {
++  const first = upsertReadingItem([], {
++    route: '/temples/palani.html',
++    titleEn: 'Palani',
++    kind: 'Temple',
++    status: 'published'
++  }, '2026-07-14T10:00:00Z');
++  const second = upsertReadingItem(first, {
++    route: 'temples/palani.html',
++    titleEn: 'Palani Temple',
++    kind: 'Temple',
++    status: 'published'
++  }, '2026-07-14T11:00:00Z');
++  assert.equal(second.length, 1);
++  assert.equal(second[0].titleEn, 'Palani Temple');
++  assert.equal(second[0].savedAt, '2026-07-14T11:00:00Z');
++});
++
++test('storage save, lookup and remove remain browser-local', () => {
++  const storage = new MemoryStorage();
++  saveReadingRecord({
++    route: '/slokas/om-saravana-bhava.html',
++    titleTa: 'ஓம் சரவணபவ',
++    titleEn: 'Om Saravana Bhava',
++    kind: 'Sloka',
++    status: 'published'
++  }, storage);
++  assert.equal(loadReadingList(storage).length, 1);
++  assert.equal(isRouteSaved('/slokas/om-saravana-bhava.html', storage), true);
++  removeReadingRoute('/slokas/om-saravana-bhava.html', storage);
++  assert.equal(loadReadingList(storage).length, 0);
++});
++
++test('offline caching handles each route independently', async () => {
++  const puts = [];
++  const cacheStorage = {
++    async open(name) {
++      assert.equal(name, USER_READING_CACHE);
++      return {
++        async put(route) { puts.push(route); }
++      };
++    }
++  };
++  const fetcher = async route => {
++    if (route.includes('missing')) throw new Error('network');
++    return {ok: true, clone() { return this; }};
++  };
++  const result = await cacheSavedRoutes([
++    {route: '/temples/palani.html'},
++    {route: '/missing.html'},
++    {route: '/temples/palani.html#main'}
++  ], cacheStorage, fetcher);
++  assert.deepEqual(result.cached, ['/temples/palani.html']);
++  assert.equal(result.failed.length, 1);
++  assert.deepEqual(puts, ['/temples/palani.html']);
++});
+diff --git a/tools/release_216_validate.py b/tools/release_216_validate.py
+new file mode 100644
+--- /dev/null
++++ b/tools/release_216_validate.py
+@@ -0,0 +1,188 @@
++#!/usr/bin/env python3
++"""Validate the Release 216 overlay without claiming GitHub or deployment results."""
++from __future__ import annotations
++
++import argparse
++import json
++import re
++import sys
++import xml.etree.ElementTree as ET
++from pathlib import Path
++
++RELEASE = "216"
++BASE_COMMIT = "61875883f928169df44143f9d8582ece43128138"
++ROUTE = "/reading-list.html"
++REQUIRED_OVERLAY = [
++    "reading-list.html",
++    "assets/css/reading-list.css",
++    "assets/js/reading-list.mjs",
++    "search-facets.html",
++    "assets/css/search-facets.css",
++    "assets/js/search-facets.mjs",
++    "index.html",
++    "platform.html",
++    "data/site-routes.json",
++    "sitemap.xml",
++    "service-worker.js",
++    "quality/site-audit-config.json",
++    "tools/production_smoke.py",
++    "tests/test_site_audit.py",
++    "tests/search-facets.test.mjs",
++    "tests/reading-list.test.mjs",
++    ".github/workflows/static-site-integrity.yml",
++    ".github/workflows/production-smoke.yml",
++    "manifest-release-216.json",
++]
++
++def read(root: Path, relative: str) -> str:
++    return (root / relative).read_text(encoding="utf-8")
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", type=Path, default=Path.cwd())
++    parser.add_argument("--package-mode", action="store_true")
++    parser.add_argument("--report", type=Path, default=Path("artifacts/release-216-validation.json"))
++    args = parser.parse_args()
++    root = args.root.resolve()
++    errors: list[str] = []
++    checks: list[str] = []
++
++    for relative in REQUIRED_OVERLAY:
++        if not (root / relative).is_file():
++            errors.append(f"missing required overlay file: {relative}")
++        else:
++            checks.append(f"exists: {relative}")
++
++    if not errors:
++        manifest = json.loads(read(root, "manifest-release-216.json"))
++        routes = json.loads(read(root, "data/site-routes.json"))
++        config = json.loads(read(root, "quality/site-audit-config.json"))
++        ET.fromstring(read(root, "sitemap.xml"))
++
++        if manifest.get("release") != 216:
++            errors.append("manifest release is not 216")
++        if manifest.get("base_commit") != BASE_COMMIT:
++            errors.append("manifest base commit does not match Release 215 head")
++        if routes.get("release") != 216:
++            errors.append("route directory release is not 216")
++
++        route_records = routes.get("routes", [])
++        route_paths = [item.get("path") for item in route_records if isinstance(item, dict)]
++        if route_paths.count(ROUTE) != 1:
++            errors.append("reading-list route must appear exactly once in route directory")
++        if len(route_paths) != len(set(route_paths)):
++            errors.append("duplicate route-directory paths detected")
++        reading_record = next((item for item in route_records if item.get("path") == ROUTE), None)
++        if reading_record and reading_record.get("status") != "utility":
++            errors.append("reading-list route must retain utility status")
++
++        if config.get("expectedRelease") != RELEASE:
++            errors.append("site audit expectedRelease is not 216")
++        for relative in ("reading-list.html", "assets/css/reading-list.css", "assets/js/reading-list.mjs"):
++            if relative not in config.get("requiredFiles", []):
++                errors.append(f"site audit does not require {relative}")
++
++        sitemap = read(root, "sitemap.xml")
++        if sitemap.count("https://omsaravanabhava.org/reading-list.html") != 1:
++            errors.append("sitemap must contain exactly one reading-list URL")
++
++        worker = read(root, "service-worker.js")
++        if "const RELEASE = '216';" not in worker:
++            errors.append("service-worker identity is not 216")
++        if "const USER_READING_CACHE = 'osb-user-reading-v1';" not in worker:
++            errors.append("persistent user reading cache identity is missing")
++        if "DATA_CACHE, USER_READING_CACHE" not in worker:
++            errors.append("service-worker activation does not preserve the user reading cache")
++        core_match = re.search(r"const CORE_PRECACHE_URLS = \[(.*?)\];", worker, re.S)
++        optional_match = re.search(r"const PRECACHE_URLS = \[(.*?)\];", worker, re.S)
++        new_assets = {
++            "/reading-list.html",
++            "/assets/css/reading-list.css",
++            "/assets/js/reading-list.mjs",
++        }
++        core_text = core_match.group(1) if core_match else ""
++        optional_text = optional_match.group(1) if optional_match else ""
++        for asset in new_assets:
++            if f'"{asset}"' not in optional_text:
++                errors.append(f"optional cache is missing {asset}")
++            if f'"{asset}"' in core_text:
++                errors.append(f"reading-list asset incorrectly blocks installation: {asset}")
++        if "cacheOptionalAssets" not in worker or "CORE_PRECACHE_URLS" not in worker:
++            errors.append("resilient service-worker strategy is missing")
++
++        for html in ("index.html", "platform.html", "search-facets.html", "reading-list.html"):
++            body = read(root, html)
++            if 'data-release="216"' not in body:
++                errors.append(f"{html} does not expose data-release 216")
++            if "reading-list.html" not in body:
++                errors.append(f"{html} does not link to reading list")
++
++        module = read(root, "assets/js/reading-list.mjs")
++        for marker in (
++            "export const RELEASE = 216;",
++            "osb-reading-list-v1",
++            "osb-user-reading-v1",
++            "cacheSavedRoutes",
++            "localStorage",
++        ):
++            if marker not in module:
++                errors.append(f"reading-list module is missing marker: {marker}")
++        for prohibited in ("navigator.sendBeacon", "gtag(", "google-analytics", "api.openai.com"):
++            if prohibited in module:
++                errors.append(f"prohibited remote marker found: {prohibited}")
++
++        facets = read(root, "assets/js/search-facets.mjs")
++        for marker in (
++            "export const RELEASE = 216;",
++            "saveReadingRecord",
++            "Save to reading list",
++        ):
++            if marker not in facets:
++                errors.append(f"search facets reading-list integration is missing: {marker}")
++
++        smoke = read(root, "tools/production_smoke.py")
++        for marker in (
++            'data-release="216"',
++            "const RELEASE = '216';",
++            "/reading-list.html",
++            "/assets/js/reading-list.mjs",
++        ):
++            if marker not in smoke:
++                errors.append(f"production smoke is missing marker: {marker}")
++
++        for workflow in (
++            ".github/workflows/static-site-integrity.yml",
++            ".github/workflows/production-smoke.yml",
++        ):
++            body = read(root, workflow)
++            if "216" not in body or "release-216-" not in body:
++                errors.append(f"{workflow} has stale release or artifact identity")
++
++        if not args.package_mode:
++            for relative in (
++                "data/search-index.json",
++                "assets/css/osb44.css",
++                "tools/site_audit.py",
++            ):
++                if not (root / relative).is_file():
++                    errors.append(f"repository mode requires {relative}")
++
++    report = {
++        "release": 216,
++        "base_commit": BASE_COMMIT,
++        "mode": "package" if args.package_mode else "repository",
++        "status": "FAIL" if errors else "PASS",
++        "errors": errors,
++        "checks": checks,
++        "github_actions": "NOT_RUN",
++        "deployed_production": "NOT_RUN",
++    }
++
++    report_path = args.report if args.report.is_absolute() else root / args.report
++    report_path.parent.mkdir(parents=True, exist_ok=True)
++    report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
++    print(json.dumps(report, ensure_ascii=False, indent=2))
++    return 1 if report["status"] == "FAIL" else 0
++
++if __name__ == "__main__":
++    sys.exit(main())
+diff --git a/.github/workflows/static-site-integrity.yml b/.github/workflows/static-site-integrity.yml
+--- a/.github/workflows/static-site-integrity.yml
++++ b/.github/workflows/static-site-integrity.yml
+@@ -1,4 +1,4 @@
+-name: Release 215 Static Site Integrity
++name: Release 216 Static Site Integrity
+ 
+ on:
+   push:
+@@ -12,7 +12,7 @@
+ 
+ jobs:
+   integrity:
+-    name: Release 215 repository validation
++    name: Release 216 repository validation
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repository
+@@ -28,25 +28,27 @@
+         with:
+           node-version: "20"
+ 
+-      - name: Validate Release 215 identities and routes
+-        run: python tools/release_215_validate.py --root . --report artifacts/release-215-overlay-validation.json
++      - name: Validate Release 216 identities and routes
++        run: python tools/release_216_validate.py --root . --report artifacts/release-216-overlay-validation.json
+ 
+-      - name: Check search facets JavaScript syntax
+-        run: node --check assets/js/search-facets.mjs
++      - name: Check browser modules
++        run: |
++          node --check assets/js/reading-list.mjs
++          node --check assets/js/search-facets.mjs
+ 
+-      - name: Run search facets unit tests
+-        run: node --test tests/search-facets.test.mjs
++      - name: Run browser-local feature unit tests
++        run: node --test tests/reading-list.test.mjs tests/search-facets.test.mjs
+ 
+       - name: Run site-audit unit tests
+         run: python -m unittest discover -s tests -p 'test_site_audit.py'
+ 
+       - name: Run repository-wide static audit
+-        run: python tools/site_audit.py --root . --json-report artifacts/release-215-site-audit.json --markdown-report artifacts/release-215-site-audit.md
++        run: python tools/site_audit.py --root . --json-report artifacts/release-216-site-audit.json --markdown-report artifacts/release-216-site-audit.md
+ 
+-      - name: Upload Release 215 integrity evidence
++      - name: Upload Release 216 integrity evidence
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+-          name: release-215-static-integrity-${{ github.sha }}
++          name: release-216-static-integrity-${{ github.sha }}
+           path: artifacts/
+           if-no-files-found: error
+diff --git a/.github/workflows/production-smoke.yml b/.github/workflows/production-smoke.yml
+--- a/.github/workflows/production-smoke.yml
++++ b/.github/workflows/production-smoke.yml
+@@ -1,4 +1,4 @@
+-name: Release 215 Production Smoke
++name: Release 216 Production Smoke
+ 
+ on:
+   push:
+@@ -11,12 +11,12 @@
+   contents: read
+ 
+ concurrency:
+-  group: release-215-production-smoke
++  group: release-216-production-smoke
+   cancel-in-progress: true
+ 
+ jobs:
+   smoke:
+-    name: Observe deployed Release 215
++    name: Observe deployed Release 216
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repository
+@@ -32,12 +32,12 @@
+         run: sleep 90
+ 
+       - name: Run deployed production smoke checks
+-        run: python tools/production_smoke.py --retries 18 --delay 20 --report artifacts/release-215-production-smoke.json
++        run: python tools/production_smoke.py --retries 18 --delay 20 --report artifacts/release-216-production-smoke.json
+ 
+-      - name: Upload Release 215 production evidence
++      - name: Upload Release 216 production evidence
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+-          name: release-215-production-smoke-${{ github.sha }}
+-          path: artifacts/release-215-production-smoke.json
++          name: release-216-production-smoke-${{ github.sha }}
++          path: artifacts/release-216-production-smoke.json
+           if-no-files-found: error
+diff --git a/manifest-release-216.json b/manifest-release-216.json
+new file mode 100644
+--- /dev/null
++++ b/manifest-release-216.json
+@@ -0,0 +1,60 @@
++{
++  "project": "OmSaravanaBhava",
++  "release": 216,
++  "name": "Browser-Local Offline Reading List",
++  "base_commit": "61875883f928169df44143f9d8582ece43128138",
++  "generated": "2026-07-14",
++  "required_commit_title": "Release 216: add browser-local offline reading list",
++  "validation_status": "LOCAL_PACKAGE_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
++  "production_files": [
++    "reading-list.html",
++    "assets/css/reading-list.css",
++    "assets/js/reading-list.mjs",
++    "search-facets.html",
++    "assets/css/search-facets.css",
++    "assets/js/search-facets.mjs",
++    "index.html",
++    "platform.html",
++    "data/site-routes.json",
++    "sitemap.xml",
++    "service-worker.js"
++  ],
++  "ci_alignment_files": [
++    "quality/site-audit-config.json",
++    "tools/production_smoke.py",
++    "tests/test_site_audit.py",
++    "tests/search-facets.test.mjs",
++    "tests/reading-list.test.mjs",
++    "tools/release_216_validate.py",
++    ".github/workflows/static-site-integrity.yml",
++    ".github/workflows/production-smoke.yml"
++  ],
++  "source_dependencies": {
++    "data/search-index.json": {
++      "included_in_zip": false,
++      "reason": "Existing unmodified published local search data used by Search Facets."
++    },
++    "data/site-routes.json": {
++      "included_in_zip": true,
++      "reason": "Updated with the public reading-list utility route."
++    }
++  },
++  "claims": {
++    "browser_local_storage": true,
++    "server_accounts": false,
++    "remote_sync": false,
++    "remote_analytics": false,
++    "offline_cache_is_user_initiated": true,
++    "cache_failures_are_independent": true,
++    "persistent_user_cache_preserved_across_service_worker_activation": true,
++    "maximum_saved_items": 100,
++    "service_worker_release": 216,
++    "new_optional_cache_assets": 3
++  },
++  "limitations": [
++    "Saved items remain on the current browser profile and are not synchronized.",
++    "Offline caching stores selected route responses; external resources or media are not guaranteed.",
++    "Saving a page does not alter its source, review or completeness status.",
++    "GitHub Actions and deployed production validation remain pending until the commit and deployment run."
++  ]
++}

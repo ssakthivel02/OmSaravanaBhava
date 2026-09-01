@@ -1,0 +1,8 @@
+{
+  "requires": [
+    "Release 260"
+  ],
+  "browsers": [
+    "current evergreen browsers"
+  ]
+}

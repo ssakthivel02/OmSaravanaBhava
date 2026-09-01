@@ -1,0 +1,114 @@
+{
+  "release": 270,
+  "title": "Offline PWA Knowledge Platform",
+  "records": [
+    {
+      "id": "offline-pwa-01",
+      "title": "Offline PWA Knowledge Platform Module 1",
+      "title_ta": "முருகன் அறிவு தொகுதி 1",
+      "summary": "Structured Release 270 record 1 for offline pwa knowledge platform, with source and publication controls.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "270.1"
+    },
+    {
+      "id": "offline-pwa-02",
+      "title": "Offline PWA Knowledge Platform Module 2",
+      "title_ta": "முருகன் அறிவு தொகுதி 2",
+      "summary": "Structured Release 270 record 2 for offline pwa knowledge platform, with source and publication controls.",
+      "category": "Experience",
+      "status": "published",
+      "version": "270.1"
+    },
+    {
+      "id": "offline-pwa-03",
+      "title": "Offline PWA Knowledge Platform Module 3",
+      "title_ta": "முருகன் அறிவு தொகுதி 3",
+      "summary": "Structured Release 270 record 3 for offline pwa knowledge platform, with source and publication controls.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "270.1"
+    },
+    {
+      "id": "offline-pwa-04",
+      "title": "Offline PWA Knowledge Platform Module 4",
+      "title_ta": "முருகன் அறிவு தொகுதி 4",
+      "summary": "Structured Release 270 record 4 for offline pwa knowledge platform, with source and publication controls.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "270.1"
+    },
+    {
+      "id": "offline-pwa-05",
+      "title": "Offline PWA Knowledge Platform Module 5",
+      "title_ta": "முருகன் அறிவு தொகுதி 5",
+      "summary": "Structured Release 270 record 5 for offline pwa knowledge platform, with source and publication controls.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "270.1"
+    },
+    {
+      "id": "offline-pwa-06",
+      "title": "Offline PWA Knowledge Platform Module 6",
+      "title_ta": "முருகன் அறிவு தொகுதி 6",
+      "summary": "Structured Release 270 record 6 for offline pwa knowledge platform, with source and publication controls.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "270.1"
+    },
+    {
+      "id": "offline-pwa-07",
+      "title": "Offline PWA Knowledge Platform Module 7",
+      "title_ta": "முருகன் அறிவு தொகுதி 7",
+      "summary": "Structured Release 270 record 7 for offline pwa knowledge platform, with source and publication controls.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "270.1"
+    },
+    {
+      "id": "offline-pwa-08",
+      "title": "Offline PWA Knowledge Platform Module 8",
+      "title_ta": "முருகன் அறிவு தொகுதி 8",
+      "summary": "Structured Release 270 record 8 for offline pwa knowledge platform, with source and publication controls.",
+      "category": "Experience",
+      "status": "published",
+      "version": "270.1"
+    },
+    {
+      "id": "offline-pwa-09",
+      "title": "Offline PWA Knowledge Platform Module 9",
+      "title_ta": "முருகன் அறிவு தொகுதி 9",
+      "summary": "Structured Release 270 record 9 for offline pwa knowledge platform, with source and publication controls.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "270.1"
+    },
+    {
+      "id": "offline-pwa-10",
+      "title": "Offline PWA Knowledge Platform Module 10",
+      "title_ta": "முருகன் அறிவு தொகுதி 10",
+      "summary": "Structured Release 270 record 10 for offline pwa knowledge platform, with source and publication controls.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "270.1"
+    },
+    {
+      "id": "offline-pwa-11",
+      "title": "Offline PWA Knowledge Platform Module 11",
+      "title_ta": "முருகன் அறிவு தொகுதி 11",
+      "summary": "Structured Release 270 record 11 for offline pwa knowledge platform, with source and publication controls.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "270.1"
+    },
+    {
+      "id": "offline-pwa-12",
+      "title": "Offline PWA Knowledge Platform Module 12",
+      "title_ta": "முருகன் அறிவு தொகுதி 12",
+      "summary": "Structured Release 270 record 12 for offline pwa knowledge platform, with source and publication controls.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "270.1"
+    }
+  ]
+}

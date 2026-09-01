@@ -1,0 +1,47 @@
+{
+  "principle": "Do not link every file directly from index.html.",
+  "hierarchy": [
+    "index.html",
+    "platform-hub.html or site-directory.html",
+    "murugan-song-library.html",
+    "collection page",
+    "song detail page",
+    "Tamil original / easy-reading Tamil / transliteration / meaning / audio / source"
+  ],
+  "recommended_top_level_links": [
+    {
+      "label": "Murugan Song Library",
+      "target": "murugan-song-library.html"
+    },
+    {
+      "label": "Thiruppugazh",
+      "target": "thiruppugazh.html"
+    },
+    {
+      "label": "Devotional Literature",
+      "target": "devotional-collections.html"
+    },
+    {
+      "label": "Audio Library",
+      "target": "audio-library.html"
+    },
+    {
+      "label": "Complete Site Directory",
+      "target": "site-directory.html"
+    }
+  ],
+  "collection_counts": {
+    "Thiruppugazh": 3665,
+    "Kandar Anubhuti": 947,
+    "Thirumurugatruppadai": 561,
+    "Kandar Alankaram": 423,
+    "Kandar Andhadhi": 176,
+    "Kanda Sashti Kavasam": 95,
+    "Shanmuga Kavasam": 42,
+    "Vel Maaral": 42,
+    "Skanda Guru Kavasam": 40,
+    "Vel Mayil Virutham": 28,
+    "Subramanya Bhujangam": 13,
+    "Murugan General Songs": 1
+  }
+}

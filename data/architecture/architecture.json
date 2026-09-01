@@ -1,0 +1,38 @@
+[
+  {
+    "id": "gopuram",
+    "title": "Gopuram",
+    "summary": "Gateway tower marking transition from ordinary space into sacred space.",
+    "notes": [
+      "Often decorated with deities and mythic scenes",
+      "Represents vertical spiritual ascent"
+    ]
+  },
+  {
+    "id": "mandapa",
+    "title": "Mandapa",
+    "summary": "Pillared hall used for rituals, gathering, music, and temple movement.",
+    "notes": [
+      "Can reflect historical patronage",
+      "Common in Tamil temple architecture"
+    ]
+  },
+  {
+    "id": "garbhagriha",
+    "title": "Garbhagriha",
+    "summary": "Inner sanctum where the principal deity is enshrined.",
+    "notes": [
+      "Most sacred zone",
+      "Access is controlled by temple tradition"
+    ]
+  },
+  {
+    "id": "vimana",
+    "title": "Vimana",
+    "summary": "Tower above sanctum, symbolising the divine axis.",
+    "notes": [
+      "Different from entrance gopuram",
+      "Carries strong ritual symbolism"
+    ]
+  }
+]

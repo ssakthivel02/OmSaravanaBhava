@@ -1,0 +1,208 @@
+{
+  "pack": 101,
+  "stage": "push-workflow-rationalisation-review",
+  "workflow_count": 7,
+  "files_deleted": 0,
+  "workflows_disabled": 0,
+  "review": [
+    {
+      "path": ".github/workflows/deployment-conformance.yml",
+      "status": "reviewed",
+      "category": "production-deployment-gate",
+      "push_trigger": true,
+      "pull_request_trigger": true,
+      "workflow_dispatch": true,
+      "permissions_write": false,
+      "commands": [
+        "python -B -m tools.deployment_conformance.validate --root .",
+        "node --test tests/js/*.test.mjs python -B -m unittest discover -s tests/deployment_conformance -p \"test_*.py\" -v"
+      ],
+      "actions": [
+        "actions/checkout@v4",
+        "actions/setup-node@v4",
+        "actions/setup-python@v5"
+      ]
+    },
+    {
+      "path": ".github/workflows/effective-route-consumers.yml",
+      "status": "reviewed",
+      "category": "route-validation",
+      "push_trigger": true,
+      "pull_request_trigger": true,
+      "workflow_dispatch": true,
+      "permissions_write": false,
+      "commands": [
+        "python -B -m tools.effective_route_consumers.validate --root .",
+        "python -B -m tools.production_baseline.validate --root . --mode package",
+        "node --test tests/js/*.test.mjs python -B -m unittest discover -s tests/effective_route_consumers -p \"test_*.py\" -v"
+      ],
+      "actions": [
+        "actions/checkout@v4",
+        "actions/setup-node@v4",
+        "actions/setup-python@v5"
+      ]
+    },
+    {
+      "path": ".github/workflows/operations-observability.yml",
+      "status": "reviewed",
+      "category": "operations-observability",
+      "push_trigger": true,
+      "pull_request_trigger": true,
+      "workflow_dispatch": true,
+      "permissions_write": false,
+      "commands": [
+        "mode=package if [ \"${{ github.event_name }}\" = \"push\" ]; then mode=final; fi python -B -m tools.operations_observability.validate --root . --mode \"$mode\" --report artifacts/operations-observability-report.json",
+        "node --test tests/js/operations-observability.test.mjs tests/js/premium-home.test.mjs python -B -m unittest discover -s tests/operations_observability -p \"test_*.py\" -v python -B -m unittest discover -s tests/visual_experience -p \"test_*.py\" -v"
+      ],
+      "actions": [
+        "actions/checkout@v4",
+        "actions/setup-node@v4",
+        "actions/setup-python@v5",
+        "actions/upload-artifact@v4"
+      ]
+    },
+    {
+      "path": ".github/workflows/production-baseline.yml",
+      "status": "reviewed",
+      "category": "production-deployment-gate",
+      "push_trigger": true,
+      "pull_request_trigger": true,
+      "workflow_dispatch": true,
+      "permissions_write": false,
+      "commands": [
+        "mode=package if [ \"${{ github.event_name }}\" = \"push\" ]; then mode=final; fi python -B -m tools.production_baseline.validate --root . --mode \"$mode\" python -B -m tools.visual_experience.validate --root . python -B -m tools.deployment_conformance.validate --root . python -B -m tools.effective_route_consumers.validate --root . python -B -m tools.operations_observability.validate --root . --mode \"$mode\" --report artifacts/operations-observability-report.json python -B -m tools.repository_hygiene.validate --root . python -B -m tools.repository_integrity.validate --root . --manifest manifest-release-245.json",
+        "node --test tests/js/*.test.mjs python -B -m unittest discover -s tests -p \"test_*.py\" -v"
+      ],
+      "actions": [
+        "actions/checkout@v4",
+        "actions/setup-node@v4",
+        "actions/setup-python@v5"
+      ]
+    },
+    {
+      "path": ".github/workflows/repository-hygiene.yml",
+      "status": "reviewed",
+      "category": "repository-quality-gate",
+      "push_trigger": true,
+      "pull_request_trigger": true,
+      "workflow_dispatch": true,
+      "permissions_write": false,
+      "commands": [
+        "python -B -m compileall -q tools/repository_hygiene tools/repository_integrity",
+        "python -B -m tools.repository_hygiene.validate             --root .             --report artifacts/repository-hygiene-report.json"
+      ],
+      "actions": [
+        "actions/checkout@v4",
+        "actions/setup-python@v5",
+        "actions/upload-artifact@v4"
+      ]
+    },
+    {
+      "path": ".github/workflows/repository-integrity.yml",
+      "status": "reviewed",
+      "category": "repository-quality-gate",
+      "push_trigger": true,
+      "pull_request_trigger": true,
+      "workflow_dispatch": true,
+      "permissions_write": true,
+      "commands": [
+        "python -B -m tools.repository_integrity.validate             --root .             --report artifacts/repository-integrity-report.json             --inventory artifacts/repository-integrity-inventory.json             --sarif artifacts/repository-integrity.sarif"
+      ],
+      "actions": [
+        "actions/checkout@v4",
+        "actions/setup-python@v5",
+        "actions/upload-artifact@v4",
+        "github/codeql-action/upload-sarif@v3"
+      ]
+    },
+    {
+      "path": ".github/workflows/repository-quality-audit.yml",
+      "status": "reviewed",
+      "category": "scheduled-or-manual-audit",
+      "push_trigger": true,
+      "pull_request_trigger": false,
+      "workflow_dispatch": true,
+      "permissions_write": true,
+      "commands": [
+        "python tools/repository-audit/run_repository_audit.py",
+        "git config user.name 'github-actions[bot]' git config user.email '41898282+github-actions[bot]@users.noreply.github.com' git add repository-quality-audit.json route-inventory.json workflow-inventory.json repository-audit-summary.md if git diff --cached --quiet; then echo 'No audit result changes.' else git commit -m 'chore: update repository quality audit reports' git push fi"
+      ],
+      "actions": [
+        "actions/checkout@v4",
+        "actions/setup-python@v5",
+        "actions/upload-artifact@v4"
+      ]
+    }
+  ],
+  "shared_commands": [],
+  "shared_actions": [
+    {
+      "action": "actions/checkout@v4",
+      "workflows": [
+        ".github/workflows/deployment-conformance.yml",
+        ".github/workflows/effective-route-consumers.yml",
+        ".github/workflows/operations-observability.yml",
+        ".github/workflows/production-baseline.yml",
+        ".github/workflows/repository-hygiene.yml",
+        ".github/workflows/repository-integrity.yml",
+        ".github/workflows/repository-quality-audit.yml"
+      ]
+    },
+    {
+      "action": "actions/setup-node@v4",
+      "workflows": [
+        ".github/workflows/deployment-conformance.yml",
+        ".github/workflows/effective-route-consumers.yml",
+        ".github/workflows/operations-observability.yml",
+        ".github/workflows/production-baseline.yml"
+      ]
+    },
+    {
+      "action": "actions/setup-python@v5",
+      "workflows": [
+        ".github/workflows/deployment-conformance.yml",
+        ".github/workflows/effective-route-consumers.yml",
+        ".github/workflows/operations-observability.yml",
+        ".github/workflows/production-baseline.yml",
+        ".github/workflows/repository-hygiene.yml",
+        ".github/workflows/repository-integrity.yml",
+        ".github/workflows/repository-quality-audit.yml"
+      ]
+    },
+    {
+      "action": "actions/upload-artifact@v4",
+      "workflows": [
+        ".github/workflows/operations-observability.yml",
+        ".github/workflows/repository-hygiene.yml",
+        ".github/workflows/repository-integrity.yml",
+        ".github/workflows/repository-quality-audit.yml"
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": 1,
+      "action": "Remove broad push triggers from repository-quality-audit.yml and retain workflow_dispatch plus a scheduled run.",
+      "reason": "The full audit is expensive and does not need to run after every content upload.",
+      "automatic_change": false
+    },
+    {
+      "priority": 2,
+      "action": "Combine repository-hygiene.yml and repository-integrity.yml into one repository-quality gate after command-level comparison.",
+      "reason": "Both belong to the same repository-quality category and may duplicate checkout and validation work.",
+      "automatic_change": false
+    },
+    {
+      "priority": 3,
+      "action": "Keep deployment-conformance.yml and production-baseline.yml separate until their required checks and failure semantics are compared.",
+      "reason": "They are production gates; premature consolidation could reduce deployment protection.",
+      "automatic_change": false
+    },
+    {
+      "priority": 4,
+      "action": "Add path filters to route, observability, hygiene and integrity workflows so unrelated bulk data uploads do not trigger them.",
+      "reason": "Path scoping reduces duplicate emails and unnecessary Actions consumption while preserving checks.",
+      "automatic_change": false
+    }
+  ]
+}

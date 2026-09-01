@@ -1,0 +1,38 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 214,
+  "name": "Navigation Information Architecture",
+  "base_commit": "f54e2b4eefeefb3fccd770a0493a23fee3bbfdf8",
+  "generated": "2026-07-14",
+  "validation_status": "LOCAL_PACKAGE_PASS_REPOSITORY_CI_PENDING",
+  "production_files": [
+    "explore.html",
+    "assets/js/explore-navigation.js",
+    "data/navigation-sections.json",
+    "index.html",
+    "platform.html",
+    "404.html",
+    "data/site-routes.json",
+    "sitemap.xml",
+    "service-worker.js"
+  ],
+  "ci_alignment_files": [
+    "quality/site-audit-config.json",
+    "tools/production_smoke.py",
+    "tests/test_site_audit.py",
+    ".github/workflows/static-site-integrity.yml",
+    ".github/workflows/production-smoke.yml"
+  ],
+  "claims": {
+    "navigation_sections": 8,
+    "navigation_items": 34,
+    "remote_service": false,
+    "server_tracking": false,
+    "route_directory_release": 214,
+    "service_worker_release": 214
+  },
+  "limitations": [
+    "The Explore gateway organises existing routes; it does not certify destination completeness.",
+    "Repository-wide CI and deployed production behaviour remain pending until GitHub runs."
+  ]
+}

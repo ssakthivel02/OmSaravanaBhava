@@ -1,0 +1,21 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 154,
+  "name": "Advanced Local Tamil-English Search",
+  "baseline": "Release 153 package",
+  "validation_status": "PASS",
+  "production_file_count": 5,
+  "search_record_count": 40,
+  "external_api_calls": 0,
+  "modified": [
+    "ai-search.html",
+    "assets/css/osb44.css",
+    "service-worker.js"
+  ],
+  "added": [
+    "assets/js/advanced-search.js",
+    "data/search-index.json"
+  ],
+  "deleted": [],
+  "issues": []
+}

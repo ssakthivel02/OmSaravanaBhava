@@ -1,0 +1,14 @@
+{
+  "project": "OmSaravanaBhava",
+  "batch": 124,
+  "module": "Operations Runbook, Incident Recovery & Maintenance",
+  "record_id": "operations-032",
+  "status": "repository-data-required",
+  "runbook_id": "OSB-RUN-032",
+  "scenario": "",
+  "severity": "",
+  "detection": [],
+  "recovery_steps": [],
+  "rollback_required": false,
+  "owner": ""
+}

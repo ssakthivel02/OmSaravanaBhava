@@ -1,0 +1,224 @@
+Release 222 — Local Test Evidence
+Generated: 2026-07-14
+Base commit: 99d62afcdd8ea5ccc8dd9170b98f9d0e4942e8f4
+
+LOCAL PACKAGE RESULT: PASS
+GITHUB ACTIONS RESULT: NOT RUN
+DEPLOYED PRODUCTION RESULT: NOT RUN
+
+$ node --check assets/js/discovery-workspace.mjs
+Exit code: 0
+
+
+$ node --check assets/js/maintenance-centre.mjs
+Exit code: 0
+
+
+$ node --test tests/discovery-workspace.test.mjs
+Exit code: 0
+TAP version 13
+# Subtest: release and lens configuration identity are stable
+ok 1 - release and lens configuration identity are stable
+  ---
+  duration_ms: 1.338061
+  type: 'test'
+  ...
+# Subtest: same-origin routes are accepted and external routes rejected
+ok 2 - same-origin routes are accepted and external routes rejected
+  ---
+  duration_ms: 0.229726
+  type: 'test'
+  ...
+# Subtest: only routes present in both registries are displayed
+ok 3 - only routes present in both registries are displayed
+  ---
+  duration_ms: 0.705904
+  type: 'test'
+  ...
+# Subtest: drafts and unreferenced routes are excluded
+ok 4 - drafts and unreferenced routes are excluded
+  ---
+  duration_ms: 0.147202
+  type: 'test'
+  ...
+# Subtest: lens and audience filtering use structured navigation
+ok 5 - lens and audience filtering use structured navigation
+  ---
+  duration_ms: 0.324008
+  type: 'test'
+  ...
+# Subtest: status and Tamil text filters are deterministic
+ok 6 - status and Tamil text filters are deterministic
+  ---
+  duration_ms: 0.139951
+  type: 'test'
+  ...
+# Subtest: metrics and lens counts are derived from model data
+ok 7 - metrics and lens counts are derived from model data
+  ---
+  duration_ms: 6.591103
+  type: 'test'
+  ...
+# Subtest: model keeps source release identities visible
+ok 8 - model keeps source release identities visible
+  ---
+  duration_ms: 0.109485
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 129.964836
+
+$ node --test tests/maintenance-centre.test.mjs
+Exit code: 0
+TAP version 13
+# Subtest: release and registry identities are stable
+ok 1 - release and registry identities are stable
+  ---
+  duration_ms: 1.172467
+  type: 'test'
+  ...
+# Subtest: same-origin path normalisation rejects external resources
+ok 2 - same-origin path normalisation rejects external resources
+  ---
+  duration_ms: 0.316266
+  type: 'test'
+  ...
+# Subtest: JSON path lookup and equality checks are deterministic
+ok 3 - JSON path lookup and equality checks are deterministic
+  ---
+  duration_ms: 0.786616
+  type: 'test'
+  ...
+# Subtest: route registry requires one maintenance route and no duplicates
+ok 4 - route registry requires one maintenance route and no duplicates
+  ---
+  duration_ms: 0.267724
+  type: 'test'
+  ...
+# Subtest: audit configuration requires the current release and files
+ok 5 - audit configuration requires the current release and files
+  ---
+  duration_ms: 0.324068
+  type: 'test'
+  ...
+# Subtest: text count checks require exactly one sitemap entry
+ok 6 - text count checks require exactly one sitemap entry
+  ---
+  duration_ms: 0.181944
+  type: 'test'
+  ...
+# Subtest: check payload supports all configured check modes
+ok 7 - check payload supports all configured check modes
+  ---
+  duration_ms: 0.262676
+  type: 'test'
+  ...
+# Subtest: resource checks record HTTP and marker results
+ok 8 - resource checks record HTTP and marker results
+  ---
+  duration_ms: 0.407674
+  type: 'test'
+  ...
+# Subtest: path auditing preserves independent failures
+ok 9 - path auditing preserves independent failures
+  ---
+  duration_ms: 0.724702
+  type: 'test'
+  ...
+# Subtest: transient cache cleanup preserves static and user caches
+ok 10 - transient cache cleanup preserves static and user caches
+  ---
+  duration_ms: 0.606835
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 128.798758
+
+$ python -m py_compile tools/production_smoke.py tools/release_222_validate.py tests/test_site_audit.py
+Exit code: 0
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/generated/interface/models.py", line 30820, in hydrate_crdt_from_proto
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/remote.py", line 749, in __call__
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/client.py", line 150, in call
+artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
+
+$ python tools/release_222_validate.py --root . --package-mode --report artifacts/release-222-package-validation.json
+Exit code: 0
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/generated/interface/models.py", line 30820, in hydrate_crdt_from_proto
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/remote.py", line 749, in __call__
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/client.py", line 150, in call
+artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
+{
+  "release": 222,
+  "base_commit": "99d62afcdd8ea5ccc8dd9170b98f9d0e4942e8f4",
+  "mode": "package",
+  "status": "PASS",
+  "errors": [],
+  "checks": [
+    "exists: discovery.html",
+    "exists: assets/css/discovery-workspace.css",
+    "exists: assets/js/discovery-workspace.mjs",
+    "exists: data/discovery-lenses.json",
+    "exists: index.html",
+    "exists: platform.html",
+    "exists: maintenance.html",
+    "exists: assets/js/maintenance-centre.mjs",
+    "exists: data/maintenance-checks.json",
+    "exists: data/site-routes.json",
+    "exists: sitemap.xml",
+    "exists: service-worker.js",
+    "exists: quality/site-audit-config.json",
+    "exists: tools/production_smoke.py",
+    "exists: tests/test_site_audit.py",
+    "exists: tests/discovery-workspace.test.mjs",
+    "exists: tests/maintenance-centre.test.mjs",
+    "exists: .github/workflows/static-site-integrity.yml",
+    "exists: .github/workflows/production-smoke.yml",
+    "exists: manifest-release-222.json"
+  ],
+  "github_actions": "NOT_RUN",
+  "deployed_production": "NOT_RUN"
+}
+
+$ git apply --check release.patch
+Exit code: 0
+
+
+JSON files parsed: 6
+Sitemap XML parsed: PASS
+Nine discovery lenses: PASS
+Hard-coded route counts: ABSENT
+Runtime route-count calculation: PASS
+Draft/private/unpublished/archived exclusion: PASS
+Same-origin route enforcement: PASS
+Audience filtering: PASS
+Publication-state filtering: PASS
+Tamil and English search: PASS
+Remote AI and analytics markers: ABSENT
+Optional service-worker caching: PASS
+Maintenance continuity identity: PASS

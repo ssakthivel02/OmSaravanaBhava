@@ -1,0 +1,30 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 211,
+  "name": "Production Integrity Recovery",
+  "generated": "2026-07-14",
+  "baseCommit": "6ff49f60695fb3a970fa8b294d2f744c00768487",
+  "validationStatus": "PACKAGE_TESTS_PASS_REPOSITORY_AUDIT_PENDING",
+  "productionFiles": {
+    "modified": [
+      "index.html",
+      "platform.html",
+      "assets/js/premium-home.js",
+      "service-worker.js"
+    ],
+    "added": [
+      "panchangam-framework.html",
+      "data/panchangam-framework.json"
+    ]
+  },
+  "qualityFiles": [
+    ".github/workflows/static-site-integrity.yml",
+    ".github/workflows/production-smoke.yml",
+    "tools/__init__.py",
+    "tools/site_audit.py",
+    "tools/production_smoke.py",
+    "tests/test_site_audit.py",
+    "quality/site-audit-config.json"
+  ],
+  "knownBoundary": "Release 211 is not production-certified until the repository-wide GitHub Actions audit and deployed production smoke both pass."
+}

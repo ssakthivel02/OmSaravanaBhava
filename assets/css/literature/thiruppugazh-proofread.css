@@ -1,0 +1,6 @@
+/* Reader polish for OmSaravanaBhava literature pages */
+.osb-tamil-title{font-size:clamp(2rem,5vw,3.8rem);line-height:1.1;letter-spacing:-.02em}
+.osb-section-title{font-size:1.35rem;margin-top:28px;border-bottom:1px solid var(--osb-border);padding-bottom:8px}
+.osb-proof-table{width:100%;border-collapse:collapse;margin-top:14px}
+.osb-proof-table th,.osb-proof-table td{border:1px solid var(--osb-border);padding:10px;text-align:left;vertical-align:top}
+.osb-proof-table th{background:#fff6df}

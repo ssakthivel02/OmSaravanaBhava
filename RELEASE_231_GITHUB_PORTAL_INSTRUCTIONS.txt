@@ -1,0 +1,91 @@
+Release 231 — GitHub browser upload instructions
+
+Repository:
+https://github.com/ssakthivel02/OmSaravanaBhava
+
+MANDATORY BASE CHECK
+Expected current main HEAD:
+2cec1d02d81aa3251da131667fabd4d24a98147a
+
+Do not upload if main has moved. Stop and compare the newer commit first.
+
+DOWNLOAD AND EXTRACT
+1. Download OmSaravanaBhava-Release-231.zip.
+2. Extract the ZIP completely.
+3. In Windows File Explorer, enable View > Show > Hidden items.
+4. Open the extracted Release 231 folder.
+5. Confirm the hidden .github folder is visible.
+
+UPLOAD
+1. Open the repository main branch.
+2. Select Add file > Upload files.
+3. Drag the CONTENTS of the extracted folder, not the outer folder.
+4. Preserve all repository-relative folders.
+5. Confirm these production paths appear:
+   content-status.html
+   discovery.html
+   site-directory.html
+   data/content-status.json
+   data/publication-boundaries.json
+   assets/css/route-status-reconciliation.css
+   assets/js/content-status-audit.mjs
+   assets/js/route-status-reconciliation.js
+   service-worker.js
+   tests/route-status-reconciliation.test.mjs
+   tools/release_231_validate.py
+   .github/workflows/release-231-integrity.yml
+   .github/workflows/release-231-production-smoke.yml
+   manifest-release-231.json
+6. Confirm no deletion is shown.
+7. Confirm data/site-routes.json, sitemap.xml and devotional literature pages are not uploaded.
+
+COMMIT — IMPORTANT
+Enter this exact text in the SMALL UPPER commit-title field:
+Release 231: propagate canonical publication statuses
+
+Leave the larger commit-description field completely blank.
+
+Releases 228, 229 and 230 were committed with “Add files via upload” as the GitHub subject because the intended title was placed in the description field. Do not repeat that mistake.
+
+POST-UPLOAD REPOSITORY CHECKS
+1. Copy the new main HEAD SHA.
+2. Confirm its parent is 2cec1d02d81aa3251da131667fabd4d24a98147a.
+3. Confirm the GitHub commit subject exactly equals:
+   Release 231: propagate canonical publication statuses
+4. Open manifest-release-231.json and confirm base_commit is 2cec1d02d81aa3251da131667fabd4d24a98147a.
+5. Confirm data/publication-boundaries.json has release 231, eight records and three consumer routes.
+6. Confirm all three HTML consumers load route-status-reconciliation.js before their existing renderer.
+7. Confirm data/site-routes.json was not modified.
+8. Confirm service-worker.js still contains const RELEASE = '228';.
+9. Confirm each Release 231 precache asset appears exactly once.
+10. Open Actions and confirm “Release 231 Canonical Publication Status Integrity” passes.
+11. Confirm GitHub Pages deployment passes.
+12. Run or wait for “Release 231 Production Status Propagation Smoke”.
+13. Do not call Release 231 complete until remote checks pass.
+
+DEPLOYED FUNCTIONAL CHECKS
+1. Open https://omsaravanabhava.org/content-status.html in a private window.
+2. Confirm Release 231 is shown and effective conflicts are zero.
+3. Confirm the eight audited cards show Aligned and a Canonical status badge.
+4. Confirm Kandar Anubhuti is partial-reviewed.
+5. Confirm the six source-register works and one navigation-only route show their canonical statuses.
+6. Open https://omsaravanabhava.org/discovery.html.
+7. Search for Kandar, Vel and Virutham.
+8. Confirm cards use partial-reviewed, source-register or navigation rather than the generic published label.
+9. Confirm status filters include the canonical states.
+10. Open https://omsaravanabhava.org/site-directory.html.
+11. Confirm the same eight routes display the same canonical status and bounded summary.
+12. Confirm unrelated temple, festival and Thiruppugazh routes are unchanged.
+13. Test direct reload, mobile, tablet, laptop, wide desktop and 200% zoom.
+14. Test keyboard navigation and visible focus.
+15. Disable or block publication-boundaries.json temporarily in browser developer tools and confirm the explicit fallback banner appears without breaking the directory.
+16. After one online load, verify the new assets are available offline.
+17. Confirm reading progress, notes, reading lists, collections, plans, accessibility preferences and audio history remain unchanged.
+
+ROLLBACK
+1. Revert the Release 231 commit, or restore the seven modified files from 2cec1d02d81aa3251da131667fabd4d24a98147a.
+2. Remove only the Release 231 added files listed in RELEASE_231_CHANGED_FILES.txt.
+3. Wait for GitHub Pages deployment.
+4. Request a service-worker update through Maintenance.
+5. Clear transient caches only if required.
+6. Never delete browser-local personal datasets.

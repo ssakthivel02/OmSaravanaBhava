@@ -1,11 +1,11 @@
 {
-  "name": "OmSaravanaBhava",
-  "short_name": "OSB",
+  "name": "Kandan",
+  "short_name": "Kandan",
+  "description": "Murugan devotional knowledge, literature, temples, pilgrimage and learning.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#090612",
-  "theme_color": "#0a0713",
-  "lang": "ta",
-  "description": "Tamil-first Murugan devotional knowledge and learning experience.",
+  "theme_color": "#a51d17",
+  "background_color": "#fff7ec",
   "icons": []
 }

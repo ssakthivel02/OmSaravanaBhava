@@ -1,0 +1,48 @@
+Release 217 — GitHub browser upload instructions
+
+Repository:
+https://github.com/ssakthivel02/OmSaravanaBhava
+
+Verified base head:
+6d5df24f611e0f8164834544a9e92521e4cf5c27
+
+Required commit title — enter this in the SMALL UPPER FIELD:
+Release 217: add accessibility preference centre
+
+Leave the large commit-description field blank.
+
+UPLOAD
+1. Download and extract OmSaravanaBhava-Release-217.zip.
+2. Enable Windows View > Show > Hidden items.
+3. Open the extracted folder.
+4. In GitHub main, choose Add file > Upload files.
+5. Drag the CONTENTS of the extracted folder, not the outer folder.
+6. Preserve all directory paths.
+7. Confirm these exact files are shown before committing:
+   .github/workflows/static-site-integrity.yml
+   .github/workflows/production-smoke.yml
+   accessibility.html
+   assets/css/accessibility-preferences.css
+   assets/js/accessibility-preferences.mjs
+   assets/js/pwa-register.js
+   tools/release_217_validate.py
+8. Enter the required title in the small upper field.
+9. Leave the large description blank.
+10. Commit directly to main.
+
+POST-COMMIT
+1. Copy the new main commit SHA.
+2. Confirm service-worker.js contains const RELEASE = '217';
+3. Confirm accessibility.html opens.
+4. Toggle each preference and navigate to another page to confirm it persists.
+5. Confirm data/site-routes.json and sitemap.xml contain the accessibility route once.
+6. Confirm Actions runs:
+   Release 217 Static Site Integrity
+   Release 217 Production Smoke
+7. Do not proceed to Release 218 until the new head is verified.
+
+DO NOT
+- Do not rename an older ZIP.
+- Do not upload the outer package folder.
+- Do not omit hidden workflow files.
+- Do not mark GitHub Actions or production as passed before they run.

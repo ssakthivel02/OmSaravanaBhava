@@ -1,0 +1,44 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 152,
+  "name": "Premium Verified-Text Read-Aloud Player and Media Session",
+  "baseline_github_commit": "8d0ee72942b1949ae63f3c78565859c3a76aac97",
+  "generated": "2026-07-11",
+  "validation_status": "FAIL",
+  "production_file_count": 7,
+  "playlist_item_count": 14,
+  "mantra_kavasam_item_count": 4,
+  "thiruppugazh_item_count": 10,
+  "playback_mode": "device-tts",
+  "media_session_actions": [
+    "play",
+    "pause",
+    "stop",
+    "nexttrack",
+    "previoustrack"
+  ],
+  "seek_controls": false,
+  "autoplay": false,
+  "third_party_audio_files": 0,
+  "external_cdns": 0,
+  "modified": [
+    "assets/css/osb44.css",
+    "assets/js/audio-library.js",
+    "audio-library.html",
+    "data/content-publication.json",
+    "service-worker.js"
+  ],
+  "added": [
+    "assets/js/media-session-player.js",
+    "data/read-aloud-playlist.json"
+  ],
+  "deleted": [],
+  "issues": [
+    "Audio page contains simulated progress or Hi-Fi claims"
+  ],
+  "warnings": [
+    "Media Session controls are progressive enhancement and depend on browser and operating-system support.",
+    "Speech synthesis has no reliable duration or seek model, so Release 152 deliberately exposes no progress bar or seek controls.",
+    "Voice quality depends on the Tamil speech voice installed on the visitor's device."
+  ]
+}

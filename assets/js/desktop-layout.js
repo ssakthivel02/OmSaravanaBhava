@@ -1,0 +1,1 @@
+(()=>{'use strict';document.addEventListener('DOMContentLoaded',()=>{document.documentElement.dataset.viewport=innerWidth>=1180?'desktop':'compact';addEventListener('resize',()=>{document.documentElement.dataset.viewport=innerWidth>=1180?'desktop':'compact'},{passive:true})})})();

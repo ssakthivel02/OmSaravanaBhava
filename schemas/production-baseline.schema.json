@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "release",
+    "baseCommit",
+    "requiredCommitTitle",
+    "serviceWorkerRelease",
+    "approvedWorkflows",
+    "requiredPermanentControls",
+    "forbiddenExactPaths"
+  ],
+  "properties": {
+    "release": {
+      "const": 243
+    },
+    "baseCommit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "serviceWorkerRelease": {
+      "const": "243"
+    },
+    "maximumChangedPaths": {
+      "type": "integer",
+      "maximum": 500
+    }
+  }
+}

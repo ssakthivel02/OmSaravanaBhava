@@ -1,0 +1,15 @@
+position,id,title_ta,title_en,kind,artist,route,playback_mode,recording_rights
+1,kanda-sashti-kavasam,கந்த சஷ்டி கவசம்,Kanda Sashti Kavasam,Kavacham,Sri Devaraya Swamigal — text attribution,slokas/kanda-sashti-kavasam.html,device-tts,No third-party performance recording bundled
+2,skanda-guru-kavasam,ஸ்கந்த குரு கவசம்,Skanda Guru Kavasam,Kavacham,Srimath Sadguru Santhananda Swamigal — text attribution,slokas/skanda-guru-kavasam.html,device-tts,No third-party performance recording bundled
+3,kanda-gayatri,கந்த காயத்ரி,Kanda Gayatri,Gayatri,Traditional devotional text,slokas/subramanya-gayatri.html,device-tts,No third-party performance recording bundled
+4,saravanabhava-mantra,சரவணபவ மந்திரம்,Saravanabhava Mantra,Mantra,Traditional devotional text,slokas/om-saravana-bhava.html,device-tts,No third-party performance recording bundled
+5,thiruppugazh-0006,முத்தைத்தரு,Thiruppugazh 6 · Muththaiththaru,Thiruppugazh,Arunagirinathar,thiruppugazh/0006-muththaiththaru.html,device-tts,Text-to-speech only; no human performance recording bundled
+6,thiruppugazh-0007,அருக்கு மங்கையர்,Thiruppugazh 7 · Arukku Mangkaiyar,Thiruppugazh,Arunagirinathar,thiruppugazh/0007-arukku-mangkaiyar.html,device-tts,Text-to-speech only; no human performance recording bundled
+7,thiruppugazh-0008,உனைத் தினம்,Thiruppugazh 8 · Unaith Thinam,Thiruppugazh,Arunagirinathar,thiruppugazh/0008-unaith-thinam.html,device-tts,Text-to-speech only; no human performance recording bundled
+8,thiruppugazh-0009,கருவடைந்து,Thiruppugazh 9 · Karuvadaindhu,Thiruppugazh,Arunagirinathar,thiruppugazh/0009-karuvadaindhu.html,device-tts,Text-to-speech only; no human performance recording bundled
+9,thiruppugazh-0010,கறுக்கும் அஞ்சன,Thiruppugazh 10 · Karukkum Anjana,Thiruppugazh,Arunagirinathar,thiruppugazh/0010-karukkum-anjana.html,device-tts,Text-to-speech only; no human performance recording bundled
+10,thiruppugazh-0012,காதடருங்கயல்,Thiruppugazh 12 · Kadhadarungkayal,Thiruppugazh,Arunagirinathar,thiruppugazh/0012-kadhadarungkayal.html,device-tts,Text-to-speech only; no human performance recording bundled
+11,thiruppugazh-0013,சந்ததம் பந்த,Thiruppugazh 13 · Sandhadham Bandha,Thiruppugazh,Arunagirinathar,thiruppugazh/0013-sandhadham-bandha.html,device-tts,Text-to-speech only; no human performance recording bundled
+12,thiruppugazh-0015,தடக்கைப் பங்கயம்,Thiruppugazh 15 · Thadakkai Pangkayam,Thiruppugazh,Arunagirinathar,thiruppugazh/0015-thadakkai-pangkayam.html,device-tts,Text-to-speech only; no human performance recording bundled
+13,thiruppugazh-0016,பதித்த செஞ்சந்த,Thiruppugazh 16 · Padhiththa Senchandha,Thiruppugazh,Arunagirinathar,thiruppugazh/0016-padhiththa-senchandha.html,device-tts,Text-to-speech only; no human performance recording bundled
+14,thiruppugazh-0017,பொருப்புறுங்,Thiruppugazh 17 · Poruppurung,Thiruppugazh,Arunagirinathar,thiruppugazh/0017-poruppurung.html,device-tts,Text-to-speech only; no human performance recording bundled

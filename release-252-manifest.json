@@ -1,0 +1,18 @@
+{
+  "release": "252",
+  "title": "Regional Discovery Collections",
+  "sequence": 3,
+  "depends_on": "251",
+  "commit_message": "Release 252: add regional discovery collections and curated browsing",
+  "file_count": 8,
+  "files": [
+    "README-RELEASE-252.md",
+    "assets/css/temple-collections.css",
+    "assets/js/temple-collections.mjs",
+    "data/collections/curated-temple-collections.json",
+    "docs/RELEASE-252-ROLLBACK.md",
+    "docs/RELEASE-252-VALIDATION.md",
+    "release-252-manifest.json",
+    "temple-collections.html"
+  ]
+}

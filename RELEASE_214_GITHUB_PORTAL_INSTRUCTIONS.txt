@@ -1,0 +1,29 @@
+Release 214 — Navigation Information Architecture
+
+BASELINE
+- Upload only after Release 213 is committed.
+- Expected Release 213 base commit: f54e2b4eefeefb3fccd770a0493a23fee3bbfdf8
+
+UPLOAD
+1. Extract this ZIP into a new folder.
+2. Enable View > Show > Hidden items in Windows File Explorer.
+3. Upload everything inside the extracted folder to the repository root.
+4. Preserve .github/workflows, assets/js, data, quality, tools and tests paths.
+5. In the SMALL UPPER commit-title field replace "Add files via upload" with:
+   Release 214: add structured explore navigation
+6. Leave the large lower description field blank.
+7. Commit directly to main.
+8. Wait for Static site integrity and Production smoke results before Release 215.
+
+CONFIRM BEFORE COMMITTING
+- explore.html
+- data/navigation-sections.json
+- assets/js/explore-navigation.js
+- .github/workflows/static-site-integrity.yml
+- .github/workflows/production-smoke.yml
+- manifest-release-214.json
+
+DO NOT
+- Do not upload OmSaravanaBhava_Release_213_Navigation_IA.
+- Do not rename Release 213 files to Release 214 manually.
+- Do not upload any manifest-release-213.json or RELEASE_213_* files from the obsolete package.

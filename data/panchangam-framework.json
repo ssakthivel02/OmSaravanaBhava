@@ -1,0 +1,38 @@
+{
+  "release": 211,
+  "status": "framework-only",
+  "generated": "2026-07-14",
+  "liveComputation": false,
+  "bundledVerifiedDailyData": false,
+  "locationAwareResults": false,
+  "calendarDisclaimer": "This file defines a future data contract. It does not provide computed Panchangam values or festival timings.",
+  "requiredInputs": [
+    "date",
+    "ianaTimezone",
+    "latitude",
+    "longitude",
+    "elevationMetres",
+    "ephemerisProvider",
+    "ayanamsaPolicy",
+    "regionalObservanceAuthority"
+  ],
+  "plannedFields": [
+    "sunrise",
+    "sunset",
+    "tithi",
+    "nakshatra",
+    "yoga",
+    "karana",
+    "rahuKalam",
+    "yamagandam",
+    "gulika",
+    "muruganObservances"
+  ],
+  "publicationRules": [
+    "Display location and timezone with every result",
+    "Record calculation engine and source versions",
+    "State regional variation and uncertainty",
+    "Require editorial review for festival assertions",
+    "Never infer a daily value from an empty or stale dataset"
+  ]
+}

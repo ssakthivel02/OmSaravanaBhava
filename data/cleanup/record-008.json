@@ -1,0 +1,13 @@
+{
+  "project": "OmSaravanaBhava",
+  "batch": 133,
+  "module": "Repository Cleanup, Deprecation & Safe Removal",
+  "record_id": "cleanup-008",
+  "status": "repository-evidence-required",
+  "path": "",
+  "classification": "review",
+  "replacement_path": "",
+  "incoming_links": [],
+  "safe_to_remove": false,
+  "removal_status": "blocked"
+}

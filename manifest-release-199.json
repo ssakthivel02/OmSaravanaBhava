@@ -1,0 +1,22 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 199,
+  "name": "Digital Research Library",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 4,
+  "modified": [
+    "service-worker.js",
+    "sitemap.xml"
+  ],
+  "added": [
+    "research-library.html",
+    "data/research-library.json"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Source files redistributed": "No",
+    "Research indexes unified": "4"
+  }
+}

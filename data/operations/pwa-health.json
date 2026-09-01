@@ -1,0 +1,33 @@
+{
+  "release": 251,
+  "baselineRelease": 245,
+  "generated": "2026-07-27",
+  "status": "PRODUCTION_VERIFIED",
+  "serviceWorker": "/service-worker.js",
+  "cacheRelease": "251",
+  "cacheNames": [
+    "osb-static-v251",
+    "osb-runtime-v251",
+    "osb-data-v251",
+    "osb-user-reading-v1"
+  ],
+  "offlineRoute": "/offline.html",
+  "corePrecache": [
+    "/index.html",
+    "/manifest.json",
+    "/assets/css/release-246.css",
+    "/assets/css/premium-platform-2026.css",
+    "/assets/css/global-experience-2026.css",
+    "/assets/css/phase6-experience-2026.css",
+    "/assets/js/release-246.js",
+    "/assets/js/premium-platform-2026.mjs",
+    "/assets/js/global-experience-2026.js",
+    "/assets/js/premium-home-runtime.mjs"
+  ],
+  "productionCommit": "a36f1ae17f75714be6cbce54483db8764c229c77",
+  "productionVerifiedAt": "2026-07-27T15:43:09Z",
+  "limitations": [
+    "Optional precache failures remain visible in the browser console and do not block core installation.",
+    "A previously controlled browser may require the in-app update action or one hard refresh to activate Release 251."
+  ]
+}

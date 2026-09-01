@@ -1,0 +1,13 @@
+{
+  "project": "OmSaravanaBhava",
+  "batch": 123,
+  "module": "Multilingual Canonical, Hreflang & Language Routing",
+  "record_id": "language-routing-006",
+  "status": "repository-data-required",
+  "canonical_path": "",
+  "language": "ta",
+  "translations": {},
+  "hreflang": [],
+  "fallback_language": "ta",
+  "validation_status": "pending"
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "src-thirumurugatruppadai",
+    "titleTa": "திருமுருகாற்றுப்படை",
+    "titleEn": "Thirumurugatruppadai",
+    "author": "நக்கீரர் / Nakkirar",
+    "sourceType": "Primary Tamil literary text",
+    "editionType": "User-uploaded transcription and compilation",
+    "fileName": "திருமுருகாற்றுப்படை.docx",
+    "scope": "Tamil text, transliteration and compiled explanatory material.",
+    "useInRelease": "Primary literary witness for the six Murugan landscapes and abodes.",
+    "qualityNote": "This uploaded file is treated as a transcription/compilation, not as a critical scholarly edition. Release 147 cites precise internal headings and verse ranges and avoids unsupported historical claims."
+  },
+  {
+    "id": "src-kandar-kavasangal-aaru",
+    "titleTa": "கந்தர் கவசங்கள் ஆறு",
+    "titleEn": "Six Kandar Kavasams",
+    "author": "Work-level attribution required; Kanda Sashti Kavasam section attributed to ஸ்ரீ தேவராய சுவாமிகள் / Sri Devaraya Swamigal",
+    "sourceType": "Section inside a mixed user-uploaded Murugan devotional compilation",
+    "editionType": "Uploaded compilation container; not a standalone critical edition",
+    "fileName": "திருமுருகாற்றுப்படை.docx",
+    "scope": "The uploaded container includes Kanda Sashti Kavasam and other Murugan devotional works. Each work must retain its own author attribution.",
+    "useInRelease": "Source witness only for the reviewed Kanda Sashti Kavasam opening extract.",
+    "qualityNote": "The filename identifies the uploaded container, not the literary identity or authorship of every work inside it. This record does not attribute Kavasam literature to Nakkirar or to Thirumurugatruppadai."
+  },
+  {
+    "id": "src-thiruppugazh-valluvar-vallalar-vattam",
+    "titleTa": "அருணகிரிநாதர் அருளிய திருப்புகழ்",
+    "titleEn": "Thiruppugazh — Digital Compilation",
+    "author": "அருணகிரிநாதர் / Arunagirinathar",
+    "sourceType": "Primary Tamil devotional text",
+    "editionType": "User-uploaded 2,191-page digital compilation PDF",
+    "fileName": "697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf",
+    "scope": "Numbered Thiruppugazh corpus with venue, rhythmic and song-text headings.",
+    "useInRelease": "Primary source for the first ten manually checked digital song records in Release 149.",
+    "qualityNote": "Release 149 publishes only manually checked song texts. OCR-only text and unverified commentary are not published."
+  },
+  {
+    "id": "src-skanda-guru-kavasam-uploaded-compilation",
+    "titleTa": "ஸ்கந்த குரு கவசம்",
+    "titleEn": "Skanda Guru Kavasam",
+    "author": "ஸ்ரீமத் சத்குரு சாந்தானந்த சுவாமிகள்",
+    "sourceType": "Skanda Guru Kavasam section inside a mixed user-uploaded Murugan devotional compilation",
+    "editionType": "Uploaded compilation container; not a standalone critical edition",
+    "fileName": "திருமுருகாற்றுப்படை.docx",
+    "scope": "Opening invocation and the numbered text extending beyond line 380.",
+    "useInRelease": "Source witness for the manually checked opening invocation and lines 1–20 in Release 151.",
+    "qualityNote": "The container filename does not define this work's authorship. The internal heading attributes Skanda Guru Kavasam to Srimath Sadguru Santhananda Swamigal. Release 151 publishes only the verified opening extract."
+  }
+]

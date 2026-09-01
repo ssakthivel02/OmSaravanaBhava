@@ -1,0 +1,6 @@
+{
+  "expectedStatus": "FAIL",
+  "paths": [
+    "dist/app.js"
+  ]
+}

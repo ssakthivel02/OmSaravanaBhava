@@ -1,0 +1,9 @@
+{
+  "defaultFont": "system Tamil",
+  "features": [
+    "large text",
+    "compact mode",
+    "local JSON loading",
+    "print friendly"
+  ]
+}

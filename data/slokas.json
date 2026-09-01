@@ -1,0 +1,86 @@
+[
+  {
+    "id": "om-saravana-bhava",
+    "titleTa": "ஓம் சரவணபவ",
+    "titleEn": "Om Saravana Bhava",
+    "category": "Mantra",
+    "textTa": "ஓம் சரவணபவ",
+    "meaningTa": "பக்தி, தெளிவு, உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் மந்திரம்.",
+    "meaningEn": "A devotional mantra for protection, clarity and spiritual focus.",
+    "benefits": [
+      "Daily focus",
+      "Inner courage",
+      "Devotional connection"
+    ],
+    "publicationStatus": "published",
+    "sourceIds": []
+  },
+  {
+    "id": "kanda-sashti-kavasam",
+    "titleTa": "கந்த சஷ்டி கவசம்",
+    "titleEn": "Kanda Sashti Kavasam",
+    "category": "Kavacham",
+    "textTa": "துதிப்போர்க்கு வல்வினைபோம், துன்பம் போம்; நெஞ்சில் பதிப்போர்க்குச் செல்வம் பலித்துக் கதித்து ஓங்கும்; நிஷ்டையுங் கைகூடும்; நிமலர் அருள் கந்தர் சஷ்டி கவசந் தனை.",
+    "meaningTa": "இந்த வெளியீடு பதிவேற்றப்பட்ட மூலத் தொகுப்பில் உள்ள தொடக்கப் பகுதியை மட்டும் ஆதாரத்துடன் வெளியிடுகிறது. முழுமையான விமர்சனப் பதிப்பு இதுவரை வெளியிடப்படவில்லை.",
+    "meaningEn": "This release publishes only the source-linked opening extract found in the uploaded compilation. It is not yet a complete critical edition.",
+    "benefits": [
+      "Devotional protection theme",
+      "Courage theme",
+      "Sashti reflection"
+    ],
+    "publicationStatus": "partial-reviewed",
+    "sourceIds": [
+      "src-kandar-kavasangal-aaru"
+    ]
+  },
+  {
+    "id": "subramanya-gayatri",
+    "titleTa": "சுப்பிரமண்ய காயத்ரி",
+    "titleEn": "Subramanya Gayatri",
+    "category": "Gayatri",
+    "textTa": "ஓம் தத் புருஷாய வித்மஹே மஹாசேனாய தீமஹி தந்நோ ஷண்முக ப்ரசோதயாத்",
+    "meaningTa": "ஆறு முகனின் ஞான ஒளி நம் மனதை வழிநடத்த வேண்டுதல்.",
+    "meaningEn": "A prayer invoking Lord Shanmukha’s wisdom and guidance.",
+    "benefits": [
+      "Wisdom",
+      "Focus",
+      "Blessings"
+    ],
+    "publicationStatus": "published",
+    "sourceIds": []
+  },
+  {
+    "id": "vel-vel",
+    "titleTa": "வேல் வேல் முருகா",
+    "titleEn": "Vel Vel Muruga",
+    "category": "Chant",
+    "textTa": "வேல் வேல் முருகா, வெற்றி வேல் முருகா",
+    "meaningTa": "அறியாமையை அகற்றி ஞானத்தை வழங்கும் வேலின் அருளை வேண்டுதல்.",
+    "meaningEn": "A chant invoking the Vel as wisdom, protection and victory.",
+    "benefits": [
+      "Confidence",
+      "Clarity",
+      "Protection"
+    ],
+    "publicationStatus": "published",
+    "sourceIds": []
+  },
+  {
+    "id": "skanda-guru-kavasam",
+    "titleTa": "ஸ்கந்த குரு கவசம்",
+    "titleEn": "Skanda Guru Kavasam",
+    "category": "Kavacham",
+    "textTa": "ஸ்கந்தா சரணம் ஸ்கந்தா சரணம்; சரவணபவ குகா சரணம் சரணம்.",
+    "meaningTa": "பதிவேற்றப்பட்ட மூலத்தில் சரிபார்க்கப்பட்ட தொடக்கப் பகுதி மட்டும் வெளியிடப்பட்டுள்ளது. இது முழுமையான பதிப்பு அல்ல.",
+    "meaningEn": "Only the source-checked opening extract is published. This is not a complete edition.",
+    "benefits": [
+      "Guru devotion",
+      "Surrender theme",
+      "Spiritual reflection"
+    ],
+    "publicationStatus": "partial-reviewed",
+    "sourceIds": [
+      "src-skanda-guru-kavasam-uploaded-compilation"
+    ]
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "பங்குனி உத்திரம்",
+  "description": "Divine wedding tradition and family worship.",
+  "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode"
+}

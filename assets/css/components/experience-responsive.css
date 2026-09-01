@@ -1,0 +1,13 @@
+@media(max-width:980px){
+  .gallery-viewer{grid-template-columns:repeat(2,1fr)}
+  .planner-layout,.assistant-layout{grid-template-columns:1fr}
+}
+@media(max-width:680px){
+  .experience-hero{min-height:560px;padding:4rem 1.1rem 3rem;background-position:62% center}
+  .experience-hero h1{font-size:3.4rem}
+  .panel-heading{align-items:stretch;flex-direction:column}
+  .panel-heading label{min-width:0}
+  .gallery-viewer{grid-template-columns:1fr}
+  .festival-row{grid-template-columns:auto 1fr}
+  .festival-status{grid-column:2}
+}

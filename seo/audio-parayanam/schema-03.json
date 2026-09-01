@@ -1,0 +1,7 @@
+{
+  "@context": "https://schema.org",
+  "@type": "AudioObject",
+  "name": "திருப்புகழ் ஆடியோ",
+  "description": "Thiruppugazh audio-ready metadata and temple mapping.",
+  "encodingFormat": "metadata-only"
+}

@@ -1,0 +1,25 @@
+{
+  "generated": "2026-07-13",
+  "sources": "data/source-catalog.json",
+  "publicationHistory": "data/publication-history.json",
+  "contentStatus": "data/content-status.json",
+  "productionAudit": "data/production-audit.json",
+  "sections": [
+    {
+      "id": "sources",
+      "title": "Sources"
+    },
+    {
+      "id": "history",
+      "title": "Publication history"
+    },
+    {
+      "id": "status",
+      "title": "Content status"
+    },
+    {
+      "id": "audit",
+      "title": "Production audit"
+    }
+  ]
+}

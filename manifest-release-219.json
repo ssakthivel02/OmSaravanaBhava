@@ -1,0 +1,58 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 219,
+  "name": "Browser-Local Audio Listening History",
+  "base_commit": "c21007e2038823990f8858ab299f0865de4b78ce",
+  "generated": "2026-07-14",
+  "required_commit_title": "Release 219: add browser-local audio listening history",
+  "validation_status": "LOCAL_PACKAGE_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
+  "production_files": [
+    "audio-library.html",
+    "audio-history.html",
+    "assets/css/audio-history.css",
+    "assets/js/audio-history.mjs",
+    "index.html",
+    "platform.html",
+    "data/site-routes.json",
+    "sitemap.xml",
+    "service-worker.js"
+  ],
+  "ci_alignment_files": [
+    "quality/site-audit-config.json",
+    "tools/production_smoke.py",
+    "tests/test_site_audit.py",
+    "tests/audio-history.test.mjs",
+    "tools/release_219_validate.py",
+    ".github/workflows/static-site-integrity.yml",
+    ".github/workflows/production-smoke.yml"
+  ],
+  "source_dependencies": {
+    "data/read-aloud-playlist.json": {
+      "included_in_zip": false,
+      "reason": "Existing unmodified verified-text device read-aloud playlist."
+    },
+    "assets/js/media-session-player.js": {
+      "included_in_zip": false,
+      "reason": "Existing player emits the live status text observed after SpeechSynthesisUtterance onstart."
+    }
+  },
+  "claims": {
+    "browser_local_storage": true,
+    "maximum_unique_history_items": 20,
+    "history_trigger": "first speech section onstart status",
+    "select_without_play_does_not_record": true,
+    "synthetic_duration": false,
+    "completion_percentage": false,
+    "licensed_human_audio_claim": false,
+    "remote_sync": false,
+    "analytics": false,
+    "service_worker_release": 219,
+    "new_optional_cache_assets": 3
+  },
+  "limitations": [
+    "History remains in the current browser profile and is not synchronized.",
+    "The feature records actual starts, not trustworthy listening duration or completion.",
+    "Device speech quality depends on the installed browser and Tamil voice.",
+    "GitHub Actions and deployed production validation remain pending until commit and deployment."
+  ]
+}

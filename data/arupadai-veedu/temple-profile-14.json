@@ -1,0 +1,12 @@
+{
+  "batch": 21,
+  "type": "temple-profile",
+  "generated": "2026-07-09",
+  "items": [
+    {
+      "temple": "திருச்செந்தூர்",
+      "slug": "tiruchendur",
+      "status": "production_foundation"
+    }
+  ]
+}

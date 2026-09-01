@@ -1,0 +1,8 @@
+{
+  "@context": "https://schema.org",
+  "@type": "HinduTemple",
+  "name": "மயிலம்",
+  "alternateName": "Mailam",
+  "description": "Temple-specific knowledge centre for Mailam Murugan traditions, hill pilgrimage, festivals and regional literature.",
+  "inLanguage": "ta"
+}

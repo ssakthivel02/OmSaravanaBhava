@@ -1,0 +1,1489 @@
+--- before/explore.html
++++ release214/explore.html
+@@ -0,0 +1,56 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Explore OmSaravanaBhava | Structured Murugan Knowledge Navigation</title>
++<meta name="description" content="A structured gateway to OmSaravanaBhava temples, devotion, literature, learning, research, audio and publication-status modules.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/explore.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++<script defer src="assets/js/explore-navigation.js"></script>
++</head>
++<body data-release="214">
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Structured explore navigation</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="explore.html" aria-current="page">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="ai-search.html">Search</a><a href="site-directory.html">Directory</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Explore</span></p></nav>
++<section class="card">
++<span class="pill">Release 214 · Information architecture</span>
++<h1 class="section-title" lang="ta">ஆராய்ந்து காணுங்கள்</h1>
++<h2>Explore OmSaravanaBhava</h2>
++<p>Choose a goal or audience and move through the platform without guessing page names. Every destination keeps its own source, completeness and review status.</p>
++</section>
++<section class="card" aria-labelledby="explore-controls-heading">
++<h2 id="explore-controls-heading">Find the right module</h2>
++<div class="route-controls">
++<label for="exploreSearch">Search modules
++<input id="exploreSearch" type="search" autocomplete="off" placeholder="Temple, mantra, learning, research…">
++</label>
++<label for="exploreAudience">Audience
++<select id="exploreAudience">
++<option value="all">All visitors</option>
++<option value="new">New visitor</option>
++<option value="devotee">Devotee</option>
++<option value="learner">Learner</option>
++<option value="researcher">Researcher</option>
++</select>
++</label>
++<button id="exploreReset" class="btn secondary" type="button">Reset</button>
++</div>
++<p id="exploreStatus" role="status" aria-live="polite">Loading navigation…</p>
++</section>
++<div id="exploreSections" aria-busy="true"><section class="card">Loading structured navigation…</section></div>
++<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>Use the <a href="site-directory.html">complete site directory</a>, <a href="platform.html">platform hub</a>, or <a href="sitemap.xml">sitemap</a>.</p></section></noscript>
++</main>
++<footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
++</body>
++</html>
+--- before/assets/js/explore-navigation.js
++++ release214/assets/js/explore-navigation.js
+@@ -0,0 +1,139 @@
++(() => {
++  'use strict';
++
++  const normalise = value => String(value || '').trim().toLocaleLowerCase();
++
++  const createText = (parent, tag, text, className) => {
++    const element = document.createElement(tag);
++    if (className) element.className = className;
++    element.textContent = text;
++    parent.appendChild(element);
++    return element;
++  };
++
++  const makeItem = item => {
++    const article = document.createElement('article');
++    article.className = 'card';
++    article.dataset.search = normalise([
++      item.titleTa, item.titleEn, item.description, item.status, item.path
++    ].join(' '));
++
++    if (item.status) createText(article, 'span', item.status, 'pill');
++    createText(
++      article,
++      'h3',
++      item.titleTa ? `${item.titleTa} · ${item.titleEn}` : item.titleEn
++    );
++    createText(article, 'p', item.description);
++
++    const link = document.createElement('a');
++    link.className = 'btn secondary';
++    link.href = item.path;
++    link.textContent = 'Open module';
++    article.appendChild(link);
++    return article;
++  };
++
++  document.addEventListener('DOMContentLoaded', async () => {
++    const host = document.getElementById('exploreSections');
++    const status = document.getElementById('exploreStatus');
++    const search = document.getElementById('exploreSearch');
++    const audience = document.getElementById('exploreAudience');
++    const reset = document.getElementById('exploreReset');
++    if (!host || !status || !search || !audience || !reset) return;
++
++    try {
++      const response = await fetch('data/navigation-sections.json', {
++        cache: 'default',
++        credentials: 'same-origin',
++        headers: {'Accept': 'application/json'}
++      });
++      if (!response.ok) throw new Error(`Navigation data HTTP ${response.status}`);
++      const payload = await response.json();
++      if (!Array.isArray(payload.sections)) throw new Error('Navigation sections are missing');
++
++      host.replaceChildren();
++
++      const sectionNodes = payload.sections.map(section => {
++        const container = document.createElement('section');
++        container.className = 'card explore-section';
++        container.dataset.audiences = (section.audiences || []).join(' ');
++        container.dataset.search = normalise(
++          [section.titleTa, section.titleEn, section.summary].join(' ')
++        );
++
++        createText(
++          container,
++          'h2',
++          section.titleTa ? `${section.titleTa} · ${section.titleEn}` : section.titleEn,
++          'section-title'
++        );
++        createText(container, 'p', section.summary);
++
++        const grid = document.createElement('div');
++        grid.className = 'grid';
++        const itemNodes = (section.items || []).map(makeItem);
++        itemNodes.forEach(item => grid.appendChild(item));
++        container.appendChild(grid);
++        host.appendChild(container);
++        return {container, itemNodes};
++      });
++
++      const apply = () => {
++        const term = normalise(search.value);
++        const selectedAudience = audience.value;
++        let visibleItems = 0;
++        let visibleSections = 0;
++
++        sectionNodes.forEach(({container, itemNodes}) => {
++          const audienceMatch = selectedAudience === 'all' ||
++            container.dataset.audiences.split(/\s+/).includes(selectedAudience);
++          let sectionItems = 0;
++
++          itemNodes.forEach(item => {
++            const itemMatch = !term ||
++              item.dataset.search.includes(term) ||
++              container.dataset.search.includes(term);
++            item.hidden = !(audienceMatch && itemMatch);
++            if (!item.hidden) sectionItems += 1;
++          });
++
++          container.hidden = sectionItems === 0;
++          if (!container.hidden) {
++            visibleSections += 1;
++            visibleItems += sectionItems;
++          }
++        });
++
++        status.textContent = `${visibleItems} module${visibleItems === 1 ? '' : 's'} across ${visibleSections} section${visibleSections === 1 ? '' : 's'}.`;
++      };
++
++      search.addEventListener('input', apply);
++      audience.addEventListener('change', apply);
++      reset.addEventListener('click', () => {
++        search.value = '';
++        audience.value = 'all';
++        apply();
++        search.focus();
++      });
++
++      host.setAttribute('aria-busy', 'false');
++      apply();
++    } catch (error) {
++      console.error('[OmSaravanaBhava] Explore navigation failed', error);
++      host.replaceChildren();
++      const fallback = document.createElement('section');
++      fallback.className = 'card';
++      createText(fallback, 'h2', 'Navigation data is temporarily unavailable');
++      const paragraph = createText(fallback, 'p', 'Use the complete site directory to continue.');
++      const link = document.createElement('a');
++      link.className = 'btn secondary';
++      link.href = 'site-directory.html';
++      link.textContent = 'Open site directory';
++      paragraph.after(link);
++      host.appendChild(fallback);
++      host.setAttribute('aria-busy', 'false');
++      status.textContent = 'Structured navigation could not be loaded.';
++    }
++  });
++})();
+--- before/data/navigation-sections.json
++++ release214/data/navigation-sections.json
+@@ -0,0 +1,365 @@
++{
++  "release": 214,
++  "generated": "2026-07-14",
++  "name": "Structured Explore Navigation",
++  "scope": "A browser-local information architecture gateway to existing published routes.",
++  "audienceLabels": {
++    "all": "All visitors",
++    "new": "New visitor",
++    "devotee": "Devotee",
++    "learner": "Learner",
++    "researcher": "Researcher"
++  },
++  "limitations": [
++    "This gateway does not certify the completeness or accuracy of every linked page.",
++    "Each destination retains its own source, review and publication status."
++  ],
++  "sections": [
++    {
++      "id": "start",
++      "titleTa": "இங்கே தொடங்குங்கள்",
++      "titleEn": "Start Here",
++      "summary": "Core gateways for new visitors and route discovery.",
++      "audiences": [
++        "all",
++        "new",
++        "devotee",
++        "learner",
++        "researcher"
++      ],
++      "items": [
++        {
++          "path": "/site-directory.html",
++          "titleTa": "தள வழித்தட அட்டவணை",
++          "titleEn": "Site Directory",
++          "description": "Search every public route and review its publication status.",
++          "status": "directory"
++        },
++        {
++          "path": "/platform.html",
++          "titleTa": "தள மையம்",
++          "titleEn": "Platform Hub",
++          "description": "Open the principal knowledge, temple, learning and research modules.",
++          "status": "published"
++        },
++        {
++          "path": "/ai-search.html",
++          "titleTa": "அறிவு தேடல்",
++          "titleEn": "Local Knowledge Search",
++          "description": "Search the published local records without a remote AI service.",
++          "status": "published"
++        },
++        {
++          "path": "/content-status.html",
++          "titleTa": "உள்ளடக்க நிலை",
++          "titleEn": "Content Status",
++          "description": "See verification boundaries and incomplete-content disclosures.",
++          "status": "source-register"
++        }
++      ]
++    },
++    {
++      "id": "devotion",
++      "titleTa": "பக்தி மற்றும் வழிபாடு",
++      "titleEn": "Devotion and Worship",
++      "summary": "Daily devotional, mantra, sloka and festival gateways.",
++      "audiences": [
++        "all",
++        "new",
++        "devotee"
++      ],
++      "items": [
++        {
++          "path": "/daily-devotional.html",
++          "titleTa": "தினசரி பக்தி",
++          "titleEn": "Daily Devotional",
++          "description": "A local daily devotional companion.",
++          "status": "published"
++        },
++        {
++          "path": "/murugan-mantras.html",
++          "titleTa": "முருகன் மந்திரங்கள்",
++          "titleEn": "Murugan Mantras",
++          "description": "Published mantra records with stated source boundaries.",
++          "status": "published"
++        },
++        {
++          "path": "/sloka-library.html",
++          "titleTa": "ஸ்லோக நூலகம்",
++          "titleEn": "Sloka Library",
++          "description": "Browse published prayers and bounded reviewed extracts.",
++          "status": "published"
++        },
++        {
++          "path": "/festivals.html",
++          "titleTa": "முருகன் திருவிழாக்கள்",
++          "titleEn": "Festival Calendar",
++          "description": "Festival guidance that defers exact dates to authoritative calendars.",
++          "status": "published"
++        }
++      ]
++    },
++    {
++      "id": "places",
++      "titleTa": "திருத்தலங்கள் மற்றும் யாத்திரை",
++      "titleEn": "Sacred Places and Pilgrimage",
++      "summary": "Temple, map and travel-planning modules.",
++      "audiences": [
++        "all",
++        "new",
++        "devotee",
++        "researcher"
++      ],
++      "items": [
++        {
++          "path": "/arupadai-veedu.html",
++          "titleTa": "ஆறுபடை வீடு",
++          "titleEn": "Six Sacred Abodes",
++          "description": "Explore the six principal Murugan abodes.",
++          "status": "published"
++        },
++        {
++          "path": "/temple-encyclopedia.html",
++          "titleTa": "திருத்தலக் கலைக்களஞ்சியம்",
++          "titleEn": "Temple Encyclopedia",
++          "description": "Source-aware temple profiles.",
++          "status": "published"
++        },
++        {
++          "path": "/murugan-map.html",
++          "titleTa": "முருகன் வரைபடம்",
++          "titleEn": "Murugan Map Index",
++          "description": "Local map-index records without live tracking.",
++          "status": "published"
++        },
++        {
++          "path": "/pilgrimage-planner.html",
++          "titleTa": "யாத்திரை திட்டமிடல்",
++          "titleEn": "Pilgrimage Planner",
++          "description": "Browser-local planning guidance.",
++          "status": "published"
++        }
++      ]
++    },
++    {
++      "id": "literature",
++      "titleTa": "தமிழ் பக்தி இலக்கியம்",
++      "titleEn": "Tamil Devotional Literature",
++      "summary": "Primary reading routes and clearly bounded editions.",
++      "audiences": [
++        "all",
++        "devotee",
++        "learner",
++        "researcher"
++      ],
++      "items": [
++        {
++          "path": "/thiruppugazh.html",
++          "titleTa": "திருப்புகழ்",
++          "titleEn": "Thiruppugazh Library",
++          "description": "Manually reviewed published song records.",
++          "status": "published"
++        },
++        {
++          "path": "/literature/thirumurugatruppadai-complete.html",
++          "titleTa": "திருமுருகாற்றுப்படை",
++          "titleEn": "Thirumurugatruppadai",
++          "description": "Structured reading route with source limitations disclosed.",
++          "status": "published"
++        },
++        {
++          "path": "/literature/kandar-anubhuti.html",
++          "titleTa": "கந்தர் அனுபூதி",
++          "titleEn": "Kandar Anubhuti",
++          "description": "Published literature route governed by its source record.",
++          "status": "published"
++        },
++        {
++          "path": "/literature/kanda-sashti-kavasam-edition.html",
++          "titleTa": "கந்த சஷ்டி கவசம்",
++          "titleEn": "Kanda Sashti Kavasam Edition",
++          "description": "A bounded edition; completeness must be read from the page.",
++          "status": "partial-reviewed"
++        }
++      ]
++    },
++    {
++      "id": "learning",
++      "titleTa": "கற்றல்",
++      "titleEn": "Learning",
++      "summary": "Structured beginner and advanced learning tools.",
++      "audiences": [
++        "all",
++        "new",
++        "learner"
++      ],
++      "items": [
++        {
++          "path": "/learning-center.html",
++          "titleTa": "கற்றல் மையம்",
++          "titleEn": "Learning Centre",
++          "description": "Entry point for structured learning.",
++          "status": "published"
++        },
++        {
++          "path": "/learning-paths.html",
++          "titleTa": "கற்றல் பாதைகள்",
++          "titleEn": "Learning Paths",
++          "description": "Beginner and advanced study sequences.",
++          "status": "published"
++        },
++        {
++          "path": "/learning-quiz.html",
++          "titleTa": "வினாடி வினா",
++          "titleEn": "Learning Quiz",
++          "description": "Local quiz interactions using published data.",
++          "status": "published"
++        },
++        {
++          "path": "/devotional-dictionary.html",
++          "titleTa": "பக்தி அகராதி",
++          "titleEn": "Devotional Dictionary",
++          "description": "Tamil–English devotional terminology.",
++          "status": "published"
++        }
++      ]
++    },
++    {
++      "id": "knowledge",
++      "titleTa": "அறிவு மற்றும் ஆய்வு",
++      "titleEn": "Knowledge and Research",
++      "summary": "Cross-reference, chronology, graph and research modules.",
++      "audiences": [
++        "all",
++        "learner",
++        "researcher"
++      ],
++      "items": [
++        {
++          "path": "/knowledge-graph-phase-4.html",
++          "titleTa": "அறிவு தொடர்புகள்",
++          "titleEn": "Knowledge Graph Phase 4",
++          "description": "Published local graph relationships.",
++          "status": "published"
++        },
++        {
++          "path": "/cross-references.html",
++          "titleTa": "குறுக்கு மேற்கோள்கள்",
++          "titleEn": "Cross References",
++          "description": "Alias and relationship navigation.",
++          "status": "published"
++        },
++        {
++          "path": "/murugan-timeline-v2.html",
++          "titleTa": "முருகன் காலவரிசை",
++          "titleEn": "Murugan Timeline",
++          "description": "Qualified chronology with filtering.",
++          "status": "published"
++        },
++        {
++          "path": "/research-library.html",
++          "titleTa": "ஆய்வு நூலகம்",
++          "titleEn": "Research Library",
++          "description": "A directory of research-oriented resources.",
++          "status": "published"
++        }
++      ]
++    },
++    {
++      "id": "audio",
++      "titleTa": "ஒலி மற்றும் வாசிப்பு",
++      "titleEn": "Audio and Reading",
++      "summary": "Device read-aloud and locally organised audio metadata.",
++      "audiences": [
++        "all",
++        "new",
++        "devotee",
++        "learner"
++      ],
++      "items": [
++        {
++          "path": "/audio-library.html",
++          "titleTa": "ஒலி நூலகம்",
++          "titleEn": "Audio Library",
++          "description": "Device read-aloud entries; not licensed human recordings.",
++          "status": "published"
++        },
++        {
++          "path": "/audio-collections.html",
++          "titleTa": "ஒலி தொகுப்புகள்",
++          "titleEn": "Audio Collections",
++          "description": "Local audio grouping and metadata.",
++          "status": "published"
++        },
++        {
++          "path": "/audio-albums.html",
++          "titleTa": "ஒலி ஆல்பங்கள்",
++          "titleEn": "Audio Albums",
++          "description": "Album organisation without third-party media bundling.",
++          "status": "published"
++        },
++        {
++          "path": "/literature/vel-maaral.html",
++          "titleTa": "வேல் மாறல்",
++          "titleEn": "Vel Maaral Reader",
++          "description": "Published reading route with device read-aloud support where available.",
++          "status": "published"
++        }
++      ]
++    },
++    {
++      "id": "integrity",
++      "titleTa": "ஆதாரங்கள் மற்றும் வெளிப்படைத்தன்மை",
++      "titleEn": "Sources and Transparency",
++      "summary": "Source registers, privacy, publication and operational boundaries.",
++      "audiences": [
++        "all",
++        "researcher"
++      ],
++      "items": [
++        {
++          "path": "/sources.html",
++          "titleTa": "ஆதாரங்கள்",
++          "titleEn": "Sources and Publication Policy",
++          "description": "Primary publication and attribution policy.",
++          "status": "source-register"
++        },
++        {
++          "path": "/source-catalog.html",
++          "titleTa": "ஆதார அட்டவணை",
++          "titleEn": "Source Catalog",
++          "description": "Structured source records.",
++          "status": "source-register"
++        },
++        {
++          "path": "/publication-history.html",
++          "titleTa": "வெளியீட்டு வரலாறு",
++          "titleEn": "Publication History",
++          "description": "Release and publication checkpoints.",
++          "status": "source-register"
++        },
++        {
++          "path": "/production-audit.html",
++          "titleTa": "தயாரிப்பு தணிக்கை",
++          "titleEn": "Production Audit",
++          "description": "Operational claims and evidence boundaries.",
++          "status": "milestone"
++        },
++        {
++          "path": "/privacy.html",
++          "titleTa": "தனியுரிமை",
++          "titleEn": "Privacy",
++          "description": "Local-storage and privacy controls.",
++          "status": "published"
++        },
++        {
++          "path": "/panchangam-framework.html",
++          "titleTa": "பஞ்சாங்க கட்டமைப்பு",
++          "titleEn": "Panchangam Framework",
++          "description": "Data contract only; no live astronomical computation.",
++          "status": "framework"
++        }
++      ]
++    }
++  ]
++}
+--- before/index.html
++++ release214/index.html
+@@ -27,17 +27,17 @@
+ <script defer src="assets/js/premium-home.js"></script>
+ <script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body data-release="212">
++<body data-release="214">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Verified Murugan digital heritage platform</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div>
++<div class="links"><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">OmSaravanaBhava Home</span></p></nav>
+ <section class="home-stage">
+-<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 212</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="platform.html">Explore platform</a><a class="btn secondary" href="ai-search.html">Search knowledge</a></div></div>
++<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 214</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="explore.html">Explore all modules</a><a class="btn secondary" href="ai-search.html">Search knowledge</a></div></div>
+ <div class="home-stage-panel" aria-label="Published platform data">
+ <div class="home-metric"><span>Search records</span><strong data-count-source="data/search-index.json" aria-live="polite">…</strong></div>
+ <div class="home-metric"><span>Source records</span><strong data-count-source="data/sources.json" aria-live="polite">…</strong></div>
+@@ -52,6 +52,6 @@
+ <section class="card" aria-labelledby="integrity-heading"><h2 id="integrity-heading">Publication integrity</h2><p>Repository releases, deployed pages and runtime behaviour are separate evidence layers. Content and feature claims remain bounded until automated checks and production observation confirm them.</p><p><a class="btn secondary" href="production-audit.html">Open production audit</a> <a class="btn secondary" href="content-status.html">Open content status</a></p></section>
+ <noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>All primary modules remain available through the navigation links. Live data counts are unavailable without JavaScript.</p></section></noscript>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
++<footer>© Om Saravana Bhava · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
+ </body>
+ </html>
+--- before/platform.html
++++ release214/platform.html
+@@ -10,13 +10,14 @@
+ <meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
+ <script defer src="assets/js/pwa-register.js"></script><script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body data-release="212">
++<body data-release="214">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Digital Murugan knowledge platform</div>
+-<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">OmSaravanaBhava Platform Hub</span></p></nav>
+ <section class="card"><h1 class="section-title" lang="ta">ஓம் சரவணபவ தளம்</h1><h2>OmSaravanaBhava Platform Hub</h2><p>Unified gateway to the source-aware devotional, literature, temple, search, graph and reading modules.</p></section>
++<section class="card"><h2>Structured Explore Gateway</h2><p>Choose modules by purpose or audience without navigating the full route list.</p><a class="btn" href="explore.html">Open Explore</a></section>
+ <section class="grid">
+ <article class="card"><h2>Audio Platform</h2><a class="btn" href="audio-collections.html">Open module</a></article>
+ <article class="card"><h2>Cross References</h2><a class="btn" href="cross-references.html">Open module</a></article>
+@@ -32,6 +33,6 @@
+ <section class="card"><h2>Milestone boundary</h2><p>The platform hub connects published modules. It does not certify complete Murugan literature, licensed human audio, live Panchangam computation or server-side accounts.</p></section>
+ <section class="card"><h2>Version 3 milestone</h2><a class="btn" href="version-3.html">Open milestone dashboard</a></section>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
++<footer>© Om Saravana Bhava · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
+ </body>
+ </html>
+--- before/404.html
++++ release214/404.html
+@@ -18,16 +18,16 @@
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script defer src="assets/js/404-suggestions.js"></script>
+ </head>
+-<body data-release="213">
++<body data-release="214">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Local route recovery</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="site-directory.html">Directory</a></div></div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Page not found</span></p></nav>
+ <section class="card">
+-<span class="pill">404 · Release 213</span>
++<span class="pill">404 · Local recovery</span>
+ <h1 class="section-title">Page not found</h1>
+-<p>The requested address does not match a published route. Suggestions below are calculated entirely in your browser from the local Release 212 route directory.</p>
++<p>The requested address does not match a published route. Suggestions below are calculated entirely in your browser from the current local route directory.</p>
+ <p><strong>Requested path:</strong> <code id="requestedPath">Loading…</code></p>
+ <form action="ai-search.html" method="get" role="search">
+ <label for="recoverySearch"><strong>Search published knowledge</strong></label>
+--- before/data/site-routes.json
++++ release214/data/site-routes.json
+@@ -1,14 +1,15 @@
+ {
+-  "release": 212,
++  "release": 214,
+   "generated": "2026-07-14",
+-  "scope": "Public HTML routes represented by the Release 212 sitemap and route directory.",
++  "scope": "Public HTML routes represented by the Release 214 sitemap and route directory.",
+   "statusMeaning": {
+     "published": "Route exists; content-specific verification remains governed by the page and source records.",
+     "partial-reviewed": "Only a bounded reviewed extract is published.",
+     "source-register": "Route documents sources, coverage or editorial status.",
+     "framework": "Architecture or data contract only; no live computation is claimed.",
+     "milestone": "Checkpoint or audit page, not independent production certification.",
+-    "directory": "Navigation and route-discovery utility."
++    "directory": "Navigation and route-discovery utility.",
++    "navigation": "Information-architecture gateway to existing published routes."
+   },
+   "routes": [
+     {
+@@ -52,14 +53,6 @@
+       "summary": "Published devotional route in the OmSaravanaBhava static platform."
+     },
+     {
+-      "path": "/slokas/kanda-sashti-kavasam.html",
+-      "titleTa": "",
+-      "titleEn": "Kanda Sashti Kavasam",
+-      "category": "Devotional",
+-      "status": "partial-reviewed",
+-      "summary": "Published route containing a bounded, reviewed extract rather than a complete critical edition."
+-    },
+-    {
+       "path": "/murugan-mantras.html",
+       "titleTa": "முருகன் மந்திரங்கள்",
+       "titleEn": "Murugan Mantras",
+@@ -68,22 +61,6 @@
+       "summary": "Published devotional route in the OmSaravanaBhava static platform."
+     },
+     {
+-      "path": "/slokas/om-saravana-bhava.html",
+-      "titleTa": "",
+-      "titleEn": "Om Saravana Bhava",
+-      "category": "Devotional",
+-      "status": "published",
+-      "summary": "Published devotional route in the OmSaravanaBhava static platform."
+-    },
+-    {
+-      "path": "/slokas/skanda-guru-kavasam.html",
+-      "titleTa": "",
+-      "titleEn": "Skanda Guru Kavasam",
+-      "category": "Devotional",
+-      "status": "partial-reviewed",
+-      "summary": "Published route containing a bounded, reviewed extract rather than a complete critical edition."
+-    },
+-    {
+       "path": "/sloka-library.html",
+       "titleTa": "ஸ்லோக நூலகம்",
+       "titleEn": "Sloka Library",
+@@ -92,6 +69,30 @@
+       "summary": "Published devotional route in the OmSaravanaBhava static platform."
+     },
+     {
++      "path": "/slokas/kanda-sashti-kavasam.html",
++      "titleTa": "",
++      "titleEn": "Kanda Sashti Kavasam",
++      "category": "Devotional",
++      "status": "partial-reviewed",
++      "summary": "Published route containing a bounded, reviewed extract rather than a complete critical edition."
++    },
++    {
++      "path": "/slokas/om-saravana-bhava.html",
++      "titleTa": "",
++      "titleEn": "Om Saravana Bhava",
++      "category": "Devotional",
++      "status": "published",
++      "summary": "Published devotional route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/slokas/skanda-guru-kavasam.html",
++      "titleTa": "",
++      "titleEn": "Skanda Guru Kavasam",
++      "category": "Devotional",
++      "status": "partial-reviewed",
++      "summary": "Published route containing a bounded, reviewed extract rather than a complete critical edition."
++    },
++    {
+       "path": "/slokas/subramanya-gayatri.html",
+       "titleTa": "",
+       "titleEn": "Subramanya Gayatri",
+@@ -106,6 +107,14 @@
+       "category": "Devotional",
+       "status": "published",
+       "summary": "Published devotional route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/explore.html",
++      "titleTa": "ஆராய்ந்து காணுங்கள்",
++      "titleEn": "Explore OmSaravanaBhava",
++      "category": "Directory",
++      "status": "navigation",
++      "summary": "Structured navigation gateway organised by purpose and audience."
+     },
+     {
+       "path": "/site-directory.html",
+@@ -116,9 +125,9 @@
+       "summary": "Human-readable and machine-readable directory of public site routes."
+     },
+     {
+-      "path": "/festivals/aadi-krittikai.html",
+-      "titleTa": "",
+-      "titleEn": "Aadi Krittikai",
++      "path": "/festival-intelligence.html",
++      "titleTa": "திருவிழா அறிவு",
++      "titleEn": "Festival Intelligence",
+       "category": "Festivals",
+       "status": "published",
+       "summary": "Published festivals route in the OmSaravanaBhava static platform."
+@@ -132,9 +141,33 @@
+       "summary": "Published festivals route in the OmSaravanaBhava static platform."
+     },
+     {
+-      "path": "/festival-intelligence.html",
+-      "titleTa": "திருவிழா அறிவு",
+-      "titleEn": "Festival Intelligence",
++      "path": "/festivals/aadi-krittikai.html",
++      "titleTa": "",
++      "titleEn": "Aadi Krittikai",
++      "category": "Festivals",
++      "status": "published",
++      "summary": "Published festivals route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/festivals/panguni-uthiram.html",
++      "titleTa": "",
++      "titleEn": "Panguni Uthiram",
++      "category": "Festivals",
++      "status": "published",
++      "summary": "Published festivals route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/festivals/skanda-sashti.html",
++      "titleTa": "",
++      "titleEn": "Skanda Sashti",
++      "category": "Festivals",
++      "status": "published",
++      "summary": "Published festivals route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/festivals/thai-poosam.html",
++      "titleTa": "",
++      "titleEn": "Thai Poosam",
+       "category": "Festivals",
+       "status": "published",
+       "summary": "Published festivals route in the OmSaravanaBhava static platform."
+@@ -148,30 +181,6 @@
+       "summary": "Data contract and verification boundary; no live astronomical calculation is claimed."
+     },
+     {
+-      "path": "/festivals/panguni-uthiram.html",
+-      "titleTa": "",
+-      "titleEn": "Panguni Uthiram",
+-      "category": "Festivals",
+-      "status": "published",
+-      "summary": "Published festivals route in the OmSaravanaBhava static platform."
+-    },
+-    {
+-      "path": "/festivals/skanda-sashti.html",
+-      "titleTa": "",
+-      "titleEn": "Skanda Sashti",
+-      "category": "Festivals",
+-      "status": "published",
+-      "summary": "Published festivals route in the OmSaravanaBhava static platform."
+-    },
+-    {
+-      "path": "/festivals/thai-poosam.html",
+-      "titleTa": "",
+-      "titleEn": "Thai Poosam",
+-      "category": "Festivals",
+-      "status": "published",
+-      "summary": "Published festivals route in the OmSaravanaBhava static platform."
+-    },
+-    {
+       "path": "/",
+       "titleTa": "ஓம் சரவணபவ",
+       "titleEn": "Home",
+@@ -188,6 +197,22 @@
+       "summary": "Published knowledge route in the OmSaravanaBhava static platform."
+     },
+     {
++      "path": "/knowledge-graph-phase-3.html",
++      "titleTa": "அறிவு தொடர்புகள்",
++      "titleEn": "Knowledge Graph Phase 3",
++      "category": "Knowledge",
++      "status": "published",
++      "summary": "Published knowledge route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/knowledge-graph-phase-4.html",
++      "titleTa": "அறிவு தொடர்புகள்",
++      "titleEn": "Knowledge Graph Phase 4",
++      "category": "Knowledge",
++      "status": "published",
++      "summary": "Published knowledge route in the OmSaravanaBhava static platform."
++    },
++    {
+       "path": "/knowledge-graph.html",
+       "titleTa": "அறிவு தொடர்புகள்",
+       "titleEn": "Knowledge Graph",
+@@ -196,17 +221,9 @@
+       "summary": "Published knowledge route in the OmSaravanaBhava static platform."
+     },
+     {
+-      "path": "/knowledge-graph-phase-3.html",
+-      "titleTa": "அறிவு தொடர்புகள்",
+-      "titleEn": "Knowledge Graph Phase 3",
+-      "category": "Knowledge",
+-      "status": "published",
+-      "summary": "Published knowledge route in the OmSaravanaBhava static platform."
+-    },
+-    {
+-      "path": "/knowledge-graph-phase-4.html",
+-      "titleTa": "அறிவு தொடர்புகள்",
+-      "titleEn": "Knowledge Graph Phase 4",
++      "path": "/murugan-timeline-v2.html",
++      "titleTa": "முருகன் காலவரிசை",
++      "titleEn": "Murugan Timeline V2",
+       "category": "Knowledge",
+       "status": "published",
+       "summary": "Published knowledge route in the OmSaravanaBhava static platform."
+@@ -215,14 +232,6 @@
+       "path": "/murugan-timeline.html",
+       "titleTa": "முருகன் காலவரிசை",
+       "titleEn": "Murugan Timeline",
+-      "category": "Knowledge",
+-      "status": "published",
+-      "summary": "Published knowledge route in the OmSaravanaBhava static platform."
+-    },
+-    {
+-      "path": "/murugan-timeline-v2.html",
+-      "titleTa": "முருகன் காலவரிசை",
+-      "titleEn": "Murugan Timeline V2",
+       "category": "Knowledge",
+       "status": "published",
+       "summary": "Published knowledge route in the OmSaravanaBhava static platform."
+@@ -324,6 +333,46 @@
+       "summary": "Published literature route in the OmSaravanaBhava static platform."
+     },
+     {
++      "path": "/literature/shanmuga-kavasam.html",
++      "titleTa": "",
++      "titleEn": "Shanmuga Kavasam",
++      "category": "Literature",
++      "status": "published",
++      "summary": "Published literature route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/literature/thirumurugatruppadai-complete.html",
++      "titleTa": "",
++      "titleEn": "Thirumurugatruppadai Complete Edition",
++      "category": "Literature",
++      "status": "published",
++      "summary": "Published literature route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/literature/thirumurugatruppadai.html",
++      "titleTa": "",
++      "titleEn": "Thirumurugatruppadai",
++      "category": "Literature",
++      "status": "published",
++      "summary": "Published literature route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/literature/vel-maaral.html",
++      "titleTa": "",
++      "titleEn": "Vel Maaral",
++      "category": "Literature",
++      "status": "published",
++      "summary": "Published literature route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/literature/vel-mayil-virutham.html",
++      "titleTa": "",
++      "titleEn": "Vel and Mayil Virutham",
++      "category": "Literature",
++      "status": "published",
++      "summary": "Published literature route in the OmSaravanaBhava static platform."
++    },
++    {
+       "path": "/research-library.html",
+       "titleTa": "ஆராய்ச்சி நூலகம்",
+       "titleEn": "Research Library",
+@@ -332,134 +381,6 @@
+       "summary": "Published literature route in the OmSaravanaBhava static platform."
+     },
+     {
+-      "path": "/literature/shanmuga-kavasam.html",
+-      "titleTa": "",
+-      "titleEn": "Shanmuga Kavasam",
+-      "category": "Literature",
+-      "status": "published",
+-      "summary": "Published literature route in the OmSaravanaBhava static platform."
+-    },
+-    {
+-      "path": "/literature/thirumurugatruppadai.html",
+-      "titleTa": "",
+-      "titleEn": "Thirumurugatruppadai",
+-      "category": "Literature",
+-      "status": "published",
+-      "summary": "Published literature route in the OmSaravanaBhava static platform."
+-    },
+-    {
+-      "path": "/literature/thirumurugatruppadai-complete.html",
+-      "titleTa": "",
+-      "titleEn": "Thirumurugatruppadai Complete Edition",
+-      "category": "Literature",
+-      "status": "published",
+-      "summary": "Published literature route in the OmSaravanaBhava static platform."
+-    },
+-    {
+-      "path": "/thiruppugazh.html",
+-      "titleTa": "",
+-      "titleEn": "Thiruppugazh",
+-      "category": "Literature",
+-      "status": "published",
+-      "summary": "Published literature route in the OmSaravanaBhava static platform."
+-    },
+-    {
+-      "path": "/thiruppugazh/0006-muththaiththaru.html",
+-      "titleTa": "",
+-      "titleEn": "Thiruppugazh 0006 Muththaiththaru",
+-      "category": "Literature",
+-      "status": "published",
+-      "summary": "Published literature route in the OmSaravanaBhava static platform."
+-    },
+-    {
+-      "path": "/thiruppugazh/0007-arukku-mangkaiyar.html",
+-      "titleTa": "",
+-      "titleEn": "Thiruppugazh 0007 Arukku Mangkaiyar",
+-      "category": "Literature",
+-      "status": "published",
+-      "summary": "Published literature route in the OmSaravanaBhava static platform."
+-    },
+-    {
+-      "path": "/thiruppugazh/0008-unaith-thinam.html",
+-      "titleTa": "",
+-      "titleEn": "Thiruppugazh 0008 Unaith Thinam",
+-      "category": "Literature",
+-      "status": "published",
+-      "summary": "Published literature route in the OmSaravanaBhava static platform."
+-    },
+-    {
+-      "path": "/thiruppugazh/0009-karuvadaindhu.html",
+-      "titleTa": "",
+-      "titleEn": "Thiruppugazh 0009 Karuvadaindhu",
+-      "category": "Literature",
+-      "status": "published",
+-      "summary": "Published literature route in the OmSaravanaBhava static platform."
+-    },
+-    {
+-      "path": "/thiruppugazh/0010-karukkum-anjana.html",
+-      "titleTa": "",
+-      "titleEn": "Thiruppugazh 0010 Karukkum Anjana",
+-      "category": "Literature",
+-      "status": "published",
+-      "summary": "Published literature route in the OmSaravanaBhava static platform."
+-    },
+-    {
+-      "path": "/thiruppugazh/0011-kanakan-thiral.html",
+-      "titleTa": "",
+-      "titleEn": "Thiruppugazh 0011 Kanakan Thiral",
+-      "category": "Literature",
+-      "status": "published",
+-      "summary": "Published literature route in the OmSaravanaBhava static platform."
+-    },
+-    {
+-      "path": "/thiruppugazh/0012-kadhadarungkayal.html",
+-      "titleTa": "",
+-      "titleEn": "Thiruppugazh 0012 Kadhadarungkayal",
+-      "category": "Literature",
+-      "status": "published",
+-      "summary": "Published literature route in the OmSaravanaBhava static platform."
+-    },
+-    {
+-      "path": "/thiruppugazh/0013-sandhadham-bandha.html",
+-      "titleTa": "",
+-      "titleEn": "Thiruppugazh 0013 Sandhadham Bandha",
+-      "category": "Literature",
+-      "status": "published",
+-      "summary": "Published literature route in the OmSaravanaBhava static platform."
+-    },
+-    {
+-      "path": "/thiruppugazh/0014-saruvumpadi.html",
+-      "titleTa": "",
+-      "titleEn": "Thiruppugazh 0014 Saruvumpadi",
+-      "category": "Literature",
+-      "status": "published",
+-      "summary": "Published literature route in the OmSaravanaBhava static platform."
+-    },
+-    {
+-      "path": "/thiruppugazh/0015-thadakkai-pangkayam.html",
+-      "titleTa": "",
+-      "titleEn": "Thiruppugazh 0015 Thadakkai Pangkayam",
+-      "category": "Literature",
+-      "status": "published",
+-      "summary": "Published literature route in the OmSaravanaBhava static platform."
+-    },
+-    {
+-      "path": "/thiruppugazh/0016-padhiththa-senchandha.html",
+-      "titleTa": "",
+-      "titleEn": "Thiruppugazh 0016 Padhiththa Senchandha",
+-      "category": "Literature",
+-      "status": "published",
+-      "summary": "Published literature route in the OmSaravanaBhava static platform."
+-    },
+-    {
+-      "path": "/thiruppugazh/0017-poruppurung.html",
+-      "titleTa": "",
+-      "titleEn": "Thiruppugazh 0017 Poruppurung",
+-      "category": "Literature",
+-      "status": "published",
+-      "summary": "Published literature route in the OmSaravanaBhava static platform."
+-    },
+-    {
+       "path": "/thiruppugazh-volume-3.html",
+       "titleTa": "",
+       "titleEn": "Thiruppugazh Volume 3",
+@@ -500,17 +421,105 @@
+       "summary": "Source, coverage or publication-status register supporting transparent editorial boundaries."
+     },
+     {
+-      "path": "/literature/vel-mayil-virutham.html",
+-      "titleTa": "",
+-      "titleEn": "Vel and Mayil Virutham",
+-      "category": "Literature",
+-      "status": "published",
+-      "summary": "Published literature route in the OmSaravanaBhava static platform."
+-    },
+-    {
+-      "path": "/literature/vel-maaral.html",
+-      "titleTa": "",
+-      "titleEn": "Vel Maaral",
++      "path": "/thiruppugazh.html",
++      "titleTa": "",
++      "titleEn": "Thiruppugazh",
++      "category": "Literature",
++      "status": "published",
++      "summary": "Published literature route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/thiruppugazh/0006-muththaiththaru.html",
++      "titleTa": "",
++      "titleEn": "Thiruppugazh 0006 Muththaiththaru",
++      "category": "Literature",
++      "status": "published",
++      "summary": "Published literature route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/thiruppugazh/0007-arukku-mangkaiyar.html",
++      "titleTa": "",
++      "titleEn": "Thiruppugazh 0007 Arukku Mangkaiyar",
++      "category": "Literature",
++      "status": "published",
++      "summary": "Published literature route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/thiruppugazh/0008-unaith-thinam.html",
++      "titleTa": "",
++      "titleEn": "Thiruppugazh 0008 Unaith Thinam",
++      "category": "Literature",
++      "status": "published",
++      "summary": "Published literature route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/thiruppugazh/0009-karuvadaindhu.html",
++      "titleTa": "",
++      "titleEn": "Thiruppugazh 0009 Karuvadaindhu",
++      "category": "Literature",
++      "status": "published",
++      "summary": "Published literature route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/thiruppugazh/0010-karukkum-anjana.html",
++      "titleTa": "",
++      "titleEn": "Thiruppugazh 0010 Karukkum Anjana",
++      "category": "Literature",
++      "status": "published",
++      "summary": "Published literature route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/thiruppugazh/0011-kanakan-thiral.html",
++      "titleTa": "",
++      "titleEn": "Thiruppugazh 0011 Kanakan Thiral",
++      "category": "Literature",
++      "status": "published",
++      "summary": "Published literature route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/thiruppugazh/0012-kadhadarungkayal.html",
++      "titleTa": "",
++      "titleEn": "Thiruppugazh 0012 Kadhadarungkayal",
++      "category": "Literature",
++      "status": "published",
++      "summary": "Published literature route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/thiruppugazh/0013-sandhadham-bandha.html",
++      "titleTa": "",
++      "titleEn": "Thiruppugazh 0013 Sandhadham Bandha",
++      "category": "Literature",
++      "status": "published",
++      "summary": "Published literature route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/thiruppugazh/0014-saruvumpadi.html",
++      "titleTa": "",
++      "titleEn": "Thiruppugazh 0014 Saruvumpadi",
++      "category": "Literature",
++      "status": "published",
++      "summary": "Published literature route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/thiruppugazh/0015-thadakkai-pangkayam.html",
++      "titleTa": "",
++      "titleEn": "Thiruppugazh 0015 Thadakkai Pangkayam",
++      "category": "Literature",
++      "status": "published",
++      "summary": "Published literature route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/thiruppugazh/0016-padhiththa-senchandha.html",
++      "titleTa": "",
++      "titleEn": "Thiruppugazh 0016 Padhiththa Senchandha",
++      "category": "Literature",
++      "status": "published",
++      "summary": "Published literature route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/thiruppugazh/0017-poruppurung.html",
++      "titleTa": "",
++      "titleEn": "Thiruppugazh 0017 Poruppurung",
+       "category": "Literature",
+       "status": "published",
+       "summary": "Published literature route in the OmSaravanaBhava static platform."
+@@ -612,30 +621,6 @@
+       "summary": "Published temples route in the OmSaravanaBhava static platform."
+     },
+     {
+-      "path": "/temples/palani.html",
+-      "titleTa": "",
+-      "titleEn": "Palani Temple",
+-      "category": "Temples",
+-      "status": "published",
+-      "summary": "Published temples route in the OmSaravanaBhava static platform."
+-    },
+-    {
+-      "path": "/temples/pazhamudircholai.html",
+-      "titleTa": "",
+-      "titleEn": "Pazhamudircholai Temple",
+-      "category": "Temples",
+-      "status": "published",
+-      "summary": "Published temples route in the OmSaravanaBhava static platform."
+-    },
+-    {
+-      "path": "/temples/swamimalai.html",
+-      "titleTa": "",
+-      "titleEn": "Swamimalai Temple",
+-      "category": "Temples",
+-      "status": "published",
+-      "summary": "Published temples route in the OmSaravanaBhava static platform."
+-    },
+-    {
+       "path": "/temple-encyclopedia.html",
+       "titleTa": "கோவில் கலைக்களஞ்சியம்",
+       "titleEn": "Temple Encyclopedia",
+@@ -644,6 +629,22 @@
+       "summary": "Published temples route in the OmSaravanaBhava static platform."
+     },
+     {
++      "path": "/temple-research-dashboard.html",
++      "titleTa": "கோவில் ஆய்வு",
++      "titleEn": "Temple Research Dashboard",
++      "category": "Temples",
++      "status": "published",
++      "summary": "Published temples route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/temple-travel-guidance.html",
++      "titleTa": "கோவில் பயண வழிகாட்டி",
++      "titleEn": "Temple Travel Guidance",
++      "category": "Temples",
++      "status": "published",
++      "summary": "Published temples route in the OmSaravanaBhava static platform."
++    },
++    {
+       "path": "/temples.html",
+       "titleTa": "முருகன் திருத்தலங்கள்",
+       "titleEn": "Temple Explorer",
+@@ -652,17 +653,25 @@
+       "summary": "Published temples route in the OmSaravanaBhava static platform."
+     },
+     {
+-      "path": "/temple-research-dashboard.html",
+-      "titleTa": "கோவில் ஆய்வு",
+-      "titleEn": "Temple Research Dashboard",
+-      "category": "Temples",
+-      "status": "published",
+-      "summary": "Published temples route in the OmSaravanaBhava static platform."
+-    },
+-    {
+-      "path": "/temple-travel-guidance.html",
+-      "titleTa": "கோவில் பயண வழிகாட்டி",
+-      "titleEn": "Temple Travel Guidance",
++      "path": "/temples/palani.html",
++      "titleTa": "",
++      "titleEn": "Palani Temple",
++      "category": "Temples",
++      "status": "published",
++      "summary": "Published temples route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/temples/pazhamudircholai.html",
++      "titleTa": "",
++      "titleEn": "Pazhamudircholai Temple",
++      "category": "Temples",
++      "status": "published",
++      "summary": "Published temples route in the OmSaravanaBhava static platform."
++    },
++    {
++      "path": "/temples/swamimalai.html",
++      "titleTa": "",
++      "titleEn": "Swamimalai Temple",
+       "category": "Temples",
+       "status": "published",
+       "summary": "Published temples route in the OmSaravanaBhava static platform."
+--- before/sitemap.xml
++++ release214/sitemap.xml
+@@ -61,6 +61,12 @@
+     <priority>0.8</priority>
+   </url>
+   <url>
++    <loc>https://omsaravanabhava.org/explore.html</loc>
++    <lastmod>2026-07-14</lastmod>
++    <changefreq>monthly</changefreq>
++    <priority>0.9</priority>
++  </url>
++  <url>
+     <loc>https://omsaravanabhava.org/festival-intelligence.html</loc>
+     <lastmod>2026-07-14</lastmod>
+     <changefreq>weekly</changefreq>
+--- before/service-worker.js
++++ release214/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '213';
++const RELEASE = '214';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -189,7 +189,10 @@
+   "/data/site-routes.json",
+   "/assets/js/site-directory.js",
+   "/assets/css/site-directory.css",
+-  "/assets/js/404-suggestions.js"
++  "/assets/js/404-suggestions.js",
++  "/explore.html",
++  "/data/navigation-sections.json",
++  "/assets/js/explore-navigation.js"
+ ];
+ 
+ const cacheOptionalAssets = async cache => {
+--- before/quality/site-audit-config.json
++++ release214/quality/site-audit-config.json
+@@ -1,5 +1,5 @@
+ {
+-  "expectedRelease": "212",
++  "expectedRelease": "214",
+   "canonicalOrigin": "https://omsaravanabhava.org",
+   "requiredFiles": [
+     "index.html",
+@@ -20,7 +20,10 @@
+     "assets/js/site-directory.js",
+     "assets/css/site-directory.css",
+     ".github/workflows/static-site-integrity.yml",
+-    ".github/workflows/production-smoke.yml"
++    ".github/workflows/production-smoke.yml",
++    "explore.html",
++    "data/navigation-sections.json",
++    "assets/js/explore-navigation.js"
+   ],
+   "canonicalOptional": [
+     "404.html",
+--- before/tools/production_smoke.py
++++ release214/tools/production_smoke.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Observe the deployed custom domain and fail when Release 212 is not live."""
++"""Observe the deployed custom domain and fail when Release 214 is not live."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -10,18 +10,24 @@
+ from pathlib import Path
+ 
+ CHECKS = [
+-    ("/", 'data-release="211"'),
+-    ("/service-worker.js", "const RELEASE = '211';"),
+-    ("/panchangam-framework.html", "Panchangam Data Framework"),
+-    ("/data/panchangam-framework.json", '"release": 211'),
+-    ("/version-3.html", "Version 3"),
+-    ("/knowledge-graph-phase-4.html", "Knowledge Graph"),
+-    ("/sitemap.xml", "<urlset")
++    ("/", 'data-release="214"'),
++    ("/service-worker.js", "const RELEASE = '214';"),
++    ("/explore.html", "Explore OmSaravanaBhava"),
++    ("/data/navigation-sections.json", '"release": 214'),
++    ("/site-directory.html", "Complete Site Route Directory"),
++    ("/404.html", "Local route recovery"),
++    ("/sitemap.xml", "https://omsaravanabhava.org/explore.html")
+ ]
+ 
+ 
+ def fetch(url: str, timeout: int) -> tuple[int, str]:
+-    request = urllib.request.Request(url, headers={"User-Agent": "OmSaravanaBhava-Production-Smoke/212", "Cache-Control": "no-cache"})
++    request = urllib.request.Request(
++        url,
++        headers={
++            "User-Agent": "OmSaravanaBhava-Production-Smoke/214",
++            "Cache-Control": "no-cache"
++        }
++    )
+     with urllib.request.urlopen(request, timeout=timeout) as response:
+         return response.status, response.read().decode("utf-8", errors="replace")
+ 
+@@ -37,7 +43,13 @@
+                 ok = 200 <= status < 400 and marker in body
+                 results.append({"url": url, "status": status, "marker": marker, "ok": ok})
+             except (urllib.error.URLError, TimeoutError, OSError) as error:
+-                results.append({"url": url, "status": None, "marker": marker, "ok": False, "error": str(error)})
++                results.append({
++                    "url": url,
++                    "status": None,
++                    "marker": marker,
++                    "ok": False,
++                    "error": str(error)
++                })
+         last_results = results
+         if all(item["ok"] for item in results):
+             return {"status": "PASS", "attempt": attempt, "checks": results}
+--- before/tests/test_site_audit.py
++++ release214/tests/test_site_audit.py
+@@ -15,7 +15,7 @@
+         for directory in ("quality", "assets/css", "assets/js", "icons", "data"):
+             (root / directory).mkdir(parents=True, exist_ok=True)
+         config = {
+-            "expectedRelease": "212",
++            "expectedRelease": "214",
+             "canonicalOrigin": "https://omsaravanabhava.org",
+             "requiredFiles": ["index.html", "404.html", "offline.html", "manifest.json", "service-worker.js", "sitemap.xml", "favicon.svg", "assets/css/osb44.css", "assets/js/pwa-register.js", "icons/icon-192.png", "icons/icon-512.png"],
+             "canonicalOptional": ["404.html", "offline.html"],
+@@ -35,7 +35,7 @@
+         (root / "index.html").write_text('''<!doctype html><html lang="ta"><head><title>Home</title><link rel="canonical" href="https://omsaravanabhava.org/"></head><body>ஓம் <a href="about.html">About</a></body></html>''', encoding="utf-8")
+         (root / "about.html").write_text('''<!doctype html><html lang="ta"><head><title>About</title><link rel="canonical" href="https://omsaravanabhava.org/about.html"></head><body>முருகன்</body></html>''', encoding="utf-8")
+         (root / "sitemap.xml").write_text('''<?xml version="1.0"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://omsaravanabhava.org/</loc></url><url><loc>https://omsaravanabhava.org/about.html</loc></url></urlset>''', encoding="utf-8")
+-        (root / "service-worker.js").write_text('''const RELEASE = '212'; const CORE_PRECACHE_URLS = ["/", "/index.html"]; const PRECACHE_URLS = ["/", "/index.html", "/about.html"]; self.addEventListener('install', event => event.waitUntil(caches.open('x').then(cache => cache.addAll(CORE_PRECACHE_URLS)))); const cacheOptionalAssets = async cache => {};''', encoding="utf-8")
++        (root / "service-worker.js").write_text('''const RELEASE = '214'; const CORE_PRECACHE_URLS = ["/", "/index.html"]; const PRECACHE_URLS = ["/", "/index.html", "/about.html"]; self.addEventListener('install', event => event.waitUntil(caches.open('x').then(cache => cache.addAll(CORE_PRECACHE_URLS)))); const cacheOptionalAssets = async cache => {};''', encoding="utf-8")
+         return temporary, root
+ 
+     def audit(self, root: Path):
+--- before/.github/workflows/static-site-integrity.yml
++++ release214/.github/workflows/static-site-integrity.yml
+@@ -30,7 +30,7 @@
+         if: always()
+         uses: actions/upload-artifact@v7
+         with:
+-          name: release-212-static-site-integrity
++          name: release-214-static-site-integrity
+           path: artifacts/
+           if-no-files-found: error
+           retention-days: 30
+--- before/.github/workflows/production-smoke.yml
++++ release214/.github/workflows/production-smoke.yml
+@@ -12,7 +12,7 @@
+ 
+ jobs:
+   observe-production:
+-    name: Observe Release 212 production
++    name: Observe Release 214 production
+     runs-on: ubuntu-latest
+     timeout-minutes: 10
+     steps:
+@@ -28,7 +28,7 @@
+         if: always()
+         uses: actions/upload-artifact@v7
+         with:
+-          name: release-212-production-smoke
++          name: release-214-production-smoke
+           path: artifacts/production-smoke.json
+           if-no-files-found: error
+           retention-days: 30
+--- before/manifest-release-214.json
++++ release214/manifest-release-214.json
+@@ -0,0 +1,38 @@
++{
++  "project": "OmSaravanaBhava",
++  "release": 214,
++  "name": "Navigation Information Architecture",
++  "base_commit": "f54e2b4eefeefb3fccd770a0493a23fee3bbfdf8",
++  "generated": "2026-07-14",
++  "validation_status": "LOCAL_PACKAGE_PASS_REPOSITORY_CI_PENDING",
++  "production_files": [
++    "explore.html",
++    "assets/js/explore-navigation.js",
++    "data/navigation-sections.json",
++    "index.html",
++    "platform.html",
++    "404.html",
++    "data/site-routes.json",
++    "sitemap.xml",
++    "service-worker.js"
++  ],
++  "ci_alignment_files": [
++    "quality/site-audit-config.json",
++    "tools/production_smoke.py",
++    "tests/test_site_audit.py",
++    ".github/workflows/static-site-integrity.yml",
++    ".github/workflows/production-smoke.yml"
++  ],
++  "claims": {
++    "navigation_sections": 8,
++    "navigation_items": 34,
++    "remote_service": false,
++    "server_tracking": false,
++    "route_directory_release": 214,
++    "service_worker_release": 214
++  },
++  "limitations": [
++    "The Explore gateway organises existing routes; it does not certify destination completeness.",
++    "Repository-wide CI and deployed production behaviour remain pending until GitHub runs."
++  ]
++}

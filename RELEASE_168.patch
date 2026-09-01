@@ -1,0 +1,91 @@
+--- before/data/vel-mayil-virutham.json
++++ release168/data/vel-mayil-virutham.json
+@@ -0,0 +1,18 @@
++{
++  "author": "Arunagirinathar",
++  "works": [
++    {
++      "id": "vel-virutham",
++      "titleTa": "வேல் விருத்தம்",
++      "titleEn": "Vel Virutham",
++      "symbol": "Vel"
++    },
++    {
++      "id": "mayil-virutham",
++      "titleTa": "மயில் விருத்தம்",
++      "titleEn": "Mayil Virutham",
++      "symbol": "Peacock"
++    }
++  ],
++  "publicationStatus": "source-register"
++}
+--- before/literature/vel-mayil-virutham.html
++++ release168/literature/vel-mayil-virutham.html
+@@ -0,0 +1,27 @@
++<!doctype html>
++<html lang="ta"><head>
++<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Vel Virutham and Mayil Virutham | Om Saravana Bhava</title>
++<meta name="description" content="Companion source register for Arunagirinathar&#x27;s Vel and Mayil Virutham works.">
++<meta name="robots" content="noindex,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/literature/vel-mayil-virutham.html">
++<link rel="stylesheet" href="../assets/css/osb44.css">
++<link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<link rel="manifest" href="../manifest.json">
++<script defer src="../assets/js/pwa-register.js"></script>
++</head><body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Source-controlled devotional edition</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="../index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="../temples.html">Temples</a><a href="../sloka-library.html">Slokas</a><a href="../thiruppugazh.html">Thiruppugazh</a><a href="../festivals.html">Festivals</a><a href="../ai-search.html">AI Search</a><a href="../audio-library.html">Audio</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="../index.html">Home</a> › <span aria-current="page">Vel Virutham and Mayil Virutham</span></p></nav>
++<section class="card"><span class="pill">Source-controlled publication</span><h1 class="section-title" lang="ta">வேல் விருத்தம் · மயில் விருத்தம்</h1><h2>Vel Virutham and Mayil Virutham</h2><p>Companion source register for Arunagirinathar&#x27;s Vel and Mayil Virutham works.</p></section>
++<section class="grid"><article class="card"><span class="pill">Vel</span><h2 lang="ta">வேல் விருத்தம்</h2><h3>Vel Virutham</h3></article><article class="card"><span class="pill">Peacock</span><h2 lang="ta">மயில் விருத்தம்</h2><h3>Mayil Virutham</h3></article></section><section class="card"><p>Both companion works are registered without publishing unverified verse text.</p></section>
++</main>
++<div class="tools"><button type="button" class="tool" data-text aria-pressed="false">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false">☾ Night</button><button type="button" class="tool" data-share>↗ Share</button></div>
++<footer>© Om Saravana Bhava · <a href="../sources.html">Sources &amp; publication policy</a></footer>
++</body></html>--- before/data/search-index.json
++++ release168/data/search-index.json
+@@ -711,5 +711,19 @@
+       "Kalivenba"
+     ],
+     "status": "source-register"
++  },
++  {
++    "kind": "Literature",
++    "id": "vel-mayil-virutham",
++    "titleTa": "வேல் விருத்தம் · மயில் விருத்தம்",
++    "titleEn": "Vel Virutham and Mayil Virutham",
++    "summary": "Companion literary register for the Vel and peacock works.",
++    "route": "literature/vel-mayil-virutham.html",
++    "tags": [
++      "Arunagirinathar",
++      "Vel",
++      "Mayil"
++    ],
++    "status": "source-register"
+   }
+ ]
+--- before/service-worker.js
++++ release168/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '167';
++const RELEASE = '168';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -90,7 +90,9 @@
+   "/literature/kandar-andhadhi.html",
+   "/data/kandar-andhadhi.json",
+   "/literature/kandar-kalivenba.html",
+-  "/data/kandar-kalivenba.json"
++  "/data/kandar-kalivenba.json",
++  "/literature/vel-mayil-virutham.html",
++  "/data/vel-mayil-virutham.json"
+ ];
+ 
+ self.addEventListener('install', event => {

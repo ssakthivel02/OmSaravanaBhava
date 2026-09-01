@@ -1,0 +1,60 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 216,
+  "name": "Browser-Local Offline Reading List",
+  "base_commit": "61875883f928169df44143f9d8582ece43128138",
+  "generated": "2026-07-14",
+  "required_commit_title": "Release 216: add browser-local offline reading list",
+  "validation_status": "LOCAL_PACKAGE_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
+  "production_files": [
+    "reading-list.html",
+    "assets/css/reading-list.css",
+    "assets/js/reading-list.mjs",
+    "search-facets.html",
+    "assets/css/search-facets.css",
+    "assets/js/search-facets.mjs",
+    "index.html",
+    "platform.html",
+    "data/site-routes.json",
+    "sitemap.xml",
+    "service-worker.js"
+  ],
+  "ci_alignment_files": [
+    "quality/site-audit-config.json",
+    "tools/production_smoke.py",
+    "tests/test_site_audit.py",
+    "tests/search-facets.test.mjs",
+    "tests/reading-list.test.mjs",
+    "tools/release_216_validate.py",
+    ".github/workflows/static-site-integrity.yml",
+    ".github/workflows/production-smoke.yml"
+  ],
+  "source_dependencies": {
+    "data/search-index.json": {
+      "included_in_zip": false,
+      "reason": "Existing unmodified published local search data used by Search Facets."
+    },
+    "data/site-routes.json": {
+      "included_in_zip": true,
+      "reason": "Updated with the public reading-list utility route."
+    }
+  },
+  "claims": {
+    "browser_local_storage": true,
+    "server_accounts": false,
+    "remote_sync": false,
+    "remote_analytics": false,
+    "offline_cache_is_user_initiated": true,
+    "cache_failures_are_independent": true,
+    "persistent_user_cache_preserved_across_service_worker_activation": true,
+    "maximum_saved_items": 100,
+    "service_worker_release": 216,
+    "new_optional_cache_assets": 3
+  },
+  "limitations": [
+    "Saved items remain on the current browser profile and are not synchronized.",
+    "Offline caching stores selected route responses; external resources or media are not guaranteed.",
+    "Saving a page does not alter its source, review or completeness status.",
+    "GitHub Actions and deployed production validation remain pending until the commit and deployment run."
+  ]
+}

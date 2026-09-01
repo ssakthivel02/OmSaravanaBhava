@@ -1,0 +1,13 @@
+{
+  "temple_id": "vayalur",
+  "temple_name_ta": "வயலூர்",
+  "literature": "திருப்புகழ்",
+  "mapped_song_range": "Batch 16 foundation mapping",
+  "review_status": "needs_source_cross_reference",
+  "related_song_ids": [
+    "thiruppugazh-008",
+    "thiruppugazh-018",
+    "thiruppugazh-028",
+    "thiruppugazh-038"
+  ]
+}

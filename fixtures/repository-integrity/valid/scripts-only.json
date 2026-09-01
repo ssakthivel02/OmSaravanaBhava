@@ -1,0 +1,6 @@
+{
+  "expectedStatus": "PASS",
+  "paths": [
+    "scripts/release236/apply-release-236.sh"
+  ]
+}

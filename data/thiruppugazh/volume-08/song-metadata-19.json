@@ -1,0 +1,33 @@
+{
+  "batch": 42,
+  "volume": 8,
+  "type": "song-metadata",
+  "items": [
+    {
+      "number": 312,
+      "slug": "song-0312",
+      "title_ta": "திருப்புகழ் பாடல் 312",
+      "title_en": "Thiruppugazh Hymn 312",
+      "original_tamil": "",
+      "word_split": "",
+      "metre": "",
+      "raga": "",
+      "tala": "",
+      "temple": "",
+      "status": "source-verification-required"
+    },
+    {
+      "number": 313,
+      "slug": "song-0313",
+      "title_ta": "திருப்புகழ் பாடல் 313",
+      "title_en": "Thiruppugazh Hymn 313",
+      "original_tamil": "",
+      "word_split": "",
+      "metre": "",
+      "raga": "",
+      "tala": "",
+      "temple": "",
+      "status": "source-verification-required"
+    }
+  ]
+}

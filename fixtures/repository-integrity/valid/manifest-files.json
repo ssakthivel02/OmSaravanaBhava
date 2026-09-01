@@ -1,0 +1,7 @@
+{
+  "expectedStatus": "PASS",
+  "paths": [
+    "manifest-release-236.json",
+    "RELEASE_236_CHANGED_FILES.txt"
+  ]
+}

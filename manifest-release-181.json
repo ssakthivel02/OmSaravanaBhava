@@ -1,0 +1,32 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 181,
+  "name": "Desktop Wide-Screen Experience Repair",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 13,
+  "modified": [
+    "assets/css/osb44.css",
+    "service-worker.js",
+    "index.html",
+    "platform.html",
+    "temples.html",
+    "sloka-library.html",
+    "thiruppugazh.html",
+    "festivals.html",
+    "ai-search.html",
+    "audio-library.html",
+    "knowledge-graph.html",
+    "temple-encyclopedia.html"
+  ],
+  "added": [
+    "assets/js/desktop-layout.js"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Desktop max width": "1680px",
+    "Mobile layout preserved": "Yes",
+    "Four-column desktop grids": "Enabled"
+  }
+}

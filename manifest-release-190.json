@@ -1,0 +1,22 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 190,
+  "name": "Production Audit Dashboard",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 4,
+  "modified": [
+    "service-worker.js",
+    "sitemap.xml"
+  ],
+  "added": [
+    "production-audit.html",
+    "data/production-audit.json"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "HTML files counted": 71,
+    "Live Lighthouse claim": "None"
+  }
+}

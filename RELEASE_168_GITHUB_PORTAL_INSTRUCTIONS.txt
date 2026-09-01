@@ -1,0 +1,12 @@
+OmSaravanaBhava Release 168
+
+Upload only after all earlier releases are committed.
+
+1. Extract this ZIP.
+2. Select everything inside the extracted folder.
+3. Upload to repository root.
+4. No Release168, package, output or cleanup parent folder.
+5. Small upper commit title:
+   Release 168: add Vel and Mayil Virutham source register
+6. Leave lower description blank.
+7. Commit directly to main.

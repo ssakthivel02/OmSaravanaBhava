@@ -1,0 +1,82 @@
+[
+  {
+    "id": "karthigai-deepam",
+    "titleEn": "Karthigai Deepam",
+    "titleTa": "கார்த்திகை தீபம்",
+    "tamilMonth": "Karthigai",
+    "type": "Festival",
+    "summary": "Festival of lamps and spiritual light.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Deepam",
+      "Light"
+    ]
+  },
+  {
+    "id": "monthly-sashti",
+    "titleEn": "Monthly Sashti",
+    "titleTa": "மாத சஷ்டி",
+    "tamilMonth": "All",
+    "type": "Vratham",
+    "summary": "Monthly Sashti observance for Murugan devotees.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Vratham"
+    ]
+  },
+  {
+    "id": "monthly-karthigai",
+    "titleEn": "Monthly Karthigai",
+    "titleTa": "மாத கார்த்திகை",
+    "tamilMonth": "All",
+    "type": "Vratham",
+    "summary": "Monthly Karthigai star observance.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Deepam",
+      "Murugan"
+    ]
+  },
+  {
+    "id": "karthigai-festival-1",
+    "titleEn": "Karthigai Devotional Day 1",
+    "titleTa": "கார்த்திகை பக்தி நாள் 1",
+    "tamilMonth": "Karthigai",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Karthigai month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Karthigai",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "karthigai-festival-2",
+    "titleEn": "Karthigai Devotional Day 2",
+    "titleTa": "கார்த்திகை பக்தி நாள் 2",
+    "tamilMonth": "Karthigai",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Karthigai month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Karthigai",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "karthigai-festival-3",
+    "titleEn": "Karthigai Devotional Day 3",
+    "titleTa": "கார்த்திகை பக்தி நாள் 3",
+    "tamilMonth": "Karthigai",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Karthigai month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Karthigai",
+      "Tamil month",
+      "Devotion"
+    ]
+  }
+]

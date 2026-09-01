@@ -1,0 +1,50 @@
+{
+  "id": "tiruchendur",
+  "titleTa": "திருச்செந்தூர் சுப்பிரமணிய சுவாமி",
+  "titleEn": "Tiruchendur Subramaniya Swamy Temple",
+  "district": "Thoothukudi",
+  "state": "Tamil Nadu",
+  "category": "Arupadai Veedu",
+  "summary": "One of the six abodes, uniquely located beside the sea.",
+  "shortHistory": "Seashore temple where Murugan is worshipped after victory over Surapadman.",
+  "openingHours": "5:00 AM - 9:00 PM",
+  "festivals": [
+    "Kanda Sashti",
+    "Masi Festival"
+  ],
+  "features": [
+    "Sea-side darshan",
+    "Nazhi Kinaru",
+    "Kanda Sashti festival"
+  ],
+  "location": {
+    "lat": 8.497,
+    "lng": 78.121
+  },
+  "tags": [
+    "Arupadai Veedu",
+    "Thoothukudi",
+    "Murugan",
+    "Temple"
+  ],
+  "overview": "Seashore temple where Murugan is worshipped after victory over Surapadman.",
+  "architecture": "Temple architecture combines sacred orientation, mandapa layout, gopuram symbolism, and devotional circulation. This record is provided as a structured starting point and should be expanded with verified source review.",
+  "pilgrimGuide": [
+    "Check current timings before travel",
+    "Carry water for hill temples",
+    "Prefer early morning darshan on festival days",
+    "Respect temple dress and photography rules"
+  ],
+  "howToReach": {
+    "nearestCity": "Thoothukudi",
+    "rail": "Check nearest major railway station before travel",
+    "road": "Accessible by local road routes and buses depending on temple location",
+    "air": "Use nearest regional airport where applicable"
+  },
+  "related": [
+    "palani",
+    "swamimalai"
+  ],
+  "verificationStatus": "Needs Review",
+  "lastUpdated": "2026-07-08"
+}

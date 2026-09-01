@@ -1,0 +1,2 @@
+const motionToggle=document.querySelector('[data-motion-toggle]');
+if(motionToggle){const key='osb-reduce-motion';const apply=value=>{document.documentElement.dataset.motion=value?'reduced':'full';motionToggle.setAttribute('aria-pressed',String(value));motionToggle.textContent=value?'Enable gentle motion':'Reduce motion'};let value=sessionStorage.getItem(key)==='1';apply(value);motionToggle.addEventListener('click',()=>{value=!value;sessionStorage.setItem(key,value?'1':'0');apply(value);location.reload();});}

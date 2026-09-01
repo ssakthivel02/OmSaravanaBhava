@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "required": [
+    "release",
+    "title",
+    "features",
+    "records"
+  ]
+}

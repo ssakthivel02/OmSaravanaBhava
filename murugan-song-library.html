@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ta">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>முருகன் பாடல் நூலகம் | Murugan Song Library</title>
+  <meta name="description" content="Explore source-linked Murugan song collections through governed publication states, Tamil reading routes, meanings, audio status and source records.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://omsaravanabhava.org/murugan-song-library.html">
+  <meta property="og:title" content="முருகன் பாடல் நூலகம் | Murugan Song Library">
+  <meta property="og:description" content="A Tamil-first governed library for Thiruppugazh, Kavasam works, Arunagirinathar literature, prayer routes and audio status.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://omsaravanabhava.org/murugan-song-library.html">
+  <meta property="og:image" content="https://omsaravanabhava.org/assets/images/hero-sunrise.webp">
+  <meta name="theme-color" content="#120c18">
+  <link rel="manifest" href="manifest.json">
+  <link rel="preload" as="image" href="assets/images/hero-sunrise.webp" fetchpriority="high">
+  <link rel="stylesheet" href="assets/css/release-246.css">
+  <link rel="stylesheet" href="assets/css/murugan-song-library.css?v=20260728-2">
+  <link rel="stylesheet" href="assets/css/premium-platform-2026.css">
+  <link rel="stylesheet" href="assets/css/premium-pages-2026.css">
+  <script defer src="assets/js/release-246.js"></script>
+  <script defer src="assets/js/murugan-song-library.js?v=20260728-3"></script>
+  <script type="module" src="assets/js/premium-platform-2026.mjs"></script>
+  <link rel="stylesheet" href="assets/css/global-experience-2026.css?v=20260727-1">
+  <link rel="stylesheet" href="assets/css/phase6-experience-2026.css?v=20260726-1">
+</head>
+<body class="osb-phase6">
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<header class="site-header" data-header>
+  <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">
+    <span class="brand-mark osb-brand-symbol" aria-hidden="true"><img src="/assets/images/brand-vel-mayil.svg?v=20260727-1" alt="" width="50" height="50" decoding="async"></span>
+    <span><strong>ஓம் சரவணபவ</strong><small>Om Saravana Bhava</small></span>
+  </a>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation menu">Menu</button>
+  <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+    <a href="index.html">Home</a>
+    <a href="explore.html">Explore</a>
+    <a class="active" href="murugan-song-library.html" aria-current="page">Songs</a>
+    <a href="thiruppugazh.html">Thiruppugazh</a>
+    <a href="temples.html">Temples</a>
+    <a href="audio-library.html">Audio</a>
+    <a href="site-directory.html">Directory</a>
+    <a href="ai-search.html">AI Search</a>
+    <a href="platform-hub.html">All Tools</a>
+  </nav>
+</header>
+
+<main id="main-content">
+  <section class="song-hero">
+    <div class="song-hero-copy">
+      <p class="eyebrow">பாடல் · பொருள் · ஒலி · ஆதாரம்</p>
+      <h1>முருகன் பாடல் நூலகம்</h1>
+      <h2>Murugan Song Library</h2>
+      <p>One governed doorway to Thiruppugazh, Kavasam works, Arunagirinathar literature, classical Murugan texts, prayer routes and rights-aware audio.</p>
+      <p><a class="button" href="#song-collections">Browse collections</a> <a class="button" href="daily.html">Open today’s darshan</a> <a class="button" href="devotional-listening.html">Begin devotional listening</a> <a class="button" href="mantra-practice.html">Open mantra practice</a> <a class="button" href="song-source-requests.html">Track missing songs</a></p>
+    </div>
+  </section>
+
+  <div class="song-shell">
+    <section class="song-intro" aria-label="Library publication boundary">
+      <article class="song-panel">
+        <p class="eyebrow">Correct information architecture</p>
+        <h2>Collection → Work → Song → Reading formats</h2>
+        <p>Individual repository files are not placed directly on the homepage. They become discoverable through a controlled hierarchy: library hub, collection page, song detail page, search index, source record and—where appropriate—audio.</p>
+      </article>
+      <aside class="song-panel song-boundary">
+        <strong>No deletion. No false completeness.</strong>
+        <p>Published full texts, reviewed extracts, navigation records and source registers remain visibly separated. A source-register card does not claim that a complete song text is available.</p>
+      </aside>
+    </section>
+
+    <section id="song-collections" aria-labelledby="song-library-heading">
+      <p class="eyebrow">Governed collection directory</p>
+      <h2 id="song-library-heading">Find a Murugan song collection</h2>
+      <div class="song-controls">
+        <label for="songQuery">Search Tamil or English
+          <input id="songQuery" type="search" placeholder="திருப்புகழ், Vel Maaral, Kavasam…" autocomplete="off">
+        </label>
+        <label for="songCategory">Category
+          <select id="songCategory"><option value="">All categories</option></select>
+        </label>
+        <label for="songStatus">Publication state
+          <select id="songStatus"><option value="">All publication states</option></select>
+        </label>
+        <button id="songClear" type="button">Clear</button>
+      </div>
+      <div id="songStats" class="song-stats" aria-label="Song library summary"></div>
+      <p id="songCount" role="status" aria-live="polite">Loading governed song collections…</p>
+      <div id="songGrid" class="song-grid" aria-busy="false">
+        <article class="song-panel song-empty">Loading collection registry…</article>
+      </div>
+    </section>
+
+    <section class="verified-songs" aria-labelledby="verified-songs-heading">
+      <div class="verified-songs-heading">
+        <div>
+          <p class="eyebrow">Verified individual reading routes</p>
+          <h2 id="verified-songs-heading">12 complete Thiruppugazh songs</h2>
+          <p>These full Tamil records were already governed but hidden behind the collection card. They are now directly readable and available through device read-aloud—without copying commercial recordings.</p>
+        </div>
+        <a class="button" href="thiruppugazh.html">Open full Thiruppugazh library</a>
+      </div>
+      <p id="verifiedSongCount" role="status" aria-live="polite">Loading verified songs…</p>
+      <div class="song-queue-summary">
+        <span><strong id="prayerQueueCount">0</strong> songs saved in this browser’s prayer queue.</span>
+        <a href="devotional-listening.html">Open devotional listening</a>
+        <button id="clearPrayerQueue" type="button">Clear local queue</button>
+      </div>
+      <div id="verifiedSongGrid" class="verified-song-grid" aria-busy="true"></div>
+    </section>
+
+    <section class="song-panel missing-song-callout" aria-labelledby="missing-song-heading">
+      <div>
+        <p class="eyebrow">14 popular missing-song identities</p>
+        <h2 id="missing-song-heading">Missing does not mean forgotten.</h2>
+        <p>Popular titles now have a public source-verification queue. Prioritise a title locally or copy the exact evidence template needed for editorial review. Unverified lyrics and commercial recordings remain unpublished.</p>
+      </div>
+      <a class="button" href="song-source-requests.html">Open missing-song queue</a>
+    </section>
+
+    <section class="song-panel song-roadmap" aria-labelledby="reading-format-heading">
+      <p class="eyebrow">Standard song-detail format</p>
+      <h2 id="reading-format-heading">Two Tamil reading forms, then meaning and audio</h2>
+      <ol>
+        <li><strong>Original Tamil</strong><br>Preserve the verified edition, metre and source wording.</li>
+        <li><strong>Easy-reading Tamil</strong><br>Provide carefully reviewed word spacing without silently changing the devotional text.</li>
+        <li><strong>Transliteration</strong><br>Add a consistent Roman transliteration for learners.</li>
+        <li><strong>Meaning</strong><br>Separate literal meaning, devotional explanation and copyrighted commentary.</li>
+        <li><strong>Audio</strong><br>Attach owned, licensed or clearly permitted recordings; otherwise use labelled device read-aloud.</li>
+        <li><strong>Source and status</strong><br>Display author, edition, source, completeness and review state on every song.</li>
+      </ol>
+    </section>
+
+    <section class="song-panel" aria-labelledby="recovery-heading">
+      <p class="eyebrow">Repository recovery</p>
+      <h2 id="recovery-heading">Every song route is connected through governed discovery.</h2>
+      <p>The full repository reachability programme separates genuine public devotional records from release evidence, checksums, test fixtures, generated scaffolding and mention-only files. Canonical content is promoted through route registry, search, sitemap and PWA integration; internal evidence remains preserved without cluttering devotee navigation.</p>
+      <p><a class="button" href="route-recovery.html">Review route recovery</a> <a class="button" href="content-completeness.html">Review content gaps</a> <a class="button" href="thiruppugazh.html">Open verified Thiruppugazh</a></p>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <p lang="ta">வேலவேல் முருகா! அருள்புரிவாய்!</p>
+  <nav aria-label="Footer navigation">
+    <a href="index.html">Home</a><a href="platform-hub.html">All Tools</a><a href="route-recovery.html">Recovery</a><a href="content-completeness.html">Completeness</a><a href="sources.html">Sources</a><a href="site-directory.html">Directory</a><a href="accessibility.html">Accessibility</a><a href="privacy.html">Privacy</a>
+  </nav>
+  <small>© 2026 Om Saravana Bhava</small>
+</footer>
+
+<script src="assets/js/premium-pages-2026.js"></script>
+  <script defer src="assets/js/global-experience-2026.js?v=20260728-vel2"></script>
+</body>
+</html>

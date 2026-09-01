@@ -1,0 +1,1 @@
+If index.html has an issue, restore previous index.html from GitHub history. Do not delete data or assets folders.

@@ -1,0 +1,157 @@
+{
+  "release": 246,
+  "generated": "2026-07-22",
+  "sourceType": "user-uploaded-research-intake",
+  "publicationBoundary": "This file records research leads and review decisions. It does not publish lyrics, audio, legal advice or unverified historical claims.",
+  "attachmentReview": {
+    "filesReviewed": 4,
+    "htmlFilesAcceptedAsProductionPages": 0,
+    "researchReportsAcceptedAsPrimarySources": 0,
+    "recordsTriaged": 5,
+    "reason": "The uploaded HTML dashboards depend on external CDNs and contain estimated charts and broad rights claims. The uploaded reports are useful research leads but include secondary, commercial and user-generated references that require primary-source verification."
+  },
+  "records": [
+    {
+      "id": "kanda-sashti-kavasam",
+      "titleTa": "கந்த சஷ்டி கவசம்",
+      "titleEn": "Kanda Sashti Kavasam",
+      "registryDecision": "already-represented-no-duplicate",
+      "currentRepositoryStatus": "partial-reviewed",
+      "acceptedMetadata": [
+        "Work-level attribution to Devaraya Swamigal remains the current source-aware attribution.",
+        "Project Madurai PM0034_02 is a useful external digital witness for the six Kandar Kavasams."
+      ],
+      "rejectedOrDeferredClaims": [
+        "The attachment's 16th-century date is not accepted without an edition-level historical source.",
+        "Project Madurai availability is not treated as proof that every modern edition, layout, translation or recording is public domain.",
+        "Full lyrics from the attachment are not imported."
+      ],
+      "externalEvidence": [
+        {
+          "sourceId": "project-madurai-pm0034-02",
+          "sourceUrl": "https://www.projectmadurai.org/pm_etexts/utf8/pmuni0034_02.html",
+          "evidenceUse": "Authorship heading, digital witness and file-distribution conditions",
+          "verificationStatus": "primary-digital-witness"
+        }
+      ],
+      "textPublicationDecision": "retain-existing-reviewed-extract",
+      "audioPublicationDecision": "owned-licensed-or-permission-confirmed-recording-only",
+      "nextAction": "Select and document a complete edition, confirm redistribution conditions and complete Tamil proofreading before any expansion."
+    },
+    {
+      "id": "skanda-guru-kavasam",
+      "titleTa": "ஸ்கந்த குரு கவசம்",
+      "titleEn": "Skanda Guru Kavasam",
+      "registryDecision": "already-represented-no-duplicate",
+      "currentRepositoryStatus": "partial-reviewed",
+      "acceptedMetadata": [
+        "The Project Madurai digital witness attributes the work to Srimat Sadguru Santhananda Swamigal.",
+        "The text identifies Raga Nattai in its heading."
+      ],
+      "rejectedOrDeferredClaims": [
+        "The attachment's public-domain classification is not accepted merely because Project Madurai distributes the file.",
+        "Project Madurai's file-level distribution conditions must not be converted into an unrestricted excerpt republication claim.",
+        "Full lyrics and commercial recordings are not imported."
+      ],
+      "externalEvidence": [
+        {
+          "sourceId": "project-madurai-pm0034-03",
+          "sourceUrl": "https://www.projectmadurai.org/pm_etexts/utf8/pmuni0034_03.html",
+          "evidenceUse": "Authorship heading, raga heading, digital witness and distribution conditions",
+          "verificationStatus": "primary-digital-witness"
+        }
+      ],
+      "textPublicationDecision": "retain-existing-reviewed-extract",
+      "audioPublicationDecision": "permission-required-unless-owned-or-licensed",
+      "nextAction": "Confirm author/estate rights and edition permissions before publishing beyond the existing reviewed extract."
+    },
+    {
+      "id": "muththaiththaru",
+      "titleTa": "முத்தைத்தரு",
+      "titleEn": "Muththaiththaru",
+      "registryDecision": "already-source-linked-no-duplicate",
+      "currentRepositoryStatus": "published-source-linked",
+      "acceptedMetadata": [
+        "The attachment correctly identifies the work as a Thiruppugazh hymn attributed to Arunagirinathar.",
+        "The existing repository record remains the canonical record."
+      ],
+      "rejectedOrDeferredClaims": [
+        "Attachment transliteration, translation and commentary are not imported because their source and reuse rights are not sufficiently established.",
+        "The uploaded HTML's chart and analytical claims are not treated as song metadata."
+      ],
+      "textPublicationDecision": "keep-existing-canonical-record",
+      "audioPublicationDecision": "specific-performances-remain-rights-controlled",
+      "nextAction": "Add easy-reading Tamil and documented transliteration only after line-by-line human comparison with the existing canonical Tamil source."
+    },
+    {
+      "id": "ullam-uruguthada-muruga",
+      "titleTa": "உள்ளம் உருகுதடா முருகா",
+      "titleEn": "Ullam Uruguthada Muruga",
+      "alternateTitles": [
+        "உள்ளம் உருகுதையா முருகா",
+        "Ullam Uruguthaiya Muruga"
+      ],
+      "registryDecision": "new-metadata-only-rights-withheld",
+      "currentRepositoryStatus": "not-in-canonical-song-registry",
+      "acceptedMetadata": [
+        "The official Andavan Pichai archive identifies Andavan Pichai as the composer/author.",
+        "The official archive describes a 1952 composition context and Raga Attana.",
+        "The official archive documents family/estate copyright control."
+      ],
+      "rejectedOrDeferredClaims": [
+        "No lyrics, easy-reading Tamil, transliteration or translation are imported.",
+        "No commercial recording is imported or linked as playable audio.",
+        "The attachment's narrative details require independent editorial review before publication."
+      ],
+      "externalEvidence": [
+        {
+          "sourceId": "andavan-pichai-official-ullam-uruguthada",
+          "sourceUrl": "https://www.andavanpichai.com/music",
+          "evidenceUse": "Official title variants, authorship, composition context, raga and rights boundary",
+          "verificationStatus": "official-rights-holder-source"
+        }
+      ],
+      "textPublicationDecision": "metadata-only-withheld-rights-review",
+      "audioPublicationDecision": "permission-required",
+      "nextAction": "Request written permission from the rights holder for any lyrics, translation, notation, tune or recording."
+    },
+    {
+      "id": "nee-manamirangi-vandarulvai",
+      "titleTa": "நீ மனமிரங்கி வந்தருள்வாய்",
+      "titleEn": "Nee Manamirangi Vandarulvai",
+      "alternateTitles": [
+        "நீ மனமிரங்கி",
+        "Nee Manam Irangi"
+      ],
+      "registryDecision": "new-metadata-only-rights-withheld",
+      "currentRepositoryStatus": "not-in-canonical-song-registry",
+      "acceptedMetadata": [
+        "The official Andavan Pichai archive identifies lyrics associated with Andavan Pichai and Kamakshi Kuppuswamy and music by Kamakshi Kuppuswamy.",
+        "The official archive identifies Raga Lathangi, Adi tala and a 1995 recording context.",
+        "The work remains under official archive/estate control."
+      ],
+      "rejectedOrDeferredClaims": [
+        "No lyric fragments, transliteration, translation or modern commentary are imported.",
+        "No audio or choreography material is imported.",
+        "Secondary newspaper and user-generated references are not treated as sufficient republication authority."
+      ],
+      "externalEvidence": [
+        {
+          "sourceId": "andavan-pichai-official-nee-manam-irangi",
+          "sourceUrl": "https://www.andavanpichai.com/latangi-varnam-nee-manam-irangi",
+          "evidenceUse": "Official authorship, music, raga, tala, recording and rights boundary",
+          "verificationStatus": "official-rights-holder-source"
+        }
+      ],
+      "textPublicationDecision": "metadata-only-withheld-rights-review",
+      "audioPublicationDecision": "permission-required",
+      "nextAction": "Obtain written text, translation, notation, choreography and audio permissions separately before publishing any protected material."
+    }
+  ],
+  "globalRules": [
+    "Project Madurai distribution does not automatically prove that every work is public domain; the project's FAQ states that its collection includes public-domain works and works included with author consent.",
+    "An ancient underlying text and a modern edition, translation, notation, arrangement or recording must have separate rights decisions.",
+    "No attachment-derived lyrics are published until canonical source, exact edition, proofreading and redistribution rights are recorded.",
+    "Commercial audio remains unavailable unless owned, licensed or permission-confirmed."
+  ]
+}

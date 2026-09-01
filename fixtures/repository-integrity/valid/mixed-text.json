@@ -1,0 +1,8 @@
+{
+  "expectedStatus": "PASS",
+  "paths": [
+    "index.html",
+    "assets/app.js",
+    "assets/site.css"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 192,
+  "name": "Thiruppugazh Volume 5 Source Register",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 4,
+  "modified": [
+    "data/thiruppugazh-volumes.json",
+    "service-worker.js",
+    "sitemap.xml"
+  ],
+  "added": [
+    "thiruppugazh-volume-5.html"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "New verified songs": "0",
+    "Source gate": "Active"
+  }
+}

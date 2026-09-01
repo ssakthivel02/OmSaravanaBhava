@@ -1,0 +1,65 @@
+{
+  "release": "250B",
+  "keys": [
+    {
+      "id": "marudhamalai",
+      "official_temple_id": "TM009762",
+      "normalized_name": "marudhamalaisubramaniaswamytemple",
+      "district": "Coimbatore"
+    },
+    {
+      "id": "viralimalai",
+      "official_temple_id": "TM025691",
+      "normalized_name": "viralimalaisubramaniyaswamytemple",
+      "district": "Pudukkottai"
+    },
+    {
+      "id": "vallimalai",
+      "official_temple_id": "TM001388",
+      "normalized_name": "vallimalaisubramaniaswamytemple",
+      "district": "Vellore"
+    },
+    {
+      "id": "thindal",
+      "official_temple_id": "TM010234",
+      "normalized_name": "thindalvelayuthasamytemple",
+      "district": "Erode"
+    },
+    {
+      "id": "kundrathur",
+      "official_temple_id": "TM001885",
+      "normalized_name": "kundrathursubramaniaswamytemple",
+      "district": "Kancheepuram"
+    },
+    {
+      "id": "vallakottai",
+      "official_temple_id": "TM001797",
+      "normalized_name": "vallakottaisubramaniyaswamytemple",
+      "district": "Kancheepuram"
+    },
+    {
+      "id": "chennimalai",
+      "official_temple_id": "TM010228",
+      "normalized_name": "chennimalaisubramaniyaswamytemple",
+      "district": "Erode"
+    },
+    {
+      "id": "ettukudi",
+      "official_temple_id": "TM014581",
+      "normalized_name": "ettukudisubramaniyaswamytemple",
+      "district": "Nagapattinam"
+    },
+    {
+      "id": "kumarakottam",
+      "official_temple_id": "TM001701",
+      "normalized_name": "kumarakottamsubramaniyaswamitemple",
+      "district": "Kancheepuram"
+    },
+    {
+      "id": "pookara-street-thanjavur",
+      "official_temple_id": "TM014103",
+      "normalized_name": "pookarastreetsubramaniyaswamytemple",
+      "district": "Thanjavur"
+    }
+  ]
+}

@@ -1,0 +1,2177 @@
+diff --git a/discovery.html b/discovery.html
+new file mode 100644
+--- /dev/null
++++ b/discovery.html
+@@ -0,0 +1,82 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Discovery Workspace | Om Saravana Bhava</title>
++<meta name="description" content="Explore published OmSaravanaBhava routes by visitor audience, purpose, publication state and Tamil or English search using local JSON only.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/discovery.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="stylesheet" href="assets/css/discovery-workspace.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++<script type="module" src="assets/js/discovery-workspace.mjs"></script>
++</head>
++<body data-release="222">
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Local published-route discovery workspace</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="discovery.html" aria-current="page">Discover</a><a href="explore.html">Explore</a><a href="search-facets.html">Facets</a><a href="site-directory.html">Directory</a><a href="platform.html">Platform</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Discovery Workspace</span></p></nav>
++
++<section class="card discovery-hero">
++<div>
++<span class="pill">Release 222 · Local route composition</span>
++<h1 class="section-title" lang="ta">கண்டறியும் பணிமனை</h1>
++<h2>Discovery Workspace</h2>
++<p>Choose a purpose, audience or publication boundary. Every displayed count and route is derived from the local structured-navigation and route-directory JSON.</p>
++</div>
++<div class="discovery-metric"><strong id="discoveryRouteCount">0</strong><span>curated published routes</span></div>
++<div class="discovery-metric"><strong id="discoverySectionCount">0</strong><span>active navigation sections</span></div>
++<div class="discovery-metric"><strong id="discoveryCategoryCount">0</strong><span>route categories</span></div>
++</section>
++
++<p id="discoveryLoadStatus" role="status" aria-live="polite">Loading local discovery registries…</p>
++
++<section class="discovery-workspace">
++<aside class="card discovery-controls">
++<h2>Refine discovery</h2>
++<label for="discoverySearch">Tamil or English search
++<input id="discoverySearch" type="search" placeholder="Murugan, temple, literature…" autocomplete="off">
++</label>
++<label for="discoveryAudience">Visitor audience
++<select id="discoveryAudience"><option>Loading…</option></select>
++</label>
++<label for="discoveryStatusFilter">Publication state
++<select id="discoveryStatusFilter"><option>Loading…</option></select>
++</label>
++<button id="discoveryReset" class="btn secondary" type="button">Reset view</button>
++<h2>Discovery lenses</h2>
++<div id="discoveryLensGrid" class="discovery-lens-grid"></div>
++</aside>
++
++<div>
++<p id="discoveryResultStatus" role="status" aria-live="polite">Preparing published routes…</p>
++<div id="discoveryResults" class="grid discovery-results">
++<article class="card">Loading discovery routes…</article>
++</div>
++</div>
++</section>
++
++<section class="card discovery-boundary">
++<h2>Publication and recommendation boundary</h2>
++<ul>
++<li>Routes are shown only when they exist in the published route directory and have an allowed publication state.</li>
++<li>Draft, private, unpublished and archived states are excluded.</li>
++<li>Counts are runtime calculations, not claims of complete Murugan coverage.</li>
++<li>The route order uses local filters and deterministic sorting; it is not personalised AI.</li>
++<li>No remote analytics, recommendation service or visitor profile is used.</li>
++</ul>
++</section>
++
++<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>The dynamic discovery workspace requires JavaScript. Use the <a href="explore.html">structured Explore page</a> or <a href="site-directory.html">site directory</a>.</p></section></noscript>
++</main>
++<footer>© Om Saravana Bhava · <a href="discovery.html">Discover</a> · <a href="explore.html">Explore</a> · <a href="site-directory.html">Directory</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>
+diff --git a/assets/css/discovery-workspace.css b/assets/css/discovery-workspace.css
+new file mode 100644
+--- /dev/null
++++ b/assets/css/discovery-workspace.css
+@@ -0,0 +1 @@
++.discovery-hero{display:grid;grid-template-columns:minmax(0,1.55fr) repeat(3,minmax(120px,.32fr));gap:18px;align-items:center}.discovery-metric{display:grid;place-items:center;min-height:118px;border:1px solid var(--line);border-radius:24px;background:var(--surface-strong,#fff);text-align:center;padding:12px}.discovery-metric strong{font-size:clamp(2.2rem,5vw,4rem);line-height:1;color:var(--red)}.discovery-metric span{font-size:.88rem;font-weight:850}.discovery-workspace{display:grid;grid-template-columns:minmax(280px,.72fr) minmax(0,1.8fr);gap:22px;align-items:start}.discovery-controls{position:sticky;top:86px;display:grid;gap:14px}.discovery-controls label{display:grid;gap:6px;font-weight:850}.discovery-controls input,.discovery-controls select{width:100%}.discovery-lens-grid{display:grid;gap:10px}.discovery-lens{display:grid;gap:5px;width:100%;padding:15px;border:1px solid var(--line);border-radius:18px;background:var(--surface-strong,#fff);color:var(--ink);text-align:left;cursor:pointer}.discovery-lens:hover,.discovery-lens:focus-visible,.discovery-lens.is-active{border-color:var(--red);box-shadow:0 12px 30px rgba(104,45,18,.14);outline:none}.discovery-lens.is-active{background:linear-gradient(135deg,rgba(165,29,23,.08),rgba(244,156,44,.09))}.discovery-lens-ta{font-weight:900;color:var(--red)}.discovery-lens-summary{font-size:.91rem}.discovery-lens-count{font-size:.82rem;font-weight:850;color:#6a4638}.discovery-results{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}.discovery-route-card{display:flex;flex-direction:column;gap:10px}.discovery-route-card h2{margin:0}.discovery-route-meta{display:flex;flex-wrap:wrap;gap:8px}.discovery-route-card .btn{margin-top:auto;align-self:flex-start}.discovery-audiences{font-size:.86rem;color:#6a4638}.discovery-empty{grid-column:1/-1}.discovery-boundary{border-left:5px solid var(--orange)}.home-discovery-222{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);gap:20px;align-items:center}.home-discovery-copy{display:grid;gap:10px}.home-discovery-copy h2{margin:0}.home-discovery-lenses{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.home-discovery-lens{display:grid;gap:4px;padding:16px;border:1px solid var(--line);border-radius:18px;background:var(--surface-strong,#fff);color:var(--ink);text-decoration:none}.home-discovery-lens:hover,.home-discovery-lens:focus-visible{border-color:var(--red);box-shadow:0 12px 28px rgba(104,45,18,.14);transform:translateY(-2px)}.home-discovery-lens span{font-weight:900;color:var(--red)}.home-discovery-lens small{color:#6a4638}.home-discovery-number{display:inline-grid;place-items:center;min-width:3rem;padding:.28rem .55rem;border-radius:999px;background:var(--red);color:#fff;font-weight:900}body.dark .discovery-lens-count,body.dark .discovery-audiences,body.dark .home-discovery-lens small{color:#f4d9c8}@media(max-width:1180px){.discovery-results{grid-template-columns:repeat(2,minmax(0,1fr))}.discovery-hero{grid-template-columns:repeat(3,minmax(0,1fr))}.discovery-hero>div:first-child{grid-column:1/-1}}@media(max-width:880px){.discovery-workspace,.home-discovery-222{grid-template-columns:1fr}.discovery-controls{position:static}.home-discovery-lenses{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:660px){.discovery-hero,.discovery-results,.home-discovery-lenses{grid-template-columns:1fr}.discovery-hero>div:first-child{grid-column:auto}.discovery-controls .btn{width:100%}}@media print{.discovery-controls,.discovery-lens-grid,#discoveryResultStatus,#discoveryLoadStatus{display:none!important}.discovery-workspace{display:block!important}.discovery-results{display:block!important}.discovery-route-card{break-inside:avoid}}
+diff --git a/assets/js/discovery-workspace.mjs b/assets/js/discovery-workspace.mjs
+new file mode 100644
+--- /dev/null
++++ b/assets/js/discovery-workspace.mjs
+@@ -0,0 +1,655 @@
++export const RELEASE = 222;
++export const LENSES_PATH = '/data/discovery-lenses.json';
++export const NAVIGATION_PATH = '/data/navigation-sections.json';
++export const ROUTES_PATH = '/data/site-routes.json';
++export const CANONICAL_ORIGIN = 'https://omsaravanabhava.org';
++
++export const normaliseRoute = value => {
++  const raw = String(value ?? '').trim();
++  if (!raw) return '';
++  try {
++    const url = new URL(raw, `${CANONICAL_ORIGIN}/`);
++    if (url.origin !== CANONICAL_ORIGIN) return '';
++    return `${url.pathname}${url.search}${url.hash}`;
++  } catch {
++    return '';
++  }
++};
++
++export const normaliseStatus = value =>
++  String(value ?? '').trim().toLocaleLowerCase();
++
++export const normaliseDiscoveryModel = (
++  lensesPayload,
++  navigationPayload,
++  routesPayload
++) => {
++  const lensConfig =
++    lensesPayload && typeof lensesPayload === 'object'
++      ? lensesPayload
++      : {};
++  const navigation =
++    navigationPayload && typeof navigationPayload === 'object'
++      ? navigationPayload
++      : {};
++  const routeRegistry =
++    routesPayload && typeof routesPayload === 'object'
++      ? routesPayload
++      : {};
++
++  const allowedStatuses = new Set(
++    (Array.isArray(lensConfig.allowedStatuses)
++      ? lensConfig.allowedStatuses
++      : []
++    ).map(normaliseStatus)
++  );
++  const excludedStatuses = new Set(
++    (Array.isArray(lensConfig.excludedStatuses)
++      ? lensConfig.excludedStatuses
++      : []
++    ).map(normaliseStatus)
++  );
++
++  const routeMap = new Map();
++  (Array.isArray(routeRegistry.routes) ? routeRegistry.routes : [])
++    .forEach(record => {
++      const path = normaliseRoute(record?.path);
++      if (!path || routeMap.has(path)) return;
++      routeMap.set(path, {
++        path,
++        titleTa: String(record.titleTa ?? '').trim(),
++        titleEn: String(record.titleEn ?? path).trim() || path,
++        category: String(record.category ?? 'Uncategorised').trim(),
++        status: normaliseStatus(record.status),
++        summary: String(record.summary ?? '').trim()
++      });
++    });
++
++  const sections = [];
++  const itemMap = new Map();
++  (Array.isArray(navigation.sections) ? navigation.sections : [])
++    .forEach(section => {
++      const id = String(section?.id ?? '').trim();
++      if (!id) return;
++      const itemPaths = [];
++
++      (Array.isArray(section.items) ? section.items : [])
++        .forEach(item => {
++          const path = normaliseRoute(item?.path);
++          const route = routeMap.get(path);
++          if (!path || !route) return;
++          if (excludedStatuses.has(route.status)) return;
++          if (
++            allowedStatuses.size > 0 &&
++            !allowedStatuses.has(route.status)
++          ) {
++            return;
++          }
++
++          const existing = itemMap.get(path);
++          const merged = {
++            path,
++            titleTa:
++              String(item.titleTa ?? '').trim() ||
++              route.titleTa,
++            titleEn:
++              String(item.titleEn ?? '').trim() ||
++              route.titleEn,
++            description:
++              String(item.description ?? '').trim() ||
++              route.summary,
++            category: route.category,
++            status: route.status,
++            sectionIds: [
++              ...new Set([
++                ...(existing?.sectionIds || []),
++                id
++              ])
++            ],
++            audiences: [
++              ...new Set([
++                ...(existing?.audiences || []),
++                ...(Array.isArray(section.audiences)
++                  ? section.audiences.map(value =>
++                      String(value).trim()
++                    )
++                  : [])
++              ])
++            ]
++          };
++          itemMap.set(path, merged);
++          itemPaths.push(path);
++        });
++
++      sections.push({
++        id,
++        titleTa: String(section.titleTa ?? '').trim(),
++        titleEn: String(section.titleEn ?? id).trim() || id,
++        summary: String(section.summary ?? '').trim(),
++        audiences: Array.isArray(section.audiences)
++          ? section.audiences
++              .map(value => String(value).trim())
++              .filter(Boolean)
++          : [],
++        itemPaths: [...new Set(itemPaths)]
++      });
++    });
++
++  const lenses = [];
++  (Array.isArray(lensConfig.lenses) ? lensConfig.lenses : [])
++    .forEach(lens => {
++      const id = String(lens?.id ?? '').trim();
++      if (!id) return;
++      lenses.push({
++        id,
++        titleTa: String(lens.titleTa ?? '').trim(),
++        titleEn: String(lens.titleEn ?? id).trim() || id,
++        summary: String(lens.summary ?? '').trim(),
++        sectionIds: Array.isArray(lens.sectionIds)
++          ? lens.sectionIds
++              .map(value => String(value).trim())
++              .filter(Boolean)
++          : [],
++        audiences: Array.isArray(lens.audiences)
++          ? lens.audiences
++              .map(value => String(value).trim())
++              .filter(Boolean)
++          : []
++      });
++    });
++
++  const audienceLabels =
++    navigation.audienceLabels &&
++    typeof navigation.audienceLabels === 'object'
++      ? Object.fromEntries(
++          Object.entries(navigation.audienceLabels)
++            .map(([key, value]) => [
++              String(key).trim(),
++              String(value).trim()
++            ])
++            .filter(([key, value]) => key && value)
++        )
++      : {};
++
++  return {
++    release: Number(lensConfig.release) || 0,
++    routeRelease: Number(routeRegistry.release) || 0,
++    navigationRelease: Number(navigation.release) || 0,
++    allowedStatuses: [...allowedStatuses],
++    excludedStatuses: [...excludedStatuses],
++    featuredLensIds: Array.isArray(
++      lensConfig.featuredLensIds
++    )
++      ? lensConfig.featuredLensIds
++          .map(value => String(value).trim())
++          .filter(Boolean)
++      : [],
++    audienceLabels,
++    sections,
++    lenses,
++    items: [...itemMap.values()]
++  };
++};
++
++export const itemsForLens = (
++  model,
++  lensId = 'all'
++) => {
++  const items = Array.isArray(model?.items)
++    ? model.items
++    : [];
++  const lens = (model?.lenses || [])
++    .find(record => record.id === lensId);
++  if (!lens || lens.id === 'all' || lens.sectionIds.length === 0) {
++    return [...items];
++  }
++  const sectionIds = new Set(lens.sectionIds);
++  return items.filter(item =>
++    item.sectionIds.some(id => sectionIds.has(id))
++  );
++};
++
++export const filterDiscoveryItems = (
++  model,
++  {
++    lensId = 'all',
++    audience = 'all',
++    status = 'all',
++    query = ''
++  } = {}
++) => {
++  const needle = String(query)
++    .trim()
++    .toLocaleLowerCase();
++  return itemsForLens(model, lensId)
++    .filter(item => {
++      if (
++        audience !== 'all' &&
++        !item.audiences.includes(audience)
++      ) {
++        return false;
++      }
++      if (
++        status !== 'all' &&
++        item.status !== status
++      ) {
++        return false;
++      }
++      if (!needle) return true;
++      const haystack = [
++        item.titleTa,
++        item.titleEn,
++        item.description,
++        item.category,
++        item.status,
++        ...item.sectionIds
++      ].join(' ').toLocaleLowerCase();
++      return haystack.includes(needle);
++    })
++    .sort((left, right) =>
++      left.category.localeCompare(right.category) ||
++      left.titleEn.localeCompare(right.titleEn)
++    );
++};
++
++export const buildDiscoveryMetrics = model => {
++  const items = Array.isArray(model?.items)
++    ? model.items
++    : [];
++  const categories = new Set(
++    items.map(item => item.category).filter(Boolean)
++  );
++  const statuses = new Map();
++  items.forEach(item => {
++    statuses.set(
++      item.status,
++      (statuses.get(item.status) || 0) + 1
++    );
++  });
++  return {
++    routeCount: items.length,
++    sectionCount: (model?.sections || [])
++      .filter(section => section.itemPaths.length > 0)
++      .length,
++    categoryCount: categories.size,
++    lensCount: (model?.lenses || []).length,
++    statuses: [...statuses.entries()]
++      .map(([status, count]) => ({status, count}))
++      .sort((left, right) =>
++        right.count - left.count ||
++        left.status.localeCompare(right.status)
++      )
++  };
++};
++
++export const lensRouteCounts = model =>
++  (model?.lenses || []).map(lens => ({
++    id: lens.id,
++    count: itemsForLens(model, lens.id).length
++  }));
++
++const fetchJson = async (
++  path,
++  fetcher = globalThis.fetch
++) => {
++  if (typeof fetcher !== 'function') {
++    throw new Error('Fetch API unavailable');
++  }
++  const response = await fetcher(path, {
++    cache: 'default',
++    credentials: 'same-origin',
++    headers: {'Accept': 'application/json'}
++  });
++  if (!response.ok) {
++    throw new Error(`${path} returned HTTP ${response.status}`);
++  }
++  return response.json();
++};
++
++export const loadDiscoveryModel = async (
++  fetcher = globalThis.fetch
++) => {
++  const [lenses, navigation, routes] =
++    await Promise.all([
++      fetchJson(LENSES_PATH, fetcher),
++      fetchJson(NAVIGATION_PATH, fetcher),
++      fetchJson(ROUTES_PATH, fetcher)
++    ]);
++  return normaliseDiscoveryModel(
++    lenses,
++    navigation,
++    routes
++  );
++};
++
++const createText = (
++  parent,
++  tag,
++  text,
++  className
++) => {
++  const element = document.createElement(tag);
++  if (className) element.className = className;
++  element.textContent = String(text);
++  parent.appendChild(element);
++  return element;
++};
++
++const displayTitle = record =>
++  record.titleTa && record.titleEn
++    ? `${record.titleTa} · ${record.titleEn}`
++    : record.titleTa || record.titleEn;
++
++const populateSelect = (
++  select,
++  values,
++  allLabel
++) => {
++  select.replaceChildren();
++  const all = document.createElement('option');
++  all.value = 'all';
++  all.textContent = allLabel;
++  select.appendChild(all);
++  values.forEach(value => {
++    const option = document.createElement('option');
++    option.value = value.value ?? value;
++    option.textContent = value.label ?? value;
++    select.appendChild(option);
++  });
++};
++
++const renderMetric = (id, value) => {
++  const element = document.getElementById(id);
++  if (element) element.textContent = String(value);
++};
++
++const createLensCard = (
++  lens,
++  count,
++  active,
++  selectLens
++) => {
++  const button = document.createElement('button');
++  button.type = 'button';
++  button.className =
++    `discovery-lens${active ? ' is-active' : ''}`;
++  button.dataset.lensId = lens.id;
++  button.setAttribute(
++    'aria-pressed',
++    active ? 'true' : 'false'
++  );
++  createText(
++    button,
++    'span',
++    lens.titleTa,
++    'discovery-lens-ta'
++  );
++  createText(
++    button,
++    'strong',
++    lens.titleEn
++  );
++  createText(
++    button,
++    'span',
++    lens.summary,
++    'discovery-lens-summary'
++  );
++  createText(
++    button,
++    'span',
++    `${count} published route${count === 1 ? '' : 's'}`,
++    'discovery-lens-count'
++  );
++  button.addEventListener(
++    'click',
++    () => selectLens(lens.id)
++  );
++  return button;
++};
++
++const renderLensGrid = (
++  host,
++  model,
++  activeLensId,
++  selectLens
++) => {
++  const counts = new Map(
++    lensRouteCounts(model)
++      .map(item => [item.id, item.count])
++  );
++  host.replaceChildren();
++  model.lenses.forEach(lens => {
++    host.appendChild(
++      createLensCard(
++        lens,
++        counts.get(lens.id) || 0,
++        lens.id === activeLensId,
++        selectLens
++      )
++    );
++  });
++};
++
++const createRouteCard = item => {
++  const article = document.createElement('article');
++  article.className = 'card discovery-route-card';
++
++  const meta = document.createElement('div');
++  meta.className = 'discovery-route-meta';
++  createText(meta, 'span', item.category, 'pill');
++  createText(meta, 'span', item.status, 'pill');
++  article.appendChild(meta);
++
++  createText(article, 'h2', displayTitle(item));
++  createText(article, 'p', item.description);
++  createText(
++    article,
++    'p',
++    item.audiences.join(' · '),
++    'discovery-audiences'
++  );
++
++  const link = document.createElement('a');
++  link.className = 'btn';
++  link.href = item.path;
++  link.textContent = 'Open published route';
++  article.appendChild(link);
++  return article;
++};
++
++const renderResults = (
++  host,
++  results
++) => {
++  host.replaceChildren();
++  if (!results.length) {
++    const empty = document.createElement('article');
++    empty.className = 'card discovery-empty';
++    createText(empty, 'h2', 'No routes match');
++    createText(
++      empty,
++      'p',
++      'Change the discovery lens, audience, status or search text.'
++    );
++    host.appendChild(empty);
++    return;
++  }
++  results.forEach(item =>
++    host.appendChild(createRouteCard(item))
++  );
++};
++
++const initialiseDiscoveryPage = async model => {
++  const lensHost =
++    document.getElementById('discoveryLensGrid');
++  const resultsHost =
++    document.getElementById('discoveryResults');
++  const audience =
++    document.getElementById('discoveryAudience');
++  const status =
++    document.getElementById('discoveryStatusFilter');
++  const search =
++    document.getElementById('discoverySearch');
++  const reset =
++    document.getElementById('discoveryReset');
++  const resultStatus =
++    document.getElementById('discoveryResultStatus');
++
++  if (
++    !lensHost ||
++    !resultsHost ||
++    !audience ||
++    !status ||
++    !search ||
++    !reset ||
++    !resultStatus
++  ) {
++    return;
++  }
++
++  const metrics = buildDiscoveryMetrics(model);
++  renderMetric(
++    'discoveryRouteCount',
++    metrics.routeCount
++  );
++  renderMetric(
++    'discoverySectionCount',
++    metrics.sectionCount
++  );
++  renderMetric(
++    'discoveryCategoryCount',
++    metrics.categoryCount
++  );
++
++  populateSelect(
++    audience,
++    Object.entries(model.audienceLabels)
++      .filter(([key]) => key !== 'all')
++      .map(([value, label]) => ({value, label})),
++    model.audienceLabels.all || 'All visitors'
++  );
++  populateSelect(
++    status,
++    metrics.statuses.map(item => ({
++      value: item.status,
++      label: `${item.status} (${item.count})`
++    })),
++    'All publication states'
++  );
++
++  let activeLensId = 'all';
++
++  const render = () => {
++    const results = filterDiscoveryItems(model, {
++      lensId: activeLensId,
++      audience: audience.value,
++      status: status.value,
++      query: search.value
++    });
++    renderLensGrid(
++      lensHost,
++      model,
++      activeLensId,
++      lensId => {
++        activeLensId = lensId;
++        render();
++      }
++    );
++    renderResults(resultsHost, results);
++    resultStatus.textContent =
++      `${results.length} actual published route${results.length === 1 ? '' : 's'} match the current view.`;
++  };
++
++  search.addEventListener('input', render);
++  audience.addEventListener('change', render);
++  status.addEventListener('change', render);
++  reset.addEventListener('click', () => {
++    activeLensId = 'all';
++    search.value = '';
++    audience.value = 'all';
++    status.value = 'all';
++    render();
++    search.focus();
++  });
++
++  render();
++};
++
++const initialiseHomeDiscovery = model => {
++  const host =
++    document.getElementById('homeDiscoveryLenses');
++  const count =
++    document.getElementById('homeDiscoveryRouteCount');
++  if (!host || !count) return;
++
++  const featured = new Set(model.featuredLensIds);
++  const counts = new Map(
++    lensRouteCounts(model)
++      .map(item => [item.id, item.count])
++  );
++  host.replaceChildren();
++  model.lenses
++    .filter(lens => featured.has(lens.id))
++    .forEach(lens => {
++      const link = document.createElement('a');
++      link.className = 'home-discovery-lens';
++      link.href =
++        `/discovery.html?lens=${encodeURIComponent(lens.id)}`;
++      createText(link, 'span', lens.titleTa);
++      createText(link, 'strong', lens.titleEn);
++      createText(
++        link,
++        'small',
++        `${counts.get(lens.id) || 0} current routes`
++      );
++      host.appendChild(link);
++    });
++
++  count.textContent = String(
++    buildDiscoveryMetrics(model).routeCount
++  );
++};
++
++const applyLensFromUrl = () => {
++  const params = new URLSearchParams(
++    globalThis.location?.search || ''
++  );
++  const lensId = params.get('lens');
++  if (!lensId) return;
++  const button = document.querySelector(
++    `[data-lens-id="${CSS.escape(lensId)}"]`
++  );
++  button?.click();
++};
++
++const initialise = async () => {
++  const pageStatus =
++    document.getElementById('discoveryLoadStatus');
++  try {
++    const model = await loadDiscoveryModel();
++    initialiseHomeDiscovery(model);
++    await initialiseDiscoveryPage(model);
++    applyLensFromUrl();
++    if (pageStatus) {
++      pageStatus.textContent =
++        `Discovery data loaded from route release ${model.routeRelease} and navigation release ${model.navigationRelease}.`;
++    }
++  } catch (error) {
++    console.error(
++      '[OmSaravanaBhava] Discovery workspace unavailable',
++      error
++    );
++    if (pageStatus) {
++      pageStatus.textContent =
++        'The local discovery registries could not be loaded.';
++    }
++  }
++};
++
++if (typeof document !== 'undefined') {
++  document.addEventListener(
++    'DOMContentLoaded',
++    initialise
++  );
++}
+diff --git a/data/discovery-lenses.json b/data/discovery-lenses.json
+new file mode 100644
+--- /dev/null
++++ b/data/discovery-lenses.json
+@@ -0,0 +1,166 @@
++{
++  "release": 222,
++  "generated": "2026-07-14",
++  "title": "OmSaravanaBhava Discovery Lenses",
++  "scope": "Presentation definitions for a browser-local discovery workspace. Route availability and counts are derived from the published route directory and structured Explore navigation.",
++  "allowedStatuses": [
++    "published",
++    "partial-reviewed",
++    "source-register",
++    "framework",
++    "milestone",
++    "directory",
++    "navigation",
++    "utility"
++  ],
++  "excludedStatuses": [
++    "draft",
++    "private",
++    "unpublished",
++    "archived"
++  ],
++  "featuredLensIds": [
++    "start",
++    "devotion",
++    "places",
++    "literature"
++  ],
++  "lenses": [
++    {
++      "id": "all",
++      "titleTa": "அனைத்து வழிகளும்",
++      "titleEn": "All discovery paths",
++      "summary": "Browse every curated route currently represented by the structured navigation registry.",
++      "sectionIds": [],
++      "audiences": [
++        "all",
++        "new",
++        "devotee",
++        "learner",
++        "researcher"
++      ]
++    },
++    {
++      "id": "start",
++      "titleTa": "இங்கே தொடங்குங்கள்",
++      "titleEn": "Start here",
++      "summary": "Core gateways for new visitors, search and publication-status review.",
++      "sectionIds": [
++        "start"
++      ],
++      "audiences": [
++        "all",
++        "new",
++        "devotee",
++        "learner",
++        "researcher"
++      ]
++    },
++    {
++      "id": "devotion",
++      "titleTa": "பக்தி மற்றும் வழிபாடு",
++      "titleEn": "Devotion and worship",
++      "summary": "Daily devotional, mantra, sloka and festival routes.",
++      "sectionIds": [
++        "devotion"
++      ],
++      "audiences": [
++        "all",
++        "new",
++        "devotee"
++      ]
++    },
++    {
++      "id": "places",
++      "titleTa": "திருத்தலங்கள் மற்றும் யாத்திரை",
++      "titleEn": "Sacred places and pilgrimage",
++      "summary": "Temple, map and browser-local pilgrimage planning routes.",
++      "sectionIds": [
++        "places"
++      ],
++      "audiences": [
++        "all",
++        "new",
++        "devotee",
++        "researcher"
++      ]
++    },
++    {
++      "id": "literature",
++      "titleTa": "தமிழ் பக்தி இலக்கியம்",
++      "titleEn": "Tamil devotional literature",
++      "summary": "Published and clearly bounded literature reading routes.",
++      "sectionIds": [
++        "literature"
++      ],
++      "audiences": [
++        "all",
++        "devotee",
++        "learner",
++        "researcher"
++      ]
++    },
++    {
++      "id": "learning",
++      "titleTa": "கற்றல்",
++      "titleEn": "Learning",
++      "summary": "Structured learning, quiz and terminology routes.",
++      "sectionIds": [
++        "learning"
++      ],
++      "audiences": [
++        "all",
++        "new",
++        "learner"
++      ]
++    },
++    {
++      "id": "knowledge",
++      "titleTa": "அறிவு மற்றும் ஆய்வு",
++      "titleEn": "Knowledge and research",
++      "summary": "Graph, chronology, cross-reference and research gateways.",
++      "sectionIds": [
++        "knowledge"
++      ],
++      "audiences": [
++        "all",
++        "learner",
++        "researcher"
++      ]
++    },
++    {
++      "id": "audio",
++      "titleTa": "ஒலி மற்றும் வாசிப்பு",
++      "titleEn": "Audio and reading",
++      "summary": "Device read-aloud and local audio-metadata routes without licensed-recording claims.",
++      "sectionIds": [
++        "audio"
++      ],
++      "audiences": [
++        "all",
++        "new",
++        "devotee",
++        "learner"
++      ]
++    },
++    {
++      "id": "integrity",
++      "titleTa": "ஆதாரங்கள் மற்றும் வெளிப்படைத்தன்மை",
++      "titleEn": "Sources and transparency",
++      "summary": "Source, publication-status, audit and maintenance routes.",
++      "sectionIds": [
++        "integrity"
++      ],
++      "audiences": [
++        "all",
++        "researcher"
++      ]
++    }
++  ],
++  "limitations": [
++    "Counts are calculated from local JSON at runtime and are not certification totals.",
++    "A route remains governed by its own publication and source boundaries.",
++    "The workspace does not use remote AI, analytics or a recommendation service.",
++    "Routes absent from the published route directory are not displayed."
++  ]
++}
+diff --git a/index.html b/index.html
+--- a/index.html
++++ b/index.html
+@@ -14,6 +14,7 @@
+ <meta property="og:url" content="https://omsaravanabhava.org/">
+ <meta name="twitter:card" content="summary">
+ <link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="stylesheet" href="assets/css/discovery-workspace.css">
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+ <meta name="theme-color" content="#a51d17">
+ <meta name="mobile-web-app-capable" content="yes">
+@@ -25,24 +26,36 @@
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://omsaravanabhava.org/#organization","name":"Om Saravana Bhava","url":"https://omsaravanabhava.org/"},{"@type":"WebSite","@id":"https://omsaravanabhava.org/#website","url":"https://omsaravanabhava.org/","name":"Om Saravana Bhava","inLanguage":["ta","en"],"publisher":{"@id":"https://omsaravanabhava.org/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://omsaravanabhava.org/ai-search.html?q={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"WebPage","@id":"https://omsaravanabhava.org/#webpage","url":"https://omsaravanabhava.org/","name":"Om Saravana Bhava","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"]}]}</script>
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script defer src="assets/js/premium-home.js"></script>
++<script type="module" src="assets/js/discovery-workspace.mjs"></script>
+ <script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body data-release="221">
++<body data-release="222">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Verified Murugan digital heritage platform</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div>
++<div class="links"><a href="discovery.html">Discover</a><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">OmSaravanaBhava Home</span></p></nav>
+ <section class="home-stage">
+-<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 221</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="explore.html">Explore all modules</a><a class="btn secondary" href="ai-search.html">Search knowledge</a><a class="btn secondary" href="search-facets.html">Browse by content type</a><a class="btn secondary" href="reading-list.html">Reading list</a><a class="btn secondary" href="accessibility.html">Accessibility</a><a class="btn secondary" href="print-pdf.html">Print &amp; PDF</a><a class="btn secondary" href="audio-history.html">Audio history</a><a class="btn secondary" href="knowledge-graph-explorer.html">Knowledge graph</a><a class="btn secondary" href="maintenance.html">Maintenance</a></div></div>
++<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 222</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="discovery.html">Open discovery workspace</a><a class="btn secondary" href="explore.html">Explore all modules</a><a class="btn secondary" href="ai-search.html">Search knowledge</a><a class="btn secondary" href="search-facets.html">Browse by content type</a><a class="btn secondary" href="reading-list.html">Reading list</a><a class="btn secondary" href="accessibility.html">Accessibility</a><a class="btn secondary" href="print-pdf.html">Print &amp; PDF</a><a class="btn secondary" href="audio-history.html">Audio history</a><a class="btn secondary" href="knowledge-graph-explorer.html">Knowledge graph</a><a class="btn secondary" href="maintenance.html">Maintenance</a></div></div>
+ <div class="home-stage-panel" aria-label="Published platform data">
+ <div class="home-metric"><span>Search records</span><strong data-count-source="data/search-index.json" aria-live="polite">…</strong></div>
+ <div class="home-metric"><span>Source records</span><strong data-count-source="data/sources.json" aria-live="polite">…</strong></div>
+ <div class="home-metric"><span>Device read-aloud entries</span><strong data-count-source="data/read-aloud-playlist.json" aria-live="polite">…</strong></div>
+ </div></section>
++<section class="card home-discovery-222" aria-labelledby="home-discovery-title">
++<div class="home-discovery-copy">
++<span class="pill">Release 222 · Desktop discovery</span>
++<h2 id="home-discovery-title">Choose a trusted path</h2>
++<p>Start with a purpose rather than a long route list. <span class="home-discovery-number" id="homeDiscoveryRouteCount">0</span> curated routes are calculated from the local publication registry.</p>
++<p><a class="btn" href="discovery.html">Open full discovery workspace</a></p>
++</div>
++<div id="homeDiscoveryLenses" class="home-discovery-lenses" aria-live="polite">
++<p>Loading discovery paths…</p>
++</div>
++</section>
+ <section class="home-feature-grid" aria-label="Featured modules">
+ <article class="card home-feature"><div><span class="pill">Module</span><h2>Temples</h2><p>Explore source-aware sacred-place profiles.</p></div><a class="btn" href="temple-encyclopedia.html">Open</a></article>
+ <article class="card home-feature"><div><span class="pill">Module</span><h2>Literature</h2><p>Read verified and clearly bounded devotional texts.</p></div><a class="btn" href="sloka-library.html">Open</a></article>
+@@ -52,6 +65,6 @@
+ <section class="card" aria-labelledby="integrity-heading"><h2 id="integrity-heading">Publication integrity</h2><p>Repository releases, deployed pages and runtime behaviour are separate evidence layers. Content and feature claims remain bounded until automated checks and production observation confirm them.</p><p><a class="btn secondary" href="production-audit.html">Open production audit</a> <a class="btn secondary" href="content-status.html">Open content status</a></p></section>
+ <noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>All primary modules remain available through the navigation links. Live data counts are unavailable without JavaScript.</p></section></noscript>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="maintenance.html">Maintenance</a> · <a href="knowledge-graph-explorer.html">Knowledge graph</a> · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
++<footer>© Om Saravana Bhava · <a href="discovery.html">Discover</a> · <a href="maintenance.html">Maintenance</a> · <a href="knowledge-graph-explorer.html">Knowledge graph</a> · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
+ </body>
+ </html>
+diff --git a/platform.html b/platform.html
+--- a/platform.html
++++ b/platform.html
+@@ -10,14 +10,14 @@
+ <meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
+ <script defer src="assets/js/pwa-register.js"></script><script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body data-release="221">
++<body data-release="222">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Digital Murugan knowledge platform</div>
+-<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div></div></nav>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="discovery.html">Discover</a><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div></div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">OmSaravanaBhava Platform Hub</span></p></nav>
+ <section class="card"><h1 class="section-title" lang="ta">ஓம் சரவணபவ தளம்</h1><h2>OmSaravanaBhava Platform Hub</h2><p>Unified gateway to the source-aware devotional, literature, temple, search, graph and reading modules.</p></section>
+-<section class="card"><h2>Structured Explore Gateway</h2><p>Choose modules by purpose or audience without navigating the full route list.</p><a class="btn" href="explore.html">Open Explore</a></section>
++<section class="card"><h2>Desktop Discovery Workspace</h2><p>Choose published routes by purpose, audience, status and Tamil or English search using actual local registry data.</p><a class="btn" href="discovery.html">Open Discovery</a> <a class="btn secondary" href="explore.html">Open structured Explore</a></section>
+ <section class="grid">
+ <article class="card"><h2>Audio Platform</h2><a class="btn" href="audio-collections.html">Open module</a></article>
+ <article class="card"><h2>Cross References</h2><a class="btn" href="cross-references.html">Open module</a></article>
+@@ -40,6 +40,6 @@
+ <section class="card"><h2>Milestone boundary</h2><p>The platform hub connects published modules. It does not certify complete Murugan literature, licensed human audio, live Panchangam computation or server-side accounts.</p></section>
+ <section class="card"><h2>Version 3 milestone</h2><a class="btn" href="version-3.html">Open milestone dashboard</a></section>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="maintenance.html">Maintenance</a> · <a href="knowledge-graph-explorer.html">Knowledge graph</a> · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
++<footer>© Om Saravana Bhava · <a href="discovery.html">Discover</a> · <a href="maintenance.html">Maintenance</a> · <a href="knowledge-graph-explorer.html">Knowledge graph</a> · <a href="audio-history.html">Audio history</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
+ </body>
+ </html>
+diff --git a/maintenance.html b/maintenance.html
+--- a/maintenance.html
++++ b/maintenance.html
+@@ -15,19 +15,19 @@
+ <script defer src="assets/js/pwa-register.js"></script>
+ <script type="module" src="assets/js/maintenance-centre.mjs"></script>
+ </head>
+-<body data-release="221">
++<body data-release="222">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Static-platform maintenance and local diagnostics</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+ <a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
+-<div class="links"><a href="explore.html">Explore</a><a href="platform.html">Platform</a><a href="knowledge-graph-explorer.html">Graph Explorer</a><a href="maintenance.html" aria-current="page">Maintenance</a></div>
++<div class="links"><a href="discovery.html">Discover</a><a href="explore.html">Explore</a><a href="platform.html">Platform</a><a href="knowledge-graph-explorer.html">Graph Explorer</a><a href="maintenance.html" aria-current="page">Maintenance</a></div>
+ </div></nav>
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Maintenance Centre</span></p></nav>
+ 
+ <section class="card maintenance-hero">
+ <div>
+-<span class="pill">Release 221 · Same-origin diagnostics</span>
++<span class="pill">Release 222 · Discovery and maintenance continuity</span>
+ <h1 class="section-title" lang="ta">பராமரிப்பு மையம்</h1>
+ <h2>Maintenance Centre</h2>
+ <p>Inspect deployed static resources and browser state without a server account, remote analytics or destructive repository actions.</p>
+diff --git a/assets/js/maintenance-centre.mjs b/assets/js/maintenance-centre.mjs
+--- a/assets/js/maintenance-centre.mjs
++++ b/assets/js/maintenance-centre.mjs
+@@ -1,4 +1,4 @@
+-export const RELEASE = 221;
++export const RELEASE = 222;
+ export const CONFIG_PATH = '/data/maintenance-checks.json';
+ export const DEFAULT_TRANSIENT_CACHE_PREFIXES = Object.freeze([
+   'osb-runtime-v',
+diff --git a/data/maintenance-checks.json b/data/maintenance-checks.json
+--- a/data/maintenance-checks.json
++++ b/data/maintenance-checks.json
+@@ -1,25 +1,25 @@
+ {
+-  "release": 221,
++  "release": 222,
+   "generated": "2026-07-14",
+-  "builtAgainstCommit": "a3bebc4f28059e0147d9ddcb8cfa3372b36b2ebb",
++  "builtAgainstCommit": "99d62afcdd8ea5ccc8dd9170b98f9d0e4942e8f4",
+   "title": "OmSaravanaBhava Browser Maintenance Check Registry",
+-  "scope": "Same-origin deployed-resource checks and browser-state diagnostics. This registry does not prove GitHub Actions status or repository certification.",
++  "scope": "Same-origin Release 222 discovery, route, audit and maintenance continuity checks. This registry does not prove GitHub Actions status or repository certification.",
+   "checks": [
+     {
+       "id": "service-worker-release",
+       "label": "Service-worker release identity",
+       "path": "/service-worker.js",
+       "mode": "textIncludes",
+-      "expected": "const RELEASE = '221';",
++      "expected": "const RELEASE = '222';",
+       "severity": "critical"
+     },
+     {
+       "id": "release-manifest",
+       "label": "Release manifest identity",
+-      "path": "/manifest-release-221.json",
++      "path": "/manifest-release-222.json",
+       "mode": "jsonEquals",
+       "jsonPath": "release",
+-      "expected": 221,
++      "expected": 222,
+       "severity": "critical"
+     },
+     {
+@@ -27,8 +27,8 @@
+       "label": "Route directory integrity",
+       "path": "/data/site-routes.json",
+       "mode": "routeRegistry",
+-      "expectedRelease": 221,
+-      "requiredRoute": "/maintenance.html",
++      "expectedRelease": 222,
++      "requiredRoute": "/discovery.html",
+       "severity": "critical"
+     },
+     {
+@@ -36,47 +36,47 @@
+       "label": "Static-audit configuration",
+       "path": "/quality/site-audit-config.json",
+       "mode": "auditConfig",
+-      "expectedRelease": "221",
++      "expectedRelease": "222",
+       "requiredFiles": [
+-        "maintenance.html",
+-        "assets/css/maintenance-centre.css",
+-        "assets/js/maintenance-centre.mjs",
+-        "data/maintenance-checks.json",
+-        "manifest-release-221.json"
++        "discovery.html",
++        "assets/css/discovery-workspace.css",
++        "assets/js/discovery-workspace.mjs",
++        "data/discovery-lenses.json",
++        "manifest-release-222.json"
+       ],
+       "severity": "critical"
+     },
+     {
+       "id": "sitemap-route",
+-      "label": "Sitemap registration",
++      "label": "Discovery sitemap registration",
+       "path": "/sitemap.xml",
+       "mode": "textCount",
+-      "expected": "https://omsaravanabhava.org/maintenance.html",
++      "expected": "https://omsaravanabhava.org/discovery.html",
+       "expectedCount": 1,
+       "severity": "important"
+     },
+     {
+-      "id": "maintenance-page",
+-      "label": "Maintenance Centre page",
+-      "path": "/maintenance.html",
++      "id": "discovery-page",
++      "label": "Discovery Workspace page",
++      "path": "/discovery.html",
+       "mode": "textIncludes",
+-      "expected": "data-release=\"221\"",
++      "expected": "data-release=\"222\"",
+       "severity": "critical"
+     },
+     {
+-      "id": "maintenance-module",
+-      "label": "Maintenance browser module",
+-      "path": "/assets/js/maintenance-centre.mjs",
++      "id": "discovery-module",
++      "label": "Discovery browser module",
++      "path": "/assets/js/discovery-workspace.mjs",
+       "mode": "textIncludes",
+-      "expected": "export const RELEASE = 221;",
++      "expected": "export const RELEASE = 222;",
+       "severity": "critical"
+     },
+     {
+-      "id": "graph-continuity",
+-      "label": "Knowledge Graph Explorer continuity",
+-      "path": "/knowledge-graph-explorer.html",
++      "id": "maintenance-continuity",
++      "label": "Maintenance Centre continuity",
++      "path": "/assets/js/maintenance-centre.mjs",
+       "mode": "textIncludes",
+-      "expected": "Knowledge Graph Explorer",
++      "expected": "export const RELEASE = 222;",
+       "severity": "important"
+     }
+   ],
+@@ -86,6 +86,7 @@
+     "/offline.html",
+     "/404.html",
+     "/platform.html",
++    "/discovery.html",
+     "/explore.html",
+     "/search-facets.html",
+     "/reading-list.html",
+diff --git a/data/site-routes.json b/data/site-routes.json
+--- a/data/site-routes.json
++++ b/data/site-routes.json
+@@ -1,5 +1,5 @@
+ {
+-  "release": 221,
++  "release": 222,
+   "generated": "2026-07-14",
+   "scope": "Public HTML routes represented by the Release 215 sitemap and route directory.",
+   "statusMeaning": {
+@@ -126,6 +126,14 @@
+       "summary": "Structured navigation gateway organised by purpose and audience."
+     },
+     {
++      "path": "/discovery.html",
++      "titleTa": "கண்டறியும் பணிமனை",
++      "titleEn": "Discovery Workspace",
++      "category": "Navigation",
++      "status": "navigation",
++      "summary": "Published-route discovery by purpose, audience, publication state and Tamil or English search using local JSON."
++    },
++    {
+       "path": "/site-directory.html",
+       "titleTa": "தள வழித்தட அட்டவணை",
+       "titleEn": "Complete Site Route Directory",
+diff --git a/sitemap.xml b/sitemap.xml
+--- a/sitemap.xml
++++ b/sitemap.xml
+@@ -558,4 +558,10 @@
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+   </url>
++  <url>
++    <loc>https://omsaravanabhava.org/discovery.html</loc>
++    <lastmod>2026-07-14</lastmod>
++    <changefreq>weekly</changefreq>
++    <priority>0.9</priority>
++  </url>
+ </urlset>
+diff --git a/service-worker.js b/service-worker.js
+--- a/service-worker.js
++++ b/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '221';
++const RELEASE = '222';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -217,7 +217,12 @@
+   "/assets/css/maintenance-centre.css",
+   "/assets/js/maintenance-centre.mjs",
+   "/data/maintenance-checks.json",
+-  "/manifest-release-221.json"
++  "/manifest-release-221.json",
++  "/discovery.html",
++  "/assets/css/discovery-workspace.css",
++  "/assets/js/discovery-workspace.mjs",
++  "/data/discovery-lenses.json",
++  "/manifest-release-222.json"
+ ];
+ 
+ const cacheOptionalAssets = async cache => {
+diff --git a/quality/site-audit-config.json b/quality/site-audit-config.json
+--- a/quality/site-audit-config.json
++++ b/quality/site-audit-config.json
+@@ -1,5 +1,5 @@
+ {
+-  "expectedRelease": "221",
++  "expectedRelease": "222",
+   "canonicalOrigin": "https://omsaravanabhava.org",
+   "requiredFiles": [
+     "index.html",
+@@ -47,7 +47,12 @@
+     "assets/css/maintenance-centre.css",
+     "assets/js/maintenance-centre.mjs",
+     "data/maintenance-checks.json",
+-    "manifest-release-221.json"
++    "manifest-release-221.json",
++    "discovery.html",
++    "assets/css/discovery-workspace.css",
++    "assets/js/discovery-workspace.mjs",
++    "data/discovery-lenses.json",
++    "manifest-release-222.json"
+   ],
+   "canonicalOptional": [
+     "404.html",
+diff --git a/tools/production_smoke.py b/tools/production_smoke.py
+--- a/tools/production_smoke.py
++++ b/tools/production_smoke.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Observe the deployed custom domain and fail when Release 221 is not live."""
++"""Observe the deployed custom domain and fail when Release 222 is not live."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -10,8 +10,8 @@
+ from pathlib import Path
+ 
+ CHECKS = [
+-    ("/", 'data-release="221"'),
+-    ("/service-worker.js", "const RELEASE = '221';"),
++    ("/", 'data-release="222"'),
++    ("/service-worker.js", "const RELEASE = '222';"),
+     ("/search-facets.html", "Published-Content Search Facets"),
+     ("/assets/js/search-facets.mjs", "export const RELEASE = 216;"),
+     ("/data/site-routes.json", '"/search-facets.html"'),
+@@ -38,12 +38,17 @@
+     ("/assets/js/knowledge-graph-explorer.mjs", "export const RELEASE = 220"),
+     ("/data/knowledge-graph-explorer.json", "\"release\": 220"),
+     ("/sitemap.xml", "https://omsaravanabhava.org/knowledge-graph-explorer.html"),
+-    ("/maintenance.html", "data-release=\"221\""),
+-    ("/assets/js/maintenance-centre.mjs", "export const RELEASE = 221"),
+-    ("/data/maintenance-checks.json", "\"release\": 221"),
+-    ("/manifest-release-221.json", "\"release\": 221"),
++    ("/maintenance.html", "data-release=\"222\""),
++    ("/assets/js/maintenance-centre.mjs", "export const RELEASE = 222"),
++    ("/data/maintenance-checks.json", "\"release\": 222"),
++    ("/manifest-release-222.json", "\"release\": 222"),
+     ("/data/site-routes.json", "\"/maintenance.html\""),
+-    ("/sitemap.xml", "https://omsaravanabhava.org/maintenance.html")
++    ("/sitemap.xml", "https://omsaravanabhava.org/maintenance.html"),
++    ("/discovery.html", "data-release=\"222\""),
++    ("/assets/js/discovery-workspace.mjs", "export const RELEASE = 222"),
++    ("/data/discovery-lenses.json", "\"release\": 222"),
++    ("/data/site-routes.json", "\"/discovery.html\""),
++    ("/sitemap.xml", "https://omsaravanabhava.org/discovery.html")
+ ]
+ 
+ 
+@@ -51,7 +56,7 @@
+     request = urllib.request.Request(
+         url,
+         headers={
+-            "User-Agent": "OmSaravanaBhava-Production-Smoke/221",
++            "User-Agent": "OmSaravanaBhava-Production-Smoke/222",
+             "Cache-Control": "no-cache"
+         }
+     )
+@@ -91,7 +96,7 @@
+     parser.add_argument("--retries", type=int, default=18)
+     parser.add_argument("--delay", type=int, default=20)
+     parser.add_argument("--timeout", type=int, default=20)
+-    parser.add_argument("--report", type=Path, default=Path("artifacts/release-221-production-smoke.json"))
++    parser.add_argument("--report", type=Path, default=Path("artifacts/release-222-production-smoke.json"))
+     args = parser.parse_args()
+     report = run(args.origin, args.retries, args.delay, args.timeout)
+     args.report.parent.mkdir(parents=True, exist_ok=True)
+diff --git a/tests/discovery-workspace.test.mjs b/tests/discovery-workspace.test.mjs
+new file mode 100644
+--- /dev/null
++++ b/tests/discovery-workspace.test.mjs
+@@ -0,0 +1,207 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import fs from 'node:fs';
++
++import {
++  RELEASE,
++  buildDiscoveryMetrics,
++  filterDiscoveryItems,
++  itemsForLens,
++  lensRouteCounts,
++  normaliseDiscoveryModel,
++  normaliseRoute
++} from '../assets/js/discovery-workspace.mjs';
++
++const lenses = JSON.parse(
++  fs.readFileSync(
++    new URL('../data/discovery-lenses.json', import.meta.url),
++    'utf8'
++  )
++);
++
++const navigation = {
++  release: 214,
++  audienceLabels: {
++    all: 'All visitors',
++    new: 'New visitor',
++    devotee: 'Devotee',
++    learner: 'Learner',
++    researcher: 'Researcher'
++  },
++  sections: [
++    {
++      id: 'start',
++      titleTa: 'தொடக்கம்',
++      titleEn: 'Start',
++      audiences: ['all', 'new'],
++      items: [
++        {
++          path: '/site-directory.html',
++          titleEn: 'Site Directory',
++          description: 'Find routes'
++        },
++        {
++          path: '/draft.html',
++          titleEn: 'Draft'
++        }
++      ]
++    },
++    {
++      id: 'literature',
++      titleTa: 'இலக்கியம்',
++      titleEn: 'Literature',
++      audiences: ['all', 'devotee', 'learner'],
++      items: [
++        {
++          path: '/thiruppugazh.html',
++          titleTa: 'திருப்புகழ்',
++          titleEn: 'Thiruppugazh',
++          description: 'Published songs'
++        }
++      ]
++    }
++  ]
++};
++
++const routes = {
++  release: 222,
++  routes: [
++    {
++      path: '/site-directory.html',
++      titleEn: 'Site Directory',
++      category: 'Navigation',
++      status: 'directory',
++      summary: 'Directory'
++    },
++    {
++      path: '/thiruppugazh.html',
++      titleTa: 'திருப்புகழ்',
++      titleEn: 'Thiruppugazh',
++      category: 'Literature',
++      status: 'published',
++      summary: 'Songs'
++    },
++    {
++      path: '/draft.html',
++      titleEn: 'Draft',
++      category: 'Internal',
++      status: 'draft',
++      summary: 'Do not publish'
++    },
++    {
++      path: '/unreferenced.html',
++      titleEn: 'Unreferenced',
++      category: 'Other',
++      status: 'published',
++      summary: 'Not in structured navigation'
++    }
++  ]
++};
++
++const model = normaliseDiscoveryModel(
++  lenses,
++  navigation,
++  routes
++);
++
++test('release and lens configuration identity are stable', () => {
++  assert.equal(RELEASE, 222);
++  assert.equal(lenses.release, 222);
++  assert.equal(lenses.lenses.length, 9);
++});
++
++test('same-origin routes are accepted and external routes rejected', () => {
++  assert.equal(
++    normaliseRoute('literature/kandar-anubhuti.html'),
++    '/literature/kandar-anubhuti.html'
++  );
++  assert.equal(
++    normaliseRoute('https://example.com/page.html'),
++    ''
++  );
++});
++
++test('only routes present in both registries are displayed', () => {
++  assert.deepEqual(
++    model.items.map(item => item.path).sort(),
++    ['/site-directory.html', '/thiruppugazh.html']
++  );
++});
++
++test('drafts and unreferenced routes are excluded', () => {
++  assert.equal(
++    model.items.some(item => item.path === '/draft.html'),
++    false
++  );
++  assert.equal(
++    model.items.some(item => item.path === '/unreferenced.html'),
++    false
++  );
++});
++
++test('lens and audience filtering use structured navigation', () => {
++  assert.equal(
++    itemsForLens(model, 'start').length,
++    1
++  );
++  assert.equal(
++    itemsForLens(model, 'literature').length,
++    1
++  );
++  assert.equal(
++    filterDiscoveryItems(model, {
++      audience: 'new'
++    }).length,
++    1
++  );
++  assert.equal(
++    filterDiscoveryItems(model, {
++      audience: 'devotee'
++    }).length,
++    1
++  );
++});
++
++test('status and Tamil text filters are deterministic', () => {
++  assert.equal(
++    filterDiscoveryItems(model, {
++      status: 'published'
++    }).length,
++    1
++  );
++  assert.equal(
++    filterDiscoveryItems(model, {
++      query: 'திருப்புகழ்'
++    })[0].path,
++    '/thiruppugazh.html'
++  );
++});
++
++test('metrics and lens counts are derived from model data', () => {
++  assert.deepEqual(
++    buildDiscoveryMetrics(model),
++    {
++      routeCount: 2,
++      sectionCount: 2,
++      categoryCount: 2,
++      lensCount: 9,
++      statuses: [
++        {status: 'directory', count: 1},
++        {status: 'published', count: 1}
++      ]
++    }
++  );
++  const counts = new Map(
++    lensRouteCounts(model)
++      .map(item => [item.id, item.count])
++  );
++  assert.equal(counts.get('all'), 2);
++  assert.equal(counts.get('start'), 1);
++  assert.equal(counts.get('literature'), 1);
++});
++
++test('model keeps source release identities visible', () => {
++  assert.equal(model.release, 222);
++  assert.equal(model.routeRelease, 222);
++  assert.equal(model.navigationRelease, 214);
++});
+diff --git a/tests/maintenance-centre.test.mjs b/tests/maintenance-centre.test.mjs
+--- a/tests/maintenance-centre.test.mjs
++++ b/tests/maintenance-centre.test.mjs
+@@ -25,8 +25,8 @@
+ );
+ 
+ test('release and registry identities are stable', () => {
+-  assert.equal(RELEASE, 221);
+-  assert.equal(registry.release, 221);
++  assert.equal(RELEASE, 222);
++  assert.equal(registry.release, 222);
+   assert.equal(registry.builtAgainstCommit.length, 40);
+   assert.equal(registry.checks.length, 8);
+ });
+@@ -49,51 +49,51 @@
+ });
+ 
+ test('JSON path lookup and equality checks are deterministic', () => {
+-  const value = {release: 221, nested: {state: 'ready'}};
++  const value = {release: 222, nested: {state: 'ready'}};
+   assert.equal(readJsonPath(value, 'nested.state'), 'ready');
+   assert.equal(readJsonPath(value, 'nested.missing'), undefined);
+   assert.deepEqual(
+-    evaluateJsonEquals(value, 'release', 221),
+-    {ok: true, actual: 221}
++    evaluateJsonEquals(value, 'release', 222),
++    {ok: true, actual: 222}
+   );
+ });
+ 
+ test('route registry requires one maintenance route and no duplicates', () => {
+   const valid = evaluateRouteRegistry({
+-    release: 221,
++    release: 222,
+     routes: [
+       {path: '/index.html'},
+-      {path: '/maintenance.html'}
++      {path: '/discovery.html'}
+     ]
+-  }, 221, '/maintenance.html');
++  }, 222, '/discovery.html');
+   assert.equal(valid.ok, true);
+ 
+   const duplicate = evaluateRouteRegistry({
+-    release: 221,
++    release: 222,
+     routes: [
+-      {path: '/maintenance.html'},
+-      {path: '/maintenance.html'}
++      {path: '/discovery.html'},
++      {path: '/discovery.html'}
+     ]
+-  }, 221, '/maintenance.html');
++  }, 222, '/discovery.html');
+   assert.equal(duplicate.ok, false);
+   assert.equal(duplicate.actual.duplicateCount, 1);
+ });
+ 
+ test('audit configuration requires the current release and files', () => {
+   const result = evaluateAuditConfig({
+-    expectedRelease: '221',
+-    requiredFiles: ['maintenance.html', 'manifest-release-221.json']
+-  }, '221', ['maintenance.html', 'manifest-release-221.json']);
++    expectedRelease: '222',
++    requiredFiles: ['discovery.html', 'manifest-release-222.json']
++  }, '222', ['discovery.html', 'manifest-release-222.json']);
+   assert.equal(result.ok, true);
+ 
+   const missing = evaluateAuditConfig({
+-    expectedRelease: '221',
+-    requiredFiles: ['maintenance.html']
+-  }, '221', ['maintenance.html', 'manifest-release-221.json']);
++    expectedRelease: '222',
++    requiredFiles: ['discovery.html']
++  }, '222', ['discovery.html', 'manifest-release-222.json']);
+   assert.equal(missing.ok, false);
+   assert.deepEqual(
+     missing.actual.missing,
+-    ['manifest-release-221.json']
++    ['manifest-release-222.json']
+   );
+ });
+ 
+@@ -123,8 +123,8 @@
+   const result = evaluateCheckPayload(
+     routeCheck,
+     JSON.stringify({
+-      release: 221,
+-      routes: [{path: '/maintenance.html'}]
++      release: 222,
++      routes: [{path: '/discovery.html'}]
+     })
+   );
+   assert.equal(result.ok, true);
+@@ -136,14 +136,14 @@
+     status: 200,
+     async text() {
+       return path === '/service-worker.js'
+-        ? "const RELEASE = '221';"
++        ? "const RELEASE = '222';"
+         : '';
+     }
+   });
+   const result = await runResourceCheck({
+     path: '/service-worker.js',
+     mode: 'textIncludes',
+-    expected: "const RELEASE = '221';"
++    expected: "const RELEASE = '222';"
+   }, fetcher);
+   assert.equal(result.ok, true);
+   assert.equal(result.status, 200);
+@@ -174,7 +174,7 @@
+ 
+ test('transient cache cleanup preserves static and user caches', async () => {
+   const names = [
+-    'osb-static-v221',
++    'osb-static-v222',
+     'osb-runtime-v220',
+     'osb-data-v219',
+     'osb-user-reading-v1'
+diff --git a/tools/release_222_validate.py b/tools/release_222_validate.py
+new file mode 100644
+--- /dev/null
++++ b/tools/release_222_validate.py
+@@ -0,0 +1,358 @@
++#!/usr/bin/env python3
++"""Validate Release 222 without claiming remote CI or deployment results."""
++from __future__ import annotations
++
++import argparse
++import json
++import re
++import sys
++import xml.etree.ElementTree as ET
++from pathlib import Path
++
++RELEASE = "222"
++BASE_COMMIT = "99d62afcdd8ea5ccc8dd9170b98f9d0e4942e8f4"
++ROUTE = "/discovery.html"
++REQUIRED = [
++    "discovery.html",
++    "assets/css/discovery-workspace.css",
++    "assets/js/discovery-workspace.mjs",
++    "data/discovery-lenses.json",
++    "index.html",
++    "platform.html",
++    "maintenance.html",
++    "assets/js/maintenance-centre.mjs",
++    "data/maintenance-checks.json",
++    "data/site-routes.json",
++    "sitemap.xml",
++    "service-worker.js",
++    "quality/site-audit-config.json",
++    "tools/production_smoke.py",
++    "tests/test_site_audit.py",
++    "tests/discovery-workspace.test.mjs",
++    "tests/maintenance-centre.test.mjs",
++    ".github/workflows/static-site-integrity.yml",
++    ".github/workflows/production-smoke.yml",
++    "manifest-release-222.json",
++]
++
++def read(root: Path, relative: str) -> str:
++    return (root / relative).read_text(encoding="utf-8")
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", type=Path, default=Path.cwd())
++    parser.add_argument("--package-mode", action="store_true")
++    parser.add_argument(
++        "--report",
++        type=Path,
++        default=Path("artifacts/release-222-validation.json")
++    )
++    args = parser.parse_args()
++    root = args.root.resolve()
++    errors: list[str] = []
++    checks: list[str] = []
++
++    for relative in REQUIRED:
++        if not (root / relative).is_file():
++            errors.append(f"missing required file: {relative}")
++        else:
++            checks.append(f"exists: {relative}")
++
++    if not errors:
++        manifest = json.loads(
++            read(root, "manifest-release-222.json")
++        )
++        lenses = json.loads(
++            read(root, "data/discovery-lenses.json")
++        )
++        routes = json.loads(
++            read(root, "data/site-routes.json")
++        )
++        maintenance = json.loads(
++            read(root, "data/maintenance-checks.json")
++        )
++        config = json.loads(
++            read(root, "quality/site-audit-config.json")
++        )
++        ET.fromstring(read(root, "sitemap.xml"))
++
++        if manifest.get("release") != 222:
++            errors.append("manifest release is not 222")
++        if manifest.get("base_commit") != BASE_COMMIT:
++            errors.append(
++                "manifest base commit does not match Release 221 head"
++            )
++        if lenses.get("release") != 222:
++            errors.append("discovery-lenses release is not 222")
++        if routes.get("release") != 222:
++            errors.append("route-directory release is not 222")
++        if maintenance.get("release") != 222:
++            errors.append("maintenance registry release is not 222")
++        if maintenance.get("builtAgainstCommit") != BASE_COMMIT:
++            errors.append(
++                "maintenance registry base commit is incorrect"
++            )
++
++        lens_records = lenses.get("lenses", [])
++        lens_ids = [
++            item.get("id")
++            for item in lens_records
++            if isinstance(item, dict)
++        ]
++        if len(lens_ids) != len(set(lens_ids)):
++            errors.append("duplicate discovery lens ids")
++        if len(lens_records) != 9:
++            errors.append("expected nine discovery lenses")
++        if "all" not in lens_ids:
++            errors.append("all-routes discovery lens is missing")
++
++        excluded = set(lenses.get("excludedStatuses", []))
++        if not {
++            "draft",
++            "private",
++            "unpublished",
++            "archived",
++        }.issubset(excluded):
++            errors.append(
++                "discovery configuration does not exclude all private states"
++            )
++
++        route_records = routes.get("routes", [])
++        route_paths = [
++            item.get("path")
++            for item in route_records
++            if isinstance(item, dict)
++        ]
++        if route_paths.count(ROUTE) != 1:
++            errors.append(
++                "discovery route must appear exactly once"
++            )
++        if len(route_paths) != len(set(route_paths)):
++            errors.append("duplicate route-directory paths detected")
++        route = next(
++            (
++                item
++                for item in route_records
++                if item.get("path") == ROUTE
++            ),
++            None
++        )
++        if route and route.get("status") != "navigation":
++            errors.append(
++                "discovery route status must remain navigation"
++            )
++
++        if config.get("expectedRelease") != RELEASE:
++            errors.append(
++                "site-audit expectedRelease is not 222"
++            )
++        for relative in (
++            "discovery.html",
++            "assets/css/discovery-workspace.css",
++            "assets/js/discovery-workspace.mjs",
++            "data/discovery-lenses.json",
++            "manifest-release-222.json",
++        ):
++            if relative not in config.get("requiredFiles", []):
++                errors.append(
++                    f"site audit does not require {relative}"
++                )
++
++        sitemap = read(root, "sitemap.xml")
++        if sitemap.count(
++            "https://omsaravanabhava.org/discovery.html"
++        ) != 1:
++            errors.append(
++                "sitemap must contain discovery route exactly once"
++            )
++
++        worker = read(root, "service-worker.js")
++        if "const RELEASE = '222';" not in worker:
++            errors.append(
++                "service-worker identity is not 222"
++            )
++        core = re.search(
++            r"const CORE_PRECACHE_URLS = \[(.*?)\];",
++            worker,
++            re.S
++        )
++        optional = re.search(
++            r"const PRECACHE_URLS = \[(.*?)\];",
++            worker,
++            re.S
++        )
++        core_text = core.group(1) if core else ""
++        optional_text = optional.group(1) if optional else ""
++        for asset in (
++            "/discovery.html",
++            "/assets/css/discovery-workspace.css",
++            "/assets/js/discovery-workspace.mjs",
++            "/data/discovery-lenses.json",
++            "/manifest-release-222.json",
++        ):
++            if f'"{asset}"' not in optional_text:
++                errors.append(
++                    f"optional precache missing {asset}"
++                )
++            if f'"{asset}"' in core_text:
++                errors.append(
++                    f"discovery asset incorrectly blocks installation: {asset}"
++                )
++        if "cacheOptionalAssets" not in worker:
++            errors.append(
++                "resilient optional caching is missing"
++            )
++
++        module = read(
++            root,
++            "assets/js/discovery-workspace.mjs"
++        )
++        for marker in (
++            "export const RELEASE = 222;",
++            "normaliseDiscoveryModel",
++            "filterDiscoveryItems",
++            "buildDiscoveryMetrics",
++            "lensRouteCounts",
++            "data/navigation-sections.json",
++            "data/site-routes.json",
++        ):
++            if marker not in module:
++                errors.append(
++                    f"discovery module missing marker: {marker}"
++                )
++        for prohibited in (
++            "api.openai.com",
++            "navigator.sendBeacon",
++            "gtag(",
++            "google-analytics",
++            "recommendation-api",
++            "Math.random(",
++        ):
++            if prohibited in module:
++                errors.append(
++                    f"prohibited remote or nondeterministic marker found: {prohibited}"
++                )
++
++        page = read(root, "discovery.html")
++        for marker in (
++            'data-release="222"',
++            "Discovery Workspace",
++            "Counts are runtime calculations",
++            "it is not personalised AI",
++            "No remote analytics",
++        ):
++            if marker not in page:
++                errors.append(
++                    f"discovery page missing boundary marker: {marker}"
++                )
++
++        for html in (
++            "index.html",
++            "platform.html",
++            "maintenance.html",
++        ):
++            body = read(root, html)
++            if 'data-release="222"' not in body:
++                errors.append(
++                    f"{html} does not expose data-release 222"
++                )
++            if "discovery.html" not in body:
++                errors.append(
++                    f"{html} does not link to Discovery Workspace"
++                )
++
++        if "homeDiscoveryLenses" not in read(root, "index.html"):
++            errors.append(
++                "homepage discovery composition host is missing"
++            )
++
++        maintenance_module = read(
++            root,
++            "assets/js/maintenance-centre.mjs"
++        )
++        if "export const RELEASE = 222;" not in maintenance_module:
++            errors.append(
++                "maintenance module did not advance to 222"
++            )
++
++        checks_registry = maintenance.get("checks", [])
++        if len(checks_registry) != 8:
++            errors.append(
++                "maintenance registry must contain eight checks"
++            )
++        if not any(
++            item.get("path") == "/discovery.html"
++            for item in checks_registry
++        ):
++            errors.append(
++                "maintenance registry does not check discovery page"
++            )
++
++        smoke = read(root, "tools/production_smoke.py")
++        for marker in (
++            'data-release="222"',
++            "const RELEASE = '222';",
++            "/discovery.html",
++            "export const RELEASE = 222",
++            "discovery-lenses.json",
++            "manifest-release-222.json",
++            "release-222-production-smoke.json",
++        ):
++            if marker not in smoke:
++                errors.append(
++                    f"production smoke missing marker: {marker}"
++                )
++
++        for workflow in (
++            ".github/workflows/static-site-integrity.yml",
++            ".github/workflows/production-smoke.yml",
++        ):
++            text = read(root, workflow)
++            if "222" not in text or "release-222-" not in text:
++                errors.append(
++                    f"{workflow} has stale release identity"
++                )
++
++        if not args.package_mode:
++            for relative in (
++                "data/navigation-sections.json",
++                "explore.html",
++                "assets/js/explore-navigation.js",
++                "tools/site_audit.py",
++                "tests/knowledge-graph-explorer.test.mjs",
++                "tests/audio-history.test.mjs",
++                "tests/print-support.test.mjs",
++                "tests/accessibility-preferences.test.mjs",
++                "tests/reading-list.test.mjs",
++                "tests/search-facets.test.mjs",
++            ):
++                if not (root / relative).is_file():
++                    errors.append(
++                        f"repository mode requires {relative}"
++                    )
++
++    report = {
++        "release": 222,
++        "base_commit": BASE_COMMIT,
++        "mode": "package" if args.package_mode else "repository",
++        "status": "FAIL" if errors else "PASS",
++        "errors": errors,
++        "checks": checks,
++        "github_actions": "NOT_RUN",
++        "deployed_production": "NOT_RUN",
++    }
++    report_path = (
++        args.report
++        if args.report.is_absolute()
++        else root / args.report
++    )
++    report_path.parent.mkdir(parents=True, exist_ok=True)
++    report_path.write_text(
++        json.dumps(report, ensure_ascii=False, indent=2) + "\n",
++        encoding="utf-8"
++    )
++    print(json.dumps(report, ensure_ascii=False, indent=2))
++    return 1 if errors else 0
++
++if __name__ == "__main__":
++    sys.exit(main())
+diff --git a/.github/workflows/static-site-integrity.yml b/.github/workflows/static-site-integrity.yml
+--- a/.github/workflows/static-site-integrity.yml
++++ b/.github/workflows/static-site-integrity.yml
+@@ -1,4 +1,4 @@
+-name: Release 221 Static Site Integrity
++name: Release 222 Static Site Integrity
+ 
+ on:
+   push:
+@@ -12,7 +12,7 @@
+ 
+ jobs:
+   integrity:
+-    name: Release 221 repository validation
++    name: Release 222 repository validation
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repository
+@@ -28,11 +28,12 @@
+         with:
+           node-version: "20"
+ 
+-      - name: Validate Release 221 identities and maintenance boundaries
+-        run: python tools/release_221_validate.py --root . --report artifacts/release-221-overlay-validation.json
++      - name: Validate Release 222 identities and discovery boundaries
++        run: python tools/release_222_validate.py --root . --report artifacts/release-222-overlay-validation.json
+ 
+       - name: Check browser modules
+         run: |
++          node --check assets/js/discovery-workspace.mjs
+           node --check assets/js/maintenance-centre.mjs
+           node --check assets/js/knowledge-graph-explorer.mjs
+           node --check assets/js/audio-history.mjs
+@@ -43,18 +44,18 @@
+           node --check assets/js/pwa-register.js
+ 
+       - name: Run browser-local feature unit tests
+-        run: node --test tests/maintenance-centre.test.mjs tests/knowledge-graph-explorer.test.mjs tests/audio-history.test.mjs tests/print-support.test.mjs tests/accessibility-preferences.test.mjs tests/reading-list.test.mjs tests/search-facets.test.mjs
++        run: node --test tests/discovery-workspace.test.mjs tests/maintenance-centre.test.mjs tests/knowledge-graph-explorer.test.mjs tests/audio-history.test.mjs tests/print-support.test.mjs tests/accessibility-preferences.test.mjs tests/reading-list.test.mjs tests/search-facets.test.mjs
+ 
+       - name: Run site-audit unit tests
+         run: python -m unittest discover -s tests -p 'test_site_audit.py'
+ 
+       - name: Run repository-wide static audit
+-        run: python tools/site_audit.py --root . --json-report artifacts/release-221-site-audit.json --markdown-report artifacts/release-221-site-audit.md
++        run: python tools/site_audit.py --root . --json-report artifacts/release-222-site-audit.json --markdown-report artifacts/release-222-site-audit.md
+ 
+-      - name: Upload Release 221 integrity evidence
++      - name: Upload Release 222 integrity evidence
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+-          name: release-221-static-integrity-${{ github.sha }}
++          name: release-222-static-integrity-${{ github.sha }}
+           path: artifacts/
+           if-no-files-found: error
+diff --git a/.github/workflows/production-smoke.yml b/.github/workflows/production-smoke.yml
+--- a/.github/workflows/production-smoke.yml
++++ b/.github/workflows/production-smoke.yml
+@@ -1,4 +1,4 @@
+-name: Release 221 Production Smoke
++name: Release 222 Production Smoke
+ 
+ on:
+   push:
+@@ -11,12 +11,12 @@
+   contents: read
+ 
+ concurrency:
+-  group: release-221-production-smoke
++  group: release-222-production-smoke
+   cancel-in-progress: true
+ 
+ jobs:
+   smoke:
+-    name: Observe deployed Release 221
++    name: Observe deployed Release 222
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repository
+@@ -32,12 +32,12 @@
+         run: sleep 90
+ 
+       - name: Run deployed production smoke checks
+-        run: python tools/production_smoke.py --retries 18 --delay 20 --report artifacts/release-221-production-smoke.json
++        run: python tools/production_smoke.py --retries 18 --delay 20 --report artifacts/release-222-production-smoke.json
+ 
+-      - name: Upload Release 221 production evidence
++      - name: Upload Release 222 production evidence
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+-          name: release-221-production-smoke-${{ github.sha }}
+-          path: artifacts/release-221-production-smoke.json
++          name: release-222-production-smoke-${{ github.sha }}
++          path: artifacts/release-222-production-smoke.json
+           if-no-files-found: error
+diff --git a/manifest-release-222.json b/manifest-release-222.json
+new file mode 100644
+--- /dev/null
++++ b/manifest-release-222.json
+@@ -0,0 +1,63 @@
++{
++  "project": "OmSaravanaBhava",
++  "release": 222,
++  "name": "Premium Desktop Discovery Workspace",
++  "base_commit": "99d62afcdd8ea5ccc8dd9170b98f9d0e4942e8f4",
++  "generated": "2026-07-14",
++  "required_commit_title": "Release 222: add premium desktop discovery workspace",
++  "validation_status": "LOCAL_PACKAGE_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
++  "production_files": [
++    "discovery.html",
++    "assets/css/discovery-workspace.css",
++    "assets/js/discovery-workspace.mjs",
++    "data/discovery-lenses.json",
++    "index.html",
++    "platform.html",
++    "maintenance.html",
++    "assets/js/maintenance-centre.mjs",
++    "data/maintenance-checks.json",
++    "data/site-routes.json",
++    "sitemap.xml",
++    "service-worker.js"
++  ],
++  "ci_alignment_files": [
++    "quality/site-audit-config.json",
++    "tools/production_smoke.py",
++    "tests/test_site_audit.py",
++    "tests/discovery-workspace.test.mjs",
++    "tests/maintenance-centre.test.mjs",
++    "tools/release_222_validate.py",
++    ".github/workflows/static-site-integrity.yml",
++    ".github/workflows/production-smoke.yml"
++  ],
++  "source_dependencies": {
++    "data/navigation-sections.json": {
++      "included_in_zip": false,
++      "reason": "Existing unmodified structured Explore registry; read at runtime."
++    }
++  },
++  "claims": {
++    "same_origin_json_sources": [
++      "/data/discovery-lenses.json",
++      "/data/navigation-sections.json",
++      "/data/site-routes.json"
++    ],
++    "hard_coded_route_counts": false,
++    "route_counts_derived_at_runtime": true,
++    "draft_routes_excluded": true,
++    "remote_ai": false,
++    "remote_recommendation_service": false,
++    "analytics": false,
++    "personal_profile": false,
++    "desktop_workspace": true,
++    "mobile_responsive": true,
++    "service_worker_release": 222,
++    "new_optional_cache_assets": 5
++  },
++  "limitations": [
++    "Discovery is limited to routes represented in both local registries.",
++    "Counts indicate local registry composition, not complete Murugan coverage.",
++    "Each destination retains its own source and publication boundaries.",
++    "GitHub Actions and deployed production checks remain pending."
++  ]
++}

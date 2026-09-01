@@ -1,0 +1,1 @@
+async function loadIndex(){const r=await fetch('./data/metadata.json');const d=await r.json();const e=document.querySelector('#workMeta');if(e)e.textContent=d.description_ta}document.addEventListener('DOMContentLoaded',loadIndex);

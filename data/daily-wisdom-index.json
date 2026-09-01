@@ -1,0 +1,617 @@
+{
+  "module": "Daily Murugan Wisdom",
+  "count": 47,
+  "items": [
+    {
+      "id": 1,
+      "title": "Daily Murugan Wisdom 01: Vel as Courage",
+      "theme": "Vel as Courage",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Vel as Courage",
+        "daily wisdom",
+        "வேல் துணிவு"
+      ],
+      "url": "daily-wisdom/wisdom-01.html"
+    },
+    {
+      "id": 2,
+      "title": "Daily Murugan Wisdom 02: Six Abodes Reflection",
+      "theme": "Six Abodes Reflection",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Six Abodes Reflection",
+        "daily wisdom",
+        "ஆறுபடை வீடு"
+      ],
+      "url": "daily-wisdom/wisdom-02.html"
+    },
+    {
+      "id": 3,
+      "title": "Daily Murugan Wisdom 03: Morning Discipline",
+      "theme": "Morning Discipline",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Morning Discipline",
+        "daily wisdom",
+        "காலை ஒழுக்கம்"
+      ],
+      "url": "daily-wisdom/wisdom-03.html"
+    },
+    {
+      "id": 4,
+      "title": "Daily Murugan Wisdom 04: Family Harmony",
+      "theme": "Family Harmony",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Family Harmony",
+        "daily wisdom",
+        "குடும்ப அமைதி"
+      ],
+      "url": "daily-wisdom/wisdom-04.html"
+    },
+    {
+      "id": 5,
+      "title": "Daily Murugan Wisdom 05: Learning Without Ego",
+      "theme": "Learning Without Ego",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Learning Without Ego",
+        "daily wisdom",
+        "அறிவு பணிவு"
+      ],
+      "url": "daily-wisdom/wisdom-05.html"
+    },
+    {
+      "id": 6,
+      "title": "Daily Murugan Wisdom 06: Work as Worship",
+      "theme": "Work as Worship",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Work as Worship",
+        "daily wisdom",
+        "கடமை வழிபாடு"
+      ],
+      "url": "daily-wisdom/wisdom-06.html"
+    },
+    {
+      "id": 7,
+      "title": "Daily Murugan Wisdom 07: Patience in Delay",
+      "theme": "Patience in Delay",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Patience in Delay",
+        "daily wisdom",
+        "பொறுமை"
+      ],
+      "url": "daily-wisdom/wisdom-07.html"
+    },
+    {
+      "id": 8,
+      "title": "Daily Murugan Wisdom 08: Clean Speech",
+      "theme": "Clean Speech",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Clean Speech",
+        "daily wisdom",
+        "நல்ல சொல்"
+      ],
+      "url": "daily-wisdom/wisdom-08.html"
+    },
+    {
+      "id": 9,
+      "title": "Daily Murugan Wisdom 09: Temple Mindset",
+      "theme": "Temple Mindset",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Temple Mindset",
+        "daily wisdom",
+        "கோயில் மனம்"
+      ],
+      "url": "daily-wisdom/wisdom-09.html"
+    },
+    {
+      "id": 10,
+      "title": "Daily Murugan Wisdom 10: Service First",
+      "theme": "Service First",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Service First",
+        "daily wisdom",
+        "சேவை"
+      ],
+      "url": "daily-wisdom/wisdom-10.html"
+    },
+    {
+      "id": 11,
+      "title": "Daily Murugan Wisdom 11: Vel as Courage",
+      "theme": "Vel as Courage",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Vel as Courage",
+        "daily wisdom",
+        "வேல் துணிவு"
+      ],
+      "url": "daily-wisdom/wisdom-11.html"
+    },
+    {
+      "id": 12,
+      "title": "Daily Murugan Wisdom 12: Six Abodes Reflection",
+      "theme": "Six Abodes Reflection",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Six Abodes Reflection",
+        "daily wisdom",
+        "ஆறுபடை வீடு"
+      ],
+      "url": "daily-wisdom/wisdom-12.html"
+    },
+    {
+      "id": 13,
+      "title": "Daily Murugan Wisdom 13: Morning Discipline",
+      "theme": "Morning Discipline",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Morning Discipline",
+        "daily wisdom",
+        "காலை ஒழுக்கம்"
+      ],
+      "url": "daily-wisdom/wisdom-13.html"
+    },
+    {
+      "id": 14,
+      "title": "Daily Murugan Wisdom 14: Family Harmony",
+      "theme": "Family Harmony",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Family Harmony",
+        "daily wisdom",
+        "குடும்ப அமைதி"
+      ],
+      "url": "daily-wisdom/wisdom-14.html"
+    },
+    {
+      "id": 15,
+      "title": "Daily Murugan Wisdom 15: Learning Without Ego",
+      "theme": "Learning Without Ego",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Learning Without Ego",
+        "daily wisdom",
+        "அறிவு பணிவு"
+      ],
+      "url": "daily-wisdom/wisdom-15.html"
+    },
+    {
+      "id": 16,
+      "title": "Daily Murugan Wisdom 16: Work as Worship",
+      "theme": "Work as Worship",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Work as Worship",
+        "daily wisdom",
+        "கடமை வழிபாடு"
+      ],
+      "url": "daily-wisdom/wisdom-16.html"
+    },
+    {
+      "id": 17,
+      "title": "Daily Murugan Wisdom 17: Patience in Delay",
+      "theme": "Patience in Delay",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Patience in Delay",
+        "daily wisdom",
+        "பொறுமை"
+      ],
+      "url": "daily-wisdom/wisdom-17.html"
+    },
+    {
+      "id": 18,
+      "title": "Daily Murugan Wisdom 18: Clean Speech",
+      "theme": "Clean Speech",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Clean Speech",
+        "daily wisdom",
+        "நல்ல சொல்"
+      ],
+      "url": "daily-wisdom/wisdom-18.html"
+    },
+    {
+      "id": 19,
+      "title": "Daily Murugan Wisdom 19: Temple Mindset",
+      "theme": "Temple Mindset",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Temple Mindset",
+        "daily wisdom",
+        "கோயில் மனம்"
+      ],
+      "url": "daily-wisdom/wisdom-19.html"
+    },
+    {
+      "id": 20,
+      "title": "Daily Murugan Wisdom 20: Service First",
+      "theme": "Service First",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Service First",
+        "daily wisdom",
+        "சேவை"
+      ],
+      "url": "daily-wisdom/wisdom-20.html"
+    },
+    {
+      "id": 21,
+      "title": "Daily Murugan Wisdom 21: Vel as Courage",
+      "theme": "Vel as Courage",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Vel as Courage",
+        "daily wisdom",
+        "வேல் துணிவு"
+      ],
+      "url": "daily-wisdom/wisdom-21.html"
+    },
+    {
+      "id": 22,
+      "title": "Daily Murugan Wisdom 22: Six Abodes Reflection",
+      "theme": "Six Abodes Reflection",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Six Abodes Reflection",
+        "daily wisdom",
+        "ஆறுபடை வீடு"
+      ],
+      "url": "daily-wisdom/wisdom-22.html"
+    },
+    {
+      "id": 23,
+      "title": "Daily Murugan Wisdom 23: Morning Discipline",
+      "theme": "Morning Discipline",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Morning Discipline",
+        "daily wisdom",
+        "காலை ஒழுக்கம்"
+      ],
+      "url": "daily-wisdom/wisdom-23.html"
+    },
+    {
+      "id": 24,
+      "title": "Daily Murugan Wisdom 24: Family Harmony",
+      "theme": "Family Harmony",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Family Harmony",
+        "daily wisdom",
+        "குடும்ப அமைதி"
+      ],
+      "url": "daily-wisdom/wisdom-24.html"
+    },
+    {
+      "id": 25,
+      "title": "Daily Murugan Wisdom 25: Learning Without Ego",
+      "theme": "Learning Without Ego",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Learning Without Ego",
+        "daily wisdom",
+        "அறிவு பணிவு"
+      ],
+      "url": "daily-wisdom/wisdom-25.html"
+    },
+    {
+      "id": 26,
+      "title": "Daily Murugan Wisdom 26: Work as Worship",
+      "theme": "Work as Worship",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Work as Worship",
+        "daily wisdom",
+        "கடமை வழிபாடு"
+      ],
+      "url": "daily-wisdom/wisdom-26.html"
+    },
+    {
+      "id": 27,
+      "title": "Daily Murugan Wisdom 27: Patience in Delay",
+      "theme": "Patience in Delay",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Patience in Delay",
+        "daily wisdom",
+        "பொறுமை"
+      ],
+      "url": "daily-wisdom/wisdom-27.html"
+    },
+    {
+      "id": 28,
+      "title": "Daily Murugan Wisdom 28: Clean Speech",
+      "theme": "Clean Speech",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Clean Speech",
+        "daily wisdom",
+        "நல்ல சொல்"
+      ],
+      "url": "daily-wisdom/wisdom-28.html"
+    },
+    {
+      "id": 29,
+      "title": "Daily Murugan Wisdom 29: Temple Mindset",
+      "theme": "Temple Mindset",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Temple Mindset",
+        "daily wisdom",
+        "கோயில் மனம்"
+      ],
+      "url": "daily-wisdom/wisdom-29.html"
+    },
+    {
+      "id": 30,
+      "title": "Daily Murugan Wisdom 30: Service First",
+      "theme": "Service First",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Service First",
+        "daily wisdom",
+        "சேவை"
+      ],
+      "url": "daily-wisdom/wisdom-30.html"
+    },
+    {
+      "id": 31,
+      "title": "Daily Murugan Wisdom 31: Vel as Courage",
+      "theme": "Vel as Courage",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Vel as Courage",
+        "daily wisdom",
+        "வேல் துணிவு"
+      ],
+      "url": "daily-wisdom/wisdom-31.html"
+    },
+    {
+      "id": 32,
+      "title": "Daily Murugan Wisdom 32: Six Abodes Reflection",
+      "theme": "Six Abodes Reflection",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Six Abodes Reflection",
+        "daily wisdom",
+        "ஆறுபடை வீடு"
+      ],
+      "url": "daily-wisdom/wisdom-32.html"
+    },
+    {
+      "id": 33,
+      "title": "Daily Murugan Wisdom 33: Morning Discipline",
+      "theme": "Morning Discipline",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Morning Discipline",
+        "daily wisdom",
+        "காலை ஒழுக்கம்"
+      ],
+      "url": "daily-wisdom/wisdom-33.html"
+    },
+    {
+      "id": 34,
+      "title": "Daily Murugan Wisdom 34: Family Harmony",
+      "theme": "Family Harmony",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Family Harmony",
+        "daily wisdom",
+        "குடும்ப அமைதி"
+      ],
+      "url": "daily-wisdom/wisdom-34.html"
+    },
+    {
+      "id": 35,
+      "title": "Daily Murugan Wisdom 35: Learning Without Ego",
+      "theme": "Learning Without Ego",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Learning Without Ego",
+        "daily wisdom",
+        "அறிவு பணிவு"
+      ],
+      "url": "daily-wisdom/wisdom-35.html"
+    },
+    {
+      "id": 36,
+      "title": "Daily Murugan Wisdom 36: Work as Worship",
+      "theme": "Work as Worship",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Work as Worship",
+        "daily wisdom",
+        "கடமை வழிபாடு"
+      ],
+      "url": "daily-wisdom/wisdom-36.html"
+    },
+    {
+      "id": 37,
+      "title": "Daily Murugan Wisdom 37: Patience in Delay",
+      "theme": "Patience in Delay",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Patience in Delay",
+        "daily wisdom",
+        "பொறுமை"
+      ],
+      "url": "daily-wisdom/wisdom-37.html"
+    },
+    {
+      "id": 38,
+      "title": "Daily Murugan Wisdom 38: Clean Speech",
+      "theme": "Clean Speech",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Clean Speech",
+        "daily wisdom",
+        "நல்ல சொல்"
+      ],
+      "url": "daily-wisdom/wisdom-38.html"
+    },
+    {
+      "id": 39,
+      "title": "Daily Murugan Wisdom 39: Temple Mindset",
+      "theme": "Temple Mindset",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Temple Mindset",
+        "daily wisdom",
+        "கோயில் மனம்"
+      ],
+      "url": "daily-wisdom/wisdom-39.html"
+    },
+    {
+      "id": 40,
+      "title": "Daily Murugan Wisdom 40: Service First",
+      "theme": "Service First",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Service First",
+        "daily wisdom",
+        "சேவை"
+      ],
+      "url": "daily-wisdom/wisdom-40.html"
+    },
+    {
+      "id": 41,
+      "title": "Daily Murugan Wisdom 41: Vel as Courage",
+      "theme": "Vel as Courage",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Vel as Courage",
+        "daily wisdom",
+        "வேல் துணிவு"
+      ],
+      "url": "daily-wisdom/wisdom-41.html"
+    },
+    {
+      "id": 42,
+      "title": "Daily Murugan Wisdom 42: Six Abodes Reflection",
+      "theme": "Six Abodes Reflection",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Six Abodes Reflection",
+        "daily wisdom",
+        "ஆறுபடை வீடு"
+      ],
+      "url": "daily-wisdom/wisdom-42.html"
+    },
+    {
+      "id": 43,
+      "title": "Daily Murugan Wisdom 43: Morning Discipline",
+      "theme": "Morning Discipline",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Morning Discipline",
+        "daily wisdom",
+        "காலை ஒழுக்கம்"
+      ],
+      "url": "daily-wisdom/wisdom-43.html"
+    },
+    {
+      "id": 44,
+      "title": "Daily Murugan Wisdom 44: Family Harmony",
+      "theme": "Family Harmony",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Family Harmony",
+        "daily wisdom",
+        "குடும்ப அமைதி"
+      ],
+      "url": "daily-wisdom/wisdom-44.html"
+    },
+    {
+      "id": 45,
+      "title": "Daily Murugan Wisdom 45: Learning Without Ego",
+      "theme": "Learning Without Ego",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Learning Without Ego",
+        "daily wisdom",
+        "அறிவு பணிவு"
+      ],
+      "url": "daily-wisdom/wisdom-45.html"
+    },
+    {
+      "id": 46,
+      "title": "Daily Murugan Wisdom 46: Work as Worship",
+      "theme": "Work as Worship",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Work as Worship",
+        "daily wisdom",
+        "கடமை வழிபாடு"
+      ],
+      "url": "daily-wisdom/wisdom-46.html"
+    },
+    {
+      "id": 47,
+      "title": "Daily Murugan Wisdom 47: Patience in Delay",
+      "theme": "Patience in Delay",
+      "readingTime": "3 min",
+      "keywords": [
+        "Murugan",
+        "Patience in Delay",
+        "daily wisdom",
+        "பொறுமை"
+      ],
+      "url": "daily-wisdom/wisdom-47.html"
+    }
+  ]
+}

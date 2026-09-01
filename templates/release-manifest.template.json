@@ -1,0 +1,27 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 0,
+  "name": "Replace with release name",
+  "base_commit": "0000000000000000000000000000000000000000",
+  "base_release": 0,
+  "generated": "YYYY-MM-DD",
+  "required_commit_title": "Release N: concise imperative objective",
+  "validation_status": "LOCAL_VALIDATION_NOT_RUN",
+  "production_objective": "Describe one coherent production or governance objective.",
+  "added_files": [],
+  "modified_files": [],
+  "deleted_files": [],
+  "new_browser_storage_key": false,
+  "content_changes": false,
+  "validation_results": {
+    "local_package": "NOT_RUN",
+    "node_tests": "NOT_RUN",
+    "python_tests": "NOT_RUN",
+    "patch_check": "NOT_RUN",
+    "github_actions": "NOT_RUN",
+    "deployed_production": "NOT_RUN"
+  },
+  "known_limitations": [
+    "Document all boundaries and checks that cannot run locally."
+  ]
+}

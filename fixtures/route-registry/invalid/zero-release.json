@@ -1,0 +1,122 @@
+{
+  "release": 0,
+  "generated": "2026-07-15",
+  "baseCommit": "2cec1d02d81aa3251da131667fabd4d24a98147a",
+  "title": "Canonical Literature Publication Status Policy",
+  "scope": "Canonical publication-status overlay for audited literature routes.",
+  "statusVocabulary": {
+    "partial-reviewed": "A bounded reviewed extract is available; the complete work is not claimed.",
+    "source-register": "Bibliographic, structural or authorship information is available without verified complete verse text.",
+    "navigation": "The page is a route or section navigator rather than a complete reading edition."
+  },
+  "records": [
+    {
+      "route": "/literature/kandar-anubhuti.html",
+      "titleTa": "கந்தர் அனுபூதி",
+      "titleEn": "Kandar Anubhuti",
+      "declaredRouteStatus": "published",
+      "verifiedStatus": "partial-reviewed",
+      "sourceDataPath": "/data/kandar-anubhuti.json",
+      "pageRobots": "noindex,follow",
+      "fullTextPublished": false,
+      "readingEligible": true,
+      "contentScope": "Opening protection verse and verse 1 only.",
+      "evidenceMarker": "only the opening protection verse and verse 1"
+    },
+    {
+      "route": "/literature/kandar-alangaram.html",
+      "titleTa": "கந்தர் அலங்காரம்",
+      "titleEn": "Kandar Alangaram",
+      "declaredRouteStatus": "published",
+      "verifiedStatus": "source-register",
+      "sourceDataPath": "/data/kandar-alangaram.json",
+      "pageRobots": "noindex,follow",
+      "fullTextPublished": false,
+      "readingEligible": false,
+      "contentScope": "Literary identity register; complete verse edition awaits a verified primary text.",
+      "evidenceMarker": "A complete verse edition awaits a verified primary text"
+    },
+    {
+      "route": "/literature/kandar-andhadhi.html",
+      "titleTa": "கந்தர் அந்தாதி",
+      "titleEn": "Kandar Andhadhi",
+      "declaredRouteStatus": "published",
+      "verifiedStatus": "source-register",
+      "sourceDataPath": "/data/kandar-andhadhi.json",
+      "pageRobots": "noindex,follow",
+      "fullTextPublished": false,
+      "readingEligible": false,
+      "contentScope": "Linked-verse form register; verse text awaits verification.",
+      "evidenceMarker": "will be published only after the original text is verified"
+    },
+    {
+      "route": "/literature/kandar-kalivenba.html",
+      "titleTa": "கந்தர் கலிவெண்பா",
+      "titleEn": "Kandar Kalivenba",
+      "declaredRouteStatus": "published",
+      "verifiedStatus": "source-register",
+      "sourceDataPath": "/data/kandar-kalivenba.json",
+      "pageRobots": "noindex,follow",
+      "fullTextPublished": false,
+      "readingEligible": false,
+      "contentScope": "Authorship and poetic-form register; no complete verified text is claimed.",
+      "evidenceMarker": "registered separately under Kumara Gurupara Swamigal"
+    },
+    {
+      "route": "/literature/shanmuga-kavasam.html",
+      "titleTa": "சண்முக கவசம்",
+      "titleEn": "Shanmuga Kavasam",
+      "declaredRouteStatus": "published",
+      "verifiedStatus": "source-register",
+      "sourceDataPath": "/data/shanmuga-kavasam.json",
+      "pageRobots": "noindex,follow",
+      "fullTextPublished": false,
+      "readingEligible": false,
+      "contentScope": "Work and traditional structure register; complete text withheld pending a redistribution-safe source.",
+      "evidenceMarker": "The complete text is not published"
+    },
+    {
+      "route": "/literature/vel-maaral.html",
+      "titleTa": "வேல் மாறல் மகா மந்திரம்",
+      "titleEn": "Vel Maaral Maha Manthiram",
+      "declaredRouteStatus": "published",
+      "verifiedStatus": "source-register",
+      "sourceDataPath": "/data/vel-maaral.json",
+      "pageRobots": "noindex,follow",
+      "fullTextPublished": false,
+      "readingEligible": false,
+      "contentScope": "Source and structure register; unverified complete text is not published.",
+      "evidenceMarker": "without publishing an unverified complete text"
+    },
+    {
+      "route": "/literature/vel-mayil-virutham.html",
+      "titleTa": "வேல் விருத்தம் · மயில் விருத்தம்",
+      "titleEn": "Vel Virutham and Mayil Virutham",
+      "declaredRouteStatus": "published",
+      "verifiedStatus": "source-register",
+      "sourceDataPath": "/data/vel-mayil-virutham.json",
+      "pageRobots": "noindex,follow",
+      "fullTextPublished": false,
+      "readingEligible": false,
+      "contentScope": "Companion work register without unverified verse text.",
+      "evidenceMarker": "registered without publishing unverified verse text"
+    },
+    {
+      "route": "/literature/thirumurugatruppadai-complete.html",
+      "titleTa": "திருமுருகாற்றுப்படை",
+      "titleEn": "Thirumurugatruppadai Structured Complete-Work Navigator",
+      "declaredRouteStatus": "published",
+      "verifiedStatus": "navigation",
+      "sourceDataPath": "/data/thirumurugatruppadai-sections.json",
+      "pageRobots": "index,follow",
+      "fullTextPublished": false,
+      "readingEligible": false,
+      "contentScope": "Six-section navigator; the page does not reproduce a complete critical text.",
+      "evidenceMarker": "Structured full-work navigator"
+    }
+  ],
+  "limitations": [
+    "Only eight evidence-backed literature routes are reconciled.",
+    "The historical route registry remains a historical snapshot."
+  ]
+}

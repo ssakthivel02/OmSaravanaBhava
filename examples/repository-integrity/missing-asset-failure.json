@@ -1,0 +1,15 @@
+{
+  "status": "FAIL",
+  "tracked_files": 1499,
+  "violation_count": 1,
+  "violations": [
+    {
+      "path": ".release-governance.json",
+      "rule": "missing-governance-asset",
+      "message": "Required governance asset is missing.",
+      "severity": "error"
+    }
+  ],
+  "inventory_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+  "ignored_allowlist": []
+}

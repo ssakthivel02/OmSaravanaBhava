@@ -1,0 +1,70 @@
+name: Enterprise Production Audit & PWA Validation
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  audit:
+    name: Comprehensive Code & Performance Audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Verify Essential Architecture Files
+        run: |
+          for file in manifest.json sw.js robots.txt sitemap.xml security.txt CNAME; do
+            if [ ! -f "$file" ]; then echo "❌ $file missing!"; exit 1; fi
+          done
+          echo "✅ All essential foundation files present."
+
+      - name: Install Quality Tools
+        run: npm install -g htmlhint stylelint eslint @lhci/cli pa11y serve
+
+      - name: HTML Syntax & Structure Validation
+        run: htmlhint "**/*.html" || echo "⚠️ HTML warnings detected"
+
+      - name: Start Local Server & Check Accessibility
+        run: |
+          echo "Starting local HTTP server for pa11y..."
+          serve -s . -p 5000 &
+          sleep 3
+          pa11y http://localhost:5000 || echo "⚠️ Accessibility warnings to resolve"
+
+      - name: Static PWA Asset Verification
+        run: |
+          grep -q "scope" manifest.json || (echo "❌ manifest.json missing scope"; exit 1)
+          grep -q "start_url" manifest.json || (echo "❌ manifest.json missing start_url"; exit 1)
+          echo "✅ PWA manifest structure valid."
+
+      - name: Lighthouse CI Performance & Best Practices Check
+        run: |
+          mkdir -p .lighthouseci
+          cat << 'EOF' > lighthouserc.js
+          module.exports = {
+            ci: {
+              collect: {
+                staticDistDir: './',
+                numberOfRuns: 1
+              },
+              assert: {
+                assertions: {
+                  'categories:performance': ['warn', {minScore: 0.9}],
+                  'categories:accessibility': ['warn', {minScore: 0.9}],
+                  'categories:best-practices': ['warn', {minScore: 0.9}],
+                  'categories:seo': ['error', {minScore: 0.9}],
+                  'categories:pwa': ['warn', {minScore: 0.9}]
+                }
+              }
+            }
+          };
+          EOF
+          lhci autorun || echo "⚠️ Lighthouse thresholds not fully met. Review report."

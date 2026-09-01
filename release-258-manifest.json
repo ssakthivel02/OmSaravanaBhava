@@ -1,0 +1,19 @@
+{
+  "release": "258",
+  "title": "SEO and Structured Discovery",
+  "sequence": 9,
+  "depends_on": "257",
+  "commit_message": "Release 258: add SEO route manifest and structured discovery metadata",
+  "file_count": 9,
+  "files": [
+    "README-RELEASE-258.md",
+    "docs/RELEASE-258-ROLLBACK.md",
+    "docs/RELEASE-258-VALIDATION.md",
+    "docs/SEO-PUBLICATION-GUIDE.md",
+    "release-258-manifest.json",
+    "robots.txt",
+    "scripts/generate-sitemap.py",
+    "seo/routes.json",
+    "seo/temple-jsonld.template.json"
+  ]
+}

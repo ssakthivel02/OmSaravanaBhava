@@ -1,0 +1,21 @@
+{
+  "release": 246,
+  "title": "Visual Recovery and Sacred Temple Experience",
+  "baseline": 245,
+  "files": [
+    "README-RELEASE-246.md",
+    "assets/css/release-246.css",
+    "assets/images/divine-shrine.webp",
+    "assets/images/hero-sunrise.webp",
+    "assets/images/murugan-divine.webp",
+    "assets/images/murugan-peacock.webp",
+    "assets/images/palani-hills.webp",
+    "assets/images/sacred-temple.webp",
+    "assets/images/sunrise-temple.webp",
+    "assets/js/release-246.js",
+    "docs/RELEASE-246-VALIDATION.md",
+    "index.html",
+    "temples.html"
+  ],
+  "notes": "Overlay package. Existing data, route and PWA files are intentionally not deleted."
+}

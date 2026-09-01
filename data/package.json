@@ -1,0 +1,12 @@
+{
+  "batch": 28,
+  "purpose": "safe continuation package",
+  "pages": [
+    "final-website-handoff.html",
+    "other-apps-transition.html",
+    "github-upload-guide.html",
+    "release-freeze.html",
+    "priority-fix-list.html",
+    "tomorrow-work-plan.html"
+  ]
+}

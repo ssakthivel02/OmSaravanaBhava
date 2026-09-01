@@ -1,0 +1,365 @@
+{
+  "release": 214,
+  "generated": "2026-07-14",
+  "name": "Structured Explore Navigation",
+  "scope": "A browser-local information architecture gateway to existing published routes.",
+  "audienceLabels": {
+    "all": "All visitors",
+    "new": "New visitor",
+    "devotee": "Devotee",
+    "learner": "Learner",
+    "researcher": "Researcher"
+  },
+  "limitations": [
+    "This gateway does not certify the completeness or accuracy of every linked page.",
+    "Each destination retains its own source, review and publication status."
+  ],
+  "sections": [
+    {
+      "id": "start",
+      "titleTa": "இங்கே தொடங்குங்கள்",
+      "titleEn": "Start Here",
+      "summary": "Core gateways for new visitors and route discovery.",
+      "audiences": [
+        "all",
+        "new",
+        "devotee",
+        "learner",
+        "researcher"
+      ],
+      "items": [
+        {
+          "path": "/site-directory.html",
+          "titleTa": "தள வழித்தட அட்டவணை",
+          "titleEn": "Site Directory",
+          "description": "Search every public route and review its publication status.",
+          "status": "directory"
+        },
+        {
+          "path": "/platform.html",
+          "titleTa": "தள மையம்",
+          "titleEn": "Platform Hub",
+          "description": "Open the principal knowledge, temple, learning and research modules.",
+          "status": "published"
+        },
+        {
+          "path": "/ai-search.html",
+          "titleTa": "அறிவு தேடல்",
+          "titleEn": "Local Knowledge Search",
+          "description": "Search the published local records without a remote AI service.",
+          "status": "published"
+        },
+        {
+          "path": "/content-status.html",
+          "titleTa": "உள்ளடக்க நிலை",
+          "titleEn": "Content Status",
+          "description": "See verification boundaries and incomplete-content disclosures.",
+          "status": "source-register"
+        }
+      ]
+    },
+    {
+      "id": "devotion",
+      "titleTa": "பக்தி மற்றும் வழிபாடு",
+      "titleEn": "Devotion and Worship",
+      "summary": "Daily devotional, mantra, sloka and festival gateways.",
+      "audiences": [
+        "all",
+        "new",
+        "devotee"
+      ],
+      "items": [
+        {
+          "path": "/daily-devotional.html",
+          "titleTa": "தினசரி பக்தி",
+          "titleEn": "Daily Devotional",
+          "description": "A local daily devotional companion.",
+          "status": "published"
+        },
+        {
+          "path": "/murugan-mantras.html",
+          "titleTa": "முருகன் மந்திரங்கள்",
+          "titleEn": "Murugan Mantras",
+          "description": "Published mantra records with stated source boundaries.",
+          "status": "published"
+        },
+        {
+          "path": "/sloka-library.html",
+          "titleTa": "ஸ்லோக நூலகம்",
+          "titleEn": "Sloka Library",
+          "description": "Browse published prayers and bounded reviewed extracts.",
+          "status": "published"
+        },
+        {
+          "path": "/festivals.html",
+          "titleTa": "முருகன் திருவிழாக்கள்",
+          "titleEn": "Festival Calendar",
+          "description": "Festival guidance that defers exact dates to authoritative calendars.",
+          "status": "published"
+        }
+      ]
+    },
+    {
+      "id": "places",
+      "titleTa": "திருத்தலங்கள் மற்றும் யாத்திரை",
+      "titleEn": "Sacred Places and Pilgrimage",
+      "summary": "Temple, map and travel-planning modules.",
+      "audiences": [
+        "all",
+        "new",
+        "devotee",
+        "researcher"
+      ],
+      "items": [
+        {
+          "path": "/arupadai-veedu.html",
+          "titleTa": "ஆறுபடை வீடு",
+          "titleEn": "Six Sacred Abodes",
+          "description": "Explore the six principal Murugan abodes.",
+          "status": "published"
+        },
+        {
+          "path": "/temple-encyclopedia.html",
+          "titleTa": "திருத்தலக் கலைக்களஞ்சியம்",
+          "titleEn": "Temple Encyclopedia",
+          "description": "Source-aware temple profiles.",
+          "status": "published"
+        },
+        {
+          "path": "/murugan-map.html",
+          "titleTa": "முருகன் வரைபடம்",
+          "titleEn": "Murugan Map Index",
+          "description": "Local map-index records without live tracking.",
+          "status": "published"
+        },
+        {
+          "path": "/pilgrimage-planner.html",
+          "titleTa": "யாத்திரை திட்டமிடல்",
+          "titleEn": "Pilgrimage Planner",
+          "description": "Browser-local planning guidance.",
+          "status": "published"
+        }
+      ]
+    },
+    {
+      "id": "literature",
+      "titleTa": "தமிழ் பக்தி இலக்கியம்",
+      "titleEn": "Tamil Devotional Literature",
+      "summary": "Primary reading routes and clearly bounded editions.",
+      "audiences": [
+        "all",
+        "devotee",
+        "learner",
+        "researcher"
+      ],
+      "items": [
+        {
+          "path": "/thiruppugazh.html",
+          "titleTa": "திருப்புகழ்",
+          "titleEn": "Thiruppugazh Library",
+          "description": "Manually reviewed published song records.",
+          "status": "published"
+        },
+        {
+          "path": "/literature/thirumurugatruppadai-complete.html",
+          "titleTa": "திருமுருகாற்றுப்படை",
+          "titleEn": "Thirumurugatruppadai",
+          "description": "Structured reading route with source limitations disclosed.",
+          "status": "published"
+        },
+        {
+          "path": "/literature/kandar-anubhuti.html",
+          "titleTa": "கந்தர் அனுபூதி",
+          "titleEn": "Kandar Anubhuti",
+          "description": "Published literature route governed by its source record.",
+          "status": "published"
+        },
+        {
+          "path": "/literature/kanda-sashti-kavasam-edition.html",
+          "titleTa": "கந்த சஷ்டி கவசம்",
+          "titleEn": "Kanda Sashti Kavasam Edition",
+          "description": "A bounded edition; completeness must be read from the page.",
+          "status": "partial-reviewed"
+        }
+      ]
+    },
+    {
+      "id": "learning",
+      "titleTa": "கற்றல்",
+      "titleEn": "Learning",
+      "summary": "Structured beginner and advanced learning tools.",
+      "audiences": [
+        "all",
+        "new",
+        "learner"
+      ],
+      "items": [
+        {
+          "path": "/learning-center.html",
+          "titleTa": "கற்றல் மையம்",
+          "titleEn": "Learning Centre",
+          "description": "Entry point for structured learning.",
+          "status": "published"
+        },
+        {
+          "path": "/learning-paths.html",
+          "titleTa": "கற்றல் பாதைகள்",
+          "titleEn": "Learning Paths",
+          "description": "Beginner and advanced study sequences.",
+          "status": "published"
+        },
+        {
+          "path": "/learning-quiz.html",
+          "titleTa": "வினாடி வினா",
+          "titleEn": "Learning Quiz",
+          "description": "Local quiz interactions using published data.",
+          "status": "published"
+        },
+        {
+          "path": "/devotional-dictionary.html",
+          "titleTa": "பக்தி அகராதி",
+          "titleEn": "Devotional Dictionary",
+          "description": "Tamil–English devotional terminology.",
+          "status": "published"
+        }
+      ]
+    },
+    {
+      "id": "knowledge",
+      "titleTa": "அறிவு மற்றும் ஆய்வு",
+      "titleEn": "Knowledge and Research",
+      "summary": "Cross-reference, chronology, graph and research modules.",
+      "audiences": [
+        "all",
+        "learner",
+        "researcher"
+      ],
+      "items": [
+        {
+          "path": "/knowledge-graph-phase-4.html",
+          "titleTa": "அறிவு தொடர்புகள்",
+          "titleEn": "Knowledge Graph Phase 4",
+          "description": "Published local graph relationships.",
+          "status": "published"
+        },
+        {
+          "path": "/cross-references.html",
+          "titleTa": "குறுக்கு மேற்கோள்கள்",
+          "titleEn": "Cross References",
+          "description": "Alias and relationship navigation.",
+          "status": "published"
+        },
+        {
+          "path": "/murugan-timeline-v2.html",
+          "titleTa": "முருகன் காலவரிசை",
+          "titleEn": "Murugan Timeline",
+          "description": "Qualified chronology with filtering.",
+          "status": "published"
+        },
+        {
+          "path": "/research-library.html",
+          "titleTa": "ஆய்வு நூலகம்",
+          "titleEn": "Research Library",
+          "description": "A directory of research-oriented resources.",
+          "status": "published"
+        }
+      ]
+    },
+    {
+      "id": "audio",
+      "titleTa": "ஒலி மற்றும் வாசிப்பு",
+      "titleEn": "Audio and Reading",
+      "summary": "Device read-aloud and locally organised audio metadata.",
+      "audiences": [
+        "all",
+        "new",
+        "devotee",
+        "learner"
+      ],
+      "items": [
+        {
+          "path": "/audio-library.html",
+          "titleTa": "ஒலி நூலகம்",
+          "titleEn": "Audio Library",
+          "description": "Device read-aloud entries; not licensed human recordings.",
+          "status": "published"
+        },
+        {
+          "path": "/audio-collections.html",
+          "titleTa": "ஒலி தொகுப்புகள்",
+          "titleEn": "Audio Collections",
+          "description": "Local audio grouping and metadata.",
+          "status": "published"
+        },
+        {
+          "path": "/audio-albums.html",
+          "titleTa": "ஒலி ஆல்பங்கள்",
+          "titleEn": "Audio Albums",
+          "description": "Album organisation without third-party media bundling.",
+          "status": "published"
+        },
+        {
+          "path": "/literature/vel-maaral.html",
+          "titleTa": "வேல் மாறல்",
+          "titleEn": "Vel Maaral Reader",
+          "description": "Published reading route with device read-aloud support where available.",
+          "status": "published"
+        }
+      ]
+    },
+    {
+      "id": "integrity",
+      "titleTa": "ஆதாரங்கள் மற்றும் வெளிப்படைத்தன்மை",
+      "titleEn": "Sources and Transparency",
+      "summary": "Source registers, privacy, publication and operational boundaries.",
+      "audiences": [
+        "all",
+        "researcher"
+      ],
+      "items": [
+        {
+          "path": "/sources.html",
+          "titleTa": "ஆதாரங்கள்",
+          "titleEn": "Sources and Publication Policy",
+          "description": "Primary publication and attribution policy.",
+          "status": "source-register"
+        },
+        {
+          "path": "/source-catalog.html",
+          "titleTa": "ஆதார அட்டவணை",
+          "titleEn": "Source Catalog",
+          "description": "Structured source records.",
+          "status": "source-register"
+        },
+        {
+          "path": "/publication-history.html",
+          "titleTa": "வெளியீட்டு வரலாறு",
+          "titleEn": "Publication History",
+          "description": "Release and publication checkpoints.",
+          "status": "source-register"
+        },
+        {
+          "path": "/production-audit.html",
+          "titleTa": "தயாரிப்பு தணிக்கை",
+          "titleEn": "Production Audit",
+          "description": "Operational claims and evidence boundaries.",
+          "status": "milestone"
+        },
+        {
+          "path": "/privacy.html",
+          "titleTa": "தனியுரிமை",
+          "titleEn": "Privacy",
+          "description": "Local-storage and privacy controls.",
+          "status": "published"
+        },
+        {
+          "path": "/panchangam-framework.html",
+          "titleTa": "பஞ்சாங்க கட்டமைப்பு",
+          "titleEn": "Panchangam Framework",
+          "description": "Data contract only; no live astronomical computation.",
+          "status": "framework"
+        }
+      ]
+    }
+  ]
+}

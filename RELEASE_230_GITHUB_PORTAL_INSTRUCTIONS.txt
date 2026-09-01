@@ -1,0 +1,86 @@
+Release 230 — GitHub browser upload instructions
+
+Repository:
+https://github.com/ssakthivel02/OmSaravanaBhava
+
+MANDATORY BASE CHECK
+Expected current main HEAD:
+292f9f8b2a481f1aab43db2e75d31ccf0a0ffd81
+
+Do not upload this overlay if main has moved. Stop and compare any newer commit first.
+
+DOWNLOAD AND EXTRACT
+1. Download OmSaravanaBhava-Release-230.zip.
+2. Extract the ZIP completely.
+3. In Windows File Explorer, enable View > Show > Hidden items.
+4. Open the extracted Release 230 folder.
+5. Confirm the hidden .github folder is visible.
+
+UPLOAD
+1. Open the repository main branch.
+2. Select Add file > Upload files.
+3. Drag the CONTENTS of the extracted folder, not the outer folder.
+4. Preserve all repository-relative folders.
+5. Confirm these exact paths appear:
+   content-status.html
+   data/content-status.json
+   data/reading-workspace.json
+   data/publication-boundaries.json
+   assets/css/content-status-audit.css
+   assets/js/content-status-audit.mjs
+   assets/js/reading-workspace-desktop.mjs
+   service-worker.js
+   tests/publication-boundaries.test.mjs
+   tools/release_230_validate.py
+   .github/workflows/release-230-integrity.yml
+   .github/workflows/release-230-production-smoke.yml
+   manifest-release-230.json
+6. Confirm no unexpected deletion is shown.
+7. Confirm data/site-routes.json and sitemap.xml are not uploaded in this release.
+
+COMMIT — IMPORTANT
+Enter this exact title in the SMALL UPPER commit-title field:
+Release 230: enforce literature publication boundaries
+
+Leave the larger commit-description field completely blank.
+
+The previous Release 228 and 229 uploads placed the title in the wrong field, producing “Add files via upload” as the GitHub subject. Do not repeat that mistake.
+
+POST-UPLOAD REPOSITORY CHECKS
+1. Copy the new main HEAD SHA.
+2. Open manifest-release-230.json and confirm base_commit is 292f9f8b2a481f1aab43db2e75d31ccf0a0ffd81.
+3. Confirm content-status.html contains data-release="230".
+4. Confirm data/publication-boundaries.json contains eight unique records.
+5. Confirm data/reading-workspace.json excludes the seven records with readingEligible=false.
+6. Confirm service-worker.js still contains const RELEASE = '228';.
+7. Confirm the four Release 230 precache entries each appear once.
+8. Open the Actions tab.
+9. Confirm “Release 230 Publication Boundary Integrity” passes.
+10. Confirm GitHub Pages deployment passes.
+11. Run or wait for “Release 230 Production Boundary Smoke”.
+12. Do not call Release 230 complete until remote checks pass.
+
+DEPLOYED VERIFICATION
+1. Open https://omsaravanabhava.org/content-status.html in a private window.
+2. Confirm status totals are calculated dynamically.
+3. Confirm eight audited literature records are displayed.
+4. Confirm the audit visibly distinguishes route-registry status from verified page scope.
+5. Confirm Tamil and English search works.
+6. Test All, Registry mismatches, Aligned and Excluded from reading filters.
+7. Confirm each audited page and source-data link opens.
+8. Confirm same-origin marker and robots checks report independently.
+9. Open reading-workspace.html.
+10. Confirm source-register and navigation-only pages are absent.
+11. Confirm Kandar Anubhuti remains available but is labelled partial-reviewed.
+12. Confirm existing progress, notes, collections and plans remain unchanged.
+13. Test mobile, tablet, laptop and wide desktop widths.
+14. Test keyboard focus and 200% browser zoom.
+15. After one online load, test the audit assets offline.
+
+ROLLBACK
+1. Revert the Release 230 commit, or restore the five modified files from 292f9f8b2a481f1aab43db2e75d31ccf0a0ffd81.
+2. Remove only the Release 230 added files listed in RELEASE_230_CHANGED_FILES.txt.
+3. Wait for GitHub Pages deployment.
+4. Request a service-worker update through Maintenance.
+5. Clear transient caches only if required.
+6. Never delete reading progress, notes, reading lists, accessibility preferences, collections, plans or audio history.

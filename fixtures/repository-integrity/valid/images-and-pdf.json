@@ -1,0 +1,8 @@
+{
+  "expectedStatus": "PASS",
+  "paths": [
+    "assets/murugan.webp",
+    "assets/icon.png",
+    "docs/source.pdf"
+  ]
+}

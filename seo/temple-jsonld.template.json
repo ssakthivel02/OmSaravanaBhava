@@ -1,0 +1,12 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "name": "{{name}}",
+  "alternateName": "{{name_ta}}",
+  "address": {
+    "@type": "PostalAddress",
+    "addressRegion": "Tamil Nadu",
+    "addressCountry": "IN"
+  },
+  "url": "{{canonical_url}}"
+}

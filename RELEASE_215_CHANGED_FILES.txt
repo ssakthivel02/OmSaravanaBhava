@@ -1,0 +1,27 @@
+Release 215 — Published-Content Search Facets
+Base commit: 17bd5228f38f6520e8c496fc9cd3924f562de6e2
+
+A  .github/workflows/production-smoke.yml
+A  .github/workflows/static-site-integrity.yml
+A  assets/css/search-facets.css
+A  assets/js/search-facets.mjs
+M  data/site-routes.json
+M  index.html
+A  manifest-release-215.json
+M  platform.html
+M  quality/site-audit-config.json
+A  search-facets.html
+M  service-worker.js
+M  sitemap.xml
+A  tests/search-facets.test.mjs
+M  tests/test_site_audit.py
+M  tools/production_smoke.py
+A  tools/release_215_validate.py
+
+Evidence files included:
+A  RELEASE_215_CHANGED_FILES.txt
+A  RELEASE_215_GITHUB_PORTAL_INSTRUCTIONS.txt
+A  RELEASE_215_LOCAL_TEST_EVIDENCE.txt
+A  RELEASE_215_SHA256SUMS.txt
+A  RELEASE_215_VALIDATION_REPORT.md
+A  RELEASE_215.patch

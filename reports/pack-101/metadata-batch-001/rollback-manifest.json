@@ -1,0 +1,138 @@
+{
+  "pack": 101,
+  "batch": 1,
+  "purpose": "Add missing viewport and description metadata only",
+  "batch_limit": 25,
+  "changed_count": 4,
+  "skipped_count": 21,
+  "changed": [
+    {
+      "path": "ai-assistant-entry.html",
+      "before_sha256": "f80d909819a7db7ef776002a4f1916f62056b29d0f3e9bccf09c00fc34adbf14",
+      "after_sha256": "0b1b7cfbb0adafb78e0ed1851dc7ae7cc46c5b58b91327c3f16643d4572208f2",
+      "added": [
+        "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+        "  <meta name=\"description\" content=\"Explore ai-assistant-entry.html on Om Saravana Bhava, a Tamil and English Lord Murugan devotional knowledge platform.\">"
+      ]
+    },
+    {
+      "path": "animation-showcase.html",
+      "before_sha256": "766238caeceb0f98f2afb12034d8d350fffdddc65210629137a6922d8bc16765",
+      "after_sha256": "06e0890419bb7f4aa93712e76e313dbdd7abe66acc554e9b7e9e0a47fb940010",
+      "added": [
+        "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+        "  <meta name=\"description\" content=\"Explore animation-showcase.html on Om Saravana Bhava, a Tamil and English Lord Murugan devotional knowledge platform.\">"
+      ]
+    },
+    {
+      "path": "audio-player-preview.html",
+      "before_sha256": "bdefe58a59a52c5d0cabde780d1645b807eabeabb9ed89760c08924b7954229b",
+      "after_sha256": "f748a3362306d93a5af4d3da053b77590c60bcba6fc916de4df8080c1dd84b59",
+      "added": [
+        "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+        "  <meta name=\"description\" content=\"Explore audio-player-preview.html on Om Saravana Bhava, a Tamil and English Lord Murugan devotional knowledge platform.\">"
+      ]
+    },
+    {
+      "path": "card-hover-effects.html",
+      "before_sha256": "1a3631a5c45e9c0b34f5747364497e3dfcd9f1af650654348b63d3ef485960e5",
+      "after_sha256": "d6b80727c2c3f4eb92b6f640b61e3bf7671823b8975fdfba6b63e950ad09d978",
+      "added": [
+        "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+        "  <meta name=\"description\" content=\"Explore card-hover-effects.html on Om Saravana Bhava, a Tamil and English Lord Murugan devotional knowledge platform.\">"
+      ]
+    }
+  ],
+  "skipped": [
+    {
+      "path": "crossref/kandar-alangaram-04.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/kandar-alangaram-10.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/kandar-alangaram-16.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/kandar-alangaram-22.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/kandar-alangaram-28.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/kandar-alangaram-34.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/kandar-alangaram-40.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/kandar-alangaram-46.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/kandar-alangaram-52.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/kandar-alangaram-58.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/kandar-anuboothi-03.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/kandar-anuboothi-09.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/kandar-anuboothi-15.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/kandar-anuboothi-21.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/kandar-anuboothi-27.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/kandar-anuboothi-33.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/kandar-anuboothi-39.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/kandar-anuboothi-45.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/kandar-anuboothi-51.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/kandar-anuboothi-57.html",
+      "reason": "no closing head tag"
+    },
+    {
+      "path": "crossref/skanda-purana-05.html",
+      "reason": "no closing head tag"
+    }
+  ],
+  "safety": {
+    "files_deleted": 0,
+    "body_content_changed": false,
+    "main_elements_added": false,
+    "rollback": "Revert the batch commit or restore files identified by before_sha256."
+  }
+}

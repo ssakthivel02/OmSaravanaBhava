@@ -1,0 +1,15 @@
+{
+  "items": [
+    {
+      "type": "venpa",
+      "title": "நேரிசை வெண்பா 1",
+      "href": "venpa-01.html",
+      "snippet": "குன்றம் எறிந்தாய்! குரைகடலில் சூர்தடிந்தாய்!\n      புன்தலைய பூதப்பொரு படையாய் - என்றும்\n         இளையாய்! அழகியாய்! ஏறுஊர்ந்தான் ஏறே!\n            உளையாய்! என் உள்ளத்து உறை."
+    }
+  ],
+  "index_language": [
+    "ta",
+    "en-transliteration"
+  ],
+  "module": "thirumurugatrupadai"
+}

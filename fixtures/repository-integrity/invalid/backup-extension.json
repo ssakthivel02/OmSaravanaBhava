@@ -1,0 +1,6 @@
+{
+  "expectedStatus": "FAIL",
+  "paths": [
+    "config.bak"
+  ]
+}

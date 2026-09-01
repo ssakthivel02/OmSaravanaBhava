@@ -1,0 +1,26 @@
+[
+  {
+    "id": "arupadai-veedu-route",
+    "title": "Arupadai Veedu Pilgrimage",
+    "duration": "5–7 days",
+    "stops": [
+      "palani",
+      "tiruchendur",
+      "swamimalai",
+      "thirupparankundram",
+      "thiruthani",
+      "pazhamudircholai"
+    ],
+    "note": "Plan based on current travel conditions and temple timings."
+  },
+  {
+    "id": "madurai-murugan-route",
+    "title": "Madurai Region Murugan Route",
+    "duration": "1–2 days",
+    "stops": [
+      "thirupparankundram",
+      "pazhamudircholai"
+    ],
+    "note": "Suitable for pilgrims visiting Madurai."
+  }
+]

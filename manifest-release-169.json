@@ -1,0 +1,22 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 169,
+  "name": "Murugan Knowledge Graph Phase 1",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 4,
+  "modified": [
+    "data/search-index.json",
+    "service-worker.js"
+  ],
+  "added": [
+    "data/knowledge-graph.json",
+    "knowledge-graph.html"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Nodes": 7,
+    "Edges": 6
+  }
+}

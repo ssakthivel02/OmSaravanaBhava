@@ -1,0 +1,14 @@
+{
+  "project": "OmSaravanaBhava",
+  "batch": 125,
+  "module": "Content Freshness & Review Scheduling",
+  "record_id": "freshness-045",
+  "status": "repository-data-required",
+  "content_path": "",
+  "content_type": "",
+  "last_verified": "",
+  "review_interval_days": 180,
+  "next_review_due": "",
+  "owner": "",
+  "stale": null
+}

@@ -1,0 +1,15 @@
+Release 155 upload
+
+Prerequisite: Releases 152–154 are confirmed on main.
+
+1. Extract ZIP.
+2. Upload everything inside to repository root.
+3. No extra parent folder.
+4. Upper commit title:
+   Release 155: publish verified Thiruppugazh digital library volume 2
+5. Leave lower description blank.
+6. Commit directly to main.
+
+New pages:
+- thiruppugazh/0011-kanakan-thiral.html
+- thiruppugazh/0014-saruvumpadi.html

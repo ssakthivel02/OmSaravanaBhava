@@ -1,0 +1,19 @@
+{
+  "release": "250C",
+  "title": "Workflow Stabilization and Route Conformance",
+  "sequence": 1,
+  "depends_on": "250B",
+  "commit_message": "Release 250C: stabilize route validation and GitHub workflow reporting",
+  "file_count": 9,
+  "files": [
+    ".github/workflows/release-250c-route-quality.yml",
+    "README-RELEASE-250C.md",
+    "config/published-routes.json",
+    "docs/EMAIL-NOTIFICATION-GUIDE.md",
+    "docs/RELEASE-250C-ROLLBACK.md",
+    "docs/RELEASE-250C-VALIDATION.md",
+    "docs/WORKFLOW-FAILURE-TRIAGE.md",
+    "release-250C-manifest.json",
+    "scripts/check-static-routes.py"
+  ]
+}

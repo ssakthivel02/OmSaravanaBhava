@@ -1,0 +1,51 @@
+{
+  "id": "pazhamudircholai",
+  "titleTa": "பழமுதிர்சோலை முருகன் கோவில்",
+  "titleEn": "Pazhamudircholai Murugan Temple",
+  "district": "Madurai",
+  "state": "Tamil Nadu",
+  "category": "Arupadai Veedu",
+  "summary": "Sacred hill shrine near Azhagar Malai, surrounded by nature.",
+  "shortHistory": "Forest abode of Murugan associated with Valli and Deivanai.",
+  "openingHours": "6:00 AM - 6:00 PM",
+  "festivals": [
+    "Kanda Sashti",
+    "Aadi festival"
+  ],
+  "features": [
+    "Forest shrine",
+    "Valli Deivanai worship",
+    "Nature pilgrimage"
+  ],
+  "location": {
+    "lat": 10.0615,
+    "lng": 78.2128
+  },
+  "tags": [
+    "Arupadai Veedu",
+    "Madurai",
+    "Murugan",
+    "Temple"
+  ],
+  "overview": "Forest abode of Murugan associated with Valli and Deivanai.",
+  "architecture": "Temple architecture combines sacred orientation, mandapa layout, gopuram symbolism, and devotional circulation. This record is provided as a structured starting point and should be expanded with verified source review.",
+  "pilgrimGuide": [
+    "Check current timings before travel",
+    "Carry water for hill temples",
+    "Prefer early morning darshan on festival days",
+    "Respect temple dress and photography rules"
+  ],
+  "howToReach": {
+    "nearestCity": "Madurai",
+    "rail": "Check nearest major railway station before travel",
+    "road": "Accessible by local road routes and buses depending on temple location",
+    "air": "Use nearest regional airport where applicable"
+  },
+  "related": [
+    "palani",
+    "tiruchendur",
+    "swamimalai"
+  ],
+  "verificationStatus": "Needs Review",
+  "lastUpdated": "2026-07-08"
+}

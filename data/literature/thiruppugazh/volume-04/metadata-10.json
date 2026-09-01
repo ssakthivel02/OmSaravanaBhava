@@ -1,0 +1,40 @@
+{
+  "module": "thiruppugazh-volume-04",
+  "batch": 19,
+  "type": "song-metadata",
+  "generated": "2026-07-09",
+  "items": [
+    {
+      "number": 138,
+      "slug": "song-0138",
+      "title_ta": "திருப்புகழ் பாடல் 138",
+      "title_en": "Thiruppugazh Hymn 138",
+      "url": "../../literature/thiruppugazh/volume-04/song-0138.html",
+      "summary_ta": "திருப்புகழ் பாடலுக்கான வாசிப்பு, குறிச்சொல், தல/விழா தொடர்பு மற்றும் AI தேடல் இணைப்பு.",
+      "proofread_status": "Needs Tamil proofread before final devotional-text publication",
+      "keywords": [
+        "திருப்புகழ்",
+        "அருணகிரிநாதர்",
+        "முருகன்",
+        "வேல்",
+        "பக்தி"
+      ]
+    },
+    {
+      "number": 139,
+      "slug": "song-0139",
+      "title_ta": "திருப்புகழ் பாடல் 139",
+      "title_en": "Thiruppugazh Hymn 139",
+      "url": "../../literature/thiruppugazh/volume-04/song-0139.html",
+      "summary_ta": "திருப்புகழ் பாடலுக்கான வாசிப்பு, குறிச்சொல், தல/விழா தொடர்பு மற்றும் AI தேடல் இணைப்பு.",
+      "proofread_status": "Needs Tamil proofread before final devotional-text publication",
+      "keywords": [
+        "திருப்புகழ்",
+        "அருணகிரிநாதர்",
+        "முருகன்",
+        "வேல்",
+        "பக்தி"
+      ]
+    }
+  ]
+}

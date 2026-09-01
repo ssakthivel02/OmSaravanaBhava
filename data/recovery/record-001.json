@@ -1,0 +1,13 @@
+{
+  "project": "OmSaravanaBhava",
+  "batch": 126,
+  "module": "Broken Link, Missing Asset & 404 Recovery",
+  "record_id": "recovery-001",
+  "status": "repository-data-required",
+  "source_path": "",
+  "failure_type": "broken-link-or-missing-asset",
+  "target_path": "",
+  "http_status": null,
+  "fallback_path": "",
+  "repair_status": "pending"
+}

@@ -1,0 +1,28 @@
+Release 218 — Clean Print and PDF Support
+Base commit: 512a2ecccb15c0ef79c5a22fa3afe0c624cb349b
+
+M  .github/workflows/production-smoke.yml
+M  .github/workflows/static-site-integrity.yml
+A  assets/css/print-support.css
+M  assets/js/pwa-register.js
+A  assets/js/print-support.mjs
+M  data/site-routes.json
+M  index.html
+A  manifest-release-218.json
+M  platform.html
+A  print-pdf.html
+M  quality/site-audit-config.json
+M  service-worker.js
+M  sitemap.xml
+A  tests/print-support.test.mjs
+M  tests/test_site_audit.py
+M  tools/production_smoke.py
+A  tools/release_218_validate.py
+
+Evidence files included:
+A  RELEASE_218_CHANGED_FILES.txt
+A  RELEASE_218_GITHUB_PORTAL_INSTRUCTIONS.txt
+A  RELEASE_218_LOCAL_TEST_EVIDENCE.txt
+A  RELEASE_218_SHA256SUMS.txt
+A  RELEASE_218_VALIDATION_REPORT.md
+A  RELEASE_218.patch

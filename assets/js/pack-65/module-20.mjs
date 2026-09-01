@@ -1,0 +1,1 @@
+export const m20={pack:65,ready:true};

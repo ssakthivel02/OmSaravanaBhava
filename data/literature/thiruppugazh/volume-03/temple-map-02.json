@@ -1,0 +1,71 @@
+{
+  "module": "thiruppugazh-volume-03",
+  "batch": "18",
+  "type": "temple-map",
+  "items": [
+    {
+      "song": 89,
+      "slug": "song-0089",
+      "related_temples": [
+        "திருப்பரங்குன்றம்"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 90,
+      "slug": "song-0090",
+      "related_temples": [
+        "திருச்செந்தூர்"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 91,
+      "slug": "song-0091",
+      "related_temples": [
+        "பழனி"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 92,
+      "slug": "song-0092",
+      "related_temples": [
+        "சுவாமிமலை"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 93,
+      "slug": "song-0093",
+      "related_temples": [
+        "திருத்தணி"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 94,
+      "slug": "song-0094",
+      "related_temples": [
+        "பழமுதிர்சோலை"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 95,
+      "slug": "song-0095",
+      "related_temples": [
+        "வயலூர்"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    },
+    {
+      "song": 96,
+      "slug": "song-0096",
+      "related_temples": [
+        "திருவண்ணாமலை"
+      ],
+      "confidence": "thematic_mapping_requires_review"
+    }
+  ]
+}

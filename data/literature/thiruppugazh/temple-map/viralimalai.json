@@ -1,0 +1,13 @@
+{
+  "temple_id": "viralimalai",
+  "temple_name_ta": "விராலிமலை",
+  "literature": "திருப்புகழ்",
+  "mapped_song_range": "Batch 16 foundation mapping",
+  "review_status": "needs_source_cross_reference",
+  "related_song_ids": [
+    "thiruppugazh-009",
+    "thiruppugazh-019",
+    "thiruppugazh-029",
+    "thiruppugazh-039"
+  ]
+}

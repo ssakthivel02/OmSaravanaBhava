@@ -1,0 +1,34 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 155,
+  "name": "Thiruppugazh Digital Library Volume 2",
+  "baseline_github_commit": "02f1578eaba2f35f429ce3153404be8e47de9237",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "new_song_count": 2,
+  "total_published_song_count": 12,
+  "new_song_numbers": [
+    11,
+    14
+  ],
+  "production_file_count": 13,
+  "modified": [
+    "data/content-publication.json",
+    "data/read-aloud-playlist.json",
+    "data/search-index.json",
+    "data/thiruppugazh.json",
+    "service-worker.js",
+    "sitemap.xml",
+    "thiruppugazh.html",
+    "thiruppugazh/0010-karukkum-anjana.html",
+    "thiruppugazh/0012-kadhadarungkayal.html",
+    "thiruppugazh/0013-sandhadham-bandha.html",
+    "thiruppugazh/0015-thadakkai-pangkayam.html"
+  ],
+  "added": [
+    "thiruppugazh/0011-kanakan-thiral.html",
+    "thiruppugazh/0014-saruvumpadi.html"
+  ],
+  "deleted": [],
+  "issues": []
+}

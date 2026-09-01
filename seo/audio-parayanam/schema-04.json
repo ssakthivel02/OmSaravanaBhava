@@ -1,0 +1,7 @@
+{
+  "@context": "https://schema.org",
+  "@type": "AudioObject",
+  "name": "கந்தர் அனுபூதி ஆடியோ",
+  "description": "Verse-by-verse parayanam metadata.",
+  "encodingFormat": "metadata-only"
+}

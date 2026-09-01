@@ -1,0 +1,22 @@
+{
+  "release": 248,
+  "title": "Arupadai Veedu Individual Temple Detail Pages",
+  "depends_on": 247,
+  "files": [
+    "README-RELEASE-248.md",
+    "assets/css/release-248.css",
+    "assets/js/release-248.js",
+    "data/arupadai-veedu.json",
+    "docs/RELEASE-248-VALIDATION.md",
+    "temple-detail.html"
+  ],
+  "routes": [
+    "temple-detail.html?id=tirupparankundram",
+    "temple-detail.html?id=tiruchendur",
+    "temple-detail.html?id=palani",
+    "temple-detail.html?id=swamimalai",
+    "temple-detail.html?id=tiruttani",
+    "temple-detail.html?id=pazhamudircholai"
+  ],
+  "publication_status": "editorial_review_required"
+}

@@ -1,0 +1,128 @@
+{
+  "release": 304,
+  "title": "Performance and Core Web Vitals Gate",
+  "features": [
+    {
+      "title": "Purpose-built interface",
+      "description": "Visual patterns are tailored to this release."
+    },
+    {
+      "title": "Bilingual structured data",
+      "description": "Tamil and English records use explicit schemas."
+    },
+    {
+      "title": "Quality gates",
+      "description": "Validation, deployment and rollback guidance included."
+    }
+  ],
+  "records": [
+    {
+      "id": "performance-cwv-gate-01",
+      "title": "Performance and Core Web Vitals Gate Feature 1",
+      "title_ta": "முருகன் தரத் தொகுதி 1",
+      "summary": "Quality-focused Release 304 record 1.",
+      "category": "Experience",
+      "status": "published",
+      "version": "304.1"
+    },
+    {
+      "id": "performance-cwv-gate-02",
+      "title": "Performance and Core Web Vitals Gate Feature 2",
+      "title_ta": "முருகன் தரத் தொகுதி 2",
+      "summary": "Quality-focused Release 304 record 2.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "304.1"
+    },
+    {
+      "id": "performance-cwv-gate-03",
+      "title": "Performance and Core Web Vitals Gate Feature 3",
+      "title_ta": "முருகன் தரத் தொகுதி 3",
+      "summary": "Quality-focused Release 304 record 3.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "304.1"
+    },
+    {
+      "id": "performance-cwv-gate-04",
+      "title": "Performance and Core Web Vitals Gate Feature 4",
+      "title_ta": "முருகன் தரத் தொகுதி 4",
+      "summary": "Quality-focused Release 304 record 4.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "304.1"
+    },
+    {
+      "id": "performance-cwv-gate-05",
+      "title": "Performance and Core Web Vitals Gate Feature 5",
+      "title_ta": "முருகன் தரத் தொகுதி 5",
+      "summary": "Quality-focused Release 304 record 5.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "304.1"
+    },
+    {
+      "id": "performance-cwv-gate-06",
+      "title": "Performance and Core Web Vitals Gate Feature 6",
+      "title_ta": "முருகன் தரத் தொகுதி 6",
+      "summary": "Quality-focused Release 304 record 6.",
+      "category": "Validation",
+      "status": "published",
+      "version": "304.1"
+    },
+    {
+      "id": "performance-cwv-gate-07",
+      "title": "Performance and Core Web Vitals Gate Feature 7",
+      "title_ta": "முருகன் தரத் தொகுதி 7",
+      "summary": "Quality-focused Release 304 record 7.",
+      "category": "Experience",
+      "status": "published",
+      "version": "304.1"
+    },
+    {
+      "id": "performance-cwv-gate-08",
+      "title": "Performance and Core Web Vitals Gate Feature 8",
+      "title_ta": "முருகன் தரத் தொகுதி 8",
+      "summary": "Quality-focused Release 304 record 8.",
+      "category": "Knowledge",
+      "status": "review_required",
+      "version": "304.1"
+    },
+    {
+      "id": "performance-cwv-gate-09",
+      "title": "Performance and Core Web Vitals Gate Feature 9",
+      "title_ta": "முருகன் தரத் தொகுதி 9",
+      "summary": "Quality-focused Release 304 record 9.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "304.1"
+    },
+    {
+      "id": "performance-cwv-gate-10",
+      "title": "Performance and Core Web Vitals Gate Feature 10",
+      "title_ta": "முருகன் தரத் தொகுதி 10",
+      "summary": "Quality-focused Release 304 record 10.",
+      "category": "Editorial",
+      "status": "published",
+      "version": "304.1"
+    },
+    {
+      "id": "performance-cwv-gate-11",
+      "title": "Performance and Core Web Vitals Gate Feature 11",
+      "title_ta": "முருகன் தரத் தொகுதி 11",
+      "summary": "Quality-focused Release 304 record 11.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "304.1"
+    },
+    {
+      "id": "performance-cwv-gate-12",
+      "title": "Performance and Core Web Vitals Gate Feature 12",
+      "title_ta": "முருகன் தரத் தொகுதி 12",
+      "summary": "Quality-focused Release 304 record 12.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "304.1"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "expectedStatus": "PASS",
+  "paths": [
+    ".github/workflows/repository-integrity.yml"
+  ]
+}

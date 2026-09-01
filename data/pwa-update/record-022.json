@@ -1,0 +1,13 @@
+{
+  "project": "OmSaravanaBhava",
+  "batch": 140,
+  "module": "PWA Cache Versioning & Update Recovery",
+  "record_id": "pwa-update-022",
+  "status": "live-evidence-required",
+  "cache_version": "",
+  "asset_manifest": [],
+  "update_strategy": "stale-while-revalidate",
+  "rollback_cache": "",
+  "offline_tested": false,
+  "upgrade_tested": false
+}

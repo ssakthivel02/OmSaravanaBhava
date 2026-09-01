@@ -1,0 +1,66 @@
+Release 227 — GitHub browser upload instructions
+
+Repository:
+https://github.com/ssakthivel02/OmSaravanaBhava
+
+Verified Release 226 base head:
+a241ba10ff7fc319a4347d616e2f0c6bb816cbd7
+
+Required commit title — enter this in the SMALL UPPER FIELD:
+Release 227: add browser-local devotional collections
+
+Leave the large commit-description field blank.
+
+UPLOAD
+1. Download and extract OmSaravanaBhava-Release-227.zip.
+2. Enable Windows View > Show > Hidden items.
+3. Open the extracted package folder.
+4. In GitHub main, select Add file > Upload files.
+5. Drag the CONTENTS of the extracted folder, not the outer folder.
+6. Preserve every directory path.
+7. Confirm these exact paths appear before committing:
+   .github/workflows/static-site-integrity.yml
+   .github/workflows/production-smoke.yml
+   devotional-collections.html
+   assets/css/devotional-collections.css
+   assets/js/devotional-collections.mjs
+   data/devotional-collections.json
+   assets/js/personal-data.mjs
+   data/personal-data-registry.json
+   manifest-release-227.json
+   tools/release_227_validate.py
+8. Enter the required title in the small upper field.
+9. Leave the large description field completely blank.
+10. Commit directly to main.
+
+POST-COMMIT VERIFICATION
+1. Copy the new main commit SHA.
+2. Confirm service-worker.js contains:
+   const RELEASE = '227';
+3. Open devotional-collections.html.
+4. Create two named collections.
+5. Add eligible Tamil and English routes to both collections.
+6. Confirm duplicate routes cannot be added to the same collection.
+7. Test rename, description edit, move up, move down and remove.
+8. Confirm draft, utility, private, unpublished and archived routes are absent from the route browser.
+9. Confirm stale route references are counted and can be removed explicitly.
+10. Open personal-data.html and confirm six registered datasets are shown.
+11. Export a backup containing collections and validate its JSON structure.
+12. Confirm collection records contain only IDs, names, descriptions, route references and timestamps.
+13. Confirm devotional text, selected text and page-body content are absent.
+14. Confirm data/site-routes.json contains /devotional-collections.html once.
+15. Confirm sitemap.xml contains the Collections URL once.
+16. Open maintenance.html and run Release 227 checks.
+17. Wait for:
+    Release 227 Static Site Integrity
+    Release 227 Production Smoke
+18. Do not proceed to Release 228 until Release 227 is verified.
+
+DO NOT
+- Do not upload only devotional-collections.html.
+- Do not omit hidden .github workflow files.
+- Do not rename an older ZIP.
+- Do not claim cloud collections, recommendations or collaboration.
+- Do not paste devotional page bodies into application-generated collection data.
+- Do not place the release title in the large description field.
+- Do not mark GitHub Actions or production as passed before they run.

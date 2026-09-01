@@ -1,0 +1,15 @@
+test_broken_internal_link_fails (test_site_audit.SiteAuditTests.test_broken_internal_link_fails) ... ok
+test_duplicate_canonical_fails (test_site_audit.SiteAuditTests.test_duplicate_canonical_fails) ... ok
+test_malformed_json_fails (test_site_audit.SiteAuditTests.test_malformed_json_fails) ... ok
+test_missing_precache_target_fails (test_site_audit.SiteAuditTests.test_missing_precache_target_fails) ... ok
+test_route_directory_missing_target_fails (test_site_audit.SiteAuditTests.test_route_directory_missing_target_fails) ... ok
+test_sitemap_route_must_be_in_directory (test_site_audit.SiteAuditTests.test_sitemap_route_must_be_in_directory) ... ok
+test_valid_fixture_passes (test_site_audit.SiteAuditTests.test_valid_fixture_passes) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.066s
+
+OK
+
+Route records: 85
+Release identity: 212

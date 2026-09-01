@@ -1,0 +1,16 @@
+.te-hero{
+  position:relative;
+  min-height:660px;
+  display:grid;
+  align-items:center;
+  padding:clamp(4rem,9vw,8rem) clamp(1.2rem,8vw,8rem);
+  background:linear-gradient(90deg,rgba(5,7,10,.96),rgba(5,7,10,.28)),url("../images/temples/temple-hero.webp") center/cover;
+  overflow:hidden
+}
+.te-hero::after{content:"";position:absolute;inset:auto 0 0;height:180px;background:linear-gradient(transparent,var(--te-bg))}
+.te-hero-copy{position:relative;z-index:2;max-width:790px}
+.te-hero h1{font-size:clamp(3.7rem,8vw,7.4rem);line-height:.92;margin:.4rem 0 1rem}
+.te-hero-copy>p:last-of-type{max-width:700px;color:#eadfce;font-size:1.12rem}
+.te-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.3rem}
+.te-button{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:999px;padding:.82rem 1.1rem;background:var(--te-gold);color:#22170a;text-decoration:none;font-family:system-ui,sans-serif;font-weight:800;cursor:pointer}
+.te-button-secondary{background:rgba(255,255,255,.08);color:#fff;border:1px solid var(--te-line)}

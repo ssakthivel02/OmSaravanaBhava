@@ -1,0 +1,13 @@
+{
+  "project": "OmSaravanaBhava",
+  "batch": 132,
+  "module": "Content Dependency Graph & Impact Analysis",
+  "record_id": "dependencies-025",
+  "status": "repository-evidence-required",
+  "source_path": "",
+  "dependent_paths": [],
+  "dependency_type": "",
+  "change_risk": "unassessed",
+  "impact_summary": "",
+  "validation_status": "pending"
+}

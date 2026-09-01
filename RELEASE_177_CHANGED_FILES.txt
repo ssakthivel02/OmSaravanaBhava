@@ -1,0 +1,4 @@
+data/festival-intelligence.json
+festival-intelligence.html
+service-worker.js
+sitemap.xml

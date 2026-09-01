@@ -1,0 +1,12 @@
+{
+  "batch": 25,
+  "type": "festival-literature-map",
+  "items": [
+    {
+      "festival": "வைகாசி விசாகம்",
+      "work": "கந்தர் அனுபூதி",
+      "relationship": "festival_parayanam_or_devotional_theme",
+      "status": "review_required"
+    }
+  ]
+}

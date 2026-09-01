@@ -1,0 +1,105 @@
+{
+  "id": "tiruchendur",
+  "order": 2,
+  "name": "Tiruchendur",
+  "name_ta": "திருச்செந்தூர்",
+  "district": "Thoothukudi",
+  "state": "Tamil Nadu",
+  "country": "India",
+  "group": "Arupadai Veedu",
+  "theme": "Protection, courage and victory over adversity",
+  "image": "assets/images/temples/tiruchendur.webp",
+  "summary": "Tiruchendur is presented here as part of the Arupadai Veedu devotional journey. Detailed historical, architectural and ritual claims remain subject to source review.",
+  "publication": {
+    "status": "editorial_review_required",
+    "label": "Editorial review required",
+    "note": "Broad identity and devotional navigation are published. Detailed history, legends, dates, rituals and architecture require source verification."
+  },
+  "facts": [
+    {
+      "label": "Temple group",
+      "value": "Arupadai Veedu"
+    },
+    {
+      "label": "District / region",
+      "value": "Thoothukudi"
+    },
+    {
+      "label": "State",
+      "value": "Tamil Nadu"
+    },
+    {
+      "label": "Primary focus",
+      "value": "Protection, courage and victory over adversity"
+    },
+    {
+      "label": "Image type",
+      "value": "Devotional illustration"
+    },
+    {
+      "label": "Content status",
+      "value": "Editorial review required"
+    }
+  ],
+  "gallery": [
+    {
+      "src": "assets/images/temples/tiruchendur.webp",
+      "alt": "Devotional illustration representing Tiruchendur Murugan Temple",
+      "caption": "Devotional temple illustration"
+    },
+    {
+      "src": "assets/images/temples/temple-hero.webp",
+      "alt": "Murugan temple landscape at sunrise",
+      "caption": "Sunrise devotional landscape"
+    },
+    {
+      "src": "assets/images/temples/tiruchendur.webp",
+      "alt": "Temple experience artwork for Tiruchendur",
+      "caption": "Temple journey artwork"
+    }
+  ],
+  "festivals": [
+    {
+      "name": "Skanda Sashti",
+      "status": "source_review_required"
+    },
+    {
+      "name": "Vaikasi Visakam",
+      "status": "source_review_required"
+    },
+    {
+      "name": "Monthly Krithigai",
+      "status": "source_review_required"
+    }
+  ],
+  "related": [
+    {
+      "label": "Thiruppugazh",
+      "href": "thiruppugazh.html"
+    },
+    {
+      "label": "Audio Library",
+      "href": "audio-library.html"
+    },
+    {
+      "label": "Festival Calendar",
+      "href": "festival-calendar.html"
+    },
+    {
+      "label": "Knowledge Graph",
+      "href": "knowledge-graph.html"
+    }
+  ],
+  "seo": {
+    "title": "திருச்செந்தூர் | Tiruchendur Murugan Temple Guide",
+    "description": "Tamil-first devotional guide to Tiruchendur, one of the Arupadai Veedu temples of Lord Murugan."
+  },
+  "keywords": [
+    "Tiruchendur",
+    "திருச்செந்தூர்",
+    "Thoothukudi",
+    "Murugan",
+    "Arupadai Veedu",
+    "Tamil Nadu"
+  ]
+}

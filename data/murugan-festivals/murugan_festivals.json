@@ -1,0 +1,92 @@
+[
+  {
+    "id": "thai-poosam",
+    "titleEn": "Thai Poosam",
+    "titleTa": "தைப்பூசம்",
+    "tamilMonth": "Thai",
+    "type": "Murugan",
+    "summary": "Murugan receives the divine Vel; major pilgrimage and kavadi devotion.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Murugan",
+      "Vel",
+      "Kavadi"
+    ]
+  },
+  {
+    "id": "skanda-sashti",
+    "titleEn": "Skanda Sashti",
+    "titleTa": "ஸ்கந்த சஷ்டி",
+    "tamilMonth": "Aippasi",
+    "type": "Murugan",
+    "summary": "Six-day remembrance of Murugan’s victory over Surapadman.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Sashti",
+      "Soorasamharam"
+    ]
+  },
+  {
+    "id": "vaikasi-visakam",
+    "titleEn": "Vaikasi Visakam",
+    "titleTa": "வைகாசி விசாகம்",
+    "tamilMonth": "Vaikasi",
+    "type": "Murugan",
+    "summary": "Celebrates the divine manifestation of Lord Murugan.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Visakam",
+      "Birth star"
+    ]
+  },
+  {
+    "id": "panguni-uthiram",
+    "titleEn": "Panguni Uthiram",
+    "titleTa": "பங்குனி உத்திரம்",
+    "tamilMonth": "Panguni",
+    "type": "Murugan",
+    "summary": "Sacred day associated with divine marriages and grace.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Uthiram",
+      "Marriage"
+    ]
+  },
+  {
+    "id": "aadi-kiruthigai",
+    "titleEn": "Aadi Kiruthigai",
+    "titleTa": "ஆடி கிருத்திகை",
+    "tamilMonth": "Aadi",
+    "type": "Murugan",
+    "summary": "Important Karthigai star day for Murugan worship.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Karthigai"
+    ]
+  },
+  {
+    "id": "monthly-sashti",
+    "titleEn": "Monthly Sashti",
+    "titleTa": "மாத சஷ்டி",
+    "tamilMonth": "All",
+    "type": "Vratham",
+    "summary": "Monthly Sashti observance for Murugan devotees.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Vratham"
+    ]
+  },
+  {
+    "id": "monthly-karthigai",
+    "titleEn": "Monthly Karthigai",
+    "titleTa": "மாத கார்த்திகை",
+    "tamilMonth": "All",
+    "type": "Vratham",
+    "summary": "Monthly Karthigai star observance.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Deepam",
+      "Murugan"
+    ]
+  }
+]

@@ -1,0 +1,33 @@
+repos:
+  - repo: local
+    hooks:
+      - id: production-baseline
+        name: Production baseline
+        entry: python -B -m tools.production_baseline.validate --root . --mode package
+        language: system
+        pass_filenames: false
+      - id: visual-experience
+        name: Visual experience
+        entry: python -B -m tools.visual_experience.validate --root .
+        language: system
+        pass_filenames: false
+      - id: operations-observability
+        name: Operations observability
+        entry: python -B -m tools.operations_observability.validate --root . --mode package
+        language: system
+        pass_filenames: false
+      - id: deployment-conformance
+        name: Deployment conformance
+        entry: python -B -m tools.deployment_conformance.validate --root .
+        language: system
+        pass_filenames: false
+      - id: repository-hygiene
+        name: Repository hygiene
+        entry: python -B -m tools.repository_hygiene.validate --root .
+        language: system
+        pass_filenames: false
+      - id: repository-integrity
+        name: Repository integrity
+        entry: python -B -m tools.repository_integrity.validate --root .
+        language: system
+        pass_filenames: false

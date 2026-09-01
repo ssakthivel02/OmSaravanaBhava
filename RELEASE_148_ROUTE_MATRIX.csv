@@ -1,0 +1,29 @@
+route,file,title,robots,canonical,h1_count,internal_references_checked,broken_internal_references,json_ld,manifest_link,source_policy_link
+/404.html,404.html,Page not found | Om Saravana Bhava,"noindex,nofollow",,1,17,0,PASS,PASS,PASS
+/ai-search.html,ai-search.html,Search Murugan Knowledge | Om Saravana Bhava,"index,follow",https://omsaravanabhava.org/ai-search.html,1,18,0,PASS,PASS,PASS
+/audio-library.html,audio-library.html,Murugan Audio Library | Om Saravana Bhava,"noindex,follow",https://omsaravanabhava.org/audio-library.html,1,14,0,PASS,PASS,PASS
+/festivals/aadi-krittikai.html,festivals/aadi-krittikai.html,ஆடி கிருத்திகை | Aadi Krittikai,"index,follow",https://omsaravanabhava.org/festivals/aadi-krittikai.html,1,15,0,PASS,PASS,PASS
+/festivals/panguni-uthiram.html,festivals/panguni-uthiram.html,பங்குனி உத்திரம் | Panguni Uthiram,"index,follow",https://omsaravanabhava.org/festivals/panguni-uthiram.html,1,15,0,PASS,PASS,PASS
+/festivals/skanda-sashti.html,festivals/skanda-sashti.html,ஸ்கந்த சஷ்டி | Skanda Sashti,"index,follow",https://omsaravanabhava.org/festivals/skanda-sashti.html,1,15,0,PASS,PASS,PASS
+/festivals/thai-poosam.html,festivals/thai-poosam.html,தைப்பூசம் | Thai Poosam,"index,follow",https://omsaravanabhava.org/festivals/thai-poosam.html,1,15,0,PASS,PASS,PASS
+/festivals.html,festivals.html,Murugan Festival Calendar | Om Saravana Bhava,"index,follow",https://omsaravanabhava.org/festivals.html,1,18,0,PASS,PASS,PASS
+/,index.html,"Om Saravana Bhava | Murugan Temples, Slokas and Festivals","index,follow",https://omsaravanabhava.org/,1,17,0,PASS,PASS,PASS
+/literature/thirumurugatruppadai.html,literature/thirumurugatruppadai.html,திருமுருகாற்றுப்படை | Six Sacred Landscape Cross-Reference,"index,follow",https://omsaravanabhava.org/literature/thirumurugatruppadai.html,1,21,0,PASS,PASS,PASS
+/offline.html,offline.html,Offline | Om Saravana Bhava,"noindex,nofollow",,1,12,0,PASS,PASS,PASS
+/sloka-library.html,sloka-library.html,Murugan Sloka Library | Om Saravana Bhava,"index,follow",https://omsaravanabhava.org/sloka-library.html,1,18,0,PASS,PASS,PASS
+/slokas/kanda-sashti-kavasam.html,slokas/kanda-sashti-kavasam.html,கந்த சஷ்டி கவசம் | Reviewed Opening Extract,"noindex,follow",https://omsaravanabhava.org/slokas/kanda-sashti-kavasam.html,1,23,0,PASS,PASS,PASS
+/slokas/om-saravana-bhava.html,slokas/om-saravana-bhava.html,ஓம் சரவணபவ | Om Saravana Bhava,"index,follow",https://omsaravanabhava.org/slokas/om-saravana-bhava.html,1,15,0,PASS,PASS,PASS
+/slokas/subramanya-gayatri.html,slokas/subramanya-gayatri.html,சுப்பிரமண்ய காயத்ரி | Subramanya Gayatri,"index,follow",https://omsaravanabhava.org/slokas/subramanya-gayatri.html,1,15,0,PASS,PASS,PASS
+/slokas/vel-vel.html,slokas/vel-vel.html,வேல் வேல் முருகா | Vel Vel Muruga,"index,follow",https://omsaravanabhava.org/slokas/vel-vel.html,1,15,0,PASS,PASS,PASS
+/sources.html,sources.html,Sources & Publication Policy | Om Saravana Bhava,"index,follow",https://omsaravanabhava.org/sources.html,1,13,0,PASS,PASS,PASS
+/temples/marudhamalai.html,temples/marudhamalai.html,Marudhamalai Murugan Temple | Om Saravana Bhava,"noindex,follow",https://omsaravanabhava.org/temples/marudhamalai.html,1,18,0,PASS,PASS,PASS
+/temples/palani.html,temples/palani.html,Palani Murugan Temple | Om Saravana Bhava,"index,follow",https://omsaravanabhava.org/temples/palani.html,1,23,0,PASS,PASS,PASS
+/temples/pazhamudircholai.html,temples/pazhamudircholai.html,Pazhamudircholai Murugan Temple | Om Saravana Bhava,"index,follow",https://omsaravanabhava.org/temples/pazhamudircholai.html,1,22,0,PASS,PASS,PASS
+/temples/sikkal.html,temples/sikkal.html,Sikkal Singaravelavar Temple | Om Saravana Bhava,"noindex,follow",https://omsaravanabhava.org/temples/sikkal.html,1,17,0,PASS,PASS,PASS
+/temples/swamimalai.html,temples/swamimalai.html,Swamimalai Murugan Temple | Om Saravana Bhava,"index,follow",https://omsaravanabhava.org/temples/swamimalai.html,1,22,0,PASS,PASS,PASS
+/temples/thiruchendur.html,temples/thiruchendur.html,Thiruchendur Murugan Temple | Om Saravana Bhava,"index,follow",https://omsaravanabhava.org/temples/thiruchendur.html,1,22,0,PASS,PASS,PASS
+/temples/thirupparamkundram.html,temples/thirupparamkundram.html,Thirupparamkundram Murugan Temple | Om Saravana Bhava,"index,follow",https://omsaravanabhava.org/temples/thirupparamkundram.html,1,22,0,PASS,PASS,PASS
+/temples/thiruthani.html,temples/thiruthani.html,Thiruthani Murugan Temple | Om Saravana Bhava,"index,follow",https://omsaravanabhava.org/temples/thiruthani.html,1,22,0,PASS,PASS,PASS
+/temples/vadapalani.html,temples/vadapalani.html,Vadapalani Murugan Temple | Om Saravana Bhava,"noindex,follow",https://omsaravanabhava.org/temples/vadapalani.html,1,18,0,PASS,PASS,PASS
+/temples/vayalur.html,temples/vayalur.html,Vayalur Murugan Temple | Om Saravana Bhava,"noindex,follow",https://omsaravanabhava.org/temples/vayalur.html,1,18,0,PASS,PASS,PASS
+/temples.html,temples.html,Murugan Temple Explorer | Om Saravana Bhava,"index,follow",https://omsaravanabhava.org/temples.html,1,17,0,PASS,PASS,PASS

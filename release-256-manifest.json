@@ -1,0 +1,19 @@
+{
+  "release": "256",
+  "title": "Licensed Gallery Framework",
+  "sequence": 7,
+  "depends_on": "255",
+  "commit_message": "Release 256: add licensed temple gallery framework and metadata controls",
+  "file_count": 9,
+  "files": [
+    "README-RELEASE-256.md",
+    "assets/css/temple-gallery.css",
+    "assets/js/temple-gallery.mjs",
+    "data/gallery/gallery-register.json",
+    "data/schemas/gallery-asset.schema.json",
+    "docs/RELEASE-256-ROLLBACK.md",
+    "docs/RELEASE-256-VALIDATION.md",
+    "release-256-manifest.json",
+    "temple-gallery.html"
+  ]
+}

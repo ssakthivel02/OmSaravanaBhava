@@ -1,0 +1,18 @@
+{
+  "author": "Arunagirinathar",
+  "works": [
+    {
+      "id": "vel-virutham",
+      "titleTa": "வேல் விருத்தம்",
+      "titleEn": "Vel Virutham",
+      "symbol": "Vel"
+    },
+    {
+      "id": "mayil-virutham",
+      "titleTa": "மயில் விருத்தம்",
+      "titleEn": "Mayil Virutham",
+      "symbol": "Peacock"
+    }
+  ],
+  "publicationStatus": "source-register"
+}

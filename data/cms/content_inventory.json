@@ -1,0 +1,32 @@
+[
+  {
+    "area": "Temple details",
+    "count": 11,
+    "status": "Ready",
+    "next": "Expand Tamil descriptions and source links"
+  },
+  {
+    "area": "Sloka reader",
+    "count": 6,
+    "status": "Ready",
+    "next": "Add full canonical text after review"
+  },
+  {
+    "area": "Audio metadata",
+    "count": 12,
+    "status": "Needs Review",
+    "next": "Replace placeholders with licensed/user-owned audio"
+  },
+  {
+    "area": "Knowledge graph",
+    "count": 19,
+    "status": "Ready",
+    "next": "Add more verified relationships"
+  },
+  {
+    "area": "Panchangam",
+    "count": "Static guide",
+    "status": "Needs Review",
+    "next": "Use external calculator or API for exact location data"
+  }
+]

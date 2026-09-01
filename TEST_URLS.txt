@@ -1,0 +1,7 @@
+/index.html
+/index-production-v5.html
+/temples.html
+/temple-details.html?id=vadapalani
+/sloka-reader.html?id=kanda-sashti-kavasam
+/ai-search.html?q=vadapalani
+/festivals.html

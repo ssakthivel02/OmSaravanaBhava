@@ -1,0 +1,88 @@
+--- before/privacy.html
++++ release189/privacy.html
+@@ -0,0 +1,25 @@
++<!doctype html><html lang="ta"><head>
++<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Privacy and Local Preferences | Om Saravana Bhava</title>
++<meta name="description" content="Clear explanation and controls for data stored only in the visitor&#x27;s browser.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/privacy.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++<script defer src="assets/js/privacy-preferences.js"></script>
++</head><body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Digital Murugan heritage platform</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Privacy and Local Preferences</span></p></nav>
++<section class="card"><h1 class="section-title" lang="ta">தனியுரிமை அமைப்புகள்</h1><h2>Privacy and Local Preferences</h2><p>Clear explanation and controls for data stored only in the visitor&#x27;s browser.</p></section>
++<section class="card"><p>No account or server profile is used by these controls.</p></section><section id="privacyPrefs" class="grid"></section>
++</main>
++<footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body></html>--- before/data/privacy-preferences.json
++++ release189/data/privacy-preferences.json
+@@ -0,0 +1,27 @@
++[
++  {
++    "id": "theme",
++    "label": "Dark mode",
++    "storage": "osb-dark"
++  },
++  {
++    "id": "text-size",
++    "label": "Large text",
++    "storage": "osb-text-large"
++  },
++  {
++    "id": "bookmarks",
++    "label": "Bookmarks",
++    "storage": "osb-bookmarks"
++  },
++  {
++    "id": "audio-favourites",
++    "label": "Audio favourites",
++    "storage": "osb-audio-favourites"
++  },
++  {
++    "id": "search-history",
++    "label": "Search history",
++    "storage": "osb-search-history"
++  }
++]
+--- before/assets/js/privacy-preferences.js
++++ release189/assets/js/privacy-preferences.js
+@@ -0,0 +1 @@
++(()=>{'use strict';document.addEventListener('DOMContentLoaded',async()=>{const root=document.getElementById('privacyPrefs');if(!root)return;const data=await fetch('data/privacy-preferences.json').then(r=>r.json());root.innerHTML=data.map(x=>`<article class="card"><h2>${x.label}</h2><p><code>${x.storage}</code></p><button class="btn secondary" data-clear="${x.storage}">Clear local data</button></article>`).join('');document.addEventListener('click',e=>{const b=e.target.closest('[data-clear]');if(!b)return;localStorage.removeItem(b.dataset.clear);b.textContent='Cleared'})})})();--- before/service-worker.js
++++ release189/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '188';
++const RELEASE = '189';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -133,7 +133,10 @@
+   "/data/pilgrimage-planner.json",
+   "/daily-devotional.html",
+   "/data/daily-devotional.json",
+-  "/assets/js/daily-devotional.js"
++  "/assets/js/daily-devotional.js",
++  "/privacy.html",
++  "/data/privacy-preferences.json",
++  "/assets/js/privacy-preferences.js"
+ ];
+ 
+ self.addEventListener('install', event => {
+--- before/sitemap.xml
++++ release189/sitemap.xml
+@@ -223,4 +223,5 @@
+   <url><loc>https://omsaravanabhava.org/learning-quiz.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+   <url><loc>https://omsaravanabhava.org/pilgrimage-planner.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+   <url><loc>https://omsaravanabhava.org/daily-devotional.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
++  <url><loc>https://omsaravanabhava.org/privacy.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+ </urlset>

@@ -1,0 +1,11 @@
+check,result,evidence
+Service-worker version,PASS,osb static/runtime/data v148
+Controlled service-worker update,PASS,New worker waits for user update action
+Bounded runtime cache,PASS,60 runtime entries maximum
+Bounded data cache,PASS,20 JSON entries maximum
+Offline fallback,PASS,offline.html precached
+GitHub Pages 404,PASS,404.html exists and is precached
+Precache integrity,PASS,39 URLs resolved
+Large production assets,PASS,No files above 250 KB
+JavaScript syntax,PASS,"Node syntax check for application, PWA registration and service worker"
+CSS syntax,PASS,tinycss2 stylesheet parse

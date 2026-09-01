@@ -1,0 +1,10 @@
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "Skanda Purana Structured Knowledge Volume 01",
+  "about": [
+    "Skanda Purana",
+    "Murugan"
+  ],
+  "inLanguage": "ta"
+}

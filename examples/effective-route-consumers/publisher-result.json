@@ -1,0 +1,7 @@
+{
+  "baseVerified": true,
+  "changedFiles": 0,
+  "deletions": 14,
+  "tests": "pending",
+  "push": "requires authenticated Git credential"
+}

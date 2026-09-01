@@ -1,0 +1,102 @@
+--- before/audio-albums.html
++++ release196/audio-albums.html
+@@ -0,0 +1,24 @@
++<!doctype html><html lang="ta"><head>
++<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Audio Albums | Om Saravana Bhava</title>
++<meta name="description" content="Album organisation for verified text-to-speech tracks and future licensed recordings.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/audio-albums.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++</head><body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Digital Murugan heritage platform</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Audio Albums</span></p></nav>
++<section class="card"><h1 class="section-title" lang="ta">ஒலி ஆல்பங்கள்</h1><h2>Audio Albums</h2><p>Album organisation for verified text-to-speech tracks and future licensed recordings.</p></section>
++<section class="grid"><article class="card"><h2>Reviewed Kavasam Extracts</h2><p>2 tracks</p><p>Device text-to-speech</p></article><article class="card"><h2>Murugan Mantras</h2><p>2 tracks</p><p>Device text-to-speech</p></article><article class="card"><h2>Thiruppugazh Digital Library — Volume 1</h2><p>10 tracks</p><p>Device text-to-speech</p></article><article class="card"><h2>Thiruppugazh Digital Library — Volumes 1–2</h2><p>2 tracks</p><p>Device text-to-speech</p></article></section>
++</main>
++<footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body></html>--- before/data/audio-albums.json
++++ release196/data/audio-albums.json
+@@ -0,0 +1,46 @@
++[
++  {
++    "id": "reviewed-kavasam-extracts",
++    "title": "Reviewed Kavasam Extracts",
++    "trackIds": [
++      "kanda-sashti-kavasam",
++      "skanda-guru-kavasam"
++    ],
++    "playbackMode": "device-tts"
++  },
++  {
++    "id": "murugan-mantras",
++    "title": "Murugan Mantras",
++    "trackIds": [
++      "kanda-gayatri",
++      "saravanabhava-mantra"
++    ],
++    "playbackMode": "device-tts"
++  },
++  {
++    "id": "thiruppugazh-digital-library-volume-1",
++    "title": "Thiruppugazh Digital Library — Volume 1",
++    "trackIds": [
++      "thiruppugazh-0006",
++      "thiruppugazh-0007",
++      "thiruppugazh-0008",
++      "thiruppugazh-0009",
++      "thiruppugazh-0010",
++      "thiruppugazh-0012",
++      "thiruppugazh-0013",
++      "thiruppugazh-0015",
++      "thiruppugazh-0016",
++      "thiruppugazh-0017"
++    ],
++    "playbackMode": "device-tts"
++  },
++  {
++    "id": "thiruppugazh-digital-library-volumes-1-2",
++    "title": "Thiruppugazh Digital Library — Volumes 1–2",
++    "trackIds": [
++      "thiruppugazh-0011",
++      "thiruppugazh-0014"
++    ],
++    "playbackMode": "device-tts"
++  }
++]
+--- before/service-worker.js
++++ release196/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '195';
++const RELEASE = '196';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -145,7 +145,9 @@
+   "/data/skanda-purana-graph.json",
+   "/temple-research-dashboard.html",
+   "/siddhar-literature.html",
+-  "/data/siddhar-literature-index.json"
++  "/data/siddhar-literature-index.json",
++  "/audio-albums.html",
++  "/data/audio-albums.json"
+ ];
+ 
+ self.addEventListener('install', event => {
+--- before/sitemap.xml
++++ release196/sitemap.xml
+@@ -230,4 +230,5 @@
+   <url><loc>https://omsaravanabhava.org/skanda-purana-graph.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+   <url><loc>https://omsaravanabhava.org/temple-research-dashboard.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+   <url><loc>https://omsaravanabhava.org/siddhar-literature.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
++  <url><loc>https://omsaravanabhava.org/audio-albums.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+ </urlset>

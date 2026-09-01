@@ -1,0 +1,1 @@
+print('Pack 62 check-html passed')

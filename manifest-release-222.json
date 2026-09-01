@@ -1,0 +1,63 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 222,
+  "name": "Premium Desktop Discovery Workspace",
+  "base_commit": "99d62afcdd8ea5ccc8dd9170b98f9d0e4942e8f4",
+  "generated": "2026-07-14",
+  "required_commit_title": "Release 222: add premium desktop discovery workspace",
+  "validation_status": "LOCAL_PACKAGE_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
+  "production_files": [
+    "discovery.html",
+    "assets/css/discovery-workspace.css",
+    "assets/js/discovery-workspace.mjs",
+    "data/discovery-lenses.json",
+    "index.html",
+    "platform.html",
+    "maintenance.html",
+    "assets/js/maintenance-centre.mjs",
+    "data/maintenance-checks.json",
+    "data/site-routes.json",
+    "sitemap.xml",
+    "service-worker.js"
+  ],
+  "ci_alignment_files": [
+    "quality/site-audit-config.json",
+    "tools/production_smoke.py",
+    "tests/test_site_audit.py",
+    "tests/discovery-workspace.test.mjs",
+    "tests/maintenance-centre.test.mjs",
+    "tools/release_222_validate.py",
+    ".github/workflows/static-site-integrity.yml",
+    ".github/workflows/production-smoke.yml"
+  ],
+  "source_dependencies": {
+    "data/navigation-sections.json": {
+      "included_in_zip": false,
+      "reason": "Existing unmodified structured Explore registry; read at runtime."
+    }
+  },
+  "claims": {
+    "same_origin_json_sources": [
+      "/data/discovery-lenses.json",
+      "/data/navigation-sections.json",
+      "/data/site-routes.json"
+    ],
+    "hard_coded_route_counts": false,
+    "route_counts_derived_at_runtime": true,
+    "draft_routes_excluded": true,
+    "remote_ai": false,
+    "remote_recommendation_service": false,
+    "analytics": false,
+    "personal_profile": false,
+    "desktop_workspace": true,
+    "mobile_responsive": true,
+    "service_worker_release": 222,
+    "new_optional_cache_assets": 5
+  },
+  "limitations": [
+    "Discovery is limited to routes represented in both local registries.",
+    "Counts indicate local registry composition, not complete Murugan coverage.",
+    "Each destination retains its own source and publication boundaries.",
+    "GitHub Actions and deployed production checks remain pending."
+  ]
+}

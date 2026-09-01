@@ -1,0 +1,31 @@
+{
+  "release": 231,
+  "generated": "2026-07-15",
+  "baseCommit": "2cec1d02d81aa3251da131667fabd4d24a98147a",
+  "title": "Canonical Literature Publication Status Policy",
+  "scope": "Canonical publication-status overlay for audited literature routes.",
+  "statusVocabulary": {
+    "partial-reviewed": "A bounded reviewed extract is available; the complete work is not claimed.",
+    "source-register": "Bibliographic, structural or authorship information is available without verified complete verse text.",
+    "navigation": "The page is a route or section navigator rather than a complete reading edition."
+  },
+  "records": [
+    {
+      "route": "/literature/kandar-alangaram.html",
+      "titleTa": "கந்தர் அலங்காரம்",
+      "titleEn": "Kandar Alangaram",
+      "declaredRouteStatus": "published",
+      "verifiedStatus": "source-register",
+      "sourceDataPath": "/data/kandar-alangaram.json",
+      "pageRobots": "noindex,follow",
+      "fullTextPublished": false,
+      "readingEligible": false,
+      "contentScope": "Literary identity register; complete verse edition awaits a verified primary text.",
+      "evidenceMarker": "A complete verse edition awaits a verified primary text"
+    }
+  ],
+  "limitations": [
+    "Only eight evidence-backed literature routes are reconciled.",
+    "The historical route registry remains a historical snapshot."
+  ]
+}

@@ -1,0 +1,15 @@
+.github/workflows/static-site-integrity.yml
+.github/workflows/production-smoke.yml
+index.html
+platform.html
+site-directory.html
+data/site-routes.json
+assets/js/site-directory.js
+assets/css/site-directory.css
+sitemap.xml
+service-worker.js
+quality/site-audit-config.json
+tools/site_audit.py
+tools/production_smoke.py
+tests/test_site_audit.py
+manifest-release-212.json

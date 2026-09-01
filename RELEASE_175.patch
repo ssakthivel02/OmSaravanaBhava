@@ -1,0 +1,108 @@
+--- before/siddhar-knowledge-graph.html
++++ release175/siddhar-knowledge-graph.html
+@@ -0,0 +1,24 @@
++<!doctype html><html lang="ta"><head>
++<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Siddhar Knowledge Graph | Om Saravana Bhava</title>
++<meta name="description" content="Phase 1 source-review graph for Siddhars traditionally associated with Murugan traditions.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/siddhar-knowledge-graph.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++</head><body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Digital Murugan knowledge platform</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Siddhar Knowledge Graph</span></p></nav>
++<section class="card"><h1 class="section-title" lang="ta">சித்தர் அறிவுக் கோப்பு</h1><h2>Siddhar Knowledge Graph</h2><p>Phase 1 source-review graph for Siddhars traditionally associated with Murugan traditions.</p></section>
++<section class="grid"><article class="card"><h2>Agastiyar</h2><p>Source-review register</p></article><article class="card"><h2>Bogar</h2><p>Source-review register</p></article><article class="card"><h2>Pulipani</h2><p>Source-review register</p></article><article class="card"><h2>Konganar</h2><p>Source-review register</p></article><article class="card"><h2>Karuvoorar</h2><p>Source-review register</p></article><article class="card"><h2>Pambatti Siddhar</h2><p>Source-review register</p></article></section>
++</main>
++<footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body></html>--- before/data/siddhar-knowledge-graph.json
++++ release175/data/siddhar-knowledge-graph.json
+@@ -0,0 +1,52 @@
++{
++  "nodes": [
++    {
++      "id": "agastiyar",
++      "type": "Siddhar",
++      "labelEn": "Agastiyar"
++    },
++    {
++      "id": "bogar",
++      "type": "Siddhar",
++      "labelEn": "Bogar"
++    },
++    {
++      "id": "pulipani",
++      "type": "Siddhar",
++      "labelEn": "Pulipani"
++    },
++    {
++      "id": "konganar",
++      "type": "Siddhar",
++      "labelEn": "Konganar"
++    },
++    {
++      "id": "karuvoorar",
++      "type": "Siddhar",
++      "labelEn": "Karuvoorar"
++    },
++    {
++      "id": "pambatti-siddhar",
++      "type": "Siddhar",
++      "labelEn": "Pambatti Siddhar"
++    }
++  ],
++  "edges": [
++    {
++      "from": "bogar",
++      "to": "palani",
++      "relation": "traditional-association"
++    },
++    {
++      "from": "pulipani",
++      "to": "palani",
++      "relation": "traditional-association"
++    },
++    {
++      "from": "agastiyar",
++      "to": "murugan",
++      "relation": "devotional-literary-association"
++    }
++  ],
++  "status": "phase-1-register"
++}
+--- before/service-worker.js
++++ release175/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '174';
++const RELEASE = '175';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -105,7 +105,9 @@
+   "/murugan-timeline.html",
+   "/data/murugan-timeline.json",
+   "/temple-encyclopedia.html",
+-  "/data/temple-profiles.json"
++  "/data/temple-profiles.json",
++  "/siddhar-knowledge-graph.html",
++  "/data/siddhar-knowledge-graph.json"
+ ];
+ 
+ self.addEventListener('install', event => {
+--- before/sitemap.xml
++++ release175/sitemap.xml
+@@ -212,4 +212,5 @@
+   <url><loc>https://omsaravanabhava.org/cross-references.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+   <url><loc>https://omsaravanabhava.org/murugan-timeline.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+   <url><loc>https://omsaravanabhava.org/temple-encyclopedia.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
++  <url><loc>https://omsaravanabhava.org/siddhar-knowledge-graph.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+ </urlset>

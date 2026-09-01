@@ -1,0 +1,105 @@
+{
+  "id": "tirupparankundram",
+  "order": 1,
+  "name": "Tirupparankundram",
+  "name_ta": "திருப்பரங்குன்றம்",
+  "district": "Madurai",
+  "state": "Tamil Nadu",
+  "country": "India",
+  "group": "Arupadai Veedu",
+  "theme": "Wisdom, divine union and victory",
+  "image": "assets/images/temples/tirupparankundram.webp",
+  "summary": "Tirupparankundram is presented here as part of the Arupadai Veedu devotional journey. Detailed historical, architectural and ritual claims remain subject to source review.",
+  "publication": {
+    "status": "editorial_review_required",
+    "label": "Editorial review required",
+    "note": "Broad identity and devotional navigation are published. Detailed history, legends, dates, rituals and architecture require source verification."
+  },
+  "facts": [
+    {
+      "label": "Temple group",
+      "value": "Arupadai Veedu"
+    },
+    {
+      "label": "District / region",
+      "value": "Madurai"
+    },
+    {
+      "label": "State",
+      "value": "Tamil Nadu"
+    },
+    {
+      "label": "Primary focus",
+      "value": "Wisdom, divine union and victory"
+    },
+    {
+      "label": "Image type",
+      "value": "Devotional illustration"
+    },
+    {
+      "label": "Content status",
+      "value": "Editorial review required"
+    }
+  ],
+  "gallery": [
+    {
+      "src": "assets/images/temples/tirupparankundram.webp",
+      "alt": "Devotional illustration representing Tirupparankundram Murugan Temple",
+      "caption": "Devotional temple illustration"
+    },
+    {
+      "src": "assets/images/temples/temple-hero.webp",
+      "alt": "Murugan temple landscape at sunrise",
+      "caption": "Sunrise devotional landscape"
+    },
+    {
+      "src": "assets/images/temples/tirupparankundram.webp",
+      "alt": "Temple experience artwork for Tirupparankundram",
+      "caption": "Temple journey artwork"
+    }
+  ],
+  "festivals": [
+    {
+      "name": "Skanda Sashti",
+      "status": "source_review_required"
+    },
+    {
+      "name": "Vaikasi Visakam",
+      "status": "source_review_required"
+    },
+    {
+      "name": "Monthly Krithigai",
+      "status": "source_review_required"
+    }
+  ],
+  "related": [
+    {
+      "label": "Thiruppugazh",
+      "href": "thiruppugazh.html"
+    },
+    {
+      "label": "Audio Library",
+      "href": "audio-library.html"
+    },
+    {
+      "label": "Festival Calendar",
+      "href": "festival-calendar.html"
+    },
+    {
+      "label": "Knowledge Graph",
+      "href": "knowledge-graph.html"
+    }
+  ],
+  "seo": {
+    "title": "திருப்பரங்குன்றம் | Tirupparankundram Murugan Temple Guide",
+    "description": "Tamil-first devotional guide to Tirupparankundram, one of the Arupadai Veedu temples of Lord Murugan."
+  },
+  "keywords": [
+    "Tirupparankundram",
+    "திருப்பரங்குன்றம்",
+    "Madurai",
+    "Murugan",
+    "Arupadai Veedu",
+    "Tamil Nadu"
+  ]
+}

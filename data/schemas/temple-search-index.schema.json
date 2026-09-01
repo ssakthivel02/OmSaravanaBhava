@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "required": [
+    "records"
+  ],
+  "properties": {
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "name_ta",
+          "district",
+          "href"
+        ]
+      }
+    }
+  }
+}

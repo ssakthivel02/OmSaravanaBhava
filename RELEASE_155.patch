@@ -1,0 +1,367 @@
+--- release154/data/content-publication.json
++++ release155/data/content-publication.json
+@@ -1,6 +1,6 @@
+ {
+-  "release": 152,
+-  "generated": "2026-07-11",
++  "release": 155,
++  "generated": "2026-07-13",
+   "states": {
+     "published-source-linked": "Published with an explicit primary-text citation.",
+     "published": "Published record retained from the existing reviewed collection.",
+@@ -31,21 +31,32 @@
+   ],
+   "thiruppugazh": {
+     "collectionRoute": "thiruppugazh.html",
+-    "publishedCount": 10,
++    "publishedCount": 12,
+     "publishedRoutes": [
+       "thiruppugazh/0006-muththaiththaru.html",
+       "thiruppugazh/0007-arukku-mangkaiyar.html",
+       "thiruppugazh/0008-unaith-thinam.html",
+       "thiruppugazh/0009-karuvadaindhu.html",
+       "thiruppugazh/0010-karukkum-anjana.html",
++      "thiruppugazh/0011-kanakan-thiral.html",
+       "thiruppugazh/0012-kadhadarungkayal.html",
+       "thiruppugazh/0013-sandhadham-bandha.html",
++      "thiruppugazh/0014-saruvumpadi.html",
+       "thiruppugazh/0015-thadakkai-pangkayam.html",
+       "thiruppugazh/0016-padhiththa-senchandha.html",
+       "thiruppugazh/0017-poruppurung.html"
+     ],
+     "sourceId": "src-thiruppugazh-valluvar-vallalar-vattam",
+-    "policy": "Only manually checked full Tamil song texts are indexable. OCR-only records remain unpublished."
++    "policy": "Only manually checked full Tamil song texts are indexable. OCR-only records remain unpublished.",
++    "latestVolume": {
++      "release": 155,
++      "volume": 2,
++      "newSongNumbers": [
++        11,
++        14
++      ],
++      "verificationMethod": "Manual normalisation from uploaded source pages 21–22 and 26–27."
++    }
+   },
+   "skandaGuruKavasam": {
+     "route": "slokas/skanda-guru-kavasam.html",
+@@ -59,7 +70,7 @@
+   "readAloudPlayer": {
+     "route": "audio-library.html",
+     "playlistData": "data/read-aloud-playlist.json",
+-    "trackCount": 14,
++    "trackCount": 16,
+     "mode": "device-tts",
+     "mediaSession": "progressive-enhancement",
+     "autoplay": false,
+--- release154/data/read-aloud-playlist.json
++++ release155/data/read-aloud-playlist.json
+@@ -348,5 +348,55 @@
+         "type": "image/png"
+       }
+     ]
++  },
++  {
++    "id": "thiruppugazh-0011",
++    "titleTa": "கனகந்திரள்",
++    "titleEn": "Thiruppugazh 11 · Kanakan Thiral",
++    "artist": "Arunagirinathar",
++    "album": "Thiruppugazh Digital Library — Volumes 1–2",
++    "kind": "Thiruppugazh",
++    "route": "thiruppugazh/0011-kanakan-thiral.html",
++    "speechText": "கனகந்திரள் கின்ற பெருங்கிரி\nதனில்வந்துத கன் தகன் என்றிடு\nகதிர்மிஞ்சிய செண்டை எறிந்திடு கதியோனே\n\nகடமிஞ்சி அநந்த விதம்புணர்\nகவளந்தனை உண்டு வளர்ந்திடு\nகரியின்றுணை என்று பிறந்திடு முருகோனே\n\nபனகந்துயில் கின்ற திறம்புனை\nகடல்முன் புக அடைந்த பரம்பரர்\nபடரும்புயல் என்றவர் அன்புகொள் மருகோனே\n\nபலதுன்பம் உழன்று கலங்கிய\nசிறியன் புலையன் கொலையன் புரி\nபவமின்று கழிந்திட வந்தருள் புரிவாயே\n\nஅனகன் பெயர்நின்றுருளும் திரி\nபுரமுந்திரி வென்றிட இன்புடன்\nஅழலும் தனகுந்திறல் கொண்டவர் புதல்வோனே\n\nஅடல்வந்து முழங்கியிடும் பறை\nடுடுடுண் டுடு டுண் டுடு டுண் டென\nஅதிர்கின்றிட அண்டம் நெரிந்திட வருசூரர்\n\nமனமுந்தழல் சென்றிட அன்றவர்\nஉடலுங்குட லுங்கிழி கொண்டிட\nமயில்மேல் தனில்வந்தருளுங்கன பெரியோனே\n\nமதியுங்கதிரும் தடவும்படி\nஉயர்கின்ற வனங்கள் பொருந்திய\nவளமொன்றுப் பரங்கிரி வந்தருள் பெருமாளே.",
++    "publicationStatus": "published-source-linked",
++    "playbackMode": "device-tts",
++    "recordingRights": "Text-to-speech only; no human performance recording bundled",
++    "artwork": [
++      {
++        "src": "/icons/icon-192.png",
++        "sizes": "192x192",
++        "type": "image/png"
++      },
++      {
++        "src": "/icons/icon-512.png",
++        "sizes": "512x512",
++        "type": "image/png"
++      }
++    ]
++  },
++  {
++    "id": "thiruppugazh-0014",
++    "titleTa": "சருவும்படி",
++    "titleEn": "Thiruppugazh 14 · Saruvumpadi",
++    "artist": "Arunagirinathar",
++    "album": "Thiruppugazh Digital Library — Volumes 1–2",
++    "kind": "Thiruppugazh",
++    "route": "thiruppugazh/0014-saruvumpadi.html",
++    "speechText": "சருவும்படி வந்தனன் இங்கித\nமதனின்றிட அம்புலியும் சுடு\nதழல்கொண்டிட மங்கையர் கண்களின் வசமாகிச்\n\nசயிலங்கொளும் அன்றல் பொருந்திய\nபொழிலின்பயில் தென்றலும் ஒன்றிய\nதடவஞ்சுனை துன்றி எழுந்திட திறமாவே\n\nஇரவும்பகல் அந்தியும் நின்றிடு\nகுயில்வந்திசை தெந்தன என்றிட\nஇருகண்கள் துயின்றிடல் இன்றியும் அயர்வாகி\n\nஇவனெஞ்சு பதன் பதன் என்றிட\nமயல்கொண்டு வருந்திய வஞ்சகன்\nஇனியுன்றன் மலர்ந்தில கும்பதம் அடைவேனோ\n\nதிருவொன்றி விளங்கிய அண்டர்கள்\nமனையின் தயிருண்டவன் எண்டிசை\nதிகழும்புகழ் கொண்டவன் வண்டமிழ் பயில்வோர்பின்\n\nதிரிகின்றவன் மஞ்சுநிறம்புனை\nவேல் மிஞ்சுதிறங்கொள வென்றடல்\nசெயதுங்க முகுந்தன் மகிழ்ந்தருள் முருகோனே\n\nமதியுங்கதிரும் புயலும் தினம்\nமறுகும்படி அண்டம் இலங்கிட\nவளர்கின்ற பரங்கிரி வந்தருள் பெருமாளே.",
++    "publicationStatus": "published-source-linked",
++    "playbackMode": "device-tts",
++    "recordingRights": "Text-to-speech only; no human performance recording bundled",
++    "artwork": [
++      {
++        "src": "/icons/icon-192.png",
++        "sizes": "192x192",
++        "type": "image/png"
++      },
++      {
++        "src": "/icons/icon-512.png",
++        "sizes": "512x512",
++        "type": "image/png"
++      }
++    ]
+   }
+ ]
+--- release154/data/search-index.json
++++ release155/data/search-index.json
+@@ -534,5 +534,33 @@
+       "not-published"
+     ],
+     "status": "source-linked-sections-available"
++  },
++  {
++    "kind": "Thiruppugazh",
++    "id": "0011",
++    "titleTa": "கனகந்திரள்",
++    "titleEn": "Kanakan Thiral",
++    "summary": "திருப்பரங்குன்றம் · A plea for Murugan’s grace amid suffering, praising the son of Shiva and the victorious Lord of fertile Tirupparankundram.",
++    "route": "thiruppugazh/0011-kanakan-thiral.html",
++    "tags": [
++      "Thirupparankundram",
++      "தனதந்தன தந்தன தந்தன",
++      "11"
++    ],
++    "status": "published-source-linked"
++  },
++  {
++    "kind": "Thiruppugazh",
++    "id": "0014",
++    "titleTa": "சருவும்படி",
++    "titleEn": "Saruvumpadi",
++    "summary": "திருப்பரங்குன்றம் · A prayer arising from sleepless longing and worldly entanglement, seeking Murugan’s radiant feet and grace at Tirupparankundram.",
++    "route": "thiruppugazh/0014-saruvumpadi.html",
++    "tags": [
++      "Thirupparankundram",
++      "தனதந்தன தந்தன தந்தன",
++      "14"
++    ],
++    "status": "published-source-linked"
+   }
+ ]
+--- release154/data/thiruppugazh.json
++++ release155/data/thiruppugazh.json
+@@ -100,6 +100,27 @@
+     "templeRoute": "temples/thirupparamkundram.html"
+   },
+   {
++    "number": 11,
++    "slug": "0011-kanakan-thiral",
++    "titleTa": "கனகந்திரள்",
++    "titleEn": "Kanakan Thiral",
++    "venueTa": "திருப்பரங்குன்றம்",
++    "venueEn": "Thirupparankundram",
++    "meterTa": "தனதந்தன தந்தன தந்தன",
++    "sourceHeading": "பாடல் 11 (திருப்பரங்குன்றம்)",
++    "summaryEn": "A plea for Murugan’s grace amid suffering, praising the son of Shiva and the victorious Lord of fertile Tirupparankundram.",
++    "textTa": "கனகந்திரள் கின்ற பெருங்கிரி\nதனில்வந்துத கன் தகன் என்றிடு\nகதிர்மிஞ்சிய செண்டை எறிந்திடு கதியோனே\n\nகடமிஞ்சி அநந்த விதம்புணர்\nகவளந்தனை உண்டு வளர்ந்திடு\nகரியின்றுணை என்று பிறந்திடு முருகோனே\n\nபனகந்துயில் கின்ற திறம்புனை\nகடல்முன் புக அடைந்த பரம்பரர்\nபடரும்புயல் என்றவர் அன்புகொள் மருகோனே\n\nபலதுன்பம் உழன்று கலங்கிய\nசிறியன் புலையன் கொலையன் புரி\nபவமின்று கழிந்திட வந்தருள் புரிவாயே\n\nஅனகன் பெயர்நின்றுருளும் திரி\nபுரமுந்திரி வென்றிட இன்புடன்\nஅழலும் தனகுந்திறல் கொண்டவர் புதல்வோனே\n\nஅடல்வந்து முழங்கியிடும் பறை\nடுடுடுண் டுடு டுண் டுடு டுண் டென\nஅதிர்கின்றிட அண்டம் நெரிந்திட வருசூரர்\n\nமனமுந்தழல் சென்றிட அன்றவர்\nஉடலுங்குட லுங்கிழி கொண்டிட\nமயில்மேல் தனில்வந்தருளுங்கன பெரியோனே\n\nமதியுங்கதிரும் தடவும்படி\nஉயர்கின்ற வனங்கள் பொருந்திய\nவளமொன்றுப் பரங்கிரி வந்தருள் பெருமாளே.",
++    "sourcePages": "21–22",
++    "id": "0011",
++    "author": "அருணகிரிநாதர் / Arunagirinathar",
++    "sourceIds": [
++      "src-thiruppugazh-valluvar-vallalar-vattam"
++    ],
++    "publicationStatus": "published-source-linked",
++    "route": "thiruppugazh/0011-kanakan-thiral.html",
++    "templeRoute": "temples/thirupparamkundram.html"
++  },
++  {
+     "number": 12,
+     "slug": "0012-kadhadarungkayal",
+     "titleTa": "காதடருங்கயல்",
+@@ -140,6 +161,27 @@
+     "templeRoute": "temples/thirupparamkundram.html"
+   },
+   {
++    "number": 14,
++    "slug": "0014-saruvumpadi",
++    "titleTa": "சருவும்படி",
++    "titleEn": "Saruvumpadi",
++    "venueTa": "திருப்பரங்குன்றம்",
++    "venueEn": "Thirupparankundram",
++    "meterTa": "தனதந்தன தந்தன தந்தன",
++    "sourceHeading": "பாடல் 14 (திருப்பரங்குன்றம்)",
++    "summaryEn": "A prayer arising from sleepless longing and worldly entanglement, seeking Murugan’s radiant feet and grace at Tirupparankundram.",
++    "textTa": "சருவும்படி வந்தனன் இங்கித\nமதனின்றிட அம்புலியும் சுடு\nதழல்கொண்டிட மங்கையர் கண்களின் வசமாகிச்\n\nசயிலங்கொளும் அன்றல் பொருந்திய\nபொழிலின்பயில் தென்றலும் ஒன்றிய\nதடவஞ்சுனை துன்றி எழுந்திட திறமாவே\n\nஇரவும்பகல் அந்தியும் நின்றிடு\nகுயில்வந்திசை தெந்தன என்றிட\nஇருகண்கள் துயின்றிடல் இன்றியும் அயர்வாகி\n\nஇவனெஞ்சு பதன் பதன் என்றிட\nமயல்கொண்டு வருந்திய வஞ்சகன்\nஇனியுன்றன் மலர்ந்தில கும்பதம் அடைவேனோ\n\nதிருவொன்றி விளங்கிய அண்டர்கள்\nமனையின் தயிருண்டவன் எண்டிசை\nதிகழும்புகழ் கொண்டவன் வண்டமிழ் பயில்வோர்பின்\n\nதிரிகின்றவன் மஞ்சுநிறம்புனை\nவேல் மிஞ்சுதிறங்கொள வென்றடல்\nசெயதுங்க முகுந்தன் மகிழ்ந்தருள் முருகோனே\n\nமதியுங்கதிரும் புயலும் தினம்\nமறுகும்படி அண்டம் இலங்கிட\nவளர்கின்ற பரங்கிரி வந்தருள் பெருமாளே.",
++    "sourcePages": "26–27",
++    "id": "0014",
++    "author": "அருணகிரிநாதர் / Arunagirinathar",
++    "sourceIds": [
++      "src-thiruppugazh-valluvar-vallalar-vattam"
++    ],
++    "publicationStatus": "published-source-linked",
++    "route": "thiruppugazh/0014-saruvumpadi.html",
++    "templeRoute": "temples/thirupparamkundram.html"
++  },
++  {
+     "number": 15,
+     "slug": "0015-thadakkai-pangkayam",
+     "titleTa": "தடக்கைப் பங்கயம்",
+--- release154/service-worker.js
++++ release155/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '154';
++const RELEASE = '155';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -66,7 +66,9 @@
+   "/assets/js/media-session-player.js",
+   "/data/read-aloud-playlist.json",
+   "/assets/js/advanced-search.js",
+-  "/data/search-index.json"
++  "/data/search-index.json",
++  "/thiruppugazh/0011-kanakan-thiral.html",
++  "/thiruppugazh/0014-saruvumpadi.html"
+ ];
+ 
+ self.addEventListener('install', event => {
+--- release154/sitemap.xml
++++ release155/sitemap.xml
+@@ -192,4 +192,16 @@
+     <changefreq>weekly</changefreq>
+     <priority>0.8</priority>
+   </url>
++  <url>
++    <loc>https://omsaravanabhava.org/thiruppugazh/0011-kanakan-thiral.html</loc>
++    <lastmod>2026-07-13</lastmod>
++    <changefreq>weekly</changefreq>
++    <priority>0.8</priority>
++  </url>
++  <url>
++    <loc>https://omsaravanabhava.org/thiruppugazh/0014-saruvumpadi.html</loc>
++    <lastmod>2026-07-13</lastmod>
++    <changefreq>weekly</changefreq>
++    <priority>0.8</priority>
++  </url>
+ </urlset>
+--- release154/thiruppugazh.html
++++ release155/thiruppugazh.html
+@@ -33,11 +33,11 @@
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="sloka-library.html">Slokas</a> › <span aria-current="page">Thiruppugazh</span></p></nav>
+ <section class="card">
+-<span class="pill">Release 149 · Volume 1</span>
++<span class="pill">Release 155 · Volumes 1–2</span>
+ <h1 class="section-title">திருப்புகழ் மின்னியல் நூலகம்</h1>
+ <h2>Thiruppugazh Digital Library</h2>
+ <p>Read the first verified source-linked Thiruppugazh songs digitised from the user-uploaded Arunagirinathar compilation, with venue and rhythmic metadata.</p>
+-<p><strong>Publication boundary:</strong> This volume contains ten complete Tamil songs that were manually checked. Gaps in song numbering are deliberate; songs that have not completed verification are not published as filler.</p>
++<p><strong>Publication boundary:</strong> This volume contains twelve complete Tamil songs that were manually checked. Gaps in song numbering are deliberate; songs that have not completed verification are not published as filler.</p>
+ <p><a class="btn secondary" href="sources.html#src-thiruppugazh-valluvar-vallalar-vattam">View source record</a></p>
+ </section>
+ <section class="card thiruppugazh-toolbar" aria-label="Thiruppugazh filters">
+--- release154/thiruppugazh/0010-karukkum-anjana.html
++++ release155/thiruppugazh/0010-karukkum-anjana.html
+@@ -82,7 +82,7 @@
+ <article class="card"><h2>Editorial reading guide</h2><p>A plea for release from deceptive attraction, followed by praise of Murugan’s radiant spear and victorious power.</p><p>This is an editorial orientation, not a line-by-line translation.</p></article>
+ <article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 10 (திருப்பரங்குன்றம்)</p><p>The Tamil song text was manually checked before publication. OCR-only material was excluded.</p><p><a class="btn secondary" href="../sources.html#src-thiruppugazh-valluvar-vallalar-vattam">Open source record</a></p></article>
+ </section>
+-<nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0009-karuvadaindhu.html">← கருவடைந்து</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0012-kadhadarungkayal.html">காதடருங்கயல் →</a></nav>
++<nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0009-karuvadaindhu.html">← கருவடைந்து</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0011-kanakan-thiral.html">காதடருங்கயல் →</a></nav>
+ <p><a class="btn player-launch-link" href="../audio-library.html?track=thiruppugazh-0010">▶ Open in read-aloud player</a></p></main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
+--- release154/thiruppugazh/0011-kanakan-thiral.html
++++ release155/thiruppugazh/0011-kanakan-thiral.html
+@@ -0,0 +1,31 @@
++<!doctype html><html lang="ta"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>கனகந்திரள் | Thiruppugazh 11</title><meta name="description" content="Thiruppugazh song 11, Kanakan Thiral, associated with Thirupparankundram; verified Tamil text and source citation."><meta name="robots" content="index,follow"><link rel="canonical" href="https://omsaravanabhava.org/thiruppugazh/0011-kanakan-thiral.html"><link rel="stylesheet" href="../assets/css/osb44.css"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CreativeWork","@id":"https://omsaravanabhava.org/thiruppugazh/0011-kanakan-thiral.html#work","url":"https://omsaravanabhava.org/thiruppugazh/0011-kanakan-thiral.html","name":"Kanakan Thiral","alternateName":"கனகந்திரள்","position":11,"author":{"@type":"Person","name":"Arunagirinathar"},"inLanguage":"ta","genre":"Thiruppugazh","description":"A plea for Murugan’s grace amid suffering, praising the son of Shiva and the victorious Lord of fertile Tirupparankundram.","dateModified":"2026-07-13","isPartOf":{"@type":"CollectionPage","name":"Thiruppugazh Digital Library","url":"https://omsaravanabhava.org/thiruppugazh.html"},"citation":"697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf; பாடல் 11 (திருப்பரங்குன்றம்)"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Thiruppugazh","item":"https://omsaravanabhava.org/thiruppugazh.html"},{"@type":"ListItem","position":3,"name":"Kanakan Thiral","item":"https://omsaravanabhava.org/thiruppugazh/0011-kanakan-thiral.html"}]}]}</script><script defer src="../assets/js/read-aloud.js"></script><link rel="icon" href="../favicon.svg"><meta name="theme-color" content="#a51d17"><link rel="manifest" href="../manifest.json"><script defer src="../assets/js/pwa-register.js"></script></head><body><a href="#main-content" class="skip-link">Skip to main content</a><div class="top">🛕 ஓம் சரவணபவ · Verified Thiruppugazh text</div><nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="../index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="../temples.html">Temples</a><a href="../sloka-library.html">Slokas</a><a href="../thiruppugazh.html">Thiruppugazh</a><a href="../festivals.html">Festivals</a><a href="../ai-search.html">AI Search</a><a href="../audio-library.html">Audio</a></div></div></nav><main id="main-content" class="wrap"><nav aria-label="Breadcrumb"><p><a href="../index.html">Home</a> › <a href="../thiruppugazh.html">Thiruppugazh</a> › <span aria-current="page">Kanakan Thiral</span></p></nav><article class="card"><span class="pill">திருப்புகழ் 11</span><span class="pill">திருப்பரங்குன்றம்</span><h1 class="section-title">கனகந்திரள்</h1><h2>Kanakan Thiral</h2><p><strong>Author:</strong> அருணகிரிநாதர் / Arunagirinathar</p><p><strong>Venue:</strong> <a href="../temples/thirupparamkundram.html">திருப்பரங்குன்றம்</a></p><p><strong>Chanda:</strong> <span lang="ta">தனதந்தன தந்தன தந்தன</span></p><div class="verse" id="readAloudText" lang="ta">கனகந்திரள் கின்ற பெருங்கிரி
++தனில்வந்துத கன் தகன் என்றிடு
++கதிர்மிஞ்சிய செண்டை எறிந்திடு கதியோனே
++
++கடமிஞ்சி அநந்த விதம்புணர்
++கவளந்தனை உண்டு வளர்ந்திடு
++கரியின்றுணை என்று பிறந்திடு முருகோனே
++
++பனகந்துயில் கின்ற திறம்புனை
++கடல்முன் புக அடைந்த பரம்பரர்
++படரும்புயல் என்றவர் அன்புகொள் மருகோனே
++
++பலதுன்பம் உழன்று கலங்கிய
++சிறியன் புலையன் கொலையன் புரி
++பவமின்று கழிந்திட வந்தருள் புரிவாயே
++
++அனகன் பெயர்நின்றுருளும் திரி
++புரமுந்திரி வென்றிட இன்புடன்
++அழலும் தனகுந்திறல் கொண்டவர் புதல்வோனே
++
++அடல்வந்து முழங்கியிடும் பறை
++டுடுடுண் டுடு டுண் டுடு டுண் டென
++அதிர்கின்றிட அண்டம் நெரிந்திட வருசூரர்
++
++மனமுந்தழல் சென்றிட அன்றவர்
++உடலுங்குட லுங்கிழி கொண்டிட
++மயில்மேல் தனில்வந்தருளுங்கன பெரியோனே
++
++மதியுங்கதிரும் தடவும்படி
++உயர்கின்ற வனங்கள் பொருந்திய
++வளமொன்றுப் பரங்கிரி வந்தருள் பெருமாளே.</div><div class="read-aloud-panel" data-read-aloud-target="#readAloudText"><button type="button" class="btn" data-speech-action="play">▶ Tamil read-aloud</button><button type="button" class="btn secondary" data-speech-action="pause">Pause</button><button type="button" class="btn secondary" data-speech-action="stop">Stop</button><p data-speech-status role="status" aria-live="polite">Uses the Tamil voice installed on this device. No recording is downloaded.</p></div></article><section class="grid" style="margin-top:22px"><article class="card"><h2>Editorial reading guide</h2><p>A plea for Murugan’s grace amid suffering, praising the son of Shiva and the victorious Lord of fertile Tirupparankundram.</p><p>This is an editorial orientation, not a line-by-line translation.</p></article><article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 11 (திருப்பரங்குன்றம்)</p><p><strong>Source pages:</strong> 21–22</p><p>The text was manually normalised from the uploaded source pages.</p></article></section><nav class="song-pagination" aria-label="Published sequence"><a class="btn secondary" rel="prev" href="0010-karukkum-anjana.html">← கறுக்கும் அஞ்சன</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0012-kadhadarungkayal.html">காதடருங்கயல் →</a></nav><p><a class="btn player-launch-link" href="../audio-library.html?track=thiruppugazh-0011">▶ Open in read-aloud player</a></p></main><footer>© Om Saravana Bhava · <a href="../sources.html">Sources &amp; publication policy</a></footer></body></html>--- release154/thiruppugazh/0012-kadhadarungkayal.html
++++ release155/thiruppugazh/0012-kadhadarungkayal.html
+@@ -82,7 +82,7 @@
+ <article class="card"><h2>Editorial reading guide</h2><p>A prayer to escape the turbulence of desire and receive Murugan’s ankleted feet as the stable centre of devotion.</p><p>This is an editorial orientation, not a line-by-line translation.</p></article>
+ <article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 12 (திருப்பரங்குன்றம்)</p><p>The Tamil song text was manually checked before publication. OCR-only material was excluded.</p><p><a class="btn secondary" href="../sources.html#src-thiruppugazh-valluvar-vallalar-vattam">Open source record</a></p></article>
+ </section>
+-<nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0010-karukkum-anjana.html">← கறுக்கும் அஞ்சன</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0013-sandhadham-bandha.html">சந்ததம் பந்த →</a></nav>
++<nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0011-kanakan-thiral.html">← கறுக்கும் அஞ்சன</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0013-sandhadham-bandha.html">சந்ததம் பந்த →</a></nav>
+ <p><a class="btn player-launch-link" href="../audio-library.html?track=thiruppugazh-0012">▶ Open in read-aloud player</a></p></main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
+--- release154/thiruppugazh/0013-sandhadham-bandha.html
++++ release155/thiruppugazh/0013-sandhadham-bandha.html
+@@ -62,7 +62,7 @@
+ <article class="card"><h2>Editorial reading guide</h2><p>A compact prayer to leave the restless chain of attachment and behold Kandan every day with sustained love.</p><p>This is an editorial orientation, not a line-by-line translation.</p></article>
+ <article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 13 (திருப்பரங்குன்றம்)</p><p>The Tamil song text was manually checked before publication. OCR-only material was excluded.</p><p><a class="btn secondary" href="../sources.html#src-thiruppugazh-valluvar-vallalar-vattam">Open source record</a></p></article>
+ </section>
+-<nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0012-kadhadarungkayal.html">← காதடருங்கயல்</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0015-thadakkai-pangkayam.html">தடக்கைப் பங்கயம் →</a></nav>
++<nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0012-kadhadarungkayal.html">← காதடருங்கயல்</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0014-saruvumpadi.html">தடக்கைப் பங்கயம் →</a></nav>
+ <p><a class="btn player-launch-link" href="../audio-library.html?track=thiruppugazh-0013">▶ Open in read-aloud player</a></p></main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>
+--- release154/thiruppugazh/0014-saruvumpadi.html
++++ release155/thiruppugazh/0014-saruvumpadi.html
+@@ -0,0 +1,27 @@
++<!doctype html><html lang="ta"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>சருவும்படி | Thiruppugazh 14</title><meta name="description" content="Thiruppugazh song 14, Saruvumpadi, associated with Thirupparankundram; verified Tamil text and source citation."><meta name="robots" content="index,follow"><link rel="canonical" href="https://omsaravanabhava.org/thiruppugazh/0014-saruvumpadi.html"><link rel="stylesheet" href="../assets/css/osb44.css"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CreativeWork","@id":"https://omsaravanabhava.org/thiruppugazh/0014-saruvumpadi.html#work","url":"https://omsaravanabhava.org/thiruppugazh/0014-saruvumpadi.html","name":"Saruvumpadi","alternateName":"சருவும்படி","position":14,"author":{"@type":"Person","name":"Arunagirinathar"},"inLanguage":"ta","genre":"Thiruppugazh","description":"A prayer arising from sleepless longing and worldly entanglement, seeking Murugan’s radiant feet and grace at Tirupparankundram.","dateModified":"2026-07-13","isPartOf":{"@type":"CollectionPage","name":"Thiruppugazh Digital Library","url":"https://omsaravanabhava.org/thiruppugazh.html"},"citation":"697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf; பாடல் 14 (திருப்பரங்குன்றம்)"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Thiruppugazh","item":"https://omsaravanabhava.org/thiruppugazh.html"},{"@type":"ListItem","position":3,"name":"Saruvumpadi","item":"https://omsaravanabhava.org/thiruppugazh/0014-saruvumpadi.html"}]}]}</script><script defer src="../assets/js/read-aloud.js"></script><link rel="icon" href="../favicon.svg"><meta name="theme-color" content="#a51d17"><link rel="manifest" href="../manifest.json"><script defer src="../assets/js/pwa-register.js"></script></head><body><a href="#main-content" class="skip-link">Skip to main content</a><div class="top">🛕 ஓம் சரவணபவ · Verified Thiruppugazh text</div><nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="../index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="../temples.html">Temples</a><a href="../sloka-library.html">Slokas</a><a href="../thiruppugazh.html">Thiruppugazh</a><a href="../festivals.html">Festivals</a><a href="../ai-search.html">AI Search</a><a href="../audio-library.html">Audio</a></div></div></nav><main id="main-content" class="wrap"><nav aria-label="Breadcrumb"><p><a href="../index.html">Home</a> › <a href="../thiruppugazh.html">Thiruppugazh</a> › <span aria-current="page">Saruvumpadi</span></p></nav><article class="card"><span class="pill">திருப்புகழ் 14</span><span class="pill">திருப்பரங்குன்றம்</span><h1 class="section-title">சருவும்படி</h1><h2>Saruvumpadi</h2><p><strong>Author:</strong> அருணகிரிநாதர் / Arunagirinathar</p><p><strong>Venue:</strong> <a href="../temples/thirupparamkundram.html">திருப்பரங்குன்றம்</a></p><p><strong>Chanda:</strong> <span lang="ta">தனதந்தன தந்தன தந்தன</span></p><div class="verse" id="readAloudText" lang="ta">சருவும்படி வந்தனன் இங்கித
++மதனின்றிட அம்புலியும் சுடு
++தழல்கொண்டிட மங்கையர் கண்களின் வசமாகிச்
++
++சயிலங்கொளும் அன்றல் பொருந்திய
++பொழிலின்பயில் தென்றலும் ஒன்றிய
++தடவஞ்சுனை துன்றி எழுந்திட திறமாவே
++
++இரவும்பகல் அந்தியும் நின்றிடு
++குயில்வந்திசை தெந்தன என்றிட
++இருகண்கள் துயின்றிடல் இன்றியும் அயர்வாகி
++
++இவனெஞ்சு பதன் பதன் என்றிட
++மயல்கொண்டு வருந்திய வஞ்சகன்
++இனியுன்றன் மலர்ந்தில கும்பதம் அடைவேனோ
++
++திருவொன்றி விளங்கிய அண்டர்கள்
++மனையின் தயிருண்டவன் எண்டிசை
++திகழும்புகழ் கொண்டவன் வண்டமிழ் பயில்வோர்பின்
++
++திரிகின்றவன் மஞ்சுநிறம்புனை
++வேல் மிஞ்சுதிறங்கொள வென்றடல்
++செயதுங்க முகுந்தன் மகிழ்ந்தருள் முருகோனே
++
++மதியுங்கதிரும் புயலும் தினம்
++மறுகும்படி அண்டம் இலங்கிட
++வளர்கின்ற பரங்கிரி வந்தருள் பெருமாளே.</div><div class="read-aloud-panel" data-read-aloud-target="#readAloudText"><button type="button" class="btn" data-speech-action="play">▶ Tamil read-aloud</button><button type="button" class="btn secondary" data-speech-action="pause">Pause</button><button type="button" class="btn secondary" data-speech-action="stop">Stop</button><p data-speech-status role="status" aria-live="polite">Uses the Tamil voice installed on this device. No recording is downloaded.</p></div></article><section class="grid" style="margin-top:22px"><article class="card"><h2>Editorial reading guide</h2><p>A prayer arising from sleepless longing and worldly entanglement, seeking Murugan’s radiant feet and grace at Tirupparankundram.</p><p>This is an editorial orientation, not a line-by-line translation.</p></article><article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 14 (திருப்பரங்குன்றம்)</p><p><strong>Source pages:</strong> 26–27</p><p>The text was manually normalised from the uploaded source pages.</p></article></section><nav class="song-pagination" aria-label="Published sequence"><a class="btn secondary" rel="prev" href="0013-sandhadham-bandha.html">← சந்ததம் பந்த</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0015-thadakkai-pangkayam.html">தடக்கைப் பங்கயம் →</a></nav><p><a class="btn player-launch-link" href="../audio-library.html?track=thiruppugazh-0014">▶ Open in read-aloud player</a></p></main><footer>© Om Saravana Bhava · <a href="../sources.html">Sources &amp; publication policy</a></footer></body></html>--- release154/thiruppugazh/0015-thadakkai-pangkayam.html
++++ release155/thiruppugazh/0015-thadakkai-pangkayam.html
+@@ -74,7 +74,7 @@
+ <article class="card"><h2>Editorial reading guide</h2><p>A prayer to end the exhausting cycle of worldly dependence and establish a life of service at Murugan’s ankleted feet.</p><p>This is an editorial orientation, not a line-by-line translation.</p></article>
+ <article class="card"><h2>Source citation</h2><p><code>697840-அருணகிரிநாதர்-அருளிய-திருப்புகழ்-(1)-(1).pdf</code></p><p><strong>Internal heading:</strong> பாடல் 15 (திருப்பரங்குன்றம்)</p><p>The Tamil song text was manually checked before publication. OCR-only material was excluded.</p><p><a class="btn secondary" href="../sources.html#src-thiruppugazh-valluvar-vallalar-vattam">Open source record</a></p></article>
+ </section>
+-<nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0013-sandhadham-bandha.html">← சந்ததம் பந்த</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0016-padhiththa-senchandha.html">பதித்த செஞ்சந்த →</a></nav>
++<nav class="song-pagination" aria-label="Published Thiruppugazh sequence"><a class="btn secondary" rel="prev" href="0014-saruvumpadi.html">← சந்ததம் பந்த</a><a class="btn" href="../thiruppugazh.html">All songs</a><a class="btn secondary" rel="next" href="0016-padhiththa-senchandha.html">பதித்த செஞ்சந்த →</a></nav>
+ <p><a class="btn player-launch-link" href="../audio-library.html?track=thiruppugazh-0015">▶ Open in read-aloud player</a></p></main>
+ <div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform · <a href="../sources.html">Sources &amp; publication policy</a></footer>

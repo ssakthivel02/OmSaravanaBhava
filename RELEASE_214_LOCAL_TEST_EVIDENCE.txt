@@ -1,0 +1,45 @@
+Release 214 local package evidence
+Base commit: f54e2b4eefeefb3fccd770a0493a23fee3bbfdf8
+
+PASS — Explore HTML release identity
+PASS — Explore canonical
+PASS — Navigation sections — 8
+PASS — Navigation destinations exist in route directory
+PASS — No duplicate navigation destination within a section
+PASS — Route directory release
+PASS — Explore route exactly once
+PASS — Route directory paths unique — 86 records / 86 unique
+PASS — Sitemap Explore exactly once
+PASS — Service worker release
+PASS — Precache contains /explore.html
+PASS — Precache contains /data/navigation-sections.json
+PASS — Precache contains /assets/js/explore-navigation.js
+PASS — Audit expected release
+PASS — Smoke checks Release 214
+PASS — No remote URL in Explore JS
+PASS — Balanced Explore JS braces
+PASS — Balanced Explore JS parentheses
+PASS — Node JavaScript syntax
+PASS — Production smoke Python compile
+PASS — Validator unit tests — e 150, in call
+artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
+test_broken_internal_link_fails (tests.test_site_audit.SiteAuditTests.test_broken_internal_link_fails) ... ok
+test_duplicate_canonical_fails (tests.test_site_audit.SiteAuditTests.test_duplicate_canonical_fails) ... ok
+test_malformed_json_fails (tests.test_site_audit.SiteAuditTests.test_malformed_json_fails) ... ok
+test_missing_precache_target_fails (tests.test_site_audit.SiteAuditTests.test_missing_precache_target_fails) ... ok
+test_route_directory_missing_target_fails (tests.test_site_audit.SiteAuditTests.test_route_directory_missing_target_fails) ... ok
+test_sitemap_route_must_be_in_directory (tests.test_site_audit.SiteAuditTests.test_sitemap_route_must_be_in_directory) ... ok
+test_valid_fixture_passes (tests.test_site_audit.SiteAuditTests.test_valid_fixture_passes) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.067s
+
+OK
+
+
+Navigation sections: 8
+Navigation items: 34
+Route directory records: 86
+Validator test return code: 0
+Repository-wide GitHub Actions: pending
+Production deployment: pending

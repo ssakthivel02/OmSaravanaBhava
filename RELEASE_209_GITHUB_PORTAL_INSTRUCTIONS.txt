@@ -1,0 +1,10 @@
+Upload after all previous releases are committed.
+
+1. Extract this ZIP.
+2. Select everything inside the extracted folder.
+3. Upload to the repository root.
+4. Do not create a Release209, package, output or cleanup parent folder.
+5. Use this small upper commit title:
+   Release 209: add local concept expansion for semantic search
+6. Leave the lower description blank.
+7. Commit directly to main.

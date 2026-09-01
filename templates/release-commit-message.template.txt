@@ -1,0 +1,4 @@
+Release 233: add browser-compatible commit attestation
+
+Optional description. The exact release title must remain the subject for local Git commits.
+For GitHub browser uploads only, the governance fallback accepts the browser default subject when this exact title is the first non-empty description line.

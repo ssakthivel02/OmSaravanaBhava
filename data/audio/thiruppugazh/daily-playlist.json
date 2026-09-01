@@ -1,0 +1,59 @@
+{
+  "audio_pack": "daily-playlist",
+  "literature": "திருப்புகழ்",
+  "status": "metadata_ready_audio_pending",
+  "items": [
+    {
+      "song_id": "thiruppugazh-003",
+      "audio_status": "pending"
+    },
+    {
+      "song_id": "thiruppugazh-006",
+      "audio_status": "pending"
+    },
+    {
+      "song_id": "thiruppugazh-009",
+      "audio_status": "pending"
+    },
+    {
+      "song_id": "thiruppugazh-012",
+      "audio_status": "pending"
+    },
+    {
+      "song_id": "thiruppugazh-015",
+      "audio_status": "pending"
+    },
+    {
+      "song_id": "thiruppugazh-018",
+      "audio_status": "pending"
+    },
+    {
+      "song_id": "thiruppugazh-021",
+      "audio_status": "pending"
+    },
+    {
+      "song_id": "thiruppugazh-024",
+      "audio_status": "pending"
+    },
+    {
+      "song_id": "thiruppugazh-027",
+      "audio_status": "pending"
+    },
+    {
+      "song_id": "thiruppugazh-030",
+      "audio_status": "pending"
+    },
+    {
+      "song_id": "thiruppugazh-033",
+      "audio_status": "pending"
+    },
+    {
+      "song_id": "thiruppugazh-036",
+      "audio_status": "pending"
+    },
+    {
+      "song_id": "thiruppugazh-039",
+      "audio_status": "pending"
+    }
+  ]
+}

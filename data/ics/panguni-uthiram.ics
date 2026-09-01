@@ -1,0 +1,10 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//OmSaravanaBhava//Festival//EN
+BEGIN:VEVENT
+UID:panguni-uthiram@omsaravanabhava.org
+SUMMARY:Panguni Uthiram
+DESCRIPTION:Sacred day associated with divine marriages and grace.
+DTSTART;VALUE=DATE:20260101
+END:VEVENT
+END:VCALENDAR

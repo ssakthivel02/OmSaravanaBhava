@@ -1,0 +1,22 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 183,
+  "name": "Source Provenance Catalog",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 4,
+  "modified": [
+    "service-worker.js",
+    "sitemap.xml"
+  ],
+  "added": [
+    "source-catalog.html",
+    "data/source-catalog.json"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Catalogued sources": 4,
+    "Source filenames exposed": "Yes"
+  }
+}

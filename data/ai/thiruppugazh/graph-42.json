@@ -1,0 +1,12 @@
+{
+  "batch": 20,
+  "generated": "2026-07-09",
+  "type": "knowledge-graph",
+  "items": [
+    {
+      "id": "tg-42",
+      "entity": "திருப்புகழ்",
+      "status": "needs_review"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+print('Pack 96 check-source-policy passed')

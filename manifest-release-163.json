@@ -1,0 +1,20 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 163,
+  "name": "Skanda Guru Kavasam Premium Partial Edition",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 3,
+  "modified": [
+    "data/skanda-guru-kavasam.json",
+    "slokas/skanda-guru-kavasam.html",
+    "service-worker.js"
+  ],
+  "added": [],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Published range": "Opening lines 1–20",
+    "Complete-text claim": "No"
+  }
+}

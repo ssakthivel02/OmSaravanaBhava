@@ -1,0 +1,94 @@
+--- before/siddhar-literature.html
++++ release195/siddhar-literature.html
+@@ -0,0 +1,24 @@
++<!doctype html><html lang="ta"><head>
++<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Siddhar Literature Index | Om Saravana Bhava</title>
++<meta name="description" content="Source-review index for Siddhar literature and Murugan associations.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/siddhar-literature.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++</head><body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Digital Murugan heritage platform</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Siddhar Literature Index</span></p></nav>
++<section class="card"><h1 class="section-title" lang="ta">சித்தர் இலக்கிய அட்டவணை</h1><h2>Siddhar Literature Index</h2><p>Source-review index for Siddhar literature and Murugan associations.</p></section>
++<section class="grid"><article class="card"><h2>Agastiyar</h2><p>source-collection-required</p></article><article class="card"><h2>Bogar</h2><p>source-collection-required</p></article><article class="card"><h2>Pulipani</h2><p>source-collection-required</p></article><article class="card"><h2>Konganar</h2><p>source-collection-required</p></article><article class="card"><h2>Karuvoorar</h2><p>source-collection-required</p></article><article class="card"><h2>Pambatti Siddhar</h2><p>source-collection-required</p></article></section>
++</main>
++<footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body></html>--- before/data/siddhar-literature-index.json
++++ release195/data/siddhar-literature-index.json
+@@ -0,0 +1,38 @@
++[
++  {
++    "id": "agastiyar",
++    "nameEn": "Agastiyar",
++    "literatureStatus": "source-collection-required",
++    "muruganAssociation": "traditional-association-review"
++  },
++  {
++    "id": "bogar",
++    "nameEn": "Bogar",
++    "literatureStatus": "source-collection-required",
++    "muruganAssociation": "traditional-association-review"
++  },
++  {
++    "id": "pulipani",
++    "nameEn": "Pulipani",
++    "literatureStatus": "source-collection-required",
++    "muruganAssociation": "traditional-association-review"
++  },
++  {
++    "id": "konganar",
++    "nameEn": "Konganar",
++    "literatureStatus": "source-collection-required",
++    "muruganAssociation": "traditional-association-review"
++  },
++  {
++    "id": "karuvoorar",
++    "nameEn": "Karuvoorar",
++    "literatureStatus": "source-collection-required",
++    "muruganAssociation": "traditional-association-review"
++  },
++  {
++    "id": "pambatti-siddhar",
++    "nameEn": "Pambatti Siddhar",
++    "literatureStatus": "source-collection-required",
++    "muruganAssociation": "traditional-association-review"
++  }
++]
+--- before/service-worker.js
++++ release195/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '194';
++const RELEASE = '195';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -143,7 +143,9 @@
+   "/thiruppugazh-volume-5.html",
+   "/skanda-purana-graph.html",
+   "/data/skanda-purana-graph.json",
+-  "/temple-research-dashboard.html"
++  "/temple-research-dashboard.html",
++  "/siddhar-literature.html",
++  "/data/siddhar-literature-index.json"
+ ];
+ 
+ self.addEventListener('install', event => {
+--- before/sitemap.xml
++++ release195/sitemap.xml
+@@ -229,4 +229,5 @@
+   <url><loc>https://omsaravanabhava.org/thiruppugazh-volume-5.html</loc><lastmod>2026-07-13</lastmod><priority>0.6</priority></url>
+   <url><loc>https://omsaravanabhava.org/skanda-purana-graph.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+   <url><loc>https://omsaravanabhava.org/temple-research-dashboard.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
++  <url><loc>https://omsaravanabhava.org/siddhar-literature.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+ </urlset>

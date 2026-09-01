@@ -1,0 +1,12 @@
+{
+  "temple_id": "marudamalai",
+  "temple_name_ta": "மருதமலை",
+  "literature": "திருப்புகழ்",
+  "mapped_song_range": "Batch 16 foundation mapping",
+  "review_status": "needs_source_cross_reference",
+  "related_song_ids": [
+    "thiruppugazh-010",
+    "thiruppugazh-020",
+    "thiruppugazh-030"
+  ]
+}

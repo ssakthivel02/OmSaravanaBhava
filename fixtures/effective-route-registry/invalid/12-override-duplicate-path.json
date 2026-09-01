@@ -1,0 +1,20 @@
+{
+  "historical": {
+    "release": 228,
+    "routes": []
+  },
+  "overrides": {
+    "release": 234,
+    "recordCount": 2,
+    "records": [
+      {
+        "path": "/a",
+        "status": "navigation"
+      },
+      {
+        "path": "/a",
+        "status": "navigation"
+      }
+    ]
+  }
+}

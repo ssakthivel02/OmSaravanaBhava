@@ -1,0 +1,28 @@
+{
+  "records": [
+    {
+      "id": "palani",
+      "name": "Palani",
+      "name_ta": "பழனி",
+      "district": "Dindigul",
+      "group": "Arupadai Veedu",
+      "theme": "Renunciation and wisdom"
+    },
+    {
+      "id": "tiruchendur",
+      "name": "Tiruchendur",
+      "name_ta": "திருச்செந்தூர்",
+      "district": "Thoothukudi",
+      "group": "Arupadai Veedu",
+      "theme": "Protection and courage"
+    },
+    {
+      "id": "marudhamalai",
+      "name": "Marudhamalai",
+      "name_ta": "மருதமலை",
+      "district": "Coimbatore",
+      "group": "Regional temple",
+      "theme": "Content review required"
+    }
+  ]
+}

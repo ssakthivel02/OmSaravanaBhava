@@ -1,0 +1,1 @@
+print('Release quality checks configured')

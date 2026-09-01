@@ -1,0 +1,36 @@
+{
+  "fields": [
+    {
+      "field": "history",
+      "minimum_status": "reviewed"
+    },
+    {
+      "field": "sthala_puranam",
+      "minimum_status": "reviewed_with_tradition_label"
+    },
+    {
+      "field": "architecture",
+      "minimum_status": "reviewed"
+    },
+    {
+      "field": "festival_schedule",
+      "minimum_status": "official_source"
+    },
+    {
+      "field": "temple_timings",
+      "minimum_status": "official_source"
+    },
+    {
+      "field": "contact_details",
+      "minimum_status": "official_source"
+    },
+    {
+      "field": "travel_information",
+      "minimum_status": "verified"
+    },
+    {
+      "field": "real_photography",
+      "minimum_status": "licensed_and_attributed"
+    }
+  ]
+}

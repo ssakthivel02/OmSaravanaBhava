@@ -1,0 +1,23 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 188,
+  "name": "Daily Devotional Rotation",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 5,
+  "modified": [
+    "service-worker.js",
+    "sitemap.xml"
+  ],
+  "added": [
+    "daily-devotional.html",
+    "data/daily-devotional.json",
+    "assets/js/daily-devotional.js"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Panchangam claim": "None",
+    "Verified texts reused": 6
+  }
+}

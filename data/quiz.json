@@ -1,0 +1,41 @@
+[
+  {
+    "id": "q1",
+    "question": "Which hill temple is one of the famous Arupadai Veedu of Lord Murugan?",
+    "questionTa": "முருகப்பெருமானின் அறுபடை வீடுகளில் பிரசித்தமான மலைத் தலம் எது?",
+    "options": [
+      "Palani",
+      "Madurai",
+      "Chidambaram",
+      "Rameswaram"
+    ],
+    "answer": "Palani",
+    "explanation": "Palani is one of the six sacred abodes of Lord Murugan."
+  },
+  {
+    "id": "q2",
+    "question": "What is Lord Murugan’s divine weapon called?",
+    "questionTa": "முருகப்பெருமானின் தெய்வீக ஆயுதம் என்ன?",
+    "options": [
+      "Vel",
+      "Chakra",
+      "Conch",
+      "Bow"
+    ],
+    "answer": "Vel",
+    "explanation": "The Vel symbolizes wisdom, courage and removal of ignorance."
+  },
+  {
+    "id": "q3",
+    "question": "Thai Poosam is especially associated with which deity?",
+    "questionTa": "தைப்பூசம் எந்த தெய்வத்துடன் மிகவும் தொடர்புடையது?",
+    "options": [
+      "Lord Murugan",
+      "Lord Krishna",
+      "Lord Brahma",
+      "Lord Kubera"
+    ],
+    "answer": "Lord Murugan",
+    "explanation": "Thai Poosam is widely observed by Murugan devotees."
+  }
+]

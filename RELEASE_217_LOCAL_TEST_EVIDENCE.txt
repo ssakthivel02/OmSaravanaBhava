@@ -1,0 +1,129 @@
+Release 217 — Local Test Evidence
+Generated: 2026-07-14
+Base commit: 6d5df24f611e0f8164834544a9e92521e4cf5c27
+
+LOCAL PACKAGE RESULT: PASS
+GITHUB ACTIONS RESULT: NOT RUN
+DEPLOYED PRODUCTION RESULT: NOT RUN
+
+$ node --check assets/js/accessibility-preferences.mjs
+Exit code: 0
+
+
+$ node --check assets/js/pwa-register.js
+Exit code: 0
+
+
+$ node --test tests/accessibility-preferences.test.mjs
+Exit code: 0
+TAP version 13
+# Subtest: release and defaults are stable
+ok 1 - release and defaults are stable
+  ---
+  duration_ms: 1.224736
+  type: 'test'
+  ...
+# Subtest: preferences save and load locally
+ok 2 - preferences save and load locally
+  ---
+  duration_ms: 1.480286
+  type: 'test'
+  ...
+# Subtest: applyPreferences toggles only declared root classes
+ok 3 - applyPreferences toggles only declared root classes
+  ---
+  duration_ms: 0.338991
+  type: 'test'
+  ...
+# Subtest: updatePreference rejects unknown keys and persists known keys
+ok 4 - updatePreference rejects unknown keys and persists known keys
+  ---
+  duration_ms: 0.521957
+  type: 'test'
+  ...
+# Subtest: reset removes local state and returns defaults
+ok 5 - reset removes local state and returns defaults
+  ---
+  duration_ms: 0.499012
+  type: 'test'
+  ...
+# Subtest: active labels describe enabled preferences only
+ok 6 - active labels describe enabled preferences only
+  ---
+  duration_ms: 0.260303
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 110.068261
+
+$ python -m py_compile tools/production_smoke.py tools/release_217_validate.py tests/test_site_audit.py
+Exit code: 0
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/generated/interface/models.py", line 30820, in hydrate_crdt_from_proto
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/remote.py", line 749, in __call__
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/client.py", line 150, in call
+artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
+
+$ python tools/release_217_validate.py --root . --package-mode --report artifacts/release-217-package-validation.json
+Exit code: 0
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/generated/interface/models.py", line 30820, in hydrate_crdt_from_proto
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/remote.py", line 749, in __call__
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/client.py", line 150, in call
+artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
+{
+  "release": 217,
+  "base_commit": "6d5df24f611e0f8164834544a9e92521e4cf5c27",
+  "mode": "package",
+  "status": "PASS",
+  "errors": [],
+  "checks": [
+    "exists: accessibility.html",
+    "exists: assets/css/accessibility-preferences.css",
+    "exists: assets/js/accessibility-preferences.mjs",
+    "exists: assets/js/pwa-register.js",
+    "exists: index.html",
+    "exists: platform.html",
+    "exists: data/site-routes.json",
+    "exists: sitemap.xml",
+    "exists: service-worker.js",
+    "exists: quality/site-audit-config.json",
+    "exists: tools/production_smoke.py",
+    "exists: tests/test_site_audit.py",
+    "exists: tests/accessibility-preferences.test.mjs",
+    "exists: .github/workflows/static-site-integrity.yml",
+    "exists: .github/workflows/production-smoke.yml",
+    "exists: manifest-release-217.json"
+  ],
+  "github_actions": "NOT_RUN",
+  "deployed_production": "NOT_RUN"
+}
+
+$ git apply --check release.patch
+Exit code: 0
+
+
+JSON files parsed: PASS
+Sitemap XML parsed: PASS
+Four preference controls validated: PASS
+Browser-local persistence validated: PASS
+Unknown preference rejection validated: PASS
+Service-worker optional caching preserved: PASS
+Release 216 production-smoke carry-forward defects corrected: PASS

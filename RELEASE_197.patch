@@ -1,0 +1,103 @@
+--- before/knowledge-graph-phase-3.html
++++ release197/knowledge-graph-phase-3.html
+@@ -0,0 +1,24 @@
++<!doctype html><html lang="ta"><head>
++<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Murugan Knowledge Graph Phase 3 | Om Saravana Bhava</title>
++<meta name="description" content="Expanded relationship graph connecting literature, temple, festival and saint entities.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/knowledge-graph-phase-3.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++</head><body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Digital Murugan heritage platform</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Murugan Knowledge Graph Phase 3</span></p></nav>
++<section class="card"><h1 class="section-title" lang="ta">முருகன் அறிவுக் கோப்பு கட்டம் 3</h1><h2>Murugan Knowledge Graph Phase 3</h2><p>Expanded relationship graph connecting literature, temple, festival and saint entities.</p></section>
++<section class="card"><h2>Expanded graph</h2><p>10 nodes and 9 relationships now connect deity, symbols, literature, temple, festival and saint entities.</p></section>
++</main>
++<footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body></html>--- before/data/knowledge-graph.json
++++ release197/data/knowledge-graph.json
+@@ -41,6 +41,24 @@
+       "type": "Literature",
+       "labelTa": "ஸ்கந்த குரு கவசம்",
+       "labelEn": "Skanda Guru Kavasam"
++    },
++    {
++      "id": "thai-poosam",
++      "type": "Festival",
++      "labelTa": "தைப்பூசம்",
++      "labelEn": "Thai Poosam"
++    },
++    {
++      "id": "palani",
++      "type": "Temple",
++      "labelTa": "பழனி",
++      "labelEn": "Palani"
++    },
++    {
++      "id": "arunagirinathar",
++      "type": "Saint",
++      "labelTa": "அருணகிரிநாதர்",
++      "labelEn": "Arunagirinathar"
+     }
+   ],
+   "edges": [
+@@ -73,7 +91,22 @@
+       "from": "skanda-guru-kavasam",
+       "to": "murugan",
+       "relation": "invokes-as-guru"
++    },
++    {
++      "from": "thai-poosam",
++      "to": "murugan",
++      "relation": "celebrates"
++    },
++    {
++      "from": "palani",
++      "to": "murugan",
++      "relation": "worship-site"
++    },
++    {
++      "from": "arunagirinathar",
++      "to": "thiruppugazh",
++      "relation": "author-of"
+     }
+   ],
+-  "release": 169
++  "release": 197
+ }
+--- before/service-worker.js
++++ release197/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '196';
++const RELEASE = '197';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -147,7 +147,8 @@
+   "/siddhar-literature.html",
+   "/data/siddhar-literature-index.json",
+   "/audio-albums.html",
+-  "/data/audio-albums.json"
++  "/data/audio-albums.json",
++  "/knowledge-graph-phase-3.html"
+ ];
+ 
+ self.addEventListener('install', event => {
+--- before/sitemap.xml
++++ release197/sitemap.xml
+@@ -231,4 +231,5 @@
+   <url><loc>https://omsaravanabhava.org/temple-research-dashboard.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+   <url><loc>https://omsaravanabhava.org/siddhar-literature.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+   <url><loc>https://omsaravanabhava.org/audio-albums.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
++  <url><loc>https://omsaravanabhava.org/knowledge-graph-phase-3.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+ </urlset>

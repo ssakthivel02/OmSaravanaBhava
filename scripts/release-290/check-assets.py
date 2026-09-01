@@ -1,0 +1,1 @@
+from pathlib import Path;r=Path(__file__).resolve().parents[2];assert (r/'assets/css/release-290.css').exists();print('ok')

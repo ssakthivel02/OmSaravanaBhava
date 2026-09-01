@@ -1,0 +1,346 @@
+[
+  {
+    "type": "sloka",
+    "id": "om-saravana-bhava",
+    "title": "Om Saravana Bhava",
+    "titleTa": "ஓம் சரவணபவ",
+    "url": "sloka-reader.html?id=om-saravana-bhava",
+    "keywords": "mantra murugan devotion"
+  },
+  {
+    "type": "sloka",
+    "id": "vel-vel",
+    "title": "Vel Vel Muruga",
+    "titleTa": "வேல் வேல் முருகா",
+    "url": "sloka-reader.html?id=vel-vel",
+    "keywords": "chant murugan devotion"
+  },
+  {
+    "type": "sloka",
+    "id": "subramanya-bhujangam",
+    "title": "Subramanya Bhujangam",
+    "titleTa": "சுப்பிரமணிய புஜங்கம்",
+    "url": "sloka-reader.html?id=subramanya-bhujangam",
+    "keywords": "stotra murugan devotion"
+  },
+  {
+    "type": "sloka",
+    "id": "kanda-sashti-kavacham",
+    "title": "Kanda Sashti Kavacham",
+    "titleTa": "கந்த சஷ்டி கவசம்",
+    "url": "sloka-reader.html?id=kanda-sashti-kavacham",
+    "keywords": "kavacham murugan devotion"
+  },
+  {
+    "type": "sloka",
+    "id": "skanda-guru-kavacham",
+    "title": "Skanda Guru Kavacham",
+    "titleTa": "ஸ்கந்த குரு கவசம்",
+    "url": "sloka-reader.html?id=skanda-guru-kavacham",
+    "keywords": "kavacham murugan devotion"
+  },
+  {
+    "type": "sloka",
+    "id": "shanmuga-kavacham",
+    "title": "Shanmuga Kavacham",
+    "titleTa": "சண்முக கவசம்",
+    "url": "sloka-reader.html?id=shanmuga-kavacham",
+    "keywords": "kavacham murugan devotion"
+  },
+  {
+    "type": "sloka",
+    "id": "kandar-anuboothi",
+    "title": "Kandar Anuboothi",
+    "titleTa": "கந்தர் அனுபூதி",
+    "url": "sloka-reader.html?id=kandar-anuboothi",
+    "keywords": "tamil hymn murugan devotion"
+  },
+  {
+    "type": "sloka",
+    "id": "kandar-alankaram",
+    "title": "Kandar Alankaram",
+    "titleTa": "கந்தர் அலங்காரம்",
+    "url": "sloka-reader.html?id=kandar-alankaram",
+    "keywords": "tamil hymn murugan devotion"
+  },
+  {
+    "type": "sloka",
+    "id": "thiruppugazh-intro",
+    "title": "Thiruppugazh Introduction",
+    "titleTa": "திருப்புகழ்",
+    "url": "sloka-reader.html?id=thiruppugazh-intro",
+    "keywords": "tamil hymn murugan devotion"
+  },
+  {
+    "type": "sloka",
+    "id": "thirumurugatrupadai",
+    "title": "Thirumurugatrupadai",
+    "titleTa": "திருமுருகாற்றுப்படை",
+    "url": "sloka-reader.html?id=thirumurugatrupadai",
+    "keywords": "classical tamil murugan devotion"
+  },
+  {
+    "type": "sloka",
+    "id": "murugan-ashtothram",
+    "title": "Murugan Ashtothram",
+    "titleTa": "முருகன் அஷ்டோத்திரம்",
+    "url": "sloka-reader.html?id=murugan-ashtothram",
+    "keywords": "namavali murugan devotion"
+  },
+  {
+    "type": "sloka",
+    "id": "murugan-potri",
+    "title": "Murugan Potri",
+    "titleTa": "முருகன் போற்றி",
+    "url": "sloka-reader.html?id=murugan-potri",
+    "keywords": "potri murugan devotion"
+  },
+  {
+    "type": "sloka",
+    "id": "siva-puranam",
+    "title": "Siva Puranam",
+    "titleTa": "சிவபுராணம்",
+    "url": "sloka-reader.html?id=siva-puranam",
+    "keywords": "tamil hymn murugan devotion"
+  },
+  {
+    "type": "sloka",
+    "id": "vinayagar-agaval",
+    "title": "Vinayagar Agaval",
+    "titleTa": "விநாயகர் அகவல்",
+    "url": "sloka-reader.html?id=vinayagar-agaval",
+    "keywords": "tamil hymn murugan devotion"
+  },
+  {
+    "type": "sloka",
+    "id": "abhirami-anthathi",
+    "title": "Abhirami Anthathi",
+    "titleTa": "அபிராமி அந்தாதி",
+    "url": "sloka-reader.html?id=abhirami-anthathi",
+    "keywords": "tamil hymn murugan devotion"
+  },
+  {
+    "type": "audio",
+    "id": "om-saravana-bhava-chant",
+    "title": "Om Saravana Bhava Chant",
+    "url": "audio-library.html",
+    "keywords": "Mantra"
+  },
+  {
+    "type": "audio",
+    "id": "vel-vel-chant",
+    "title": "Vel Vel Muruga Chant",
+    "url": "audio-library.html",
+    "keywords": "Chant"
+  },
+  {
+    "type": "audio",
+    "id": "kanda-sashti-guide",
+    "title": "Kanda Sashti Kavacham Learning Guide",
+    "url": "audio-library.html",
+    "keywords": "Kavacham"
+  },
+  {
+    "type": "audio",
+    "id": "murugan-names-108",
+    "title": "108 Murugan Names Recitation",
+    "url": "audio-library.html",
+    "keywords": "Namavali"
+  },
+  {
+    "type": "audio",
+    "id": "devotional-track-05",
+    "title": "Devotional Track 05",
+    "url": "audio-library.html",
+    "keywords": "Bhajan"
+  },
+  {
+    "type": "audio",
+    "id": "devotional-track-06",
+    "title": "Devotional Track 06",
+    "url": "audio-library.html",
+    "keywords": "Learning"
+  },
+  {
+    "type": "audio",
+    "id": "devotional-track-07",
+    "title": "Devotional Track 07",
+    "url": "audio-library.html",
+    "keywords": "Festival"
+  },
+  {
+    "type": "audio",
+    "id": "devotional-track-08",
+    "title": "Devotional Track 08",
+    "url": "audio-library.html",
+    "keywords": "Mantra"
+  },
+  {
+    "type": "audio",
+    "id": "devotional-track-09",
+    "title": "Devotional Track 09",
+    "url": "audio-library.html",
+    "keywords": "Bhajan"
+  },
+  {
+    "type": "audio",
+    "id": "devotional-track-10",
+    "title": "Devotional Track 10",
+    "url": "audio-library.html",
+    "keywords": "Learning"
+  },
+  {
+    "type": "audio",
+    "id": "devotional-track-11",
+    "title": "Devotional Track 11",
+    "url": "audio-library.html",
+    "keywords": "Festival"
+  },
+  {
+    "type": "audio",
+    "id": "devotional-track-12",
+    "title": "Devotional Track 12",
+    "url": "audio-library.html",
+    "keywords": "Mantra"
+  },
+  {
+    "type": "audio",
+    "id": "devotional-track-13",
+    "title": "Devotional Track 13",
+    "url": "audio-library.html",
+    "keywords": "Bhajan"
+  },
+  {
+    "type": "audio",
+    "id": "devotional-track-14",
+    "title": "Devotional Track 14",
+    "url": "audio-library.html",
+    "keywords": "Learning"
+  },
+  {
+    "type": "audio",
+    "id": "devotional-track-15",
+    "title": "Devotional Track 15",
+    "url": "audio-library.html",
+    "keywords": "Festival"
+  },
+  {
+    "type": "audio",
+    "id": "devotional-track-16",
+    "title": "Devotional Track 16",
+    "url": "audio-library.html",
+    "keywords": "Mantra"
+  },
+  {
+    "type": "audio",
+    "id": "devotional-track-17",
+    "title": "Devotional Track 17",
+    "url": "audio-library.html",
+    "keywords": "Bhajan"
+  },
+  {
+    "type": "audio",
+    "id": "devotional-track-18",
+    "title": "Devotional Track 18",
+    "url": "audio-library.html",
+    "keywords": "Learning"
+  },
+  {
+    "type": "audio",
+    "id": "devotional-track-19",
+    "title": "Devotional Track 19",
+    "url": "audio-library.html",
+    "keywords": "Festival"
+  },
+  {
+    "type": "audio",
+    "id": "devotional-track-20",
+    "title": "Devotional Track 20",
+    "url": "audio-library.html",
+    "keywords": "Mantra"
+  },
+  {
+    "type": "audio",
+    "id": "devotional-track-21",
+    "title": "Devotional Track 21",
+    "url": "audio-library.html",
+    "keywords": "Bhajan"
+  },
+  {
+    "type": "audio",
+    "id": "devotional-track-22",
+    "title": "Devotional Track 22",
+    "url": "audio-library.html",
+    "keywords": "Learning"
+  },
+  {
+    "type": "audio",
+    "id": "devotional-track-23",
+    "title": "Devotional Track 23",
+    "url": "audio-library.html",
+    "keywords": "Festival"
+  },
+  {
+    "type": "audio",
+    "id": "devotional-track-24",
+    "title": "Devotional Track 24",
+    "url": "audio-library.html",
+    "keywords": "Mantra"
+  },
+  {
+    "type": "book",
+    "id": "book-01",
+    "title": "Murugan Devotion Starter Guide",
+    "url": "devotional-books.html",
+    "keywords": "Study"
+  },
+  {
+    "type": "book",
+    "id": "book-02",
+    "title": "Arupadai Veedu Study Notes",
+    "url": "devotional-books.html",
+    "keywords": "Study"
+  },
+  {
+    "type": "book",
+    "id": "book-03",
+    "title": "Tamil Bhakti Reader",
+    "url": "devotional-books.html",
+    "keywords": "Study"
+  },
+  {
+    "type": "book",
+    "id": "book-04",
+    "title": "Kanda Sashti Learning Companion",
+    "url": "devotional-books.html",
+    "keywords": "Study"
+  },
+  {
+    "type": "book",
+    "id": "book-05",
+    "title": "Temple Architecture Notes",
+    "url": "devotional-books.html",
+    "keywords": "Study"
+  },
+  {
+    "type": "book",
+    "id": "book-06",
+    "title": "Thiruppugazh Introduction",
+    "url": "devotional-books.html",
+    "keywords": "Study"
+  },
+  {
+    "type": "book",
+    "id": "book-07",
+    "title": "Murugan Names Workbook",
+    "url": "devotional-books.html",
+    "keywords": "Study"
+  },
+  {
+    "type": "book",
+    "id": "book-08",
+    "title": "Kids Murugan Stories",
+    "url": "devotional-books.html",
+    "keywords": "Study"
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 173,
+  "name": "Interactive Murugan Timeline",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 4,
+  "modified": [
+    "service-worker.js",
+    "sitemap.xml"
+  ],
+  "added": [
+    "murugan-timeline.html",
+    "data/murugan-timeline.json"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Events": 6,
+    "False precision": "Avoided"
+  }
+}

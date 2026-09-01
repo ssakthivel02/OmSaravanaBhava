@@ -1,0 +1,4 @@
+data/source-catalog.json
+service-worker.js
+sitemap.xml
+source-catalog.html

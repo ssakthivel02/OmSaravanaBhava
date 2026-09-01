@@ -1,0 +1,15 @@
+Release 212 — CI Workflow Activation and Complete Site Route Directory
+
+1. Extract this ZIP into a new folder.
+2. Enable display of hidden items in Windows File Explorer.
+3. Select everything inside the extracted folder, including .github.
+4. Upload the selected contents directly to the repository root.
+5. Confirm GitHub visibly shows:
+   .github/workflows/static-site-integrity.yml
+   .github/workflows/production-smoke.yml
+6. In the small upper commit-title field enter exactly:
+   Release 212: activate CI and add complete site route directory
+7. Leave the large description field blank.
+8. Commit directly to main.
+9. Open Actions and confirm both workflows start.
+10. Do not upload Release 213 until Static site integrity is green. Production smoke may remain red briefly while GitHub Pages deploys; rerun it after deployment.

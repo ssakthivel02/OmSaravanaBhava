@@ -1,0 +1,33 @@
+{
+  "batch": 42,
+  "volume": 8,
+  "type": "song-metadata",
+  "items": [
+    {
+      "number": 300,
+      "slug": "song-0300",
+      "title_ta": "திருப்புகழ் பாடல் 300",
+      "title_en": "Thiruppugazh Hymn 300",
+      "original_tamil": "",
+      "word_split": "",
+      "metre": "",
+      "raga": "",
+      "tala": "",
+      "temple": "",
+      "status": "source-verification-required"
+    },
+    {
+      "number": 301,
+      "slug": "song-0301",
+      "title_ta": "திருப்புகழ் பாடல் 301",
+      "title_en": "Thiruppugazh Hymn 301",
+      "original_tamil": "",
+      "word_split": "",
+      "metre": "",
+      "raga": "",
+      "tala": "",
+      "temple": "",
+      "status": "source-verification-required"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+data/siddhar-encyclopedia.json
+service-worker.js
+siddhar-encyclopedia.html
+sitemap.xml

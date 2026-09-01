@@ -1,0 +1,49 @@
+{
+  "batch": 43,
+  "volume": 9,
+  "type": "temple-map",
+  "items": [
+    {
+      "number": 347,
+      "slug": "song-0347",
+      "temple": "",
+      "confidence": "source-review-required"
+    },
+    {
+      "number": 348,
+      "slug": "song-0348",
+      "temple": "",
+      "confidence": "source-review-required"
+    },
+    {
+      "number": 349,
+      "slug": "song-0349",
+      "temple": "",
+      "confidence": "source-review-required"
+    },
+    {
+      "number": 350,
+      "slug": "song-0350",
+      "temple": "",
+      "confidence": "source-review-required"
+    },
+    {
+      "number": 351,
+      "slug": "song-0351",
+      "temple": "",
+      "confidence": "source-review-required"
+    },
+    {
+      "number": 352,
+      "slug": "song-0352",
+      "temple": "",
+      "confidence": "source-review-required"
+    },
+    {
+      "number": 353,
+      "slug": "song-0353",
+      "temple": "",
+      "confidence": "source-review-required"
+    }
+  ]
+}

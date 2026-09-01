@@ -1,0 +1,82 @@
+[
+  {
+    "id": "panguni-uthiram",
+    "titleEn": "Panguni Uthiram",
+    "titleTa": "பங்குனி உத்திரம்",
+    "tamilMonth": "Panguni",
+    "type": "Murugan",
+    "summary": "Sacred day associated with divine marriages and grace.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Uthiram",
+      "Marriage"
+    ]
+  },
+  {
+    "id": "monthly-sashti",
+    "titleEn": "Monthly Sashti",
+    "titleTa": "மாத சஷ்டி",
+    "tamilMonth": "All",
+    "type": "Vratham",
+    "summary": "Monthly Sashti observance for Murugan devotees.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Vratham"
+    ]
+  },
+  {
+    "id": "monthly-karthigai",
+    "titleEn": "Monthly Karthigai",
+    "titleTa": "மாத கார்த்திகை",
+    "tamilMonth": "All",
+    "type": "Vratham",
+    "summary": "Monthly Karthigai star observance.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Deepam",
+      "Murugan"
+    ]
+  },
+  {
+    "id": "panguni-festival-1",
+    "titleEn": "Panguni Devotional Day 1",
+    "titleTa": "பங்குனி பக்தி நாள் 1",
+    "tamilMonth": "Panguni",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Panguni month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Panguni",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "panguni-festival-2",
+    "titleEn": "Panguni Devotional Day 2",
+    "titleTa": "பங்குனி பக்தி நாள் 2",
+    "tamilMonth": "Panguni",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Panguni month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Panguni",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "panguni-festival-3",
+    "titleEn": "Panguni Devotional Day 3",
+    "titleTa": "பங்குனி பக்தி நாள் 3",
+    "tamilMonth": "Panguni",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Panguni month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Panguni",
+      "Tamil month",
+      "Devotion"
+    ]
+  }
+]

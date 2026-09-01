@@ -1,0 +1,143 @@
+{
+  "release": "249C",
+  "records": [
+    {
+      "temple_id": "tirupparankundram",
+      "temple_name": "Tirupparankundram",
+      "temple_name_ta": "திருப்பரங்குன்றம்",
+      "image": "assets/images/temples/tirupparankundram.webp",
+      "categories": [
+        {
+          "label": "Temple devotional view",
+          "status": "illustration",
+          "src": "assets/images/temples/tirupparankundram.webp"
+        },
+        {
+          "label": "Sunrise temple landscape",
+          "status": "illustration",
+          "src": "assets/images/temples/temple-hero.webp"
+        },
+        {
+          "label": "Gallery expansion slot",
+          "status": "verified_asset_required",
+          "src": "assets/images/temples/tirupparankundram.webp"
+        }
+      ]
+    },
+    {
+      "temple_id": "tiruchendur",
+      "temple_name": "Tiruchendur",
+      "temple_name_ta": "திருச்செந்தூர்",
+      "image": "assets/images/temples/tiruchendur.webp",
+      "categories": [
+        {
+          "label": "Temple devotional view",
+          "status": "illustration",
+          "src": "assets/images/temples/tiruchendur.webp"
+        },
+        {
+          "label": "Sunrise temple landscape",
+          "status": "illustration",
+          "src": "assets/images/temples/temple-hero.webp"
+        },
+        {
+          "label": "Gallery expansion slot",
+          "status": "verified_asset_required",
+          "src": "assets/images/temples/tiruchendur.webp"
+        }
+      ]
+    },
+    {
+      "temple_id": "palani",
+      "temple_name": "Palani",
+      "temple_name_ta": "பழனி",
+      "image": "assets/images/temples/palani.webp",
+      "categories": [
+        {
+          "label": "Temple devotional view",
+          "status": "illustration",
+          "src": "assets/images/temples/palani.webp"
+        },
+        {
+          "label": "Sunrise temple landscape",
+          "status": "illustration",
+          "src": "assets/images/temples/temple-hero.webp"
+        },
+        {
+          "label": "Gallery expansion slot",
+          "status": "verified_asset_required",
+          "src": "assets/images/temples/palani.webp"
+        }
+      ]
+    },
+    {
+      "temple_id": "swamimalai",
+      "temple_name": "Swamimalai",
+      "temple_name_ta": "சுவாமிமலை",
+      "image": "assets/images/temples/swamimalai.webp",
+      "categories": [
+        {
+          "label": "Temple devotional view",
+          "status": "illustration",
+          "src": "assets/images/temples/swamimalai.webp"
+        },
+        {
+          "label": "Sunrise temple landscape",
+          "status": "illustration",
+          "src": "assets/images/temples/temple-hero.webp"
+        },
+        {
+          "label": "Gallery expansion slot",
+          "status": "verified_asset_required",
+          "src": "assets/images/temples/swamimalai.webp"
+        }
+      ]
+    },
+    {
+      "temple_id": "tiruttani",
+      "temple_name": "Tiruttani",
+      "temple_name_ta": "திருத்தணி",
+      "image": "assets/images/temples/tiruttani.webp",
+      "categories": [
+        {
+          "label": "Temple devotional view",
+          "status": "illustration",
+          "src": "assets/images/temples/tiruttani.webp"
+        },
+        {
+          "label": "Sunrise temple landscape",
+          "status": "illustration",
+          "src": "assets/images/temples/temple-hero.webp"
+        },
+        {
+          "label": "Gallery expansion slot",
+          "status": "verified_asset_required",
+          "src": "assets/images/temples/tiruttani.webp"
+        }
+      ]
+    },
+    {
+      "temple_id": "pazhamudircholai",
+      "temple_name": "Pazhamudircholai",
+      "temple_name_ta": "பழமுதிர்சோலை",
+      "image": "assets/images/temples/pazhamudircholai.webp",
+      "categories": [
+        {
+          "label": "Temple devotional view",
+          "status": "illustration",
+          "src": "assets/images/temples/pazhamudircholai.webp"
+        },
+        {
+          "label": "Sunrise temple landscape",
+          "status": "illustration",
+          "src": "assets/images/temples/temple-hero.webp"
+        },
+        {
+          "label": "Gallery expansion slot",
+          "status": "verified_asset_required",
+          "src": "assets/images/temples/pazhamudircholai.webp"
+        }
+      ]
+    }
+  ]
+}

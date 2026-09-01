@@ -1,0 +1,25 @@
+{
+  "records": [
+    {
+      "id": "skanda-sashti",
+      "name": "Skanda Sashti",
+      "name_ta": "கந்த சஷ்டி",
+      "description": "A major Murugan observance. Temple-specific dates and procedures require official confirmation.",
+      "status": "general_observance"
+    },
+    {
+      "id": "vaikasi-visakam",
+      "name": "Vaikasi Visakam",
+      "name_ta": "வைகாசி விசாகம்",
+      "description": "A Murugan observance; consult the relevant temple for its official programme.",
+      "status": "temple_schedule_required"
+    },
+    {
+      "id": "monthly-krittikai",
+      "name": "Monthly Krittikai",
+      "name_ta": "மாத கிருத்திகை",
+      "description": "Recurring devotional observance; local schedules vary.",
+      "status": "temple_schedule_required"
+    }
+  ]
+}

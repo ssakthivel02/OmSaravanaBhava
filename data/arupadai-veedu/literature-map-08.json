@@ -1,0 +1,14 @@
+{
+  "batch": 21,
+  "type": "literature-map",
+  "items": [
+    {
+      "work": "திருப்புகழ்",
+      "related_temple": "திருச்செந்தூர்"
+    },
+    {
+      "work": "திருமுருகாற்றுப்படை",
+      "related_temple": "சுவாமிமலை"
+    }
+  ]
+}

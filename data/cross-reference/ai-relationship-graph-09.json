@@ -1,0 +1,33 @@
+{
+  "batch": 25,
+  "type": "ai-relationship-graph",
+  "nodes": [
+    {
+      "id": "work-8",
+      "label": "கந்தர் அனுபூதி",
+      "kind": "literature"
+    },
+    {
+      "id": "temple-8",
+      "label": "சிதம்பரம்",
+      "kind": "temple"
+    },
+    {
+      "id": "festival-8",
+      "label": "வைகாசி விசாகம்",
+      "kind": "festival"
+    }
+  ],
+  "edges": [
+    {
+      "from": "work-8",
+      "to": "temple-8",
+      "relationship": "linked_to"
+    },
+    {
+      "from": "work-8",
+      "to": "festival-8",
+      "relationship": "associated_with"
+    }
+  ]
+}

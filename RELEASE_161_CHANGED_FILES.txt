@@ -1,0 +1,4 @@
+data/kanda-sashti-kavasam-structure.json
+data/search-index.json
+literature/kanda-sashti-kavasam-edition.html
+service-worker.js

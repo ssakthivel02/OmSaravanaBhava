@@ -1,0 +1,25 @@
+{
+  "version": "3.0",
+  "release": 200,
+  "generated": "2026-07-13",
+  "desktopExperience": "wide-screen responsive",
+  "modules": [
+    "platform hub",
+    "audio",
+    "search",
+    "knowledge graph",
+    "temples",
+    "timeline",
+    "learning center",
+    "research library",
+    "privacy",
+    "production audit"
+  ],
+  "contentPolicy": "verified-first",
+  "limitations": [
+    "Incomplete full-text digitisation for several works",
+    "No live Panchangam computation",
+    "No licensed human audio bundled",
+    "No server-side accounts"
+  ]
+}

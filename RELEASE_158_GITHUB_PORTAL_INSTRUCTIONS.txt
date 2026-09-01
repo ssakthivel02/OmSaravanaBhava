@@ -1,0 +1,15 @@
+OmSaravanaBhava Release 158
+
+Upload prerequisite:
+Upload and verify all earlier releases first.
+
+1. Extract this ZIP.
+2. Select everything inside the extracted folder.
+3. Upload to the repository root.
+4. No Release158, package, output or cleanup parent folder.
+5. Small upper commit-title field:
+   Release 158: publish source-controlled Kandar Anubhuti opening edition
+6. Leave the large lower description blank.
+7. Commit directly to main.
+
+Do not upload the ZIP file itself.

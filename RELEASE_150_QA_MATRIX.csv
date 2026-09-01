@@ -1,0 +1,9 @@
+check,status,evidence
+Release 149 baseline,PASS,7b656954f1a730ceee8591668c4be7307cc43d78
+Explicit brand home links,PASS,39 HTML pages inspected
+Tamil font stack,PASS,Noto Sans Tamil / Nirmala UI / Latha / Vijaya fallbacks
+Requested works catalogued,PASS,14
+Requested works currently playable,PASS,3
+Verified pages with read-aloud,PASS,14
+Third-party audio bundled,PASS,0 files
+Service worker version,PASS,150

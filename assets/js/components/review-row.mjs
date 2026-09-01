@@ -1,0 +1,1 @@
+import {escapeHtml} from '../utils/dom.mjs';const p=v=>`<span class="status-pill">${escapeHtml(v.replaceAll('_',' '))}</span>`;export function reviewRow(i){return `<tr><td>${escapeHtml(i.name)}</td><td>${escapeHtml(i.district)}</td><td>${p(i.identity)}</td><td>${p(i.narrative)}</td><td>${p(i.travel)}</td><td>${p(i.images)}</td></tr>`;}

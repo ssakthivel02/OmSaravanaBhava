@@ -1,0 +1,160 @@
+Release 216 — Local Test Evidence
+Generated: 2026-07-14
+Base commit: 61875883f928169df44143f9d8582ece43128138
+
+LOCAL PACKAGE RESULT: PASS
+GITHUB ACTIONS RESULT: NOT RUN
+DEPLOYED PRODUCTION RESULT: NOT RUN
+
+$ node --check assets/js/reading-list.mjs
+Exit code: 0
+
+
+$ node --check assets/js/search-facets.mjs
+Exit code: 0
+
+
+$ node --test tests/reading-list.test.mjs tests/search-facets.test.mjs
+Exit code: 0
+TAP version 13
+# Subtest: release and storage identities are stable
+ok 1 - release and storage identities are stable
+  ---
+  duration_ms: 0.712874
+  type: 'test'
+  ...
+# Subtest: same-origin routes are normalised and external routes are rejected
+ok 2 - same-origin routes are normalised and external routes are rejected
+  ---
+  duration_ms: 2.071782
+  type: 'test'
+  ...
+# Subtest: upsert deduplicates a saved route and keeps the newest record first
+ok 3 - upsert deduplicates a saved route and keeps the newest record first
+  ---
+  duration_ms: 0.508236
+  type: 'test'
+  ...
+# Subtest: storage save, lookup and remove remain browser-local
+ok 4 - storage save, lookup and remove remain browser-local
+  ---
+  duration_ms: 1.205637
+  type: 'test'
+  ...
+# Subtest: offline caching handles each route independently
+ok 5 - offline caching handles each route independently
+  ---
+  duration_ms: 1.14199
+  type: 'test'
+  ...
+# Subtest: release identity is 216
+ok 6 - release identity is 216
+  ---
+  duration_ms: 0.65026
+  type: 'test'
+  ...
+# Subtest: route normalisation removes query and fragment
+ok 7 - route normalisation removes query and fragment
+  ---
+  duration_ms: 0.195845
+  type: 'test'
+  ...
+# Subtest: publication groups preserve bounded editorial status
+ok 8 - publication groups preserve bounded editorial status
+  ---
+  duration_ms: 0.123196
+  type: 'test'
+  ...
+# Subtest: draft-like and missing-route records are excluded
+ok 9 - draft-like and missing-route records are excluded
+  ---
+  duration_ms: 0.158589
+  type: 'test'
+  ...
+# Subtest: facet counts are derived from published records
+ok 10 - facet counts are derived from published records
+  ---
+  duration_ms: 6.913133
+  type: 'test'
+  ...
+# Subtest: Tamil query and kind filters work locally
+ok 11 - Tamil query and kind filters work locally
+  ---
+  duration_ms: 0.420664
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 129.274532
+
+$ python -m py_compile tools/production_smoke.py tools/release_216_validate.py tests/test_site_audit.py
+Exit code: 0
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/generated/interface/models.py", line 30820, in hydrate_crdt_from_proto
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/remote.py", line 749, in __call__
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/client.py", line 150, in call
+artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
+
+$ python tools/release_216_validate.py --root . --package-mode --report artifacts/release-216-package-validation.json
+Exit code: 0
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/generated/interface/models.py", line 30820, in hydrate_crdt_from_proto
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/remote.py", line 749, in __call__
+  File "/tmp/tmp.yTcnQsZYiA/artifact_tool_v2-2.8.4/artifact_tool/rpc/client.py", line 150, in call
+artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
+{
+  "release": 216,
+  "base_commit": "61875883f928169df44143f9d8582ece43128138",
+  "mode": "package",
+  "status": "PASS",
+  "errors": [],
+  "checks": [
+    "exists: reading-list.html",
+    "exists: assets/css/reading-list.css",
+    "exists: assets/js/reading-list.mjs",
+    "exists: search-facets.html",
+    "exists: assets/css/search-facets.css",
+    "exists: assets/js/search-facets.mjs",
+    "exists: index.html",
+    "exists: platform.html",
+    "exists: data/site-routes.json",
+    "exists: sitemap.xml",
+    "exists: service-worker.js",
+    "exists: quality/site-audit-config.json",
+    "exists: tools/production_smoke.py",
+    "exists: tests/test_site_audit.py",
+    "exists: tests/search-facets.test.mjs",
+    "exists: tests/reading-list.test.mjs",
+    "exists: .github/workflows/static-site-integrity.yml",
+    "exists: .github/workflows/production-smoke.yml",
+    "exists: manifest-release-216.json"
+  ],
+  "github_actions": "NOT_RUN",
+  "deployed_production": "NOT_RUN"
+}
+
+$ git apply --check release.patch
+Exit code: 0
+
+
+JSON files parsed: 4
+Sitemap XML parsed: PASS
+External-origin reading routes rejected by unit tests: PASS
+Independent per-route cache failure handling: PASS
+Persistent user reading cache preservation marker: PASS

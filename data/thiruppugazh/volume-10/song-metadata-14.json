@@ -1,0 +1,33 @@
+{
+  "batch": 44,
+  "volume": 10,
+  "type": "song-metadata",
+  "items": [
+    {
+      "number": 380,
+      "slug": "song-0380",
+      "title_ta": "திருப்புகழ் பாடல் 380",
+      "title_en": "Thiruppugazh Hymn 380",
+      "original_tamil": "",
+      "word_split": "",
+      "metre": "",
+      "raga": "",
+      "tala": "",
+      "temple": "",
+      "status": "source-verification-required"
+    },
+    {
+      "number": 381,
+      "slug": "song-0381",
+      "title_ta": "திருப்புகழ் பாடல் 381",
+      "title_en": "Thiruppugazh Hymn 381",
+      "original_tamil": "",
+      "word_split": "",
+      "metre": "",
+      "raga": "",
+      "tala": "",
+      "temple": "",
+      "status": "source-verification-required"
+    }
+  ]
+}

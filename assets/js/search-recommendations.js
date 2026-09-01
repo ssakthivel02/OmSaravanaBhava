@@ -1,0 +1,1 @@
+(()=>{'use strict';window.OSBRecommendations={async forQuery(q){const rules=await fetch('data/search-recommendations.json').then(r=>r.json());const n=String(q||'').toLocaleLowerCase();return rules.filter(r=>r.match.some(m=>n.includes(m.toLocaleLowerCase()))).flatMap(r=>r.recommend)}}})();

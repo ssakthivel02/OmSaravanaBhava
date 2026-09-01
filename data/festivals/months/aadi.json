@@ -1,0 +1,81 @@
+[
+  {
+    "id": "aadi-kiruthigai",
+    "titleEn": "Aadi Kiruthigai",
+    "titleTa": "ஆடி கிருத்திகை",
+    "tamilMonth": "Aadi",
+    "type": "Murugan",
+    "summary": "Important Karthigai star day for Murugan worship.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Karthigai"
+    ]
+  },
+  {
+    "id": "monthly-sashti",
+    "titleEn": "Monthly Sashti",
+    "titleTa": "மாத சஷ்டி",
+    "tamilMonth": "All",
+    "type": "Vratham",
+    "summary": "Monthly Sashti observance for Murugan devotees.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Vratham"
+    ]
+  },
+  {
+    "id": "monthly-karthigai",
+    "titleEn": "Monthly Karthigai",
+    "titleTa": "மாத கார்த்திகை",
+    "tamilMonth": "All",
+    "type": "Vratham",
+    "summary": "Monthly Karthigai star observance.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Deepam",
+      "Murugan"
+    ]
+  },
+  {
+    "id": "aadi-festival-1",
+    "titleEn": "Aadi Devotional Day 1",
+    "titleTa": "ஆடி பக்தி நாள் 1",
+    "tamilMonth": "Aadi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Aadi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Aadi",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "aadi-festival-2",
+    "titleEn": "Aadi Devotional Day 2",
+    "titleTa": "ஆடி பக்தி நாள் 2",
+    "tamilMonth": "Aadi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Aadi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Aadi",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "aadi-festival-3",
+    "titleEn": "Aadi Devotional Day 3",
+    "titleTa": "ஆடி பக்தி நாள் 3",
+    "tamilMonth": "Aadi",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Aadi month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Aadi",
+      "Tamil month",
+      "Devotion"
+    ]
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "id": "who-is-murugan",
+    "titleTa": "முருகன் யார்?",
+    "titleEn": "Who is Murugan?",
+    "level": "Beginner",
+    "routes": [
+      "murugan-mantras.html",
+      "arupadai-veedu.html"
+    ]
+  },
+  {
+    "id": "six-abodes",
+    "titleTa": "ஆறுபடை வீடு",
+    "titleEn": "The Six Sacred Abodes",
+    "level": "Beginner",
+    "routes": [
+      "arupadai-veedu.html",
+      "temple-encyclopedia.html"
+    ]
+  },
+  {
+    "id": "thiruppugazh-intro",
+    "titleTa": "திருப்புகழ் அறிமுகம்",
+    "titleEn": "Introduction to Thiruppugazh",
+    "level": "Intermediate",
+    "routes": [
+      "thiruppugazh.html",
+      "thiruppugazh-volume-3.html"
+    ]
+  },
+  {
+    "id": "kavasam-study",
+    "titleTa": "கவசம் அறிமுகம்",
+    "titleEn": "Introduction to Kavasam Literature",
+    "level": "Intermediate",
+    "routes": [
+      "literature/kanda-sashti-kavasam-edition.html",
+      "slokas/skanda-guru-kavasam.html",
+      "literature/shanmuga-kavasam.html"
+    ]
+  },
+  {
+    "id": "knowledge-graph-study",
+    "titleTa": "அறிவுக் கோப்பு பயணம்",
+    "titleEn": "Knowledge Graph Study Path",
+    "level": "Advanced",
+    "routes": [
+      "knowledge-graph.html",
+      "knowledge-graph-phase-3.html",
+      "cross-references.html"
+    ]
+  }
+]

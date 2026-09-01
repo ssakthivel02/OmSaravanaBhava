@@ -1,0 +1,1904 @@
+diff --git a/.github/workflows/release-229-integrity.yml b/.github/workflows/release-229-integrity.yml
+new file mode 100644
+index 0000000..51f9b3b
+--- /dev/null
++++ b/.github/workflows/release-229-integrity.yml
+@@ -0,0 +1,71 @@
++name: Release 229 Static Site Integrity
++
++on:
++  push:
++    branches: [main]
++    paths:
++      - "reading-workspace.html"
++      - "service-worker.js"
++      - "assets/css/reading-workspace-desktop.css"
++      - "assets/js/reading-workspace-desktop.mjs"
++      - "tests/reading-workspace-desktop.test.mjs"
++      - "tools/release_229_validate.py"
++      - "manifest-release-229.json"
++      - "RELEASE_229_*"
++      - ".github/workflows/release-229-integrity.yml"
++  pull_request:
++    paths:
++      - "reading-workspace.html"
++      - "service-worker.js"
++      - "assets/css/reading-workspace-desktop.css"
++      - "assets/js/reading-workspace-desktop.mjs"
++      - "tests/reading-workspace-desktop.test.mjs"
++      - "tools/release_229_validate.py"
++      - "manifest-release-229.json"
++      - "RELEASE_229_*"
++      - ".github/workflows/release-229-integrity.yml"
++  workflow_dispatch:
++
++permissions:
++  contents: read
++
++concurrency:
++  group: release-229-integrity-${{ github.ref }}
++  cancel-in-progress: true
++
++jobs:
++  validate:
++    runs-on: ubuntu-latest
++    timeout-minutes: 15
++    steps:
++      - name: Check out repository
++        uses: actions/checkout@v4
++
++      - name: Set up Node.js
++        uses: actions/setup-node@v4
++        with:
++          node-version: "22"
++
++      - name: Set up Python
++        uses: actions/setup-python@v5
++        with:
++          python-version: "3.12"
++
++      - name: Validate JavaScript syntax
++        run: node --check assets/js/reading-workspace-desktop.mjs
++
++      - name: Run Release 229 Node tests
++        run: node --test tests/reading-workspace-desktop.test.mjs
++
++      - name: Run repository-mode Release 229 validator
++        run: |
++          python tools/release_229_validate.py             --root .             --report artifacts/release-229-repository-validation.json
++
++      - name: Upload validation evidence
++        if: always()
++        uses: actions/upload-artifact@v4
++        with:
++          name: release-229-integrity-evidence
++          path: artifacts/release-229-repository-validation.json
++          if-no-files-found: warn
++          retention-days: 30
+diff --git a/.github/workflows/release-229-production-smoke.yml b/.github/workflows/release-229-production-smoke.yml
+new file mode 100644
+index 0000000..cecdab3
+--- /dev/null
++++ b/.github/workflows/release-229-production-smoke.yml
+@@ -0,0 +1,80 @@
++name: Release 229 Production Smoke
++
++on:
++  workflow_dispatch:
++  schedule:
++    - cron: "17 2 * * *"
++  workflow_run:
++    workflows: ["pages-build-deployment"]
++    types: [completed]
++
++permissions:
++  contents: read
++
++concurrency:
++  group: release-229-production-smoke
++  cancel-in-progress: true
++
++jobs:
++  smoke:
++    if: >-
++      github.event_name != 'workflow_run' ||
++      github.event.workflow_run.conclusion == 'success'
++    runs-on: ubuntu-latest
++    timeout-minutes: 15
++    steps:
++      - name: Check deployed Release 229 assets with retry
++        shell: bash
++        run: |
++          python - <<'PY'
++          import json
++          import sys
++          import time
++          import urllib.request
++
++          checks = [
++              ("https://omsaravanabhava.org/", "ஓம் சரவணபவ"),
++              ("https://omsaravanabhava.org/reading-workspace.html", 'data-release="229"'),
++              ("https://omsaravanabhava.org/assets/css/reading-workspace-desktop.css", "@media (min-width: 1180px)"),
++              ("https://omsaravanabhava.org/assets/js/reading-workspace-desktop.mjs", "export const RELEASE = 229;"),
++              ("https://omsaravanabhava.org/manifest-release-229.json", '"release": 229'),
++              ("https://omsaravanabhava.org/service-worker.js", '"/assets/js/reading-workspace-desktop.mjs"'),
++          ]
++
++          report = []
++          for url, marker in checks:
++              last_error = ""
++              passed = False
++              status = None
++              for attempt in range(10):
++                  try:
++                      request = urllib.request.Request(
++                          url,
++                          headers={
++                              "User-Agent": "OmSaravanaBhava-Release-229-Smoke/1.0",
++                              "Cache-Control": "no-cache",
++                          },
++                      )
++                      with urllib.request.urlopen(request, timeout=20) as response:
++                          status = response.status
++                          text = response.read().decode("utf-8", errors="replace")
++                      if status == 200 and marker in text:
++                          passed = True
++                          break
++                      last_error = f"HTTP {status}; marker absent"
++                  except Exception as exc:
++                      last_error = str(exc)
++                  time.sleep(15)
++              report.append({
++                  "url": url,
++                  "status": status,
++                  "marker": marker,
++                  "passed": passed,
++                  "error": "" if passed else last_error,
++              })
++
++          print(json.dumps(report, indent=2, ensure_ascii=False))
++          failures = [item for item in report if not item["passed"]]
++          if failures:
++              sys.exit(1)
++          PY
+diff --git a/assets/css/reading-workspace-desktop.css b/assets/css/reading-workspace-desktop.css
+new file mode 100644
+index 0000000..3333014
+--- /dev/null
++++ b/assets/css/reading-workspace-desktop.css
+@@ -0,0 +1,315 @@
++/*
++Release 229 — Premium Desktop Literature Navigator
++This file extends the existing reading-workspace styles without changing
++mobile-first baseline rules or devotional content presentation.
++*/
++.reading-workspace-help {
++  margin: -4px 0 14px;
++  color: #6a4638;
++  font-size: 0.92rem;
++}
++
++.reading-workspace-help kbd {
++  display: inline-block;
++  min-width: 1.8em;
++  padding: 0.08em 0.42em;
++  border: 1px solid var(--line);
++  border-bottom-width: 2px;
++  border-radius: 0.45em;
++  background: var(--surface-strong, #fff);
++  color: inherit;
++  font: inherit;
++  font-weight: 850;
++  text-align: center;
++}
++
++.reading-workspace-desktop-shell {
++  display: grid;
++  grid-template-columns: minmax(0, 1fr);
++  gap: 18px;
++  align-items: start;
++}
++
++.reading-workspace-panel-heading {
++  display: flex;
++  align-items: flex-start;
++  justify-content: space-between;
++  gap: 16px;
++  margin-bottom: 14px;
++}
++
++.reading-workspace-panel-heading h2 {
++  margin: 8px 0 0;
++}
++
++#readingWorkspaceVisibleCount {
++  display: grid;
++  place-items: center;
++  min-width: 3rem;
++  min-height: 3rem;
++  padding: 0.45rem;
++  border: 1px solid var(--line);
++  border-radius: 999px;
++  background: var(--surface-strong, #fff);
++  color: var(--red);
++  font-size: 1.2rem;
++}
++
++.reading-workspace-route-list {
++  display: grid;
++  gap: 10px;
++}
++
++.reading-workspace-route-option {
++  width: 100%;
++  padding: 15px;
++  border: 1px solid var(--line);
++  border-radius: 18px;
++  background: var(--surface-strong, #fff);
++  color: inherit;
++  font: inherit;
++  text-align: left;
++  cursor: pointer;
++}
++
++.reading-workspace-route-option:hover {
++  border-color: var(--orange);
++}
++
++.reading-workspace-route-option:focus-visible {
++  outline: 3px solid currentColor;
++  outline-offset: 3px;
++}
++
++.reading-workspace-route-option[aria-selected="true"] {
++  border-color: var(--red);
++  box-shadow: inset 4px 0 0 var(--red);
++  background: linear-gradient(135deg, rgba(165, 29, 23, 0.06), rgba(244, 156, 44, 0.08));
++}
++
++.reading-workspace-route-option-title {
++  display: block;
++  margin: 8px 0 5px;
++  font-size: 1rem;
++  font-weight: 900;
++  line-height: 1.45;
++}
++
++.reading-workspace-route-option-summary {
++  display: -webkit-box;
++  margin: 0;
++  overflow: hidden;
++  color: #6a4638;
++  font-size: 0.88rem;
++  line-height: 1.55;
++  -webkit-box-orient: vertical;
++  -webkit-line-clamp: 2;
++}
++
++.reading-workspace-route-option-meta,
++.reading-workspace-inspector-labels,
++.reading-workspace-inspector-actions {
++  display: flex;
++  flex-wrap: wrap;
++  gap: 8px;
++  align-items: center;
++}
++
++.reading-workspace-route-option-progress {
++  display: grid;
++  grid-template-columns: minmax(0, 1fr) auto;
++  gap: 10px;
++  align-items: center;
++  margin-top: 12px;
++}
++
++.reading-workspace-route-option progress,
++.reading-workspace-inspector progress {
++  width: 100%;
++  height: 12px;
++  accent-color: var(--red);
++}
++
++.reading-workspace-route-option-progress span {
++  min-width: 3.2rem;
++  color: var(--red);
++  font-size: 0.82rem;
++  font-weight: 900;
++  text-align: right;
++}
++
++.reading-workspace-inspector {
++  min-width: 0;
++}
++
++.reading-workspace-inspector h2 {
++  margin: 12px 0 6px;
++  overflow-wrap: anywhere;
++}
++
++.reading-workspace-inspector-title-en {
++  margin-top: 0;
++  color: #6a4638;
++  font-weight: 800;
++}
++
++.reading-workspace-inspector-summary {
++  font-size: 1rem;
++  line-height: 1.75;
++}
++
++.reading-workspace-inspector-progress {
++  display: grid;
++  gap: 8px;
++  margin: 18px 0;
++  padding: 16px;
++  border: 1px solid var(--line);
++  border-radius: 18px;
++  background: rgba(244, 156, 44, 0.06);
++}
++
++.reading-workspace-inspector-progress strong {
++  color: var(--red);
++}
++
++.reading-workspace-inspector-facts {
++  display: grid;
++  gap: 0;
++  margin: 18px 0;
++  border: 1px solid var(--line);
++  border-radius: 18px;
++  overflow: hidden;
++}
++
++.reading-workspace-inspector-fact {
++  display: grid;
++  grid-template-columns: minmax(9rem, 0.42fr) minmax(0, 1fr);
++  gap: 14px;
++  padding: 12px 14px;
++  border-bottom: 1px solid var(--line);
++}
++
++.reading-workspace-inspector-fact:last-child {
++  border-bottom: 0;
++}
++
++.reading-workspace-inspector-fact dt {
++  font-weight: 900;
++}
++
++.reading-workspace-inspector-fact dd {
++  margin: 0;
++  overflow-wrap: anywhere;
++}
++
++.reading-workspace-inspector-actions {
++  margin-top: 18px;
++}
++
++.reading-workspace-inspector-actions .btn {
++  min-height: 44px;
++}
++
++.reading-workspace-inspector-boundary {
++  margin-top: 20px;
++  padding: 14px;
++  border-left: 4px solid var(--orange);
++  border-radius: 12px;
++  background: rgba(244, 156, 44, 0.06);
++  font-size: 0.9rem;
++}
++
++.reading-workspace-support-grid {
++  display: grid;
++  grid-template-columns: repeat(2, minmax(0, 1fr));
++  gap: 18px;
++  margin-top: 18px;
++}
++
++.reading-workspace-support-grid > .card {
++  display: flex;
++  flex-direction: column;
++}
++
++.reading-workspace-support-grid .btn {
++  align-self: flex-start;
++  margin-top: auto;
++}
++
++body.dark .reading-workspace-help,
++body.dark .reading-workspace-route-option-summary,
++body.dark .reading-workspace-inspector-title-en {
++  color: #f4d9c8;
++}
++
++@media (min-width: 1180px) {
++  .reading-workspace-desktop-shell {
++    grid-template-columns: minmax(360px, 0.86fr) minmax(0, 1.34fr);
++    gap: 22px;
++  }
++
++  .reading-workspace-list-panel {
++    position: sticky;
++    top: 18px;
++  }
++
++  .reading-workspace-route-list {
++    max-height: min(68vh, 760px);
++    padding: 2px 8px 4px 2px;
++    overflow: auto;
++    overscroll-behavior: contain;
++    scrollbar-gutter: stable;
++  }
++
++  .reading-workspace-inspector {
++    position: sticky;
++    top: 18px;
++    min-height: 620px;
++  }
++
++  .reading-workspace-support-grid {
++    grid-template-columns: repeat(3, minmax(0, 1fr));
++  }
++}
++
++@media (max-width: 820px) {
++  .reading-workspace-support-grid {
++    grid-template-columns: 1fr;
++  }
++
++  .reading-workspace-inspector-fact {
++    grid-template-columns: 1fr;
++    gap: 4px;
++  }
++
++  .reading-workspace-inspector-actions .btn {
++    width: 100%;
++  }
++}
++
++@media (prefers-reduced-motion: reduce) {
++  .reading-workspace-route-option {
++    scroll-behavior: auto;
++    transition: none;
++  }
++}
++
++@media print {
++  .reading-workspace-help,
++  .reading-workspace-controls,
++  .reading-workspace-list-panel,
++  #readingWorkspaceStatus {
++    display: none !important;
++  }
++
++  .reading-workspace-desktop-shell,
++  .reading-workspace-support-grid {
++    display: block !important;
++  }
++
++  .reading-workspace-inspector {
++    position: static !important;
++    min-height: 0;
++    break-inside: avoid;
++  }
++}
+diff --git a/assets/js/reading-workspace-desktop.mjs b/assets/js/reading-workspace-desktop.mjs
+new file mode 100644
+index 0000000..ef997e7
+--- /dev/null
++++ b/assets/js/reading-workspace-desktop.mjs
+@@ -0,0 +1,649 @@
++export const RELEASE = 229;
++export const DESKTOP_BREAKPOINT = 1180;
++export const CANONICAL_ORIGIN = 'https://omsaravanabhava.org';
++
++export const clampSelectionIndex = (index, length) => {
++  const size = Math.max(0, Number(length) || 0);
++  if (size === 0) return -1;
++  return Math.max(0, Math.min(size - 1, Number(index) || 0));
++};
++
++export const nextKeyboardIndex = (key, currentIndex, length) => {
++  const size = Math.max(0, Number(length) || 0);
++  if (size === 0) return -1;
++  const current = clampSelectionIndex(currentIndex, size);
++  if (key === 'ArrowDown') return Math.min(size - 1, current + 1);
++  if (key === 'ArrowUp') return Math.max(0, current - 1);
++  if (key === 'Home') return 0;
++  if (key === 'End') return size - 1;
++  return current;
++};
++
++export const progressStateLabel = (percent, completedThreshold = 95) => {
++  const value = Math.max(0, Math.min(100, Number(percent) || 0));
++  if (value <= 0) return 'Not started';
++  if (value >= Number(completedThreshold)) return 'Completed locally';
++  return `${Math.round(value)}% read`;
++};
++
++export const buildReadingHref = (record, completedThreshold = 95) => {
++  const path = String(record?.path || '').trim();
++  if (!path.startsWith('/')) return '';
++  const percent = Number(record?.progress?.percent) || 0;
++  return percent > 0 && percent < Number(completedThreshold)
++    ? `${path}?resume=1`
++    : path;
++};
++
++export const selectVisibleRecord = (records, selectedPath) => {
++  const items = Array.isArray(records) ? records : [];
++  if (!items.length) return null;
++  const selected = items.find(item => item?.path === selectedPath);
++  return selected || items[0];
++};
++
++export const isEditableTarget = target => {
++  const tag = String(target?.tagName || '').toLocaleLowerCase();
++  return Boolean(
++    target?.isContentEditable ||
++    tag === 'input' ||
++    tag === 'textarea' ||
++    tag === 'select'
++  );
++};
++
++const createText = (parent, tag, text, className) => {
++  const element = document.createElement(tag);
++  if (className) element.className = className;
++  element.textContent = String(text ?? '');
++  parent.appendChild(element);
++  return element;
++};
++
++const routeTitle = record =>
++  record?.titleTa || record?.titleEn || record?.path || 'Reading route';
++
++const absoluteRouteUrl = path => {
++  try {
++    const url = new URL(String(path || ''), `${CANONICAL_ORIGIN}/`);
++    return url.origin === CANONICAL_ORIGIN ? url.href : '';
++  } catch {
++    return '';
++  }
++};
++
++const formatDate = value => {
++  if (!value) return 'Not opened in this browser';
++  const date = new Date(value);
++  return Number.isNaN(date.getTime())
++    ? 'Date unavailable'
++    : date.toLocaleString();
++};
++
++const appendPill = (parent, text) =>
++  createText(parent, 'span', text, 'pill');
++
++const buildFact = (list, term, detail) => {
++  const row = document.createElement('div');
++  row.className = 'reading-workspace-inspector-fact';
++  createText(row, 'dt', term);
++  createText(row, 'dd', detail);
++  list.appendChild(row);
++};
++
++const renderRouteOption = ({
++  record,
++  selected,
++  index,
++  completedThreshold,
++  onSelect
++}) => {
++  const button = document.createElement('button');
++  button.type = 'button';
++  button.className = 'reading-workspace-route-option';
++  button.setAttribute('role', 'option');
++  button.setAttribute('aria-selected', selected ? 'true' : 'false');
++  button.tabIndex = selected ? 0 : -1;
++  button.dataset.routePath = record.path;
++  button.dataset.routeIndex = String(index);
++
++  const meta = document.createElement('span');
++  meta.className = 'reading-workspace-route-option-meta';
++  appendPill(meta, record.category);
++  appendPill(meta, record.status);
++  button.appendChild(meta);
++
++  createText(
++    button,
++    'span',
++    record.titleTa && record.titleEn
++      ? `${record.titleTa} · ${record.titleEn}`
++      : routeTitle(record),
++    'reading-workspace-route-option-title'
++  );
++
++  if (record.summary) {
++    createText(
++      button,
++      'span',
++      record.summary,
++      'reading-workspace-route-option-summary'
++    );
++  }
++
++  const percent = Number(record.progress?.percent) || 0;
++  const progressWrap = document.createElement('span');
++  progressWrap.className = 'reading-workspace-route-option-progress';
++  const progress = document.createElement('progress');
++  progress.max = 100;
++  progress.value = percent;
++  progress.setAttribute(
++    'aria-label',
++    `${routeTitle(record)} reading progress`
++  );
++  progressWrap.appendChild(progress);
++  createText(
++    progressWrap,
++    'span',
++    percent > 0 ? `${Math.round(percent)}%` : 'New'
++  );
++  button.appendChild(progressWrap);
++
++  button.addEventListener('click', () => onSelect(record.path, true));
++  return button;
++};
++
++const renderInspector = ({
++  host,
++  record,
++  config,
++  savedPaths,
++  readingListModule,
++  readerModule,
++  onRefresh
++}) => {
++  host.replaceChildren();
++  if (!record) {
++    const empty = document.createElement('div');
++    empty.className = 'reading-workspace-inspector-empty';
++    appendPill(empty, 'Route details');
++    createText(empty, 'h2', 'No route matches the current filters');
++    createText(
++      empty,
++      'p',
++      'Change the search, progress or publication filter to restore a route.'
++    );
++    host.appendChild(empty);
++    return;
++  }
++
++  const labels = document.createElement('div');
++  labels.className = 'reading-workspace-inspector-labels';
++  appendPill(labels, record.category);
++  appendPill(labels, record.status);
++  if (savedPaths.has(record.path)) appendPill(labels, 'Saved locally');
++  host.appendChild(labels);
++
++  const heading = createText(
++    host,
++    'h2',
++    record.titleTa || record.titleEn || record.path
++  );
++  heading.id = 'readingWorkspaceInspectorHeading';
++  if (record.titleTa && record.titleEn) {
++    createText(
++      host,
++      'p',
++      record.titleEn,
++      'reading-workspace-inspector-title-en'
++    );
++  }
++
++  if (record.summary) {
++    createText(
++      host,
++      'p',
++      record.summary,
++      'reading-workspace-inspector-summary'
++    );
++  }
++
++  const percent = Number(record.progress?.percent) || 0;
++  const progressPanel = document.createElement('div');
++  progressPanel.className = 'reading-workspace-inspector-progress';
++  createText(
++    progressPanel,
++    'strong',
++    progressStateLabel(percent, config.completedThreshold)
++  );
++  const progress = document.createElement('progress');
++  progress.max = 100;
++  progress.value = percent;
++  progress.setAttribute(
++    'aria-label',
++    `${routeTitle(record)} reading progress`
++  );
++  progressPanel.appendChild(progress);
++  createText(
++    progressPanel,
++    'span',
++    'Progress is approximate browser-local scroll position.'
++  );
++  host.appendChild(progressPanel);
++
++  const facts = document.createElement('dl');
++  facts.className = 'reading-workspace-inspector-facts';
++  buildFact(facts, 'Route', record.path);
++  buildFact(facts, 'Publication state', record.status);
++  buildFact(facts, 'Content group', record.category);
++  buildFact(
++    facts,
++    'Last opened',
++    formatDate(record.progress?.lastVisitedAt)
++  );
++  host.appendChild(facts);
++
++  const actions = document.createElement('div');
++  actions.className = 'reading-workspace-inspector-actions';
++
++  const open = document.createElement('a');
++  open.className = 'btn';
++  open.href = buildReadingHref(record, config.completedThreshold);
++  open.textContent =
++    percent > 0 && percent < Number(config.completedThreshold)
++      ? 'Resume reading'
++      : 'Open reading';
++  actions.appendChild(open);
++
++  const save = document.createElement('button');
++  save.type = 'button';
++  save.className = 'btn secondary';
++  save.textContent = savedPaths.has(record.path)
++    ? 'Already in reading list'
++    : 'Save to reading list';
++  save.disabled = savedPaths.has(record.path);
++  save.addEventListener('click', () => {
++    try {
++      readingListModule.saveReadingRecord({
++        route: record.path,
++        titleTa: record.titleTa,
++        titleEn: record.titleEn,
++        kind: record.category,
++        status: record.status,
++        summary: record.summary
++      });
++      savedPaths.add(record.path);
++      onRefresh(record.path);
++    } catch (error) {
++      console.warn(
++        '[OmSaravanaBhava] Reading-list save unavailable',
++        error
++      );
++      save.textContent = 'Storage unavailable';
++      save.disabled = true;
++    }
++  });
++  actions.appendChild(save);
++
++  if (record.progress) {
++    const reset = document.createElement('button');
++    reset.type = 'button';
++    reset.className = 'btn secondary';
++    reset.textContent = 'Reset this progress';
++    reset.addEventListener('click', () => {
++      readerModule.removeProgressRoute(
++        record.path,
++        undefined,
++        config.maximumProgressItems
++      );
++      onRefresh(record.path);
++    });
++    actions.appendChild(reset);
++  }
++
++  const copy = document.createElement('button');
++  copy.type = 'button';
++  copy.className = 'btn secondary';
++  copy.textContent = 'Copy route link';
++  copy.addEventListener('click', async () => {
++    const url = absoluteRouteUrl(record.path);
++    if (!url || !globalThis.navigator?.clipboard?.writeText) {
++      copy.textContent = 'Copy unavailable';
++      return;
++    }
++    try {
++      await globalThis.navigator.clipboard.writeText(url);
++      copy.textContent = 'Link copied';
++    } catch {
++      copy.textContent = 'Copy unavailable';
++    }
++  });
++  actions.appendChild(copy);
++
++  host.appendChild(actions);
++
++  const boundary = document.createElement('p');
++  boundary.className = 'reading-workspace-inspector-boundary';
++  boundary.textContent =
++    'This panel displays route metadata and local progress only. Open the destination for its complete source, review and completeness statements.';
++  host.appendChild(boundary);
++};
++
++export const initialiseDesktopWorkspace = async ({
++  documentRef = globalThis.document,
++  windowRef = globalThis.window
++} = {}) => {
++  if (!documentRef) return false;
++  const host = documentRef.getElementById('readingWorkspaceDesktop');
++  const listHost = documentRef.getElementById('readingWorkspaceRouteList');
++  const inspector = documentRef.getElementById('readingWorkspaceInspector');
++  const status = documentRef.getElementById('readingWorkspaceStatus');
++  const search = documentRef.getElementById('readingWorkspaceSearch');
++  const state = documentRef.getElementById('readingWorkspaceState');
++  const publication =
++    documentRef.getElementById('readingWorkspacePublication');
++  const resetFilters =
++    documentRef.getElementById('readingWorkspaceResetFilters');
++  const clearAll =
++    documentRef.getElementById('readingWorkspaceClearProgress');
++  const visibleCount =
++    documentRef.getElementById('readingWorkspaceVisibleCount');
++
++  if (
++    !host ||
++    !listHost ||
++    !inspector ||
++    !status ||
++    !search ||
++    !state ||
++    !publication ||
++    !resetFilters ||
++    !clearAll ||
++    !visibleCount
++  ) {
++    return false;
++  }
++
++  let readerModule;
++  let readingListModule;
++  try {
++    [readerModule, readingListModule] = await Promise.all([
++      import('/assets/js/reader-experience.js'),
++      import('/assets/js/reading-list.mjs')
++    ]);
++  } catch (error) {
++    console.warn(
++      '[OmSaravanaBhava] Desktop reading dependencies unavailable',
++      error
++    );
++    status.textContent =
++      'The local reading registries could not be loaded.';
++    return false;
++  }
++
++  let model;
++  try {
++    model = await readerModule.loadReadingModel();
++  } catch (error) {
++    console.warn(
++      '[OmSaravanaBhava] Desktop reading model unavailable',
++      error
++    );
++    status.textContent =
++      'The local reading registries could not be loaded.';
++    return false;
++  }
++
++  const existingStatuses = new Set(
++    [...publication.options].map(option => option.value)
++  );
++  [...new Set(model.routes.map(route => route.status))]
++    .sort()
++    .forEach(value => {
++      if (existingStatuses.has(value)) return;
++      const option = documentRef.createElement('option');
++      option.value = value;
++      option.textContent = value;
++      publication.appendChild(option);
++    });
++
++  let selectedPath = '';
++  let visibleRecords = [];
++  let savedPaths = new Set();
++
++  const loadSavedPaths = () => {
++    try {
++      savedPaths = new Set(
++        readingListModule.loadReadingList()
++          .map(item => readerModule.routePath(item.route))
++          .filter(Boolean)
++      );
++    } catch {
++      savedPaths = new Set();
++    }
++  };
++
++  const updateMetrics = records => {
++    let readingListItems = [];
++    try {
++      readingListItems = readingListModule.loadReadingList();
++    } catch {
++      readingListItems = [];
++    }
++    const metrics = readerModule.buildWorkspaceMetrics(
++      records,
++      readingListItems,
++      model.config.completedThreshold
++    );
++    const map = {
++      readingWorkspaceEligible: metrics.eligible,
++      readingWorkspaceStarted: metrics.started,
++      readingWorkspaceCompleted: metrics.completed,
++      readingWorkspaceSaved: metrics.saved
++    };
++    Object.entries(map).forEach(([id, value]) => {
++      const element = documentRef.getElementById(id);
++      if (element) element.textContent = String(value);
++    });
++  };
++
++  const focusSelectedOption = () => {
++    const selected = listHost.querySelector(
++      '.reading-workspace-route-option[aria-selected="true"]'
++    );
++    selected?.focus({preventScroll: true});
++    selected?.scrollIntoView({
++      block: 'nearest',
++      behavior: globalThis.matchMedia?.(
++        '(prefers-reduced-motion: reduce)'
++      )?.matches
++        ? 'auto'
++        : 'smooth'
++    });
++  };
++
++  const selectPath = (path, focusOption = false) => {
++    selectedPath = path;
++    const selected = selectVisibleRecord(visibleRecords, selectedPath);
++    selectedPath = selected?.path || '';
++    [...listHost.querySelectorAll('.reading-workspace-route-option')]
++      .forEach(option => {
++        const active = option.dataset.routePath === selectedPath;
++        option.setAttribute('aria-selected', active ? 'true' : 'false');
++        option.tabIndex = active ? 0 : -1;
++      });
++    renderInspector({
++      host: inspector,
++      record: selected,
++      config: model.config,
++      savedPaths,
++      readingListModule,
++      readerModule,
++      onRefresh: preferredPath => {
++        selectedPath = preferredPath || selectedPath;
++        render();
++      }
++    });
++    if (focusOption) focusSelectedOption();
++  };
++
++  const render = () => {
++    const records = readerModule.mergeRoutesWithProgress(
++      model.routes,
++      readerModule.loadProgress(
++        undefined,
++        model.config.maximumProgressItems
++      )
++    );
++    loadSavedPaths();
++    updateMetrics(records);
++
++    visibleRecords = readerModule.filterWorkspaceRoutes(records, {
++      query: search.value,
++      status: publication.value,
++      progressState: state.value,
++      completedThreshold: model.config.completedThreshold
++    });
++
++    const selected = selectVisibleRecord(visibleRecords, selectedPath);
++    selectedPath = selected?.path || '';
++    listHost.replaceChildren();
++
++    if (!visibleRecords.length) {
++      const empty = documentRef.createElement('div');
++      empty.className = 'reading-workspace-inspector-empty';
++      createText(empty, 'h3', 'No reading routes match');
++      createText(
++        empty,
++        'p',
++        'Change the search, progress state or publication filter.'
++      );
++      listHost.appendChild(empty);
++    } else {
++      visibleRecords.forEach((record, index) => {
++        listHost.appendChild(renderRouteOption({
++          record,
++          selected: record.path === selectedPath,
++          index,
++          completedThreshold: model.config.completedThreshold,
++          onSelect: selectPath
++        }));
++      });
++    }
++
++    visibleCount.textContent = String(visibleRecords.length);
++    status.textContent =
++      `${visibleRecords.length} eligible reading route${visibleRecords.length === 1 ? '' : 's'} match. Selection is temporary; progress remains in this browser.`;
++    clearAll.disabled = records.every(
++      item => (Number(item.progress?.percent) || 0) <= 0
++    );
++    renderInspector({
++      host: inspector,
++      record: selected,
++      config: model.config,
++      savedPaths,
++      readingListModule,
++      readerModule,
++      onRefresh: preferredPath => {
++        selectedPath = preferredPath || selectedPath;
++        render();
++      }
++    });
++  };
++
++  [search, state, publication].forEach(control => {
++    control.addEventListener(
++      control === search ? 'input' : 'change',
++      render
++    );
++  });
++
++  resetFilters.addEventListener('click', () => {
++    search.value = '';
++    state.value = 'all';
++    publication.value = 'all';
++    render();
++    search.focus();
++  });
++
++  clearAll.addEventListener('click', () => {
++    if (
++      !globalThis.confirm(
++        'Clear browser-local reading progress? Reading-list entries, notes, accessibility preferences and audio history will be preserved.'
++      )
++    ) {
++      return;
++    }
++    readerModule.clearProgress();
++    render();
++  });
++
++  listHost.addEventListener('keydown', event => {
++    if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
++      return;
++    }
++    const current = Number(
++      event.target?.closest?.(
++        '.reading-workspace-route-option'
++      )?.dataset?.routeIndex
++    );
++    const index = nextKeyboardIndex(
++      event.key,
++      Number.isFinite(current) ? current : 0,
++      visibleRecords.length
++    );
++    if (index < 0) return;
++    event.preventDefault();
++    selectPath(visibleRecords[index].path, true);
++  });
++
++  documentRef.addEventListener('keydown', event => {
++    if (
++      event.key === '/' &&
++      !event.altKey &&
++      !event.ctrlKey &&
++      !event.metaKey &&
++      !isEditableTarget(event.target)
++    ) {
++      event.preventDefault();
++      search.focus();
++      search.select();
++    }
++    if (
++      event.key === 'Escape' &&
++      documentRef.activeElement === search &&
++      search.value
++    ) {
++      search.value = '';
++      render();
++    }
++  });
++
++  windowRef?.addEventListener?.('storage', event => {
++    if (
++      [
++        readerModule.STORAGE_KEY,
++        readingListModule.STORAGE_KEY
++      ].includes(event.key)
++    ) {
++      render();
++    }
++  });
++
++  render();
++  documentRef.documentElement.dataset.readingWorkspaceRelease =
++    String(RELEASE);
++  return true;
++};
++
++if (typeof document !== 'undefined') {
++  if (document.readyState === 'loading') {
++    document.addEventListener(
++      'DOMContentLoaded',
++      () => initialiseDesktopWorkspace(),
++      {once: true}
++    );
++  } else {
++    initialiseDesktopWorkspace();
++  }
++}
+diff --git a/manifest-release-229.json b/manifest-release-229.json
+new file mode 100644
+index 0000000..002ba9c
+--- /dev/null
++++ b/manifest-release-229.json
+@@ -0,0 +1,93 @@
++{
++  "project": "OmSaravanaBhava",
++  "release": 229,
++  "name": "Premium Desktop Literature Navigator",
++  "base_commit": "513949e743a9cab67281fbea7d379bf4c0d06d66",
++  "base_release": 228,
++  "generated": "2026-07-15",
++  "required_commit_title": "Release 229: add premium desktop literature navigator",
++  "validation_status": "LOCAL_PACKAGE_PASS_PATCH_CHECK_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
++  "production_objective": "Upgrade the existing Reading Workspace in place with a desktop-first, keyboard-operable master-detail literature navigator while preserving all existing browser-local data boundaries.",
++  "added_files": [
++    ".github/workflows/release-229-integrity.yml",
++    ".github/workflows/release-229-production-smoke.yml",
++    "assets/css/reading-workspace-desktop.css",
++    "assets/js/reading-workspace-desktop.mjs",
++    "tests/reading-workspace-desktop.test.mjs",
++    "tools/release_229_validate.py",
++    "manifest-release-229.json",
++    "RELEASE_229_CHANGED_FILES.txt",
++    "RELEASE_229_GITHUB_PORTAL_INSTRUCTIONS.txt",
++    "RELEASE_229_LOCAL_TEST_EVIDENCE.txt",
++    "RELEASE_229_VALIDATION_REPORT.md",
++    "RELEASE_229_SHA256SUMS.txt",
++    "RELEASE_229.patch"
++  ],
++  "modified_files": [
++    "reading-workspace.html",
++    "service-worker.js"
++  ],
++  "deleted_files": [],
++  "merge_sensitive_files": [
++    "reading-workspace.html",
++    "service-worker.js"
++  ],
++  "service_worker_cache_generation": 228,
++  "service_worker_strategy": "Additive precache update only. Existing Release 228 cache names and migration behaviour remain unchanged.",
++  "route_registry_changed": false,
++  "sitemap_changed": false,
++  "new_public_route": false,
++  "new_browser_storage_key": false,
++  "content_changes": false,
++  "claims": {
++    "desktop_master_detail_layout": true,
++    "keyboard_listbox_navigation": true,
++    "visible_focus": true,
++    "reduced_motion_support": true,
++    "responsive_single_column_fallback": true,
++    "existing_reading_progress_reused": true,
++    "existing_reading_list_reused": true,
++    "new_storage_key": false,
++    "analytics": false,
++    "tracking": false,
++    "backend_dependency": false,
++    "devotional_text_modified": false
++  },
++  "validation_commands": [
++    "node --check assets/js/reading-workspace-desktop.mjs",
++    "node --test tests/reading-workspace-desktop.test.mjs",
++    "python tools/release_229_validate.py --root . --package-mode --report artifacts/release-229-package-validation.json",
++    "git apply --check RELEASE_229.patch"
++  ],
++  "validation_results": {
++    "local_package": "PASS",
++    "node_syntax": "PASS",
++    "node_tests": "PASS_10_OF_10",
++    "python_compile": "PASS",
++    "workflow_yaml_parse": "PASS",
++    "baseline_blob_match": "PASS",
++    "patch_check": "PASS",
++    "github_actions": "NOT_RUN",
++    "deployed_production": "NOT_RUN"
++  },
++  "known_limitations": [
++    "The desktop navigator does not add, replace or verify devotional text.",
++    "Route selection is temporary UI state and is not persisted.",
++    "Reading progress remains an approximate browser-local scroll position.",
++    "The split layout activates at wide desktop widths and falls back to one column on smaller viewports.",
++    "GitHub Actions and deployed-production checks can run only after repository upload.",
++    "The service-worker cache generation remains 228 because this release is an additive precache update, not a cache-schema migration."
++  ],
++  "patch_scope": {
++    "includes": "Production implementation, modified baseline files, release manifest, tests, validator and Release 229 workflows.",
++    "excludes": [
++      "RELEASE_229.patch",
++      "RELEASE_229_SHA256SUMS.txt",
++      "RELEASE_229_LOCAL_TEST_EVIDENCE.txt",
++      "RELEASE_229_VALIDATION_REPORT.md",
++      "RELEASE_229_CHANGED_FILES.txt",
++      "RELEASE_229_GITHUB_PORTAL_INSTRUCTIONS.txt"
++    ],
++    "reason": "Release evidence ledgers are generated after patch applicability is proven and are distributed in the ZIP overlay."
++  }
++}
+diff --git a/reading-workspace.html b/reading-workspace.html
+index 5a94ce2..3de0754 100644
+--- a/reading-workspace.html
++++ b/reading-workspace.html
+@@ -4,17 +4,23 @@
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <title>Premium Reading Workspace | Om Saravana Bhava</title>
+-<meta name="description" content="Browser-local reading progress, resume controls, focus mode and reading-list integration for existing published OmSaravanaBhava literature routes.">
++<meta name="description" content="Desktop-first, browser-local literature navigation with reading progress, source-status scanning, resume controls and reading-list integration for existing published OmSaravanaBhava routes.">
+ <meta name="robots" content="index,follow">
+ <link rel="canonical" href="https://omsaravanabhava.org/reading-workspace.html">
++<meta property="og:type" content="website">
++<meta property="og:title" content="Premium Reading Workspace | Om Saravana Bhava">
++<meta property="og:description" content="A desktop-first reading navigator for existing source-aware Murugan literature routes, with browser-local progress and no account or tracking.">
++<meta property="og:url" content="https://omsaravanabhava.org/reading-workspace.html">
+ <link rel="stylesheet" href="assets/css/osb44.css">
+ <link rel="stylesheet" href="assets/css/reading-workspace.css">
++<link rel="stylesheet" href="assets/css/reading-workspace-desktop.css">
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+ <meta name="theme-color" content="#a51d17">
+ <link rel="manifest" href="manifest.json">
+ <script defer src="assets/js/pwa-register.js"></script>
++<script type="module" src="assets/js/reading-workspace-desktop.mjs"></script>
+ </head>
+-<body data-release="228">
++<body data-release="229">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Browser-local premium literature reading workspace</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+@@ -24,12 +30,12 @@
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Reading Workspace</span></p></nav>
+ 
+-<section class="card reading-workspace-hero">
++<section class="card reading-workspace-hero" aria-labelledby="readingWorkspaceTitle">
+ <div>
+-<span class="pill">Release 225 · Local reading continuity</span>
+-<h1 class="section-title" lang="ta">வாசிப்பு பணிமனை</h1>
++<span class="pill">Release 229 · Premium desktop literature navigator</span>
++<h1 id="readingWorkspaceTitle" class="section-title" lang="ta">வாசிப்பு பணிமனை</h1>
+ <h2>Premium Reading Workspace</h2>
+-<p>Resume existing published or clearly bounded devotional reading routes. Progress is calculated from page position and stored only in this browser.</p>
++<p>Scan existing source-aware literature routes in a keyboard-operable master-detail layout. Reading progress and reading-list choices remain only in this browser.</p>
+ </div>
+ <div class="reading-workspace-metric"><strong id="readingWorkspaceEligible">0</strong><span>eligible routes</span></div>
+ <div class="reading-workspace-metric"><strong id="readingWorkspaceStarted">0</strong><span>started locally</span></div>
+@@ -39,7 +45,7 @@
+ 
+ <section class="card reading-workspace-controls" aria-label="Reading workspace filters">
+ <label for="readingWorkspaceSearch">Tamil or English search
+-<input id="readingWorkspaceSearch" type="search" placeholder="Thiruppugazh, Kavasam, Vel Maaral…" autocomplete="off">
++<input id="readingWorkspaceSearch" type="search" placeholder="Thiruppugazh, Kavasam, Vel Maaral…" autocomplete="off" aria-describedby="readingWorkspaceKeyboardHelp">
+ </label>
+ <label for="readingWorkspaceState">Progress
+ <select id="readingWorkspaceState">
+@@ -58,34 +64,53 @@
+ <button class="btn secondary" id="readingWorkspaceClearProgress" type="button">Clear progress</button>
+ </section>
+ 
++<p id="readingWorkspaceKeyboardHelp" class="reading-workspace-help">Desktop keyboard: press <kbd>/</kbd> to focus search; use Up, Down, Home and End in the route list.</p>
+ <p id="readingWorkspaceStatus" role="status" aria-live="polite">Loading local reading routes…</p>
+-<section id="readingWorkspaceItems" class="grid reading-workspace-grid" aria-label="Eligible literature reading routes">
+-<article class="card">Loading reading workspace…</article>
+-</section>
+-
+-<section class="card"><h2>Notes and section bookmarks</h2><p>Add your own note from the reading toolbar on eligible routes, then review it in the browser-local Notes Centre.</p><a class="btn" href="reading-notes.html">Open Reading Notes</a></section>
+-
+-<section class="card"><h2>Back up local reading activity</h2><p>Export or restore reading progress, reading-list entries and notes through the validated Personal Data Centre.</p><a class="btn" href="personal-data.html">Open Personal Data Centre</a></section>
+ 
+-<section class="card"><h2>Your personal library</h2><p>Review current reading positions, completed routes, saved pages, notes and listening history in one read-only dashboard.</p><a class="btn" href="personal-library.html">Open My Library</a></section>
++<section id="readingWorkspaceDesktop" class="reading-workspace-desktop-shell" aria-label="Desktop literature navigator">
++<section class="card reading-workspace-list-panel" aria-labelledby="readingWorkspaceListHeading">
++<div class="reading-workspace-panel-heading">
++<div>
++<span class="pill">Published route index</span>
++<h2 id="readingWorkspaceListHeading">Reading routes</h2>
++</div>
++<strong id="readingWorkspaceVisibleCount" aria-label="Visible reading routes">0</strong>
++</div>
++<div id="readingWorkspaceRouteList" class="reading-workspace-route-list" role="listbox" aria-label="Eligible literature routes" aria-describedby="readingWorkspaceKeyboardHelp" tabindex="-1">
++<p>Loading reading routes…</p>
++</div>
++</section>
+ 
+-<section class="card"><h2>Build devotional collections</h2><p>Add eligible literature and other published routes to named local collections.</p><a class="btn" href="devotional-collections.html">Open Collections</a></section>
++<aside id="readingWorkspaceInspector" class="card reading-workspace-inspector" aria-labelledby="readingWorkspaceInspectorHeading">
++<div class="reading-workspace-inspector-empty">
++<span class="pill">Route details</span>
++<h2 id="readingWorkspaceInspectorHeading">Choose a reading route</h2>
++<p>Select a route to review its publication boundary, local progress and available actions.</p>
++</div>
++</aside>
++</section>
+ 
+-<section class="card"><h2>Practice planning</h2><p>Build a route sequence from current reading materials and record bounded local check-ins.</p><a class="btn" href="devotional-practice-planner.html">Open Practice Planner</a></section>
++<section class="reading-workspace-support-grid" aria-label="Related browser-local reading tools">
++<article class="card"><h2>Notes and section bookmarks</h2><p>Add your own note from the reading toolbar on eligible routes, then review it in the browser-local Notes Centre.</p><a class="btn" href="reading-notes.html">Open Reading Notes</a></article>
++<article class="card"><h2>Back up local reading activity</h2><p>Export or restore reading progress, reading-list entries and notes through the validated Personal Data Centre.</p><a class="btn" href="personal-data.html">Open Personal Data Centre</a></article>
++<article class="card"><h2>Your personal library</h2><p>Review current reading positions, completed routes, saved pages, notes and listening history in one read-only dashboard.</p><a class="btn" href="personal-library.html">Open My Library</a></article>
++<article class="card"><h2>Build devotional collections</h2><p>Add eligible literature and other published routes to named local collections.</p><a class="btn" href="devotional-collections.html">Open Collections</a></article>
++<article class="card"><h2>Practice planning</h2><p>Build a route sequence from current reading materials and record bounded local check-ins.</p><a class="btn" href="devotional-practice-planner.html">Open Practice Planner</a></article>
++</section>
+ 
+ <section class="card reading-workspace-boundary">
+ <h2>Reading and evidence boundary</h2>
+ <ul>
+-<li>No devotional text is copied into local progress storage.</li>
++<li>No devotional text, selected passage or page body is copied into desktop-navigation state.</li>
++<li>Route selection is temporary UI state and creates no new browser-storage key.</li>
+ <li>Progress is an approximate scroll position, not proof that a work has been read or completed.</li>
+ <li>Each destination retains its existing publication, source-review, completeness and copyright statements.</li>
+-<li>Focus mode changes presentation only; it does not alter the source text.</li>
+-<li>Reading-list data, accessibility preferences and audio history remain separate and are not deleted by clearing progress.</li>
+-<li>No account, analytics or cross-device synchronization is used.</li>
++<li>Saving a route uses the existing bounded reading-list dataset only after an explicit user action.</li>
++<li>No account, analytics, behavioural profiling or cross-device synchronization is used.</li>
+ </ul>
+ </section>
+ 
+-<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>Reading progress requires JavaScript. Existing literature remains available through <a href="discovery.html?lens=literature">Discovery</a> and the <a href="reading-list.html">Reading List</a>.</p></section></noscript>
++<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>The desktop navigator requires JavaScript. Existing literature remains available through <a href="discovery.html?lens=literature">Discovery</a> and the <a href="reading-list.html">Reading List</a>.</p></section></noscript>
+ </main>
+ <footer>© Om Saravana Bhava · <a href="personal-library.html">My Library</a> · <a href="reading-notes.html">Reading Notes</a> · <a href="reading-workspace.html">Reading Workspace</a> · <a href="reading-list.html">Reading List</a> · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
+ </body>
+diff --git a/service-worker.js b/service-worker.js
+index 0eeacd9..cb7bb31 100644
+--- a/service-worker.js
++++ b/service-worker.js
+@@ -225,6 +225,8 @@ const PRECACHE_URLS = [
+   "/manifest-release-222.json",
+   "/reading-workspace.html",
+   "/assets/css/reading-workspace.css",
++  "/assets/css/reading-workspace-desktop.css",
++  "/assets/js/reading-workspace-desktop.mjs",
+   "/data/reading-workspace.json",
+   "/manifest-release-223.json",
+   "/reading-notes.html",
+diff --git a/tests/reading-workspace-desktop.test.mjs b/tests/reading-workspace-desktop.test.mjs
+new file mode 100644
+index 0000000..a0ca5b2
+--- /dev/null
++++ b/tests/reading-workspace-desktop.test.mjs
+@@ -0,0 +1,126 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import {readFile} from 'node:fs/promises';
++import {
++  RELEASE,
++  DESKTOP_BREAKPOINT,
++  clampSelectionIndex,
++  nextKeyboardIndex,
++  progressStateLabel,
++  buildReadingHref,
++  selectVisibleRecord,
++  isEditableTarget
++} from '../assets/js/reading-workspace-desktop.mjs';
++
++test('release and desktop breakpoint are stable', () => {
++  assert.equal(RELEASE, 229);
++  assert.equal(DESKTOP_BREAKPOINT, 1180);
++});
++
++test('selection index is bounded', () => {
++  assert.equal(clampSelectionIndex(-4, 5), 0);
++  assert.equal(clampSelectionIndex(8, 5), 4);
++  assert.equal(clampSelectionIndex(2, 5), 2);
++  assert.equal(clampSelectionIndex(0, 0), -1);
++});
++
++test('listbox keyboard movement is deterministic', () => {
++  assert.equal(nextKeyboardIndex('ArrowDown', 0, 4), 1);
++  assert.equal(nextKeyboardIndex('ArrowDown', 3, 4), 3);
++  assert.equal(nextKeyboardIndex('ArrowUp', 0, 4), 0);
++  assert.equal(nextKeyboardIndex('Home', 2, 4), 0);
++  assert.equal(nextKeyboardIndex('End', 1, 4), 3);
++  assert.equal(nextKeyboardIndex('PageDown', 1, 4), 1);
++});
++
++test('progress labels stay factual and bounded', () => {
++  assert.equal(progressStateLabel(-8), 'Not started');
++  assert.equal(progressStateLabel(32.4), '32% read');
++  assert.equal(progressStateLabel(95), 'Completed locally');
++  assert.equal(progressStateLabel(500), 'Completed locally');
++});
++
++test('reading href resumes only genuine in-progress records', () => {
++  const record = {path: '/literature/test.html', progress: {percent: 50}};
++  assert.equal(buildReadingHref(record), '/literature/test.html?resume=1');
++  assert.equal(
++    buildReadingHref({...record, progress: {percent: 0}}),
++    '/literature/test.html'
++  );
++  assert.equal(
++    buildReadingHref({...record, progress: {percent: 100}}),
++    '/literature/test.html'
++  );
++  assert.equal(buildReadingHref({path: 'https://evil.example'}), '');
++});
++
++test('visible selection is preserved or falls back safely', () => {
++  const records = [{path: '/a'}, {path: '/b'}];
++  assert.equal(selectVisibleRecord(records, '/b').path, '/b');
++  assert.equal(selectVisibleRecord(records, '/missing').path, '/a');
++  assert.equal(selectVisibleRecord([], '/a'), null);
++});
++
++test('keyboard shortcut avoids editable controls', () => {
++  assert.equal(isEditableTarget({tagName: 'INPUT'}), true);
++  assert.equal(isEditableTarget({tagName: 'textarea'}), true);
++  assert.equal(isEditableTarget({tagName: 'DIV', isContentEditable: true}), true);
++  assert.equal(isEditableTarget({tagName: 'BUTTON'}), false);
++});
++
++test('page contains one accessible master-detail navigator', async () => {
++  const html = await readFile(
++    new URL('../reading-workspace.html', import.meta.url),
++    'utf8'
++  );
++  for (const marker of [
++    'data-release="229"',
++    'id="readingWorkspaceDesktop"',
++    'id="readingWorkspaceRouteList"',
++    'role="listbox"',
++    'id="readingWorkspaceInspector"',
++    'assets/js/reading-workspace-desktop.mjs',
++    'assets/css/reading-workspace-desktop.css'
++  ]) {
++    assert.ok(html.includes(marker), `missing ${marker}`);
++  }
++  assert.equal(
++    (html.match(/id="readingWorkspaceRouteList"/g) || []).length,
++    1
++  );
++});
++
++test('desktop styles include visible focus and reduced motion', async () => {
++  const css = await readFile(
++    new URL('../assets/css/reading-workspace-desktop.css', import.meta.url),
++    'utf8'
++  );
++  for (const marker of [
++    '@media (min-width: 1180px)',
++    ':focus-visible',
++    '@media (prefers-reduced-motion: reduce)',
++    'grid-template-columns',
++    '@media print'
++  ]) {
++    assert.ok(css.includes(marker), `missing ${marker}`);
++  }
++});
++
++test('module creates no new storage key or tracking surface', async () => {
++  const source = await readFile(
++    new URL('../assets/js/reading-workspace-desktop.mjs', import.meta.url),
++    'utf8'
++  );
++  for (const forbidden of [
++    'localStorage.setItem',
++    'sessionStorage.setItem',
++    'indexedDB.open',
++    'navigator.sendBeacon',
++    'google-analytics',
++    'gtag(',
++    'mixpanel',
++    'segment.io'
++  ]) {
++    assert.equal(source.includes(forbidden), false, `forbidden ${forbidden}`);
++  }
++});
+diff --git a/tools/release_229_validate.py b/tools/release_229_validate.py
+new file mode 100644
+index 0000000..07e312d
+--- /dev/null
++++ b/tools/release_229_validate.py
+@@ -0,0 +1,390 @@
++#!/usr/bin/env python3
++"""Release 229 package/repository validator using only the Python standard library."""
++
++from __future__ import annotations
++
++import argparse
++import hashlib
++import json
++import re
++import subprocess
++import sys
++import xml.etree.ElementTree as ET
++from html.parser import HTMLParser
++from pathlib import Path
++from urllib.parse import urlparse
++
++RELEASE = 229
++BASE_COMMIT = "513949e743a9cab67281fbea7d379bf4c0d06d66"
++REQUIRED = [
++    "reading-workspace.html",
++    "service-worker.js",
++    "assets/css/reading-workspace-desktop.css",
++    "assets/js/reading-workspace-desktop.mjs",
++    "tests/reading-workspace-desktop.test.mjs",
++    "tools/release_229_validate.py",
++    ".github/workflows/release-229-integrity.yml",
++    ".github/workflows/release-229-production-smoke.yml",
++    "manifest-release-229.json",
++    "RELEASE_229_CHANGED_FILES.txt",
++    "RELEASE_229_GITHUB_PORTAL_INSTRUCTIONS.txt",
++    "RELEASE_229_LOCAL_TEST_EVIDENCE.txt",
++    "RELEASE_229_VALIDATION_REPORT.md",
++    "RELEASE_229.patch",
++]
++NEW_ASSETS = [
++    "/assets/css/reading-workspace-desktop.css",
++    "/assets/js/reading-workspace-desktop.mjs",
++]
++FORBIDDEN_MARKERS = [
++    "localhost:",
++    "127.0.0.1:",
++    "BEGIN PRIVATE KEY",
++    "api_key=",
++    "apikey=",
++    "google-analytics",
++    "mixpanel",
++    "segment.io",
++]
++ALLOWED_HTML_SCHEMES = {"", "http", "https", "mailto", "tel"}
++
++
++class PageAudit(HTMLParser):
++    def __init__(self) -> None:
++        super().__init__(convert_charrefs=True)
++        self.ids: list[str] = []
++        self.h1_count = 0
++        self.main_count = 0
++        self.lang = ""
++        self.canonical = ""
++        self.title_depth = 0
++        self.title_text: list[str] = []
++        self.links: list[str] = []
++        self.scripts: list[dict[str, str]] = []
++
++    def handle_starttag(self, tag: str, attrs) -> None:
++        values = dict(attrs)
++        if tag == "html":
++            self.lang = values.get("lang", "")
++        if tag == "h1":
++            self.h1_count += 1
++        if tag == "main":
++            self.main_count += 1
++        if tag == "title":
++            self.title_depth += 1
++        if values.get("id"):
++            self.ids.append(values["id"])
++        if tag == "link" and values.get("rel") == "canonical":
++            self.canonical = values.get("href", "")
++        if tag in {"a", "link", "script", "img"}:
++            target = values.get("href") or values.get("src")
++            if target:
++                self.links.append(target)
++        if tag == "script":
++            self.scripts.append(values)
++
++    def handle_endtag(self, tag: str) -> None:
++        if tag == "title" and self.title_depth:
++            self.title_depth -= 1
++
++    def handle_data(self, data: str) -> None:
++        if self.title_depth:
++            self.title_text.append(data)
++
++
++def sha256(path: Path) -> str:
++    digest = hashlib.sha256()
++    with path.open("rb") as handle:
++        for block in iter(lambda: handle.read(1024 * 1024), b""):
++            digest.update(block)
++    return digest.hexdigest()
++
++
++def run(command: list[str], cwd: Path) -> tuple[int, str]:
++    completed = subprocess.run(
++        command,
++        cwd=cwd,
++        text=True,
++        stdout=subprocess.PIPE,
++        stderr=subprocess.STDOUT,
++        check=False,
++    )
++    return completed.returncode, completed.stdout
++
++
++def audit_release_page(root: Path, errors: list[str], checks: list[str]) -> None:
++    path = root / "reading-workspace.html"
++    text = path.read_text(encoding="utf-8")
++    parser = PageAudit()
++    parser.feed(text)
++    duplicates = sorted({value for value in parser.ids if parser.ids.count(value) > 1})
++    if duplicates:
++        errors.append(f"reading-workspace.html duplicate ids: {duplicates}")
++    if parser.lang != "ta":
++        errors.append("reading-workspace.html must retain lang=ta")
++    if parser.h1_count != 1:
++        errors.append(f"reading-workspace.html h1 count is {parser.h1_count}")
++    if parser.main_count != 1:
++        errors.append(f"reading-workspace.html main count is {parser.main_count}")
++    if parser.canonical != "https://omsaravanabhava.org/reading-workspace.html":
++        errors.append("reading-workspace.html canonical URL is incorrect")
++    if not "".join(parser.title_text).strip():
++        errors.append("reading-workspace.html title is empty")
++    for marker in (
++        'data-release="229"',
++        'id="readingWorkspaceDesktop"',
++        'id="readingWorkspaceRouteList"',
++        'role="listbox"',
++        'id="readingWorkspaceInspector"',
++        'role="status"',
++        'aria-live="polite"',
++        'type="module" src="assets/js/reading-workspace-desktop.mjs"',
++    ):
++        if marker not in text:
++            errors.append(f"reading-workspace.html missing marker: {marker}")
++    checks.append("release page semantics and unique IDs")
++
++
++def audit_release_assets(root: Path, errors: list[str], checks: list[str]) -> None:
++    js = (root / "assets/js/reading-workspace-desktop.mjs").read_text(encoding="utf-8")
++    css = (root / "assets/css/reading-workspace-desktop.css").read_text(encoding="utf-8")
++    sw = (root / "service-worker.js").read_text(encoding="utf-8")
++
++    for marker in (
++        "export const RELEASE = 229;",
++        "role', 'option'",
++        "aria-selected",
++        "ArrowDown",
++        "prefers-reduced-motion",
++        "loadReadingModel",
++    ):
++        if marker not in js:
++            errors.append(f"desktop module missing marker: {marker}")
++    for forbidden in (
++        "localStorage.setItem",
++        "sessionStorage.setItem",
++        "indexedDB.open",
++        "navigator.sendBeacon",
++    ):
++        if forbidden in js:
++            errors.append(f"desktop module contains forbidden operation: {forbidden}")
++    for marker in (
++        "@media (min-width: 1180px)",
++        ":focus-visible",
++        "@media (prefers-reduced-motion: reduce)",
++        "@media print",
++    ):
++        if marker not in css:
++            errors.append(f"desktop stylesheet missing marker: {marker}")
++    if "const RELEASE = '228';" not in sw:
++        errors.append("service-worker cache generation changed unexpectedly")
++    for asset in NEW_ASSETS:
++        count = sw.count(f'"{asset}"')
++        if count != 1:
++            errors.append(f"service-worker must precache {asset} exactly once; found {count}")
++    checks.append("desktop module, CSS and additive offline precache")
++
++
++def audit_manifest(root: Path, errors: list[str], checks: list[str]) -> None:
++    manifest = json.loads((root / "manifest-release-229.json").read_text(encoding="utf-8"))
++    expected = {
++        "release": RELEASE,
++        "base_commit": BASE_COMMIT,
++        "required_commit_title": "Release 229: add premium desktop literature navigator",
++    }
++    for key, value in expected.items():
++        if manifest.get(key) != value:
++            errors.append(f"manifest {key} mismatch: {manifest.get(key)!r}")
++    if manifest.get("service_worker_cache_generation") != 228:
++        errors.append("manifest must document unchanged service-worker cache generation 228")
++    if manifest.get("deleted_files") != []:
++        errors.append("manifest must not declare deleted files")
++    checks.append("release manifest identity and limitations")
++
++
++def audit_json(root: Path, errors: list[str], checks: list[str], package_mode: bool) -> None:
++    candidates = list(root.rglob("*.json"))
++    for path in candidates:
++        try:
++            json.loads(path.read_text(encoding="utf-8"))
++        except Exception as exc:
++            errors.append(f"invalid JSON {path.relative_to(root)}: {exc}")
++    checks.append(f"JSON syntax ({len(candidates)} file(s))")
++
++    if not package_mode:
++        route_file = root / "data/site-routes.json"
++        if route_file.exists():
++            payload = json.loads(route_file.read_text(encoding="utf-8"))
++            routes = payload.get("routes", [])
++            paths = [item.get("path") for item in routes if isinstance(item, dict)]
++            duplicates = sorted({value for value in paths if value and paths.count(value) > 1})
++            if duplicates:
++                errors.append(f"duplicate route registry paths: {duplicates}")
++            if paths.count("/reading-workspace.html") != 1:
++                errors.append("route registry must contain /reading-workspace.html exactly once")
++            checks.append("route registry uniqueness and existing workspace route")
++
++
++def audit_repository_html(root: Path, errors: list[str], warnings: list[str], checks: list[str]) -> None:
++    html_files = [p for p in root.rglob("*.html") if ".git" not in p.parts]
++    for path in html_files:
++        parser = PageAudit()
++        try:
++            parser.feed(path.read_text(encoding="utf-8"))
++        except Exception as exc:
++            errors.append(f"HTML parse failure {path.relative_to(root)}: {exc}")
++            continue
++        duplicates = {value for value in parser.ids if parser.ids.count(value) > 1}
++        if duplicates:
++            errors.append(f"duplicate IDs in {path.relative_to(root)}: {sorted(duplicates)}")
++        if parser.h1_count > 1:
++            errors.append(f"multiple h1 elements in {path.relative_to(root)}")
++        if parser.main_count > 1:
++            errors.append(f"multiple main elements in {path.relative_to(root)}")
++        for target in parser.links:
++            parsed = urlparse(target)
++            if parsed.scheme not in ALLOWED_HTML_SCHEMES:
++                warnings.append(f"unusual URL scheme in {path.relative_to(root)}: {target}")
++    checks.append(f"repository HTML structural scan ({len(html_files)} file(s))")
++
++
++def audit_sitemap(root: Path, errors: list[str], checks: list[str]) -> None:
++    sitemap = root / "sitemap.xml"
++    if not sitemap.exists():
++        return
++    try:
++        tree = ET.parse(sitemap)
++        locs = [
++            (element.text or "").strip()
++            for element in tree.iter()
++            if element.tag.endswith("loc")
++        ]
++        duplicates = sorted({loc for loc in locs if loc and locs.count(loc) > 1})
++        if duplicates:
++            errors.append(f"duplicate sitemap URLs: {duplicates}")
++        expected = "https://omsaravanabhava.org/reading-workspace.html"
++        if locs.count(expected) != 1:
++            errors.append("reading workspace sitemap URL must remain exactly once")
++        checks.append("sitemap XML and URL uniqueness")
++    except Exception as exc:
++        errors.append(f"sitemap XML invalid: {exc}")
++
++
++def audit_forbidden_markers(root: Path, errors: list[str], checks: list[str]) -> None:
++    extensions = {".html", ".js", ".mjs", ".json", ".css", ".py", ".yml", ".yaml"}
++    excluded_roots = {".git", ".github", "tools", "tests", "artifacts"}
++    for path in root.rglob("*"):
++        if not path.is_file() or path.suffix.lower() not in extensions:
++            continue
++        relative = path.relative_to(root)
++        if any(part in excluded_roots for part in relative.parts):
++            continue
++        if relative.name.startswith("RELEASE_229_") or relative.name == "manifest-release-229.json":
++            continue
++        text = path.read_text(encoding="utf-8", errors="replace")
++        for marker in FORBIDDEN_MARKERS:
++            if marker.lower() in text.lower():
++                errors.append(f"forbidden marker {marker!r} in {path.relative_to(root)}")
++    checks.append("localhost, credential and tracking marker scan")
++
++
++def audit_checksums(root: Path, errors: list[str], checks: list[str]) -> None:
++    sums = root / "RELEASE_229_SHA256SUMS.txt"
++    if not sums.exists():
++        return
++    for line in sums.read_text(encoding="utf-8").splitlines():
++        if not line.strip():
++            continue
++        expected, relative = line.split("  ", 1)
++        target = root / relative
++        if not target.exists():
++            errors.append(f"checksum target missing: {relative}")
++        elif sha256(target) != expected:
++            errors.append(f"checksum mismatch: {relative}")
++    checks.append("final package SHA256 verification")
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", default=".")
++    parser.add_argument("--package-mode", action="store_true")
++    parser.add_argument("--report")
++    args = parser.parse_args()
++    root = Path(args.root).resolve()
++
++    errors: list[str] = []
++    warnings: list[str] = []
++    checks: list[str] = []
++    skipped: list[str] = []
++
++    for relative in REQUIRED:
++        if not (root / relative).exists():
++            errors.append(f"required file missing: {relative}")
++    checks.append("required release files")
++
++    audit_release_page(root, errors, checks)
++    audit_release_assets(root, errors, checks)
++    audit_manifest(root, errors, checks)
++    audit_json(root, errors, checks, args.package_mode)
++    audit_forbidden_markers(root, errors, checks)
++    audit_checksums(root, errors, checks)
++
++    # Detect Node without adding a package dependency.
++    node_check = subprocess.run(
++        ["bash", "-lc", "command -v node >/dev/null 2>&1"],
++        cwd=root,
++        check=False,
++    ).returncode == 0
++    if node_check:
++        code, output = run(
++            ["node", "--check", "assets/js/reading-workspace-desktop.mjs"],
++            root,
++        )
++        if code:
++            errors.append(f"node --check failed:\n{output}")
++        code, output = run(
++            ["node", "--test", "tests/reading-workspace-desktop.test.mjs"],
++            root,
++        )
++        if code:
++            errors.append(f"node tests failed:\n{output}")
++        checks.append("Node syntax and Release 229 tests")
++    else:
++        skipped.append("Node syntax/tests unavailable")
++
++    if args.package_mode:
++        skipped.extend([
++            "full repository HTML scan",
++            "full route-file existence scan",
++            "deployed production smoke",
++            "GitHub Actions conclusion",
++        ])
++    else:
++        audit_repository_html(root, errors, warnings, checks)
++        audit_sitemap(root, errors, checks)
++
++    report = {
++        "release": RELEASE,
++        "base_commit": BASE_COMMIT,
++        "mode": "package" if args.package_mode else "repository",
++        "status": "PASS" if not errors else "FAIL",
++        "errors": errors,
++        "warnings": warnings,
++        "checks": checks,
++        "skipped": skipped,
++        "github_actions": "NOT_RUN_LOCALLY",
++        "deployed_production": "NOT_RUN_LOCALLY",
++    }
++    output = json.dumps(report, indent=2, ensure_ascii=False)
++    print(output)
++    if args.report:
++        report_path = Path(args.report)
++        if not report_path.is_absolute():
++            report_path = root / report_path
++        report_path.parent.mkdir(parents=True, exist_ok=True)
++        report_path.write_text(output + "\n", encoding="utf-8")
++    return 1 if errors else 0
++
++
++if __name__ == "__main__":
++    sys.exit(main())

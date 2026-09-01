@@ -1,0 +1,33 @@
+{
+  "batch": 25,
+  "type": "ai-relationship-graph",
+  "nodes": [
+    {
+      "id": "work-9",
+      "label": "கந்தர் அலங்காரம்",
+      "kind": "literature"
+    },
+    {
+      "id": "temple-9",
+      "label": "மதுரை",
+      "kind": "temple"
+    },
+    {
+      "id": "festival-9",
+      "label": "பங்குனி உத்திரம்",
+      "kind": "festival"
+    }
+  ],
+  "edges": [
+    {
+      "from": "work-9",
+      "to": "temple-9",
+      "relationship": "linked_to"
+    },
+    {
+      "from": "work-9",
+      "to": "festival-9",
+      "relationship": "associated_with"
+    }
+  ]
+}

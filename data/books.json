@@ -1,0 +1,26 @@
+[
+  {
+    "id": "book-intro",
+    "title": "Introduction to Lord Murugan",
+    "type": "Guide",
+    "level": "Beginner",
+    "summary": "A simple starting guide covering names, symbols, temples and festivals.",
+    "status": "Draft learning resource"
+  },
+  {
+    "id": "book-temples",
+    "title": "Murugan Temple Explorer",
+    "type": "Reference",
+    "level": "Intermediate",
+    "summary": "A structured guide to major Murugan temples and devotional practices.",
+    "status": "Growing content library"
+  },
+  {
+    "id": "book-slokas",
+    "title": "Daily Murugan Slokas",
+    "type": "Prayer Companion",
+    "level": "All levels",
+    "summary": "A practical devotional companion for daily chanting and meaning.",
+    "status": "Needs traditional review"
+  }
+]

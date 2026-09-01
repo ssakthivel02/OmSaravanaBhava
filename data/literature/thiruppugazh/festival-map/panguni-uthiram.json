@@ -1,0 +1,16 @@
+{
+  "festival_id": "panguni-uthiram",
+  "festival_name_ta": "பங்குனி உத்திரம்",
+  "literature_links": [
+    "திருப்புகழ்"
+  ],
+  "recommended_use": "festival reader and daily chanting curation",
+  "review_status": "curation_pending",
+  "candidate_song_ids": [
+    "thiruppugazh-003",
+    "thiruppugazh-011",
+    "thiruppugazh-019",
+    "thiruppugazh-027",
+    "thiruppugazh-035"
+  ]
+}

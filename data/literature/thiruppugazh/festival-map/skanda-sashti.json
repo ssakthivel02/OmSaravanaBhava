@@ -1,0 +1,16 @@
+{
+  "festival_id": "skanda-sashti",
+  "festival_name_ta": "கந்த சஷ்டி",
+  "literature_links": [
+    "திருப்புகழ்"
+  ],
+  "recommended_use": "festival reader and daily chanting curation",
+  "review_status": "curation_pending",
+  "candidate_song_ids": [
+    "thiruppugazh-001",
+    "thiruppugazh-009",
+    "thiruppugazh-017",
+    "thiruppugazh-025",
+    "thiruppugazh-033"
+  ]
+}

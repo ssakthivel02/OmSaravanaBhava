@@ -1,0 +1,81 @@
+[
+  {
+    "id": "chitra-pournami",
+    "titleEn": "Chitra Pournami",
+    "titleTa": "சித்ரா பௌர்ணமி",
+    "tamilMonth": "Chithirai",
+    "type": "Festival",
+    "summary": "Full moon reflection, charity and temple worship.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Pournami"
+    ]
+  },
+  {
+    "id": "monthly-sashti",
+    "titleEn": "Monthly Sashti",
+    "titleTa": "மாத சஷ்டி",
+    "tamilMonth": "All",
+    "type": "Vratham",
+    "summary": "Monthly Sashti observance for Murugan devotees.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Vratham"
+    ]
+  },
+  {
+    "id": "monthly-karthigai",
+    "titleEn": "Monthly Karthigai",
+    "titleTa": "மாத கார்த்திகை",
+    "tamilMonth": "All",
+    "type": "Vratham",
+    "summary": "Monthly Karthigai star observance.",
+    "season": "Tamil devotional calendar",
+    "tags": [
+      "Deepam",
+      "Murugan"
+    ]
+  },
+  {
+    "id": "chithirai-festival-1",
+    "titleEn": "Chithirai Devotional Day 1",
+    "titleTa": "சித்திரை பக்தி நாள் 1",
+    "tamilMonth": "Chithirai",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Chithirai month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Chithirai",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "chithirai-festival-2",
+    "titleEn": "Chithirai Devotional Day 2",
+    "titleTa": "சித்திரை பக்தி நாள் 2",
+    "tamilMonth": "Chithirai",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Chithirai month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Chithirai",
+      "Tamil month",
+      "Devotion"
+    ]
+  },
+  {
+    "id": "chithirai-festival-3",
+    "titleEn": "Chithirai Devotional Day 3",
+    "titleTa": "சித்திரை பக்தி நாள் 3",
+    "tamilMonth": "Chithirai",
+    "type": "Monthly",
+    "summary": "A devotional planning entry for Chithirai month with temple visit, reading and family prayer guidance.",
+    "season": "Monthly reflection",
+    "tags": [
+      "Chithirai",
+      "Tamil month",
+      "Devotion"
+    ]
+  }
+]

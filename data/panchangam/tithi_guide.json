@@ -1,0 +1,30 @@
+[
+  {
+    "type": "Tithi",
+    "titleEn": "Prathamai",
+    "titleTa": "பிரதமை",
+    "meaning": "First lunar day.",
+    "note": "Paksha context matters."
+  },
+  {
+    "type": "Tithi",
+    "titleEn": "Sashti",
+    "titleTa": "சஷ்டி",
+    "meaning": "Important for Murugan vratham.",
+    "note": "Monthly Sashti observed by many devotees."
+  },
+  {
+    "type": "Tithi",
+    "titleEn": "Pournami",
+    "titleTa": "பௌர்ணமி",
+    "meaning": "Full moon day.",
+    "note": "Temple and family observances vary."
+  },
+  {
+    "type": "Tithi",
+    "titleEn": "Amavasai",
+    "titleTa": "அமாவாசை",
+    "meaning": "New moon day.",
+    "note": "Often used for ancestor remembrance."
+  }
+]

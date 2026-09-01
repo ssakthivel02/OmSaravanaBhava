@@ -1,0 +1,24 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 200,
+  "name": "OmSaravanaBhava Version 3 Milestone",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 6,
+  "modified": [
+    "index.html",
+    "platform.html",
+    "service-worker.js",
+    "sitemap.xml"
+  ],
+  "added": [
+    "version-3.html",
+    "data/version-3-status.json"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Integrated modules": 10,
+    "Desktop wide-screen foundation": "Included from Release 181"
+  }
+}

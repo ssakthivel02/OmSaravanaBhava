@@ -1,0 +1,1 @@
+Upload the entire data folder to GitHub root. If GitHub does not show the folder, open the data folder in your computer and drag the folder itself, not only individual files. Commit message: fix(data): add visible JSON data folder

@@ -1,0 +1,5 @@
+
+(function(){const $=(s,r=document)=>r.querySelector(s);const esc=v=>String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));async function load(p){const r=await fetch(p,{cache:'no-store'});if(!r.ok)throw new Error(p);return r.json();}
+async function renderDay(){const box=$('#festival-day-card');if(!box)return;const data=await load('/data/festivals/days/today.json');box.innerHTML=`<article class="festival-card"><h3>${esc(data.title)}</h3><p class="meta">${esc(data.dateNote)}</p><p>${esc(data.devotionalNote)}</p><ul>${data.suggestions.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></article>`}
+async function renderExport(){const box=$('#calendar-export-list');if(!box)return;const data=await load('/data/ics/calendar_exports.json');box.innerHTML=data.map(x=>`<article class="festival-card"><h3>${esc(x.title)}</h3><p>${esc(x.summary)}</p><p class="calendar-link">${esc(x.icsFile)}</p><a class="festival-btn secondary" href="${esc(x.icsFile)}" download>Download ICS</a></article>`).join('')}
+window.addEventListener('DOMContentLoaded',()=>{renderDay().catch(console.error);renderExport().catch(console.error);});})();

@@ -1,0 +1,159 @@
+--- manus-export/index.html
++++ final/index.html
+@@ -29,7 +29,7 @@
+ <section class="wrap"><h2 class="section-title">Festival Guidance</h2><div class="card"><h3 id="countdown">Loading...</h3><p>Festival observance dates vary by lunar calendar, location and temple tradition; confirm the exact date using an authoritative Panchangam or temple source.</p></div></section>
+ <section class="wrap"><h2 class="section-title">Murugan Festivals</h2><div id="festivalGrid" class="grid"><div class="loading">Loading festivals...</div></div></section>
+ </main>
+-<div class="tools"><button class="tool" data-text>A+ Text</button><button class="tool" data-dark>☾ Night</button><button class="tool" data-share>↗ Share</button></div>
++<div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform</footer>
+ </body>
+ </html>
+--- manus-export/temples.html
++++ final/temples.html
+@@ -16,17 +16,17 @@
+ <link rel="stylesheet" href="assets/css/osb44.css">
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://omsaravanabhava.org/temples.html#webpage","url":"https://omsaravanabhava.org/temples.html","name":"Temple Explorer","description":"Explore Murugan temples including the Arupadai Veedu and other important shrines through the Tamil-first Om Saravana Bhava temple directory.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Temple Explorer","item":"https://omsaravanabhava.org/temples.html"}]}]}</script>
+ <script defer src="assets/js/osb44.js"></script>
+-<link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
+ </head>
+ <body data-module="temples">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Verified Murugan devotional knowledge platform</div>
+-<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="../">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="/">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav>
+ <main id="main-content" class="wrap">
+-<nav aria-label="Breadcrumb"><p><a href="../">Home</a> › <span aria-current="page">Temple Explorer</span></p></nav>
+-<h1 class="section-title">Temple Explorer</h1><p>Filter-ready Murugan temple encyclopedia.</p><div class="filters"><button class="filter" data-filter="All">All</button><button class="filter" data-filter="Arupadai Veedu">Arupadai Veedu</button><button class="filter" data-filter="Popular Temple">Popular</button><button class="filter" data-filter="Hill Temple">Hill</button></div><div id="templeGrid" class="grid"><div class="loading">Loading temples...</div></div>
++<nav aria-label="Breadcrumb"><p><a href="/">Home</a> › <span aria-current="page">Temple Explorer</span></p></nav>
++<h1 class="section-title">Temple Explorer</h1><p>Filter-ready Murugan temple encyclopedia.</p><div class="filters"><button type="button" class="filter" data-filter="All" aria-pressed="true">All</button><button type="button" class="filter" data-filter="Arupadai Veedu" aria-pressed="false">Arupadai Veedu</button><button type="button" class="filter" data-filter="Popular Temple" aria-pressed="false">Popular</button><button type="button" class="filter" data-filter="Hill Temple" aria-pressed="false">Hill</button></div><div id="templeGrid" class="grid"><div class="loading">Loading temples...</div></div>
+ </main>
+-<div class="tools"><button class="tool" data-text>A+ Text</button><button class="tool" data-dark>☾ Night</button><button class="tool" data-share>↗ Share</button></div>
++<div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform</footer>
+ </body>
+ </html>
+--- manus-export/sloka-library.html
++++ final/sloka-library.html
+@@ -16,17 +16,17 @@
+ <link rel="stylesheet" href="assets/css/osb44.css">
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://omsaravanabhava.org/sloka-library.html#webpage","url":"https://omsaravanabhava.org/sloka-library.html","name":"Sloka Library","description":"Read Tamil Murugan mantras, chants and devotional meanings in the Om Saravana Bhava sloka library.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Sloka Library","item":"https://omsaravanabhava.org/sloka-library.html"}]}]}</script>
+ <script defer src="assets/js/osb44.js"></script>
+-<link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
+ </head>
+ <body data-module="slokas">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Verified Murugan devotional knowledge platform</div>
+-<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="../">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="/">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav>
+ <main id="main-content" class="wrap">
+-<nav aria-label="Breadcrumb"><p><a href="../">Home</a> › <span aria-current="page">Sloka Library</span></p></nav>
++<nav aria-label="Breadcrumb"><p><a href="/">Home</a> › <span aria-current="page">Sloka Library</span></p></nav>
+ <h1 class="section-title">Sloka Library</h1><div id="slokaGrid" class="grid"><div class="loading">Loading slokas...</div></div>
+ </main>
+-<div class="tools"><button class="tool" data-text>A+ Text</button><button class="tool" data-dark>☾ Night</button><button class="tool" data-share>↗ Share</button></div>
++<div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform</footer>
+ </body>
+ </html>
+--- manus-export/festivals.html
++++ final/festivals.html
+@@ -16,17 +16,17 @@
+ <link rel="stylesheet" href="assets/css/osb44.css">
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://omsaravanabhava.org/festivals.html#webpage","url":"https://omsaravanabhava.org/festivals.html","name":"Festival Calendar","description":"Learn about Thai Poosam, Skanda Sashti, Panguni Uthiram, Aadi Krittikai and other Murugan festival traditions.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Festival Calendar","item":"https://omsaravanabhava.org/festivals.html"}]}]}</script>
+ <script defer src="assets/js/osb44.js"></script>
+-<link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
+ </head>
+ <body data-module="festivals">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Verified Murugan devotional knowledge platform</div>
+-<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="../">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="/">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav>
+ <main id="main-content" class="wrap">
+-<nav aria-label="Breadcrumb"><p><a href="../">Home</a> › <span aria-current="page">Festival Calendar</span></p></nav>
++<nav aria-label="Breadcrumb"><p><a href="/">Home</a> › <span aria-current="page">Festival Calendar</span></p></nav>
+ <h1 class="section-title">Festival Calendar</h1><div id="festivalGrid" class="grid"><div class="loading">Loading festivals...</div></div>
+ </main>
+-<div class="tools"><button class="tool" data-text>A+ Text</button><button class="tool" data-dark>☾ Night</button><button class="tool" data-share>↗ Share</button></div>
++<div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform</footer>
+ </body>
+ </html>
+--- manus-export/ai-search.html
++++ final/ai-search.html
+@@ -16,17 +16,17 @@
+ <link rel="stylesheet" href="assets/css/osb44.css">
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"SearchResultsPage","@id":"https://omsaravanabhava.org/ai-search.html#webpage","url":"https://omsaravanabhava.org/ai-search.html","name":"AI Search","description":"Search the Om Saravana Bhava static knowledge collection for Murugan temples, slokas and festivals in Tamil and English.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"AI Search","item":"https://omsaravanabhava.org/ai-search.html"}]}]}</script>
+ <script defer src="assets/js/osb44.js"></script>
+-<link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
+ </head>
+ <body data-module="search">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Verified Murugan devotional knowledge platform</div>
+-<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="../">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="/">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav>
+ <main id="main-content" class="wrap">
+-<nav aria-label="Breadcrumb"><p><a href="../">Home</a> › <span aria-current="page">AI Search</span></p></nav>
+-<section class="card"><div class="eyebrow">Local AI Search</div><h1 class="section-title">Search Murugan knowledge</h1><form class="searchbar"><input id="q" name="q" aria-label="Search Murugan knowledge" placeholder="Palani, Vadapalani, Vel, Sashti, Valli"><button class="btn">Search</button></form></section><section id="results" class="list" style="margin-top:22px"><div class="loading">Loading search...</div></section>
++<nav aria-label="Breadcrumb"><p><a href="/">Home</a> › <span aria-current="page">AI Search</span></p></nav>
++<section class="card"><div class="eyebrow">Local AI Search</div><h1 class="section-title">Search Murugan knowledge</h1><form class="searchbar"><input id="q" name="q" aria-label="Search Murugan knowledge" placeholder="Palani, Vadapalani, Vel, Sashti, Valli"><button class="btn">Search</button></form></section><section id="results" class="list" style="margin-top:22px" role="status" aria-live="polite" tabindex="-1"><div class="loading">Loading search...</div></section>
+ </main>
+-<div class="tools"><button class="tool" data-text>A+ Text</button><button class="tool" data-dark>☾ Night</button><button class="tool" data-share>↗ Share</button></div>
++<div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform</footer>
+ </body>
+ </html>
+--- manus-export/audio-library.html
++++ final/audio-library.html
+@@ -16,18 +16,18 @@
+ <link rel="stylesheet" href="assets/css/osb44.css">
+ <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://omsaravanabhava.org/audio-library.html#webpage","url":"https://omsaravanabhava.org/audio-library.html","name":"Audio Library","description":"Om Saravana Bhava audio library publication area for owned or licensed Murugan devotional recordings.","isPartOf":{"@id":"https://omsaravanabhava.org/#website"},"inLanguage":["ta","en"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://omsaravanabhava.org/"},{"@type":"ListItem","position":2,"name":"Audio Library","item":"https://omsaravanabhava.org/audio-library.html"}]}]}</script>
+ <script defer src="assets/js/osb44.js"></script>
+-<link rel="icon" href="../favicon.svg" type="image/svg+xml">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
+ </head>
+ <body>
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Verified Murugan devotional knowledge platform</div>
+-<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="../">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="/">ஓம் சரவணபவ</a><div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div></div></nav>
+ <main id="main-content" class="wrap">
+-<nav aria-label="Breadcrumb"><p><a href="../">Home</a> › <span aria-current="page">Audio Library</span></p></nav>
++<nav aria-label="Breadcrumb"><p><a href="/">Home</a> › <span aria-current="page">Audio Library</span></p></nav>
+ <h1 class="section-title">Audio Library</h1>
+ <div class="card"><h3>Licensed audio publication area</h3><p>No copyrighted MP3 is bundled. Only recordings owned by Om Saravana Bhava or published under a verified licence will be added.</p><audio controls style="width:100%" aria-label="Murugan devotional audio player"></audio></div>
+ </main>
+-<div class="tools"><button class="tool" data-text>A+ Text</button><button class="tool" data-dark>☾ Night</button><button class="tool" data-share>↗ Share</button></div>
++<div class="tools"><button type="button" class="tool" data-text aria-pressed="false" aria-label="Increase text size">A+ Text</button><button type="button" class="tool" data-dark aria-pressed="false" aria-label="Enable dark mode">☾ Night</button><button type="button" class="tool" data-share aria-label="Share this page">↗ Share</button></div>
+ <footer>© Om Saravana Bhava · Static GitHub Pages safe platform</footer>
+ </body>
+ </html>
+--- manus-export/assets/js/osb44.js
++++ final/assets/js/osb44.js
+@@ -5,13 +5,14 @@
+ OSB.templeCard=t=>`<article class="card temple-card" data-type="${t.type}"><span class="pill">${t.type}</span><h3>${t.nameTa}</h3><p>${t.nameEn}</p><a class="btn secondary" href="temples/${t.id}.html">Open temple</a></article>`;
+ OSB.slokaCard=s=>`<article class="card"><span class="pill">${s.category}</span><h3>${s.titleTa}</h3><p>${s.meaningTa||s.meaningEn}</p><a class="btn" href="slokas/${s.id}.html">Read sloka</a></article>`;
+ OSB.festivalCard=f=>`<article class="card"><span class="pill">${f.month}</span><h3>${f.nameTa}</h3><p>${f.summary}</p><a class="btn" href="festivals/${f.id}.html">Open festival</a></article>`;
+-OSB.safe=async fn=>{try{await fn()}catch(e){console.error(e);document.querySelector('main,.wrap,#detail,#reader')?.insertAdjacentHTML('beforeend','<div class="card">Content loading issue. Confirm data JSON files are uploaded.</div>')}};
+-OSB.home=()=>OSB.safe(async()=>{const [t,s,f]=await Promise.all([OSB.load('data/temples.json'),OSB.load('data/slokas.json'),OSB.load('data/festivals.json')]);OSB.byId('templeGrid').innerHTML=t.slice(0,6).map(OSB.templeCard).join('');OSB.byId('dailySloka').innerHTML=OSB.slokaCard(s[0]);OSB.byId('festivalGrid').innerHTML=f.map(OSB.festivalCard).join('');OSB.byId('countdown').textContent='Next major festival: confirm the exact date using an authoritative Panchangam or temple calendar'});
+-OSB.temples=()=>OSB.safe(async()=>{let data=await OSB.load('data/temples.json');OSB.byId('templeGrid').innerHTML=data.map(OSB.templeCard).join('');document.querySelectorAll('[data-filter]').forEach(b=>{b.setAttribute('type','button');b.setAttribute('aria-pressed','true');b.onclick=()=>{let v=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(f=>f.setAttribute('aria-pressed',f.dataset.filter===v?'true':'false'));document.querySelectorAll('.temple-card').forEach(c=>c.style.display=(v==='All'||c.dataset.type===v)?'flex':'none')}})});
++OSB.safe=async fn=>{try{await fn()}catch(e){console.error(e);document.querySelector('main,.wrap,#detail,#reader')?.insertAdjacentHTML('beforeend','<div class="card" role="alert">Content loading issue. Confirm data JSON files are uploaded.</div>')}};
++OSB.home=()=>OSB.safe(async()=>{const[t,s,f]=await Promise.all([OSB.load('data/temples.json'),OSB.load('data/slokas.json'),OSB.load('data/festivals.json')]);OSB.byId('templeGrid').innerHTML=t.slice(0,6).map(OSB.templeCard).join('');OSB.byId('dailySloka').innerHTML=OSB.slokaCard(s[0]);OSB.byId('festivalGrid').innerHTML=f.map(OSB.festivalCard).join('');OSB.byId('countdown').textContent='Next major festival: confirm the exact date using an authoritative Panchangam or temple calendar'});
++OSB.temples=()=>OSB.safe(async()=>{const data=await OSB.load('data/temples.json');OSB.byId('templeGrid').innerHTML=data.map(OSB.templeCard).join('');document.querySelectorAll('[data-filter]').forEach(b=>{b.type='button';b.setAttribute('aria-pressed',b.dataset.filter==='All'?'true':'false');b.onclick=()=>{const value=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(f=>f.setAttribute('aria-pressed',f.dataset.filter===value?'true':'false'));document.querySelectorAll('.temple-card').forEach(c=>{c.style.display=(value==='All'||c.dataset.type===value)?'flex':'none'})}})});
+ OSB.slokas=()=>OSB.safe(async()=>{OSB.byId('slokaGrid').innerHTML=(await OSB.load('data/slokas.json')).map(OSB.slokaCard).join('')});
+-OSB.search=()=>OSB.safe(async()=>{let q=(new URLSearchParams(location.search).get('q')||'').trim();if(OSB.byId('q'))OSB.byId('q').value=q;let [t,s,f]=await Promise.all([OSB.load('data/temples.json'),OSB.load('data/slokas.json'),OSB.load('data/festivals.json')]);let all=[...t.map(x=>({kind:'Temple',title:x.nameTa+' '+x.nameEn,body:x.summary+' '+x.place+' '+x.tags.join(' '),url:'temples/'+x.id+'.html'})),...s.map(x=>({kind:'Sloka',title:x.titleTa+' '+x.titleEn,body:x.textTa+' '+x.meaningTa+' '+x.meaningEn,url:'slokas/'+x.id+'.html'})),...f.map(x=>({kind:'Festival',title:x.nameTa+' '+x.nameEn,body:x.summary+' '+x.tags.join(' '),url:'festivals/'+x.id+'.html'}))];let terms=q.toLowerCase().split(/\s+/).filter(Boolean),res=terms.length?all.filter(x=>terms.some(term=>(x.title+' '+x.body).toLowerCase().includes(term))):all.slice(0,12);let resultsDiv=OSB.byId('results');resultsDiv.setAttribute('role','status');resultsDiv.setAttribute('aria-live','polite');resultsDiv.innerHTML=res.length?res.map(x=>`<article class="card result"><span class="pill">${x.kind}</span><h3>${x.title}</h3><p>${x.body.slice(0,260)}</p><a class="btn" href="${x.url}">Open</a></article>`).join(''):'<div class="card">No exact verified result found.</div>';resultsDiv.focus()});
++OSB.search=()=>OSB.safe(async()=>{const params=new URLSearchParams(location.search);const submitted=params.has('q');const q=(params.get('q')||'').trim();if(OSB.byId('q'))OSB.byId('q').value=q;const[t,s,f]=await Promise.all([OSB.load('data/temples.json'),OSB.load('data/slokas.json'),OSB.load('data/festivals.json')]);const all=[...t.map(x=>({kind:'Temple',title:x.nameTa+' '+x.nameEn,body:x.summary+' '+x.place+' '+x.tags.join(' '),url:'temples/'+x.id+'.html'})),...s.map(x=>({kind:'Sloka',title:x.titleTa+' '+x.titleEn,body:x.textTa+' '+x.meaningTa+' '+x.meaningEn,url:'slokas/'+x.id+'.html'})),...f.map(x=>({kind:'Festival',title:x.nameTa+' '+x.nameEn,body:x.summary+' '+x.tags.join(' '),url:'festivals/'+x.id+'.html'}))];const terms=q.toLowerCase().split(/\s+/).filter(Boolean);const res=terms.length?all.filter(x=>terms.some(term=>(x.title+' '+x.body).toLowerCase().includes(term))):all.slice(0,12);const resultsDiv=OSB.byId('results');resultsDiv.innerHTML=res.length?res.map(x=>`<article class="card result"><span class="pill">${x.kind}</span><h3>${x.title}</h3><p>${x.body.slice(0,260)}</p><a class="btn" href="${x.url}">Open</a></article>`).join(''):'<div class="card">No exact verified result found. Try Palani, Vel, Sashti or Thiruchendur.</div>';if(submitted)resultsDiv.focus()});
+ OSB.festivals=()=>OSB.safe(async()=>{OSB.byId('festivalGrid').innerHTML=(await OSB.load('data/festivals.json')).map(OSB.festivalCard).join('')});
+-OSB.restorePrefs=()=>{if(localStorage.getItem('osb-dark')==='1')document.body.classList.add('dark');if(localStorage.getItem('osb-text-large')==='1')document.body.style.fontSize='18px'};
+-OSB.restorePrefs();
+-document.addEventListener('click',e=>{if(e.target.matches('[data-dark]')){e.target.setAttribute('type','button');e.target.setAttribute('aria-pressed',document.body.classList.contains('dark')?'false':'true');document.body.classList.toggle('dark');localStorage.setItem('osb-dark',document.body.classList.contains('dark')?'1':'0')}if(e.target.matches('[data-text]')){e.target.setAttribute('type','button');let isLarge=document.body.style.fontSize==='18px';e.target.setAttribute('aria-pressed',isLarge?'false':'true');document.body.style.fontSize=isLarge?'':'18px';localStorage.setItem('osb-text-large',isLarge?'0':'1')}if(e.target.matches('[data-share]')){e.target.setAttribute('type','button');if(navigator.share){navigator.share({title:document.title,url:location.href}).then(()=>{let msg=document.createElement('div');msg.setAttribute('role','status');msg.setAttribute('aria-live','polite');msg.textContent='Shared successfully';msg.style.cssText='position:fixed;bottom:80px;right:18px;background:#a51d17;color:#fff;padding:12px 16px;border-radius:8px;z-index:70;font-weight:900';document.body.appendChild(msg);setTimeout(()=>msg.remove(),3000)}).catch(err=>{console.log('Share cancelled or failed',err)})}else{navigator.clipboard.writeText(location.href).then(()=>{let msg=document.createElement('div');msg.setAttribute('role','status');msg.setAttribute('aria-live','polite');msg.textContent='Link copied to clipboard';msg.style.cssText='position:fixed;bottom:80px;right:18px;background:#a51d17;color:#fff;padding:12px 16px;border-radius:8px;z-index:70;font-weight:900';document.body.appendChild(msg);setTimeout(()=>msg.remove(),3000)}).catch(err=>{console.error('Clipboard write failed',err);let msg=document.createElement('div');msg.setAttribute('role','status');msg.setAttribute('aria-live','polite');msg.textContent='Unable to copy link';msg.style.cssText='position:fixed;bottom:80px;right:18px;background:#a51d17;color:#fff;padding:12px 16px;border-radius:8px;z-index:70;font-weight:900';document.body.appendChild(msg);setTimeout(()=>msg.remove(),3000)})}}}});
+-document.addEventListener('DOMContentLoaded',()=>{let m=document.body.dataset.module;if(OSB[m])OSB[m]()});
++OSB.canonicalUrl=()=>document.querySelector('link[rel="canonical"]')?.href||location.href;
++OSB.announce=message=>{const msg=document.createElement('div');msg.setAttribute('role','status');msg.setAttribute('aria-live','polite');msg.textContent=message;msg.style.cssText='position:fixed;bottom:80px;right:18px;background:#a51d17;color:#fff;padding:12px 16px;border-radius:8px;z-index:70;font-weight:900';document.body.appendChild(msg);setTimeout(()=>msg.remove(),3000)};
++OSB.restorePrefs=()=>{const dark=localStorage.getItem('osb-dark')==='1';const large=localStorage.getItem('osb-text-large')==='1';document.body.classList.toggle('dark',dark);document.body.style.fontSize=large?'18px':'';const darkButton=document.querySelector('[data-dark]');if(darkButton){darkButton.type='button';darkButton.setAttribute('aria-pressed',dark?'true':'false');darkButton.setAttribute('aria-label',dark?'Disable dark mode':'Enable dark mode')}const textButton=document.querySelector('[data-text]');if(textButton){textButton.type='button';textButton.setAttribute('aria-pressed',large?'true':'false');textButton.setAttribute('aria-label',large?'Reset text size':'Increase text size')}const shareButton=document.querySelector('[data-share]');if(shareButton){shareButton.type='button';shareButton.setAttribute('aria-label','Share this page')}};
++document.addEventListener('click',e=>{if(e.target.matches('[data-dark]')){document.body.classList.toggle('dark');const active=document.body.classList.contains('dark');e.target.setAttribute('aria-pressed',active?'true':'false');e.target.setAttribute('aria-label',active?'Disable dark mode':'Enable dark mode');localStorage.setItem('osb-dark',active?'1':'0')}if(e.target.matches('[data-text]')){const active=document.body.style.fontSize==='18px';document.body.style.fontSize=active?'':'18px';const next=!active;e.target.setAttribute('aria-pressed',next?'true':'false');e.target.setAttribute('aria-label',next?'Reset text size':'Increase text size');localStorage.setItem('osb-text-large',next?'1':'0')}if(e.target.matches('[data-share]')){const url=OSB.canonicalUrl();if(navigator.share){navigator.share({title:document.title,url}).then(()=>OSB.announce('Shared successfully')).catch(err=>{if(err?.name!=='AbortError')console.error('Share failed',err)})}else if(navigator.clipboard){navigator.clipboard.writeText(url).then(()=>OSB.announce('Link copied to clipboard')).catch(err=>{console.error('Clipboard write failed',err);OSB.announce('Unable to copy link')})}else{OSB.announce('Sharing is not supported in this browser')}}});
++document.addEventListener('DOMContentLoaded',()=>{OSB.restorePrefs();const moduleName=document.body.dataset.module;if(OSB[moduleName])OSB[moduleName]()});

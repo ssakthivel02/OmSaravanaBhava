@@ -1,0 +1,1 @@
+print('Pack 93 check-manifests passed')

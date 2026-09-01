@@ -1,0 +1,18 @@
+[
+  {
+    "id": "audio",
+    "name": "Audio"
+  },
+  {
+    "id": "video",
+    "name": "Video"
+  },
+  {
+    "id": "book",
+    "name": "Book"
+  },
+  {
+    "id": "playlist",
+    "name": "Playlist"
+  }
+]

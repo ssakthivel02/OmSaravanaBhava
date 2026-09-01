@@ -1,0 +1,128 @@
+{
+  "release": 297,
+  "title": "Family Learning Paths Phase II",
+  "features": [
+    {
+      "title": "Purpose-built interface",
+      "description": "Visual patterns are tailored to this release."
+    },
+    {
+      "title": "Bilingual structured data",
+      "description": "Tamil and English records use explicit schemas."
+    },
+    {
+      "title": "Quality gates",
+      "description": "Validation, deployment and rollback guidance included."
+    }
+  ],
+  "records": [
+    {
+      "id": "family-learning-paths-01",
+      "title": "Family Learning Paths Phase II Feature 1",
+      "title_ta": "முருகன் தரத் தொகுதி 1",
+      "summary": "Quality-focused Release 297 record 1.",
+      "category": "Experience",
+      "status": "published",
+      "version": "297.1"
+    },
+    {
+      "id": "family-learning-paths-02",
+      "title": "Family Learning Paths Phase II Feature 2",
+      "title_ta": "முருகன் தரத் தொகுதி 2",
+      "summary": "Quality-focused Release 297 record 2.",
+      "category": "Knowledge",
+      "status": "published",
+      "version": "297.1"
+    },
+    {
+      "id": "family-learning-paths-03",
+      "title": "Family Learning Paths Phase II Feature 3",
+      "title_ta": "முருகன் தரத் தொகுதி 3",
+      "summary": "Quality-focused Release 297 record 3.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "297.1"
+    },
+    {
+      "id": "family-learning-paths-04",
+      "title": "Family Learning Paths Phase II Feature 4",
+      "title_ta": "முருகன் தரத் தொகுதி 4",
+      "summary": "Quality-focused Release 297 record 4.",
+      "category": "Editorial",
+      "status": "review_required",
+      "version": "297.1"
+    },
+    {
+      "id": "family-learning-paths-05",
+      "title": "Family Learning Paths Phase II Feature 5",
+      "title_ta": "முருகன் தரத் தொகுதி 5",
+      "summary": "Quality-focused Release 297 record 5.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "297.1"
+    },
+    {
+      "id": "family-learning-paths-06",
+      "title": "Family Learning Paths Phase II Feature 6",
+      "title_ta": "முருகன் தரத் தொகுதி 6",
+      "summary": "Quality-focused Release 297 record 6.",
+      "category": "Validation",
+      "status": "published",
+      "version": "297.1"
+    },
+    {
+      "id": "family-learning-paths-07",
+      "title": "Family Learning Paths Phase II Feature 7",
+      "title_ta": "முருகன் தரத் தொகுதி 7",
+      "summary": "Quality-focused Release 297 record 7.",
+      "category": "Experience",
+      "status": "published",
+      "version": "297.1"
+    },
+    {
+      "id": "family-learning-paths-08",
+      "title": "Family Learning Paths Phase II Feature 8",
+      "title_ta": "முருகன் தரத் தொகுதி 8",
+      "summary": "Quality-focused Release 297 record 8.",
+      "category": "Knowledge",
+      "status": "review_required",
+      "version": "297.1"
+    },
+    {
+      "id": "family-learning-paths-09",
+      "title": "Family Learning Paths Phase II Feature 9",
+      "title_ta": "முருகன் தரத் தொகுதி 9",
+      "summary": "Quality-focused Release 297 record 9.",
+      "category": "Discovery",
+      "status": "published",
+      "version": "297.1"
+    },
+    {
+      "id": "family-learning-paths-10",
+      "title": "Family Learning Paths Phase II Feature 10",
+      "title_ta": "முருகன் தரத் தொகுதி 10",
+      "summary": "Quality-focused Release 297 record 10.",
+      "category": "Editorial",
+      "status": "published",
+      "version": "297.1"
+    },
+    {
+      "id": "family-learning-paths-11",
+      "title": "Family Learning Paths Phase II Feature 11",
+      "title_ta": "முருகன் தரத் தொகுதி 11",
+      "summary": "Quality-focused Release 297 record 11.",
+      "category": "Accessibility",
+      "status": "published",
+      "version": "297.1"
+    },
+    {
+      "id": "family-learning-paths-12",
+      "title": "Family Learning Paths Phase II Feature 12",
+      "title_ta": "முருகன் தரத் தொகுதி 12",
+      "summary": "Quality-focused Release 297 record 12.",
+      "category": "Validation",
+      "status": "review_required",
+      "version": "297.1"
+    }
+  ]
+}

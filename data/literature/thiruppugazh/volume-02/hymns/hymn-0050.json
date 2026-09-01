@@ -1,0 +1,25 @@
+{
+  "id": "tp-v02-0050",
+  "work": "திருப்புகழ்",
+  "volume": 2,
+  "hymn_number": 50,
+  "title_ta": "திருப்புகழ் பாடல் 50",
+  "title_en": "Thiruppugazh Hymn 50",
+  "first_line_ta": "மூல உரை சரிபார்ப்புக்கு பின் நிரப்ப வேண்டும்",
+  "status": "needs_tamil_proofread",
+  "source": "Uploaded Thiruppugazh PDF; OCR text must be verified before publication",
+  "url": "../../../../literature/thiruppugazh/volume-02/hymn-0050.html",
+  "tags": [
+    "Murugan",
+    "Thiruppugazh",
+    "Arunagirinathar",
+    "Tamil literature"
+  ],
+  "layers": {
+    "original_tamil": false,
+    "easy_tamil": false,
+    "transliteration": false,
+    "english": false,
+    "commentary": false
+  }
+}

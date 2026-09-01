@@ -1,0 +1,16 @@
+{
+  "festival_id": "monthly-karthigai",
+  "festival_name_ta": "மாத கார்த்திகை",
+  "literature_links": [
+    "திருப்புகழ்"
+  ],
+  "recommended_use": "festival reader and daily chanting curation",
+  "review_status": "curation_pending",
+  "candidate_song_ids": [
+    "thiruppugazh-006",
+    "thiruppugazh-014",
+    "thiruppugazh-022",
+    "thiruppugazh-030",
+    "thiruppugazh-038"
+  ]
+}

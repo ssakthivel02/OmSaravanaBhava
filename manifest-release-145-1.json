@@ -1,0 +1,48 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": "145.1",
+  "name": "Production UX, Navigation and URL Integrity",
+  "baseline_github_commit": "6c9b456d86d9181ede01edb22eb3110a1b9ce217",
+  "manus_workspace_commit_reference": "84c2c41",
+  "independent_correction": true,
+  "validation_status": "PASS",
+  "production_file_count": 27,
+  "html_file_count": 24,
+  "added": [
+    "favicon.svg"
+  ],
+  "modified": [
+    "index.html",
+    "temples.html",
+    "sloka-library.html",
+    "festivals.html",
+    "ai-search.html",
+    "audio-library.html",
+    "assets/css/osb44.css",
+    "assets/js/osb44.js",
+    "temples/marudhamalai.html",
+    "temples/palani.html",
+    "temples/pazhamudircholai.html",
+    "temples/sikkal.html",
+    "temples/swamimalai.html",
+    "temples/thiruchendur.html",
+    "temples/thirupparamkundram.html",
+    "temples/thiruthani.html",
+    "temples/vadapalani.html",
+    "temples/vayalur.html",
+    "slokas/kanda-sashti-kavasam.html",
+    "slokas/om-saravana-bhava.html",
+    "slokas/subramanya-gayatri.html",
+    "slokas/vel-vel.html",
+    "festivals/aadi-krittikai.html",
+    "festivals/panguni-uthiram.html",
+    "festivals/skanda-sashti.html",
+    "festivals/thai-poosam.html"
+  ],
+  "deleted": [],
+  "protected_files": {
+    "manifest.json": "not included and unchanged",
+    "service-worker.js": "not included and unchanged"
+  },
+  "issues": []
+}

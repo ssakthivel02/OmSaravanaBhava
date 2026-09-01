@@ -1,0 +1,12 @@
+{
+  "batch": 25,
+  "type": "festival-literature-map",
+  "items": [
+    {
+      "festival": "தைப்பூசம்",
+      "work": "திருப்புகழ்",
+      "relationship": "festival_parayanam_or_devotional_theme",
+      "status": "review_required"
+    }
+  ]
+}

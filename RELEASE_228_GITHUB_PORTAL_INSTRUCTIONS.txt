@@ -1,0 +1,70 @@
+Release 228 — GitHub browser upload instructions
+
+Repository:
+https://github.com/ssakthivel02/OmSaravanaBhava
+
+Verified Release 227 base head:
+25598978c0fc330e15da527b54ac51594a204435
+
+Required commit title — enter this in the SMALL UPPER FIELD:
+Release 228: add browser-local devotional practice planner
+
+Leave the large commit-description field blank.
+
+UPLOAD
+1. Download and extract OmSaravanaBhava-Release-228.zip.
+2. Enable Windows View > Show > Hidden items.
+3. Open the extracted package folder.
+4. In GitHub main, select Add file > Upload files.
+5. Drag the CONTENTS of the extracted folder, not the outer folder.
+6. Preserve every directory path.
+7. Confirm these exact paths appear before committing:
+   .github/workflows/static-site-integrity.yml
+   .github/workflows/production-smoke.yml
+   devotional-practice-planner.html
+   assets/css/devotional-practice-planner.css
+   assets/js/devotional-practice-planner.mjs
+   data/devotional-practice-planner.json
+   assets/js/personal-data.mjs
+   data/personal-data-registry.json
+   manifest-release-228.json
+   tools/release_228_validate.py
+8. Enter the required title in the small upper field.
+9. Leave the large description field completely blank.
+10. Commit directly to main.
+
+POST-COMMIT VERIFICATION
+1. Copy the new main commit SHA.
+2. Confirm service-worker.js contains:
+   const RELEASE = '228';
+3. Open devotional-practice-planner.html.
+4. Create one empty plan and one plan from an existing collection.
+5. Select weekdays and confirm the planned-today state.
+6. Add Tamil and English eligible routes.
+7. Confirm duplicate routes cannot be added.
+8. Test previous and next route controls.
+9. Record today’s check-in, confirm one local date record, then remove it.
+10. Confirm a second check-in on the same date replaces the earlier record.
+11. Confirm draft, utility, private, unpublished and archived routes are absent.
+12. Confirm stale routes are counted and removable through explicit cleanup.
+13. Open personal-data.html and confirm seven registered datasets are shown.
+14. Export and validate a backup containing practice plans.
+15. Confirm plan records contain only bounded names, descriptions, weekday numbers, route references, check-ins and timestamps.
+16. Confirm devotional text, selected passages and page-body content are absent.
+17. Confirm no notification permission, calendar event or alarm is requested.
+18. Confirm data/site-routes.json contains /devotional-practice-planner.html once.
+19. Confirm sitemap.xml contains the Practice Planner URL once.
+20. Open maintenance.html and run Release 228 checks.
+21. Wait for:
+    Release 228 Static Site Integrity
+    Release 228 Production Smoke
+22. Do not proceed to Release 229 until Release 228 is verified.
+
+DO NOT
+- Do not upload only devotional-practice-planner.html.
+- Do not omit hidden .github workflow files.
+- Do not rename an older ZIP.
+- Do not claim reminders, alarms, streaks or spiritual completion.
+- Do not paste devotional page bodies into plan storage.
+- Do not place the release title in the large description field.
+- Do not mark GitHub Actions or production as passed before they run.

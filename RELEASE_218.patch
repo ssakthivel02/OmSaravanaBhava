@@ -1,0 +1,883 @@
+diff --git a/print-pdf.html b/print-pdf.html
+new file mode 100644
+--- /dev/null
++++ b/print-pdf.html
+@@ -0,0 +1,81 @@
++<!doctype html>
++<html lang="ta">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Print and PDF Support | Om Saravana Bhava</title>
++<meta name="description" content="Clean browser printing and Save-as-PDF guidance for published OmSaravanaBhava pages, with no server-side document generation.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/print-pdf.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="stylesheet" href="assets/css/print-support.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17">
++<link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++<script type="module" src="assets/js/print-support.mjs"></script>
++</head>
++<body data-release="218">
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Clean browser print and PDF support</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="explore.html">Explore</a><a href="search-facets.html">Facets</a><a href="reading-list.html">Reading List</a><a href="accessibility.html">Accessibility</a><a href="print-pdf.html" aria-current="page">Print &amp; PDF</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <a href="platform.html">Platform</a> › <span aria-current="page">Print and PDF Support</span></p></nav>
++
++<section class="card">
++<span class="pill">Release 218 · Browser-generated output</span>
++<h1 class="section-title" lang="ta">அச்சு மற்றும் PDF ஆதரவு</h1>
++<h2>Print and PDF Support</h2>
++<p>Published pages now load a shared print layer. Use the page-level “Print / Save PDF” control, then choose your browser or operating system’s PDF destination when required.</p>
++<p><button class="btn" type="button" onclick="window.print()">Print this guide / Save PDF</button></p>
++</section>
++
++<section class="print-pdf-grid" aria-label="Print workflow">
++<article class="card print-pdf-step">
++<span class="pill">Step 1</span>
++<strong>Open the required published page</strong>
++<span>Use Search Facets, the reading list, Explore or the site directory to reach the exact route.</span>
++</article>
++<article class="card print-pdf-step">
++<span class="pill">Step 2</span>
++<strong>Select “Print / Save PDF”</strong>
++<span>The browser print dialog opens. Navigation, buttons, forms, audio controls and decorative shadows are removed from the printed copy.</span>
++</article>
++<article class="card print-pdf-step">
++<span class="pill">Step 3</span>
++<strong>Choose paper or PDF</strong>
++<span>Select a physical printer or a destination such as “Save as PDF” or “Microsoft Print to PDF”.</span>
++</article>
++<article class="card print-pdf-step">
++<span class="pill">Step 4</span>
++<strong>Review before saving</strong>
++<span>Confirm page range, paper size, orientation and Tamil text rendering before printing or creating the PDF.</span>
++</article>
++</section>
++
++<section class="card">
++<h2>Print output improvements</h2>
++<ul>
++<li>Print-only title and canonical-source header.</li>
++<li>White background, black text and reduced visual decoration.</li>
++<li>Navigation, forms, buttons, media players and update notices excluded.</li>
++<li>Responsive images and printable tables.</li>
++<li>Readable code wrapping and underlined links.</li>
++<li>Existing Tamil and English content is not rewritten.</li>
++</ul>
++</section>
++
++<section class="card print-pdf-boundary">
++<h2>Important boundary</h2>
++<p>This release does not generate or host PDF files on a server. It provides clean print styling and invokes the browser print dialog. A browser-created PDF is a convenience copy of the displayed route; it does not change the route’s source status, review status, completeness or copyright position.</p>
++<p>No claim is made that every browser, printer driver, font installation or assistive technology produces identical pagination.</p>
++</section>
++
++<noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>Use the browser menu or press Ctrl+P / Command+P. The print stylesheet still applies when it has loaded from this page.</p></section></noscript>
++</main>
++<footer>© Om Saravana Bhava · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body>
++</html>
+diff --git a/assets/css/print-support.css b/assets/css/print-support.css
+new file mode 100644
+--- /dev/null
++++ b/assets/css/print-support.css
+@@ -0,0 +1 @@
++.osb-print-header{display:none}.osb-print-toolbar{display:flex;align-items:center;justify-content:flex-end;gap:12px;margin:0 0 18px;padding:10px 0}.osb-print-help{font-weight:800}.print-pdf-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.print-pdf-step{display:flex;flex-direction:column;gap:8px}.print-pdf-step strong{font-size:1.08rem}.print-pdf-boundary{border-left:5px solid var(--orange)}@media(max-width:720px){.osb-print-toolbar{align-items:stretch;flex-direction:column}.osb-print-toolbar .btn{width:100%}.print-pdf-grid{grid-template-columns:1fr}}@page{size:auto;margin:18mm 16mm}@media print{html,body{background:#fff!important;color:#000!important;font-size:11pt!important;line-height:1.52!important}body{margin:0!important;padding:0!important}.top,.nav,footer,.skip-link,.osb-print-toolbar,#osb-pwa-update,[data-print-exclude="true"],button,.btn,form,input,select,textarea,audio,video,iframe{display:none!important}.osb-print-header{display:grid!important;gap:2pt;margin:0 0 14pt;padding:0 0 8pt;border-bottom:1pt solid #000;color:#000}.osb-print-header strong{font-size:13pt}.osb-print-header span,.osb-print-header small{display:block}.osb-print-canonical{font-size:8.5pt;overflow-wrap:anywhere}.wrap,main{width:auto!important;max-width:none!important;margin:0!important;padding:0!important}.card,.home-stage,.home-stage-panel,.home-feature,.facet-result,.reading-list-item{background:#fff!important;color:#000!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:0!important;margin:0 0 12pt!important}.grid,.home-feature-grid,.facet-results,.reading-list-grid,.print-pdf-grid{display:block!important}.grid>*{margin-bottom:12pt!important}h1,h2,h3,h4{color:#000!important;break-after:avoid-page;page-break-after:avoid}p,li,blockquote{orphans:3;widows:3}article,section,table,pre,blockquote{break-inside:auto;page-break-inside:auto}img,svg{max-width:100%!important;height:auto!important;break-inside:avoid;page-break-inside:avoid}table{width:100%!important;border-collapse:collapse!important}th,td{border:1px solid #000!important;padding:4pt!important}a{color:#000!important;text-decoration:underline!important}pre,code{white-space:pre-wrap!important;overflow-wrap:anywhere!important}details{display:block!important}details>summary{font-weight:700!important}details>*{display:block!important}.pill{border:1px solid #000!important;background:#fff!important;color:#000!important}}
+diff --git a/assets/js/print-support.mjs b/assets/js/print-support.mjs
+new file mode 100644
+--- /dev/null
++++ b/assets/js/print-support.mjs
+@@ -0,0 +1,171 @@
++export const RELEASE = 218;
++export const STYLESHEET_PATH = '/assets/css/print-support.css';
++export const TOOLBAR_ID = 'osb-print-toolbar';
++export const HEADER_ID = 'osb-print-header';
++
++export const EXCLUDED_PATHS = new Set([
++  '/404.html',
++  '/offline.html'
++]);
++
++export const normalisePath = value => {
++  const path = String(value ?? '').trim();
++  if (!path) return '/';
++  try {
++    return new URL(path, 'https://omsaravanabhava.org/').pathname || '/';
++  } catch {
++    return '/';
++  }
++};
++
++export const shouldOfferPrint = (
++  path,
++  bodyDataset = {},
++  hasMain = true
++) => {
++  const route = normalisePath(path);
++  return Boolean(hasMain) &&
++    bodyDataset?.printDisabled !== 'true' &&
++    !EXCLUDED_PATHS.has(route);
++};
++
++export const normaliseCanonical = (
++  href,
++  origin = 'https://omsaravanabhava.org'
++) => {
++  const value = String(href ?? '').trim();
++  if (!value) return '';
++  try {
++    const url = new URL(value, `${origin.replace(/\/$/, '')}/`);
++    return url.origin === new URL(origin).origin ? url.href : '';
++  } catch {
++    return '';
++  }
++};
++
++export const buildPrintMetadata = ({
++  title = '',
++  canonical = '',
++  language = 'ta'
++} = {}) => ({
++  title: String(title).trim() || 'Om Saravana Bhava',
++  canonical: normaliseCanonical(canonical),
++  language: String(language).trim() || 'ta',
++  platform: 'Om Saravana Bhava',
++  note: 'Browser-generated print or PDF copy. Source status and publication boundaries remain unchanged.'
++});
++
++export const ensurePrintStylesheet = (
++  documentRef = globalThis.document,
++  path = STYLESHEET_PATH
++) => {
++  if (!documentRef?.head || !documentRef.createElement) return null;
++  const existing = documentRef.getElementById?.('osb-print-support-css');
++  if (existing) return existing;
++  const link = documentRef.createElement('link');
++  link.id = 'osb-print-support-css';
++  link.rel = 'stylesheet';
++  link.href = path;
++  documentRef.head.appendChild(link);
++  return link;
++};
++
++const createText = (documentRef, parent, tag, text, className) => {
++  const element = documentRef.createElement(tag);
++  if (className) element.className = className;
++  element.textContent = text;
++  parent.appendChild(element);
++  return element;
++};
++
++export const ensurePrintHeader = (documentRef = globalThis.document) => {
++  if (!documentRef?.body || !documentRef.createElement) return null;
++  const existing = documentRef.getElementById?.(HEADER_ID);
++  if (existing) return existing;
++
++  const canonical = documentRef.querySelector?.('link[rel="canonical"]')?.href || '';
++  const metadata = buildPrintMetadata({
++    title: documentRef.title,
++    canonical,
++    language: documentRef.documentElement?.lang
++  });
++
++  const header = documentRef.createElement('header');
++  header.id = HEADER_ID;
++  header.className = 'osb-print-header';
++  header.setAttribute('aria-hidden', 'true');
++  createText(documentRef, header, 'strong', metadata.platform);
++  createText(documentRef, header, 'span', metadata.title);
++  if (metadata.canonical) {
++    createText(documentRef, header, 'span', metadata.canonical, 'osb-print-canonical');
++  }
++  createText(documentRef, header, 'small', metadata.note);
++  documentRef.body.prepend(header);
++  return header;
++};
++
++export const requestPrint = (windowRef = globalThis.window) => {
++  if (typeof windowRef?.print !== 'function') return false;
++  windowRef.print();
++  return true;
++};
++
++export const createPrintToolbar = (
++  documentRef = globalThis.document,
++  windowRef = globalThis.window
++) => {
++  if (!documentRef?.createElement) return null;
++  const existing = documentRef.getElementById?.(TOOLBAR_ID);
++  if (existing) return existing;
++
++  const main = documentRef.querySelector?.('main');
++  const path = windowRef?.location?.pathname || '/';
++  if (!shouldOfferPrint(path, documentRef.body?.dataset, Boolean(main))) return null;
++
++  const toolbar = documentRef.createElement('aside');
++  toolbar.id = TOOLBAR_ID;
++  toolbar.className = 'osb-print-toolbar';
++  toolbar.setAttribute('aria-label', 'Print and PDF tools');
++  toolbar.setAttribute('data-print-exclude', 'true');
++
++  const button = documentRef.createElement('button');
++  button.type = 'button';
++  button.className = 'btn secondary';
++  button.textContent = 'Print / Save PDF';
++  button.addEventListener('click', () => requestPrint(windowRef));
++  toolbar.appendChild(button);
++
++  const help = documentRef.createElement('a');
++  help.className = 'osb-print-help';
++  help.href = '/print-pdf.html';
++  help.textContent = 'Print guidance';
++  toolbar.appendChild(help);
++
++  const breadcrumb = main.querySelector?.('nav[aria-label="Breadcrumb"]');
++  if (breadcrumb?.after) breadcrumb.after(toolbar);
++  else main.prepend(toolbar);
++  return toolbar;
++};
++
++export const initialisePrintSupport = (
++  documentRef = globalThis.document,
++  windowRef = globalThis.window
++) => {
++  if (!documentRef) return false;
++  ensurePrintStylesheet(documentRef);
++  ensurePrintHeader(documentRef);
++  createPrintToolbar(documentRef, windowRef);
++  return true;
++};
++
++if (typeof document !== 'undefined') {
++  if (document.readyState === 'loading') {
++    document.addEventListener(
++      'DOMContentLoaded',
++      () => initialisePrintSupport(),
++      {once: true}
++    );
++  } else {
++    initialisePrintSupport();
++  }
++}
+diff --git a/assets/js/pwa-register.js b/assets/js/pwa-register.js
+--- a/assets/js/pwa-register.js
++++ b/assets/js/pwa-register.js
+@@ -2,6 +2,9 @@
+   import('/assets/js/accessibility-preferences.mjs')
+     .then(module => module.applyStoredPreferences())
+     .catch(error => console.warn('[OmSaravanaBhava] Accessibility preferences unavailable', error));
++
++  import('/assets/js/print-support.mjs')
++    .catch(error => console.warn('[OmSaravanaBhava] Print support unavailable', error));
+ 
+   if (!('serviceWorker' in navigator)) return;
+ 
+diff --git a/index.html b/index.html
+--- a/index.html
++++ b/index.html
+@@ -27,7 +27,7 @@
+ <script defer src="assets/js/premium-home.js"></script>
+ <script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body data-release="217">
++<body data-release="218">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Verified Murugan digital heritage platform</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
+@@ -37,7 +37,7 @@
+ <main id="main-content" class="wrap">
+ <nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">OmSaravanaBhava Home</span></p></nav>
+ <section class="home-stage">
+-<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 217</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="explore.html">Explore all modules</a><a class="btn secondary" href="ai-search.html">Search knowledge</a><a class="btn secondary" href="search-facets.html">Browse by content type</a><a class="btn secondary" href="reading-list.html">Reading list</a><a class="btn secondary" href="accessibility.html">Accessibility</a></div></div>
++<div class="home-stage-copy"><span class="pill">OmSaravanaBhava · Release 218</span><h1 lang="ta">ஓம்<br>சரவணபவ</h1><p>A source-aware Murugan knowledge platform for reading, research, discovery, learning and future licensed human audio.</p><div class="audio-hero-actions"><a class="btn" href="explore.html">Explore all modules</a><a class="btn secondary" href="ai-search.html">Search knowledge</a><a class="btn secondary" href="search-facets.html">Browse by content type</a><a class="btn secondary" href="reading-list.html">Reading list</a><a class="btn secondary" href="accessibility.html">Accessibility</a><a class="btn secondary" href="print-pdf.html">Print &amp; PDF</a></div></div>
+ <div class="home-stage-panel" aria-label="Published platform data">
+ <div class="home-metric"><span>Search records</span><strong data-count-source="data/search-index.json" aria-live="polite">…</strong></div>
+ <div class="home-metric"><span>Source records</span><strong data-count-source="data/sources.json" aria-live="polite">…</strong></div>
+@@ -52,6 +52,6 @@
+ <section class="card" aria-labelledby="integrity-heading"><h2 id="integrity-heading">Publication integrity</h2><p>Repository releases, deployed pages and runtime behaviour are separate evidence layers. Content and feature claims remain bounded until automated checks and production observation confirm them.</p><p><a class="btn secondary" href="production-audit.html">Open production audit</a> <a class="btn secondary" href="content-status.html">Open content status</a></p></section>
+ <noscript><section class="card" role="status"><h2>JavaScript is disabled</h2><p>All primary modules remain available through the navigation links. Live data counts are unavailable without JavaScript.</p></section></noscript>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
++<footer>© Om Saravana Bhava · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
+ </body>
+ </html>
+diff --git a/platform.html b/platform.html
+--- a/platform.html
++++ b/platform.html
+@@ -10,7 +10,7 @@
+ <meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
+ <script defer src="assets/js/pwa-register.js"></script><script defer src="assets/js/desktop-layout.js"></script>
+ </head>
+-<body data-release="217">
++<body data-release="218">
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <div class="top">🛕 ஓம் சரவணபவ · Digital Murugan knowledge platform</div>
+ <nav class="nav" aria-label="Primary navigation"><div class="nav-inner"><a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a><div class="links"><a href="explore.html">Explore</a><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="search-facets.html">Facets</a><a href="audio-library.html">Audio</a></div></div></nav>
+@@ -30,12 +30,13 @@
+ <article class="card"><h2>Published Search Facets</h2><p>Browse actual local search records by content type and publication boundary.</p><a class="btn" href="search-facets.html">Open facets</a></article>
+ <article class="card"><h2>Offline Reading List</h2><p>Save published routes locally and cache selected pages independently for offline reading.</p><a class="btn" href="reading-list.html">Open reading list</a></article>
+ <article class="card"><h2>Accessibility Centre</h2><p>Set large text, high contrast, reduced motion and underlined links in this browser.</p><a class="btn" href="accessibility.html">Open accessibility controls</a></article>
++<article class="card"><h2>Print and PDF Support</h2><p>Print clean reading copies or use the browser to save a displayed route as PDF.</p><a class="btn" href="print-pdf.html">Open print guidance</a></article>
+ <article class="card"><h2>Knowledge Graph</h2><a class="btn" href="knowledge-graph-phase-4.html">Open module</a></article>
+ <article class="card"><h2>Panchangam Framework</h2><p>Verified-data contract only; no live calendar calculation.</p><a class="btn" href="panchangam-framework.html">Open framework</a></article>
+ </section>
+ <section class="card"><h2>Milestone boundary</h2><p>The platform hub connects published modules. It does not certify complete Murugan literature, licensed human audio, live Panchangam computation or server-side accounts.</p></section>
+ <section class="card"><h2>Version 3 milestone</h2><a class="btn" href="version-3.html">Open milestone dashboard</a></section>
+ </main>
+-<footer>© Om Saravana Bhava · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
++<footer>© Om Saravana Bhava · <a href="print-pdf.html">Print &amp; PDF</a> · <a href="accessibility.html">Accessibility</a> · <a href="reading-list.html">Reading list</a> · <a href="explore.html">Explore</a> · <a href="sources.html">Sources &amp; publication policy</a> · <a href="site-directory.html">Site directory</a></footer>
+ </body>
+ </html>
+diff --git a/data/site-routes.json b/data/site-routes.json
+--- a/data/site-routes.json
++++ b/data/site-routes.json
+@@ -1,5 +1,5 @@
+ {
+-  "release": 217,
++  "release": 218,
+   "generated": "2026-07-14",
+   "scope": "Public HTML routes represented by the Release 215 sitemap and route directory.",
+   "statusMeaning": {
+@@ -558,6 +558,14 @@
+       "summary": "Browser-local controls for large text, high contrast, reduced motion and underlined links."
+     },
+     {
++      "path": "/print-pdf.html",
++      "titleTa": "அச்சு மற்றும் PDF ஆதரவு",
++      "titleEn": "Print and PDF Support",
++      "category": "Platform",
++      "status": "utility",
++      "summary": "Clean browser printing and Save-as-PDF guidance without server-side document generation."
++    },
++    {
+       "path": "/pilgrimage-planner.html",
+       "titleTa": "யாத்திரை திட்டம்",
+       "titleEn": "Pilgrimage Planner",
+diff --git a/sitemap.xml b/sitemap.xml
+--- a/sitemap.xml
++++ b/sitemap.xml
+@@ -534,4 +534,10 @@
+     <changefreq>monthly</changefreq>
+     <priority>0.8</priority>
+   </url>
++  <url>
++    <loc>https://omsaravanabhava.org/print-pdf.html</loc>
++    <lastmod>2026-07-14</lastmod>
++    <changefreq>monthly</changefreq>
++    <priority>0.8</priority>
++  </url>
+ </urlset>
+diff --git a/service-worker.js b/service-worker.js
+--- a/service-worker.js
++++ b/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '217';
++const RELEASE = '218';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -202,7 +202,10 @@
+   "/assets/js/reading-list.mjs",
+   "/accessibility.html",
+   "/assets/css/accessibility-preferences.css",
+-  "/assets/js/accessibility-preferences.mjs"
++  "/assets/js/accessibility-preferences.mjs",
++  "/print-pdf.html",
++  "/assets/css/print-support.css",
++  "/assets/js/print-support.mjs"
+ ];
+ 
+ const cacheOptionalAssets = async cache => {
+diff --git a/quality/site-audit-config.json b/quality/site-audit-config.json
+--- a/quality/site-audit-config.json
++++ b/quality/site-audit-config.json
+@@ -1,5 +1,5 @@
+ {
+-  "expectedRelease": "217",
++  "expectedRelease": "218",
+   "canonicalOrigin": "https://omsaravanabhava.org",
+   "requiredFiles": [
+     "index.html",
+@@ -32,7 +32,10 @@
+     "assets/js/reading-list.mjs",
+     "accessibility.html",
+     "assets/css/accessibility-preferences.css",
+-    "assets/js/accessibility-preferences.mjs"
++    "assets/js/accessibility-preferences.mjs",
++    "print-pdf.html",
++    "assets/css/print-support.css",
++    "assets/js/print-support.mjs"
+   ],
+   "canonicalOptional": [
+     "404.html",
+diff --git a/tools/production_smoke.py b/tools/production_smoke.py
+--- a/tools/production_smoke.py
++++ b/tools/production_smoke.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Observe the deployed custom domain and fail when Release 217 is not live."""
++"""Observe the deployed custom domain and fail when Release 218 is not live."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -10,8 +10,8 @@
+ from pathlib import Path
+ 
+ CHECKS = [
+-    ("/", 'data-release="217"'),
+-    ("/service-worker.js", "const RELEASE = '217';"),
++    ("/", 'data-release="218"'),
++    ("/service-worker.js", "const RELEASE = '218';"),
+     ("/search-facets.html", "Published-Content Search Facets"),
+     ("/assets/js/search-facets.mjs", "export const RELEASE = 216;"),
+     ("/data/site-routes.json", '"/search-facets.html"'),
+@@ -23,7 +23,11 @@
+     ("/accessibility.html", "Accessibility Centre"),
+     ("/assets/js/accessibility-preferences.mjs", "export const RELEASE = 217"),
+     ("/assets/js/pwa-register.js", "accessibility-preferences.mjs"),
+-    ("/sitemap.xml", "https://omsaravanabhava.org/accessibility.html")
++    ("/sitemap.xml", "https://omsaravanabhava.org/accessibility.html"),
++    ("/print-pdf.html", "Print and PDF Support"),
++    ("/assets/js/print-support.mjs", "export const RELEASE = 218"),
++    ("/assets/js/pwa-register.js", "print-support.mjs"),
++    ("/sitemap.xml", "https://omsaravanabhava.org/print-pdf.html")
+ ]
+ 
+ 
+@@ -31,7 +35,7 @@
+     request = urllib.request.Request(
+         url,
+         headers={
+-            "User-Agent": "OmSaravanaBhava-Production-Smoke/217",
++            "User-Agent": "OmSaravanaBhava-Production-Smoke/218",
+             "Cache-Control": "no-cache"
+         }
+     )
+@@ -71,7 +75,7 @@
+     parser.add_argument("--retries", type=int, default=18)
+     parser.add_argument("--delay", type=int, default=20)
+     parser.add_argument("--timeout", type=int, default=20)
+-    parser.add_argument("--report", type=Path, default=Path("artifacts/release-217-production-smoke.json"))
++    parser.add_argument("--report", type=Path, default=Path("artifacts/release-218-production-smoke.json"))
+     args = parser.parse_args()
+     report = run(args.origin, args.retries, args.delay, args.timeout)
+     args.report.parent.mkdir(parents=True, exist_ok=True)
+diff --git a/tests/print-support.test.mjs b/tests/print-support.test.mjs
+new file mode 100644
+--- /dev/null
++++ b/tests/print-support.test.mjs
+@@ -0,0 +1,57 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++
++import {
++  RELEASE,
++  EXCLUDED_PATHS,
++  buildPrintMetadata,
++  normaliseCanonical,
++  normalisePath,
++  requestPrint,
++  shouldOfferPrint
++} from '../assets/js/print-support.mjs';
++
++test('release and excluded routes are stable', () => {
++  assert.equal(RELEASE, 218);
++  assert.equal(EXCLUDED_PATHS.has('/404.html'), true);
++  assert.equal(EXCLUDED_PATHS.has('/offline.html'), true);
++});
++
++test('paths are normalised safely', () => {
++  assert.equal(normalisePath('temples/palani.html?view=full#main'), '/temples/palani.html');
++  assert.equal(normalisePath(''), '/');
++});
++
++test('print controls require a main region and respect opt-out routes', () => {
++  assert.equal(shouldOfferPrint('/literature/vel-maaral.html', {}, true), true);
++  assert.equal(shouldOfferPrint('/404.html', {}, true), false);
++  assert.equal(shouldOfferPrint('/offline.html', {}, true), false);
++  assert.equal(shouldOfferPrint('/temples.html', {printDisabled: 'true'}, true), false);
++  assert.equal(shouldOfferPrint('/temples.html', {}, false), false);
++});
++
++test('canonical URLs remain same-origin', () => {
++  assert.equal(
++    normaliseCanonical('/literature/vel-maaral.html'),
++    'https://omsaravanabhava.org/literature/vel-maaral.html'
++  );
++  assert.equal(normaliseCanonical('https://example.com/file.html'), '');
++});
++
++test('print metadata keeps bounded wording', () => {
++  const metadata = buildPrintMetadata({
++    title: 'Vel Maaral',
++    canonical: '/literature/vel-maaral.html',
++    language: 'ta'
++  });
++  assert.equal(metadata.title, 'Vel Maaral');
++  assert.equal(metadata.language, 'ta');
++  assert.match(metadata.note, /publication boundaries remain unchanged/);
++});
++
++test('requestPrint delegates only when the browser print function exists', () => {
++  let calls = 0;
++  assert.equal(requestPrint({print() { calls += 1; }}), true);
++  assert.equal(calls, 1);
++  assert.equal(requestPrint({}), false);
++});
+diff --git a/tools/release_218_validate.py b/tools/release_218_validate.py
+new file mode 100644
+--- /dev/null
++++ b/tools/release_218_validate.py
+@@ -0,0 +1,197 @@
++#!/usr/bin/env python3
++"""Validate Release 218 without claiming remote CI or deployment results."""
++from __future__ import annotations
++
++import argparse
++import json
++import re
++import sys
++import xml.etree.ElementTree as ET
++from pathlib import Path
++
++RELEASE = "218"
++BASE_COMMIT = "512a2ecccb15c0ef79c5a22fa3afe0c624cb349b"
++ROUTE = "/print-pdf.html"
++REQUIRED = [
++    "print-pdf.html",
++    "assets/css/print-support.css",
++    "assets/js/print-support.mjs",
++    "assets/js/pwa-register.js",
++    "index.html",
++    "platform.html",
++    "data/site-routes.json",
++    "sitemap.xml",
++    "service-worker.js",
++    "quality/site-audit-config.json",
++    "tools/production_smoke.py",
++    "tests/test_site_audit.py",
++    "tests/print-support.test.mjs",
++    ".github/workflows/static-site-integrity.yml",
++    ".github/workflows/production-smoke.yml",
++    "manifest-release-218.json",
++]
++
++def read(root: Path, relative: str) -> str:
++    return (root / relative).read_text(encoding="utf-8")
++
++def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--root", type=Path, default=Path.cwd())
++    parser.add_argument("--package-mode", action="store_true")
++    parser.add_argument("--report", type=Path, default=Path("artifacts/release-218-validation.json"))
++    args = parser.parse_args()
++    root = args.root.resolve()
++    errors: list[str] = []
++    checks: list[str] = []
++
++    for relative in REQUIRED:
++        if not (root / relative).is_file():
++            errors.append(f"missing required file: {relative}")
++        else:
++            checks.append(f"exists: {relative}")
++
++    if not errors:
++        manifest = json.loads(read(root, "manifest-release-218.json"))
++        routes = json.loads(read(root, "data/site-routes.json"))
++        config = json.loads(read(root, "quality/site-audit-config.json"))
++        ET.fromstring(read(root, "sitemap.xml"))
++
++        if manifest.get("release") != 218:
++            errors.append("manifest release is not 218")
++        if manifest.get("base_commit") != BASE_COMMIT:
++            errors.append("manifest base commit does not match Release 217 head")
++        if routes.get("release") != 218:
++            errors.append("route directory release is not 218")
++
++        route_records = routes.get("routes", [])
++        paths = [item.get("path") for item in route_records if isinstance(item, dict)]
++        if paths.count(ROUTE) != 1:
++            errors.append("print route must appear exactly once")
++        if len(paths) != len(set(paths)):
++            errors.append("duplicate route directory paths detected")
++        route = next((item for item in route_records if item.get("path") == ROUTE), None)
++        if route and route.get("status") != "utility":
++            errors.append("print route status must remain utility")
++
++        if config.get("expectedRelease") != RELEASE:
++            errors.append("site audit expectedRelease is not 218")
++        for relative in (
++            "print-pdf.html",
++            "assets/css/print-support.css",
++            "assets/js/print-support.mjs",
++        ):
++            if relative not in config.get("requiredFiles", []):
++                errors.append(f"site audit does not require {relative}")
++
++        if read(root, "sitemap.xml").count("https://omsaravanabhava.org/print-pdf.html") != 1:
++            errors.append("sitemap must contain print route exactly once")
++
++        worker = read(root, "service-worker.js")
++        if "const RELEASE = '218';" not in worker:
++            errors.append("service-worker identity is not 218")
++        core = re.search(r"const CORE_PRECACHE_URLS = \[(.*?)\];", worker, re.S)
++        optional = re.search(r"const PRECACHE_URLS = \[(.*?)\];", worker, re.S)
++        core_text = core.group(1) if core else ""
++        optional_text = optional.group(1) if optional else ""
++        for asset in (
++            "/print-pdf.html",
++            "/assets/css/print-support.css",
++            "/assets/js/print-support.mjs",
++        ):
++            if f'"{asset}"' not in optional_text:
++                errors.append(f"optional precache missing {asset}")
++            if f'"{asset}"' in core_text:
++                errors.append(f"print asset incorrectly blocks installation: {asset}")
++        if "cacheOptionalAssets" not in worker:
++            errors.append("resilient optional caching is missing")
++
++        module = read(root, "assets/js/print-support.mjs")
++        for marker in (
++            "export const RELEASE = 218;",
++            "windowRef.print",
++            "print-support.css",
++            "Print / Save PDF",
++            "Browser-generated print or PDF copy",
++        ):
++            if marker not in module:
++                errors.append(f"print module missing marker: {marker}")
++        for prohibited in (
++            "jsPDF",
++            "pdfmake",
++            "api.openai.com",
++            "navigator.sendBeacon",
++            "google-analytics",
++        ):
++            if prohibited in module:
++                errors.append(f"prohibited marker found: {prohibited}")
++
++        css = read(root, "assets/css/print-support.css")
++        for marker in (
++            "@media print",
++            "@page",
++            ".osb-print-header",
++            "[data-print-exclude",
++        ):
++            if marker not in css:
++                errors.append(f"print CSS missing marker: {marker}")
++
++        bootstrap = read(root, "assets/js/pwa-register.js")
++        if "print-support.mjs" not in bootstrap:
++            errors.append("shared bootstrap does not load print support")
++
++        for html in ("index.html", "platform.html", "print-pdf.html"):
++            body = read(root, html)
++            if 'data-release="218"' not in body:
++                errors.append(f"{html} does not expose data-release 218")
++            if "print-pdf.html" not in body:
++                errors.append(f"{html} does not link to print guidance")
++
++        smoke = read(root, "tools/production_smoke.py")
++        for marker in (
++            'data-release="218"',
++            "const RELEASE = '218';",
++            "/print-pdf.html",
++            "export const RELEASE = 218",
++            "print-support.mjs",
++            "release-218-production-smoke.json",
++        ):
++            if marker not in smoke:
++                errors.append(f"production smoke missing marker: {marker}")
++
++        for workflow in (
++            ".github/workflows/static-site-integrity.yml",
++            ".github/workflows/production-smoke.yml",
++        ):
++            body = read(root, workflow)
++            if "218" not in body or "release-218-" not in body:
++                errors.append(f"{workflow} has stale release identity")
++
++        if not args.package_mode:
++            for relative in (
++                "assets/css/osb44.css",
++                "tools/site_audit.py",
++                "tests/accessibility-preferences.test.mjs",
++                "tests/reading-list.test.mjs",
++                "tests/search-facets.test.mjs",
++            ):
++                if not (root / relative).is_file():
++                    errors.append(f"repository mode requires {relative}")
++
++    report = {
++        "release": 218,
++        "base_commit": BASE_COMMIT,
++        "mode": "package" if args.package_mode else "repository",
++        "status": "FAIL" if errors else "PASS",
++        "errors": errors,
++        "checks": checks,
++        "github_actions": "NOT_RUN",
++        "deployed_production": "NOT_RUN",
++    }
++    report_path = args.report if args.report.is_absolute() else root / args.report
++    report_path.parent.mkdir(parents=True, exist_ok=True)
++    report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
++    print(json.dumps(report, ensure_ascii=False, indent=2))
++    return 1 if errors else 0
++
++if __name__ == "__main__":
++    sys.exit(main())
+diff --git a/.github/workflows/static-site-integrity.yml b/.github/workflows/static-site-integrity.yml
+--- a/.github/workflows/static-site-integrity.yml
++++ b/.github/workflows/static-site-integrity.yml
+@@ -1,4 +1,4 @@
+-name: Release 217 Static Site Integrity
++name: Release 218 Static Site Integrity
+ 
+ on:
+   push:
+@@ -12,7 +12,7 @@
+ 
+ jobs:
+   integrity:
+-    name: Release 217 repository validation
++    name: Release 218 repository validation
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repository
+@@ -28,29 +28,30 @@
+         with:
+           node-version: "20"
+ 
+-      - name: Validate Release 217 identities and routes
+-        run: python tools/release_217_validate.py --root . --report artifacts/release-217-overlay-validation.json
++      - name: Validate Release 218 identities and routes
++        run: python tools/release_218_validate.py --root . --report artifacts/release-218-overlay-validation.json
+ 
+       - name: Check browser modules
+         run: |
++          node --check assets/js/print-support.mjs
+           node --check assets/js/accessibility-preferences.mjs
+           node --check assets/js/reading-list.mjs
+           node --check assets/js/search-facets.mjs
+           node --check assets/js/pwa-register.js
+ 
+       - name: Run browser-local feature unit tests
+-        run: node --test tests/accessibility-preferences.test.mjs tests/reading-list.test.mjs tests/search-facets.test.mjs
++        run: node --test tests/print-support.test.mjs tests/accessibility-preferences.test.mjs tests/reading-list.test.mjs tests/search-facets.test.mjs
+ 
+       - name: Run site-audit unit tests
+         run: python -m unittest discover -s tests -p 'test_site_audit.py'
+ 
+       - name: Run repository-wide static audit
+-        run: python tools/site_audit.py --root . --json-report artifacts/release-217-site-audit.json --markdown-report artifacts/release-217-site-audit.md
++        run: python tools/site_audit.py --root . --json-report artifacts/release-218-site-audit.json --markdown-report artifacts/release-218-site-audit.md
+ 
+-      - name: Upload Release 217 integrity evidence
++      - name: Upload Release 218 integrity evidence
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+-          name: release-217-static-integrity-${{ github.sha }}
++          name: release-218-static-integrity-${{ github.sha }}
+           path: artifacts/
+           if-no-files-found: error
+diff --git a/.github/workflows/production-smoke.yml b/.github/workflows/production-smoke.yml
+--- a/.github/workflows/production-smoke.yml
++++ b/.github/workflows/production-smoke.yml
+@@ -1,4 +1,4 @@
+-name: Release 217 Production Smoke
++name: Release 218 Production Smoke
+ 
+ on:
+   push:
+@@ -11,12 +11,12 @@
+   contents: read
+ 
+ concurrency:
+-  group: release-217-production-smoke
++  group: release-218-production-smoke
+   cancel-in-progress: true
+ 
+ jobs:
+   smoke:
+-    name: Observe deployed Release 217
++    name: Observe deployed Release 218
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repository
+@@ -32,12 +32,12 @@
+         run: sleep 90
+ 
+       - name: Run deployed production smoke checks
+-        run: python tools/production_smoke.py --retries 18 --delay 20 --report artifacts/release-217-production-smoke.json
++        run: python tools/production_smoke.py --retries 18 --delay 20 --report artifacts/release-218-production-smoke.json
+ 
+-      - name: Upload Release 217 production evidence
++      - name: Upload Release 218 production evidence
+         if: always()
+         uses: actions/upload-artifact@v4
+         with:
+-          name: release-217-production-smoke-${{ github.sha }}
+-          path: artifacts/release-217-production-smoke.json
++          name: release-218-production-smoke-${{ github.sha }}
++          path: artifacts/release-218-production-smoke.json
+           if-no-files-found: error
+diff --git a/manifest-release-218.json b/manifest-release-218.json
+new file mode 100644
+--- /dev/null
++++ b/manifest-release-218.json
+@@ -0,0 +1,47 @@
++{
++  "project": "OmSaravanaBhava",
++  "release": 218,
++  "name": "Clean Print and PDF Support",
++  "base_commit": "512a2ecccb15c0ef79c5a22fa3afe0c624cb349b",
++  "generated": "2026-07-14",
++  "required_commit_title": "Release 218: add clean print and PDF support",
++  "validation_status": "LOCAL_PACKAGE_PASS_GITHUB_ACTIONS_NOT_RUN_PRODUCTION_NOT_RUN",
++  "production_files": [
++    "print-pdf.html",
++    "assets/css/print-support.css",
++    "assets/js/print-support.mjs",
++    "assets/js/pwa-register.js",
++    "index.html",
++    "platform.html",
++    "data/site-routes.json",
++    "sitemap.xml",
++    "service-worker.js"
++  ],
++  "ci_alignment_files": [
++    "quality/site-audit-config.json",
++    "tools/production_smoke.py",
++    "tests/test_site_audit.py",
++    "tests/print-support.test.mjs",
++    "tools/release_218_validate.py",
++    ".github/workflows/static-site-integrity.yml",
++    ".github/workflows/production-smoke.yml"
++  ],
++  "claims": {
++    "browser_print_dialog": true,
++    "browser_save_as_pdf": true,
++    "server_generated_pdf": false,
++    "server_storage": false,
++    "remote_analytics": false,
++    "shared_site_bootstrap": "assets/js/pwa-register.js",
++    "service_worker_release": 218,
++    "new_optional_cache_assets": 3,
++    "navigation_and_controls_hidden_in_print": true,
++    "canonical_print_header": true
++  },
++  "limitations": [
++    "PDF output depends on the user's browser or operating-system print destination.",
++    "Pagination and font rendering can vary by browser, printer driver and installed fonts.",
++    "A browser-generated copy does not alter source, review, copyright or completeness status.",
++    "GitHub Actions and production checks remain pending until the release is committed."
++  ]
++}

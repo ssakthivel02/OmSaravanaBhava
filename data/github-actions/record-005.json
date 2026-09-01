@@ -1,0 +1,21 @@
+{
+  "project": "OmSaravanaBhava",
+  "batch": 119,
+  "module": "GitHub Actions Static Validation",
+  "record_id": "github-actions-005",
+  "status": "repository-data-required",
+  "workflow_name": "",
+  "trigger": [
+    "push",
+    "pull_request"
+  ],
+  "checks": [
+    "html",
+    "json",
+    "links",
+    "manifest",
+    "checksums"
+  ],
+  "required": true,
+  "last_result": ""
+}

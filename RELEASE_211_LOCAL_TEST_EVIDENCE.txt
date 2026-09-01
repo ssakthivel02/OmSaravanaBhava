@@ -1,0 +1,34 @@
+Release 211 local package validation
+Generated: 2026-07-14
+Scope: validator logic and supplied package files; full repository audit remains pending GitHub Actions.
+
+== Python unit tests ==
+test_broken_internal_link_fails (test_site_audit.SiteAuditTests.test_broken_internal_link_fails) ... ok
+test_duplicate_canonical_fails (test_site_audit.SiteAuditTests.test_duplicate_canonical_fails) ... ok
+test_malformed_json_fails (test_site_audit.SiteAuditTests.test_malformed_json_fails) ... ok
+test_missing_precache_target_fails (test_site_audit.SiteAuditTests.test_missing_precache_target_fails) ... ok
+test_valid_fixture_passes (test_site_audit.SiteAuditTests.test_valid_fixture_passes) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.050s
+
+OK
+
+== Python compilation ==
+PASS
+
+== JavaScript syntax ==
+PASS
+
+== JSON syntax ==
+PASS: 3 JSON files
+
+== Workflow YAML syntax ==
+PASS: 2 workflow files parsed
+
+== Precache properties ==
+PRECACHE URLs: 162; unique: 162
+PASS: release identity, restored targets, uniqueness and resilient install rule
+
+== Required Release 211 paths ==
+PASS: 12 required paths present

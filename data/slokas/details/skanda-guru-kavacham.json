@@ -1,0 +1,39 @@
+{
+  "id": "skanda-guru-kavacham",
+  "titleTa": "ஸ்கந்த குரு கவசம்",
+  "titleEn": "Skanda Guru Kavacham",
+  "category": "Kavacham",
+  "deity": "Devotional",
+  "author": "Traditional",
+  "summary": "A devotional protective hymn centered on Skanda as Guru.",
+  "meaningEn": "Used for spiritual strength, discipline and guidance.",
+  "meaningTa": "தமிழ் விளக்கம்: பக்தி, ஒழுக்கம், உள்ளமைதி, தெய்வ அருள் ஆகியவற்றை நினைவூட்டும் வழிகாட்டும் உரை.",
+  "benefits": [
+    "Devotional focus",
+    "Daily discipline",
+    "Spiritual reflection"
+  ],
+  "status": "Needs Review",
+  "tags": [
+    "kavacham",
+    "murugan",
+    "devotion"
+  ],
+  "sections": [
+    {
+      "heading": "How to use",
+      "body": "Read with humility. Use the meaning as a learning guide, not as a substitute for a traditional teacher or verified source edition."
+    },
+    {
+      "heading": "Parallel meaning",
+      "body": "Tamil and English meanings are intentionally concise and will be expanded after source review."
+    }
+  ],
+  "audioRefs": [
+    "om-saravana-bhava-chant"
+  ],
+  "related": [
+    "murugan-ashtothram",
+    "vel-vel"
+  ]
+}

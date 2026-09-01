@@ -1,0 +1,11 @@
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Kandar Anuboothi Commentary Volume 04",
+  "about": [
+    "Kandar Anuboothi",
+    "Murugan",
+    "Tamil devotional commentary"
+  ],
+  "inLanguage": "ta"
+}

@@ -1,0 +1,22 @@
+{
+  "project": "OmSaravanaBhava",
+  "release": 178,
+  "name": "AI Search Version 2 — Transparent Recommendations",
+  "generated": "2026-07-13",
+  "validation_status": "PASS",
+  "production_file_count": 4,
+  "modified": [
+    "ai-search.html",
+    "service-worker.js"
+  ],
+  "added": [
+    "assets/js/search-recommendations.js",
+    "data/search-recommendations.json"
+  ],
+  "deleted": [],
+  "issues": [],
+  "notes": {
+    "Generative answers": "None",
+    "Recommendation rules": "Transparent local JSON"
+  }
+}

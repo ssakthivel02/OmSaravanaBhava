@@ -1,0 +1,99 @@
+--- before/learning-quiz.html
++++ release186/learning-quiz.html
+@@ -0,0 +1,25 @@
++<!doctype html><html lang="ta"><head>
++<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
++<title>Murugan Knowledge Quiz | Om Saravana Bhava</title>
++<meta name="description" content="Small source-linked quiz using only facts already represented in the published platform.">
++<meta name="robots" content="index,follow">
++<link rel="canonical" href="https://omsaravanabhava.org/learning-quiz.html">
++<link rel="stylesheet" href="assets/css/osb44.css">
++<link rel="icon" href="favicon.svg" type="image/svg+xml">
++<meta name="theme-color" content="#a51d17"><link rel="manifest" href="manifest.json">
++<script defer src="assets/js/pwa-register.js"></script>
++<script defer src="assets/js/learning-quiz.js"></script>
++</head><body>
++<a href="#main-content" class="skip-link">Skip to main content</a>
++<div class="top">🛕 ஓம் சரவணபவ · Digital Murugan heritage platform</div>
++<nav class="nav" aria-label="Primary navigation"><div class="nav-inner">
++<a class="brand" href="index.html" aria-label="Om Saravana Bhava home">ஓம் சரவணபவ</a>
++<div class="links"><a href="temples.html">Temples</a><a href="sloka-library.html">Slokas</a><a href="thiruppugazh.html">Thiruppugazh</a><a href="festivals.html">Festivals</a><a href="ai-search.html">AI Search</a><a href="audio-library.html">Audio</a></div>
++</div></nav>
++<main id="main-content" class="wrap">
++<nav aria-label="Breadcrumb"><p><a href="index.html">Home</a> › <span aria-current="page">Murugan Knowledge Quiz</span></p></nav>
++<section class="card"><h1 class="section-title" lang="ta">முருகன் அறிவுத் தேர்வு</h1><h2>Murugan Knowledge Quiz</h2><p>Small source-linked quiz using only facts already represented in the published platform.</p></section>
++<section id="quizRoot"></section>
++</main>
++<footer>© Om Saravana Bhava · <a href="sources.html">Sources &amp; publication policy</a></footer>
++</body></html>--- before/data/learning-quiz.json
++++ release186/data/learning-quiz.json
+@@ -0,0 +1,38 @@
++[
++  {
++    "id": "q1",
++    "question": "How many Arupadai Veedu are traditionally recognised?",
++    "options": [
++      "4",
++      "5",
++      "6",
++      "8"
++    ],
++    "answer": 2,
++    "sourceRoute": "arupadai-veedu.html"
++  },
++  {
++    "id": "q2",
++    "question": "Who is traditionally associated with Thiruppugazh?",
++    "options": [
++      "Nakkirar",
++      "Arunagirinathar",
++      "Devaraya Swamigal",
++      "Bogar"
++    ],
++    "answer": 1,
++    "sourceRoute": "thiruppugazh.html"
++  },
++  {
++    "id": "q3",
++    "question": "Which symbol is most directly associated with Murugan?",
++    "options": [
++      "Conch",
++      "Vel",
++      "Discus",
++      "Trident only"
++    ],
++    "answer": 1,
++    "sourceRoute": "knowledge-graph.html"
++  }
++]
+--- before/assets/js/learning-quiz.js
++++ release186/assets/js/learning-quiz.js
+@@ -0,0 +1 @@
++(()=>{'use strict';document.addEventListener('DOMContentLoaded',async()=>{const root=document.getElementById('quizRoot');if(!root)return;const q=await fetch('data/learning-quiz.json').then(r=>r.json());root.innerHTML=q.map((x,i)=>`<fieldset class="card"><legend>${i+1}. ${x.question}</legend>${x.options.map((o,j)=>`<label><input type="radio" name="${x.id}" value="${j}"> ${o}</label><br>`).join('')}<button type="button" class="btn secondary" data-check="${x.id}">Check</button><p id="${x.id}-status" role="status"></p></fieldset>`).join('');document.addEventListener('click',e=>{const b=e.target.closest('[data-check]');if(!b)return;const item=q.find(x=>x.id===b.dataset.check);const chosen=document.querySelector(`input[name="${item.id}"]:checked`);document.getElementById(`${item.id}-status`).textContent=!chosen?'Choose an answer.':Number(chosen.value)===item.answer?'Correct.':'Review the linked source page.'})})})();--- before/service-worker.js
++++ release186/service-worker.js
+@@ -1,4 +1,4 @@
+-const RELEASE = '185';
++const RELEASE = '186';
+ const STATIC_CACHE = `osb-static-v${RELEASE}`;
+ const RUNTIME_CACHE = `osb-runtime-v${RELEASE}`;
+ const DATA_CACHE = `osb-data-v${RELEASE}`;
+@@ -125,7 +125,10 @@
+   "/publication-history.html",
+   "/data/publication-history.json",
+   "/learning-center.html",
+-  "/data/learning-paths.json"
++  "/data/learning-paths.json",
++  "/learning-quiz.html",
++  "/data/learning-quiz.json",
++  "/assets/js/learning-quiz.js"
+ ];
+ 
+ self.addEventListener('install', event => {
+--- before/sitemap.xml
++++ release186/sitemap.xml
+@@ -220,4 +220,5 @@
+   <url><loc>https://omsaravanabhava.org/source-catalog.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+   <url><loc>https://omsaravanabhava.org/publication-history.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+   <url><loc>https://omsaravanabhava.org/learning-center.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
++  <url><loc>https://omsaravanabhava.org/learning-quiz.html</loc><lastmod>2026-07-13</lastmod><priority>0.8</priority></url>
+ </urlset>

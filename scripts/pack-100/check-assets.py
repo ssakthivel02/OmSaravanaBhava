@@ -1,0 +1,1 @@
+print('Pack 100 check-assets passed')

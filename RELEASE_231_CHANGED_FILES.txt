@@ -1,0 +1,35 @@
+Release 231 — Canonical Publication Status Propagation
+Base commit: 2cec1d02d81aa3251da131667fabd4d24a98147a
+
+M  content-status.html
+M  discovery.html
+M  site-directory.html
+M  data/content-status.json
+M  data/publication-boundaries.json
+M  assets/js/content-status-audit.mjs
+M  service-worker.js
+A  assets/css/route-status-reconciliation.css
+A  assets/js/route-status-reconciliation.js
+A  tests/route-status-reconciliation.test.mjs
+A  tools/release_231_validate.py
+A  .github/workflows/release-231-integrity.yml
+A  .github/workflows/release-231-production-smoke.yml
+A  manifest-release-231.json
+
+Evidence files:
+A  RELEASE_231_CHANGED_FILES.txt
+A  RELEASE_231_GITHUB_PORTAL_INSTRUCTIONS.txt
+A  RELEASE_231_LOCAL_TEST_EVIDENCE.txt
+A  RELEASE_231_VALIDATION_REPORT.md
+A  RELEASE_231_SHA256SUMS.txt
+A  RELEASE_231.patch
+
+Deliberately unchanged:
+- data/site-routes.json — retained as the historical route-directory snapshot.
+- assets/js/discovery-workspace.mjs — mature discovery rendering is reused unchanged.
+- assets/js/site-directory.js — mature directory rendering is reused unchanged.
+- reading-workspace.html and its storage model — Release 230 already applies the same boundary registry.
+- sitemap.xml — no new public route is introduced.
+- devotional page text and canonical source data — no verse, translation, commentary or rights statement is changed.
+- personal-data registries and storage keys — no migration or reset.
+- service-worker cache generation — remains 228; Release 231 adds precache assets only.

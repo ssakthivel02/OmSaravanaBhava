@@ -1,0 +1,22 @@
+{
+  "titleTa": "கந்தர் அனுபூதி",
+  "author": "அருணகிரிநாதர்",
+  "publicationStatus": "partial-reviewed",
+  "totalTraditionalVerses": 51,
+  "publishedVerses": [
+    {
+      "number": 0,
+      "label": "காப்பு",
+      "textTa": "நெஞ்சக் கனகல்லு நெகிழ்ந்துருகத் தஞ்சத் தருள்சண்முகனுக் கியல்சேர் செஞ்சொற் புனைமாலை சிறந்திடவே பஞ்சக் கரவானைப் பதம் பணிவாம்",
+      "status": "opening-text-reviewed"
+    },
+    {
+      "number": 1,
+      "label": "செய்யுள் 1",
+      "textTa": "ஆடும் பரிவேல் அணிசேவல் எனப் பாடும் பணியே பணியா அருள்வாய் தேடும் கயமாமுகனைச் செருவில் சாடும் தனியானை சகோதரனே",
+      "status": "opening-text-reviewed"
+    }
+  ],
+  "source": "கந்தர் அனுபூதி.pdf",
+  "rightsNote": "Only original public-domain verse text is published; modern translation and commentary are not reproduced."
+}

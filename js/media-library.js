@@ -1,0 +1,5 @@
+(function(){
+ const B=window.OmBatch10;
+ const render=async()=>{const app=document.querySelector('[data-app="media-library"], [data-app="devotional-books"]'); if(!app)return; const isBooks=app.dataset.app==='devotional-books'; const rows=await B.loadJSON(isBooks?'data/books/book_index.json':'data/videos/video_index.json'); app.innerHTML=`<div class="library-toolbar"><input id="media-filter" placeholder="Search ${isBooks?'books':'media'}..."></div><div id="media-grid" class="library-grid"></div>`; const grid=B.$('#media-grid',app); const draw=()=>{const q=B.$('#media-filter',app).value.toLowerCase(); const f=rows.filter(x=>`${x.title} ${x.summary||x.category}`.toLowerCase().includes(q)); grid.innerHTML=f.map(x=>`<article class="library-card"><div class="media-thumb">${isBooks?'📚':'▶'}</div><h3>${B.escapeHTML(x.title)}</h3><p>${B.escapeHTML(x.summary||x.sourceNote)}</p><span class="pill">${B.escapeHTML(x.status||x.category)}</span></article>`).join('')}; app.addEventListener('input',draw); draw();};
+ document.addEventListener('DOMContentLoaded',render);
+})();

@@ -1,0 +1,71 @@
+{
+  "release": 228,
+  "generated": "2026-07-14",
+  "builtAgainstCommit": "25598978c0fc330e15da527b54ac51594a204435",
+  "title": "OmSaravanaBhava Browser-Local Devotional Practice Planner",
+  "storageKey": "osb-devotional-practice-plans-v1",
+  "collectionsStorageKey": "osb-devotional-collections-v1",
+  "maximumPlans": 12,
+  "maximumRoutesPerPlan": 50,
+  "maximumCheckInsPerPlan": 180,
+  "maximumNameLength": 60,
+  "maximumDescriptionLength": 240,
+  "allowedRouteStatuses": [
+    "published",
+    "partial-reviewed",
+    "source-register",
+    "framework"
+  ],
+  "excludedRouteStatuses": [
+    "draft",
+    "private",
+    "unpublished",
+    "archived",
+    "utility",
+    "navigation",
+    "directory",
+    "milestone"
+  ],
+  "excludedCategories": [
+    "Platform",
+    "Maintenance",
+    "Navigation"
+  ],
+  "weekdays": [
+    {
+      "id": 0,
+      "label": "Sunday"
+    },
+    {
+      "id": 1,
+      "label": "Monday"
+    },
+    {
+      "id": 2,
+      "label": "Tuesday"
+    },
+    {
+      "id": 3,
+      "label": "Wednesday"
+    },
+    {
+      "id": 4,
+      "label": "Thursday"
+    },
+    {
+      "id": 5,
+      "label": "Friday"
+    },
+    {
+      "id": 6,
+      "label": "Saturday"
+    }
+  ],
+  "limitations": [
+    "Schedules are planning guidance only and do not create notifications or alarms.",
+    "A check-in records only a local date, route reference and timestamp.",
+    "Devotional text, selected passages and page-body content are never copied into plan storage.",
+    "Completion check-ins do not prove that a work was fully read, recited or spiritually completed.",
+    "No streaks, scores, spiritual-outcome claims, analytics, cloud synchronization or user accounts are provided."
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "source": "const RELEASE = \"238\"; const PRECACHE_URLS = [\"/assets/js/site-directory.js\"];",
+  "expectedRule": "forbidden-precache"
+}
