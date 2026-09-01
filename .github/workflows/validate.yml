@@ -31,7 +31,7 @@ jobs:
           grep -q 'prefers-reduced-motion' assets/styles.css
           grep -q 'serviceWorker' assets/app.js
           grep -q 'No miracle guarantees' index.html
-          ! grep -RniE '(api[_-]?key|secret|password)[[:space:]]*[:=][[:space:]]*["'"'][^"'"']+' . --exclude-dir=.git --exclude='validate.yml'
+          ! grep -RniE 'api[_-]?key[[:space:]]*[:=]|secret[[:space:]]*[:=]|password[[:space:]]*[:=]' . --exclude-dir=.git --exclude='validate.yml'
           ! grep -Rni 'Access-Control-Allow-Origin: \*' . --exclude-dir=.git
       - name: HTML reference smoke
         shell: bash
