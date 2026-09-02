@@ -74,19 +74,32 @@ jobs:
 
       - name: Type check when defined
         run: |
-          node -e "const p=require('./package.json'); process.exit(p.scripts?.typecheck?0:1)" && pnpm run typecheck || \
-          node -e "const p=require('./package.json'); process.exit(p.scripts?.['type-check']?0:1)" && pnpm run type-check || \
-          echo 'No explicit typecheck script; continuing to required build.'
+          set -euo pipefail
+          if node -e "const p=require('./package.json'); process.exit(p.scripts?.typecheck?0:1)"; then
+            pnpm run typecheck
+          elif node -e "const p=require('./package.json'); process.exit(p.scripts?.['type-check']?0:1)"; then
+            pnpm run type-check
+          else
+            echo 'No explicit typecheck script; required production build remains authoritative.'
+          fi
 
       - name: Lint when defined
         run: |
-          node -e "const p=require('./package.json'); process.exit(p.scripts?.lint?0:1)" && pnpm run lint || \
-          echo 'No explicit lint script; continuing to required build.'
+          set -euo pipefail
+          if node -e "const p=require('./package.json'); process.exit(p.scripts?.lint?0:1)"; then
+            pnpm run lint
+          else
+            echo 'No explicit lint script.'
+          fi
 
       - name: Test when defined
         run: |
-          node -e "const p=require('./package.json'); process.exit(p.scripts?.test?0:1)" && pnpm test -- --runInBand || \
-          echo 'No compatible test script detected; browser/release gates remain required before production.'
+          set -euo pipefail
+          if node -e "const p=require('./package.json'); process.exit(p.scripts?.test?0:1)"; then
+            pnpm test
+          else
+            echo 'No explicit test script; browser/release evidence remains mandatory before production.'
+          fi
 
       - name: Required native production build
         run: pnpm run build
