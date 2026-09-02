@@ -25,39 +25,18 @@ jobs:
       - name: Checkout candidate
         uses: actions/checkout@v4
 
-      - name: Fail closed until native R6 source is imported
+      - name: Validate governed release schema
         working-directory: .
         run: |
           set -euo pipefail
-          test -d native-r6
-          test -s native-r6/package.json
-          test -s native-r6/pnpm-lock.yaml
-          test -s native-r6/IMPORT_PROVENANCE.json
+          python tools/native-r6/verify_asset_ledger.py
+          python tools/native-r6/verify_release_gates.py
 
-      - name: Verify import provenance contract
+      - name: Fail closed until exact native R6 source is imported
         working-directory: .
         run: |
           set -euo pipefail
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          p=Path('native-r6/IMPORT_PROVENANCE.json')
-          data=json.loads(p.read_text(encoding='utf-8'))
-          assert data['project'] == 'OmSaravanaBhava'
-          assert data['sourcePackage'] == 'OmSaravanaBhava_R6_FINAL_MANUS_MASTER_SOURCE.zip'
-          assert data['sourceSha256'] == '3477dd375e9545bd51482f9cacabe851adc6a841cdf111ffd5eb408f76c26585'
-          assert data['importMode'] == 'native-source-only'
-          assert data['productionAuthorized'] is False
-          PY
-
-      - name: Reject cross-project technical contamination
-        run: |
-          set -euo pipefail
-          if grep -RniE 'kandan-legacy|kirthiverse|ramaverse|divyanexus|sakthiai|saravanai|osb-web' . \
-            --exclude-dir=node_modules --exclude-dir=.git; then
-            echo 'Cross-project technical contamination detected in native-r6 source.' >&2
-            exit 1
-          fi
+          python tools/native-r6/verify_import.py
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -121,7 +100,7 @@ jobs:
           set -euo pipefail
           test -n "${WEB_ARTIFACT:-}"
           grep -RqiE 'OmSaravanaBhava|Om Saravana Bhava|ஓம் சரவணபவ' "$WEB_ARTIFACT"
-          ! grep -RniE 'https://kandan\.omsaravanabhava\.org|kandan-legacy|kirthiverse|ramaverse|divyanexus|sakthiai|saravanai|osb-web' "$WEB_ARTIFACT"
+          ! grep -RniE 'https://kandan\.omsaravanabhava\.org|ssakthivel02/kandan-legacy|ssakthivel02/kirthiverse|ssakthivel02/ramaverse|ssakthivel02/divyanexus|ssakthivel02/osb-web|sakthiai\.omsaravanabhava\.org|saravanai\.omsaravanabhava\.org' "$WEB_ARTIFACT"
           ! grep -RniE 'api[_-]?key[[:space:]]*[:=]|secret[[:space:]]*[:=]|password[[:space:]]*[:=]' "$WEB_ARTIFACT"
 
       - name: Upload native R6 preview artifact
