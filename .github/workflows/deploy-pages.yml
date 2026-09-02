@@ -34,7 +34,7 @@ jobs:
 
     steps:
       - name: Checkout exact candidate
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Enforce exact approved SHA
         working-directory: .
@@ -51,6 +51,7 @@ jobs:
         run: |
           set -euo pipefail
           python tools/native-r6/verify_import.py
+          python tools/native-r6/inventory_source.py --output r6-source-inventory.json
 
       - name: Require all 52 R6 asset dispositions resolved
         working-directory: .
@@ -65,7 +66,7 @@ jobs:
           python tools/native-r6/verify_release_gates.py --require-pass
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: '22'
           cache: 'pnpm'
