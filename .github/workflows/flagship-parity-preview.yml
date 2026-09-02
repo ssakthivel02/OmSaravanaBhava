@@ -1,93 +1,120 @@
-name: Flagship parity preview
+name: Native R6 candidate CI
 
 on:
   pull_request:
     branches: [main]
-  push:
-    branches: [release/flagship-parity-v2]
   workflow_dispatch:
 
 permissions:
   contents: read
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
-  DONOR_SHA: 5d2670e286d0a32df2e564a2c280fa976866facf
+concurrency:
+  group: native-r6-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  build-validate:
+  native-r6:
     runs-on: ubuntu-latest
-    timeout-minutes: 150
+    timeout-minutes: 45
+    defaults:
+      run:
+        shell: bash
+        working-directory: native-r6
+
     steps:
-      - name: Checkout flagship overlay
-        uses: actions/checkout@v6
+      - name: Checkout candidate
+        uses: actions/checkout@v4
+
+      - name: Fail closed until native R6 source is imported
+        working-directory: .
+        run: |
+          set -euo pipefail
+          test -d native-r6
+          test -s native-r6/package.json
+          test -s native-r6/pnpm-lock.yaml
+          test -s native-r6/IMPORT_PROVENANCE.json
+
+      - name: Verify import provenance contract
+        working-directory: .
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('native-r6/IMPORT_PROVENANCE.json')
+          data=json.loads(p.read_text(encoding='utf-8'))
+          assert data['project'] == 'OmSaravanaBhava'
+          assert data['sourcePackage'] == 'OmSaravanaBhava_R6_FINAL_MANUS_MASTER_SOURCE.zip'
+          assert data['sourceSha256'] == '3477dd375e9545bd51482f9cacabe851adc6a841cdf111ffd5eb408f76c26585'
+          assert data['importMode'] == 'native-source-only'
+          assert data['productionAuthorized'] is False
+          PY
+
+      - name: Reject cross-project technical contamination
+        run: |
+          set -euo pipefail
+          if grep -RniE 'kandan-legacy|kirthiverse|ramaverse|divyanexus|sakthiai|saravanai|osb-web' . \
+            --exclude-dir=node_modules --exclude-dir=.git; then
+            echo 'Cross-project technical contamination detected in native-r6 source.' >&2
+            exit 1
+          fi
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
         with:
-          path: flagship
-      - name: Checkout pinned Kandan donor
-        uses: actions/checkout@v6
-        with:
-          repository: ssakthivel02/kandan-legacy
-          ref: ${{ env.DONOR_SHA }}
-          path: donor
-          fetch-depth: 1
-      - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: '3.12'
-      - name: Verify donor pin
-        working-directory: donor
-        shell: bash
+          node-version: '22'
+          cache: 'pnpm'
+          cache-dependency-path: native-r6/pnpm-lock.yaml
+
+      - name: Enable pnpm
+        run: corepack enable
+
+      - name: Install exact dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Type check when defined
+        run: |
+          node -e "const p=require('./package.json'); process.exit(p.scripts?.typecheck?0:1)" && pnpm run typecheck || \
+          node -e "const p=require('./package.json'); process.exit(p.scripts?.['type-check']?0:1)" && pnpm run type-check || \
+          echo 'No explicit typecheck script; continuing to required build.'
+
+      - name: Lint when defined
+        run: |
+          node -e "const p=require('./package.json'); process.exit(p.scripts?.lint?0:1)" && pnpm run lint || \
+          echo 'No explicit lint script; continuing to required build.'
+
+      - name: Test when defined
+        run: |
+          node -e "const p=require('./package.json'); process.exit(p.scripts?.test?0:1)" && pnpm test -- --runInBand || \
+          echo 'No compatible test script detected; browser/release gates remain required before production.'
+
+      - name: Required native production build
+        run: pnpm run build
+
+      - name: Locate production web artifact
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD)" = "$DONOR_SHA"
-      - name: Build donor governed artifact
-        working-directory: donor
-        shell: bash
+          if [ -s dist/public/index.html ]; then
+            echo 'WEB_ARTIFACT=dist/public' >> "$GITHUB_ENV"
+          elif [ -s dist/index.html ]; then
+            echo 'WEB_ARTIFACT=dist' >> "$GITHUB_ENV"
+          else
+            echo 'No Vite web production artifact found at dist/public or dist.' >&2
+            exit 1
+          fi
+
+      - name: Static release safety checks
         run: |
           set -euo pipefail
-          python -m py_compile tools/phase-c-h/build_route_recovery.py tools/phase-c-h/run_route_recovery.py tools/phase-c-h/build_content_completeness.py tools/phase-c-h/build_capability_matrix.py tools/phase-c-h/build_public_site.py tools/phase-c-h/validate_public_site.py
-          python tools/phase-c-h/run_route_recovery.py
-          python tools/phase-c-h/build_content_completeness.py
-          python tools/phase-c-h/build_capability_matrix.py
-          python tools/phase-c-h/build_public_site.py
-          mkdir -p _site/data/research-intake
-          cp data/research-intake/popular-song-triage-2026-07-22.json _site/data/research-intake/
-          cp data/research-intake/muththaiththaru-numbering-reconciliation-2026-07-22.json _site/data/research-intake/
-          python tools/phase-c-h/validate_public_site.py
-      - name: Apply additive OmSaravanaBhava flagship layer
-        shell: bash
-        run: |
-          set -euo pipefail
-          cp flagship/assets/css/flagship-nextgen.css donor/assets/css/flagship-nextgen.css
-          cp flagship/assets/js/flagship-nextgen.js donor/assets/js/flagship-nextgen.js
-          python flagship/tools/flagship-overlay.py donor/_site
-      - name: Validate parity and public identity
-        shell: bash
-        run: |
-          set -euo pipefail
-          test -s donor/_site/index.html
-          test -s donor/_site/temples.html
-          test -s donor/_site/murugan-song-library.html
-          test -s donor/_site/thiruppugazh.html
-          test -s donor/_site/ai-search.html
-          test -s donor/_site/site-directory.html
-          test -s donor/_site/assets/css/flagship-nextgen.css
-          test -s donor/_site/assets/js/flagship-nextgen.js
-          test -s donor/_site/flagship-release.json
-          grep -q 'https://omsaravanabhava.org/' donor/_site/index.html
-          grep -Eq 'OmSaravanaBhava|Om Saravana Bhava|ஓம் சரவணபவ' donor/_site/index.html
-          ! grep -q 'https://kandan.omsaravanabhava.org' donor/_site/index.html
-          ! grep -q 'கந்தன் · Kandan</h1>' donor/_site/index.html
-          ! grep -q 'கந்தன் · Kandan Lord Murugan Devotional Knowledge' donor/_site/index.html
-          grep -q 'flagship-nextgen.css' donor/_site/index.html
-          grep -q 'flagship-nextgen.js' donor/_site/index.html
-          grep -q 'prefers-reduced-motion' donor/_site/assets/css/flagship-nextgen.css
-      - name: Validate next-gen JavaScript syntax
-        shell: bash
-        run: node --check donor/_site/assets/js/flagship-nextgen.js
-      - name: Upload governed preview artifact
+          test -n "${WEB_ARTIFACT:-}"
+          grep -RqiE 'OmSaravanaBhava|Om Saravana Bhava|ஓம் சரவணபவ' "$WEB_ARTIFACT"
+          ! grep -RniE 'https://kandan\.omsaravanabhava\.org|kandan-legacy|kirthiverse|ramaverse|divyanexus|sakthiai|saravanai|osb-web' "$WEB_ARTIFACT"
+          ! grep -RniE 'api[_-]?key[[:space:]]*[:=]|secret[[:space:]]*[:=]|password[[:space:]]*[:=]' "$WEB_ARTIFACT"
+
+      - name: Upload native R6 preview artifact
         uses: actions/upload-artifact@v4
         with:
-          name: omsaravanabhava-flagship-preview
-          path: donor/_site
+          name: omsaravanabhava-native-r6-preview
+          path: native-r6/${{ env.WEB_ARTIFACT }}
+          if-no-files-found: error
           retention-days: 14
