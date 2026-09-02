@@ -52,12 +52,19 @@ jobs:
           set -euo pipefail
           python tools/native-r6/verify_import.py
           python tools/native-r6/inventory_source.py --output r6-source-inventory.json
+          python tools/native-r6/discover_asset_refs.py --output r6-discovered-assets.json
 
       - name: Require all 52 R6 asset dispositions resolved
         working-directory: .
         run: |
           set -euo pipefail
           python tools/native-r6/verify_asset_ledger.py --require-resolved
+
+      - name: Require all 40 browser qualification cases resolved
+        working-directory: .
+        run: |
+          set -euo pipefail
+          python tools/native-r6/verify_browser_matrix.py --require-pass
 
       - name: Require all pre-owner release gates PASS
         working-directory: .
