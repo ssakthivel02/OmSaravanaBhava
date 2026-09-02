@@ -1,0 +1,48 @@
+# OmSaravanaBhava native R6 repository hygiene
+
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build / coverage / caches
+dist/
+build/
+coverage/
+.cache/
+.vite/
+.turbo/
+.next/
+*.tsbuildinfo
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+
+# Logs / runtime artifacts
+*.log
+logs/
+.tmp/
+tmp/
+temp/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local archives are evidence inputs, not repository source
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+
+# Preserve only source-controlled provenance/manifests for imported R6.

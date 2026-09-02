@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "project": "OmSaravanaBhava",
+  "candidate": "native-r6",
+  "productionAuthorized": false,
+  "sourceAuthority": {
+    "package": "OmSaravanaBhava_R6_FINAL_MANUS_MASTER_SOURCE.zip",
+    "sha256": "3477dd375e9545bd51482f9cacabe851adc6a841cdf111ffd5eb408f76c26585",
+    "importMode": "native-source-only"
+  },
+  "blockingPolicy": "Every REQUIRED gate must be PASS at the exact candidate commit before production approval can be considered.",
+  "gates": [
+    {"id":"SRC-001","category":"source","requirement":"Exact R6 source imported and provenance verified","required":true,"status":"BLOCKED_SOURCE_IMPORT"},
+    {"id":"SRC-002","category":"isolation","requirement":"No cross-project technical source/UI contamination","required":true,"status":"PENDING"},
+    {"id":"AST-001","category":"assets","requirement":"All 52 unresolved R6 asset references have governed dispositions","required":true,"status":"PENDING"},
+    {"id":"BLD-001","category":"build","requirement":"pnpm install --frozen-lockfile succeeds","required":true,"status":"PENDING"},
+    {"id":"BLD-002","category":"build","requirement":"Type validation succeeds when source defines it","required":true,"status":"PENDING"},
+    {"id":"BLD-003","category":"build","requirement":"Lint/static validation succeeds when source defines it","required":true,"status":"PENDING"},
+    {"id":"BLD-004","category":"build","requirement":"pnpm run build succeeds at exact candidate head","required":true,"status":"PENDING"},
+    {"id":"TST-001","category":"functional","requirement":"Critical routes and deep refresh pass","required":true,"status":"PENDING"},
+    {"id":"TST-002","category":"functional","requirement":"Songs/Thiruppugazh/mantra journeys pass","required":true,"status":"PENDING"},
+    {"id":"TST-003","category":"functional","requirement":"Temple/pilgrimage journeys pass","required":true,"status":"PENDING"},
+    {"id":"TST-004","category":"functional","requirement":"Search/source-aware discovery passes","required":true,"status":"PENDING"},
+    {"id":"TST-005","category":"functional","requirement":"Audio/read-aloud behavior and provenance labeling pass","required":true,"status":"PENDING"},
+    {"id":"UX-001","category":"responsive","requirement":"Desktop/tablet/mobile QA passes without clipping or dead controls","required":true,"status":"PENDING"},
+    {"id":"A11Y-001","category":"accessibility","requirement":"Keyboard/focus/landmarks/labels/contrast baseline passes","required":true,"status":"PENDING"},
+    {"id":"A11Y-002","category":"accessibility","requirement":"Reduced-motion experience preserves meaning and function","required":true,"status":"PENDING"},
+    {"id":"PWA-001","category":"pwa","requirement":"Manifest/service worker/offline behavior validated when supported","required":true,"status":"PENDING"},
+    {"id":"PERF-001","category":"performance","requirement":"Image/audio-heavy routes meet approved performance budget","required":true,"status":"PENDING"},
+    {"id":"SEO-001","category":"seo","requirement":"Canonical/meta/robots/sitemap/hreflang checks pass","required":true,"status":"PENDING"},
+    {"id":"CNT-001","category":"canonical-content","requirement":"Verified Tamil source text preserved exactly and layers remain separated","required":true,"status":"PENDING"},
+    {"id":"CNT-002","category":"canonical-content","requirement":"No fabricated scripture/history/temple/mantra claims or generated text presented as source","required":true,"status":"PENDING"},
+    {"id":"RGT-001","category":"rights","requirement":"Public assets/audio/text have explicit publication/provenance status","required":true,"status":"PENDING"},
+    {"id":"SEC-001","category":"security","requirement":"No secrets/private data/unsafe wildcard configuration in release artifact","required":true,"status":"PENDING"},
+    {"id":"RBK-001","category":"rollback","requirement":"Rollback commit/artifact remains available and documented","required":true,"status":"PENDING"},
+    {"id":"REL-001","category":"release","requirement":"Exact-head evidence bundle complete","required":true,"status":"PENDING"},
+    {"id":"REL-002","category":"release","requirement":"Owner explicitly approves exact candidate commit for production","required":true,"status":"PENDING_OWNER_APPROVAL"}
+  ]
+}

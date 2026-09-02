@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "project": "OmSaravanaBhava",
+  "candidate": "native-r6",
+  "policy": "Budgets are release targets, not claims. Measure on representative critical routes and record evidence at the exact candidate SHA.",
+  "webVitals": {
+    "lcpMsMax": 2500,
+    "inpMsMax": 200,
+    "clsMax": 0.1
+  },
+  "labTargets": {
+    "mobileLighthousePerformanceMin": 90,
+    "desktopLighthousePerformanceMin": 95,
+    "accessibilityMin": 95,
+    "bestPracticesMin": 95,
+    "seoMin": 95
+  },
+  "initialTransferBudgetsCompressed": {
+    "javascriptKbMax": 300,
+    "cssKbMax": 120,
+    "fontsKbMax": 300,
+    "heroAndCriticalImagesKbMax": 1400,
+    "totalCriticalRouteKbMax": 2200
+  },
+  "runtimeRules": [
+    "No devotional audio or video payload may autoplay or load into the initial critical path unless explicitly required for the current route.",
+    "Below-the-fold imagery must use responsive sizing and lazy loading where it does not harm LCP.",
+    "Hero/LCP media must use an appropriate modern format, explicit dimensions and responsive sources.",
+    "Non-critical animation must not block first interaction and must respect prefers-reduced-motion.",
+    "Tamil rendering quality must not be degraded to meet a font budget; prefer system/native coverage or carefully subsetted rights-safe webfonts.",
+    "Large temple/gallery collections must use pagination, virtualization or incremental loading rather than unbounded first-load payloads.",
+    "Search indexes and governed data packs should be split/lazy-loaded when technically appropriate.",
+    "Performance evidence must include at least one representative mobile constrained-network run, not desktop-only results."
+  ],
+  "releaseGate": {
+    "id": "PERF-001",
+    "blocking": true,
+    "status": "PENDING_MEASUREMENT"
+  }
+}

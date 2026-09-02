@@ -1,111 +1,145 @@
-name: Deploy OmSaravanaBhava flagship parity
+name: Deploy approved native OmSaravanaBhava R6
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
+    inputs:
+      expected_sha:
+        description: 'Exact candidate commit SHA approved for production'
+        required: true
+        type: string
+      production_approved:
+        description: 'Owner explicitly approved this exact candidate for production'
+        required: true
+        default: false
+        type: boolean
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
-  DONOR_SHA: 5d2670e286d0a32df2e564a2c280fa976866facf
-
 concurrency:
-  group: omsaravanabhava-pages-production
+  group: omsaravanabhava-native-r6-production
   cancel-in-progress: false
 
 jobs:
   build-validate:
+    if: ${{ inputs.production_approved == true }}
     runs-on: ubuntu-latest
-    timeout-minutes: 150
+    timeout-minutes: 60
+    defaults:
+      run:
+        shell: bash
+        working-directory: native-r6
+
     steps:
-      - name: Checkout flagship overlay
-        uses: actions/checkout@v6
+      - name: Checkout exact candidate
+        uses: actions/checkout@v7
+
+      - name: Enforce exact approved SHA
+        working-directory: .
+        env:
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
+        run: |
+          set -euo pipefail
+          ACTUAL_SHA="$(git rev-parse HEAD)"
+          test "$ACTUAL_SHA" = "$EXPECTED_SHA"
+          echo "Exact candidate confirmed: $ACTUAL_SHA"
+
+      - name: Verify exact native R6 import
+        working-directory: .
+        run: |
+          set -euo pipefail
+          python tools/native-r6/verify_import.py
+          python tools/native-r6/inventory_source.py --output r6-source-inventory.json
+          python tools/native-r6/discover_asset_refs.py --output r6-discovered-assets.json
+
+      - name: Require all 52 R6 asset dispositions resolved
+        working-directory: .
+        run: |
+          set -euo pipefail
+          python tools/native-r6/verify_asset_ledger.py --require-resolved
+
+      - name: Require all 40 browser qualification cases resolved
+        working-directory: .
+        run: |
+          set -euo pipefail
+          python tools/native-r6/verify_browser_matrix.py --require-pass
+
+      - name: Require all pre-owner release gates PASS
+        working-directory: .
+        run: |
+          set -euo pipefail
+          python tools/native-r6/verify_release_gates.py --require-pass
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
         with:
-          path: flagship
-      - name: Checkout pinned Kandan donor
-        uses: actions/checkout@v6
-        with:
-          repository: ssakthivel02/kandan-legacy
-          ref: ${{ env.DONOR_SHA }}
-          path: donor
-          fetch-depth: 1
-      - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: '3.12'
-      - name: Verify immutable donor pin
-        working-directory: donor
-        shell: bash
+          node-version: '22'
+          cache: 'pnpm'
+          cache-dependency-path: native-r6/pnpm-lock.yaml
+
+      - name: Enable pnpm
+        run: corepack enable
+
+      - name: Install exact dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Type check when defined
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD)" = "$DONOR_SHA"
-      - name: Build governed donor artifact
-        working-directory: donor
-        shell: bash
+          if node -e "const p=require('./package.json'); process.exit(p.scripts?.typecheck?0:1)"; then
+            pnpm run typecheck
+          elif node -e "const p=require('./package.json'); process.exit(p.scripts?.['type-check']?0:1)"; then
+            pnpm run type-check
+          fi
+
+      - name: Lint when defined
         run: |
           set -euo pipefail
-          python -m py_compile tools/phase-c-h/build_route_recovery.py tools/phase-c-h/run_route_recovery.py tools/phase-c-h/build_content_completeness.py tools/phase-c-h/build_capability_matrix.py tools/phase-c-h/build_public_site.py tools/phase-c-h/validate_public_site.py
-          python tools/phase-c-h/run_route_recovery.py
-          python tools/phase-c-h/build_content_completeness.py
-          python tools/phase-c-h/build_capability_matrix.py
-          python tools/phase-c-h/build_public_site.py
-          mkdir -p _site/data/research-intake
-          cp data/research-intake/popular-song-triage-2026-07-22.json _site/data/research-intake/
-          cp data/research-intake/muththaiththaru-numbering-reconciliation-2026-07-22.json _site/data/research-intake/
-          python tools/phase-c-h/validate_public_site.py
-      - name: Apply additive OmSaravanaBhava flagship layer
-        shell: bash
+          if node -e "const p=require('./package.json'); process.exit(p.scripts?.lint?0:1)"; then
+            pnpm run lint
+          fi
+
+      - name: Test when defined
         run: |
           set -euo pipefail
-          cp flagship/assets/css/flagship-nextgen.css donor/assets/css/flagship-nextgen.css
-          cp flagship/assets/js/flagship-nextgen.js donor/assets/js/flagship-nextgen.js
-          python flagship/tools/flagship-overlay.py donor/_site
-      - name: Production parity gate
-        shell: bash
+          if node -e "const p=require('./package.json'); process.exit(p.scripts?.test?0:1)"; then
+            pnpm test
+          fi
+
+      - name: Required native production build
+        run: pnpm run build
+
+      - name: Resolve web artifact
         run: |
           set -euo pipefail
-          test -s donor/_site/index.html
-          test -s donor/_site/temples.html
-          test -s donor/_site/murugan-song-library.html
-          test -s donor/_site/thiruppugazh.html
-          test -s donor/_site/ai-search.html
-          test -s donor/_site/site-directory.html
-          test -s donor/_site/offline.html
-          test -s donor/_site/service-worker.js
-          test -s donor/_site/manifest.json
-          test -s donor/_site/flagship-release.json
-          grep -q 'https://omsaravanabhava.org/' donor/_site/index.html
-          grep -q 'OmSaravanaBhava' donor/_site/index.html
-          ! grep -q 'https://kandan.omsaravanabhava.org' donor/_site/index.html
-          grep -q 'flagship-nextgen.css' donor/_site/index.html
-          grep -q 'flagship-nextgen.js' donor/_site/index.html
-          grep -q 'prefers-reduced-motion' donor/_site/assets/css/flagship-nextgen.css
-          node --check donor/_site/assets/js/flagship-nextgen.js
-          node --check donor/_site/service-worker.js
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          root=Path('donor/_site')
-          rel=json.loads((root/'flagship-release.json').read_text())
-          assert rel['donorCommit']=='5d2670e286d0a32df2e564a2c280fa976866facf'
-          assert rel['htmlPageCount'] >= 100
-          m=json.loads((root/'manifest.json').read_text())
-          assert m.get('name') == 'OmSaravanaBhava'
-          print(json.dumps(rel, indent=2))
-          PY
+          if [ -s dist/public/index.html ]; then
+            echo 'WEB_ARTIFACT=dist/public' >> "$GITHUB_ENV"
+          elif [ -s dist/index.html ]; then
+            echo 'WEB_ARTIFACT=dist' >> "$GITHUB_ENV"
+          else
+            echo 'No production web artifact found.' >&2
+            exit 1
+          fi
+
+      - name: Production artifact safety gate
+        run: |
+          set -euo pipefail
+          grep -RqiE 'OmSaravanaBhava|Om Saravana Bhava|ஓம் சரவணபவ' "$WEB_ARTIFACT"
+          ! grep -RniE 'https://kandan\.omsaravanabhava\.org|ssakthivel02/kandan-legacy|ssakthivel02/kirthiverse|ssakthivel02/ramaverse|ssakthivel02/divyanexus|ssakthivel02/osb-web|sakthiai\.omsaravanabhava\.org|saravanai\.omsaravanabhava\.org' "$WEB_ARTIFACT"
+          ! grep -RniE 'api[_-]?key[[:space:]]*[:=]|secret[[:space:]]*[:=]|password[[:space:]]*[:=]' "$WEB_ARTIFACT"
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
-      - name: Upload GitHub Pages artifact
+
+      - name: Upload exact approved Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: donor/_site
+          path: native-r6/${{ env.WEB_ARTIFACT }}
 
   deploy:
+    if: ${{ inputs.production_approved == true }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -113,6 +147,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - name: Deploy validated OmSaravanaBhava artifact
+      - name: Deploy exact approved native R6 artifact
         id: deployment
         uses: actions/deploy-pages@v4

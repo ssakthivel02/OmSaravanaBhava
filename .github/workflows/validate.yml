@@ -1,40 +1,149 @@
-name: Validate flagship
+name: Validate native R6 governance
 
 on:
   pull_request:
-  push:
-    branches: [main, release/flagship-v1]
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  validate:
+  governance:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - name: Structural and safety validation
+      - uses: actions/checkout@v7
+
+      - name: Verify reconstruction authority
         shell: bash
         run: |
           set -euo pipefail
-          test -f index.html
-          test -f assets/styles.css
-          test -f assets/app.js
-          test -f manifest.webmanifest
-          test -f sw.js
-          test -f offline.html
-          test -f 404.html
-          test -f robots.txt
-          test -f sitemap.xml
-          grep -q 'OmSaravanaBhava' index.html
-          grep -q 'https://omsaravanabhava.org/' index.html
-          grep -q 'prefers-reduced-motion' assets/styles.css
-          grep -q 'serviceWorker' assets/app.js
-          grep -q 'No miracle guarantees' index.html
-          ! grep -RniE 'api[_-]?key[[:space:]]*[:=]|secret[[:space:]]*[:=]|password[[:space:]]*[:=]' . --exclude-dir=.git --exclude='validate.yml'
-          ! grep -Rni 'Access-Control-Allow-Origin: \*' . --exclude-dir=.git
-      - name: HTML reference smoke
+          test -s RECONSTRUCTION_NATIVE_SOURCE.md
+          test -s docs/NATIVE_SOURCE_INVENTORY.md
+          test -s docs/R6_ASSET_RECONCILIATION.csv
+          test -s docs/R6_BROWSER_QA_MATRIX.csv
+          test -s docs/R6_PREMIUM_EXPERIENCE_CONTRACT.md
+          test -s native-r6/IMPORT_PROVENANCE.json
+          test -s release/OMSARAVANABHAVA_PROJECT_STATE.json
+          test -s release/R6_RELEASE_GATES.json
+          test -s release/R6_PERFORMANCE_BUDGET.json
+          test -s tools/native-r6/import_verified_archive.py
+          test -s tools/native-r6/inventory_source.py
+          test -s tools/native-r6/discover_asset_refs.py
+          test -s tools/native-r6/verify_import.py
+          test -s tools/native-r6/verify_asset_ledger.py
+          test -s tools/native-r6/verify_browser_matrix.py
+          test -s tools/native-r6/verify_release_gates.py
+          grep -q 'OmSaravanaBhava_R6_FINAL_MANUS_MASTER_SOURCE.zip' RECONSTRUCTION_NATIVE_SOURCE.md
+          grep -q '3477dd375e9545bd51482f9cacabe851adc6a841cdf111ffd5eb408f76c26585' RECONSTRUCTION_NATIVE_SOURCE.md
+          grep -q 'native-source-only' native-r6/IMPORT_PROVENANCE.json
+
+      - name: Compile governance recovery and inventory tools
         shell: bash
         run: |
           set -euo pipefail
-          for f in assets/styles.css assets/app.js manifest.webmanifest; do test -f "$f"; done
+          python -m py_compile \
+            tools/native-r6/import_verified_archive.py \
+            tools/native-r6/inventory_source.py \
+            tools/native-r6/discover_asset_refs.py \
+            tools/native-r6/verify_import.py \
+            tools/native-r6/verify_asset_ledger.py \
+            tools/native-r6/verify_browser_matrix.py \
+            tools/native-r6/verify_release_gates.py
+
+      - name: Validate governed state schemas and performance budget
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/native-r6/verify_asset_ledger.py
+          python tools/native-r6/verify_browser_matrix.py
+          python tools/native-r6/verify_release_gates.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          perf=json.loads(Path('release/R6_PERFORMANCE_BUDGET.json').read_text(encoding='utf-8'))
+          assert perf['project'] == 'OmSaravanaBhava'
+          assert perf['candidate'] == 'native-r6'
+          assert perf['webVitals']['lcpMsMax'] <= 2500
+          assert perf['webVitals']['inpMsMax'] <= 200
+          assert perf['webVitals']['clsMax'] <= 0.1
+          assert perf['labTargets']['mobileLighthousePerformanceMin'] >= 90
+          assert perf['releaseGate']['id'] == 'PERF-001'
+          assert perf['releaseGate']['blocking'] is True
+
+          state=json.loads(Path('release/OMSARAVANABHAVA_PROJECT_STATE.json').read_text(encoding='utf-8'))
+          assert state['project'] == 'OmSaravanaBhava'
+          assert state['repository'] == 'ssakthivel02/OmSaravanaBhava'
+          assert state['productionBaseline']['branch'] == 'main'
+          assert state['productionBaseline']['commit'] == 'db37d2bc0b19f7c700c2b668874802c4b751ba66'
+          assert state['candidate']['branch'] == 'reconstruction/manus-r6-hi-tech'
+          assert state['candidate']['pullRequest'] == 6
+          assert state['candidate']['productionAuthorized'] is False
+          assert state['sourceAuthority']['primarySha256'] == '3477dd375e9545bd51482f9cacabe851adc6a841cdf111ffd5eb408f76c26585'
+          assert state['sourceAuthority']['bytesRecoveredIntoCandidate'] is False
+          assert state['isolation']['otherProjectSourceAllowed'] is False
+          assert state['isolation']['canonicalTamilMayBeSilentlyRewritten'] is False
+          assert state['governance']['manualExactShaProductionDispatchRequired'] is True
+          print('R6_PROJECT_STATE_SCHEMA=PASS')
+          print('R6_PERFORMANCE_BUDGET_SCHEMA=PASS')
+          PY
+
+      - name: Verify premium experience contract minimums
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'Tamil-first devotional hierarchy' docs/R6_PREMIUM_EXPERIENCE_CONTRACT.md
+          grep -q 'Canonical devotional text is a first-class reading surface' docs/R6_PREMIUM_EXPERIENCE_CONTRACT.md
+          grep -q 'Arabic additionally requires true RTL layout qualification' docs/R6_PREMIUM_EXPERIENCE_CONTRACT.md
+          grep -q 'world-class experience' docs/R6_PREMIUM_EXPERIENCE_CONTRACT.md
+
+      - name: Verify production is explicit and fail closed
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          text=Path('.github/workflows/deploy-pages.yml').read_text(encoding='utf-8')
+          low=text.lower()
+          assert 'workflow_dispatch:' in text
+          assert '\n  push:' not in text
+          assert 'expected_sha:' in text
+          assert 'production_approved:' in text
+          assert 'verify_import.py' in text
+          assert 'verify_asset_ledger.py --require-resolved' in text
+          assert 'verify_browser_matrix.py --require-pass' in text
+          assert 'verify_release_gates.py --require-pass' in text
+          assert 'repository: ssakthivel02/kandan-legacy' not in low
+          assert 'donor_sha:' not in low
+          assert 'build governed donor artifact' not in low
+          PY
+
+      - name: Verify donor build removed from native candidate CI
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          text=Path('.github/workflows/flagship-parity-preview.yml').read_text(encoding='utf-8').lower()
+          assert 'repository: ssakthivel02/kandan-legacy' not in text
+          assert 'donor_sha:' not in text
+          assert 'checkout pinned kandan donor' not in text
+          assert 'build donor governed artifact' not in text
+          assert 'verify_import.py' in text
+          assert 'verify_asset_ledger.py' in text
+          assert 'verify_browser_matrix.py' in text
+          assert 'verify_release_gates.py' in text
+          assert 'inventory_source.py' in text
+          assert 'discover_asset_refs.py' in text
+          assert 'working-directory: native-r6' in text
+          assert 'pnpm run build' in text
+          PY
+
+      - name: Repository secret-pattern safety scan
+        shell: bash
+        run: |
+          set -euo pipefail
+          ! grep -RniE 'api[_-]?key[[:space:]]*[:=][[:space:]]*["'"'][^"'"']+|secret[[:space:]]*[:=][[:space:]]*["'"'][^"'"']+|password[[:space:]]*[:=][[:space:]]*["'"'][^"'"']+' . \
+            --exclude-dir=.git --exclude='validate.yml'

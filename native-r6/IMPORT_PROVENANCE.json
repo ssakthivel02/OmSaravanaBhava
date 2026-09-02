@@ -1,0 +1,23 @@
+{
+  "project": "OmSaravanaBhava",
+  "sourcePackage": "OmSaravanaBhava_R6_FINAL_MANUS_MASTER_SOURCE.zip",
+  "sourceSha256": "3477dd375e9545bd51482f9cacabe851adc6a841cdf111ffd5eb408f76c26585",
+  "portfolioExport": "MANUS_ALL_WEBSITES_LATEST_EXPORT_2026-08-27.zip",
+  "portfolioExportSha256": "47eef4cb07a6d466ad370d3923ec972ae43a916b18081ed85182d2b32da3ddfc",
+  "portfolioInternalPath": "01_OmSaravanaBhava/source/R6_FINAL_MASTER/",
+  "importMode": "native-source-only",
+  "knownStack": ["React", "Vite", "Express", "pnpm"],
+  "requiredBuildCommand": "pnpm run build",
+  "referencedAssetsPresent": 2521,
+  "unresolvedAssetReferences": 52,
+  "canonicalContentRewriteAllowed": false,
+  "crossProjectSourceImportAllowed": false,
+  "productionAuthorized": false,
+  "state": "SOURCE_IMPORT_PENDING",
+  "notes": [
+    "Do not populate this directory from main or any other project.",
+    "Import only the hash-verified native R6 Final Manus Master source.",
+    "Preserve devotional source provenance and exact canonical Tamil.",
+    "Production remains blocked until source import, asset reconciliation and release gates pass."
+  ]
+}
