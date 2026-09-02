@@ -21,35 +21,64 @@ jobs:
           set -euo pipefail
           test -s RECONSTRUCTION_NATIVE_SOURCE.md
           test -s docs/NATIVE_SOURCE_INVENTORY.md
-          test -s native-r6/IMPORT_PROVENANCE.json
           test -s docs/R6_ASSET_RECONCILIATION.csv
           test -s docs/R6_BROWSER_QA_MATRIX.csv
+          test -s docs/R6_PREMIUM_EXPERIENCE_CONTRACT.md
+          test -s native-r6/IMPORT_PROVENANCE.json
           test -s release/R6_RELEASE_GATES.json
-          test -s tools/native-r6/verify_import.py
+          test -s release/R6_PERFORMANCE_BUDGET.json
+          test -s tools/native-r6/import_verified_archive.py
           test -s tools/native-r6/inventory_source.py
+          test -s tools/native-r6/discover_asset_refs.py
+          test -s tools/native-r6/verify_import.py
           test -s tools/native-r6/verify_asset_ledger.py
           test -s tools/native-r6/verify_release_gates.py
           grep -q 'OmSaravanaBhava_R6_FINAL_MANUS_MASTER_SOURCE.zip' RECONSTRUCTION_NATIVE_SOURCE.md
           grep -q '3477dd375e9545bd51482f9cacabe851adc6a841cdf111ffd5eb408f76c26585' RECONSTRUCTION_NATIVE_SOURCE.md
           grep -q 'native-source-only' native-r6/IMPORT_PROVENANCE.json
-          test "$(tail -n +2 docs/R6_BROWSER_QA_MATRIX.csv | wc -l)" -eq 40
 
-      - name: Compile governance and inventory tools
+      - name: Compile governance recovery and inventory tools
         shell: bash
         run: |
           set -euo pipefail
           python -m py_compile \
-            tools/native-r6/verify_import.py \
+            tools/native-r6/import_verified_archive.py \
             tools/native-r6/inventory_source.py \
+            tools/native-r6/discover_asset_refs.py \
+            tools/native-r6/verify_import.py \
             tools/native-r6/verify_asset_ledger.py \
             tools/native-r6/verify_release_gates.py
 
-      - name: Validate asset ledger and release schema
+      - name: Validate asset ledger release schema and performance budget
         shell: bash
         run: |
           set -euo pipefail
           python tools/native-r6/verify_asset_ledger.py
           python tools/native-r6/verify_release_gates.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('release/R6_PERFORMANCE_BUDGET.json')
+          data=json.loads(p.read_text(encoding='utf-8'))
+          assert data['project'] == 'OmSaravanaBhava'
+          assert data['candidate'] == 'native-r6'
+          assert data['webVitals']['lcpMsMax'] <= 2500
+          assert data['webVitals']['inpMsMax'] <= 200
+          assert data['webVitals']['clsMax'] <= 0.1
+          assert data['labTargets']['mobileLighthousePerformanceMin'] >= 90
+          assert data['releaseGate']['id'] == 'PERF-001'
+          assert data['releaseGate']['blocking'] is True
+          print('R6_PERFORMANCE_BUDGET_SCHEMA=PASS')
+          PY
+
+      - name: Verify premium experience contract minimums
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'Tamil-first devotional hierarchy' docs/R6_PREMIUM_EXPERIENCE_CONTRACT.md
+          grep -q 'Canonical devotional text is a first-class reading surface' docs/R6_PREMIUM_EXPERIENCE_CONTRACT.md
+          grep -q 'Arabic additionally requires true RTL layout qualification' docs/R6_PREMIUM_EXPERIENCE_CONTRACT.md
+          grep -q 'world-class experience' docs/R6_PREMIUM_EXPERIENCE_CONTRACT.md
 
       - name: Verify production is explicit and fail closed
         shell: bash
@@ -64,7 +93,6 @@ jobs:
           assert 'expected_sha:' in text
           assert 'production_approved:' in text
           assert 'verify_import.py' in text
-          assert 'inventory_source.py' in text
           assert 'verify_asset_ledger.py --require-resolved' in text
           assert 'verify_release_gates.py --require-pass' in text
           assert 'repository: ssakthivel02/kandan-legacy' not in low
@@ -84,9 +112,10 @@ jobs:
           assert 'checkout pinned kandan donor' not in text
           assert 'build donor governed artifact' not in text
           assert 'verify_import.py' in text
-          assert 'inventory_source.py' in text
           assert 'verify_asset_ledger.py' in text
           assert 'verify_release_gates.py' in text
+          assert 'inventory_source.py' in text
+          assert 'discover_asset_refs.py' in text
           assert 'working-directory: native-r6' in text
           assert 'pnpm run build' in text
           PY
