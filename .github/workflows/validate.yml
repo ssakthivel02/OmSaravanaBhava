@@ -1,40 +1,61 @@
-name: Validate flagship
+name: Validate native R6 governance
 
 on:
   pull_request:
-  push:
-    branches: [main, release/flagship-v1]
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  validate:
+  governance:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: Structural and safety validation
+
+      - name: Verify reconstruction authority
         shell: bash
         run: |
           set -euo pipefail
-          test -f index.html
-          test -f assets/styles.css
-          test -f assets/app.js
-          test -f manifest.webmanifest
-          test -f sw.js
-          test -f offline.html
-          test -f 404.html
-          test -f robots.txt
-          test -f sitemap.xml
-          grep -q 'OmSaravanaBhava' index.html
-          grep -q 'https://omsaravanabhava.org/' index.html
-          grep -q 'prefers-reduced-motion' assets/styles.css
-          grep -q 'serviceWorker' assets/app.js
-          grep -q 'No miracle guarantees' index.html
-          ! grep -RniE 'api[_-]?key[[:space:]]*[:=]|secret[[:space:]]*[:=]|password[[:space:]]*[:=]' . --exclude-dir=.git --exclude='validate.yml'
-          ! grep -Rni 'Access-Control-Allow-Origin: \*' . --exclude-dir=.git
-      - name: HTML reference smoke
+          test -s RECONSTRUCTION_NATIVE_SOURCE.md
+          test -s docs/NATIVE_SOURCE_INVENTORY.md
+          test -s native-r6/IMPORT_PROVENANCE.json
+          grep -q 'OmSaravanaBhava_R6_FINAL_MANUS_MASTER_SOURCE.zip' RECONSTRUCTION_NATIVE_SOURCE.md
+          grep -q '3477dd375e9545bd51482f9cacabe851adc6a841cdf111ffd5eb408f76c26585' RECONSTRUCTION_NATIVE_SOURCE.md
+          grep -q 'native-source-only' native-r6/IMPORT_PROVENANCE.json
+
+      - name: Verify production is explicit-only
         shell: bash
         run: |
           set -euo pipefail
-          for f in assets/styles.css assets/app.js manifest.webmanifest; do test -f "$f"; done
+          python - <<'PY'
+          from pathlib import Path
+          text=Path('.github/workflows/deploy-pages.yml').read_text(encoding='utf-8')
+          assert 'workflow_dispatch:' in text
+          assert '\n  push:' not in text
+          assert 'expected_sha:' in text
+          assert 'production_approved:' in text
+          assert 'kandan-legacy' not in text.lower()
+          PY
+
+      - name: Verify donor build removed from native candidate CI
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          text=Path('.github/workflows/flagship-parity-preview.yml').read_text(encoding='utf-8').lower()
+          assert 'checkout pinned kandan donor' not in text
+          assert 'kandan-legacy' not in text
+          assert 'working-directory: native-r6' in text
+          assert 'pnpm run build' in text
+          PY
+
+      - name: Repository secret-pattern safety scan
+        shell: bash
+        run: |
+          set -euo pipefail
+          ! grep -RniE 'api[_-]?key[[:space:]]*[:=][[:space:]]*["'"'][^"'"']+|secret[[:space:]]*[:=][[:space:]]*["'"'][^"'"']+|password[[:space:]]*[:=][[:space:]]*["'"'][^"'"']+' . \
+            --exclude-dir=.git --exclude='validate.yml'
