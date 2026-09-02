@@ -44,13 +44,31 @@ jobs:
           set -euo pipefail
           python tools/native-r6/inventory_source.py --output r6-source-inventory.json
 
-      - name: Upload source inventory evidence
+      - name: Discover local media and font references
+        id: asset_scan
+        working-directory: .
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          python tools/native-r6/discover_asset_refs.py --output r6-discovered-assets.json
+
+      - name: Upload source and asset discovery evidence
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: omsaravanabhava-r6-source-inventory
-          path: r6-source-inventory.json
-          if-no-files-found: error
+          name: omsaravanabhava-r6-source-evidence
+          path: |
+            r6-source-inventory.json
+            r6-discovered-assets.json
+          if-no-files-found: warn
           retention-days: 30
+
+      - name: Reject broken local asset references
+        if: steps.asset_scan.outcome == 'failure'
+        working-directory: .
+        run: |
+          echo 'Native R6 contains unresolved local media/font references. Reconcile them before build promotion.' >&2
+          exit 1
 
       - name: Set up Node
         uses: actions/setup-node@v7
