@@ -25,6 +25,7 @@ jobs:
           test -s docs/R6_BROWSER_QA_MATRIX.csv
           test -s docs/R6_PREMIUM_EXPERIENCE_CONTRACT.md
           test -s native-r6/IMPORT_PROVENANCE.json
+          test -s release/OMSARAVANABHAVA_PROJECT_STATE.json
           test -s release/R6_RELEASE_GATES.json
           test -s release/R6_PERFORMANCE_BUDGET.json
           test -s tools/native-r6/import_verified_archive.py
@@ -51,7 +52,7 @@ jobs:
             tools/native-r6/verify_browser_matrix.py \
             tools/native-r6/verify_release_gates.py
 
-      - name: Validate asset browser release schemas and performance budget
+      - name: Validate governed state schemas and performance budget
         shell: bash
         run: |
           set -euo pipefail
@@ -61,16 +62,31 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
-          p=Path('release/R6_PERFORMANCE_BUDGET.json')
-          data=json.loads(p.read_text(encoding='utf-8'))
-          assert data['project'] == 'OmSaravanaBhava'
-          assert data['candidate'] == 'native-r6'
-          assert data['webVitals']['lcpMsMax'] <= 2500
-          assert data['webVitals']['inpMsMax'] <= 200
-          assert data['webVitals']['clsMax'] <= 0.1
-          assert data['labTargets']['mobileLighthousePerformanceMin'] >= 90
-          assert data['releaseGate']['id'] == 'PERF-001'
-          assert data['releaseGate']['blocking'] is True
+
+          perf=json.loads(Path('release/R6_PERFORMANCE_BUDGET.json').read_text(encoding='utf-8'))
+          assert perf['project'] == 'OmSaravanaBhava'
+          assert perf['candidate'] == 'native-r6'
+          assert perf['webVitals']['lcpMsMax'] <= 2500
+          assert perf['webVitals']['inpMsMax'] <= 200
+          assert perf['webVitals']['clsMax'] <= 0.1
+          assert perf['labTargets']['mobileLighthousePerformanceMin'] >= 90
+          assert perf['releaseGate']['id'] == 'PERF-001'
+          assert perf['releaseGate']['blocking'] is True
+
+          state=json.loads(Path('release/OMSARAVANABHAVA_PROJECT_STATE.json').read_text(encoding='utf-8'))
+          assert state['project'] == 'OmSaravanaBhava'
+          assert state['repository'] == 'ssakthivel02/OmSaravanaBhava'
+          assert state['productionBaseline']['branch'] == 'main'
+          assert state['productionBaseline']['commit'] == 'db37d2bc0b19f7c700c2b668874802c4b751ba66'
+          assert state['candidate']['branch'] == 'reconstruction/manus-r6-hi-tech'
+          assert state['candidate']['pullRequest'] == 6
+          assert state['candidate']['productionAuthorized'] is False
+          assert state['sourceAuthority']['primarySha256'] == '3477dd375e9545bd51482f9cacabe851adc6a841cdf111ffd5eb408f76c26585'
+          assert state['sourceAuthority']['bytesRecoveredIntoCandidate'] is False
+          assert state['isolation']['otherProjectSourceAllowed'] is False
+          assert state['isolation']['canonicalTamilMayBeSilentlyRewritten'] is False
+          assert state['governance']['manualExactShaProductionDispatchRequired'] is True
+          print('R6_PROJECT_STATE_SCHEMA=PASS')
           print('R6_PERFORMANCE_BUDGET_SCHEMA=PASS')
           PY
 
