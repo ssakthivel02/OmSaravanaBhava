@@ -33,11 +33,14 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           text=Path('.github/workflows/deploy-pages.yml').read_text(encoding='utf-8')
+          low=text.lower()
           assert 'workflow_dispatch:' in text
           assert '\n  push:' not in text
           assert 'expected_sha:' in text
           assert 'production_approved:' in text
-          assert 'kandan-legacy' not in text.lower()
+          assert 'repository: ssakthivel02/kandan-legacy' not in low
+          assert 'donor_sha:' not in low
+          assert 'build governed donor artifact' not in low
           PY
 
       - name: Verify donor build removed from native candidate CI
@@ -47,8 +50,10 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           text=Path('.github/workflows/flagship-parity-preview.yml').read_text(encoding='utf-8').lower()
+          assert 'repository: ssakthivel02/kandan-legacy' not in text
+          assert 'donor_sha:' not in text
           assert 'checkout pinned kandan donor' not in text
-          assert 'kandan-legacy' not in text
+          assert 'build donor governed artifact' not in text
           assert 'working-directory: native-r6' in text
           assert 'pnpm run build' in text
           PY
