@@ -22,11 +22,32 @@ jobs:
           test -s RECONSTRUCTION_NATIVE_SOURCE.md
           test -s docs/NATIVE_SOURCE_INVENTORY.md
           test -s native-r6/IMPORT_PROVENANCE.json
+          test -s docs/R6_ASSET_RECONCILIATION.csv
+          test -s release/R6_RELEASE_GATES.json
+          test -s tools/native-r6/verify_import.py
+          test -s tools/native-r6/verify_asset_ledger.py
+          test -s tools/native-r6/verify_release_gates.py
           grep -q 'OmSaravanaBhava_R6_FINAL_MANUS_MASTER_SOURCE.zip' RECONSTRUCTION_NATIVE_SOURCE.md
           grep -q '3477dd375e9545bd51482f9cacabe851adc6a841cdf111ffd5eb408f76c26585' RECONSTRUCTION_NATIVE_SOURCE.md
           grep -q 'native-source-only' native-r6/IMPORT_PROVENANCE.json
 
-      - name: Verify production is explicit-only
+      - name: Compile governance validators
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile \
+            tools/native-r6/verify_import.py \
+            tools/native-r6/verify_asset_ledger.py \
+            tools/native-r6/verify_release_gates.py
+
+      - name: Validate asset ledger and release schema
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/native-r6/verify_asset_ledger.py
+          python tools/native-r6/verify_release_gates.py
+
+      - name: Verify production is explicit and fail closed
         shell: bash
         run: |
           set -euo pipefail
@@ -38,6 +59,9 @@ jobs:
           assert '\n  push:' not in text
           assert 'expected_sha:' in text
           assert 'production_approved:' in text
+          assert 'verify_import.py' in text
+          assert 'verify_asset_ledger.py --require-resolved' in text
+          assert 'verify_release_gates.py --require-pass' in text
           assert 'repository: ssakthivel02/kandan-legacy' not in low
           assert 'donor_sha:' not in low
           assert 'build governed donor artifact' not in low
@@ -54,6 +78,9 @@ jobs:
           assert 'donor_sha:' not in text
           assert 'checkout pinned kandan donor' not in text
           assert 'build donor governed artifact' not in text
+          assert 'verify_import.py' in text
+          assert 'verify_asset_ledger.py' in text
+          assert 'verify_release_gates.py' in text
           assert 'working-directory: native-r6' in text
           assert 'pnpm run build' in text
           PY
