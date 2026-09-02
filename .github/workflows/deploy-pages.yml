@@ -46,31 +46,23 @@ jobs:
           test "$ACTUAL_SHA" = "$EXPECTED_SHA"
           echo "Exact candidate confirmed: $ACTUAL_SHA"
 
-      - name: Require native R6 source and provenance
+      - name: Verify exact native R6 import
         working-directory: .
         run: |
           set -euo pipefail
-          test -s native-r6/package.json
-          test -s native-r6/pnpm-lock.yaml
-          test -s native-r6/IMPORT_PROVENANCE.json
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          data=json.loads(Path('native-r6/IMPORT_PROVENANCE.json').read_text(encoding='utf-8'))
-          assert data['project'] == 'OmSaravanaBhava'
-          assert data['sourcePackage'] == 'OmSaravanaBhava_R6_FINAL_MANUS_MASTER_SOURCE.zip'
-          assert data['sourceSha256'] == '3477dd375e9545bd51482f9cacabe851adc6a841cdf111ffd5eb408f76c26585'
-          assert data['importMode'] == 'native-source-only'
-          PY
+          python tools/native-r6/verify_import.py
 
-      - name: Reject cross-project technical contamination
+      - name: Require all 52 R6 asset dispositions resolved
+        working-directory: .
         run: |
           set -euo pipefail
-          if grep -RniE 'kandan-legacy|kirthiverse|ramaverse|divyanexus|sakthiai|saravanai|osb-web' . \
-            --exclude-dir=node_modules --exclude-dir=.git; then
-            echo 'Cross-project technical contamination detected.' >&2
-            exit 1
-          fi
+          python tools/native-r6/verify_asset_ledger.py --require-resolved
+
+      - name: Require all pre-owner release gates PASS
+        working-directory: .
+        run: |
+          set -euo pipefail
+          python tools/native-r6/verify_release_gates.py --require-pass
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -123,11 +115,11 @@ jobs:
             exit 1
           fi
 
-      - name: Production safety gate
+      - name: Production artifact safety gate
         run: |
           set -euo pipefail
           grep -RqiE 'OmSaravanaBhava|Om Saravana Bhava|ஓம் சரவணபவ' "$WEB_ARTIFACT"
-          ! grep -RniE 'https://kandan\.omsaravanabhava\.org|kandan-legacy|kirthiverse|ramaverse|divyanexus|sakthiai|saravanai|osb-web' "$WEB_ARTIFACT"
+          ! grep -RniE 'https://kandan\.omsaravanabhava\.org|ssakthivel02/kandan-legacy|ssakthivel02/kirthiverse|ssakthivel02/ramaverse|ssakthivel02/divyanexus|ssakthivel02/osb-web|sakthiai\.omsaravanabhava\.org|saravanai\.omsaravanabhava\.org' "$WEB_ARTIFACT"
           ! grep -RniE 'api[_-]?key[[:space:]]*[:=]|secret[[:space:]]*[:=]|password[[:space:]]*[:=]' "$WEB_ARTIFACT"
 
       - name: Configure GitHub Pages
