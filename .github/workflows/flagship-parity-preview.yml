@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: Checkout candidate
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Validate governed release schema
         working-directory: .
@@ -38,8 +38,22 @@ jobs:
           set -euo pipefail
           python tools/native-r6/verify_import.py
 
+      - name: Capture deterministic native source inventory
+        working-directory: .
+        run: |
+          set -euo pipefail
+          python tools/native-r6/inventory_source.py --output r6-source-inventory.json
+
+      - name: Upload source inventory evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: omsaravanabhava-r6-source-inventory
+          path: r6-source-inventory.json
+          if-no-files-found: error
+          retention-days: 30
+
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: '22'
           cache: 'pnpm'
