@@ -30,6 +30,7 @@ jobs:
         run: |
           set -euo pipefail
           python tools/native-r6/verify_asset_ledger.py
+          python tools/native-r6/verify_browser_matrix.py
           python tools/native-r6/verify_release_gates.py
 
       - name: Fail closed until exact native R6 source is imported
