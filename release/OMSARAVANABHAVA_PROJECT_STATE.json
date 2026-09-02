@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "project": "OmSaravanaBhava",
+  "scope": "website-native-r6-reconstruction",
+  "productionDomain": "omsaravanabhava.org",
+  "repository": "ssakthivel02/OmSaravanaBhava",
+  "productionBaseline": {
+    "branch": "main",
+    "commit": "db37d2bc0b19f7c700c2b668874802c4b751ba66",
+    "policy": "rollback/reference only; production untouched during reconstruction"
+  },
+  "candidate": {
+    "branch": "reconstruction/manus-r6-hi-tech",
+    "pullRequest": 6,
+    "draft": true,
+    "productionAuthorized": false,
+    "state": "BLOCKED_SOURCE_IMPORT"
+  },
+  "sourceAuthority": {
+    "primaryArchive": "OmSaravanaBhava_R6_FINAL_MANUS_MASTER_SOURCE.zip",
+    "primarySha256": "3477dd375e9545bd51482f9cacabe851adc6a841cdf111ffd5eb408f76c26585",
+    "portfolioArchive": "MANUS_ALL_WEBSITES_LATEST_EXPORT_2026-08-27.zip",
+    "portfolioSha256": "47eef4cb07a6d466ad370d3923ec972ae43a916b18081ed85182d2b32da3ddfc",
+    "portfolioInternalPath": "01_OmSaravanaBhava/source/R6_FINAL_MASTER/",
+    "bytesRecoveredIntoCandidate": false
+  },
+  "isolation": {
+    "nativeRoot": "native-r6/",
+    "otherProjectSourceAllowed": false,
+    "legacyOverlayAllowedAsNativeSource": false,
+    "canonicalVerifiedContentMayBeReconciled": true,
+    "canonicalTamilMayBeSilentlyRewritten": false
+  },
+  "knownRecoveryEvidence": {
+    "r6SourceBuiltHistorically": true,
+    "referencedAssetsPresent": 2521,
+    "unresolvedAssetReferences": 52,
+    "historicalIsolatedCommitLead": "e114c9ac6540bfaf168fbfe467c6b59c8922017d",
+    "historicalCommitCurrentlyResolvableInThisRepository": false
+  },
+  "governance": {
+    "assetLedger": "docs/R6_ASSET_RECONCILIATION.csv",
+    "browserMatrix": "docs/R6_BROWSER_QA_MATRIX.csv",
+    "premiumExperienceContract": "docs/R6_PREMIUM_EXPERIENCE_CONTRACT.md",
+    "releaseGates": "release/R6_RELEASE_GATES.json",
+    "performanceBudget": "release/R6_PERFORMANCE_BUDGET.json",
+    "manualExactShaProductionDispatchRequired": true,
+    "automaticMainPushProductionDeployAllowedInCandidate": false
+  },
+  "nextExecutionOrder": [
+    "Recover one approved R6 archive",
+    "Verify exact SHA-256",
+    "Stage with tools/native-r6/import_verified_archive.py",
+    "Inspect source inventory and contamination evidence",
+    "Import native source into native-r6/",
+    "Resolve technical broken asset references and govern all 52 historical unresolved references",
+    "Install exact dependencies and build",
+    "Repair evidence-backed native R6 defects only",
+    "Execute 40-case browser qualification matrix",
+    "Measure performance budget and accessibility/PWA/SEO gates",
+    "Complete exact-head evidence bundle",
+    "Request explicit owner production approval"
+  ],
+  "prohibitedNextActions": [
+    "Delete the authoritative repository",
+    "Rebuild R6 from memory while the authoritative archive is recoverable",
+    "Copy another project into native-r6",
+    "Merge draft PR before release gates pass",
+    "Change production DNS",
+    "Deploy production without exact candidate approval"
+  ]
+}
