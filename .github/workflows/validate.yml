@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Verify reconstruction authority
         shell: bash
@@ -23,20 +23,24 @@ jobs:
           test -s docs/NATIVE_SOURCE_INVENTORY.md
           test -s native-r6/IMPORT_PROVENANCE.json
           test -s docs/R6_ASSET_RECONCILIATION.csv
+          test -s docs/R6_BROWSER_QA_MATRIX.csv
           test -s release/R6_RELEASE_GATES.json
           test -s tools/native-r6/verify_import.py
+          test -s tools/native-r6/inventory_source.py
           test -s tools/native-r6/verify_asset_ledger.py
           test -s tools/native-r6/verify_release_gates.py
           grep -q 'OmSaravanaBhava_R6_FINAL_MANUS_MASTER_SOURCE.zip' RECONSTRUCTION_NATIVE_SOURCE.md
           grep -q '3477dd375e9545bd51482f9cacabe851adc6a841cdf111ffd5eb408f76c26585' RECONSTRUCTION_NATIVE_SOURCE.md
           grep -q 'native-source-only' native-r6/IMPORT_PROVENANCE.json
+          test "$(tail -n +2 docs/R6_BROWSER_QA_MATRIX.csv | wc -l)" -eq 40
 
-      - name: Compile governance validators
+      - name: Compile governance and inventory tools
         shell: bash
         run: |
           set -euo pipefail
           python -m py_compile \
             tools/native-r6/verify_import.py \
+            tools/native-r6/inventory_source.py \
             tools/native-r6/verify_asset_ledger.py \
             tools/native-r6/verify_release_gates.py
 
@@ -60,6 +64,7 @@ jobs:
           assert 'expected_sha:' in text
           assert 'production_approved:' in text
           assert 'verify_import.py' in text
+          assert 'inventory_source.py' in text
           assert 'verify_asset_ledger.py --require-resolved' in text
           assert 'verify_release_gates.py --require-pass' in text
           assert 'repository: ssakthivel02/kandan-legacy' not in low
@@ -79,6 +84,7 @@ jobs:
           assert 'checkout pinned kandan donor' not in text
           assert 'build donor governed artifact' not in text
           assert 'verify_import.py' in text
+          assert 'inventory_source.py' in text
           assert 'verify_asset_ledger.py' in text
           assert 'verify_release_gates.py' in text
           assert 'working-directory: native-r6' in text
